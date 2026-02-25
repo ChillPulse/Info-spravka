@@ -1,0 +1,179 @@
+В проекте UART — это стандартный Serial со скоростью 115200 (Serial.begin(115200))
+
+CLI (each command has multiple ways of writing)
+
+-------------
+mode 0      : принудительно WEB mode (интернет‑радио) (пример:mode 0
+done
+##CLI.META#: [СЃРѕРµРґРёРЅРµРЅРёРµ]
+##AUDIO.INFO#: Closing audio file "matt simons вЂ” catch & release (deepend remix).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 105128 bytes
+##AUDIO.INFO#: connect to: "radiorecord.hostingradio.ru" on port 443 path "/hypno96.aacp")
+-------------
+mode 1      : принудительно SD mode (проигрыватель с SD) (пример:mode 1
+SD Mounted
+Waiting for SD card indexing...	done
+##ERROR#:	audio is not a file
+##ERROR#:	audio is not a file
+##AUDIO.INFO#: Closing web file "https://radiorecord.hostingradio.ru:443/hypno96.aacp"
+##AUDIO.INFO#: buffers freed, free Heap: 106344 bytes)
+-------------
+mode 2      : Toggle (переключить туда/обратно)
+-------------
+cli.prev
+prev        : previous station
+-------------
+cli.next
+next        : next station
+-------------
+cli.toggle
+toggle      : start/stop
+-------------
+cli.stop
+stop        : stop
+-------------
+cli.start
+start
+cli.play
+play        : start
+-------------
+cli.vol
+vol         : display the current value of volume (0-254)
+-------------
+cli.vol-
+vol-        : volume down one step
+-------------
+cli.vol+
+vol+        : volume up one step
+-------------
+cli.vol("x")
+vol(x)
+vol x       : set volume to x (0-254)
+-------------
+cli.audioinfo
+audioinfo   : current value of debug information display
+-------------
+cli.audioinfo("x")
+audioinfo(x)
+audioinfo x : on (1)/off (0) display debug information
+-------------
+cli.smartstart
+smartstart  : current smart start value
+-------------
+cli.smartstart("x")
+smartstart(x)
+smartstart x : x=2 - x=2 - disable smart start, x=0 or 1 - enable smart start
+-------------
+cli.list
+list        : display list of stations (пример, работает только на радио:list
+#CLI.LIST#
+#CLI.LISTNUM#:   1: Р Р°РґРёРѕ РЎР (Р•РєР±.), http://online.radioc.ru:8000/radioc_aacplus
+#CLI.LISTNUM#:   2: Р Р°РґРёРѕ Р’С‹С€РєР° - Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі, http://stream.vyshka24.ru:80/192
+#CLI.LISTNUM#:   3: Р’РѕР»РЅР°-FM (Р•РєР±.), http://radio.volnafm.ru:8000/ekb
+.....
+##CLI.LIST#)
+-------------
+cli.play("x")
+play(x)
+play x      : start playback of station number x
+-------------
+cli.info
+info        : display information about the current state (пример для радио: info
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T21:45:12+03:00
+##CLI.NAMESET#: 246 Record Hypnotic
+##CLI.META#: MINILOGUE - Deep Motions
+##CLI.VOL#: 12
+##CLI.PLAYING#)
+
+(пример для SD-карты:info
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T21:47:41+03:00
+##CLI.NAMESET#: 129 Blank & Jones, Kyle Pearce
+##CLI.META#: Broken - Relax Edition 14
+##CLI.VOL#: 12
+##CLI.PLAYING#)
+-------------
+cli.dspon("x")
+dspon(x)
+dspon x     : display on/off (0/1)
+-------------
+cli.dim("x")
+dim(x)
+dim x       : display brightness (0-100) (if supported)
+-------------
+cli.sleep("x,y")
+sleep(x,y)
+sleep x y   : sleep for x minutes after y minutes
+-------------
+cli.sleep("x")
+sleep(x)
+sleep x     : sleep for x minutes right now
+------------------------------------------------------------------------------------------------
+SYS (each command has multiple ways of writing)
+
+sys.tzo
+tzo         : current timezone value
+-------------
+sys.tzo("h:m")
+tzo(h:m)
+tzo h:m     : set timezone value
+-------------
+sys.tzo("h")
+tzo(h)
+tzo h       : set timezone value (hours only)
+-------------
+sys.date
+date
+time        : current date and time (пример:date
+##SYS.DATE#: 2026-02-25T21:50:48+03:00)
+-------------
+sys.version
+version     : firmware version
+-------------
+sys.heap
+heap        : free heap space
+-------------
+sys.boot
+boot
+reboot      : reboot
+-------------
+sys.reset
+reset       : reset settings to default
+----------------------------------------------------------------------------------------------
+
+WIFI (each command has multiple ways of writing)
+
+wifi.list
+wifi        : list of available networks
+-------------
+wifi.con
+conn        : list of saved networks (# ssid password)
+-------------
+wifi.station
+station
+ssid        : current wifi connection (# ssid password)
+-------------
+wifi.con("ssid","pass")
+wifi.con(ssid,pass)
+wifi.con(ssid pass)
+wifi ssid pass  : connect to ssid with pass password. This command will overwrite all saved connections, only one will be deleted. Reboot - immediately
+-------------
+wifi.status
+status      : current connection state (пример: status
+#WIFI.STATUS#
+Status:		3
+Mode:		WIFI_STA
+IP:		192.168.1.149
+Mask:		255.255.255.0
+Gateway:	192.168.1.1
+RSSI:		-52 dBm
+##WIFI.STATUS#)
+-------------
+wifi.rssi
+rssi        : received signal strength indicator (dBm, decibel re 1 milliwatt) (пример:rssi
+#WIFI.RSSI#	-55 dBm)
+-------------
+wifi.discon
+disconnect
+discon      : reconnect to wifi
