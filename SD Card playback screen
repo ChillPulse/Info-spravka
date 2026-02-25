@@ -1,0 +1,372 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:4888
+load:0x40078000,len:16516
+load:0x40080400,len:4
+load:0x40080404,len:3476
+entry 0x400805b4
+##[BOOT]#	************************************************
+##[BOOT]#	*           С‘Radio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.2.0
+##[BOOT]#	chip:		model: ESP32-D0WD-V3 | rev: 301 | id: 15435004 | cores: 2 | psram: 4194304
+##[BOOT]#	display:	model: 4 (CS-5, DC-4, RST--1, SPI-VSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-27, BCLK-26, LRC-25)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=21, pullup=OFF
+##[BOOT]#	encoders:	l1=34, b1=39, r1=36, pullup=OFF, l2=33, b2=32, r2=35, pullup=OFF
+##[BOOT]#	ir:		14
+##[BOOT]#	SD:		CS-22
+##[BOOT]#	battery:	battery OFF
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##[BOOT]#	display.init	done
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	done
+##[BOOT]#	SD search	SD Mounted
+##[BOOT]#	Waiting for SD card indexing...		done
+##[BOOT]#	Ready in SD Mode!
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+##CLI.META#: [next track]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 103320 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Brainstorm/brainstorm - maybe (minus).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 4022901
+##AUDIO.INFO#: ID3 framesSize: 4096
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:12:31+03:00
+##CLI.NAMESET#: 1 brainstorm - maybe (minus).mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##CLI.META#: Maybe (minus)
+##AUDIO.ID3#: Title: Maybe (minus)
+##AUDIO.ID3#: Artist: Brainstorm
+##AUDIO.INFO#: Audio-Length: 4018805
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 128000
+##AUDIO.BITRATE#: 128000
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "brainstorm - maybe (minus).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 107860 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Brainstorm/brainstorm вЂ” РќР° Р·Р°СЂРµ.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 11094122
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:12:39+03:00
+##CLI.NAMESET#: 3 brainstorm вЂ” РќР° Р·Р°СЂРµ.mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##AUDIO.ID3#: Artist: Brainstorm
+##CLI.META#: РќР° Р·Р°СЂРµ
+##AUDIO.ID3#: Title: РќР° Р·Р°СЂРµ
+##CLI.META#: РќР° Р·Р°СЂРµ - 
+##AUDIO.ID3#: Album: 
+##AUDIO.ID3#: Year: 2020
+##AUDIO.ID3#: ContentType: DriveMusic.me
+##AUDIO.INFO#: Comment: text encoding; UTF-16, language eng, content_descriptor: DriveMusic.me
+##AUDIO.ID3#: Comment: жҐЎзЌ®жЅґжµІж€Їж…Іж№©з‘із‰ЇвЃ­иѓўв‚”й·ђлѓђнЂ н‚·н†°н‚ЂвєµзЃ­3иЂЂРїи¶ЃйЊїг‰ѕбђЂиЂЂбђїиЂЂдґїгЌђж•„жЅЈж•¤вЃІж…ЁвЃіж•ўж№Ґж¤ жҐ®жҐґж±Ўз©©ж‘ҐжђЂи¶ЃжЊїг‰ѕбђЂиЂЂбђїиЂЂлњїлѓђиѓ‘л—ђжґ®гЌ°"
+##AUDIO.INFO#: Audio-Length: 11007082
+##AUDIO.INFO#: frames 10533
+##AUDIO.INFO#: bytes 11006954
+##AUDIO.INFO#: Duration: 275 (s)
+##AUDIO.INFO#: BitRate: 320202
+##AUDIO.BITRATE#: 320202
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320202
+##AUDIO.BITRATE#: 320202
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "brainstorm вЂ” РќР° Р·Р°СЂРµ.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 107860 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Milchbar - Seaside Season 6-1/01.entspannt.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 9133413
+##AUDIO.INFO#: ID3 framesSize: 62527
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:12:54+03:00
+##CLI.NAMESET#: 5 01.entspannt.mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##AUDIO.ID3#: Band: Blank & Jones
+##CLI.META#: // Entspannt
+##AUDIO.ID3#: Title: // Entspannt
+##AUDIO.ID3#: Artist: Blank & Jones
+##CLI.META#: // Entspannt - Milchbar - Seaside Season 6
+##AUDIO.ID3#: Album: Milchbar - Seaside Season 6
+##AUDIO.ID3#: Year: 2014
+##AUDIO.ID3#: ContentType: Electronic
+##AUDIO.ID3#: Track: 1
+##AUDIO.ID3#: Composer: Piet Blank, Andy Kaufhold & Jaspa Jones
+##AUDIO.INFO#: Audio-Length: 9070886
+##AUDIO.INFO#: frames 8680
+##AUDIO.INFO#: bytes 9070758
+##AUDIO.INFO#: Duration: 226 (s)
+##AUDIO.INFO#: BitRate: 321088
+##AUDIO.BITRATE#: 321088
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 321088
+##AUDIO.BITRATE#: 321088
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "01.entspannt.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 108000 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Milchbar - Seaside Season 6-1/06.surround me with your love (with.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8092548
+##AUDIO.INFO#: ID3 framesSize: 66560
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:13:02+03:00
+##CLI.NAMESET#: 10 06.surround me with your love (with.mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##CLI.META#: Surround Me With Your Love (with Coralie Clement)
+##AUDIO.ID3#: Title: Surround Me With Your Love (with Coralie Clement)
+##AUDIO.ID3#: Track: 6
+##AUDIO.ID3#: Year: 2014
+##AUDIO.ID3#: ContentType: (52)
+##CLI.META#: Surround Me With Your Love (with Coralie Clement) - Milchbar - Seaside Season 6
+##AUDIO.ID3#: Album: Milchbar - Seaside Season 6
+##AUDIO.ID3#: Band: Blank & Jones
+##AUDIO.ID3#: Composer: Per Bertheussen, Svein Hansen & Per Martinsen
+##AUDIO.ID3#: Artist: Blank & Jones
+##AUDIO.INFO#: Audio-Length: 8025988
+##AUDIO.INFO#: frames 7680
+##AUDIO.INFO#: bytes 8025860
+##AUDIO.INFO#: Duration: 200 (s)
+##AUDIO.INFO#: BitRate: 321034
+##AUDIO.BITRATE#: 321034
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 321034
+##AUDIO.BITRATE#: 321034
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "06.surround me with your love (with.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 107852 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/music/alexander boynton jr. - it never rain in southern california (feat. .mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 5868856
+##AUDIO.INFO#: ID3 framesSize: 41333
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:13:13+03:00
+##CLI.NAMESET#: 21 alexander boynton jr. - it never rain in southern california (feat. .mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##AUDIO.ID3#: Band: Alexander Boynton Jr.
+##CLI.META#: It Never Rain In Southern California (feat. Paul Jackson Jr.)
+##AUDIO.ID3#: Title: It Never Rain In Southern California (feat. Paul Jackson Jr.)
+##AUDIO.ID3#: Artist: Alexander Boynton Jr.
+##CLI.META#: It Never Rain In Southern California (feat. Paul Jackson Jr.) - Doo Bee Doo Bop
+##AUDIO.ID3#: Album: Doo Bee Doo Bop
+##AUDIO.ID3#: Year: 2010
+##AUDIO.ID3#: ContentType: Smooth Jazz
+##AUDIO.ID3#: Track: 09
+##AUDIO.ID3#: Encoded by: TabazkВ®
+##AUDIO.INFO#: Audio-Length: 5827523
+##AUDIO.INFO#: frames 9294
+##AUDIO.INFO#: bytes 5827395
+##AUDIO.INFO#: Duration: 242 (s)
+##AUDIO.INFO#: BitRate: 192641
+##AUDIO.BITRATE#: 192641
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192641
+##AUDIO.BITRATE#: 192641
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "alexander boynton jr. - it never rain in southern california (feat. .mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 107852 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/music/best_youth_-_renaissance.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6056251
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:13:20+03:00
+##CLI.NAMESET#: 29 best_youth_-_renaissance.mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##CLI.META#: Renaissance
+##AUDIO.ID3#: Title: Renaissance
+##AUDIO.ID3#: Artist: Best Youth
+##CLI.META#: Renaissance - Highway Moon
+##AUDIO.ID3#: Album: Highway Moon
+##AUDIO.ID3#: Year: 2015
+##AUDIO.INFO#: Audio-Length: 5969211
+##AUDIO.INFO#: frames 9520
+##AUDIO.INFO#: bytes 5969083
+##AUDIO.INFO#: Duration: 248 (s)
+##AUDIO.INFO#: BitRate: 192551
+##AUDIO.BITRATE#: 192551
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192551
+##AUDIO.BITRATE#: 192551
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "best_youth_-_renaissance.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 107992 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/music/fugees_-_ready_or_not_lucas_chambon_remix.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 11384604
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:13:28+03:00
+##CLI.NAMESET#: 41 fugees_-_ready_or_not_lucas_chambon_remix.mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##CLI.META#: Ready Or Not (Lucas Chambon Remix) [320 kbps]
+##AUDIO.ID3#: Title: Ready Or Not (Lucas Chambon Remix) [320 kbps]
+##AUDIO.ID3#: Artist: Fugees
+##AUDIO.ID3#: Year: 0
+##AUDIO.INFO#: Audio-Length: 11297564
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "fugees_-_ready_or_not_lucas_chambon_remix.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 107844 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/music/keljet вЂ” fallinвЂ™ (ft. river).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 7760828
+##AUDIO.INFO#: ID3 framesSize: 43213
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:13:33+03:00
+##CLI.NAMESET#: 51 keljet вЂ” fallinвЂ™ (ft. river).mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##CLI.META#: FallinвЂ™ (feat. River)
+##AUDIO.ID3#: Title: FallinвЂ™ (feat. River)
+##AUDIO.ID3#: Artist: Keljet
+##AUDIO.ID3#: Band: Keljet
+##CLI.META#: FallinвЂ™ (feat. River) - Love At First Sight
+##AUDIO.ID3#: Album: Love At First Sight
+##AUDIO.ID3#: Year: 2016
+##AUDIO.ID3#: Track: 2/4
+##AUDIO.ID3#: PartOfSet: 1/1
+##AUDIO.ID3#: ContentType: Р”РёСЃРєРѕ
+##AUDIO.ID3#: Copyright: (c) 2016 Keljet V.O.F. , under exclusive license to Universal Muisc BV
+##AUDIO.INFO#: Audio-Length: 7717615
+##AUDIO.INFO#: frames 7385
+##AUDIO.INFO#: bytes 7717615
+##AUDIO.INFO#: Duration: 192 (s)
+##AUDIO.INFO#: BitRate: 321567
+##AUDIO.BITRATE#: 321567
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 321567
+##AUDIO.BITRATE#: 321567
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "keljet вЂ” fallinвЂ™ (ft. river).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 107844 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/music/london_grammar_-_hey_now_tensnake_remix.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 15600026
+##AUDIO.INFO#: ID3 framesSize: 87344
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-02-25T14:13:38+03:00
+##CLI.NAMESET#: 62 london_grammar_-_hey_now_tensnake_remix.mp3
+##CLI.META#: 
+##CLI.VOL#: 12
+##CLI.PLAYING#
+##CLI.META#: Hey Now (Tensnake Remix)
+##AUDIO.ID3#: Title: Hey Now (Tensnake Remix)
+##AUDIO.ID3#: Artist: London Grammar
+##AUDIO.ID3#: Year: 0
+##AUDIO.INFO#: Audio-Length: 15512682
+##AUDIO.INFO#: frames 14845
+##AUDIO.INFO#: bytes 15512554
+##AUDIO.INFO#: Duration: 387 (s)
+##AUDIO.INFO#: BitRate: 320672
+##AUDIO.BITRATE#: 320672
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320672
+##AUDIO.BITRATE#: 320672
