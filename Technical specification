@@ -1,0 +1,1837 @@
+# ТЕХНИЧЕСКОЕ ЗАДАНИЕ v4.2 — ФИНАЛЬНОЕ
+
+## Проект: "OMNIA-V" — Reference Digital Audio Center
+
+### Платформа: PlatformIO + VS Code
+
+---
+
+# ЧАСТЬ 1 из 2
+
+---
+
+## 1. ОБЩЕЕ ОПИСАНИЕ
+
+Цифровой аудио процессор на базе STM32F401RCT6 (плата WeAct MiniSTM32F4x1) для управления усилителем TPA3116. Принимает цифровой звук (I2S) от четырёх источников: интернет-радио/SD-карта Ё-радио мод (ESP32-S3), Bluetooth модуль SJR-BTM334 (QCC3034), USB Audio (ПК, Android TV, телефон) и Line In (внешний I2S источник через ADC PCM1802 или любой другой I2S). Коммутация I2S входов — цифровые мультиплексоры 74HC157 (1 чип без Line In, 2 чипа каскадом с Line In). Звук обрабатывается полностью на STM32: 15-полосный параметрический эквалайзер, 10 аудио эффектов, передискретизация ×2 полифазный FIR 32 tap. Вывод через DAC PCM5102A на усилитель TPA3116. Управление: энкодер EC11, 6 кнопок через ADC, физическая кнопка Bypass, самообучаемый ИК пульт. Отображение на IPS дисплее 240×320 с модульным драйвером (ST7789/ILI9341/ILI9342) и хай-тек анимациями в стиле премиальных аудио устройств (Trinnov, Cambridge Audio, NAD). Внешняя SPI Flash 4-16 МБ (совместимость: Spansion FL032PIF, Winbond W25Q32/W25Q64/W25Q128, GigaDevice GD25Q32/GD25Q64) для графики, шрифтов и настроек. USB CDC для отладки. Батарейка RTC не используется — время синхронизируется по WiFi через ESP32.
+
+---
+
+## 2. КОМПОНЕНТЫ
+
+```
+Компонент                 Модель                       Статус
+────────────────────────  ─────────────────────────    ────────
+Микроконтроллер           STM32F401RCT6 WeAct          Есть
+Дисплей                   ST7789 240×320 2.8" IPS      Есть
+                          (совместим: ILI9341, ILI9342)
+DAC                       PCM5102A модуль               Есть
+Bluetooth                 SJR-BTM334 (QCC3034)          Есть
+Интернет-радио            Ё-радио мод (ESP32-S3)        Есть
+Цифровой MUX I2S          74HC157 DIP-16               Нужен
+                          Без Line In: 1 шт
+                          С Line In:   2 шт
+Усилитель                 TPA3116                       Есть
+ИК приёмник               VS1838B                       Есть
+SPI Flash                 4-16 МБ, 3.3V, SOP8          Есть
+                          (FL032PIF / W25Q64 / W25Q128)
+Энкодер                   EC11                          Нужен
+Кнопки тактовые           7 шт                         Нужны
+Резисторы для ADC         10к×2, 2.2к, 4.7к,           Нужны
+                          15к, 33к, конд. 100нФ
+ST-Link V2 клон           Для прошивки                 Нужен
+ADC Line In (будущее)     PCM1802 или аналог            Нужен (позже)
+```
+
+---
+
+## 3. РАСПИНОВКА STM32F401RCT6
+
+```
+═══════════════════════════════════════════════════════
+SPI1 (общая шина — дисплей + SPI Flash):
+  PA5  — SCK
+  PA6  — MISO (только Flash чтение)
+  PA7  — MOSI
+
+Дисплей (ST7789 / ILI9341 / ILI9342):
+  PB0  — CS
+  PB2  — DC (Data/Command)
+  PB10 — RST
+  PA8  — BL (подсветка, PWM через TIM1_CH1)
+
+SPI Flash (FL032PIF / W25Qxx, площадка U3 на плате):
+  PA4  — CS
+
+═══════════════════════════════════════════════════════
+I2S2 — аудио вход (Slave RX, от MUX):
+  PB12 — LRCK (I2S2_WS)
+  PB13 — BCLK (I2S2_CK)
+  PB15 — DATA (I2S2_SD)
+
+I2S3 — аудио выход (Master TX, на PCM5102A):
+  PA15 — LRCK (I2S3_WS)
+  PB3  — BCLK (I2S3_CK)
+  PB5  — DATA (I2S3_SD)
+  MCK  — не используется (PCM5102A пин SCK → GND)
+
+═══════════════════════════════════════════════════════
+USART1 — Ё-радио (ESP32-S3), 115200 бод:
+  PA9  — TX (STM → ESP)
+  PA10 — RX (ESP → STM)
+
+USART2 — SJR-BTM334 (QCC3034):
+  PA2  — TX (STM → BTN)
+  PA3  — RX (BTN → STM)
+
+═══════════════════════════════════════════════════════
+USB OTG FS — CDC отладка + Audio:
+  PA11 — USB DM
+  PA12 — USB DP
+
+═══════════════════════════════════════════════════════
+Энкодер EC11 (TIM5 encoder mode):
+  PA0  — CH1 (фаза A)  ※ кнопку KEY на плате не отпаивать
+  PA1  — CH2 (фаза B)
+
+Кнопка энкодера:
+  PB9  — GPIO вход с внутренней подтяжкой
+
+═══════════════════════════════════════════════════════
+ИК приёмник VS1838B:
+  PB4  — TIM3_CH1 (Input Capture)
+
+═══════════════════════════════════════════════════════
+Управление TPA3116:
+  PB6  — MUTE (HIGH = play, LOW = mute)
+  PB7  — POWER (HIGH = питание ON, LOW = OFF)
+
+═══════════════════════════════════════════════════════
+Цифровые мультиплексоры 74HC157:
+  PB8  — MUX1 SELECT (LOW = BT, HIGH = MUX2/ESP32)
+  PB14 — MUX2 SELECT (LOW = ESP32, HIGH = Line In)
+         (PB14 используется только при наличии Line In)
+
+═══════════════════════════════════════════════════════
+6 кнопок через ADC (резисторный делитель):
+  PB1  — ADC1_CH9
+
+Кнопка Bypass (отдельная физическая):
+  PB11 — GPIO вход с внутренней подтяжкой
+
+Индикатор:
+  PC13 — встроенный LED
+
+═══════════════════════════════════════════════════════
+Не используется / зарезервировано:
+  PA13 — SWDIO (отладка SWD, не трогать)
+  PA14 — SWCLK (отладка SWD, не трогать)
+  PC14 — OSC32_IN (кварц RTC 32.768 кГц, на плате)
+  PC15 — OSC32_OUT (кварц RTC)
+  VBAT — не подключен (батарейки нет, время по WiFi)
+```
+
+---
+
+## 4. ЦИФРОВОЙ МУЛЬТИПЛЕКСОР I2S — 74HC157
+
+### 4.1 Почему 74HC157
+
+```
+I2S — цифровой сигнал (BCLK до 3-6 МГц).
+
+74HC4051/4053 — АНАЛОГОВЫЕ мультиплексоры:
+  ❌ Ron = 70-100 Ом (сопротивление канала)
+  ❌ Charge injection при переключении → щелчки
+  ❌ Crosstalk между каналами
+  ❌ Предназначены для аналоговых сигналов
+
+74HC157 — ЦИФРОВОЙ мультиплексор:
+  ✅ Чистые CMOS логические уровни на выходе
+  ✅ Нет charge injection → нет щелчков
+  ✅ Нет crosstalk
+  ✅ Переключение ~10 нс
+  ✅ Предназначен для цифровых сигналов
+
+74HC157 = Quad 2:1 Digital Multiplexer:
+  4 канала (нам нужно 3 для I2S: BCLK, LRCK, DATA)
+  Один SELECT для всех каналов
+  Один /ENABLE (активный LOW)
+```
+
+### 4.2 Вариант A: Без Line In — ОДИН 74HC157
+
+```
+Распиновка 74HC157 (DIP-16):
+
+  Пин  Имя     Куда подключать
+  ───  ──────   ─────────────────────────
+   1   /E       GND (всегда включен)
+   2   S        PB8 (SELECT от STM32)
+   3   1A       BT BCLK (SJR-BTM334)
+   4   1B       ESP32 BCLK
+   5   1Y       PB13 (I2S2_CK) — выход
+   6   2A       BT LRCK
+   7   2B       ESP32 LRCK
+   8   GND      GND
+   9   2Y       PB12 (I2S2_WS) — выход
+  10   3A       BT DATA
+  11   3B       ESP32 DATA
+  12   3Y       PB15 (I2S2_SD) — выход
+  13   4A       GND (не используется)
+  14   4B       GND (не используется)
+  15   4Y       не подключен
+  16   VCC      3.3V
+
+Управление:
+  PB8 = LOW  → входы A → Bluetooth
+  PB8 = HIGH → входы B → ESP32 (Radio/SD)
+
+Схема:
+                      74HC157 (MUX1)
+                 ┌───────────────────┐
+  BT BCLK ─────→│ 1A            1Y  │──→ PB13 (I2S2_CK)
+  ESP32 BCLK ──→│ 1B                │
+                 │                   │
+  BT LRCK ─────→│ 2A            2Y  │──→ PB12 (I2S2_WS)
+  ESP32 LRCK ──→│ 2B                │
+                 │                   │
+  BT DATA ─────→│ 3A            3Y  │──→ PB15 (I2S2_SD)
+  ESP32 DATA ──→│ 3B                │
+                 │                   │
+  GND ──────────│ 4A            4Y  │    (не используется)
+  GND ──────────│ 4B                │
+                 │                   │
+  PB8 ──────────│ S                 │    SELECT
+  GND ──────────│/E                 │    ENABLE (всегда ON)
+  3.3V ─────────│ VCC               │
+  GND ──────────│ GND               │
+                 └───────────────────┘
+```
+
+### 4.3 Вариант B: С Line In — ДВА 74HC157 (каскад)
+
+```
+MUX2 выбирает: ESP32 или Line In
+MUX1 выбирает: BT или результат MUX2
+
+               MUX2 (74HC157)              MUX1 (74HC157)
+          ┌───────────────────┐       ┌───────────────────┐
+ESP BCLK →│ 1A            1Y │──────→│ 1B            1Y  │──→ PB13
+LIn BCLK →│ 1B                │       │                   │
+           │                   │  BT →│ 1A                │
+ESP LRCK →│ 2A            2Y │──────→│ 2B            2Y  │──→ PB12
+LIn LRCK →│ 2B                │       │                   │
+           │                   │  BT →│ 2A                │
+ESP DATA →│ 3A            3Y │──────→│ 3B            3Y  │──→ PB15
+LIn DATA →│ 3B                │       │                   │
+           │                   │  BT →│ 3A                │
+           │                   │       │                   │
+PB14 ─────│ S                 │ PB8 ─│ S                 │
+GND ──────│/E                 │ GND ─│/E                 │
+3.3V ─────│ VCC               │ 3.3V│ VCC               │
+GND ──────│ GND               │ GND ─│ GND               │
+           └───────────────────┘       └───────────────────┘
+
+Таблица коммутации:
+  Источник     PB8 (MUX1 S)   PB14 (MUX2 S)   Путь
+  ──────────   ────────────   ─────────────   ──────────────
+  Bluetooth    LOW  (→A)      X (любой)        BT → MUX1.A → выход
+  Radio/SD     HIGH (→B)      LOW  (→A)        ESP → MUX2.A → MUX1.B → выход
+  Line In      HIGH (→B)      HIGH (→B)        LIn → MUX2.B → MUX1.B → выход
+  USB Audio    X              X                Программно (без MUX)
+```
+
+### 4.4 Конфигурация в config.h
+
+```c
+// ═══ Конфигурация MUX ═══
+// Раскомментировать ОДИН вариант:
+
+#define MUX_TYPE_157_SINGLE    1   // 1× 74HC157, без Line In (рекомендуемый)
+// #define MUX_TYPE_157_CASCADE   1   // 2× 74HC157, с Line In
+
+// ═══ Совместимость со старыми вариантами (legacy) ═══
+// #define MUX_TYPE_4053_SINGLE   1   // 1× 74HC4053 (аналоговый, без Line In)
+// #define MUX_TYPE_4051_TRIPLE   1   // 3× 74HC4051 (аналоговый, с Line In)
+```
+
+### 4.5 Покупка
+
+```
+Поиск на Али: "74HC157 DIP-16" или "SN74HC157N"
+Цена: ~$0.10-0.20 за штуку, пачка 10 шт ~$1
+Напряжение: 2V-6V (3.3V — подходит) ✅
+Корпус: DIP-16 (для макетки), SOIC-16 (для платы)
+
+Аналоги (полностью совместимы):
+  SN74HC157N (Texas Instruments)
+  MC74HC157AN (ON Semiconductor)
+  CD74HC157E (TI)
+
+Заказать: минимум 2 шт (1 без Line In + 1 запас или для Line In)
+Рекомендация: 5-10 шт (~$0.50-1) — с запасом на всё
+```
+
+---
+
+## 5. СХЕМА СОЕДИНЕНИЙ
+
+```
+                                              ┌────────────────────────┐
+   ┌──────────┐  I2S                          │   STM32F401RCT6 WeAct  │
+   │ Ё-радио  │──────────┐                    │                        │
+   │(ESP32-S3)│          │                    │                        │
+   │ +SD Card │ UART     │  ┌─────────────┐  │                        │
+   └──┬───────┘──────┐   │  │  74HC157    │  │                        │
+      │              │   ├─→│  MUX2       │  │                        │
+   ┌──┴───────┐      │   │  │  PB14 sel   │  │                        │
+   │ Line In  │──────┘   │  └──────┬──────┘  │                        │
+   │(PCM1802) │  I2S     │         │         │                        │
+   └──────────┘          │  ┌──────┴──────┐  │                        │
+                         │  │  74HC157    │  │                        │
+   ┌──────────┐  I2S     ├─→│  MUX1       │─→│  I2S2 ← аудио вход    │
+   │SJR-BTM334│──────────┘  │  PB8 sel    │  │  I2S3 → аудио выход   │
+   │(QCC3034) │ UART        └─────────────┘  │                        │
+   │Bluetooth │──────────────────────────→   │  SPI1 → Дисплей        │
+   └──────────┘                              │  SPI1 → SPI Flash      │
+                                             │                        │
+   ┌──────────┐  USB                         │  USART1 ← Ё-радио     │
+   │ Android  │──────────────────────────→   │  USART2 ← BTM334      │
+   │ TV / ПК  │  (Audio+CDC)                │  USB ← CDC + Audio     │
+   └──────────┘                              │                        │
+                                             │  TIM5 ← Энкодер       │
+   ┌──────────┐                              │  PB1 ADC ← 6 кнопок   │
+   │ PCM5102A │←──── I2S3 ───────────────────│  PB11 ← Bypass        │
+   │  (DAC)   │                              │  PB4 ← VS1838B ИК     │
+   └────┬─────┘                              │  PA8 → PWM подсветка   │
+        │ Analog                             │  PB6 → MUTE TPA3116   │
+   ┌────┴─────┐                              │  PB7 → POWER TPA3116  │
+   │ TPA3116  │→ Колонки                     │  PC13 → LED            │
+   └──────────┘                              └────────────────────────┘
+
+Без Line In (1× 74HC157):
+  MUX2 отсутствует. ESP32 подключен напрямую к MUX1 входам B.
+  PB14 не используется.
+
+Этап 1 (без MUX):
+  ESP32 подключен напрямую к STM32 I2S2 (PB12, PB13, PB15).
+  MUX впаивается позже.
+```
+
+---
+
+## 6. ADC КНОПКИ — СХЕМА И ПОРОГИ
+
+```
+Схема:
+        3.3V
+         │
+        [10kΩ] pull-up
+         │
+    PB1 ─┤──── ADC1_CH9
+         │
+         ├──[BTN1]──── GND          (перемычка, 0 Ω)
+         ├──[BTN2]──[2.2kΩ]── GND
+         ├──[BTN3]──[4.7kΩ]── GND
+         ├──[BTN4]──[10kΩ]─── GND
+         ├──[BTN5]──[15kΩ]─── GND
+         └──[BTN6]──[33kΩ]─── GND
+         │
+        [100нФ] керамический к GND (аппаратный фильтр)
+
+Расчёт напряжений (pull-up 10kΩ, питание 3.3V):
+  Кнопка   R(GND)    Напряжение              ADC код (12 бит)
+  BTN1     0 Ω       0 V                         0
+  BTN2     2.2kΩ     3.3×2.2/12.2 = 0.595V      738
+  BTN3     4.7kΩ     3.3×4.7/14.7 = 1.055V     1308
+  BTN4     10kΩ      3.3×10/20    = 1.650V     2048
+  BTN5     15kΩ      3.3×15/25    = 1.980V     2457
+  BTN6     33kΩ      3.3×33/43    = 2.533V     3143
+  None     —         3.3V                      4095
+
+Пороги распознавания (середина промежутков):
+  ADC диапазон      Кнопка     Функция
+     0 –  369       BTN1       Mute (toggle)
+   370 – 1023       BTN2       Source (карусель включённых)
+  1024 – 1678       BTN3       Power УМЗЧ (toggle)
+  1679 – 2252       BTN4       Left / Prev
+  2253 – 2800       BTN5       Right / Next
+  2801 – 3619       BTN6       Play/Pause
+  3620 – 4095       None       Ничего не нажато
+
+  Минимальный промежуток: 409 отсчётов (BTN4-BTN5)
+  Шум ADC: ±20 отсчётов → запас ×10 ✅
+  Опрос: 100 раз/сек (каждые 10 мс), 1 мкс на чтение ADC
+  Debounce: 50 мс (5 стабильных чтений подряд)
+```
+
+---
+
+## 7. АУДИО ОБРАБОТКА (DSP)
+
+### 7.1 Формат аудио
+
+```
+Входы I2S:            До 24 бит, 44.1 или 48 кГц, I2S Slave RX
+                      ESP32 всегда выдаёт макс 48 кГц
+                      (FLAC 96 → ESP32 ресемплирует до 44.1/48)
+Вход USB Audio:       24 бит, 48 кГц
+Внутренняя обработка: 32 бит float (IEEE 754)
+Передискретизация:    ×2 upsampling ВСЕГДА
+                      Полифазный FIR 32 tap
+                      44.1 → 88.2 кГц
+                      48   → 96 кГц
+Выход:                32 бит, 88.2 или 96 кГц, I2S Master TX
+DAC:                  PCM5102A (112 дБ SNR, -93 дБ THD+N)
+Буфер DMA:            128 фреймов, ping-pong
+Задержка DSP:         ~2.2 мс
+Качество upsampling:  -130 дБ THD+N (FIR 32 tap, лучше чем DAC)
+```
+
+### 7.2 Автоопределение частоты входа
+
+```
+STM32 считает LRCK импульсы таймером.
+Определяет: 44.1 или 48 кГц.
+Переключает PLL I2S3 на соответствующий ×2 выход.
+При смене частоты:
+  fade-out → HW MUTE → смена PLL → стабилизация → HW MUTE OFF → fade-in
+USB Audio: всегда 48 кГц → выход всегда 96 кГц.
+```
+
+### 7.3 Цепочка обработки (порядок фиксирован)
+
+```
+ 1. DC Blocker          — HPF 10 Гц (2 биквада)
+ 2. Noise Gate          — подавление шума в тишине (авто, порог настраиваемый)
+ 3. 15-Band PEQ         — параметрический EQ, 2/3 октавы, биквады IIR
+ 4. Tone Control        — Bass low shelf 150 Гц + Treble high shelf 6 кГц
+ 5. Loudness            — тонкомпенсация, авто от уровня громкости
+ 6. Psychoacoustic Bass — LPF → гармоники → BPF, виртуальный суб-бас
+ 7. Exciter             — HPF → гармоники → BPF, воздушность ВЧ
+ 8. Stereo Enhance      — Mid-Side обработка, ширина сцены
+ 9. Compressor/Limiter  — soft knee, настраиваемый
+10. AGC                 — автоматическая регулировка уровня
+11. Volume              — плавный ramping 30-50 мс (anti-click)
+12. Soft Clipper        — кубическая: f(x) = 1.5x - 0.5x³, защита
+13. ×2 Upsampling       — полифазный FIR 32 tap
+```
+
+### 7.4 Параметрический эквалайзер — 15 полос
+
+```
+Частоты (2/3 октавы):
+  25, 40, 63, 100, 160, 250, 400, 630, 1000,
+  1600, 2500, 4000, 6300, 10000, 16000 Гц
+
+Диапазон:         -12..+12 дБ (шаг 0.5 дБ)
+Добротность:      Настраиваемая, default Q ≈ 2.0
+Оптимизация:      Полосы с gain = 0 пропускаются (экономия CPU)
+
+Переход между пресетами — плавная интерполяция 200 мс:
+  Каждый DSP-блок (128 семплов ≈ 2.9 мс при 44.1 кГц):
+    progress += 1/69 (≈ 69 блоков за 200 мс)
+    gain[i] = current[i] + (target[i] - current[i]) × progress
+    Пересчёт коэффициентов biquad на каждом шаге
+  При progress ≥ 1.0: зафиксировать целевые значения
+```
+
+### 7.5 Параметры всех эффектов
+
+```
+Noise Gate:        Порог -80..-20 дБ, атака 1 мс, релиз 100 мс
+Tone Bass:         Low shelf 150 Гц, -12..+12 дБ, шаг 0.5 дБ
+Tone Treble:       High shelf 6 кГц, -12..+12 дБ, шаг 0.5 дБ
+Loudness:          Авто от громкости, bass 100 Гц до +10, treble 8 кГц до +6
+PSY Bass:          LPF 120 Гц → гармоники → BPF 80-300 Гц, mix 0-100%
+Exciter:           HPF 3 кГц → гармоники → BPF 3-16 кГц, mix 0-100%
+Stereo Enhance:    Mid-Side, width 0.0-2.0, side HPF 200 Гц
+Compressor:        Порог -40..0 дБ, ratio 1:1-20:1, атака 0.1-100 мс,
+                   релиз 10-1000 мс, knee 0-12 дБ, makeup 0-12 дБ
+AGC:               Целевой уровень -20..-6 дБ, медленная скорость
+Volume:            -80..0 дБ, шаг энкодера 0.5 дБ, ramping 30-50 мс
+Soft Clipper:      f(x) = 1.5x - 0.5x³
+```
+
+### 7.6 Bypass
+
+```
+Физическая кнопка PB11 (toggle ON/OFF).
+ON:  вся обработка отключена, только Volume остаётся.
+OFF: обработка возвращается.
+Crossfade 50 мс при переключении.
+На экране: "⚡ BYPASS" жёлтым цветом поверх спектра.
+В статус-баре: "EQ: Bypass".
+Дублируется на ИК пульте.
+```
+
+### 7.7 Индикаторы аудио
+
+```
+FFT спектроанализатор: 256 точек, окно Хэмминга, CMSIS-DSP, ~20 раз/сек
+VU-метр:               пиковые L/R, быстрая атака, медленный спад (×0.9995)
+Индикатор клиппинга:   > -0.5 дБFS → красная рамка, затухание ×0.7/кадр
+Gain reduction:        отслеживание работы компрессора
+```
+
+---
+
+## 8. УПРАВЛЕНИЕ УСИЛИТЕЛЕМ
+
+### 8.1 HW Mute TPA3116 (PB6)
+
+```
+HIGH = play, LOW = mute.
+НЕ дублирует Noise Gate (Noise Gate работает независимо в DSP).
+
+Автоматический HW Mute:
+  • Включение системы:
+      MUTE ON → загрузка → стабилизация 500 мс → MUTE OFF → fade-in
+  • Переключение источника:
+      fade-out → MUTE ON → MUX GPIO → 50 мс → определить частоту →
+      PLL (если нужно) → MUTE OFF → fade-in
+  • Смена PLL (частота входа изменилась):
+      fade-out → MUTE ON → PLL → стабилизация → MUTE OFF → fade-in
+  • Включение УМЗЧ:
+      MUTE ON → питание ON → 300 мс → MUTE OFF → fade-in
+  • Выключение УМЗЧ:
+      fade-out → MUTE ON → 100 мс → питание OFF
+
+Ручной Mute (кнопка BTN1 или ИК пульт):
+  Нажал: fade-out 300 мс → MUTE ON → экран "MUTED" (красный пульсирующий)
+  Нажал снова: MUTE OFF → fade-in 500 мс до прежнего уровня
+```
+
+### 8.2 Питание УМЗЧ (PB7)
+
+```
+HIGH = питание ON, LOW = OFF.
+Через реле или N-MOSFET.
+DSP и дисплей работают при выключенном УМЗЧ.
+При выключенном УМЗЧ на дисплее — часы Thin (стиль Trinnov).
+```
+
+---
+
+## 9. ИСТОЧНИКИ ЗВУКА
+
+### 9.1 Архитектура
+
+```
+Модульная: каждый источник — отдельный файл.
+source_manager.c переключает между ними.
+GUI не знает деталей источника — работает через единый интерфейс.
+
+typedef struct {
+    const char* (*get_name)(void);
+    const char* (*get_artist)(void);
+    const char* (*get_title)(void);
+    const char* (*get_format)(void);
+    uint32_t    (*get_sample_rate)(void);
+    uint8_t     (*get_bit_depth)(void);
+    uint32_t    (*get_bitrate)(void);
+    uint8_t     (*get_status)(void);    // 0=stop 1=play 2=pause 3=connecting
+    void        (*cmd_play)(void);
+    void        (*cmd_pause)(void);
+    void        (*cmd_next)(void);
+    void        (*cmd_prev)(void);
+    void        (*cmd_stop)(void);
+    void        (*init)(void);
+    void        (*deinit)(void);
+    void        (*poll)(void);
+} source_interface_t;
+
+Источники (порядок в карусели):
+  0: Bluetooth   (MUX1: PB8=LOW)
+  1: Radio       (MUX1: PB8=HIGH, MUX2: PB14=LOW, ESP mode 0)
+  2: SD Card     (MUX1: PB8=HIGH, MUX2: PB14=LOW, ESP mode 1)
+  3: USB Audio   (программный, без MUX)
+  4: Line In     (MUX1: PB8=HIGH, MUX2: PB14=HIGH) — опционально
+
+Каждый источник можно включить/отключить в меню:
+  Menu → System → Sources
+  Отключённый пропускается в карусели BTN2 (Source).
+  По умолчанию: BT=ON, Radio=ON, SD=ON, USB=ON, LineIn=OFF
+  Минимум 1 источник должен быть ON (защита).
+```
+
+### 9.2 Источник 0: SJR-BTM334 Bluetooth (source_bt.c)
+
+```
+Подключение: I2S через MUX1 входы A + UART (USART2).
+Реализация: ЗАГЛУШКА в первой версии.
+
+Заглушка:
+  get_name()      → "Bluetooth"
+  get_artist()    → "—"
+  get_title()     → "Bluetooth Audio"
+  get_format()    → "SBC"
+  get_status()    → PLAYING (если есть I2S clock)
+  cmd_play/pause/next/prev → пустые функции
+  UART2 не инициализирован
+
+Звук по I2S работает без UART!
+
+Будущая полная реализация (при наличии прошивки BTM334):
+  cmd_play()     → uart2_send(команда play)
+  cmd_next()     → uart2_send(команда next)
+  get_artist()   → bt_state.artist (AVRCP)
+  get_title()    → bt_state.title
+  get_format()   → "aptX HD" / "SBC" / "AAC" / "LDAC"
+  Замена: ТОЛЬКО файл source_bt.c, остальной код без изменений.
+
+Взаимозаменяемость BT модулей:
+  Любой модуль с I2S выходом. UART опционален.
+  В config.h:
+    #define BT_HAS_UART_CONTROL  1  // 0 = только звук
+    #define BT_HAS_METADATA      1  // 0 = нет метаданных
+    #define BT_I2S_STANDARD      I2S_STANDARD_PHILIPS
+    #define BT_I2S_DATAFORMAT    I2S_DATAFORMAT_24B
+```
+
+### 9.3 Источник 1: Ё-радио — Интернет-радио (source_radio.c)
+
+```
+Подключение: I2S через MUX + UART (USART1, 115200 бод).
+ESP32 mode: 0 (WEB mode). Команда: mode 0\n
+Громкость ESP32: vol 254 (максимум, один раз при старте).
+Код ESP32 НЕ модифицируется — используем стандартный CLI.
+ESP32 всегда выдаёт I2S макс 48 кГц.
+```
+
+### 9.4 Источник 2: Ё-радио — SD карта (source_sd.c)
+
+```
+Подключение: тот же I2S что Radio (ESP32). MUX не переключается.
+ESP32 mode: 1 (SD mode). Команда: mode 1\n
+
+Отличие от Radio:
+  Метаданные из ID3 тегов (Title, Artist, Album)
+  Приоритет: ##AUDIO.ID3# > ##CLI.META# > имя файла из ##CLI.NAMESET#
+  Нет WiFi RSSI
+  Нет списка станций (плейлист SD не доступен по UART)
+```
+
+### 9.5 UART протокол Ё-радио (полный)
+
+**Входящие теги (ESP32 → STM32), которые парсим:**
+
+```
+Тег                          Пример                            Используем
+───────────────────────────  ──────────────────────────────    ──────────────
+##SYS.DATE#:                 2026-02-25T14:12:31+03:00         RTC дата+время
+##CLI.NAMESET#:              118 THT MUSIC RADIO               Номер + имя
+##CLI.META#:                 MIKE POSNER - I Took A Pill       ICY метаданные
+##CLI.VOL#:                  20                                Информационно
+##CLI.PLAYING#               (без данных)                      Статус: играет
+##CLI.STOPPED#               (без данных)                      Статус: стоп
+##AUDIO.ID3#:                Title: Maybe (minus)              ID3 (SD)
+##AUDIO.ID3#:                Artist: Brainstorm                ID3 (SD)
+##AUDIO.ID3#:                Album: Highway Moon               ID3 (SD)
+##AUDIO.BITRATE#:            320000                            Битрейт бит/с
+##AUDIO.INFO#:               format is mp3                     Кодек
+##AUDIO.INFO#:               SampleRate: 44100 (Hz)            Частота
+##AUDIO.INFO#:               BitsPerSample: 16                 Битность
+##AUDIO.INFO#:               Channels: 2                       Каналы
+#CLI.LISTNUM#:               42: Record Hypnotic, http://...   Станция списка
+##CLI.LIST#                  (без данных)                      Конец списка
+#WIFI.RSSI#                  -55 dBm                           WiFi уровень
+##ERROR#:                    timeout                           Ошибка
+```
+
+**Теги которые игнорируем:**
+```
+##[BOOT]#, ##CLI.INFO#, ##AUDIO.INFO# (кроме format/SampleRate/BitsPerSample/Channels),
+##AUDIO.ID3# (кроме Title/Artist/Album), [WEBSOCKET]
+```
+
+**Парсинг ##SYS.DATE#:**
+```
+Формат ISO 8601: 2026-02-25T14:12:31+03:00
+  Год: [0:4]=2026, Месяц: [5:7]=02, День: [8:10]=25
+  Час: [11:13]=14, Мин: [14:16]=12, Сек: [17:19]=31
+Валидация: год >= 2024 && день > 0
+  1900-01-00T00:00:00 → ИГНОРИРОВАТЬ (NTP не синхронизирован)
+Действие: HAL_RTC_SetTime/Date(), rtc_synced = true
+```
+
+**Парсинг ##CLI.META#:**
+```
+Радио: ищем " - " (пробел-дефис-пробел)
+  Найдено: artist = до " - ", title = после
+  Не найдено: title = вся строка, artist = станция из NAMESET
+SD: приоритет ##AUDIO.ID3# > ##CLI.META# > имя файла из NAMESET
+Фильтр (НЕ отображать): "[соединение]", "[готови]", "[next track]",
+  "timeout", пустая строка
+```
+
+**Парсинг #CLI.LISTNUM#:**
+```
+Формат: #CLI.LISTNUM#:   42: Record Hypnotic, http://url...
+  Номер: 42, Имя: "Record Hypnotic", URL обрезаем
+```
+
+**Парсинг #WIFI.RSSI#:**
+```
+Формат: #WIFI.RSSI#  -55 dBm → rssi = -55
+Иконка: >-50 ▂▅█ зелёный, >-65 ▂▅░ жёлтый, >-75 ▂░░ оранжевый, <-75 ░░░ красный
+```
+
+**Исходящие команды (STM32 → ESP32):**
+
+```
+Команда          Когда                           Действие ESP32
+───────────────  ─────────────────────────────   ────────────────
+vol 254\n        При старте (один раз)           Макс громкость
+info\n           При старте + периодически       Полный статус
+next\n           Кнопка Right (MAIN)             След. трек/станция
+prev\n           Кнопка Left (MAIN)              Пред.
+play\n           Кнопка Play/Pause               Воспроизведение
+stop\n           Кнопка Play/Pause               Остановить
+play 42\n        Выбор из списка станций         Играть станцию #42
+list\n           Вход в список станций           Отдать список
+mode 0\n         Source → Radio                  WEB mode
+mode 1\n         Source → SD                     SD mode
+rssi\n           Каждые 10 сек (Radio)           WiFi уровень
+date\n           Периодически                    Дата и время
+```
+
+**Синхронизация времени:**
+```
+Автоматически: ##SYS.DATE# при смене трека/станции
+По запросу: date\n
+  УМЗЧ выключен: каждые 10 мин
+  Играет музыка: не запрашиваем (приходит само)
+  Idle: каждые 30 мин
+При включении: RTC=00:00, ждём WiFi. Батарейка не подключена.
+```
+
+**WiFi RSSI:**
+```
+Каждые 10 сек: rssi\n (только Radio mode)
+В режимах SD/BT/USB/LineIn: не запрашиваем.
+```
+
+### 9.6 Список станций
+
+```
+Вход: длинное нажатие BTN5 (Radio) или Menu → Station List
+STM32: list\n → ESP32 шлёт #CLI.LISTNUM# × N станций → ##CLI.LIST#
+
+Буфер скользящего окна:
+  uint16_t station_num[30], char station_name[30][42]
+  uint16_t window_start, total_count, current_playing
+  Размер: ~1.3 КБ
+  За пределами буфера: перезапрос list\n (~300-500 мс)
+```
+
+### 9.7 Источник 3: USB Audio (source_usb.c)
+
+```
+USB Audio Class 1.0 Device. 24 бит / 48 кГц стерео.
+Full Speed, без драйверов.
+Адаптивный буфер 480 семплов (10 мс), коррекция ~1 раз/мин.
+USB Endpoints: EP0 Control, EP1 CDC Notif, EP2 CDC Data, EP3 Audio ISO OUT.
+```
+
+### 9.8 Источник 4: Line In (source_linein.c)
+
+```
+Подключение: I2S через каскад MUX (PB8=HIGH, PB14=HIGH).
+Будущий ADC: PCM1802 или любой I2S источник для тестирования.
+
+Реализация: простейшая, без UART, без метаданных.
+  get_name() → "Line In", get_title() → "Analog Input"
+  Все cmd_*() → пустые
+
+По умолчанию: ОТКЛЮЧЕН в карусели Source.
+Включение: Menu → System → Sources → Line In → ON
+Доступен только при MUX_TYPE_157_CASCADE (2 чипа 74HC157).
+```
+
+### 9.9 Коммутация I2S
+
+```
+Через 74HC157 (цифровой, без щелчков):
+
+Таблица:
+  Источник     PB8 (MUX1)   PB14 (MUX2)   UART
+  ──────────   ──────────   ───────────   ─────────
+  Bluetooth    LOW          X             —
+  Radio        HIGH         LOW           mode 0\n
+  SD Card      HIGH         LOW           mode 1\n
+  USB Audio    X            X             —
+  Line In      HIGH         HIGH          —
+
+Radio↔SD: MUX НЕ переключается. Только UART mode 0/1.
+USB Audio: данные по USB, MUX не используется.
+
+Процедура переключения с MUX:
+  1. fade-out (300 мс)
+  2. HW MUTE ON (PB6 = LOW)
+  3. GPIO: PB8 и/или PB14
+  4. 50 мс стабилизация
+  5. Определить частоту I2S (LRCK)
+  6. Если изменилась → пересчитать PLL
+  7. HW MUTE OFF
+  8. fade-in (500 мс)
+```
+
+---
+
+## 10. USB
+
+```
+v1.0: USB CDC — виртуальный COM порт (отладка, сразу)
+v1.5: USB Audio — звуковая карта 24/48
+v2.0: USB Composite — CDC + Audio одновременно
+DFU:  HID bootloader (BOOT0 + USB)
+```
+
+---
+
+## 11. УПРАВЛЕНИЕ
+
+### 11.1 Режимы интерфейса
+
+```
+MAIN             По умолчанию
+VOLUME_OVERLAY   При вращении энкодера, автоскрытие 3 сек
+MENU             Длинное нажатие энкодера
+EQ_EDIT          Меню → EQ Custom
+EQ_PRESET        Меню → Sound Profile
+STATION_LIST     Длинное нажатие Right (Radio)
+MUTED            Кнопка Mute
+SCREENSAVER      Таймаут 5 мин (настраиваемо)
+AMP_OFF          Кнопка Power (УМЗЧ выключен)
+```
+
+### 11.2 Энкодер EC11
+
+```
+Контекст          Вращение              Короткое            Длинное >800мс
+───────────────   ────────────────────   ─────────────────   ────────────────
+MAIN              Громкость ±0.5 дБ     Режим спектра       Вход в MENU
+MENU              Навигация ↑↓          Выбор / войти       Назад / выход
+EQ_EDIT           Gain ±0.5 дБ          Gain ↔ Q            Выход (сохранить)
+EQ_PRESET         Листать пресеты       Применить            Выход (отмена)
+STATION_LIST      Прокрутка             Играть станцию       Выход
+Параметр          Значение ± шаг        Применить            Отмена
+```
+
+### 11.3 Кнопки ADC
+
+```
+BTN1 Mute:       Toggle mute (все режимы)
+BTN2 Source:      Карусель включённых источников. Длинное: меню выбора
+BTN3 Power:       Toggle УМЗЧ (все режимы)
+BTN4 Left:        MAIN: Prev. MENU: назад/минус. EQ: prev полоса. Длинное: repeat
+BTN5 Right:       MAIN: Next. MENU: вход/плюс. EQ: next полоса.
+                  Длинное MAIN Radio: список станций. Длинное: repeat
+BTN6 Play/Pause:  MAIN: play/pause. MENU: toggle ON/OFF. Длинное: stop
+```
+
+### 11.4 Bypass (PB11): toggle, crossfade 50 мс, из любого режима.
+
+### 11.5 ИК пульт (VS1838B, PB4)
+
+```
+Протоколы: NEC, RC5, RC6, Samsung, Sony (авто), fallback RAW.
+Repeat с ускорением для VOL (500 мс медленно, далее быстро).
+
+20 функций:
+  1-VOL+, 2-VOL-, 3-MUTE, 4-POWER, 5-NEXT, 6-PREV,
+  7-PLAY/PAUSE, 8-SOURCE, 9-EQ←, 10-EQ→, 11-ANALYZER,
+  12-LOUDNESS, 13-PSY BASS, 14-BYPASS, 15-BASS-,
+  16-BASS+, 17-TREBLE-, 18-TREBLE+, 19-BRIGHTNESS, 20-EXCITER
+
+Обучение: Menu → System → IR Remote → Learn All/Single/Reassign/Clear/Test
+Хранение: 20 × 8 байт + 16 заголовок = 176 байт (SPI Flash настройки)
+```
+
+---
+
+## 12. МЕНЮ
+
+```
+├── Sound Profile       → карусель 20 профилей + предпросмотр АЧХ
+├── EQ Custom           → 15 полос + кривая АЧХ реалтайм
+├── Tone Control        → Bass / Treble слайдеры
+├── Effects             → подменю
+│   ├── Loudness         ON/OFF
+│   ├── PSY Bass         ON/OFF + Mix 0-100%
+│   ├── Exciter          ON/OFF + Mix 0-100%
+│   ├── Stereo Width     слайдер 0.0-2.0
+│   ├── Compressor       ON/OFF + Threshold/Ratio/Attack/Release/Knee/Makeup
+│   ├── Noise Gate       ON/OFF + Threshold -80..-20 дБ
+│   └── AGC              ON/OFF + Target -20..-6 дБ
+├── Analyzer            → Mode (5 шт) + Color
+├── Display             → Brightness 5-100% / Screensaver ON/OFF+время / Theme
+├── System              → подменю
+│   ├── Sources          BT/Radio/SD/USB/LineIn ON/OFF
+│   ├── IR Remote        Learn All/Single/Reassign/Clear/Test
+│   ├── Station List     (только Radio mode)
+│   ├── Reset Settings   подтверждение Да/Нет
+│   ├── Info             CPU%, RAM, Uptime, Temp, I2S
+│   └── About            OMNIA-V, версия, MCU, DAC
+└── ← Back
+```
+
+---
+
+## 13. СОХРАНЕНИЕ НАСТРОЕК
+
+```
+SPI Flash сектор 14 (0x0E0000, 64 КБ).
+Magic: 0x4F4D4E56 ("OMNV") + CRC32.
+Debounce: 5 сек после последнего изменения.
+
+Сохраняется: громкость, источник, маска включённых источников,
+EQ 15 полос gain+Q, Bass/Treble, текущий профиль, Custom EQ,
+эффекты ON/OFF + все параметры, stereo width, режим анализатора,
+цвет спектра, яркость, скринсейвер ON/OFF+время+вариант,
+состояние УМЗЧ, последняя станция Radio, ИК коды 20 шт,
+цветовая тема, текстура фона, состояние Bypass.
+```
+
+---
+
+## 14. ВРЕМЯ
+
+```
+RTC: кварц 32.768 кГц на плате. Батарейка: нет.
+При включении: 00:00. Синхронизация: ##SYS.DATE# от ESP32 (ISO 8601).
+Запрос: date\n (УМЗЧ off: 10 мин, idle: 30 мин, play: не нужен).
+Если нет WiFi: часы не показываем, пока не синхронизируется.
+```
+
+---
+
+# ТЕХНИЧЕСКОЕ ЗАДАНИЕ v4.2 — ЧАСТЬ 2 из 2
+
+---
+
+## 15. SPI FLASH (4-16 МБ)
+
+### 15.1 Совместимость чипов
+
+```
+Используем ТОЛЬКО общие команды (3-байтная адресация, до 16 МБ):
+
+  0x03  Read (до 50 МГц)
+  0x0B  Fast Read (с dummy байтом, до 104-133 МГц)
+  0x02  Page Program (256 байт)
+  0x06  Write Enable
+  0xD8  Block Erase 64 КБ
+  0xC7  Chip Erase
+  0x9F  JEDEC ID (3 байта)
+  0x05  Read Status Register (бит WIP — ожидание готовности)
+
+НЕ используем:
+  0x20  Sector Erase 4 КБ — нет у Spansion FL032PIF
+  Quad SPI — не у всех, не нужен
+
+Совместимые чипы:
+  Чип              Объём    JEDEC ID     Статус
+  FL032PIF         4 МБ     0x010216     ✅ есть
+  W25Q32           4 МБ     0xEF4016     ✅ совместим
+  W25Q64           8 МБ     0xEF4017     ✅ рекомендуемый для покупки
+  W25Q128         16 МБ     0xEF4018     ✅ совместим
+  GD25Q32          4 МБ     0xC84016     ✅ совместим
+  GD25Q64          8 МБ     0xC84017     ✅ совместим
+  GD25Q128        16 МБ     0xC84018     ✅ совместим
+  P25Q32 (Puya)    4 МБ     0x856016     ✅ совместим
+
+Авто-определение при старте:
+  JEDEC ID → производитель + объём → лог в CDC
+  "SPI Flash: Winbond W25Q64, 8 MB detected"
+  Код одинаковый для всех чипов до 16 МБ.
+
+Скорость: STM32 SPI1 до 42 МГц → Fast Read (0x0B).
+```
+
+### 15.2 Карта секторов
+
+```
+Сектор  Адрес        Размер    Содержимое
+──────  ──────────   ──────    ────────────────────────────────────
+  0     0x000000      64 KB    Заголовок Flash + таблица регионов
+                               + индексы шрифтов + индексы иконок
+  1-5   0x010000     320 KB    Шрифты (9 вариантов, anti-aliased)
+  6     0x060000      64 KB    Иконки (32×32 и 16×16, с alpha)
+  7     0x070000      64 KB    Sound Profiles (20 шт × 512 = 10 KB)
+                               + EQ пресеты (10 × 256 = 2.5 KB)
+  8     0x080000      64 KB    Цветовые темы (5 × 80 = 400 байт)
+                               + текстурные тайлы (~1 KB)
+  9-11  0x090000     192 KB    Splash: логотип + элементы
+ 12-13  0x0C0000     128 KB    UI элементы (рамки, градиенты)
+ 14     0x0E0000      64 KB    Runtime настройки (пишет STM32)
+ 15-63  0x0F0000    3136 KB    ═══ Резерв (77%) ═══
+
+Flash > 4 МБ: секторы 64+ = дополнительный резерв.
+Карта не меняется.
+```
+
+### 15.3 Заголовок Flash (сектор 0)
+
+```
+Смещение   Тип          Размер   Поле
+0x0000     uint32_t       4      Magic: 0xAD5F1A5B
+0x0004     uint32_t       4      Версия формата (1)
+0x0008     uint32_t       4      CRC32 заголовка
+0x000C     uint32_t       4      Дата создания (Unix timestamp)
+0x0010     region_t[8]   64      Таблица регионов:
+                                   Каждый region_t: uint32_t addr + uint32_t size
+                                   [0] fonts, [1] icons, [2] profiles,
+                                   [3] themes, [4] splash, [5] ui_elements,
+                                   [6] settings, [7] reserved
+0x0050     ...          до 64KB  Индексные таблицы
+
+Таблица регионов позволяет firmware найти ресурсы без хардкода адресов.
+```
+
+### 15.4 Формат ресурсов
+
+```
+Заголовок каждого ресурса (16 байт):
+  0x00  uint16_t  width
+  0x02  uint16_t  height
+  0x04  uint8_t   format:
+                    0=RAW_RGB565    (2 байта/пиксель, без сжатия)
+                    1=RLE_RGB565    (RLE сжатие)
+                    2=PALETTE_4BIT  (16 цветов, 0.5 байта/пиксель)
+                    3=PALETTE_8BIT  (256 цветов)
+                    4=ALPHA_4BIT    (прозрачность, моно)
+                    5=MONO_1BIT     (шрифты)
+  0x05  uint8_t   flags: bit0=has_palette, bit1=has_alpha
+  0x06  uint16_t  palette_colors
+  0x08  uint32_t  data_size (сжатые данные)
+  0x0C  uint32_t  raw_size (распакованные данные)
+
+RLE RGB565:
+  0x00-0x7F: литеральная серия (cmd+1) пикселей × 2 байта
+  0x80-0xFF: повтор 1 пикселя (cmd-126) раз
+  Сжатие для логотипа: 2:1 – 5:1
+```
+
+### 15.5 Шрифты — 9 вариантов
+
+```
+#   Стиль     Размер    BPP   Применение                      ~Размер
+1   Regular   6×8       1     Мелкие подписи, fallback ROM       1 KB
+2   Regular   8×16      1     Статус-бар, формат-строка         2.5 KB
+3   Thin      12×24     2     Вторичный текст, подзаголовки      12 KB
+4   Regular   12×24     2     Основной текст (артист, трек)      12 KB
+5   Bold      12×24     2     Заголовки меню                     12 KB
+6   Regular   16×32     4     Название источника                 40 KB
+7   Bold      16×32     4     Средние цифры                      40 KB
+8   Regular   24×48     4     Часы (вспомогательный)             91 KB
+9   Bold      24×48     4     Цифры громкости (дуга)             91 KB
+──────────────────────────────────────────────────────────────────────
+Итого:                                                         ~301 KB (5 секторов)
+
+Набор символов: 161 глиф
+  ASCII 0x20-0x7E: 95 глифов
+  Кириллица А-Яа-яЁё: 66 глифов
+  UTF-8 декодирование: 0xD0xx, 0xD1xx
+
+Формат файла шрифта:
+  [Header 32 байта] char_width, char_height, bpp, style, num_chars, first_char
+  [Glyph Table 4×161 = 644 байта] offset + width для каждого глифа
+  [Glyph Data] битовые данные
+
+Fallback: Regular 6×8 в ROM STM32 (на случай ошибки SPI Flash)
+
+Рекомендуемый TTF: Google Roboto (Thin/Regular/Bold)
+  Бесплатный, кириллица, https://fonts.google.com/specimen/Roboto
+```
+
+### 15.6 Иконки
+
+```
+~48 иконок:
+  Источники 32×32:    BT, Radio, SD, USB, LineIn — 5 шт
+  MUTED 32×32:        🔇 — 1 шт
+  Транспорт 16×16:    Play, Pause, Stop, Next, Prev — 5 шт
+  WiFi 16×16:         4 уровня — 4 шт
+  Аудио 16×16:        Speaker, Mute, Volume — 3 шт
+  Эффекты 16×16:      10 шт
+  EQ 16×16:           1 шт
+  Системные 16×16:    Settings, IR, Save, Info — 4 шт
+  Нота 12×12:         ♪ — 1 шт
+  Состояние 12×12:    ►, ❚❚, ■ — 3 шт
+  Power 16×16:        ⏻ — 1 шт
+  Прочие 16×16:       ~10 шт
+
+  Формат: RAW_RGB565 + ALPHA_4BIT
+  Итого: ~41 KB → 1 сектор ✅
+```
+
+### 15.7 Sound Profiles — 20 штук
+
+```
+Структура (512 байт):
+  name[32], description[64], icon_id, category (0=музыка 1=кино 2=игры 3=голос 4=спец),
+  eq_gain[15] (float), eq_q[15] (float),
+  bass_gain, treble_gain (float),
+  loudness_on, psy_bass_on, psy_bass_mix (float),
+  exciter_on, exciter_mix (float), stereo_width (float),
+  compressor_on, comp_threshold/ratio/attack/release (float),
+  noise_gate_on, noise_gate_thresh (float),
+  agc_on, agc_target (float),
+  reserved[24], crc16, padding до 512
+
+20 профилей:
+   1-Pure, 2-Warm, 3-Bright, 4-Powerful, 5-Vinyl,
+   6-Club, 7-Concert Hall, 8-Acoustic, 9-Vocal Focus, 10-Late Night,
+  11-Cinema, 12-Dialog Boost, 13-Action,
+  14-Gaming, 15-Immersive,
+  16-Podcast, 17-Radio Voice,
+  18-Bass Test, 19-Reference, 20-Custom (пользовательский)
+
+20 × 512 = 10 KB → сектор 7 ✅
+```
+
+### 15.8 10 встроенных EQ пресетов (ROM STM32, fallback)
+
+```
+ #   Имя              25   40   63  100  160  250  400  630   1k  1k6  2k5   4k  6k3  10k  16k
+ 0   Flat              0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+ 1   Rock             +4   +3   +2    0   -1   -2    0   +1   +2   +3   +4   +3   +2   +3   +2
+ 2   Pop              -1    0   +1   +2   +3   +2   +1    0   +1   +2   +3   +3   +2   +1    0
+ 3   Jazz              0   +1   +2   +3   +2    0   -1    0   +1   +2   +3   +2   +3   +3   +2
+ 4   Classical         0    0   +1   +2   +1    0    0    0   -1   -1    0   +1   +2   +3   +2
+ 5   Bass Boost       +6   +5   +4   +3   +2   +1    0    0    0    0    0    0    0    0    0
+ 6   Vocal Boost       0    0    0   -1   -1    0   +1   +2   +3   +3   +2   +1    0   -1   -1
+ 7   Loudness         +4   +3   +2   +1    0   -1   -2   -1    0    0   -1   -1    0   +2   +3
+ 8   Night Mode       -2   -3   -2    0   +1   +2   +3   +3   +2   +1    0   -1   -2   -3   -4
+ 9   V-Shape          +5   +4   +3   +1    0   -2   -3   -3   -2    0   +1   +3   +4   +5   +4
+```
+
+### 15.9 Цветовые темы — 5 штук
+
+```
+Структура (80 байт):
+  name[24],
+  bg_primary, bg_secondary, bg_menu (uint16_t RGB565),
+  text_primary, text_secondary, text_disabled,
+  accent, accent_dim,
+  bar_low, bar_mid, bar_high, bar_peak,
+  arc_start, arc_end, rays,
+  positive, negative, warning,
+  bg_texture_id (0-6), spectrum_style (0-2),
+  reserved[14], crc16
+
+Темы:
+  #1 Dark Cyan (дефолт): чёрный, циан #00FFFF, спектр зелёный→жёлтый→красный,
+     лучи оранжевый #FF8800 (Denon/Marantz стиль)
+  #2 Amber Tech: чёрный, янтарный #FFB000 (McIntosh/Luxman стиль)
+  #3 Neon Green: тёмно-серый #0A0A0A, зелёный #39FF14 (матрица)
+  #4 Deep Purple: тёмно-фиолет #0A0010, пурпур #CC00FF (премиум)
+  #5 Monochrome: чёрный, белый #FFFFFF (минимализм)
+
+Текстуры фона (bg_texture_id):
+  0-Solid (процедурный), 1-Carbon Fiber (тайл 8×8),
+  2-Brushed Metal (тайл 8×8), 3-Noise (процедурный LFSR),
+  4-Gradient (процедурный), 5-Grid (тайл 8×8), 6-Hexagon (тайл 16×14)
+  Яркость текстуры: 3-5%. Все тайлы: ~1 КБ.
+  Рисуется один раз при смене темы.
+
+5 × 80 + ~1 KB тайлов → сектор 8 ✅
+```
+
+---
+
+## 16. ДИСПЛЕЙ И РЕНДЕРИНГ
+
+```
+Модульный драйвер (config.h):
+  #define DISPLAY_DRIVER    DISPLAY_ST7789
+  // #define DISPLAY_DRIVER    DISPLAY_ILI9341
+  // #define DISPLAY_DRIVER    DISPLAY_ILI9342
+  #define DISPLAY_WIDTH     240
+  #define DISPLAY_HEIGHT    320
+
+Различия между драйверами: только init sequence (~30 строк).
+Все функции (fill_rect, set_window, send_pixels) идентичны.
+Замена дисплея: один #define + перекомпиляция.
+
+240×320 px, RGB565, SPI до 42 МГц, DMA.
+Двойная буферизация полосами: 240×16 × 2 = 15 360 байт.
+Частичная перерисовка (только изменившиеся области).
+Подсветка: PWM PA8 (TIM1_CH1), 5-100%.
+```
+
+---
+
+## 17. ОСНОВНОЙ ЭКРАН — ПИКСЕЛЬНАЯ РАСКЛАДКА
+
+```
+Y        Высота   Зона                     Содержимое
+───────  ──────   ──────────────────────   ─────────────────────────
+  0-3      4      Верхний отступ            Чёрный
+  4-23    20      Строка источника          Иконка + имя + кодек + dB
+ 24-27     4      Разделитель               Градиентная линия 40% акцент
+ 28-47    20      Артист / станция          Бегущая строка
+ 48-67    20      Трек / что играет         Бегущая строка
+ 68-83    16      Формат-строка             Кодек · частота · бит · kbps
+ 84-87     4      Разделитель               Градиентная линия
+ 88-271  184      Спектроанализатор         Основная визуализация
+272-287   16      Зеркальное отражение      30% яркость
+288-291    4      Разделитель
+292-311   20      Статус-бар                Профиль · частота · часы
+312-319    8      Нижний отступ
+```
+
+### 17.1 Строка источника (Y=4-23)
+
+```
+X=4:      Иконка 16×16 (SPI Flash), цветная с alpha
+X=24:     Название, Regular 12×24, белый (text_primary)
+X=разд:   "·" серый (#505050)
+X=разд+8: Кодек, Thin 12×24, акцентный
+X=правый: Уровень dB, Bold 12×24, правый край X=236
+  Цвет: >-6 красный, >-12 жёлтый, >-40 зелёный, ≤-40 серый
+WiFi RSSI (только Radio): ▂▅█ после кодека
+
+Примеры:
+  🔷 Radio · AAC · ▂▅█                -24.0 dB
+  🔵 Bluetooth · aptX HD              -18.5 dB
+  🟢 USB Audio                        -15.0 dB
+  📁 SD Card · MP3                    -12.0 dB
+  🔌 Line In · PCM                    -18.0 dB
+```
+
+### 17.2 Артист / станция (Y=28-47)
+
+```
+X=4:  ♪ 12×12, акцент
+X=20: Regular 12×24, белый яркий, >218 px → бегущая строка
+  Radio: станция. SD: artist ID3. BT: AVRCP/"—". USB: "PC Audio". LineIn: "—"
+```
+
+### 17.3 Трек (Y=48-67)
+
+```
+X=4:  ► 12×12 (играет=зелёный, ❚❚пауза=жёлтый, ■стоп=серый)
+X=20: Regular 12×24, белый приглушённый, >218 px → бегущая строка
+  Radio: ICY meta. SD: title ID3. BT: "Bluetooth Audio". USB: "USB Audio Stream". LineIn: "Analog Input"
+```
+
+### 17.4 Формат-строка (Y=68-83)
+
+```
+Regular 8×16, серый #808080, центрировано. "·" = #505050.
+  Radio: "AAC · 48 kHz · 16 bit · 160 kbps"
+  SD:    "MP3 · 44.1 kHz · 16 bit · 320 kbps"
+  BT:    "SBC · 48 kHz"
+  USB:   "PCM · 48 kHz · 24 bit"
+  LineIn: "PCM · 44.1 kHz · 16 bit"
+Битрейт: из ##AUDIO.BITRATE# ÷ 1000, округление.
+```
+
+### 17.5 Разделители (Y=24-27, 84-87, 288-291)
+
+```
+Градиентная линия 1 px по центру зоны:
+  Центр 160 px: акцент 40%. Края по 40 px: fade к чёрному.
+```
+
+### 17.6 Статус-бар (Y=292-311)
+
+```
+│  ♫ Pure          96 kHz          14:32 │
+Regular 8×16.
+Лево X=4: "♫ " серый + профиль акцентным. Bypass: "EQ: Bypass".
+Центр ~X=100: "88.2 kHz" / "96 kHz", серый.
+Право X=236: "HH:MM", серый, двоеточие мигает 1 сек.
+Время не синхронизировано → часы не показываем.
+```
+
+---
+
+## 18. СПЕКТРОАНАЛИЗАТОР — 5 РЕЖИМОВ (Y=88-271, 184 px)
+
+### 18.1 Режим 1: Классические бары
+
+```
+15 баров: ширина 12 px, зазор 4 px = 236 px, отступ 2 px.
+Макс. высота: 180 px.
+Градиент по высоте: нижняя 1/3 bar_low, средняя bar_mid, верхняя bar_high.
+Рисуется 3× fill_rect (не попиксельно).
+Пиковая точка: bar_peak, 2 px, зависает 500 мс → гравитация +0.15 px/кадр.
+Подъём: мгновенный. Спад: bar[i] = max(fft[i], bar[i] × 0.85).
+FFT: 256 → 128 бинов → 15 полос (логарифм. группировка).
+Шкала: height = (dB + 80) × 180/80. Ниже -80 дБ = 0.
+```
+
+### 18.2 Режим 2: Волна / Waveform
+
+```
+240 точек горизонтально. L: акцент 100% выше Y=176. R: акцент 50% ниже.
+Амплитуда ±90 px. Glow: заливка 15% под линией.
+```
+
+### 18.3 Режим 3: Круговой
+
+```
+Центр X=120, Y=176. Радиус 50 px. 15 баров по 24°.
+Длина наружу до 40 px. Толщина 3 px. sin/cos предвычислены.
+```
+
+### 18.4 Режим 4: Зеркальные бары
+
+```
+Центр Y=176. Бары вверх+вниз, до 88 px. Ширина 14 px, зазор 2 px.
+Градиент от центра к краям.
+```
+
+### 18.5 Режим 5: Водопад (Spectrogram)
+
+```
+15 полос × 16 px. Время: новые сверху, 2 px/кадр.
+Цвет = амплитуда (чёрный→синий→циан→жёлтый→белый).
+Буфер: 184 × 15 = 2760 байт. Scroll + 2 верхних строки.
+```
+
+### 18.6 Отражение (Y=272-287): режимы 1,4 — flip 30% яркости. Остальные — чёрное.
+
+### 18.7 Тишина: < -60 дБ > 1 сек → бары затухают. ⏸ если BT paused.
+
+### 18.8 Переключение: короткое энкодера (MAIN) → 5 по кругу. Уведомление 1.5 сек.
+
+---
+
+## 19. ДУГА ГРОМКОСТИ (оверлей)
+
+```
+Триггер: вращение энкодера.
+Центр X=120, Y=190. Радиус 70-80 px. Толщина 10 px. Угол 210°-330° (240°).
+Появление: Ease-Out 200 мс (масштаб 90→100%, яркость 0→100%).
+
+Заполнение: -80 дБ = 0%, 0 дБ = 100%.
+Градиент: голубой→циан→зелёный→жёлтый→красный.
+Незаполненная часть: #1A1A1A.
+120 точек, fill_rect 3×3.
+
+Цифры: Bold 24×48, "-18.5 dB" по центру. Цвет = конец заполнения.
+
+Лучи (солнечная корона): 12-16 шт, от внешнего радиуса наружу.
+Длина: peak × random(0.5,1.5) × 20, макс 30 px.
+Цвет: rays (оранжевый). 1 px Bresenham. Спад ×0.85/кадр.
+LFSR рандом.
+
+Исчезание: 3 сек → fade-out 500 мс (×0.95/кадр).
+Спектр под дугой: ×30%. После: fade-in 300 мс.
+```
+
+---
+
+## 20. ЭКРАНЫ СОСТОЯНИЙ
+
+### 20.1 MUTED
+
+```
+Бары → 0 (300 мс). По центру: 🔇 32×32 красный + "MUTED" Bold 16×32 красный.
+Пульсация: 80-100%, sin, 2 сек. Верхняя часть: 50%. Статус-бар: есть.
+Выход: повторное Mute → fade-out 200 мс → спектр оживает.
+```
+
+### 20.2 BYPASS
+
+```
+Спектр активен. Поверх: рамка жёлтая 1 px + "⚡ BYPASS" Bold 16×32 жёлтый.
+Фон рамки чёрный 80%. Без пульсации. Статус-бар: "EQ: Bypass".
+```
+
+### 20.3 УМЗЧ выключен — часы Trinnov Thin
+
+```
+Процедурные штриховые цифры 36×80 px, толщина 2 px.
+Геометрический гротеск (стиль Helvetica Neue UltraLight).
+
+Сегменты (от левого верхнего):
+  a: верх (5,0)→(31,0)       b: прав.верх (33,2)→(33,36)
+  c: прав.низ (33,42)→(33,78) d: низ (5,80)→(31,80)
+  e: лев.низ (1,42)→(1,78)   f: лев.верх (1,2)→(1,36)
+  g: середина (5,39)→(31,39)
+
+Цифра: a b c d e f g
+  0: 1110110  1: 0110000  2: 1101101  3: 1111001  4: 0110011
+  5: 1011011  6: 1011111  7: 1110000  8: 1111111  9: 1111011
+
+Двоеточие: 3×3 × 2, интервал 20 px. Мигает 1 сек.
+Glow: 1 px обводка 10% вокруг сегментов.
+
+"14:32": 4×36 + 3×12 + 8 = 188 px. X=(240-188)/2=26. Y=130.
+Цвет: акцент 50%.
+
+Под часами (если RTC синхронизирован):
+  "вторник"      Thin 12×24, серый 30%, Y=220
+  "25 февраля"   Thin 12×24, серый 30%, Y=244
+
+Внизу:
+  "OMNIA-V"      6×8, серый 12%, Y=290
+  ⏻              16×16, серый 15%, Y=302
+
+Подсветка: 10-15%. Антиожог: ±5 px каждые 5 мин.
+
+Переход: Power → fade-out 200 мс → MUTE ON → Power ON → 300 мс →
+MUTE OFF → подсветка 15→100% (500 мс) → fade-in основного 300 мс.
+```
+
+### 20.4 Скринсейвер (5 мин бездействия, настраиваемо 5/10/15/30 мин)
+
+```
+Вариант A — Часы + мини-спектр:
+  Часы Thin, мини-спектр 60 px 30%, трек мелко серый 20%.
+  Подсветка 20%.
+
+Вариант B — Полноэкранный спектр:
+  Спектр 240 px. Подсветка 30%.
+
+Антиожог: ±10 px / 3 мин. Выход: любое действие, fade 300 мс.
+Vol/Mute: сразу. Остальные: только «будят».
+```
+
+### 20.5 Splash Screen
+
+```
+30 fps, ~1800 мс.
+ФАЗА 0 (0-100 мс): Чёрный, подсветка 0→30%.
+ФАЗА 1 (100-500 мс): Линия Y=155 циан, 0→200 px Ease-Out. Glow ±1 px 10%.
+ФАЗА 2 (500-900 мс): "OMNIA-V" побуквенно Y=110. 50 мс/буква.
+  "OMNIA" белый, "-" серый #808080, "V" циан. Подсветка 30→90%.
+ФАЗА 3 (900-1100 мс): Под линией две строки Thin 8×16 серый #707070 tracking +2px:
+  "REFERENCE  DIGITAL" Y=170, "AUDIO  CENTER" Y=185. Fade-in 200 мс.
+ФАЗА 4 (1100-1200 мс): "v1.0" Y=210, Regular 8×16, #404040. Fade-in 100 мс.
+ФАЗА 5 (1200-1500 мс): Полная картинка. Подсветка 100%.
+ФАЗА 6 (1500-1800 мс): Fade-out всего 300 мс Ease-In → основной экран.
+```
+
+---
+
+## 21. ЭКРАНЫ МЕНЮ
+
+### 21.1 Основной список
+
+```
+┌────────────────────────────────────────┐
+│  ◄ SETTINGS                            │  Bold 12×24, акцент
+│ ─────────────────────────────────────  │
+│    ♫ Sound Profile          Cinema  ►  │
+│    🎛 EQ Custom                     ►  │
+│  █ 🔊 Tone Control                  ►  │  highlight: акцент 15% фон, 100% текст
+│    ✦ Effects                        ►  │
+│    📊 Analyzer               Bars   ►  │
+│    🔆 Display                       ►  │
+│    ⚙ System                         ►  │
+│    ← Back                              │
+│ ─────────────────────────────────────  │
+│  ↻ scroll    ● enter    ◄ back         │  6×8 серый
+└────────────────────────────────────────┘
+Regular 12×24. Иконки 16×16. Highlight: Ease-Out 100 мс.
+Подменю: slide влево 150 мс. Выход: slide вправо 150 мс.
+Скроллбар: 2 px справа, если > 7 пунктов.
+```
+
+### 21.2 Карусель Sound Profile
+
+```
+┌────────────────────────────────────────┐
+│         < SOUND PROFILE >              │
+│    ░░░  Warm  ░░░                      │  серый мелкий
+│    ███  CINEMA  ███                    │  акцент крупно
+│    ░░░  Dialog Boost  ░░░              │  серый мелкий
+│  ╔══════════════════════════════╗      │
+│  ║  Кривая АЧХ (предпросмотр)  ║      │  реалтайм
+│  ╚══════════════════════════════╝      │
+│    ◄ назад    ● применить              │
+└────────────────────────────────────────┘
+Энкодер: листать. Короткое: применить. Длинное: отмена.
+Интерполяция 200 мс при листании (звук меняется реалтайм).
+```
+
+### 21.3 Экран EQ Custom
+
+```
+┌────────────────────────────────────────┐
+│           EQ CUSTOM                    │
+│  ╔══════════════════════════════╗      │
+│  ║  Кривая АЧХ, ● = текущая    ║      │
+│  ╚══════════════════════════════╝      │
+│  Band 4: 100 Hz                        │
+│  Gain: ██████████░░░░ +3.5 dB          │
+│  Q:    ████████░░░░░░ 2.0              │
+│    ◄ полоса ►    ↻ gain    ● Q         │
+└────────────────────────────────────────┘
+Энкодер: gain. Left/Right: полоса. Короткое: Gain↔Q. Длинное: выход.
+Bypass PB11: A/B сравнение.
+```
+
+### 21.4 Список станций
+
+```
+┌────────────────────────────────────────┐
+│  STATIONS                     42/246   │
+│ ─────────────────────────────────────  │
+│    40  DFM                             │
+│    41  Record Deep                     │
+│  █ 42  Record Hypnotic           ◄──  │  текущая, акцент
+│    43  Record Organic                  │
+│    44  Радио Вышка                     │
+│                                    ▐   │
+│  ↻ scroll    ● play    ◄ back          │
+└────────────────────────────────────────┘
+Буфер 30 станций. За пределами → перезапрос list\n.
+```
+
+### 21.5 Параметр (слайдер)
+
+```
+┌────────────────────────────────────────┐
+│  BASS                                  │
+│    ░░░░░░░░░░████████░░  +3.0 dB       │
+│    ◄ -0.5      ► +0.5     ● выход      │
+└────────────────────────────────────────┘
+```
+
+### 21.6 Toggle: ● ON зелёный / ○ OFF серый. Crossfade 20 мс.
+
+### 21.7 Выбор темы: процедурный превью (мини-спектр + дуга цветами темы).
+
+### 21.8 Управление источниками: Menu → System → Sources. ☑ON/☐OFF. Мин. 1 ON.
+
+---
+
+## 22. УВЕДОМЛЕНИЯ
+
+```
+По центру спектральной зоны. Спектр перерисуется сам (20 fps).
+Появление: Ease-Out 150 мс (снизу 10 px, 0→100%). Hold: 1.5 сек.
+Исчезание: Ease-In 300 мс (100→0%).
+
+Виды:
+  Источник: иконка 32×32 + название Bold 16×32 акцент
+  Профиль: "♫ Cinema"
+  Эффект: "Loudness ON ✓" зелёный / "Loudness OFF" серый
+  Спектр: "▂▅█ Bars" / "〜 Wave" / "◎ Circle" / "⇅ Mirror" / "▓ Waterfall"
+```
+
+---
+
+## 23. ИНДИКАТОР КЛИППИНГА
+
+```
+> -0.5 dBFS: красная рамка 2 px по периметру (4× fill_rect).
+Затухание ×0.7/кадр (~500 мс). Постоянный если клиппинг длится.
+Уровень dB в строке источника мигает красным.
+```
+
+---
+
+## 24. БЕГУЩИЕ СТРОКИ
+
+```
+Две независимые: артист Y=28-47, трек Y=48-67. Зона 216 px (X=20-236).
+Помещается → статичный. Не помещается:
+  Пауза 2 сек → 1 px/кадр @30fps → пауза 2 сек → рывок в начало.
+  Fade на краях: 5 px градиент (5 полосок, яркость 0/25/50/75/100%).
+```
+
+---
+
+## 25. АНИМАЦИИ И ПЕРЕХОДЫ
+
+```
+Easing: Ease-Out (появление), Ease-In (исчезание), Ease-In-Out (переходы).
+Смена источника: fade-out текста 150 мс → чёрный 100 мс → fade-in 150 мс. Бары: падают→растут.
+Вход в меню: текст slide влево 200 мс. Спектр fade→меню fade.
+Подменю: slide влево/вправо 150 мс.
+Highlight: скольжение Y Ease-Out 100 мс.
+Ошибка (за пределами): shake 3 px, 100 мс.
+```
+
+---
+
+## 26. ВИЗУАЛЬНЫЕ СОСТОЯНИЯ — ТАБЛИЦА
+
+```
+Состояние          Подсветка    Спектр        Часы       Доп. элементы
+───────────────    ──────────   ───────────   ────────   ──────────────
+Splash             0→100%       Нет           Нет        Логотип+линия
+Main (play)        100%         Активный      Статус-бар Всё
+Main (pause)       100%         Замирает      Статус-бар ⏸
+Main (stop)        100%         Нулевой       Статус-бар Всё
+Volume adjust      100%         Приглуш.30%   Статус-бар Дуга+лучи
+Menu               100%         Нет           Нет        Список
+EQ Edit            100%         Нет           Нет        Кривая+полосы
+EQ Preset          100%         Нет           Нет        Карусель+АЧХ
+Station List       100%         Нет           Нет        Список
+Muted              80%          Нулевой       Статус-бар MUTED пульс.
+Bypass             100%         Активный      Статус-бар ⚡ BYPASS
+Screensaver A      20%          Мини 30%      Thin 80px  Мини-трек
+Screensaver B      30%          Полный        Нет        Только спектр
+AMP off            10-15%       Нет           Thin 80px  OMNIA-V + ⏻
+Clip detect        100%         Активный      Статус-бар Красная рамка
+Source switch      100%         Fade          Статус-бар Уведомление
+```
+
+---
+
+## 27. USB CDC ТЕРМИНАЛ — ВСЕ КОМАНДЫ
+
+```
+═══ OMNIA-V Debug Console v1.0 ═══
+
+ОСНОВНЫЕ:
+  help                    Список команд
+  status                  Полный статус
+
+ГРОМКОСТЬ:
+  vol                     Текущая
+  vol -18.5               Установить
+  vol + / vol -           ±0.5 dB
+  mute                    Toggle
+
+ЭКВАЛАЙЗЕР:
+  eq                      Таблица 15 полос
+  eq 4 +3.5               Полоса 4 = +3.5 dB
+  eq 4 q 1.5              Q = 1.5
+  eq flat                 Все = 0
+  eq preset rock          Пресет
+  eq preset list          Список
+
+ТЕМБР:
+  bass / bass +3.0        Показать / установить
+  treble / treble -1.5
+
+ЭФФЕКТЫ:
+  fx                      Статус всех
+  fx loudness on/off
+  fx psybass on/off
+  fx psybass mix 40       Mix %
+  fx exciter on/off
+  fx exciter mix 25
+  fx stereo 1.4           Width
+  fx comp on/off
+  fx comp thresh -20      Threshold dB
+  fx comp ratio 4         Ratio
+  fx comp attack 10       Attack ms
+  fx comp release 200     Release ms
+  fx gate on/off
+  fx gate thresh -60
+  fx agc on/off
+  fx agc target -12
+  bypass                  Toggle
+
+ИСТОЧНИК:
+  source                  Текущий
+  source bt/radio/sd/usb/linein
+
+УМЗЧ:
+  amp / amp on / amp off
+
+ПРОФИЛИ:
+  profile / profile list / profile cinema
+
+МОНИТОРИНГ:
+  level                   VU L/R dBFS с ASCII-барами
+  peak                    Пиковые
+  cpu                     CPU %
+  mem                     RAM KB
+  temp                    °C
+  uptime                  HH:MM:SS
+  i2s                     Частота, формат, clock
+
+НАСТРОЙКИ:
+  save / load / reset
+
+ПРОЧЕЕ:
+  time                    RTC
+  flash id                JEDEC ID
+  flash upload            Приём flash_image.bin
+  reboot                  Перезагрузка
+
+АВТОВЫВОД:
+  [14:32:05] Source changed: Radio
+  [14:32:05] I2S clock: 44100 Hz
+  [14:32:06] Track: ARTIST - Title
+  [14:35:12] CLIP! L: -0.3 dBFS
+  [14:40:00] Settings auto-saved
+```
+
+---
+
+## 28. РЕСУРСЫ STM32 (проверка)
+
+```
+CPU 84 МГц:
+  DSP: 22-25%. GUI спектр 20fps: 10-12%. GUI текст 30fps: 3-4%.
+  Дуга+лучи: 3-5%. SPI Flash DMA: 2-3%. USB: 4%. UART: 1%. Кнопки/ИК: 1%.
+  Типичная: 46-55%. Пиковая: 65-70%. Запас: 30-35% ✅
+
+RAM 64 КБ:
+  Audio DMA: 6.1. DSP: 2.5. FFT: 1.5. Waterfall: 2.8.
+  Дисплей 2×полосы: 15.4. USB: 3.8. UART: 0.5. Станции: 1.3.
+  Спектр/дуга/sin/cos: 1.2. Settings: 1.0. Стек: 4.0. Прочее: 2.5.
+  Итого: 42.6 КБ (65%). Свободно: 22.9 КБ (35%) ✅
+
+Flash код 256 КБ: ~150 КБ (59%). Запас 41% ✅
+SPI Flash 4+ МБ: ~0.9 МБ (23% от 4 МБ). Запас 77%+ ✅
+DMA: 4/16. Таймеры: 3/10. UART: 2/3. USB: CDC+Audio ✅
+```
+
+---
+
+## 29. УТИЛИТА ПОДГОТОВКИ SPI FLASH
+
+```
+Python скрипт: tools/flash_builder/build_flash.py
+  TTF → bitmap шрифты (Pillow), PNG → RGB565+RLE, JSON → бинарные структуры
+  Выход: output/flash_image.bin (4+ МБ, заполнение 0xFF)
+  Зависимости: pip install Pillow PyYAML crcmod
+
+Прошивка:
+  Вариант A: через STM32 CDC → python flash_upload.py COM3 flash_image.bin
+  Вариант B: CH341A программатор (без STM32)
+
+Два бинарника — два чипа:
+  firmware.bin (~150 KB) → STM32 Flash (ST-Link / DFU)
+  flash_image.bin (4+ MB) → SPI Flash (CDC / CH341A)
+```
+
+---
+
+## 30. СТРУКТУРА ПРОЕКТА
+
+```
+OMNIA-V/
+├── platformio.ini
+├── src/
+│   ├── main.c                 Главный цикл
+│   ├── system_init.c          Тактирование, периферия
+│   ├── audio_engine.c         DSP цепочка, DMA
+│   ├── biquad.c               Биквадратные фильтры
+│   ├── upsampler.c            FIR ×2
+│   ├── source_manager.c       Переключение источников, MUX
+│   ├── source_radio.c         Ё-радио Radio+SD (UART парсер)
+│   ├── source_bt.c            Bluetooth (заглушка → реальный)
+│   ├── source_usb.c           USB Audio
+│   ├── source_linein.c        Line In
+│   ├── gui.c                  Главный GUI, экраны
+│   ├── gui_spectrum.c         5 режимов спектра
+│   ├── gui_volume_arc.c       Дуга + лучи
+│   ├── gui_animations.c       Easing, fade, slide, уведомления
+│   ├── gui_clock.c            Процедурные часы Thin
+│   ├── gui_menu.c             Меню, навигация, карусели
+│   ├── display_drv.c          Драйвер (ST7789/ILI9341/ILI9342)
+│   ├── spi_flash.c            SPI Flash (универсальный)
+│   ├── fonts.c                Загрузка и рендер шрифтов
+│   ├── encoder.c              Энкодер EC11
+│   ├── buttons.c              ADC кнопки + Bypass
+│   ├── ir_remote.c            ИК приём + обучение
+│   ├── usb_device.c           USB CDC + Audio
+│   ├── settings.c             Сохранение/загрузка
+│   └── debug_console.c        CDC терминал
+├── include/
+│   ├── config.h               Все #define, этапы, MUX, дисплей
+│   ├── pinout.h               GPIO
+│   ├── source_interface.h     typedef source_interface_t
+│   └── *.h
+├── lib/
+│   └── CMSIS_DSP/
+├── tools/
+│   └── flash_builder/
+│       ├── build_flash.py
+│       ├── flash_upload.py
+│       ├── config.yaml
+│       ├── fonts/*.ttf
+│       ├── icons/*.png
+│       ├── splash/*.png
+│       ├── profiles/*.json
+│       ├── themes/*.json
+│       └── output/flash_image.bin
+└── docs/
+    └── ТЗ_v4.2.md
+```
+
+---
+
+## 31. ЭТАПЫ РАЗРАБОТКИ
+
+```
+Этап 1:  I2S тракт + Volume + CDC терминал
+         ESP32 напрямую → STM32 → PCM5102A (без MUX)
+         Управление: USB CDC (vol, mute, status)
+
+Этап 2:  DSP (15 EQ + все эффекты + upsampling ×2 + bypass)
+         Управление: CDC (eq, fx, bypass)
+
+Этап 3:  Дисплей (драйвер + базовый GUI + спектр бары)
+
+Этап 4:  UART Ё-радио (парсер + метаданные + время + список станций)
+
+Этап 5:  Управление (энкодер + ADC кнопки + меню)
+
+Этап 6:  USB CDC полный (все команды)
+
+Этап 7:  УМЗЧ (MUTE + POWER + часы Thin + последовательности)
+
+Этап 8:  ИК пульт (VS1838B + 20 функций + обучение)
+
+Этап 9:  USB Audio (24/48 UAC 1.0)
+
+Этап 10: Анимации (дуга + лучи + splash + easing + уведомления)
+
+Этап 11: SPI Flash (шрифты + иконки + темы + профили + утилита)
+
+Этап 12: Финал (скринсейвер, темы, текстуры, профили, отладка)
+
+Отдельно: UART SJR-BTM334 (при получении прошивки)
+          MUX 74HC157 (при получении чипов)
+
+config.h:
+  #define STAGE_1_AUDIO        1
+  #define STAGE_2_DSP          0
+  ...
+  #define STAGE_12_FINAL       0
+```
+
+---
+
+## 32. ОТКРЫТЫЕ ВОПРОСЫ
+
+```
+#   Вопрос                              Блокирует?
+──  ────────────────────────────────    ──────────
+1   UART протокол SJR-BTM334            Нет (заглушка)
+2   platformio.ini                      При Этапе 1
+3   PNG иконки                          При Этапе 11
+4   JSON профилей/тем                   При Этапе 11
+
+Блокирующие: 0. Все решения приняты.
+```
+
+---
+
+## 33. КЛЮЧЕВЫЕ ПРИНЦИПЫ
+
+```
+ 1. Качество звука:     Референсное, 32-bit float, FIR upsampling
+ 2. Визуал:             Хай-тек, премиум, Trinnov/Cambridge/NAD
+ 3. Надёжность:         HW Mute, CRC настроек, fallback шрифт
+ 4. Модульность:        source_interface_t, DISPLAY_DRIVER, MUX_TYPE
+ 5. Плавность:          30 fps GUI, easing, crossfade
+ 6. Ресурсы:            CPU <70%, RAM <65%, запас 30%+
+ 7. Поэтапность:        #define STAGE_N, включаешь по одному
+ 8. Взаимозаменяемость: BT модуль, дисплей, SPI Flash, MUX — всё модульное
+ 9. Без модификации ESP32: стандартный CLI Ё-радио
+10. Цифровой MUX:       74HC157 — нет щелчков, идеально для I2S
+```
+
+---
+
+**КОНЕЦ ТЕХНИЧЕСКОГО ЗАДАНИЯ v4.2**
+
+**Проект: OMNIA-V — Reference Digital Audio Center**
