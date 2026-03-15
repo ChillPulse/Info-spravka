@@ -1,80 +1,104 @@
+
 OMNIA-V audio core ready
 
 Commands:
   help
   stat
+  snap
   log on|off
   power on|off
   mute on|off
-  vol <0..100>
-  bypass 0|1   (reserved for future DSP FX)
   peakclr
 
-log on
-log on
+stat
 ERR unknown command
-log on
-OK log=on
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=10612 txf=10611 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=10701 txf=10701 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=10791 txf=10791 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=10881 txf=10880 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=10971 txf=10970 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11060 txf=11060 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11150 txf=11149 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11239 txf=11239 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11329 txf=11328 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11418 txf=11418 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11508 txf=11508 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11598 txf=11597 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11687 txf=11687 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11777 txf=11777 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11867 txf=11866 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=11957 txf=11956 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12046 txf=12046 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12136 txf=12136 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12226 txf=12225 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12316 txf=12315 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12405 txf=12405 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12495 txf=12495 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12585 txf=12584 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12674 txf=12674 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12764 txf=12764 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12854 txf=12854 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=12944 txf=12943 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13033 txf=13033 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13123 txf=13123 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13213 txf=13213 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13303 txf=13302 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13392 txf=13392 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13482 txf=13482 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13572 txf=13571 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13662 txf=13661 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13751 txf=13751 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13841 txf=13841 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=13931 txf=13930 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14020 txf=14020 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14110 txf=14110 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14200 txf=14199 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14290 txf=14289 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14379 txf=14379 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14469 txf=14468 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14558 txf=14558 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14648 txf=14647 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14738 txf=14737 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14827 txf=14827 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=14917 txf=14916 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15007 txf=15006 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15096 txf=15096 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15186 txf=15186 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15276 txf=15275 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15365 txf=15365 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15455 txf=15455 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15545 txf=15544 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15635 txf=15634 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15724 txf=15724 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15814 txf=15814 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15904 txf=15903 err=0 sync=0
-st=RUN pwr=1 sdz=1 mute=1 srcm=1 intm=0 vol=100 bypass=0 inpk=32768 outpk=32767 clip=0 txh=15994 txf=15993 err=0 sync=0
-log off
-OK log=off
+stat
+st=RUN pwr=1 sdz=1 mute=0 srcm=0 intm=0 inpk=32768 outpk=32768 txh=1804 txf=1803 err=0 sync=0 run=1 snap_req=0 snap_done=0 last_half=0 last_peak=0
+snap
+OK snap requested
+
+SNAPSHOT words[0..63]:
+w[00]=-27969
+w[01]=10045
+w[02]=-28993
+w[03]=9085
+w[04]=-30338
+w[05]=-707
+w[06]=23102
+w[07]=-24003
+w[08]=27710
+w[09]=-27011
+w[10]=-23554
+w[11]=-14531
+w[12]=-16962
+w[13]=-2562
+w[14]=14655
+w[15]=-25026
+w[16]=-21312
+w[17]=14142
+w[18]=-22208
+w[19]=12158
+w[20]=-16320
+w[21]=3902
+w[22]=-8897
+w[23]=-12610
+w[24]=-13057
+w[25]=19966
+w[26]=-18818
+w[27]=-11394
+w[28]=29694
+w[29]=22205
+w[30]=-5443
+w[31]=-13379
+w[32]=23677
+w[33]=29181
+w[34]=12669
+w[35]=-25091
+w[36]=13437
+w[37]=-451
+w[38]=13694
+w[39]=20221
+w[40]=-25986
+w[41]=-5890
+w[42]=16895
+w[43]=-25538
+w[44]=-9408
+w[45]=4927
+w[46]=10304
+w[47]=7102
+w[48]=-5185
+w[49]=-30786
+w[50]=-6657
+w[51]=10559
+w[52]=22207
+w[53]=23999
+w[54]=27327
+w[55]=28287
+w[56]=9919
+w[57]=27326
+w[58]=-14401
+w[59]=-32642
+w[60]=19519
+w[61]=-30594
+w[62]=1983
+w[63]=-23490
+
+As stereo pairs:
+p[00] = (-27969, 10045)
+p[01] = (-28993, 9085)
+p[02] = (-30338, -707)
+p[03] = (23102, -24003)
+p[04] = (27710, -27011)
+p[05] = (-23554, -14531)
+p[06] = (-16962, -2562)
+p[07] = (14655, -25026)
+p[08] = (-21312, 14142)
+p[09] = (-22208, 12158)
+p[10] = (-16320, 3902)
+p[11] = (-8897, -12610)
+p[12] = (-13057, 19966)
+p[13] = (-18818, -11394)
+p[14] = (29694, 22205)
+p[15] = (-5443, -13379)
+
+even_peak=30338 odd_peak=32642 even_zero=0 odd_zero=0
