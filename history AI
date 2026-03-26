@@ -1,0 +1,1832 @@
+Отлично. Тогда **первый post-rework тест** делаем максимально чистым:
+
+## Что проверяем сейчас
+1. После перепайки **continuous I2S baseline** по-прежнему чистый  
+2. **UART работает стабильно**
+3. Никакой DSP, никакой attenuation, никакого ресинка в рантайме
+
+---
+
+## Подключение диагностического UART
+Используй **тот вариант, который у тебя реально заработал**:
+
+- **CP2102 TX → STM32 PA2**
+- **CP2102 RX → STM32 PA3**
+- **CP2102 GND → STM32 GND**
+
+Терминал:
+- **115200**
+- **8N1**
+- **без flow control**
+
+---
+
+## Что менять
+**Полностью замени `src/main.c` на этот файл.**  
+Остальные файлы не трогай.
+
+```c
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_i2s_ex.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
+
+I2S_HandleTypeDef hi2s3;
+UART_HandleTypeDef huart2;
+
+typedef struct {
+    volatile uint32_t boot;
+    volatile uint32_t txrx_half;
+    volatile uint32_t txrx_full;
+    volatile uint32_t i2s_error;
+    volatile uint32_t sync_fail;
+    volatile uint32_t session_running;
+
+    volatile uint32_t peak_in_abs;
+    volatile uint32_t peak_out_abs;
+} stats_t;
+
+stats_t stats;
+
+#define LED_GPIO GPIOC
+#define LED_PIN  GPIO_PIN_13
+
+// I2S3 WS from source
+#define WS_GPIO GPIOA
+#define WS_PIN  GPIO_PIN_15
+
+#define UART_BAUDRATE 115200
+
+#define BUF_WORDS   1024
+#define HALF_WORDS  (BUF_WORDS / 2)
+
+static int16_t tx_buf[BUF_WORDS] __attribute__((aligned(4)));
+static int16_t rx_buf[BUF_WORDS] __attribute__((aligned(4)));
+
+static char rx_line[64];
+static uint32_t rx_line_len = 0;
+
+static void reset_peaks(void)
+{
+    stats.peak_in_abs = 0;
+    stats.peak_out_abs = 0;
+}
+
+static void LED_Init(void)
+{
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+
+    GPIO_InitTypeDef gi = {0};
+    gi.Pin = GPIO_PIN_13;
+    gi.Mode = GPIO_MODE_OUTPUT_PP;
+    gi.Pull = GPIO_NOPULL;
+    gi.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOC, &gi);
+}
+
+void HAL_UART_MspInit(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2) {
+        __HAL_RCC_GPIOA_CLK_ENABLE();
+        __HAL_RCC_USART2_CLK_ENABLE();
+
+        GPIO_InitTypeDef gi = {0};
+        gi.Pin = GPIO_PIN_2 | GPIO_PIN_3;
+        gi.Mode = GPIO_MODE_AF_PP;
+        gi.Pull = GPIO_PULLUP;
+        gi.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+        gi.Alternate = GPIO_AF7_USART2;
+        HAL_GPIO_Init(GPIOA, &gi);
+    }
+}
+
+static void MX_USART2_UART_Init(void)
+{
+    huart2.Instance = USART2;
+    huart2.Init.BaudRate = UART_BAUDRATE;
+    huart2.Init.WordLength = UART_WORDLENGTH_8B;
+    huart2.Init.StopBits = UART_STOPBITS_1;
+    huart2.Init.Parity = UART_PARITY_NONE;
+    huart2.Init.Mode = UART_MODE_TX_RX;
+    huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+
+    if (HAL_UART_Init(&huart2) != HAL_OK) {
+        while (1) {
+            HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            HAL_Delay(100);
+        }
+    }
+}
+
+static void uart_write(const char *s)
+{
+    if (!s) return;
+    HAL_UART_Transmit(&huart2, (uint8_t*)s, (uint16_t)strlen(s), 500);
+}
+
+static void uart_printf(const char *fmt, ...)
+{
+    char buf[192];
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(buf, sizeof(buf), fmt, ap);
+    va_end(ap);
+    uart_write(buf);
+}
+
+static void print_help(void)
+{
+    uart_write(
+        "\r\nCommands:\r\n"
+        "  help\r\n"
+        "  stat\r\n"
+        "  peakclr\r\n"
+        "\r\n"
+    );
+}
+
+static void print_status(void)
+{
+    uart_printf(
+        "run=%lu inpk=%lu outpk=%lu txh=%lu txf=%lu err=%lu sync=%lu\r\n",
+        stats.session_running,
+        stats.peak_in_abs,
+        stats.peak_out_abs,
+        stats.txrx_half,
+        stats.txrx_full,
+        stats.i2s_error,
+        stats.sync_fail
+    );
+}
+
+static inline uint8_t ws_is_high(void)
+{
+    return (HAL_GPIO_ReadPin(WS_GPIO, WS_PIN) == GPIO_PIN_SET);
+}
+
+static int wait_ws_low_then_high(uint32_t timeout_ms)
+{
+    uint32_t t0 = HAL_GetTick();
+
+    while (ws_is_high()) {
+        if ((HAL_GetTick() - t0) >= timeout_ms) return 0;
+    }
+
+    while (!ws_is_high()) {
+        if ((HAL_GetTick() - t0) >= timeout_ms) return 0;
+    }
+
+    return 1;
+}
+
+static void MX_I2S3_Init(void)
+{
+    __HAL_RCC_SPI3_CLK_ENABLE();
+
+    hi2s3.Instance = SPI3;
+    hi2s3.Init.Mode = I2S_MODE_SLAVE_TX;
+    hi2s3.Init.Standard = I2S_STANDARD_PHILIPS;
+    hi2s3.Init.DataFormat = I2S_DATAFORMAT_16B;
+    hi2s3.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
+    hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_48K;
+    hi2s3.Init.CPOL = I2S_CPOL_LOW;
+    hi2s3.Init.ClockSource = I2S_CLOCK_PLL;
+    hi2s3.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_ENABLE;
+
+    if (HAL_I2S_Init(&hi2s3) != HAL_OK) {
+        while (1) {}
+    }
+}
+
+static HAL_StatusTypeDef start_i2s3_once(void)
+{
+    memset(tx_buf, 0, sizeof(tx_buf));
+    memset(rx_buf, 0, sizeof(rx_buf));
+    reset_peaks();
+
+    if (!wait_ws_low_then_high(200)) {
+        stats.sync_fail++;
+        return HAL_TIMEOUT;
+    }
+
+    if (HAL_I2SEx_TransmitReceive_DMA(&hi2s3,
+                                      (uint16_t*)tx_buf,
+                                      (uint16_t*)rx_buf,
+                                      BUF_WORDS) != HAL_OK) {
+        stats.sync_fail++;
+        return HAL_ERROR;
+    }
+
+    stats.session_running = 1;
+    return HAL_OK;
+}
+
+static void process_audio_half(uint32_t offset_words)
+{
+    uint32_t peak_in = stats.peak_in_abs;
+    uint32_t peak_out = stats.peak_out_abs;
+
+    for (uint32_t i = 0; i < HALF_WORDS; i++) {
+        int16_t s = rx_buf[offset_words + i];
+        tx_buf[offset_words + i] = s;
+
+        int32_t a = (s < 0) ? -s : s;
+        uint32_t ua = (uint32_t)a;
+
+        if (ua > peak_in) peak_in = ua;
+        if (ua > peak_out) peak_out = ua;
+    }
+
+    stats.peak_in_abs = peak_in;
+    stats.peak_out_abs = peak_out;
+}
+
+static void handle_command(char *line)
+{
+    while (*line == ' ' || *line == '\t') line++;
+    if (*line == 0) return;
+
+    if (strcmp(line, "help") == 0) {
+        print_help();
+        return;
+    }
+
+    if (strcmp(line, "stat") == 0) {
+        print_status();
+        return;
+    }
+
+    if (strcmp(line, "peakclr") == 0) {
+        reset_peaks();
+        uart_write("OK peaks cleared\r\n");
+        return;
+    }
+
+    uart_write("ERR unknown command\r\n");
+}
+
+static void uart_poll_rx(void)
+{
+    uint8_t ch;
+
+    while (HAL_UART_Receive(&huart2, &ch, 1, 0) == HAL_OK) {
+        if (ch == '\r' || ch == '\n') {
+            if (rx_line_len > 0) {
+                rx_line[rx_line_len] = 0;
+                handle_command(rx_line);
+                rx_line_len = 0;
+            }
+        } else if (ch == 0x08 || ch == 0x7F) {
+            if (rx_line_len > 0) rx_line_len--;
+        } else {
+            if (rx_line_len < sizeof(rx_line) - 1) {
+                rx_line[rx_line_len++] = (char)ch;
+            } else {
+                rx_line_len = 0;
+                uart_write("ERR line too long\r\n");
+            }
+        }
+    }
+}
+
+int main(void)
+{
+    HAL_Init();
+
+    stats.boot++;
+
+    LED_Init();
+    MX_USART2_UART_Init();
+    MX_I2S3_Init();
+
+    if (start_i2s3_once() != HAL_OK) {
+        while (1) {
+            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        }
+    }
+
+    uart_write("\r\nOMNIA-V post-rework baseline ready\r\n");
+    print_help();
+
+    uint32_t last_led = HAL_GetTick();
+
+    while (1)
+    {
+        uart_poll_rx();
+
+        if ((stats.i2s_error != 0) || (stats.sync_fail != 0)) {
+            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        } else {
+            if ((HAL_GetTick() - last_led) >= 500) {
+                last_led += 500;
+                HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            }
+        }
+    }
+}
+
+void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+    if (hi2s->Instance == SPI3) {
+        stats.txrx_half++;
+        process_audio_half(0);
+    }
+}
+
+void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+    if (hi2s->Instance == SPI3) {
+        stats.txrx_full++;
+        process_audio_half(HALF_WORDS);
+    }
+}
+
+void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s)
+{
+    (void)hi2s;
+    stats.i2s_error++;
+}
+```
+
+---
+
+## Что проверить сейчас
+1. На слух:
+   - `play`
+   - `stop`
+   - `next/prev`
+   - несколько запусков синуса
+2. В терминале:
+   ```text
+   stat
+   peakclr
+   stat
+   ```
+
+---
+
+## Что мне написать после этого
+Коротко:
+1. **baseline после перепайки чистый / не чистый**
+2. что показывает `stat`
+3. если всё хорошо — я сразу дам следующий код:
+   ## `mode 0 / mode 1 / mode 2` post-rework test
+
+Готов идти дальше после твоего результата.
+  помнится ты писал:"я в следующих кодах буду считать UART так, как у тебя реально работает:
+TX = PA3
+RX = PA2" - а в итоге даёшь не так. у меня пропало доверие к тебе, ты очень серьёзно путаешься
+
+  Ты прав. **Я действительно серьёзно путался**, и это моя ошибка. Извини.
+
+Проблема была в том, что я смешал **два разных утверждения**:
+
+1. **какая функция у пинов STM32 по даташиту**  
+2. **как физически подключать CP2102**
+
+Из-за этого мои формулировки стали противоречить друг другу. Это нормально, что доверие просело.
+
+## Давай зафиксируем один раз и больше не менять
+
+### Истина по STM32F401 / USART2:
+- **PA2 = USART2_TX**
+- **PA3 = USART2_RX**
+
+### Истина по твоему реально рабочему подключению CP2102:
+- **CP2102 TX → PA3**
+- **CP2102 RX → PA2**
+- **GND → GND**
+
+То есть:
+- **на МК**: `TX=PA2`, `RX=PA3`
+- **на проводах с адаптером**: `TX адаптера идёт в RX МК`, `RX адаптера идёт в TX МК`
+
+Именно это у тебя **заработало на практике**, и дальше надо держаться **только этого**.
+
+---
+
+## Где была моя ошибка
+Я один раз написал:
+> “я в следующих кодах буду считать UART так, как у тебя реально работает: TX = PA3, RX = PA2”
+
+Это было **неверно сформулировано**.  
+Надо было писать так:
+
+> **Физическое подключение адаптера, которое у тебя работает:**  
+> `CP2102 TX -> PA3`, `CP2102 RX -> PA2`
+
+А не переопределять сами роли пинов STM32.
+
+---
+
+## Что предлагаю дальше
+Чтобы больше не путаться:
+
+### Правило на весь проект:
+**Во всех кодах считаем так:**
+- `USART2 TX = PA2`
+- `USART2 RX = PA3`
+
+**Во всех монтажных инструкциях пишем так:**
+- `CP2102 TX -> PA3`
+- `CP2102 RX -> PA2`
+
+---
+
+## И ещё одно важное обещание
+Дальше я не буду:
+- перескакивать между гипотезами,
+- повторять уже пройденные тесты без причины,
+- и давать новый код, не сверившись с нашим зафиксированным журналом.
+
+Если хочешь, мы можем сейчас сделать очень правильно:
+
+## Шаг 1
+Я **без нового кода** коротко фиксирую:
+- рабочий UART,
+- рабочий baseline,
+- следующий тест.
+
+## Шаг 2
+И только потом даю следующий `main.c`.
+
+Если ок, я так и сделаю — максимально аккуратно, без новых противоречий.
+
+  окей. я проверил прошлый код:
+После перепайки continuous I2S baseline по-прежнему чистый
+UART работает стабильно
+
+  Отлично. **Это ключевой результат.**
+
+## Фиксируем как факт
+1. **После перепайки `continuous I2S baseline` чистый.**
+2. **UART после перепайки работает стабильно.**
+
+## Что это значит
+- транспорт `ESP32 -> STM32 -> PCM5102` у нас **стабилен**
+- монтаж теперь **достаточно нормальный для честных тестов**
+- теперь уже можно **доверять следующим экспериментам с обработкой**
+
+## Значит, следующий шаг ровно такой
+### Повторить **post-rework `mode 0 / mode 1 / mode 2`**
+Это сейчас главный тест.
+
+Он ответит на вопрос:
+- была ли грязь в `mode 2` следствием макетки/монтажа,
+- или проблема действительно в представлении sample для DSP.
+
+## Ещё раз фиксирую UART, чтобы больше не путаться
+### На STM32:
+- `PA2 = USART2_TX`
+- `PA3 = USART2_RX`
+
+### Физически с CP2102:
+- `CP2102 TX -> PA3`
+- `CP2102 RX -> PA2`
+- `GND -> GND`
+
+Если хочешь, **следующим сообщением я дам один полный `main.c`** для:
+- `mode 0 = copy`
+- `mode 1 = identity`
+- `mode 2 = half`
+
+и дальше пойдём уже строго по результату.
+
+  окей
+
+  Хорошо. Тогда даю **ровно один следующий тест**, без лишних гипотез.
+
+## Цель
+Проверить после перепайки:
+
+- `mode 0` — raw copy
+- `mode 1` — arithmetic identity
+- `mode 2` — attenuation `s >> 1`
+
+Если после перепайки `mode 2` станет чистым — отлично, идём в DSP.  
+Если нет — значит проблема уже не в монтаже, а в sample representation / способе обработки.
+
+---
+
+## Фиксация UART
+### На STM32:
+- `PA2 = USART2_TX`
+- `PA3 = USART2_RX`
+
+### Физически с CP2102:
+- `CP2102 TX -> PA3`
+- `CP2102 RX -> PA2`
+- `CP2102 GND -> STM32 GND`
+
+---
+
+## Менять
+**Только `src/main.c` целиком.**  
+Остальные файлы не трогай.
+
+---
+
+## `src/main.c`
+
+```c
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_i2s_ex.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
+
+I2S_HandleTypeDef hi2s3;
+UART_HandleTypeDef huart2;
+
+typedef struct {
+    volatile uint32_t boot;
+    volatile uint32_t txrx_half;
+    volatile uint32_t txrx_full;
+    volatile uint32_t i2s_error;
+    volatile uint32_t sync_fail;
+    volatile uint32_t session_running;
+
+    volatile uint32_t peak_in_abs;
+    volatile uint32_t peak_out_abs;
+    volatile uint32_t clip_count;
+
+    volatile uint32_t mode;   // 0=copy, 1=identity, 2=half
+} stats_t;
+
+stats_t stats;
+
+#define LED_GPIO GPIOC
+#define LED_PIN  GPIO_PIN_13
+
+// I2S3 WS from source
+#define WS_GPIO GPIOA
+#define WS_PIN  GPIO_PIN_15
+
+// USART2 on STM32F401:
+// MCU TX = PA2
+// MCU RX = PA3
+//
+// PHYSICAL wiring with your working CP2102:
+// CP2102 TX -> PA3
+// CP2102 RX -> PA2
+#define UART_BAUDRATE 115200
+
+#define BUF_WORDS   1024
+#define HALF_WORDS  (BUF_WORDS / 2)
+
+static int16_t tx_buf[BUF_WORDS] __attribute__((aligned(4)));
+static int16_t rx_buf[BUF_WORDS] __attribute__((aligned(4)));
+
+static volatile uint8_t proc_mode = 0; // 0..2
+
+static char rx_line[64];
+static uint32_t rx_line_len = 0;
+
+static void reset_stats_peaks(void)
+{
+    stats.peak_in_abs = 0;
+    stats.peak_out_abs = 0;
+    stats.clip_count = 0;
+}
+
+static void LED_Init(void)
+{
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+
+    GPIO_InitTypeDef gi = {0};
+    gi.Pin = GPIO_PIN_13;
+    gi.Mode = GPIO_MODE_OUTPUT_PP;
+    gi.Pull = GPIO_NOPULL;
+    gi.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOC, &gi);
+}
+
+void HAL_UART_MspInit(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2) {
+        __HAL_RCC_GPIOA_CLK_ENABLE();
+        __HAL_RCC_USART2_CLK_ENABLE();
+
+        GPIO_InitTypeDef gi = {0};
+        gi.Pin = GPIO_PIN_2 | GPIO_PIN_3;
+        gi.Mode = GPIO_MODE_AF_PP;
+        gi.Pull = GPIO_PULLUP;
+        gi.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+        gi.Alternate = GPIO_AF7_USART2;
+        HAL_GPIO_Init(GPIOA, &gi);
+    }
+}
+
+static void MX_USART2_UART_Init(void)
+{
+    huart2.Instance = USART2;
+    huart2.Init.BaudRate = UART_BAUDRATE;
+    huart2.Init.WordLength = UART_WORDLENGTH_8B;
+    huart2.Init.StopBits = UART_STOPBITS_1;
+    huart2.Init.Parity = UART_PARITY_NONE;
+    huart2.Init.Mode = UART_MODE_TX_RX;
+    huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+
+    if (HAL_UART_Init(&huart2) != HAL_OK) {
+        while (1) {
+            HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            HAL_Delay(100);
+        }
+    }
+}
+
+static void uart_write(const char *s)
+{
+    if (!s) return;
+    HAL_UART_Transmit(&huart2, (uint8_t*)s, (uint16_t)strlen(s), 500);
+}
+
+static void uart_printf(const char *fmt, ...)
+{
+    char buf[192];
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(buf, sizeof(buf), fmt, ap);
+    va_end(ap);
+    uart_write(buf);
+}
+
+static void print_help(void)
+{
+    uart_write(
+        "\r\nCommands:\r\n"
+        "  help\r\n"
+        "  stat\r\n"
+        "  mode 0   (raw copy)\r\n"
+        "  mode 1   (arithmetic identity: y = s)\r\n"
+        "  mode 2   (arithmetic shift: y = s >> 1)\r\n"
+        "  peakclr\r\n"
+        "\r\n"
+    );
+}
+
+static void print_status(void)
+{
+    uart_printf(
+        "run=%lu mode=%lu inpk=%lu outpk=%lu clip=%lu txh=%lu txf=%lu err=%lu sync=%lu\r\n",
+        stats.session_running,
+        stats.mode,
+        stats.peak_in_abs,
+        stats.peak_out_abs,
+        stats.clip_count,
+        stats.txrx_half,
+        stats.txrx_full,
+        stats.i2s_error,
+        stats.sync_fail
+    );
+}
+
+static inline uint8_t ws_is_high(void)
+{
+    return (HAL_GPIO_ReadPin(WS_GPIO, WS_PIN) == GPIO_PIN_SET);
+}
+
+static int wait_ws_low_then_high(uint32_t timeout_ms)
+{
+    uint32_t t0 = HAL_GetTick();
+
+    while (ws_is_high()) {
+        if ((HAL_GetTick() - t0) >= timeout_ms) return 0;
+    }
+
+    while (!ws_is_high()) {
+        if ((HAL_GetTick() - t0) >= timeout_ms) return 0;
+    }
+
+    return 1;
+}
+
+static void MX_I2S3_Init(void)
+{
+    __HAL_RCC_SPI3_CLK_ENABLE();
+
+    hi2s3.Instance = SPI3;
+    hi2s3.Init.Mode = I2S_MODE_SLAVE_TX;
+    hi2s3.Init.Standard = I2S_STANDARD_PHILIPS;
+    hi2s3.Init.DataFormat = I2S_DATAFORMAT_16B;
+    hi2s3.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
+    hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_48K;
+    hi2s3.Init.CPOL = I2S_CPOL_LOW;
+    hi2s3.Init.ClockSource = I2S_CLOCK_PLL;
+    hi2s3.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_ENABLE;
+
+    if (HAL_I2S_Init(&hi2s3) != HAL_OK) {
+        while (1) {}
+    }
+}
+
+static HAL_StatusTypeDef start_i2s3_once(void)
+{
+    memset(tx_buf, 0, sizeof(tx_buf));
+    memset(rx_buf, 0, sizeof(rx_buf));
+    reset_stats_peaks();
+
+    if (!wait_ws_low_then_high(200)) {
+        stats.sync_fail++;
+        return HAL_TIMEOUT;
+    }
+
+    if (HAL_I2SEx_TransmitReceive_DMA(&hi2s3,
+                                      (uint16_t*)tx_buf,
+                                      (uint16_t*)rx_buf,
+                                      BUF_WORDS) != HAL_OK) {
+        stats.sync_fail++;
+        return HAL_ERROR;
+    }
+
+    stats.session_running = 1;
+    return HAL_OK;
+}
+
+static void process_audio_half(uint32_t offset_words)
+{
+    uint32_t peak_in = stats.peak_in_abs;
+    uint32_t peak_out = stats.peak_out_abs;
+    uint32_t clips = stats.clip_count;
+
+    switch (proc_mode)
+    {
+        case 0:
+            // raw copy
+            for (uint32_t i = 0; i < HALF_WORDS; i++) {
+                int16_t s = rx_buf[offset_words + i];
+                tx_buf[offset_words + i] = s;
+
+                int32_t a = (s < 0) ? -s : s;
+                uint32_t ua = (uint32_t)a;
+                if (ua > peak_in) peak_in = ua;
+                if (ua > peak_out) peak_out = ua;
+            }
+            break;
+
+        case 1:
+            // arithmetic identity
+            for (uint32_t i = 0; i < HALF_WORDS; i++) {
+                int32_t s = rx_buf[offset_words + i];
+
+                int32_t ain = (s < 0) ? -s : s;
+                if ((uint32_t)ain > peak_in) peak_in = (uint32_t)ain;
+
+                int32_t y = s;
+
+                if (y > 32767) {
+                    y = 32767;
+                    clips++;
+                } else if (y < -32768) {
+                    y = -32768;
+                    clips++;
+                }
+
+                tx_buf[offset_words + i] = (int16_t)y;
+
+                int32_t aout = (y < 0) ? -y : y;
+                if ((uint32_t)aout > peak_out) peak_out = (uint32_t)aout;
+            }
+            break;
+
+        case 2:
+            // arithmetic half
+            for (uint32_t i = 0; i < HALF_WORDS; i++) {
+                int32_t s = rx_buf[offset_words + i];
+
+                int32_t ain = (s < 0) ? -s : s;
+                if ((uint32_t)ain > peak_in) peak_in = (uint32_t)ain;
+
+                int32_t y = s >> 1;
+
+                if (y > 32767) {
+                    y = 32767;
+                    clips++;
+                } else if (y < -32768) {
+                    y = -32768;
+                    clips++;
+                }
+
+                tx_buf[offset_words + i] = (int16_t)y;
+
+                int32_t aout = (y < 0) ? -y : y;
+                if ((uint32_t)aout > peak_out) peak_out = (uint32_t)aout;
+            }
+            break;
+
+        default:
+            break;
+    }
+
+    stats.peak_in_abs = peak_in;
+    stats.peak_out_abs = peak_out;
+    stats.clip_count = clips;
+    stats.mode = proc_mode;
+}
+
+static void handle_command(char *line)
+{
+    while (*line == ' ' || *line == '\t') line++;
+    if (*line == 0) return;
+
+    if (strcmp(line, "help") == 0) {
+        print_help();
+        return;
+    }
+
+    if (strcmp(line, "stat") == 0) {
+        print_status();
+        return;
+    }
+
+    if (strcmp(line, "mode 0") == 0) {
+        proc_mode = 0;
+        stats.mode = 0;
+        reset_stats_peaks();
+        uart_write("OK mode=0 (copy)\r\n");
+        return;
+    }
+
+    if (strcmp(line, "mode 1") == 0) {
+        proc_mode = 1;
+        stats.mode = 1;
+        reset_stats_peaks();
+        uart_write("OK mode=1 (identity)\r\n");
+        return;
+    }
+
+    if (strcmp(line, "mode 2") == 0) {
+        proc_mode = 2;
+        stats.mode = 2;
+        reset_stats_peaks();
+        uart_write("OK mode=2 (half)\r\n");
+        return;
+    }
+
+    if (strcmp(line, "peakclr") == 0) {
+        reset_stats_peaks();
+        uart_write("OK peaks cleared\r\n");
+        return;
+    }
+
+    uart_write("ERR unknown command\r\n");
+}
+
+static void uart_poll_rx(void)
+{
+    uint8_t ch;
+
+    while (HAL_UART_Receive(&huart2, &ch, 1, 0) == HAL_OK) {
+        if (ch == '\r' || ch == '\n') {
+            if (rx_line_len > 0) {
+                rx_line[rx_line_len] = 0;
+                handle_command(rx_line);
+                rx_line_len = 0;
+            }
+        } else if (ch == 0x08 || ch == 0x7F) {
+            if (rx_line_len > 0) rx_line_len--;
+        } else {
+            if (rx_line_len < sizeof(rx_line) - 1) {
+                rx_line[rx_line_len++] = (char)ch;
+            } else {
+                rx_line_len = 0;
+                uart_write("ERR line too long\r\n");
+            }
+        }
+    }
+}
+
+int main(void)
+{
+    HAL_Init();
+
+    stats.boot++;
+
+    LED_Init();
+    MX_USART2_UART_Init();
+    MX_I2S3_Init();
+
+    if (start_i2s3_once() != HAL_OK) {
+        while (1) {
+            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        }
+    }
+
+    uart_write("\r\nOMNIA-V post-rework mode test ready\r\n");
+    print_help();
+
+    uint32_t last_led = HAL_GetTick();
+
+    while (1)
+    {
+        uart_poll_rx();
+
+        if ((stats.i2s_error != 0) || (stats.sync_fail != 0)) {
+            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        } else {
+            if ((HAL_GetTick() - last_led) >= 500) {
+                last_led += 500;
+                HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            }
+        }
+    }
+}
+
+void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+    if (hi2s->Instance == SPI3) {
+        stats.txrx_half++;
+        process_audio_half(0);
+    }
+}
+
+void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+    if (hi2s->Instance == SPI3) {
+        stats.txrx_full++;
+        process_audio_half(HALF_WORDS);
+    }
+}
+
+void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s)
+{
+    (void)hi2s;
+    stats.i2s_error++;
+}
+```
+
+---
+
+## Что проверить
+На синусе 1 кГц:
+
+```text
+mode 0
+stat
+mode 1
+stat
+mode 2
+stat
+```
+
+## Что написать потом
+Коротко:
+- `mode 0` — чисто / грязь
+- `mode 1` — чисто / грязь
+- `mode 2` — чисто / грязь
+- `stat` после `mode 2`
+
+После этого уже пойдём строго по факту.
+
+  mode 0 — чисто (иногда при переключениях треков короткий треск в виде щелчка)
+mode 1 — чисто (иногда, очень редко, при переключениях треков короткий треск в виде щелчка)
+mode 2 — грязь
+Логи:
+ mode 2
+OK mode=2 (half)
+stat
+run=1 mode=2 inpk=32768 outpk=16384 clip=0 txh=19923 txf=19922 err=0 sync=0
+
+  Отлично. Это уже **очень сильный результат**, и теперь картина стала гораздо чище.
+
+## Что мы теперь можем считать фактом
+
+### Подтверждено:
+- `mode 0` — **чисто**
+- `mode 1` — **чисто**
+- `mode 2` — **грязь**
+- после перепайки baseline остался чистым
+- UART стабилен
+- `outpk=16384` при `mode 2` — значит ослабление **реально применяется**
+- `err=0`, `sync=0` — transport сейчас **не виноват**
+
+## Что это означает
+Главное:
+
+### Проблема теперь **не в монтаже**, не в continuous I2S и не в арифметическом пути вообще.
+Потому что:
+- transport чистый,
+- `mode 1` чистый,
+- а ломается только **реальное изменение значения sample**.
+
+---
+
+# Вывод уровня “что уже точно не надо делать”
+1. Не надо больше возвращаться к ресинку как к базовой ветке.
+2. Не надо дальше чинить transport.
+3. Не надо сейчас трогать UI / BT / USB / PEQ.
+4. Не надо считать, что проблема “просто в наводках”.
+
+---
+
+# Что это почти наверняка значит
+У нас остался уже очень узкий круг причин.
+
+## Самая вероятная группа причин:
+### **sample representation / semantics**
+То есть:
+мы всё ещё не знаем, что именно означает raw 16-bit слово в рабочем тракте **для математики**.
+
+Не для transport — transport уже ясен.  
+А именно для **DSP-уровня**.
+
+---
+
+# Почему `mode 1` чистый, а `mode 2` грязный — это так важно
+Потому что это говорит:
+
+- не ломает само чтение/запись слова;
+- не ломает сам callback;
+- не ломает сам факт прохождения через переменную;
+- ломает именно **операция изменения численного значения**.
+
+---
+
+# Что я считаю следующим правильным шагом
+Теперь нужен **не новый большой DSP**, а ещё один очень узкий тест.
+
+## Следующий тест должен ответить на вопрос:
+### это ломает именно `>>1`
+или
+### любое изменение амплитуды как таковое
+
+---
+
+# Я бы проверил 3 вещи
+
+## Тест A — деление `/2` вместо `>>1`
+Да, это обязательно.
+
+Потому что:
+- `>>1` для signed отрицательных значений на практике на ARM обычно ок,
+- но как диагностический тест **`/2` чище и однозначнее**.
+
+Если:
+- `s >> 1` грязь,
+- а `s / 2` чисто,
+
+то мы нашли очень конкретный нюанс.
+
+---
+
+## Тест B — инверсия полярности `y = -s`
+Это очень хороший тест.
+
+Почему:
+- это **меняет значение sample**
+- но не меняет амплитуду как attenuation
+
+Если `-s` будет **чисто**, а `/2` — грязь, значит проблема ближе к:
+- масштабированию,
+- а не к любому численному изменению.
+
+Если `-s` тоже грязь — значит проблема ещё глубже.
+
+---
+
+## Тест C — “только один канал”
+Например:
+- левый канал оставить как есть,
+- правый делить на 2
+или наоборот.
+
+Это покажет:
+- ломается ли весь тракт,
+- или проблема проявляется по канальной структуре/packing.
+
+---
+
+# Мой приоритет
+Я бы делал так:
+
+## Шаг 1
+`s / 2`
+
+## Шаг 2
+`-s`
+
+## Шаг 3
+если надо — поканальный тест
+
+---
+
+# Что это даст
+После этого будет уже почти бинарная развилка:
+
+## Вариант 1
+`/2` чисто  
+→ проблема была в `>>1`
+
+## Вариант 2
+`/2` грязь, `-s` чисто  
+→ проблема в изменении амплитуды/масштаба, но не в любом math
+
+## Вариант 3
+`/2` грязь, `-s` тоже грязь  
+→ raw word нельзя напрямую считать canonical DSP sample
+
+---
+
+# Что я предлагаю сейчас
+Если ты согласен, следующий код должен быть **очень маленьким 4-mode test**:
+
+- `mode 0` = copy
+- `mode 1` = identity
+- `mode 2` = `s / 2`
+- `mode 3` = `-s`
+
+И всё.
+
+Это будет уже очень чистый и почти окончательный диагностический шаг.
+
+Если хочешь — следующим сообщением я дам именно этот `main.c`, и больше ничего лишнего.
+
+
+  давай
+
+  Да. Идём **ровно в следующий узкий тест**, без лишнего.
+
+## Что проверяем
+- `mode 0` — raw copy
+- `mode 1` — arithmetic identity `y = s`
+- `mode 2` — **деление `y = s / 2`**
+- `mode 3` — **инверсия `y = -s`**
+
+## Что меняем
+**Только `src/main.c` целиком.**  
+Остальные файлы не трогаем.
+
+## UART фиксируем ещё раз
+### На STM32:
+- `PA2 = USART2_TX`
+- `PA3 = USART2_RX`
+
+### Физически с твоим CP2102:
+- `CP2102 TX -> PA3`
+- `CP2102 RX -> PA2`
+- `GND -> GND`
+
+---
+
+## `src/main.c`
+
+```c
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_i2s_ex.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
+
+I2S_HandleTypeDef hi2s3;
+UART_HandleTypeDef huart2;
+
+typedef struct {
+    volatile uint32_t boot;
+    volatile uint32_t txrx_half;
+    volatile uint32_t txrx_full;
+    volatile uint32_t i2s_error;
+    volatile uint32_t sync_fail;
+    volatile uint32_t session_running;
+
+    volatile uint32_t peak_in_abs;
+    volatile uint32_t peak_out_abs;
+    volatile uint32_t clip_count;
+
+    volatile uint32_t mode;   // 0=copy, 1=identity, 2=/2, 3=invert
+} stats_t;
+
+stats_t stats;
+
+#define LED_GPIO GPIOC
+#define LED_PIN  GPIO_PIN_13
+
+// I2S3 WS from source
+#define WS_GPIO GPIOA
+#define WS_PIN  GPIO_PIN_15
+
+// UART
+#define UART_BAUDRATE 115200
+
+#define BUF_WORDS   1024
+#define HALF_WORDS  (BUF_WORDS / 2)
+
+static int16_t tx_buf[BUF_WORDS] __attribute__((aligned(4)));
+static int16_t rx_buf[BUF_WORDS] __attribute__((aligned(4)));
+
+static volatile uint8_t proc_mode = 0; // 0..3
+
+static char rx_line[64];
+static uint32_t rx_line_len = 0;
+
+static void reset_stats_peaks(void)
+{
+    stats.peak_in_abs = 0;
+    stats.peak_out_abs = 0;
+    stats.clip_count = 0;
+}
+
+static void LED_Init(void)
+{
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+
+    GPIO_InitTypeDef gi = {0};
+    gi.Pin = GPIO_PIN_13;
+    gi.Mode = GPIO_MODE_OUTPUT_PP;
+    gi.Pull = GPIO_NOPULL;
+    gi.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOC, &gi);
+}
+
+void HAL_UART_MspInit(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2) {
+        __HAL_RCC_GPIOA_CLK_ENABLE();
+        __HAL_RCC_USART2_CLK_ENABLE();
+
+        GPIO_InitTypeDef gi = {0};
+        gi.Pin = GPIO_PIN_2 | GPIO_PIN_3;
+        gi.Mode = GPIO_MODE_AF_PP;
+        gi.Pull = GPIO_PULLUP;
+        gi.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+        gi.Alternate = GPIO_AF7_USART2;
+        HAL_GPIO_Init(GPIOA, &gi);
+    }
+}
+
+static void MX_USART2_UART_Init(void)
+{
+    huart2.Instance = USART2;
+    huart2.Init.BaudRate = UART_BAUDRATE;
+    huart2.Init.WordLength = UART_WORDLENGTH_8B;
+    huart2.Init.StopBits = UART_STOPBITS_1;
+    huart2.Init.Parity = UART_PARITY_NONE;
+    huart2.Init.Mode = UART_MODE_TX_RX;
+    huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+
+    if (HAL_UART_Init(&huart2) != HAL_OK) {
+        while (1) {
+            HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            HAL_Delay(100);
+        }
+    }
+}
+
+static void uart_write(const char *s)
+{
+    if (!s) return;
+    HAL_UART_Transmit(&huart2, (uint8_t*)s, (uint16_t)strlen(s), 500);
+}
+
+static void uart_printf(const char *fmt, ...)
+{
+    char buf[192];
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(buf, sizeof(buf), fmt, ap);
+    va_end(ap);
+    uart_write(buf);
+}
+
+static void print_help(void)
+{
+    uart_write(
+        "\r\nCommands:\r\n"
+        "  help\r\n"
+        "  stat\r\n"
+        "  mode 0   (raw copy)\r\n"
+        "  mode 1   (identity: y = s)\r\n"
+        "  mode 2   (signed divide: y = s / 2)\r\n"
+        "  mode 3   (signed invert: y = -s)\r\n"
+        "  peakclr\r\n"
+        "\r\n"
+    );
+}
+
+static void print_status(void)
+{
+    uart_printf(
+        "run=%lu mode=%lu inpk=%lu outpk=%lu clip=%lu txh=%lu txf=%lu err=%lu sync=%lu\r\n",
+        stats.session_running,
+        stats.mode,
+        stats.peak_in_abs,
+        stats.peak_out_abs,
+        stats.clip_count,
+        stats.txrx_half,
+        stats.txrx_full,
+        stats.i2s_error,
+        stats.sync_fail
+    );
+}
+
+static inline uint8_t ws_is_high(void)
+{
+    return (HAL_GPIO_ReadPin(WS_GPIO, WS_PIN) == GPIO_PIN_SET);
+}
+
+static int wait_ws_low_then_high(uint32_t timeout_ms)
+{
+    uint32_t t0 = HAL_GetTick();
+
+    while (ws_is_high()) {
+        if ((HAL_GetTick() - t0) >= timeout_ms) return 0;
+    }
+
+    while (!ws_is_high()) {
+        if ((HAL_GetTick() - t0) >= timeout_ms) return 0;
+    }
+
+    return 1;
+}
+
+static void MX_I2S3_Init(void)
+{
+    __HAL_RCC_SPI3_CLK_ENABLE();
+
+    hi2s3.Instance = SPI3;
+    hi2s3.Init.Mode = I2S_MODE_SLAVE_TX;
+    hi2s3.Init.Standard = I2S_STANDARD_PHILIPS;
+    hi2s3.Init.DataFormat = I2S_DATAFORMAT_16B;
+    hi2s3.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
+    hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_48K;
+    hi2s3.Init.CPOL = I2S_CPOL_LOW;
+    hi2s3.Init.ClockSource = I2S_CLOCK_PLL;
+    hi2s3.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_ENABLE;
+
+    if (HAL_I2S_Init(&hi2s3) != HAL_OK) {
+        while (1) {}
+    }
+}
+
+static HAL_StatusTypeDef start_i2s3_once(void)
+{
+    memset(tx_buf, 0, sizeof(tx_buf));
+    memset(rx_buf, 0, sizeof(rx_buf));
+    reset_stats_peaks();
+
+    if (!wait_ws_low_then_high(200)) {
+        stats.sync_fail++;
+        return HAL_TIMEOUT;
+    }
+
+    if (HAL_I2SEx_TransmitReceive_DMA(&hi2s3,
+                                      (uint16_t*)tx_buf,
+                                      (uint16_t*)rx_buf,
+                                      BUF_WORDS) != HAL_OK) {
+        stats.sync_fail++;
+        return HAL_ERROR;
+    }
+
+    stats.session_running = 1;
+    return HAL_OK;
+}
+
+static void process_audio_half(uint32_t offset_words)
+{
+    uint32_t peak_in = stats.peak_in_abs;
+    uint32_t peak_out = stats.peak_out_abs;
+    uint32_t clips = stats.clip_count;
+
+    switch (proc_mode)
+    {
+        case 0:
+            // raw copy
+            for (uint32_t i = 0; i < HALF_WORDS; i++) {
+                int16_t s = rx_buf[offset_words + i];
+                tx_buf[offset_words + i] = s;
+
+                int32_t a = (s < 0) ? -s : s;
+                uint32_t ua = (uint32_t)a;
+                if (ua > peak_in) peak_in = ua;
+                if (ua > peak_out) peak_out = ua;
+            }
+            break;
+
+        case 1:
+            // identity
+            for (uint32_t i = 0; i < HALF_WORDS; i++) {
+                int16_t s = rx_buf[offset_words + i];
+
+                int32_t ain = (s < 0) ? -s : s;
+                if ((uint32_t)ain > peak_in) peak_in = (uint32_t)ain;
+
+                int16_t y = s;
+
+                tx_buf[offset_words + i] = y;
+
+                int32_t aout = (y < 0) ? -y : y;
+                if ((uint32_t)aout > peak_out) peak_out = (uint32_t)aout;
+            }
+            break;
+
+        case 2:
+            // signed divide by 2
+            for (uint32_t i = 0; i < HALF_WORDS; i++) {
+                int16_t s = rx_buf[offset_words + i];
+
+                int32_t ain = (s < 0) ? -s : s;
+                if ((uint32_t)ain > peak_in) peak_in = (uint32_t)ain;
+
+                int16_t y = (int16_t)(s / 2);
+
+                tx_buf[offset_words + i] = y;
+
+                int32_t aout = (y < 0) ? -y : y;
+                if ((uint32_t)aout > peak_out) peak_out = (uint32_t)aout;
+            }
+            break;
+
+        case 3:
+            // signed invert
+            for (uint32_t i = 0; i < HALF_WORDS; i++) {
+                int16_t s = rx_buf[offset_words + i];
+
+                int32_t ain = (s < 0) ? -s : s;
+                if ((uint32_t)ain > peak_in) peak_in = (uint32_t)ain;
+
+                int16_t y;
+                if (s == (int16_t)0x8000) {
+                    y = 32767; // avoid overflow on -(-32768)
+                    clips++;
+                } else {
+                    y = (int16_t)(-s);
+                }
+
+                tx_buf[offset_words + i] = y;
+
+                int32_t aout = (y < 0) ? -y : y;
+                if ((uint32_t)aout > peak_out) peak_out = (uint32_t)aout;
+            }
+            break;
+
+        default:
+            break;
+    }
+
+    stats.peak_in_abs = peak_in;
+    stats.peak_out_abs = peak_out;
+    stats.clip_count = clips;
+    stats.mode = proc_mode;
+}
+
+static void handle_command(char *line)
+{
+    while (*line == ' ' || *line == '\t') line++;
+    if (*line == 0) return;
+
+    if (strcmp(line, "help") == 0) {
+        print_help();
+        return;
+    }
+
+    if (strcmp(line, "stat") == 0) {
+        print_status();
+        return;
+    }
+
+    if (strcmp(line, "mode 0") == 0) {
+        proc_mode = 0;
+        stats.mode = 0;
+        reset_stats_peaks();
+        uart_write("OK mode=0 (copy)\r\n");
+        return;
+    }
+
+    if (strcmp(line, "mode 1") == 0) {
+        proc_mode = 1;
+        stats.mode = 1;
+        reset_stats_peaks();
+        uart_write("OK mode=1 (identity)\r\n");
+        return;
+    }
+
+    if (strcmp(line, "mode 2") == 0) {
+        proc_mode = 2;
+        stats.mode = 2;
+        reset_stats_peaks();
+        uart_write("OK mode=2 (divide by 2)\r\n");
+        return;
+    }
+
+    if (strcmp(line, "mode 3") == 0) {
+        proc_mode = 3;
+        stats.mode = 3;
+        reset_stats_peaks();
+        uart_write("OK mode=3 (invert)\r\n");
+        return;
+    }
+
+    if (strcmp(line, "peakclr") == 0) {
+        reset_stats_peaks();
+        uart_write("OK peaks cleared\r\n");
+        return;
+    }
+
+    uart_write("ERR unknown command\r\n");
+}
+
+static void uart_poll_rx(void)
+{
+    uint8_t ch;
+
+    while (HAL_UART_Receive(&huart2, &ch, 1, 0) == HAL_OK) {
+        if (ch == '\r' || ch == '\n') {
+            if (rx_line_len > 0) {
+                rx_line[rx_line_len] = 0;
+                handle_command(rx_line);
+                rx_line_len = 0;
+            }
+        } else if (ch == 0x08 || ch == 0x7F) {
+            if (rx_line_len > 0) rx_line_len--;
+        } else {
+            if (rx_line_len < sizeof(rx_line) - 1) {
+                rx_line[rx_line_len++] = (char)ch;
+            } else {
+                rx_line_len = 0;
+                uart_write("ERR line too long\r\n");
+            }
+        }
+    }
+}
+
+int main(void)
+{
+    HAL_Init();
+
+    stats.boot++;
+
+    LED_Init();
+    MX_USART2_UART_Init();
+    MX_I2S3_Init();
+
+    if (start_i2s3_once() != HAL_OK) {
+        while (1) {
+            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        }
+    }
+
+    uart_write("\r\nOMNIA-V signed test ready\r\n");
+    print_help();
+
+    uint32_t last_led = HAL_GetTick();
+
+    while (1)
+    {
+        uart_poll_rx();
+
+        if ((stats.i2s_error != 0) || (stats.sync_fail != 0)) {
+            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        } else {
+            if ((HAL_GetTick() - last_led) >= 500) {
+                last_led += 500;
+                HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            }
+        }
+    }
+}
+
+void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+    if (hi2s->Instance == SPI3) {
+        stats.txrx_half++;
+        process_audio_half(0);
+    }
+}
+
+void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
+{
+    if (hi2s->Instance == SPI3) {
+        stats.txrx_full++;
+        process_audio_half(HALF_WORDS);
+    }
+}
+
+void HAL_I2S_ErrorCallback(I2S_HandleTypeDef *hi2s)
+{
+    (void)hi2s;
+    stats.i2s_error++;
+}
+```
+
+---
+
+## Что проверить
+На синусе 1 кГц:
+
+```text
+mode 0
+stat
+mode 1
+stat
+mode 2
+stat
+mode 3
+stat
+```
+
+## Что прислать
+Коротко:
+- `mode 0` — чисто / грязь
+- `mode 1` — чисто / грязь
+- `mode 2` — чисто / грязь
+- `mode 3` — чисто / грязь
+- `stat` после `mode 2`
+- `stat` после `mode 3`
+
+После этого уже будет понятно, куда двигаться дальше.
+
+  mode 0 — чисто
+mode 1 — чисто
+mode 2 — грязь (вначале играло чисто, пока я не переключил трек - и пошла грязь постоянно)
+mode 3 — чисто, единственное, в музыке где звуки тихие - слышен песок, лёгкий песочный шум - на низком уровне громкости, на высокой громкости - играет практически чисто. и еслии на низкой громкости несколько раз нажимать на плей одного и того же трека - возможно получить шумовой возбуд.
+stat после mode 2
+stat после mode 3
+
+логи:
+mode 2
+ERR unknown command
+mode 2
+OK mode=2 (divide by 2)
+stat
+stat
+ERR unknown command
+stat
+run=1 mode=2 inpk=32768 outpk=16384 clip=0 txh=14844 txf=14844 err=0 sync=0
+mode 3
+OK mode=3 (invert)
+stat (сделал его гораздо позже)
+run=1 mode=3 inpk=32768 outpk=32767 clip=62739 txh=50566 txf=50566 err=0 sync=0
+
+  Это уже **очень хороший и важный результат**.  
+И он меняет выводы.
+
+## Что я вижу теперь
+
+### 1) `mode 3` (`y = -s`) почти чистый
+Это очень сильный аргумент, что:
+- **signed-путь в целом правильный**,
+- и raw-слово, вероятно, **можно трактовать как `int16_t` sample**.
+
+То есть прежняя гипотеза
+> “мы вообще не там делаем математику”
+теперь **ослабла**.
+
+---
+
+### 2) `mode 2` (`y = s / 2`) сначала играл чисто
+Вот это вообще ключ.
+
+Если attenuation **сразу после включения** звучит чисто, а потом ломается **после переключения трека**, то это уже **не похоже на фундаментальную ошибку sample representation**.
+
+Это больше похоже на одно из двух:
+
+## Вариант A
+**Проблема в переходных процессах источника**, а не в арифметике как таковой.
+
+## Вариант B
+**При уменьшении уровня сильнее слышен мусор / шумовая полка / переходный мусор**, который на `mode 0` и `mode 1` просто маскируется более высоким полезным уровнем.
+
+---
+
+### 3) `mode 3` даёт песок на тихих местах
+Это тоже очень показательно.
+
+Инверсия:
+- **не меняет уровень сигнала**
+- но меняет полярность
+
+Если при инверсии на низком уровне всё равно слышен “песок”, то это уже намекает, что:
+- проблема не только в attenuation,
+- а вообще в **поведении тракта на малом уровне сигнала / в тихих участках / на переходах**
+
+То есть это очень похоже на:
+- остаточные переходные артефакты источника,
+- шум/нестабильность аналогового прослушивания напрямую с PCM5102 на наушники,
+- возможно, особенности треков/файлов/стартов.
+
+---
+
+## Что я думаю теперь
+### Главный вывод:
+**Сейчас уже не выглядит так, будто проблема в “неправильном типе данных для DSP”.**
+
+Потому что если бы это было так:
+- `mode 3` тоже должен был бы ломаться грубо и стабильно.
+
+А у тебя:
+- `mode 3` в целом играет,
+- `mode 2` может играть чисто, пока не пошёл переход по треку.
+
+Значит:
+## проблема с высокой вероятностью сместилась обратно в область
+- **transition handling**
+- **source mute policy**
+- **что делать на play/stop/next**
+- и, возможно, **аналоговая чистота при низком уровне**
+
+---
+
+## Ещё важный комментарий по `clip=62739` в старом `mode 3`
+Это не обязательно “всё ужасно клипует”.  
+У тебя в коде для `-32768` был специальный случай:
+
+```c
+if (s == (int16_t)0x8000) {
+    y = 32767;
+    clips++;
+}
+```
+
+Если источник/синус/трек часто попадает в полный negative full-scale, этот счётчик может расти.  
+То есть сам по себе большой `clip_count` в `mode 3` **не доказывает катастрофу**.
+
+---
+
+# К чему это нас приводит
+
+## Мой обновлённый вывод:
+### Transport — ок
+### Базовый signed sample path — скорее всего ок
+### Главная незакрытая тема — **transition policy**, а не “математика sample”
+
+---
+
+# Что бы я делал дальше
+Сейчас я бы **не продолжал лезть в новые sample-format гипотезы**.
+
+## Следующий правильный шаг:
+Вернуться к идее, которую мы уже считали перспективной:
+
+# **continuous I2S + только HW_MUTE на переходах**
+### без ресинка
+### без stop/start I2S
+### без DSP soft mute в аудиосэмплах
+
+---
+
+## Почему именно сейчас это логично
+Потому что уже накопилось:
+
+- continuous I2S — лучшая база
+- resync — ломал картину
+- attenuation не сразу грязная, а часто после переходов
+- mode3 тоже подсказывает, что проблема не в самом signed-пути
+
+То есть:
+## очень вероятно, что надо просто правильно закрыть transition-окно через аппаратный mute
+
+---
+
+# Что бы я проверил дальше
+## Контрольный сценарий
+1. continuous I2S оставляем
+2. при `SRC_MUTE_REQ = HIGH`
+   - включаем `AMP_MUTE`
+3. при `SRC_MUTE_REQ = LOW`
+   - держим `AMP_MUTE` ещё чуть-чуть
+   - потом открываем
+
+### И ничего больше:
+- без ресинка
+- без stop DMA
+- без переразгона I2S
+- без DSP ramp
+
+---
+
+# Почему это может решить то, что ты видишь
+Потому что твои текущие симптомы уже очень похожи на:
+
+- **короткие грязные окна на старте/переходе**
+- которые потом остаются слышимыми сильнее, если уровень сигнала ниже
+
+То есть, если правильно закрыть их аппаратным mute, можно получить:
+- и чистый `mode 0`,
+- и рабочий `mode 2`,
+- и потом уже нормальный volume.
+
+---
+
+# Что я предлагаю зафиксировать прямо сейчас
+## Новый рабочий вывод:
+1. **sample representation больше не выглядит главным врагом**
+2. **главный враг — transitions**
+3. **следующий шаг — вернуть continuous I2S + HW_MUTE policy**
+4. **ресинк пока не возвращать**
+5. **в DSP пока не углубляться, пока не проверим это**
+
+---
+
+# Практический следующий шаг
+Если хочешь, следующим сообщением я дам **новый `main.c`**:
+
+## continuous I2S + 4-mode test + `SRC_MUTE_REQ -> AMP_MUTE_OUT`
+То есть:
+- сохраняем диагностику
+- сохраняем mode 0/1/2/3
+- но ещё закрываем переходы источника аппаратным mute
+
+Это, по-моему, сейчас уже наиболее логичный следующий эксперимент.
