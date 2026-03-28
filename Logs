@@ -1,427 +1,704 @@
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=2241, full=2241, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=2583, full=2583, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=2925, full=2924, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=3266, full=3266, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=3608, full=3608, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=3950, full=3949, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=4291, full=4291, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=4633, full=4632, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=4974, full=4974, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=5316, full=5316, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=5658, full=5657, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=5999, full=5999, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=6341, full=6340, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=6682, full=6682, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=7024, full=7023, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=7365, full=7365, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=7707, full=7706, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=8048, full=8048, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=8390, full=8389, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=8731, full=8731, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=9073, full=9072, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=9414, full=9414, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=9756, full=9755, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=10097, full=10096, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=10438, full=10438, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=10780, full=10779, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=11121, full=11120, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=11462, full=11462, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=11803, full=11803, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=12145, full=12144, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=12486, full=12486, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=12827, full=12827, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=13169, full=13168, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=13510, full=13509, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=13851, full=13851, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=14192, full=14192, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=14534, full=14533, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=14875, full=14874, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=15216, full=15216, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=15557, full=15557, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=15899, full=15898, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=16240, full=16240, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=16581, full=16581, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=16922, full=16922, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=17264, full=17263, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=17605, full=17604, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=17946, full=17946, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=18288, full=18287, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=18629, full=18628, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=18970, full=18970, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=19311, full=19311, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=19653, full=19652, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=19994, full=19993, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=20335, full=20334, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=20676, full=20675, i2s_err=0, rx_peak=32768, tx_peak=32768
-status: mode=0 (raw copy), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=2, half=21017, full=21017, i2s_err=0, rx_peak=32768, tx_peak=32768
-9
-
-SET MODE = 9 (float bypass unity)
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=159, full=159, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=500, full=500, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=841, full=841, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=1183, full=1182, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=1524, full=1523, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=1865, full=1864, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=2206, full=2205, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=2547, full=2546, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=2888, full=2887, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=3229, full=3228, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=3570, full=3569, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=3911, full=3910, i2s_err=0, rx_peak=32768, tx_peak=32767
-m
-
-FORCE_MUTE = ON
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=1, hold_ms=200, src=0, src_edges=0, half=4252, full=4252, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=1, hold_ms=200, src=0, src_edges=0, half=4593, full=4593, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=1, hold_ms=200, src=0, src_edges=0, half=4934, full=4934, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=1, hold_ms=200, src=0, src_edges=0, half=5275, full=5275, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=1, hold_ms=200, src=0, src_edges=0, half=5616, full=5616, i2s_err=0, rx_peak=32768, tx_peak=32767
-m
-
-FORCE_MUTE = OFF
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=5957, full=5957, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=6299, full=6298, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=6640, full=6639, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=6981, full=6980, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=7322, full=7322, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=7663, full=7663, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=8004, full=8004, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=8345, full=8345, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=8686, full=8686, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=9027, full=9027, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=9368, full=9368, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=9709, full=9709, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=10050, full=10050, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=10391, full=10390, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=10732, full=10731, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=11073, full=11073, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=11414, full=11414, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=11755, full=11755, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=12096, full=12096, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=12437, full=12437, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=12778, full=12778, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=13120, full=13119, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=13461, full=13460, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=13802, full=13801, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=14143, full=14142, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=14484, full=14483, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=14825, full=14824, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=15165, full=15165, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=15506, full=15506, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=15847, full=15847, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=16188, full=16188, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=16529, full=16529, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=16870, full=16870, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=17212, full=17211, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=17553, full=17552, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=17894, full=17893, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=18235, full=18234, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=18576, full=18575, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=18917, full=18916, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=19258, full=19257, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=19599, full=19598, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=19940, full=19939, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=20280, full=20280, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=20621, full=20621, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=20962, full=20962, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=21303, full=21303, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=21644, full=21644, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=21985, full=21985, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=22326, full=22326, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=22667, full=22667, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=23008, full=23008, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=23349, full=23348, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=23690, full=23689, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=24031, full=24030, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=24372, full=24371, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=24712, full=24712, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=25053, full=25053, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=25394, full=25394, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=25735, full=25735, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=26076, full=26076, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=26417, full=26417, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=26758, full=26757, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=27098, full=27098, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=27439, full=27439, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=27780, full=27780, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=28121, full=28120, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=28461, full=28461, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=28802, full=28801, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=29143, full=29142, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=29483, full=29483, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=29824, full=29824, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=30165, full=30165, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=30506, full=30506, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=30847, full=30846, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=31188, full=31187, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=31529, full=31528, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=31870, full=31869, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=32210, full=32210, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=32551, full=32551, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=0, half=41732, full=41731, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=0, half=42103, full=42103, i2s_err=0, rx_peak=32768, tx_peak=32768
 h
 
 Commands:
   0..9 : set test mode 0..9
   a    : set test mode 10 (float gain 0.5)
-  g    : toggle source gate ON/OFF
   m    : toggle FORCE_MUTE ON/OFF
-  H    : toggle hold 200 ms / 2000 ms
+  x    : MANUAL RESYNC now
+  w    : cycle warmup half-blocks: 0/4/8/16/32
   s    : status
   r    : reset counters/peaks
   h    : help
 
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=32892, full=32891, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=33233, full=33232, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=33573, full=33573, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=33914, full=33914, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=34255, full=34255, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=34596, full=34595, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=34937, full=34936, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=35278, full=35277, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=35619, full=35618, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=35959, full=35959, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=200, src=0, src_edges=0, half=36300, full=36300, i2s_err=0, rx_peak=32768, tx_peak=32767
-H
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=1, half=42475, full=42475, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=0, half=42847, full=42846, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=0, half=43219, full=43218, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=1, half=43590, full=43590, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=1, half=43962, full=43961, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=1, half=44334, full=44333, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=1, half=44705, full=44705, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=0, half=45077, full=45076, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=0, half=45448, full=45448, i2s_err=0, rx_peak=32768, tx_peak=32768
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=1, half=45820, full=45819, i2s_err=0, rx_peak=32768, tx_peak=32768
+9
+status: mode=0 (raw copy), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=1, half=46191, full=46191, i2s_err=0, rx_peak=32768, tx_peak=32768
 
-POST_MUTE_HOLD = 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=36641, full=36640, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=36982, full=36981, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=37323, full=37322, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=37663, full=37663, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=38004, full=38004, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=38345, full=38344, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=38686, full=38685, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=39026, full=39026, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=39367, full=39367, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=39708, full=39707, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=40049, full=40048, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=40390, full=40389, i2s_err=0, rx_peak=32768, tx_peak=32767
+SET MODE = 9 (float bypass unity)
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=365, full=364, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=736, full=736, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=1108, full=1108, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=1480, full=1479, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=1851, full=1851, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=2223, full=2222, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=2595, full=2594, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=2966, full=2966, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=3338, full=3337, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=3709, full=3709, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=4081, full=4080, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=4452, full=4452, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=4824, full=4823, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=5195, full=5194, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=5566, full=5566, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=5938, full=5937, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=6309, full=6309, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=40730, full=40730, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=41071, full=41070, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=41412, full=41411, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=41753, full=41752, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=42094, full=42093, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=42435, full=42434, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=42776, full=42775, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=4, ws=0, half=6681, full=6680, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=43117, full=43116, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=43457, full=43457, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=43798, full=43798, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=44139, full=44139, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=1, src_edges=5, ws=1, half=7052, full=7052, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=6, ws=0, half=7416, full=7416, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=44480, full=44480, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=44821, full=44821, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=45162, full=45161, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=45503, full=45502, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=1, src_edges=7, ws=0, half=7757, full=7757, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=8, ws=0, half=8098, full=8098, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=10, half=45844, full=45843, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=10, half=46185, full=46184, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=10, half=46526, full=46525, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=10, ws=1, half=8440, full=8439, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=12, half=46867, full=46866, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=12, half=47208, full=47207, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=12, half=47549, full=47548, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=12, ws=1, half=8781, full=8780, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=47890, full=47889, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=48253, full=48253, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=48624, full=48624, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=48996, full=48995, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=49367, full=49366, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=14, ws=0, half=9122, full=9122, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=49738, full=49737, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=50079, full=50079, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=50420, full=50419, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=50761, full=50760, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=51102, full=51101, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=16, ws=0, half=9486, full=9485, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=16, ws=1, half=9857, full=9857, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=16, ws=1, half=10229, full=10228, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=16, ws=0, half=10600, full=10600, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=16, ws=1, half=10972, full=10971, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=16, ws=1, half=11343, full=11343, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=18, half=51443, full=51442, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=18, half=51784, full=51783, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=18, half=52125, full=52124, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=18, half=52465, full=52465, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=18, ws=1, half=11714, full=11714, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=52806, full=52806, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=53147, full=53147, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=53488, full=53488, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=53829, full=53829, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=54170, full=54169, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=54511, full=54510, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=54851, full=54851, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=55192, full=55192, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=55533, full=55532, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=55874, full=55873, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=56214, full=56214, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=56555, full=56555, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=56896, full=56895, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=57236, full=57236, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=57577, full=57577, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=57918, full=57918, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=58259, full=58258, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=58600, full=58599, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=58940, full=58940, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=59281, full=59281, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=59622, full=59621, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=59963, full=59962, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=60303, full=60303, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=60644, full=60644, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=60985, full=60984, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=61326, full=61325, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=61666, full=61666, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=20, ws=1, half=12086, full=12085, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=12457, full=12457, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=12829, full=12828, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=13200, full=13200, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=13572, full=13571, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=13943, full=13943, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=14315, full=14315, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=14687, full=14686, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=15058, full=15058, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=15430, full=15429, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=15801, full=15801, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=16173, full=16172, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=16544, full=16544, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=16916, full=16915, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=17287, full=17287, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=17659, full=17658, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=8, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=18029, full=18028, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=18401, full=18399, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=18772, full=18771, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=19144, full=19142, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=19515, full=19514, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=19887, full=19885, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=20258, full=20257, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=20630, full=20628, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=21001, full=21000, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=21373, full=21371, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=21744, full=21743, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=22116, full=22114, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=22487, full=22486, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=22859, full=22857, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=23230, full=23229, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=23602, full=23600, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=23973, full=23971, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=24344, full=24343, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=24716, full=24715, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=25088, full=25086, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=25459, full=25457, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=25830, full=25829, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=26202, full=26200, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=26573, full=26572, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=26945, full=26943, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=27316, full=27314, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=27687, full=27686, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=28059, full=28057, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=28430, full=28429, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=28802, full=28800, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=29174, full=29172, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=29545, full=29544, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=29917, full=29915, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=30288, full=30287, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=30660, full=30658, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=31031, full=31029, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=31402, full=31401, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=31774, full=31773, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=32146, full=32144, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=32517, full=32516, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=32889, full=32887, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=33260, full=33259, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=33632, full=33630, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=34003, full=34001, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=34374, full=34373, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=34746, full=34744, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=35117, full=35115, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=35488, full=35487, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=35859, full=35858, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=36231, full=36229, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=36602, full=36601, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=36974, full=36972, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=37345, full=37344, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=37717, full=37715, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=38088, full=38087, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=38460, full=38458, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=38831, full=38829, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=39202, full=39201, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=39574, full=39572, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=39945, full=39944, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=40317, full=40315, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=40688, full=40687, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=41060, full=41058, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=41431, full=41430, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=41802, full=41801, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=42174, full=42172, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=42545, full=42544, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=42917, full=42915, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=43288, full=43286, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=43659, full=43658, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=0, half=44031, full=44029, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=44402, full=44401, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=44774, full=44772, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=22, ws=1, half=45145, full=45143, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 16
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=45516, full=45515, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=45888, full=45886, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=46259, full=46257, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=46630, full=46629, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=47002, full=47000, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=47373, full=47372, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=47745, full=47743, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=48116, full=48115, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=48487, full=48486, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=48859, full=48857, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=49230, full=49229, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=49602, full=49600, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=49973, full=49972, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=50345, full=50343, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=50716, full=50714, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=51087, full=51086, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=51459, full=51457, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=51830, full=51828, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=52201, full=52200, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=52573, full=52571, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=52944, full=52942, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=1, half=53315, full=53313, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=53686, full=53685, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=22, ws=0, half=54057, full=54056, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 32
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=54429, full=54427, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=54800, full=54798, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=55171, full=55170, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=55542, full=55541, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=55914, full=55912, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=0, half=56285, full=56283, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=56656, full=56655, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=0, half=57027, full=57026, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=57399, full=57397, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=57770, full=57768, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=0, half=58141, full=58140, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=58513, full=58511, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=58884, full=58883, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=59255, full=59254, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=1, half=59627, full=59625, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=22, ws=0, half=59998, full=59996, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=60369, full=60368, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=60741, full=60739, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=61112, full=61110, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=61483, full=61482, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=61854, full=61853, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=1, half=62225, full=62224, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=1, half=62597, full=62595, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=62968, full=62966, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=1, half=63339, full=63338, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=63710, full=63709, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=0, half=64081, full=64080, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=1, half=64453, full=64451, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=22, ws=1, half=64824, full=64823, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 4
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=65195, full=65194, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=65567, full=65565, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=0, half=65938, full=65936, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=66309, full=66308, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=66681, full=66679, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=67052, full=67050, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=0, half=67423, full=67422, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=67795, full=67793, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=68166, full=68164, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=68537, full=68536, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=68908, full=68907, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=69280, full=69278, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=69651, full=69650, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=70022, full=70021, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=70394, full=70392, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=0, half=70765, full=70763, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=71136, full=71135, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=71507, full=71506, i2s_err=0, rx_peak=32768, tx_peak=32767
+m
+
+FORCE_MUTE = ON
+status: mode=9 (float bypass unity), force_mute=1, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=71879, full=71877, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=1, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=72250, full=72249, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=1, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=0, half=72622, full=72620, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=1, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=72993, full=72992, i2s_err=0, rx_peak=32768, tx_peak=32767
+m
+
+FORCE_MUTE = OFF
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=73365, full=73363, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=73736, full=73734, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=0, half=74107, full=74106, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=74478, full=74477, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=1, half=74850, full=74848, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=22, ws=0, half=75221, full=75219, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=75592, full=75591, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=75963, full=75962, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=0, half=76334, full=76333, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=76705, full=76704, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=0, half=77077, full=77075, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=77448, full=77446, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=1, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=0, half=77819, full=77818, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=4, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=78189, full=78187, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=78561, full=78558, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=78932, full=78929, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=79303, full=79301, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=24, ws=1, half=79674, full=79672, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=1, src_edges=25, ws=1, half=80045, full=80043, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=1, half=80401, full=80399, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=80742, full=80740, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=81083, full=81081, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=81424, full=81422, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=1, half=81765, full=81762, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 8
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=26, ws=0, half=82106, full=82103, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=26, ws=0, half=82447, full=82445, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=26, ws=0, half=82788, full=82786, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 16
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=26, ws=0, half=83129, full=83127, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=26, ws=1, half=83470, full=83468, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=26, ws=0, half=83811, full=83809, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=26, ws=0, half=84153, full=84150, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 32
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=26, ws=0, half=84494, full=84491, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=26, ws=0, half=84835, full=84832, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=26, ws=0, half=85176, full=85173, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=26, ws=0, half=85517, full=85514, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=26, ws=0, half=85858, full=85855, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=26, ws=1, half=86199, full=86196, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 4
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=86540, full=86537, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=1, half=86881, full=86878, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=87222, full=87220, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=2, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=1, half=87563, full=87561, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=4, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=87904, full=87900, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=1, half=88245, full=88241, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=88586, full=88583, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=1, half=88927, full=88924, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=1, half=89268, full=89265, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=26, ws=0, half=89609, full=89606, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=1, half=89951, full=89947, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=1, half=90292, full=90288, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=0, half=90633, full=90629, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=0, half=90974, full=90970, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=3, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=1, half=91315, full=91311, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=4, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=1, half=91655, full=91651, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=0, half=91996, full=91992, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=1, half=92337, full=92333, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=1, half=92678, full=92674, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=28, ws=1, half=93019, full=93016, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=93360, full=93357, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=0, half=93701, full=93698, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=94043, full=94039, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=4, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=0, half=94384, full=94380, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=4, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=5, rearm_ok=5, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=94724, full=94721, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=5, rearm_ok=5, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=95065, full=95062, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=5, rearm_ok=5, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=95407, full=95403, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=5, rearm_ok=5, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=95748, full=95745, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=4, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=0, half=96088, full=96084, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=96429, full=96425, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=96770, full=96766, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=97112, full=97107, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=0, half=97453, full=97448, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=97794, full=97789, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=0, half=98135, full=98130, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=98476, full=98471, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=98817, full=98813, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=1, half=99158, full=99154, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=30, ws=0, half=99499, full=99495, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=1, src_edges=31, ws=1, half=99840, full=99836, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=0, half=100182, full=100177, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=100523, full=100518, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=0, half=100864, full=100860, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=101205, full=101201, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=101547, full=101542, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=101888, full=101883, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=6, rearm_ok=6, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=102229, full=102225, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=4, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=0, half=102569, full=102564, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=102911, full=102905, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=0, half=103252, full=103246, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=0, half=103593, full=103587, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 8
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=1, half=103934, full=103929, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=0, half=104275, full=104270, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=0, half=104616, full=104611, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=1, half=104957, full=104952, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 16
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=1, half=105299, full=105293, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=0, half=105640, full=105634, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=1, half=105981, full=105976, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=1, half=106322, full=106317, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 32
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=1, half=106664, full=106658, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=0, half=107005, full=106999, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=1, half=107346, full=107341, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=1, half=107687, full=107682, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=32, ws=0, half=108028, full=108023, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=32, ws=1, half=108370, full=108364, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=32, ws=0, half=108711, full=108705, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 4
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=109052, full=109046, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=109393, full=109388, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=109734, full=109729, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=32, ws=1, half=110075, full=110070, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 8
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=1, half=110416, full=110411, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=1, half=110757, full=110752, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=1, half=111098, full=111093, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=32, ws=1, half=111439, full=111434, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 16
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=0, half=111780, full=111775, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=0, half=112121, full=112116, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=1, half=112462, full=112457, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=0, half=112803, full=112798, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=32, ws=0, half=113144, full=113139, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 32
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=0, half=113485, full=113480, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=0, half=113826, full=113821, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=7, rearm_ok=7, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=1, half=114168, full=114162, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=32, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=0, half=114508, full=114501, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=0, half=114849, full=114842, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=1, half=115190, full=115183, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=1, half=115531, full=115524, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=0, half=115872, full=115865, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=32, ws=0, half=116213, full=116206, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=1, half=116554, full=116547, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=116895, full=116889, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=1, half=117236, full=117230, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=117578, full=117571, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=117919, full=117912, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=118260, full=118253, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=8, rearm_ok=8, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=118601, full=118595, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=32, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=1, half=118942, full=118934, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=119283, full=119275, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=1, half=119624, full=119616, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=119964, full=119957, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=1, half=120305, full=120298, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=120647, full=120639, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=1, half=120988, full=120980, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=121329, full=121321, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=0, half=121670, full=121662, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=34, ws=1, half=122011, full=122004, i2s_err=0, rx_peak=32768, tx_peak=32767
 3
 
 SET MODE = 3 (signed divide half (/2))
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=36, full=36, i2s_err=0, rx_peak=32766, tx_peak=16383
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=377, full=376, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=718, full=717, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=1058, full=1058, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=1399, full=1399, i2s_err=0, rx_peak=32768, tx_peak=16384
-SRC_MUTE = 1
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=1, half=1740, full=1739, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=1, half=2081, full=2080, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=1, half=2421, full=2421, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=1, half=2762, full=2762, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=1, half=3103, full=3102, i2s_err=0, rx_peak=32768, tx_peak=16384
-SRC_MUTE = 0, hold 2000 ms
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=3444, full=3443, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=3784, full=3784, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=4125, full=4125, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=4466, full=4465, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=4807, full=4806, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=5148, full=5147, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=5489, full=5488, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=5830, full=5829, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=6170, full=6170, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=6511, full=6511, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=6852, full=6852, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=7193, full=7193, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=7534, full=7533, i2s_err=0, rx_peak=32768, tx_peak=16384
-status: mode=3 (signed divide half (/2)), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=7875, full=7874, i2s_err=0, rx_peak=32768, tx_peak=16384
-a
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=0, half=190, full=189, i2s_err=0, rx_peak=32767, tx_peak=16383
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=0, half=531, full=530, i2s_err=0, rx_peak=32767, tx_peak=16383
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=9, rearm_ok=9, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=1, half=872, full=871, i2s_err=0, rx_peak=32768, tx_peak=16384
+x
 
-SET MODE = 10 (float gain 0.5)
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=255, full=255, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=596, full=596, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=937, full=937, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=1278, full=1277, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=1619, full=1618, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=1960, full=1959, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=2300, full=2300, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=2641, full=2641, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=2982, full=2981, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=3323, full=3322, i2s_err=0, rx_peak=32768, tx_peak=16383
-SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=3664, full=3663, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=4005, full=4004, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=4345, full=4345, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=4686, full=4686, i2s_err=0, rx_peak=32768, tx_peak=16383
-SRC_MUTE = 1
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=3, half=5027, full=5027, i2s_err=0, rx_peak=32768, tx_peak=16383
-SRC_MUTE = 0, hold 2000 ms
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=5368, full=5367, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=5709, full=5708, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=6050, full=6049, i2s_err=0, rx_peak=32768, tx_peak=16383
-status: mode=10 (float gain 0.5), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=6390, full=6390, i2s_err=0, rx_peak=32768, tx_peak=16383
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=32, ws=0
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=0, half=1212, full=1210, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=1, half=1553, full=1551, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=1, half=1894, full=1892, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=1, half=2235, full=2233, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 0
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=2576, full=2574, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=0, half=2917, full=2915, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=3258, full=3257, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=3599, full=3598, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=3940, full=3939, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 4
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=0, ws=0, half=4281, full=4280, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 8
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=4622, full=4621, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=4963, full=4962, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 16
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=1, half=5304, full=5303, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 32
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=1, half=5645, full=5644, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=0, half=5986, full=5985, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 0
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=0, half=6327, full=6326, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=6668, full=6667, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=0, half=7009, full=7008, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=0, half=7350, full=7349, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=7691, full=7690, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=8033, full=8031, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 4
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=0, ws=1, half=8374, full=8372, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=0, ws=1, half=8715, full=8713, i2s_err=0, rx_peak=32768, tx_peak=16384
+w
+
+Warmup half-blocks = 8
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=9056, full=9054, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=9397, full=9395, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=9737, full=9736, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=10078, full=10077, i2s_err=0, rx_peak=32768, tx_peak=16384
+status: mode=3 (signed divide half (/2)), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=10419, full=10418, i2s_err=0, rx_peak=32768, tx_peak=16384
 9
 
 SET MODE = 9 (float bypass unity)
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=58, full=59, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=399, full=400, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=0, half=740, full=741, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=14, full=14, i2s_err=0, rx_peak=32756, tx_peak=32755
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=355, full=355, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=696, full=696, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=10, rearm_ok=10, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=1036, full=1037, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=8, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=1377, full=1376, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=1718, full=1717, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=2059, full=2058, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 16
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=1, half=2400, full=2399, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=0, half=2740, full=2740, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=0, half=3081, full=3081, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=1, half=3422, full=3422, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 32
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=0, half=3763, full=3763, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=0, ws=1, half=4104, full=4104, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=0, half=4445, full=4444, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=0, ws=1, half=4786, full=4785, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 4
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=0, ws=0, half=5127, full=5126, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 8
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=5468, full=5467, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=1, half=5809, full=5808, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=0, ws=0, half=6149, full=6149, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 16
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=0, half=6490, full=6490, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=0, half=6831, full=6831, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=0, ws=0, half=7172, full=7172, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=1081, full=1082, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=1422, full=1423, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=1763, full=1764, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=2, half=2104, full=2105, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=1, src_edges=1, ws=1, half=7513, full=7513, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=7854, full=7853, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=8195, full=8194, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=8536, full=8535, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=8877, full=8876, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=11, rearm_ok=11, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=9218, full=9217, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=16, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=12, rearm_ok=12, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=9557, full=9557, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=12, rearm_ok=12, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=9898, full=9897, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=12, rearm_ok=12, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=10239, full=10238, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=12, rearm_ok=12, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=10579, full=10579, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=16, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=10920, full=10918, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=11261, full=11259, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=11601, full=11600, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=11942, full=11941, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=12283, full=12282, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=12624, full=12622, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=12965, full=12963, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=13306, full=13304, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=13647, full=13645, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=13987, full=13986, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=13, rearm_ok=13, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=14328, full=14327, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=16, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=14, rearm_ok=14, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=1, half=14668, full=14666, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=14, rearm_ok=14, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=2, ws=0, half=15009, full=15006, i2s_err=0, rx_peak=32768, tx_peak=32767
 SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=2445, full=2446, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=2786, full=2787, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=3127, full=3128, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=3468, full=3469, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=4, half=3809, full=3810, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=5, half=4150, full=4151, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=5, half=4491, full=4492, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=5, half=4832, full=4833, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=5, half=5173, full=5174, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=5, half=5514, full=5515, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=5, half=5856, full=5856, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=5, half=6197, full=6197, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=6538, full=6538, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=6879, full=6879, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=7220, full=7220, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=7561, full=7561, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=6, half=7902, full=7902, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=7, half=8243, full=8243, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=8583, full=8584, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=8924, full=8925, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=9265, full=9266, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=8, half=9606, full=9607, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=9, half=9947, full=9948, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=9, half=10288, full=10289, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=10, half=10629, full=10630, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=10, half=10970, full=10971, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=10, half=11311, full=11312, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=11, half=11652, full=11653, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=11, half=11994, full=11994, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=12, half=12335, full=12335, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=12, half=12676, full=12676, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=12, half=13017, full=13018, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=13, half=13358, full=13359, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=13699, full=13700, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=14040, full=14041, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=14381, full=14382, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=14, half=14722, full=14723, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=15063, full=15064, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=15404, full=15404, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=15745, full=15745, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=16086, full=16086, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=16427, full=16427, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=16768, full=16768, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=17109, full=17109, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=17450, full=17450, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=17791, full=17791, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=16, half=18132, full=18132, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=20, half=18473, full=18473, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-SRC_MUTE = 1
-SRC_MUTE = 0, hold 2000 ms
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=24, half=18814, full=18814, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=0, src_edges=24, half=19155, full=19155, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=24, half=19496, full=19496, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=24, half=19837, full=19838, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=24, half=20178, full=20179, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=0, force_mute=0, hold_ms=2000, src=0, src_edges=24, half=20519, full=20520, i2s_err=0, rx_peak=32768, tx_peak=32767
-SRC_MUTE = 1
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=25, half=20860, full=20861, i2s_err=0, rx_peak=32768, tx_peak=32767
-status: mode=9 (float bypass unity), gate_en=1, gate_active=1, force_mute=0, hold_ms=2000, src=1, src_edges=25, half=21201, full=21202, i2s_err=0, rx_peak=32768, tx_peak=32767
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=14, rearm_ok=14, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=15349, full=15347, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=14, rearm_ok=14, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=15690, full=15687, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=14, rearm_ok=14, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=0, half=16030, full=16028, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=14, rearm_ok=14, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=0, half=16371, full=16369, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=14, rearm_ok=14, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=16712, full=16709, i2s_err=0, rx_peak=32768, tx_peak=32767
+x
+
+RESYNC: begin
+RESYNC: HAL_I2S_DMAStop != OK
+RESYNC: OK, warmup_half=16, ws=0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=0, half=17051, full=17049, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=17392, full=17390, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=17733, full=17730, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=18074, full=18071, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=0, half=18415, full=18412, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=18756, full=18753, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 32
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=4, ws=0, half=19096, full=19094, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 0
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=4, ws=1, half=19437, full=19435, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=0, warmup_left=0, src=0, src_edges=4, ws=0, half=19778, full=19775, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 4
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=4, ws=1, half=20118, full=20116, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=4, ws=1, half=20459, full=20457, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=4, warmup_left=0, src=0, src_edges=4, ws=1, half=20800, full=20798, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 8
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=4, ws=0, half=21141, full=21138, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=8, warmup_left=0, src=0, src_edges=4, ws=0, half=21482, full=21479, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 16
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=21822, full=21820, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=22163, full=22160, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=16, warmup_left=0, src=0, src_edges=4, ws=1, half=22504, full=22501, i2s_err=0, rx_peak=32768, tx_peak=32767
+w
+
+Warmup half-blocks = 32
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=4, ws=0, half=22844, full=22842, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=4, ws=1, half=23185, full=23182, i2s_err=0, rx_peak=32768, tx_peak=32767
+status: mode=9 (float bypass unity), force_mute=0, rearm_busy=0, rearm_count=15, rearm_ok=15, rearm_fail=0, warmup_cfg=32, warmup_left=0, src=0, src_edges=4, ws=0, half=23526, full=23523, i2s_err=0, rx_peak=32768, tx_peak=32767
