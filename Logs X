@@ -1,48 +1,80 @@
-Мод а, играло грязно, нажал х и стало чисто:
-status: user_mode=10 (float half after decode), decode=0 (DIRECT), src=0, src_edges=206, ws=1, half=100395, full=100332, i2s_err=0, rearm_count=127, rearm_ok=127, rearm_fail=0
-peaks: rx_raw=32768, rx_dec=32768, tx=32768
-timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
-wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83558, wait_ok=0, tmo_low=0, tmo_rise=127
-x
-MANUAL_RESYNC: begin, ws_now=0
-MANUAL_RESYNC: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83791
-MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83791
-status: user_mode=10 (float half after decode), decode=0 (DIRECT), src=0, src_edges=206, ws=0, half=100492, full=100427, i2s_err=0, rearm_count=128, rearm_ok=128, rearm_fail=0
-peaks: rx_raw=32768, rx_dec=32768, tx=32768
-timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
-wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83791, wait_ok=0, tmo_low=0, tmo_rise=128
+Мод а, играло грязно, нажал g и стало чисто:
+status: mode=10 (float half), src=0, src_edges=88, ws=0, half=51215, full=51179, i2s_err=0, rearm_count=63, rearm_ok=63, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170629 cyc (~2031 us), max_full=170626 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83357, wait_ok=0, tmo_low=0, tmo_rise=63
+hunt: active=0, last_attempts=1, last_score=645 x1024, best_attempt=1, best_score=645 x1024, success=38, fail=1
+g
+AUTO_HUNT: begin, mode=10 (float half)
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82601
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82601
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=276 x1024, abs=7911650, diff=2136617
+AUTO_HUNT: SUCCESS, stop_attempt=1, best_attempt=1, best_score=276 x1024
+status: mode=10 (float half), src=0, src_edges=88, ws=1, half=51305, full=51270, i2s_err=0, rearm_count=64, rearm_ok=64, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170629 cyc (~2031 us), max_full=170626 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82601, wait_ok=0, tmo_low=0, tmo_rise=64
+hunt: active=0, last_attempts=1, last_score=276 x1024, best_attempt=1, best_score=276 x1024, success=39, fail=1
 
+Мод 9, играло грязно, нажал g и стало чисто:
 
-Мод 9, играло грязно, нажал х и стало чисто:
+status: mode=9 (float unity), src=0, src_edges=84, ws=1, half=44824, full=44790, i2s_err=0, rearm_count=61, rearm_ok=61, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170626 cyc (~2031 us), max_full=170624 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82536, wait_ok=0, tmo_low=0, tmo_rise=61
+hunt: active=0, last_attempts=1, last_score=116 x1024, best_attempt=1, best_score=116 x1024, success=36, fail=1
+g
+AUTO_HUNT: begin, mode=9 (float unity)
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82870
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82870
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=166 x1024, abs=1531011, diff=248314
+AUTO_HUNT: SUCCESS, stop_attempt=1, best_attempt=1, best_score=166 x1024
+status: mode=9 (float unity), src=0, src_edges=84, ws=0, half=44912, full=44877, i2s_err=0, rearm_count=62, rearm_ok=62, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170626 cyc (~2031 us), max_full=170624 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82870, wait_ok=0, tmo_low=0, tmo_rise=62
+hunt: active=0, last_attempts=1, last_score=166 x1024, best_attempt=1, best_score=166 x1024, success=37, fail=1
 
-status: user_mode=9 (float unity after decode), decode=0 (DIRECT), src=0, src_edges=224, ws=1, half=115581, full=115517, i2s_err=0, rearm_count=128, rearm_ok=128, rearm_fail=0
-peaks: rx_raw=32768, rx_dec=32768, tx=32768
-timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
-wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83791, wait_ok=0, tmo_low=0, tmo_rise=128
-x
-MANUAL_RESYNC: begin, ws_now=0
-MANUAL_RESYNC: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83927
-MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=83927
-status: user_mode=9 (float unity after decode), decode=0 (DIRECT), src=0, src_edges=224, ws=1, half=115673, full=115608, i2s_err=0, rearm_count=129, rearm_ok=129, rearm_fail=0
-peaks: rx_raw=32768, rx_dec=32768, tx=32768
-timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
-wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83927, wait_ok=0, tmo_low=0, tmo_rise=129
+Мод 2, играло грязно, два раза нажал g и стало чисто:
 
-Мод 2, играло грязно, два раза нажал х и стало чисто:
-
-status: user_mode=2 (int half after decode), decode=0 (DIRECT), src=0, src_edges=254, ws=1, half=169508, full=169433, i2s_err=0, rearm_count=154, rearm_ok=154, rearm_fail=0
-peaks: rx_raw=32768, rx_dec=32768, tx=32768
-timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
-wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83468, wait_ok=0, tmo_low=0, tmo_rise=154
-x
-MANUAL_RESYNC: begin, ws_now=0
-MANUAL_RESYNC: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=84229
-MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=84229
-x
-MANUAL_RESYNC: begin, ws_now=1
-MANUAL_RESYNC: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83920
-MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83920
-status: user_mode=2 (int half after decode), decode=0 (DIRECT), src=0, src_edges=254, ws=1, half=169575, full=169497, i2s_err=0, rearm_count=156, rearm_ok=156, rearm_fail=0
-peaks: rx_raw=32768, rx_dec=32768, tx=32768
-timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
-wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83920, wait_ok=0, tmo_low=0, tmo_rise=156
+status: mode=2 (int half), src=0, src_edges=64, ws=0, half=31274, full=31244, i2s_err=0, rearm_count=55, rearm_ok=55, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170626 cyc (~2031 us), max_full=170624 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82632, wait_ok=0, tmo_low=0, tmo_rise=55
+hunt: active=0, last_attempts=1, last_score=256 x1024, best_attempt=1, best_score=256 x1024, success=31, fail=1
+g
+AUTO_HUNT: begin, mode=2 (int half)
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82751
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82751
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=134 x1024, abs=4258883, diff=558802
+AUTO_HUNT: SUCCESS, stop_attempt=1, best_attempt=1, best_score=134 x1024
+status: mode=2 (int half), src=0, src_edges=64, ws=1, half=31350, full=31319, i2s_err=0, rearm_count=56, rearm_ok=56, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170626 cyc (~2031 us), max_full=170624 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82751, wait_ok=0, tmo_low=0, tmo_rise=56
+hunt: active=0, last_attempts=1, last_score=134 x1024, best_attempt=1, best_score=134 x1024, success=32, fail=1
+status: mode=2 (int half), src=0, src_edges=64, ws=1, half=31435, full=31404, i2s_err=0, rearm_count=56, rearm_ok=56, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170626 cyc (~2031 us), max_full=170624 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82751, wait_ok=0, tmo_low=0, tmo_rise=56
+hunt: active=0, last_attempts=1, last_score=134 x1024, best_attempt=1, best_score=134 x1024, success=32, fail=1
+status: mode=2 (int half), src=0, src_edges=64, ws=0, half=31521, full=31489, i2s_err=0, rearm_count=56, rearm_ok=56, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170626 cyc (~2031 us), max_full=170624 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82751, wait_ok=0, tmo_low=0, tmo_rise=56
+hunt: active=0, last_attempts=1, last_score=134 x1024, best_attempt=1, best_score=134 x1024, success=32, fail=1
+g
+AUTO_HUNT: begin, mode=2 (int half)
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82639
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82639
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=132 x1024, abs=3031195, diff=390939
+AUTO_HUNT: SUCCESS, stop_attempt=1, best_attempt=1, best_score=132 x1024
+status: mode=2 (int half), src=0, src_edges=64, ws=1, half=31597, full=31564, i2s_err=0, rearm_count=57, rearm_ok=57, rearm_fail=0
+peaks: rx=32768, tx=32768
+timing: max_half=170626 cyc (~2031 us), max_full=170624 cyc (~2031 us)
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82639, wait_ok=0, tmo_low=0, tmo_rise=57
+hunt: active=0, last_attempts=1, last_score=132 x1024, best_attempt=1, best_score=132 x1024, success=33, fail=1
