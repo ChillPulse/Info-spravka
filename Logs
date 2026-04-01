@@ -1,237 +1,1153 @@
 
-=== OMNIA-V AUTO_REARM TEST (WS EDGE) ===
+=== OMNIA-V SLAVE TRANSPORT BASELINE ===
 DMA_FRAMES = 128
 DMA_WORDS  = 256
-Initial mode = 9 (float bypass unity)
-AUTO_REARM = ON
-Warmup halves = 8
-Post-fall hold = 100 ms
+Initial mode = 0 (raw copy)
 Initial SRC_MUTE = 0
 Initial WS = 1
+AUTO_REARM disabled in this build
 Commands:
  0..9 : set test mode 0..9
  a    : set test mode 10 (float gain 0.5)
- u    : toggle AUTO_REARM ON/OFF
  x    : MANUAL RESYNC now
- w    : cycle warmup half-blocks 0/4/8/16/32
- p    : cycle post-fall hold 0/50/100/200/500/1000 ms
- m    : toggle FORCE_MUTE ON/OFF
  s    : status
  r    : reset counters/peaks
  h    : help
 
-I2S DMA START OK
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=0, ws=1, half=164, full=163, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0, before_dma_miss=0, edge_retry=0, last_attempts=0
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=0, rearm_ok=0, rearm_fail=0, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=0, ws=0, half=536, full=536, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0, before_dma_miss=0, edge_retry=0, last_attempts=0
+BOOT: DMA START OK, ws=1
+status: mode=0 (raw copy), src=0, src_edges=0, ws=0, half=157, full=157, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=18, tx_peak=18
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=0, ws=1, half=530, full=529, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=18, tx_peak=18
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
 SRC_MUTE = 1
 SRC_MUTE = 0
-AUTO_REARM: hold 100 ms
-AUTO_REARM: begin, ws_now=0
-AUTO_REARM: WS EDGE wait timeout, attempt=1, stage=wait_rise, before=1, saw_low=1, saw_rise=0, polls=82144
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=2, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-SRC_MUTE = 1
-status: mode=9 (float bypass unity), auto=1, tr=WAIT_SRC_END, force_mute=0, rearm_busy=0, rearm_count=1, rearm_ok=0, rearm_fail=1, warmup_cfg=8, warmup_left=0, hold_ms=100, src=1, src_edges=3, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82144, wait_ok=0, tmo_low=0, tmo_rise=1, before_dma_miss=0, edge_retry=0, last_attempts=1
-SRC_MUTE = 0
-AUTO_REARM: hold 100 ms
-AUTO_REARM: begin, ws_now=1
-AUTO_REARM: WS EDGE wait timeout, attempt=1, stage=wait_rise, before=1, saw_low=1, saw_rise=0, polls=83629
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, was
-rmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=2, rearm_ok=0, rearm_fail=2, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83629, wait_ok=0, tmo_low=0, tmo_rise=2, before_dma_miss=0, edge_retry=0, last_attempts=1
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=902, full=901, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=18, tx_peak=18
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=1255, full=1255, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=16038, tx_peak=16038
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=1597, full=1596, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=1939, full=1938, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=2280, full=2280, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=2622, full=2621, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=2963, full=2963, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=3305, full=3304, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=3647, full=3646, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=3988, full=3988, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=4330, full=4329, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=4671, full=4671, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=5013, full=5012, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17199, tx_peak=17199
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=5354, full=5354, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=5696, full=5695, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=6037, full=6036, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=6378, full=6378, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=6720, full=6719, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=7061, full=7060, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=7402, full=7402, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=7743, full=7743, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=8085, full=8084, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=8426, full=8425, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=8767, full=8767, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=9108, full=9108, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=9449, full=9449, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=9791, full=9790, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=10132, full=10131, i2s_err=0, rearm_count=0, rearm_ok=0, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=0, before_wait=0, saw_low=0, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=none, polls=0, wait_ok=0, tmo_low=0, tmo_rise=0
 x
 MANUAL_RESYNC: begin, ws_now=1
-MANUAL_RESYNC: WS EDGE wait timeout, attempt=1, stage=wait_rise, before=0, saw_low=1, saw_rise=0, polls=83964
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-s
-
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=9 (float bypass unity), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-0
-
-SET MODE = 0 (raw copy)
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-s
-
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=3, rearm_ok=0, rearm_fail=3, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83964, wait_ok=0, tmo_low=0, tmo_rise=3, before_dma_miss=0, edge_retry=0, last_attempts=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82834
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82834
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=10435, full=10433, i2s_err=0, rearm_count=1, rearm_ok=1, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82834, wait_ok=0, tmo_low=0, tmo_rise=1
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=10776, full=10775, i2s_err=0, rearm_count=1, rearm_ok=1, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82834, wait_ok=0, tmo_low=0, tmo_rise=1
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=11117, full=11116, i2s_err=0, rearm_count=1, rearm_ok=1, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82834, wait_ok=0, tmo_low=0, tmo_rise=1
 x
 MANUAL_RESYNC: begin, ws_now=1
-MANUAL_RESYNC: WS EDGE wait timeout, attempt=1, stage=wait_rise, before=1, saw_low=1, saw_rise=0, polls=84244
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-s
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82833
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82833
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=11421, full=11419, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=11762, full=11760, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=12103, full=12101, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=12444, full=12443, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=0 (raw copy), src=0, src_edges=2, ws=0, half=12785, full=12784, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=13127, full=13125, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=0 (raw copy), src=0, src_edges=2, ws=1, half=13468, full=13466, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+9
 
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=0 (raw copy), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
+SET MODE = 9 (float bypass unity)
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=13809, full=13808, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=0, half=14150, full=14149, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=14491, full=14490, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=0, half=14832, full=14831, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=0, half=15173, full=15172, i2s_err=0, rearm_count=2, rearm_ok=2, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82833, wait_ok=0, tmo_low=0, tmo_rise=2
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82666
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82666
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=15480, full=15477, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=0, half=15821, full=15818, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=16162, full=16159, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=16503, full=16500, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=16844, full=16841, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=17185, full=17182, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
 a
 
 SET MODE = 10 (float gain 0.5)
-status: mode=10 (float gain 0.5), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=10 (float gain 0.5), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=10 (float gain 0.5), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=10 (float gain 0.5), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=1, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
-status: mode=10 (float gain 0.5), auto=1, tr=IDLE, force_mute=0, rearm_busy=0, rearm_count=4, rearm_ok=0, rearm_fail=4, warmup_cfg=8, warmup_left=0, hold_ms=100, src=0, src_edges=4, ws=0, half=727, full=726, i2s_err=0, rx_peak=18, tx_peak=17
-wsdiag: before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=84244, wait_ok=0, tmo_low=0, tmo_rise=4, before_dma_miss=0, edge_retry=0, last_attempts=1
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=0, half=17526, full=17523, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=0, half=17867, full=17864, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=0, half=18208, full=18206, i2s_err=0, rearm_count=3, rearm_ok=3, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82666, wait_ok=0, tmo_low=0, tmo_rise=3
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83157
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83157
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=1, half=18529, full=18526, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=1, half=18870, full=18866, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=1, half=19211, full=19207, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=0, half=19552, full=19548, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=1, half=19893, full=19889, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=0, half=20234, full=20230, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=10 (float gain 0.5), src=0, src_edges=2, ws=0, half=20575, full=20571, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+9
+
+SET MODE = 9 (float bypass unity)
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=20915, full=20912, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=0, half=21256, full=21253, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=0, half=21597, full=21594, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=21938, full=21934, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=0, src_edges=2, ws=1, half=22279, full=22275, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+SRC_MUTE = 1
+SRC_MUTE = 0
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=0, half=22620, full=22616, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=0, half=22960, full=22957, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=1, half=23301, full=23298, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=1, half=23642, full=23638, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=1, half=23982, full=23979, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=1, half=24323, full=24320, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=1, half=24664, full=24660, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=0, half=25005, full=25001, i2s_err=0, rearm_count=4, rearm_ok=4, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83157, wait_ok=0, tmo_low=0, tmo_rise=4
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83009
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83009
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=0, half=25307, full=25303, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=1, half=25648, full=25644, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=0, half=25989, full=25984, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=1, src_edges=5, ws=0, half=26329, full=26325, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=6, ws=0, half=26670, full=26666, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=17835, tx_peak=17835
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=0, src_edges=6, ws=0, half=27011, full=27007, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=8, ws=1, half=27352, full=27347, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=0, src_edges=8, ws=1, half=27708, full=27704, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=0, src_edges=8, ws=0, half=28079, full=28075, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=0, src_edges=8, ws=1, half=28450, full=28446, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+status: mode=9 (float bypass unity), src=0, src_edges=8, ws=1, half=28821, full=28817, i2s_err=0, rearm_count=5, rearm_ok=5, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83009, wait_ok=0, tmo_low=0, tmo_rise=5
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82203
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82203
+status: mode=9 (float bypass unity), src=0, src_edges=8, ws=0, half=29151, full=29145, i2s_err=0, rearm_count=6, rearm_ok=6, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82203, wait_ok=0, tmo_low=0, tmo_rise=6
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=9, ws=1, half=29522, full=29516, i2s_err=0, rearm_count=6, rearm_ok=6, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82203, wait_ok=0, tmo_low=0, tmo_rise=6
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=10, ws=1, half=29890, full=29884, i2s_err=0, rearm_count=6, rearm_ok=6, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82203, wait_ok=0, tmo_low=0, tmo_rise=6
+status: mode=9 (float bypass unity), src=0, src_edges=10, ws=1, half=30231, full=30225, i2s_err=0, rearm_count=6, rearm_ok=6, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82203, wait_ok=0, tmo_low=0, tmo_rise=6
+status: mode=9 (float bypass unity), src=0, src_edges=10, ws=1, half=30571, full=30566, i2s_err=0, rearm_count=6, rearm_ok=6, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82203, wait_ok=0, tmo_low=0, tmo_rise=6
+x
+status: mode=9 (float bypass unity), src=0, src_edges=10, ws=0, half=30912, full=30907, i2s_err=0, rearm_count=6, rearm_ok=6, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82203, wait_ok=0, tmo_low=0, tmo_rise=6
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82881
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82881
+status: mode=9 (float bypass unity), src=0, src_edges=10, ws=0, half=31215, full=31209, i2s_err=0, rearm_count=7, rearm_ok=7, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82881, wait_ok=0, tmo_low=0, tmo_rise=7
+status: mode=9 (float bypass unity), src=0, src_edges=10, ws=0, half=31556, full=31549, i2s_err=0, rearm_count=7, rearm_ok=7, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82881, wait_ok=0, tmo_low=0, tmo_rise=7
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=12, ws=1, half=31897, full=31890, i2s_err=0, rearm_count=7, rearm_ok=7, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82881, wait_ok=0, tmo_low=0, tmo_rise=7
+status: mode=9 (float bypass unity), src=0, src_edges=12, ws=0, half=32238, full=32231, i2s_err=0, rearm_count=7, rearm_ok=7, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82881, wait_ok=0, tmo_low=0, tmo_rise=7
+status: mode=9 (float bypass unity), src=0, src_edges=12, ws=0, half=32578, full=32572, i2s_err=0, rearm_count=7, rearm_ok=7, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82881, wait_ok=0, tmo_low=0, tmo_rise=7
+status: mode=9 (float bypass unity), src=0, src_edges=12, ws=0, half=32919, full=32913, i2s_err=0, rearm_count=7, rearm_ok=7, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82881, wait_ok=0, tmo_low=0, tmo_rise=7
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83233
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83233
+status: mode=9 (float bypass unity), src=0, src_edges=12, ws=1, half=33243, full=33236, i2s_err=0, rearm_count=8, rearm_ok=8, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83233, wait_ok=0, tmo_low=0, tmo_rise=8
+status: mode=9 (float bypass unity), src=0, src_edges=12, ws=0, half=33584, full=33577, i2s_err=0, rearm_count=8, rearm_ok=8, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83233, wait_ok=0, tmo_low=0, tmo_rise=8
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=33925, full=33918, i2s_err=0, rearm_count=8, rearm_ok=8, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83233, wait_ok=0, tmo_low=0, tmo_rise=8
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=34279, full=34273, i2s_err=0, rearm_count=8, rearm_ok=8, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83233, wait_ok=0, tmo_low=0, tmo_rise=8
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=34650, full=34644, i2s_err=0, rearm_count=8, rearm_ok=8, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83233, wait_ok=0, tmo_low=0, tmo_rise=8
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=35021, full=35015, i2s_err=0, rearm_count=8, rearm_ok=8, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83233, wait_ok=0, tmo_low=0, tmo_rise=8
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82838
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82838
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=35350, full=35344, i2s_err=0, rearm_count=9, rearm_ok=9, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82838, wait_ok=0, tmo_low=0, tmo_rise=9
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=35722, full=35715, i2s_err=0, rearm_count=9, rearm_ok=9, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82838, wait_ok=0, tmo_low=0, tmo_rise=9
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=36093, full=36086, i2s_err=0, rearm_count=9, rearm_ok=9, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82838, wait_ok=0, tmo_low=0, tmo_rise=9
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=36464, full=36457, i2s_err=0, rearm_count=9, rearm_ok=9, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82838, wait_ok=0, tmo_low=0, tmo_rise=9
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=36835, full=36828, i2s_err=0, rearm_count=9, rearm_ok=9, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82838, wait_ok=0, tmo_low=0, tmo_rise=9
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=37206, full=37199, i2s_err=0, rearm_count=9, rearm_ok=9, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82838, wait_ok=0, tmo_low=0, tmo_rise=9
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82555
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82555
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=37535, full=37528, i2s_err=0, rearm_count=10, rearm_ok=10, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82555, wait_ok=0, tmo_low=0, tmo_rise=10
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=37906, full=37900, i2s_err=0, rearm_count=10, rearm_ok=10, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82555, wait_ok=0, tmo_low=0, tmo_rise=10
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=38277, full=38271, i2s_err=0, rearm_count=10, rearm_ok=10, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82555, wait_ok=0, tmo_low=0, tmo_rise=10
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=38648, full=38642, i2s_err=0, rearm_count=10, rearm_ok=10, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82555, wait_ok=0, tmo_low=0, tmo_rise=10
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=39019, full=39013, i2s_err=0, rearm_count=10, rearm_ok=10, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82555, wait_ok=0, tmo_low=0, tmo_rise=10
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=39390, full=39384, i2s_err=0, rearm_count=10, rearm_ok=10, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82555, wait_ok=0, tmo_low=0, tmo_rise=10
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=39762, full=39755, i2s_err=0, rearm_count=10, rearm_ok=10, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82555, wait_ok=0, tmo_low=0, tmo_rise=10
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82305
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82305
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=40091, full=40084, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=40462, full=40455, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=40833, full=40826, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=41204, full=41197, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=41575, full=41568, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=41946, full=41939, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=42317, full=42310, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=42688, full=42681, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=43059, full=43052, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=43430, full=43423, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=43801, full=43794, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=44172, full=44165, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=44543, full=44536, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=44914, full=44908, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=1, half=45285, full=45279, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=45656, full=45650, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=46028, full=46021, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=46399, full=46392, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=14, ws=0, half=46770, full=46763, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=15, ws=0, half=47141, full=47134, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=16, ws=1, half=47506, full=47499, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=16, ws=1, half=47847, full=47840, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=16, ws=1, half=48188, full=48181, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=17, ws=0, half=48529, full=48522, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=18, ws=0, half=48870, full=48863, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=18, ws=1, half=49211, full=49204, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=18, ws=0, half=49552, full=49545, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=18, ws=1, half=49893, full=49886, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=19, ws=1, half=50234, full=50227, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=0, half=50575, full=50568, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=1, half=50915, full=50909, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=0, half=51256, full=51250, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=1, half=51597, full=51591, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=0, half=51938, full=51932, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=1, half=52279, full=52273, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=0, half=52620, full=52614, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=0, half=52961, full=52954, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=20, ws=1, half=53302, full=53296, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=21, ws=0, half=53643, full=53637, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=53984, full=53978, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=54325, full=54319, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=54666, full=54660, i2s_err=0, rearm_count=11, rearm_ok=11, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82305, wait_ok=0, tmo_low=0, tmo_rise=11
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83291
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83291
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=54968, full=54962, i2s_err=0, rearm_count=12, rearm_ok=12, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83291, wait_ok=0, tmo_low=0, tmo_rise=12
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=1, half=55309, full=55303, i2s_err=0, rearm_count=12, rearm_ok=12, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83291, wait_ok=0, tmo_low=0, tmo_rise=12
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=1, half=55650, full=55644, i2s_err=0, rearm_count=12, rearm_ok=12, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83291, wait_ok=0, tmo_low=0, tmo_rise=12
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=55991, full=55984, i2s_err=0, rearm_count=12, rearm_ok=12, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83291, wait_ok=0, tmo_low=0, tmo_rise=12
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82849
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82849
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=56293, full=56287, i2s_err=0, rearm_count=13, rearm_ok=13, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82849, wait_ok=0, tmo_low=0, tmo_rise=13
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=1, half=56634, full=56628, i2s_err=0, rearm_count=13, rearm_ok=13, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82849, wait_ok=0, tmo_low=0, tmo_rise=13
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=56975, full=56969, i2s_err=0, rearm_count=13, rearm_ok=13, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82849, wait_ok=0, tmo_low=0, tmo_rise=13
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=0, half=57316, full=57310, i2s_err=0, rearm_count=13, rearm_ok=13, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82849, wait_ok=0, tmo_low=0, tmo_rise=13
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=1, half=57657, full=57651, i2s_err=0, rearm_count=13, rearm_ok=13, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82849, wait_ok=0, tmo_low=0, tmo_rise=13
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82620
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82620
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=1, half=57961, full=57953, i2s_err=0, rearm_count=14, rearm_ok=14, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82620, wait_ok=0, tmo_low=0, tmo_rise=14
+status: mode=9 (float bypass unity), src=0, src_edges=22, ws=1, half=58302, full=58294, i2s_err=0, rearm_count=14, rearm_ok=14, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82620, wait_ok=0, tmo_low=0, tmo_rise=14
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=23, ws=1, half=58642, full=58635, i2s_err=0, rearm_count=14, rearm_ok=14, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82620, wait_ok=0, tmo_low=0, tmo_rise=14
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=0, half=58983, full=58976, i2s_err=0, rearm_count=14, rearm_ok=14, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82620, wait_ok=0, tmo_low=0, tmo_rise=14
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=59324, full=59317, i2s_err=0, rearm_count=14, rearm_ok=14, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82620, wait_ok=0, tmo_low=0, tmo_rise=14
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=59665, full=59658, i2s_err=0, rearm_count=14, rearm_ok=14, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82620, wait_ok=0, tmo_low=0, tmo_rise=14
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83198
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=83198
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=59968, full=59960, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=0, half=60309, full=60301, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=0, half=60650, full=60642, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=60991, full=60983, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=0, half=61332, full=61324, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=61673, full=61665, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=62014, full=62006, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=0, half=62355, full=62348, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=62696, full=62689, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=63037, full=63030, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=0, half=63378, full=63371, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=9 (float bypass unity), src=0, src_edges=24, ws=1, half=63719, full=63712, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+a
+
+SET MODE = 10 (float gain 0.5)
+status: mode=10 (float gain 0.5), src=0, src_edges=24, ws=0, half=64061, full=64053, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=10 (float gain 0.5), src=0, src_edges=24, ws=1, half=64402, full=64394, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=10 (float gain 0.5), src=0, src_edges=24, ws=0, half=64743, full=64735, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=10 (float gain 0.5), src=0, src_edges=24, ws=0, half=65084, full=65076, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=10 (float gain 0.5), src=0, src_edges=24, ws=1, half=65425, full=65418, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+SRC_MUTE = 1
+status: mode=10 (float gain 0.5), src=1, src_edges=25, ws=1, half=65766, full=65759, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=26, ws=1, half=66107, full=66100, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=10 (float gain 0.5), src=0, src_edges=26, ws=0, half=66448, full=66441, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+status: mode=10 (float gain 0.5), src=0, src_edges=26, ws=1, half=66789, full=66782, i2s_err=0, rearm_count=15, rearm_ok=15, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83198, wait_ok=0, tmo_low=0, tmo_rise=15
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83096
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=83096
+status: mode=10 (float gain 0.5), src=0, src_edges=26, ws=1, half=67137, full=67128, i2s_err=0, rearm_count=16, rearm_ok=16, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83096, wait_ok=0, tmo_low=0, tmo_rise=16
+status: mode=10 (float gain 0.5), src=0, src_edges=26, ws=1, half=67478, full=67469, i2s_err=0, rearm_count=16, rearm_ok=16, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83096, wait_ok=0, tmo_low=0, tmo_rise=16
+status: mode=10 (float gain 0.5), src=0, src_edges=26, ws=0, half=67819, full=67810, i2s_err=0, rearm_count=16, rearm_ok=16, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83096, wait_ok=0, tmo_low=0, tmo_rise=16
+SRC_MUTE = 1
+status: mode=10 (float gain 0.5), src=1, src_edges=27, ws=0, half=68160, full=68152, i2s_err=0, rearm_count=16, rearm_ok=16, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83096, wait_ok=0, tmo_low=0, tmo_rise=16
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=28, ws=1, half=68501, full=68493, i2s_err=0, rearm_count=16, rearm_ok=16, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83096, wait_ok=0, tmo_low=0, tmo_rise=16
+status: mode=10 (float gain 0.5), src=0, src_edges=28, ws=1, half=68843, full=68834, i2s_err=0, rearm_count=16, rearm_ok=16, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83096, wait_ok=0, tmo_low=0, tmo_rise=16
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83188
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83188
+status: mode=10 (float gain 0.5), src=0, src_edges=28, ws=0, half=69145, full=69136, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+status: mode=10 (float gain 0.5), src=0, src_edges=28, ws=0, half=69486, full=69478, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+status: mode=10 (float gain 0.5), src=0, src_edges=28, ws=0, half=69827, full=69819, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+status: mode=10 (float gain 0.5), src=0, src_edges=28, ws=1, half=70168, full=70160, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+status: mode=10 (float gain 0.5), src=0, src_edges=28, ws=0, half=70509, full=70501, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+SRC_MUTE = 1
+status: mode=10 (float gain 0.5), src=1, src_edges=29, ws=1, half=70851, full=70842, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=71192, full=71183, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=71533, full=71524, i2s_err=0, rearm_count=17, rearm_ok=17, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83188, wait_ok=0, tmo_low=0, tmo_rise=17
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82971
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82971
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=71835, full=71827, i2s_err=0, rearm_count=18, rearm_ok=18, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82971, wait_ok=0, tmo_low=0, tmo_rise=18
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=72176, full=72168, i2s_err=0, rearm_count=18, rearm_ok=18, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82971, wait_ok=0, tmo_low=0, tmo_rise=18
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=72517, full=72509, i2s_err=0, rearm_count=18, rearm_ok=18, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82971, wait_ok=0, tmo_low=0, tmo_rise=18
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82537
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82537
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=72820, full=72811, i2s_err=0, rearm_count=19, rearm_ok=19, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82537, wait_ok=0, tmo_low=0, tmo_rise=19
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=73161, full=73152, i2s_err=0, rearm_count=19, rearm_ok=19, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82537, wait_ok=0, tmo_low=0, tmo_rise=19
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=73503, full=73493, i2s_err=0, rearm_count=19, rearm_ok=19, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82537, wait_ok=0, tmo_low=0, tmo_rise=19
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=73844, full=73834, i2s_err=0, rearm_count=19, rearm_ok=19, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82537, wait_ok=0, tmo_low=0, tmo_rise=19
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=74185, full=74175, i2s_err=0, rearm_count=19, rearm_ok=19, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82537, wait_ok=0, tmo_low=0, tmo_rise=19
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82990
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82990
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=74508, full=74498, i2s_err=0, rearm_count=20, rearm_ok=20, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82990, wait_ok=0, tmo_low=0, tmo_rise=20
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=74849, full=74839, i2s_err=0, rearm_count=20, rearm_ok=20, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82990, wait_ok=0, tmo_low=0, tmo_rise=20
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=75190, full=75180, i2s_err=0, rearm_count=20, rearm_ok=20, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82990, wait_ok=0, tmo_low=0, tmo_rise=20
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83018
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83018
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=75496, full=75485, i2s_err=0, rearm_count=21, rearm_ok=21, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83018, wait_ok=0, tmo_low=0, tmo_rise=21
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=75837, full=75826, i2s_err=0, rearm_count=21, rearm_ok=21, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83018, wait_ok=0, tmo_low=0, tmo_rise=21
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=76178, full=76167, i2s_err=0, rearm_count=21, rearm_ok=21, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83018, wait_ok=0, tmo_low=0, tmo_rise=21
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82506
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82506
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=76481, full=76469, i2s_err=0, rearm_count=22, rearm_ok=22, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82506, wait_ok=0, tmo_low=0, tmo_rise=22
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=76822, full=76810, i2s_err=0, rearm_count=22, rearm_ok=22, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82506, wait_ok=0, tmo_low=0, tmo_rise=22
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=77164, full=77151, i2s_err=0, rearm_count=22, rearm_ok=22, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82506, wait_ok=0, tmo_low=0, tmo_rise=22
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=77505, full=77492, i2s_err=0, rearm_count=22, rearm_ok=22, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82506, wait_ok=0, tmo_low=0, tmo_rise=22
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82372
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82372
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=77807, full=77795, i2s_err=0, rearm_count=23, rearm_ok=23, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82372, wait_ok=0, tmo_low=0, tmo_rise=23
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=78149, full=78136, i2s_err=0, rearm_count=23, rearm_ok=23, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82372, wait_ok=0, tmo_low=0, tmo_rise=23
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82572
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82572
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=78473, full=78460, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=78814, full=78801, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=1, half=79155, full=79142, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=79496, full=79483, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=79838, full=79824, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=10 (float gain 0.5), src=0, src_edges=30, ws=0, half=80179, full=80165, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+0
+
+SET MODE = 0 (raw copy)
+status: mode=0 (raw copy), src=0, src_edges=30, ws=0, half=80520, full=80507, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=30, ws=1, half=80861, full=80848, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 1
+status: mode=0 (raw copy), src=1, src_edges=31, ws=1, half=81203, full=81189, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32767
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+status: mode=0 (raw copy), src=0, src_edges=32, ws=0, half=81544, full=81530, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 1
+status: mode=0 (raw copy), src=1, src_edges=33, ws=0, half=81885, full=81872, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+status: mode=0 (raw copy), src=0, src_edges=34, ws=1, half=82227, full=82213, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 1
+status: mode=0 (raw copy), src=1, src_edges=35, ws=1, half=82568, full=82554, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+status: mode=0 (raw copy), src=0, src_edges=36, ws=1, half=82909, full=82896, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=0, half=83250, full=83237, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=1, half=83591, full=83578, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=1, half=83933, full=83919, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=0, half=84274, full=84260, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=0, half=84615, full=84602, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=1, half=84956, full=84943, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=0, half=85298, full=85284, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=1, half=85639, full=85625, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=1, half=85980, full=85967, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=0, half=86321, full=86308, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=36, ws=0, half=86663, full=86649, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 1
+status: mode=0 (raw copy), src=1, src_edges=37, ws=0, half=87004, full=86990, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+SRC_MUTE = 1
+status: mode=0 (raw copy), src=1, src_edges=39, ws=1, half=87345, full=87332, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+SRC_MUTE = 1
+status: mode=0 (raw copy), src=1, src_edges=41, ws=0, half=87686, full=87673, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+SRC_MUTE = 1
+status: mode=0 (raw copy), src=1, src_edges=43, ws=0, half=88028, full=88014, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+status: mode=0 (raw copy), src=0, src_edges=44, ws=1, half=88369, full=88355, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=1, half=88710, full=88696, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=0, half=89051, full=89037, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=0, half=89392, full=89379, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=0, half=89733, full=89720, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=1, half=90074, full=90061, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=0, half=90416, full=90402, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=0, half=90757, full=90743, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=0 (raw copy), src=0, src_edges=44, ws=1, half=91098, full=91084, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+9
+
+SET MODE = 9 (float bypass unity)
+status: mode=9 (float bypass unity), src=0, src_edges=44, ws=0, half=91439, full=91426, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=9 (float bypass unity), src=0, src_edges=44, ws=1, half=91780, full=91767, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=45, ws=0, half=92121, full=92108, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=1, half=92462, full=92449, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=0, half=92804, full=92790, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=0, half=93145, full=93131, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=0, half=93486, full=93472, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=1, half=93827, full=93813, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=1, half=94168, full=94154, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=0, half=94509, full=94495, i2s_err=0, rearm_count=24, rearm_ok=24, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=24
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82684
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82684
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=0, half=94812, full=94798, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=1, half=95153, full=95139, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=46, ws=1, half=95494, full=95480, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=47, ws=1, half=95835, full=95821, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=48, ws=1, half=96176, full=96161, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=48, ws=0, half=96517, full=96502, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=49, ws=0, half=96858, full=96843, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=50, ws=1, half=97199, full=97184, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=51, ws=1, half=97540, full=97525, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=52, ws=0, half=97881, full=97866, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=52, ws=1, half=98221, full=98207, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=52, ws=0, half=98562, full=98548, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=53, ws=0, half=98903, full=98889, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=54, ws=0, half=99244, full=99229, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=54, ws=1, half=99469, full=99454, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=54, ws=1, half=99840, full=99826, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=55, ws=1, half=100211, full=100197, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=56, ws=0, half=100582, full=100568, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=56, ws=0, half=100927, full=100913, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=56, ws=1, half=101268, full=101254, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=56, ws=0, half=101609, full=101594, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=56, ws=0, half=101950, full=101935, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=56, ws=1, half=102291, full=102276, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=57, ws=0, half=102632, full=102617, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=58, ws=1, half=102973, full=102958, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=58, ws=0, half=103314, full=103299, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=58, ws=0, half=103655, full=103640, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=59, ws=0, half=103996, full=103981, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=104336, full=104322, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=104678, full=104663, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=105019, full=105004, i2s_err=0, rearm_count=25, rearm_ok=25, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82684, wait_ok=0, tmo_low=0, tmo_rise=25
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83191
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83191
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=105321, full=105306, i2s_err=0, rearm_count=26, rearm_ok=26, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83191, wait_ok=0, tmo_low=0, tmo_rise=26
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=105662, full=105647, i2s_err=0, rearm_count=26, rearm_ok=26, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83191, wait_ok=0, tmo_low=0, tmo_rise=26
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=106003, full=105988, i2s_err=0, rearm_count=26, rearm_ok=26, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83191, wait_ok=0, tmo_low=0, tmo_rise=26
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=106344, full=106329, i2s_err=0, rearm_count=26, rearm_ok=26, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83191, wait_ok=0, tmo_low=0, tmo_rise=26
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82973
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82973
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=106647, full=106631, i2s_err=0, rearm_count=27, rearm_ok=27, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82973, wait_ok=0, tmo_low=0, tmo_rise=27
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=106988, full=106972, i2s_err=0, rearm_count=27, rearm_ok=27, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82973, wait_ok=0, tmo_low=0, tmo_rise=27
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=107329, full=107312, i2s_err=0, rearm_count=27, rearm_ok=27, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82973, wait_ok=0, tmo_low=0, tmo_rise=27
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=107670, full=107653, i2s_err=0, rearm_count=27, rearm_ok=27, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82973, wait_ok=0, tmo_low=0, tmo_rise=27
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83061
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83061
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=107972, full=107956, i2s_err=0, rearm_count=28, rearm_ok=28, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83061, wait_ok=0, tmo_low=0, tmo_rise=28
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=108313, full=108297, i2s_err=0, rearm_count=28, rearm_ok=28, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83061, wait_ok=0, tmo_low=0, tmo_rise=28
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=108654, full=108638, i2s_err=0, rearm_count=28, rearm_ok=28, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83061, wait_ok=0, tmo_low=0, tmo_rise=28
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=108995, full=108979, i2s_err=0, rearm_count=28, rearm_ok=28, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83061, wait_ok=0, tmo_low=0, tmo_rise=28
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82967
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82967
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=109297, full=109281, i2s_err=0, rearm_count=29, rearm_ok=29, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82967, wait_ok=0, tmo_low=0, tmo_rise=29
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=109638, full=109622, i2s_err=0, rearm_count=29, rearm_ok=29, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82967, wait_ok=0, tmo_low=0, tmo_rise=29
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83356
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=83356
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=109954, full=109937, i2s_err=0, rearm_count=30, rearm_ok=30, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83356, wait_ok=0, tmo_low=0, tmo_rise=30
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=110294, full=110278, i2s_err=0, rearm_count=30, rearm_ok=30, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83356, wait_ok=0, tmo_low=0, tmo_rise=30
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=110635, full=110618, i2s_err=0, rearm_count=30, rearm_ok=30, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83356, wait_ok=0, tmo_low=0, tmo_rise=30
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82757
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82757
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=0, half=110937, full=110921, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=111278, full=111262, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=111619, full=111602, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=111960, full=111943, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=112301, full=112284, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=112642, full=112625, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=60, ws=1, half=112983, full=112966, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=61, ws=1, half=113324, full=113307, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=1, half=113665, full=113648, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=0, half=114006, full=113989, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=0, half=114347, full=114330, i2s_err=0, rearm_count=31, rearm_ok=31, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82757, wait_ok=0, tmo_low=0, tmo_rise=31
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83143
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83143
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=0, half=114649, full=114633, i2s_err=0, rearm_count=32, rearm_ok=32, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83143, wait_ok=0, tmo_low=0, tmo_rise=32
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=0, half=114990, full=114974, i2s_err=0, rearm_count=32, rearm_ok=32, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83143, wait_ok=0, tmo_low=0, tmo_rise=32
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=1, half=115331, full=115315, i2s_err=0, rearm_count=32, rearm_ok=32, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83143, wait_ok=0, tmo_low=0, tmo_rise=32
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83112
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=83112
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=0, half=115634, full=115617, i2s_err=0, rearm_count=33, rearm_ok=33, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83112, wait_ok=0, tmo_low=0, tmo_rise=33
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=0, half=115975, full=115958, i2s_err=0, rearm_count=33, rearm_ok=33, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83112, wait_ok=0, tmo_low=0, tmo_rise=33
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=1, half=116316, full=116299, i2s_err=0, rearm_count=33, rearm_ok=33, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83112, wait_ok=0, tmo_low=0, tmo_rise=33
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=1, half=116657, full=116640, i2s_err=0, rearm_count=33, rearm_ok=33, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83112, wait_ok=0, tmo_low=0, tmo_rise=33
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=0, half=116998, full=116980, i2s_err=0, rearm_count=33, rearm_ok=33, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83112, wait_ok=0, tmo_low=0, tmo_rise=33
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82877
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82877
+status: mode=9 (float bypass unity), src=0, src_edges=62, ws=1, half=117301, full=117282, i2s_err=0, rearm_count=34, rearm_ok=34, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82877, wait_ok=0, tmo_low=0, tmo_rise=34
+SRC_MUTE = 1
+status: mode=9 (float bypass unity), src=1, src_edges=63, ws=0, half=117642, full=117623, i2s_err=0, rearm_count=34, rearm_ok=34, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82877, wait_ok=0, tmo_low=0, tmo_rise=34
+SRC_MUTE = 0
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=0, half=117983, full=117964, i2s_err=0, rearm_count=34, rearm_ok=34, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82877, wait_ok=0, tmo_low=0, tmo_rise=34
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=0, half=118324, full=118305, i2s_err=0, rearm_count=34, rearm_ok=34, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82877, wait_ok=0, tmo_low=0, tmo_rise=34
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=1, half=118665, full=118646, i2s_err=0, rearm_count=34, rearm_ok=34, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82877, wait_ok=0, tmo_low=0, tmo_rise=34
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83323
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83323
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=1, half=118967, full=118948, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=1, half=119308, full=119288, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=1, half=119649, full=119629, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=0, half=119990, full=119970, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=0, half=120331, full=120311, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=0, half=120672, full=120652, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=1, half=121012, full=120993, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=0, half=121353, full=121334, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=9 (float bypass unity), src=0, src_edges=64, ws=0, half=121694, full=121675, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+a
+
+SET MODE = 10 (float gain 0.5)
+status: mode=10 (float gain 0.5), src=0, src_edges=64, ws=1, half=122035, full=122016, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=10 (float gain 0.5), src=0, src_edges=64, ws=0, half=122376, full=122357, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+SRC_MUTE = 1
+status: mode=10 (float gain 0.5), src=1, src_edges=65, ws=1, half=122717, full=122698, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=10 (float gain 0.5), src=1, src_edges=65, ws=1, half=123058, full=123039, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=66, ws=1, half=123399, full=123380, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=10 (float gain 0.5), src=0, src_edges=66, ws=1, half=123740, full=123721, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=10 (float gain 0.5), src=0, src_edges=66, ws=0, half=124082, full=124062, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+status: mode=10 (float gain 0.5), src=0, src_edges=66, ws=0, half=124423, full=124403, i2s_err=0, rearm_count=35, rearm_ok=35, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83323, wait_ok=0, tmo_low=0, tmo_rise=35
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82450
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82450
+status: mode=10 (float gain 0.5), src=0, src_edges=66, ws=0, half=124726, full=124705, i2s_err=0, rearm_count=36, rearm_ok=36, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82450, wait_ok=0, tmo_low=0, tmo_rise=36
+SRC_MUTE = 1
+status: mode=10 (float gain 0.5), src=1, src_edges=67, ws=0, half=125067, full=125047, i2s_err=0, rearm_count=36, rearm_ok=36, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82450, wait_ok=0, tmo_low=0, tmo_rise=36
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=125408, full=125388, i2s_err=0, rearm_count=36, rearm_ok=36, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82450, wait_ok=0, tmo_low=0, tmo_rise=36
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=125749, full=125729, i2s_err=0, rearm_count=36, rearm_ok=36, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82450, wait_ok=0, tmo_low=0, tmo_rise=36
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=126090, full=126070, i2s_err=0, rearm_count=36, rearm_ok=36, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82450, wait_ok=0, tmo_low=0, tmo_rise=36
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=126432, full=126411, i2s_err=0, rearm_count=36, rearm_ok=36, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82450, wait_ok=0, tmo_low=0, tmo_rise=36
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83094
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=83094
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=126734, full=126713, i2s_err=0, rearm_count=37, rearm_ok=37, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83094, wait_ok=0, tmo_low=0, tmo_rise=37
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=127075, full=127054, i2s_err=0, rearm_count=37, rearm_ok=37, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83094, wait_ok=0, tmo_low=0, tmo_rise=37
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83071
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83071
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=127378, full=127356, i2s_err=0, rearm_count=38, rearm_ok=38, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83071, wait_ok=0, tmo_low=0, tmo_rise=38
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=127719, full=127697, i2s_err=0, rearm_count=38, rearm_ok=38, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83071, wait_ok=0, tmo_low=0, tmo_rise=38
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82961
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82961
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=128022, full=127999, i2s_err=0, rearm_count=39, rearm_ok=39, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82961, wait_ok=0, tmo_low=0, tmo_rise=39
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=128363, full=128340, i2s_err=0, rearm_count=39, rearm_ok=39, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82961, wait_ok=0, tmo_low=0, tmo_rise=39
+x
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=128704, full=128682, i2s_err=0, rearm_count=39, rearm_ok=39, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82961, wait_ok=0, tmo_low=0, tmo_rise=39
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83252
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83252
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=129007, full=128984, i2s_err=0, rearm_count=40, rearm_ok=40, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=40
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=129348, full=129325, i2s_err=0, rearm_count=40, rearm_ok=40, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=40
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=129690, full=129666, i2s_err=0, rearm_count=40, rearm_ok=40, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=40
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=130031, full=130007, i2s_err=0, rearm_count=40, rearm_ok=40, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=40
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=130372, full=130348, i2s_err=0, rearm_count=40, rearm_ok=40, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=40
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83252
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83252
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=130674, full=130650, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=1, half=131015, full=130992, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=131356, full=131333, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=131697, full=131674, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+status: mode=10 (float gain 0.5), src=0, src_edges=68, ws=0, half=132038, full=132015, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+SRC_MUTE = 1
+status: mode=10 (float gain 0.5), src=1, src_edges=69, ws=0, half=132379, full=132356, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=70, ws=1, half=132720, full=132697, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+status: mode=10 (float gain 0.5), src=0, src_edges=70, ws=1, half=133061, full=133038, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+status: mode=10 (float gain 0.5), src=0, src_edges=70, ws=1, half=133402, full=133378, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+status: mode=10 (float gain 0.5), src=0, src_edges=70, ws=1, half=133743, full=133719, i2s_err=0, rearm_count=41, rearm_ok=41, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83252, wait_ok=0, tmo_low=0, tmo_rise=41
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82796
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82796
+status: mode=10 (float gain 0.5), src=0, src_edges=70, ws=0, half=134045, full=134022, i2s_err=0, rearm_count=42, rearm_ok=42, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82796, wait_ok=0, tmo_low=0, tmo_rise=42
+status: mode=10 (float gain 0.5), src=0, src_edges=70, ws=1, half=134386, full=134363, i2s_err=0, rearm_count=42, rearm_ok=42, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82796, wait_ok=0, tmo_low=0, tmo_rise=42
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=72, ws=1, half=134727, full=134704, i2s_err=0, rearm_count=42, rearm_ok=42, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82796, wait_ok=0, tmo_low=0, tmo_rise=42
+status: mode=10 (float gain 0.5), src=0, src_edges=72, ws=1, half=135068, full=135045, i2s_err=0, rearm_count=42, rearm_ok=42, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82796, wait_ok=0, tmo_low=0, tmo_rise=42
+status: mode=10 (float gain 0.5), src=0, src_edges=72, ws=1, half=135409, full=135386, i2s_err=0, rearm_count=42, rearm_ok=42, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82796, wait_ok=0, tmo_low=0, tmo_rise=42
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82642
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82642
+status: mode=10 (float gain 0.5), src=0, src_edges=72, ws=1, half=135712, full=135688, i2s_err=0, rearm_count=43, rearm_ok=43, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82642, wait_ok=0, tmo_low=0, tmo_rise=43
+SRC_MUTE = 1
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=0, half=136052, full=136029, i2s_err=0, rearm_count=43, rearm_ok=43, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82642, wait_ok=0, tmo_low=0, tmo_rise=43
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=0, half=136393, full=136370, i2s_err=0, rearm_count=43, rearm_ok=43, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82642, wait_ok=0, tmo_low=0, tmo_rise=43
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=1, half=136734, full=136711, i2s_err=0, rearm_count=43, rearm_ok=43, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82642, wait_ok=0, tmo_low=0, tmo_rise=43
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83068
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83068
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=1, half=137037, full=137013, i2s_err=0, rearm_count=44, rearm_ok=44, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83068, wait_ok=0, tmo_low=0, tmo_rise=44
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=1, half=137378, full=137354, i2s_err=0, rearm_count=44, rearm_ok=44, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83068, wait_ok=0, tmo_low=0, tmo_rise=44
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=0, half=137719, full=137695, i2s_err=0, rearm_count=44, rearm_ok=44, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83068, wait_ok=0, tmo_low=0, tmo_rise=44
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83105
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83105
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=0, half=138021, full=137998, i2s_err=0, rearm_count=45, rearm_ok=45, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83105, wait_ok=0, tmo_low=0, tmo_rise=45
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82593
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82593
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=1, half=138324, full=138300, i2s_err=0, rearm_count=46, rearm_ok=46, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82593, wait_ok=0, tmo_low=0, tmo_rise=46
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=1, half=138665, full=138641, i2s_err=0, rearm_count=46, rearm_ok=46, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82593, wait_ok=0, tmo_low=0, tmo_rise=46
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82296
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82296
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=1, half=138969, full=138943, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+status: mode=10 (float gain 0.5), src=0, src_edges=74, ws=1, half=139310, full=139284, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+SRC_MUTE = 1
+status: mode=10 (float gain 0.5), src=1, src_edges=75, ws=1, half=139651, full=139626, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+status: mode=10 (float gain 0.5), src=1, src_edges=75, ws=1, half=139992, full=139967, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+status: mode=10 (float gain 0.5), src=1, src_edges=75, ws=1, half=140333, full=140308, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+SRC_MUTE = 0
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=1, half=140674, full=140649, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=1, half=141016, full=140990, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=1, half=141357, full=141331, i2s_err=0, rearm_count=47, rearm_ok=47, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82296, wait_ok=0, tmo_low=0, tmo_rise=47
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82491
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82491
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=0, half=141660, full=141633, i2s_err=0, rearm_count=48, rearm_ok=48, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82491, wait_ok=0, tmo_low=0, tmo_rise=48
+
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=1, half=142001, full=141974, i2s_err=0, rearm_count=48, rearm_ok=48, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82491, wait_ok=0, tmo_low=0, tmo_rise=48
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback to immediate DMA start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83219
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83219
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=0, half=142303, full=142277, i2s_err=0, rearm_count=49, rearm_ok=49, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83219, wait_ok=0, tmo_low=0, tmo_rise=49
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=1, half=142644, full=142618, i2s_err=0, rearm_count=49, rearm_ok=49, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83219, wait_ok=0, tmo_low=0, tmo_rise=49
+status: mode=10 (float gain 0.5), src=0, src_edges=76, ws=0, half=142985, full=142959, i2s_err=0, rearm_count=49, rearm_ok=49, rearm_fail=0, rx_peak=32768, tx_peak=32768
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83219, wait_ok=0, tmo_low=0, tmo_rise=49
