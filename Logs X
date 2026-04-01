@@ -27,3 +27,22 @@ status: user_mode=9 (float unity after decode), decode=0 (DIRECT), src=0, src_ed
 peaks: rx_raw=32768, rx_dec=32768, tx=32768
 timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
 wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83927, wait_ok=0, tmo_low=0, tmo_rise=129
+
+Мод 2, играло грязно, два раза нажал х и стало чисто:
+
+status: user_mode=2 (int half after decode), decode=0 (DIRECT), src=0, src_edges=254, ws=1, half=169508, full=169433, i2s_err=0, rearm_count=154, rearm_ok=154, rearm_fail=0
+peaks: rx_raw=32768, rx_dec=32768, tx=32768
+timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83468, wait_ok=0, tmo_low=0, tmo_rise=154
+x
+MANUAL_RESYNC: begin, ws_now=0
+MANUAL_RESYNC: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=84229
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=84229
+x
+MANUAL_RESYNC: begin, ws_now=1
+MANUAL_RESYNC: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83920
+MANUAL_RESYNC: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83920
+status: user_mode=2 (int half after decode), decode=0 (DIRECT), src=0, src_edges=254, ws=1, half=169575, full=169497, i2s_err=0, rearm_count=156, rearm_ok=156, rearm_fail=0
+peaks: rx_raw=32768, rx_dec=32768, tx=32768
+timing: max_half=188574 cyc (~2244 us), max_full=188579 cyc (~2244 us)
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83920, wait_ok=0, tmo_low=0, tmo_rise=156
