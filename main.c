@@ -1,4 +1,5 @@
 #include "stm32f4xx_hal.h"
+
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -7,23 +8,60 @@
 /* =========================
  * AUDIO BUFFER CONFIG
  * ========================= */
-#define DMA_FRAMES              128
-#define DMA_WORDS               (DMA_FRAMES * 2)   // int16 words: L,R,L,R...
-#define HALF_WORDS              (DMA_WORDS / 2)
+#define DMA_FRAMES 512
+#define DMA_WORDS  (DMA_FRAMES * 2)
+#define HALF_WORDS (DMA_WORDS / 2)
 
 /* =========================
- * INPUT PINS FOR DIAGNOSTICS
+ * DIAGNOSTIC INPUTS
  * ========================= */
-#define SRC_MUTE_PORT           GPIOA
-#define SRC_MUTE_PIN            GPIO_PIN_8
+#define SRC_MUTE_PORT GPIOA
+#define SRC_MUTE_PIN  GPIO_PIN_8
 
-#define WS_SENSE_PORT           GPIOA
-#define WS_SENSE_PIN            GPIO_PIN_15
+#define WS_SENSE_PORT GPIOA
+#define WS_SENSE_PIN  GPIO_PIN_15
 
 /* =========================
- * RESYNC CONFIG
+ * WS / HUNT CONFIG
  * ========================= */
-#define WS_WAIT_TIMEOUT_MS      100
+#define WS_WAIT_TIMEOUT_MS              100U
+
+#define HUNT_MAX_ATTEMPTS               6U
+#define HUNT_BLOCKS_TARGET              6U
+#define HUNT_CAPTURE_TIMEOUT_MS         250U
+#define HUNT_GOOD_SCORE_X1024           320U
+
+#define AUTO_HUNT_HOLD_MS_DEFAULT       200U
+#define AUTO_HUNT_RETRY_DELAY_MS        120U
+#define AUTO_HUNT_ACTIVITY_MIN_ABS      3000U
+#define AUTO_HUNT_EXTRA_RETRIES         3U
+
+/* =========================
+ * VERIFY WINDOW CONFIG
+ * ========================= */
+#define AUTO_VERIFY_WINDOW_MS           220U
+#define AUTO_VERIFY_MIN_BLOCKS          12U
+#define AUTO_VERIFY_MIN_TOTAL_ABS       50000UL
+#define AUTO_VERIFY_PASS_AVG_X1024      300U
+#define AUTO_VERIFY_PASS_MAX_X1024      520U
+
+/* =========================
+ * CONFIRM WINDOW CONFIG
+ * ========================= */
+#define AUTO_CONFIRM_WINDOW_MS          140U
+#define AUTO_CONFIRM_MIN_BLOCKS         8U
+#define AUTO_CONFIRM_MIN_TOTAL_ABS      30000UL
+#define AUTO_CONFIRM_PASS_AVG_X1024     220U
+#define AUTO_CONFIRM_PASS_MAX_X1024     340U
+
+/* =========================
+ * GUARD WINDOW CONFIG
+ * ========================= */
+#define AUTO_GUARD_WINDOW_MS            90U
+#define AUTO_GUARD_MIN_BLOCKS           5U
+#define AUTO_GUARD_MIN_TOTAL_ABS        16000UL
+#define AUTO_GUARD_PASS_AVG_X1024       210U
+#define AUTO_GUARD_PASS_MAX_X1024       320U
 
 /* =========================
  * GLOBAL HANDLES
@@ -31,7 +69,6 @@
 I2S_HandleTypeDef hi2s3;
 UART_HandleTypeDef huart2;
 
-/* DMA handles are defined in stm32f4xx_hal_msp.c */
 extern DMA_HandleTypeDef hdma_i2s3_ext_rx;
 extern DMA_HandleTypeDef hdma_spi3_tx;
 
@@ -42,78 +79,204 @@ static int16_t rx_buf[DMA_WORDS] __attribute__((aligned(4)));
 static int16_t tx_buf[DMA_WORDS] __attribute__((aligned(4)));
 
 /* =========================
+ * USER MODES
+ * =========================
+ * 0  = raw bit copy
+ * 1  = int identity
+ * 2  = int half
+ * 9  = float unity
+ * 10 = float half
+ */
+volatile uint8_t g_user_mode = 9;
+
+/* =========================
  * RUNTIME STATUS
  * ========================= */
 volatile uint32_t cb_half_count = 0;
 volatile uint32_t cb_full_count = 0;
 volatile uint32_t i2s_err_count = 0;
-volatile uint8_t  g_test_mode = 9;
 
 volatile uint32_t g_rx_peak = 0;
 volatile uint32_t g_tx_peak = 0;
 
 volatile uint8_t  g_src_pin_state = 0;
-volatile uint32_t g_src_edge_count = 0;
 volatile uint8_t  g_last_ws_state = 0;
-
-volatile uint8_t  g_force_mute = 0;
-volatile uint8_t  g_rearm_busy = 0;
+volatile uint32_t g_src_edge_count = 0;
 
 volatile uint32_t g_rearm_count = 0;
 volatile uint32_t g_rearm_ok = 0;
 volatile uint32_t g_rearm_fail = 0;
 
-/* auto rearm config */
-volatile uint8_t  g_auto_rearm_enable = 1;
-volatile uint32_t g_warmup_halves_cfg = 8;
-volatile uint32_t g_warmup_halves_left = 0;
-volatile uint32_t g_post_fall_hold_ms = 100;
-volatile uint32_t g_hold_deadline_ms = 0;
+/* timing stats (DWT cycles) */
+volatile uint32_t g_proc_cycles_max_half = 0;
+volatile uint32_t g_proc_cycles_max_full = 0;
+
+/* WS diag */
+volatile uint8_t  g_ws_before_wait = 0;
+volatile uint8_t  g_ws_saw_low = 0;
+volatile uint8_t  g_ws_saw_rise = 0;
+volatile uint8_t  g_ws_before_dma = 0;
+volatile uint8_t  g_ws_after_dma = 0;
+volatile uint8_t  g_ws_edge_aligned = 0;
+volatile uint8_t  g_ws_used_fallback = 0;
+volatile uint8_t  g_ws_timeout_stage = 0;
+volatile uint32_t g_ws_poll_count = 0;
+volatile uint32_t g_ws_wait_success = 0;
+volatile uint32_t g_ws_wait_timeout_low = 0;
+volatile uint32_t g_ws_wait_timeout_rise = 0;
 
 /* =========================
- * TRANSITION STATE MACHINE
+ * LIVE QUALITY METRIC
+ * ========================= */
+volatile uint32_t g_live_last_score_x1024 = 0;
+volatile uint32_t g_live_last_abs = 0;
+volatile uint32_t g_live_last_diff = 0;
+volatile uint32_t g_live_blocks_scored = 0;
+volatile int16_t  g_live_prev_l = 0;
+volatile int16_t  g_live_prev_r = 0;
+volatile uint8_t  g_live_prev_valid = 0;
+
+/* =========================
+ * WINDOW METRIC (VERIFY/CONFIRM/GUARD)
  * ========================= */
 typedef enum
 {
-    TR_IDLE = 0,
-    TR_WAIT_SRC_END,
-    TR_WAIT_HOLD,
-    TR_WARMUP
-} transition_state_t;
+    WK_NONE = 0,
+    WK_VERIFY,
+    WK_CONFIRM,
+    WK_GUARD
+} window_kind_t;
 
-volatile transition_state_t g_tr_state = TR_IDLE;
+volatile uint8_t       g_window_active = 0;
+volatile window_kind_t g_window_kind = WK_NONE;
+volatile uint32_t      g_window_deadline_ms = 0;
+
+volatile uint32_t g_window_blocks = 0;
+volatile uint32_t g_window_sum_abs = 0;
+volatile uint32_t g_window_sum_diff = 0;
+volatile uint32_t g_window_max_block_score_x1024 = 0;
+
+volatile window_kind_t g_window_last_kind = WK_NONE;
+volatile uint32_t g_window_last_avg_score_x1024 = 0;
+volatile uint32_t g_window_last_max_block_score_x1024 = 0;
+volatile uint32_t g_window_last_total_abs = 0;
+volatile uint32_t g_window_last_blocks = 0;
+volatile uint8_t  g_window_last_pass = 0;
+
+volatile uint32_t g_verify_pass_count = 0;
+volatile uint32_t g_verify_fail_count = 0;
+volatile uint32_t g_confirm_pass_count = 0;
+volatile uint32_t g_confirm_fail_count = 0;
+volatile uint32_t g_guard_pass_count = 0;
+volatile uint32_t g_guard_fail_count = 0;
+
+/* =========================
+ * AUTO HUNT STATE
+ * ========================= */
+typedef enum
+{
+    AH_IDLE = 0,
+    AH_WAIT_RELEASE,
+    AH_WAIT_HOLD,
+    AH_WAIT_ACTIVITY,
+    AH_WAIT_VERIFY,
+    AH_WAIT_CONFIRM,
+    AH_WAIT_GUARD,
+    AH_WAIT_RETRY
+} auto_hunt_state_t;
+
+volatile uint8_t  g_auto_hunt_enable = 1;
+volatile uint32_t g_auto_hunt_hold_ms = AUTO_HUNT_HOLD_MS_DEFAULT;
+volatile auto_hunt_state_t g_ah_state = AH_IDLE;
+volatile uint32_t g_ah_deadline_ms = 0;
+volatile uint8_t  g_ah_retry_left = 0;
+
+volatile uint32_t g_auto_hunt_boot_arm_count = 0;
+volatile uint32_t g_auto_hunt_trigger_count = 0;
+volatile uint32_t g_auto_hunt_retry_trigger_count = 0;
+volatile uint32_t g_auto_hunt_skip_mode_count = 0;
+volatile uint32_t g_auto_hunt_verify_fail_retry_arm_count = 0;
+volatile uint32_t g_auto_hunt_confirm_fail_retry_arm_count = 0;
+volatile uint32_t g_auto_hunt_guard_fail_retry_arm_count = 0;
+
+/* =========================
+ * MANUAL/AUTO HUNT CAPTURE
+ * ========================= */
+volatile uint8_t  g_hunt_active = 0;
+volatile uint32_t g_hunt_blocks_done = 0;
+volatile uint32_t g_hunt_sum_abs = 0;
+volatile uint32_t g_hunt_sum_diff = 0;
+volatile int16_t  g_hunt_prev_l = 0;
+volatile int16_t  g_hunt_prev_r = 0;
+volatile uint8_t  g_hunt_prev_valid = 0;
+
+volatile uint32_t g_hunt_last_score_x1024 = 0;
+volatile uint32_t g_hunt_last_attempts = 0;
+volatile uint32_t g_hunt_last_best_score_x1024 = 0;
+volatile uint32_t g_hunt_last_best_attempt = 0;
+volatile uint32_t g_hunt_success_count = 0;
+volatile uint32_t g_hunt_fail_count = 0;
 
 /* =========================
  * PROTOTYPES
  * ========================= */
 void SystemClock_Config(void);
+
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_I2S3_Init(void);
+
+static void dwt_init(void);
+static uint32_t cycles_to_us(uint32_t cyc);
 
 static void uart_log(const char *fmt, ...);
 static void print_help(void);
 static void print_status(void);
 static void handle_uart_commands(void);
+static void poll_diag_and_auto_hunt(void);
 static void reset_runtime_counters(void);
-static void poll_source_pins_and_sm(void);
+
+static inline uint8_t read_src_pin(void);
+static inline uint8_t read_ws_pin(void);
 
 static inline int16_t sat16_from_i32(int32_t x);
 static inline uint32_t abs16_to_u32(int16_t x);
+static inline uint32_t abs32_to_u32(int32_t x);
 static inline float pcm16_to_f32(int16_t s);
 static inline int16_t f32_to_pcm16(float x);
-static inline int16_t apply_mode_sample(int16_t s, uint32_t global_word_index, uint8_t mode);
 
-static void zero_tx_block(uint32_t start_word, uint32_t count_words);
+static uint8_t mode_needs_hunt(uint8_t mode);
+
 static void zero_audio_buffers(void);
-static void hard_stop_i2s_path(void);
-static uint8_t wait_for_ws_phase_high(uint32_t timeout_ms);
-static uint8_t do_rearm_sequence(const char *tag);
-static void cycle_warmup_cfg(void);
-static void cycle_hold_cfg(void);
-static const char *mode_name(uint8_t mode);
-static const char *tr_state_name(transition_state_t st);
+static void zero_tx_block(uint32_t start_word, uint32_t count_words);
 static void process_block(uint32_t start_word, uint32_t count_words);
+
+static void live_metric_reset(void);
+static void live_metric_accumulate_block(uint32_t start_word, uint32_t count_words);
+
+static void window_reset(void);
+static void window_arm(window_kind_t kind, const char *tag, uint32_t duration_ms);
+static uint8_t window_finish_and_decide(const char *tag,
+                                        uint32_t min_blocks,
+                                        uint32_t min_total_abs,
+                                        uint32_t pass_avg_x1024,
+                                        uint32_t pass_max_x1024);
+
+static void hunt_reset_capture(void);
+static void hunt_accumulate_block(uint32_t start_word, uint32_t count_words);
+static uint32_t hunt_compute_score_x1024(void);
+static uint8_t do_auto_hunt(const char *tag);
+
+static void hard_stop_i2s_path(void);
+static uint8_t start_i2s_dma_plain(const char *tag);
+static void clear_ws_diag(void);
+static uint8_t wait_for_ws_low_then_rise_high(uint32_t timeout_ms);
+static uint8_t do_rearm_once(const char *tag);
+
+static const char *user_mode_name(uint8_t mode);
+static const char *ws_timeout_stage_name(uint8_t stage);
+static const char *ah_state_name(auto_hunt_state_t st);
+static const char *window_kind_name(window_kind_t kind);
 
 void Error_Handler(void);
 
@@ -124,6 +287,7 @@ int main(void)
 {
     HAL_Init();
     SystemClock_Config();
+    dwt_init();
 
     MX_GPIO_Init();
     MX_USART2_UART_Init();
@@ -132,47 +296,102 @@ int main(void)
     memset((void *)rx_buf, 0, sizeof(rx_buf));
     memset((void *)tx_buf, 0, sizeof(tx_buf));
 
-    g_src_pin_state = (HAL_GPIO_ReadPin(SRC_MUTE_PORT, SRC_MUTE_PIN) == GPIO_PIN_SET) ? 1u : 0u;
-    g_last_ws_state = (HAL_GPIO_ReadPin(WS_SENSE_PORT, WS_SENSE_PIN) == GPIO_PIN_SET) ? 1u : 0u;
+    g_src_pin_state = read_src_pin();
+    g_last_ws_state = read_ws_pin();
 
-    uart_log("\r\n=== OMNIA-V AUTO_REARM TEST (WS HIGH) ===\r\n");
+    if (g_auto_hunt_enable)
+    {
+        if (g_src_pin_state)
+        {
+            g_ah_state = AH_WAIT_RELEASE;
+        }
+        else if (mode_needs_hunt(g_user_mode))
+        {
+            g_ah_state = AH_WAIT_HOLD;
+            g_ah_deadline_ms = HAL_GetTick() + g_auto_hunt_hold_ms;
+            g_ah_retry_left = AUTO_HUNT_EXTRA_RETRIES;
+            g_auto_hunt_boot_arm_count++;
+        }
+        else
+        {
+            g_ah_state = AH_IDLE;
+        }
+    }
+
+    uart_log("\r\n=== OMNIA-V SLAVE AUTO-HUNT AUTO MODE V6 ===\r\n");
     uart_log("DMA_FRAMES = %u\r\n", DMA_FRAMES);
     uart_log("DMA_WORDS  = %u\r\n", DMA_WORDS);
-    uart_log("Initial mode   = %u (%s)\r\n", g_test_mode, mode_name(g_test_mode));
-    uart_log("AUTO_REARM     = %s\r\n", g_auto_rearm_enable ? "ON" : "OFF");
-    uart_log("Warmup halves  = %lu\r\n", g_warmup_halves_cfg);
-    uart_log("Post-fall hold = %lu ms\r\n", g_post_fall_hold_ms);
+    uart_log("HALF_WORDS = %u\r\n", HALF_WORDS);
+    uart_log("Initial mode = %u (%s)\r\n", (unsigned long)g_user_mode, user_mode_name(g_user_mode));
+    uart_log("Initial SRC_MUTE = %u\r\n", (unsigned long)g_src_pin_state);
+    uart_log("Initial WS = %u\r\n", (unsigned long)g_last_ws_state);
+    uart_log("AUTO_HUNT = %s, hold=%lu ms, extra_retry=%u\r\n",
+             g_auto_hunt_enable ? "ON" : "OFF",
+             (unsigned long)g_auto_hunt_hold_ms,
+             AUTO_HUNT_EXTRA_RETRIES);
+    uart_log("VERIFY=%u ms, CONFIRM=%u ms, GUARD=%u ms\r\n",
+             AUTO_VERIFY_WINDOW_MS,
+             AUTO_CONFIRM_WINDOW_MS,
+             AUTO_GUARD_WINDOW_MS);
+
+    if (g_auto_hunt_enable && !g_src_pin_state && mode_needs_hunt(g_user_mode))
+    {
+        uart_log("AUTO_HUNT_BOOT_ARM: hold=%lu ms\r\n", (unsigned long)g_auto_hunt_hold_ms);
+    }
+
     print_help();
 
-    if (HAL_I2SEx_TransmitReceive_DMA(&hi2s3,
-                                      (uint16_t *)tx_buf,
-                                      (uint16_t *)rx_buf,
-                                      DMA_WORDS) != HAL_OK)
+    if (!start_i2s_dma_plain("BOOT"))
     {
-        uart_log("HAL_I2SEx_TransmitReceive_DMA() FAILED\r\n");
         Error_Handler();
     }
 
-    uart_log("I2S DMA START OK\r\n");
-
-    uint32_t last_log = HAL_GetTick();
-
-    while (1)
     {
-        poll_source_pins_and_sm();
-        handle_uart_commands();
+        uint32_t last_log = HAL_GetTick();
 
-        if ((HAL_GetTick() - last_log) >= 1000U)
+        while (1)
         {
-            last_log = HAL_GetTick();
-            print_status();
+            poll_diag_and_auto_hunt();
+            handle_uart_commands();
+
+            if ((HAL_GetTick() - last_log) >= 1000U)
+            {
+                last_log = HAL_GetTick();
+                print_status();
+            }
         }
     }
 }
 
 /* =========================
+ * DWT TIMING
+ * ========================= */
+static void dwt_init(void)
+{
+    CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+    DWT->CYCCNT = 0;
+    DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+}
+
+static uint32_t cycles_to_us(uint32_t cyc)
+{
+    if (SystemCoreClock == 0U) return 0U;
+    return (uint32_t)((uint64_t)cyc * 1000000ULL / (uint64_t)SystemCoreClock);
+}
+
+/* =========================
  * SMALL HELPERS
  * ========================= */
+static inline uint8_t read_src_pin(void)
+{
+    return (HAL_GPIO_ReadPin(SRC_MUTE_PORT, SRC_MUTE_PIN) == GPIO_PIN_SET) ? 1u : 0u;
+}
+
+static inline uint8_t read_ws_pin(void)
+{
+    return (HAL_GPIO_ReadPin(WS_SENSE_PORT, WS_SENSE_PIN) == GPIO_PIN_SET) ? 1u : 0u;
+}
+
 static inline int16_t sat16_from_i32(int32_t x)
 {
     if (x > 32767)  return 32767;
@@ -182,7 +401,12 @@ static inline int16_t sat16_from_i32(int32_t x)
 
 static inline uint32_t abs16_to_u32(int16_t x)
 {
-    if (x == -32768) return 32768u;
+    if (x == (int16_t)0x8000) return 32768u;
+    return (x < 0) ? (uint32_t)(-x) : (uint32_t)x;
+}
+
+static inline uint32_t abs32_to_u32(int32_t x)
+{
     return (x < 0) ? (uint32_t)(-x) : (uint32_t)x;
 }
 
@@ -193,130 +417,403 @@ static inline float pcm16_to_f32(int16_t s)
 
 static inline int16_t f32_to_pcm16(float x)
 {
-    if (x >  0.999969f) x =  0.999969f;
+    if (x > 0.999969f)  x = 0.999969f;
     if (x < -1.000000f) x = -1.000000f;
-
-    int32_t q = (int32_t)(x * 32767.0f);
-    return sat16_from_i32(q);
+    return sat16_from_i32((int32_t)(x * 32767.0f));
 }
 
-/* =========================
- * TEST MODES
- * ========================= */
-static inline int16_t apply_mode_sample(int16_t s, uint32_t global_word_index, uint8_t mode)
+static uint8_t mode_needs_hunt(uint8_t mode)
 {
-    int32_t y_i32 = s;
-
-    switch (mode)
-    {
-        case 0:
-            return s;
-
-        case 1:
-            return s;
-
-        case 2:
-            y_i32 = ((int32_t)s) >> 1;
-            return sat16_from_i32(y_i32);
-
-        case 3:
-            y_i32 = ((int32_t)s) / 2;
-            return sat16_from_i32(y_i32);
-
-        case 4:
-            if (s == -32768) y_i32 = 32767;
-            else             y_i32 = -((int32_t)s);
-            return sat16_from_i32(y_i32);
-
-        case 5:
-            if ((global_word_index & 1u) == 0u) y_i32 = ((int32_t)s) / 2;
-            else                                y_i32 = s;
-            return sat16_from_i32(y_i32);
-
-        case 6:
-            if ((global_word_index & 1u) != 0u) y_i32 = ((int32_t)s) / 2;
-            else                                y_i32 = s;
-            return sat16_from_i32(y_i32);
-
-        case 7:
-            y_i32 = -(((int32_t)s) / 2);
-            return sat16_from_i32(y_i32);
-
-        case 8:
-            y_i32 = (((int32_t)s) * 3) / 4;
-            return sat16_from_i32(y_i32);
-
-        case 9:
-        {
-            float x = pcm16_to_f32(s);
-            float y = x;
-            return f32_to_pcm16(y);
-        }
-
-        case 10:
-        {
-            float x = pcm16_to_f32(s);
-            float y = x * 0.5f;
-            return f32_to_pcm16(y);
-        }
-
-        default:
-            return s;
-    }
+    if (mode == 2u)  return 1u;
+    if (mode == 9u)  return 1u;
+    if (mode == 10u) return 1u;
+    return 0u;
 }
 
 /* =========================
  * AUDIO PROCESS
  * ========================= */
+static void zero_audio_buffers(void)
+{
+    memset((void *)rx_buf, 0, sizeof(rx_buf));
+    memset((void *)tx_buf, 0, sizeof(tx_buf));
+    live_metric_reset();
+    window_reset();
+}
+
 static void zero_tx_block(uint32_t start_word, uint32_t count_words)
 {
     memset((void *)&tx_buf[start_word], 0, count_words * sizeof(int16_t));
 }
 
-static void zero_audio_buffers(void)
+static void live_metric_reset(void)
 {
-    memset((void *)rx_buf, 0, sizeof(rx_buf));
-    memset((void *)tx_buf, 0, sizeof(tx_buf));
+    g_live_last_score_x1024 = 0;
+    g_live_last_abs = 0;
+    g_live_last_diff = 0;
+    g_live_blocks_scored = 0;
+    g_live_prev_l = 0;
+    g_live_prev_r = 0;
+    g_live_prev_valid = 0;
+}
+
+static void window_reset(void)
+{
+    g_window_active = 0;
+    g_window_kind = WK_NONE;
+    g_window_deadline_ms = 0;
+
+    g_window_blocks = 0;
+    g_window_sum_abs = 0;
+    g_window_sum_diff = 0;
+    g_window_max_block_score_x1024 = 0;
+
+    g_window_last_kind = WK_NONE;
+    g_window_last_avg_score_x1024 = 0;
+    g_window_last_max_block_score_x1024 = 0;
+    g_window_last_total_abs = 0;
+    g_window_last_blocks = 0;
+    g_window_last_pass = 0;
+}
+
+static void window_arm(window_kind_t kind, const char *tag, uint32_t duration_ms)
+{
+    g_window_active = 1u;
+    g_window_kind = kind;
+    g_window_deadline_ms = HAL_GetTick() + duration_ms;
+
+    g_window_blocks = 0;
+    g_window_sum_abs = 0;
+    g_window_sum_diff = 0;
+    g_window_max_block_score_x1024 = 0;
+
+    uart_log("%s: %s arm, window=%lu ms\r\n",
+             tag,
+             window_kind_name(kind),
+             (unsigned long)duration_ms);
+}
+
+static uint8_t window_finish_and_decide(const char *tag,
+                                        uint32_t min_blocks,
+                                        uint32_t min_total_abs,
+                                        uint32_t pass_avg_x1024,
+                                        uint32_t pass_max_x1024)
+{
+    uint32_t avg_score_x1024 = 0;
+    uint32_t max_score_x1024 = 0;
+    uint32_t total_abs = g_window_sum_abs;
+    uint32_t blocks = g_window_blocks;
+    uint8_t pass = 0u;
+    window_kind_t kind = g_window_kind;
+
+    if (total_abs > 0u)
+    {
+        avg_score_x1024 =
+            (uint32_t)(((uint64_t)g_window_sum_diff * 1024ULL) / ((uint64_t)total_abs + 1ULL));
+    }
+
+    max_score_x1024 = g_window_max_block_score_x1024;
+
+    g_window_last_kind = kind;
+    g_window_last_avg_score_x1024 = avg_score_x1024;
+    g_window_last_max_block_score_x1024 = max_score_x1024;
+    g_window_last_total_abs = total_abs;
+    g_window_last_blocks = blocks;
+
+    if ((blocks >= min_blocks) &&
+        (total_abs >= min_total_abs) &&
+        (avg_score_x1024 <= pass_avg_x1024) &&
+        (max_score_x1024 <= pass_max_x1024))
+    {
+        pass = 1u;
+    }
+
+    g_window_last_pass = pass;
+    g_window_active = 0u;
+    g_window_kind = WK_NONE;
+
+    if (kind == WK_VERIFY)
+    {
+        if (pass) g_verify_pass_count++;
+        else      g_verify_fail_count++;
+    }
+    else if (kind == WK_CONFIRM)
+    {
+        if (pass) g_confirm_pass_count++;
+        else      g_confirm_fail_count++;
+    }
+    else if (kind == WK_GUARD)
+    {
+        if (pass) g_guard_pass_count++;
+        else      g_guard_fail_count++;
+    }
+
+    uart_log("%s: %s_%s, avg=%lu x1024, max=%lu x1024, blocks=%lu, total_abs=%lu\r\n",
+             tag,
+             window_kind_name(kind),
+             pass ? "OK" : "FAIL",
+             (unsigned long)avg_score_x1024,
+             (unsigned long)max_score_x1024,
+             (unsigned long)blocks,
+             (unsigned long)total_abs);
+
+    return pass;
+}
+
+static void live_metric_accumulate_block(uint32_t start_word, uint32_t count_words)
+{
+    uint32_t abs_sum = 0;
+    uint32_t diff_sum = 0;
+    uint32_t end = start_word + count_words;
+
+    for (uint32_t gi = start_word; (gi + 1u) < end; gi += 2u)
+    {
+        int16_t l_raw = rx_buf[gi + 0u];
+        int16_t r_raw = rx_buf[gi + 1u];
+
+        int16_t l = sat16_from_i32(((int32_t)l_raw) / 2);
+        int16_t r = sat16_from_i32(((int32_t)r_raw) / 2);
+
+        abs_sum += abs16_to_u32(l);
+        abs_sum += abs16_to_u32(r);
+
+        if (g_live_prev_valid)
+        {
+            diff_sum += abs32_to_u32((int32_t)l - (int32_t)g_live_prev_l);
+            diff_sum += abs32_to_u32((int32_t)r - (int32_t)g_live_prev_r);
+        }
+
+        g_live_prev_l = l;
+        g_live_prev_r = r;
+        g_live_prev_valid = 1u;
+    }
+
+    g_live_last_abs = abs_sum;
+    g_live_last_diff = diff_sum;
+    g_live_last_score_x1024 =
+        (uint32_t)(((uint64_t)diff_sum * 1024ULL) / ((uint64_t)abs_sum + 1ULL));
+    g_live_blocks_scored++;
+
+    if (g_window_active)
+    {
+        uint32_t block_score_x1024 = g_live_last_score_x1024;
+
+        g_window_blocks++;
+        g_window_sum_abs += abs_sum;
+        g_window_sum_diff += diff_sum;
+
+        if (block_score_x1024 > g_window_max_block_score_x1024)
+            g_window_max_block_score_x1024 = block_score_x1024;
+    }
+}
+
+static void hunt_reset_capture(void)
+{
+    g_hunt_blocks_done = 0;
+    g_hunt_sum_abs = 0;
+    g_hunt_sum_diff = 0;
+    g_hunt_prev_l = 0;
+    g_hunt_prev_r = 0;
+    g_hunt_prev_valid = 0;
+}
+
+static void hunt_accumulate_block(uint32_t start_word, uint32_t count_words)
+{
+    uint32_t end = start_word + count_words;
+
+    for (uint32_t gi = start_word; (gi + 1u) < end; gi += 2u)
+    {
+        int16_t l_raw = rx_buf[gi + 0u];
+        int16_t r_raw = rx_buf[gi + 1u];
+
+        int16_t l = sat16_from_i32(((int32_t)l_raw) / 2);
+        int16_t r = sat16_from_i32(((int32_t)r_raw) / 2);
+
+        g_hunt_sum_abs += abs16_to_u32(l);
+        g_hunt_sum_abs += abs16_to_u32(r);
+
+        if (g_hunt_prev_valid)
+        {
+            g_hunt_sum_diff += abs32_to_u32((int32_t)l - (int32_t)g_hunt_prev_l);
+            g_hunt_sum_diff += abs32_to_u32((int32_t)r - (int32_t)g_hunt_prev_r);
+        }
+
+        g_hunt_prev_l = l;
+        g_hunt_prev_r = r;
+        g_hunt_prev_valid = 1u;
+    }
+
+    g_hunt_blocks_done++;
+}
+
+static uint32_t hunt_compute_score_x1024(void)
+{
+    return (uint32_t)(((uint64_t)g_hunt_sum_diff * 1024ULL) / ((uint64_t)g_hunt_sum_abs + 1ULL));
 }
 
 static void process_block(uint32_t start_word, uint32_t count_words)
 {
-    uint8_t silent =
-        (g_force_mute != 0u) ||
-        (g_rearm_busy != 0u) ||
-        (g_tr_state != TR_IDLE);
-
-    if (silent)
+    if (g_hunt_active)
     {
+        hunt_accumulate_block(start_word, count_words);
         zero_tx_block(start_word, count_words);
         return;
     }
+
+    live_metric_accumulate_block(start_word, count_words);
 
     for (uint32_t i = 0; i < count_words; i++)
     {
         uint32_t gi = start_word + i;
         int16_t s = rx_buf[gi];
-        int16_t y = apply_mode_sample(s, gi, g_test_mode);
+        int16_t y = 0;
+
+        switch (g_user_mode)
+        {
+        case 0:
+            y = s;
+            break;
+
+        case 1:
+            y = s;
+            break;
+
+        case 2:
+            y = sat16_from_i32(((int32_t)s) / 2);
+            break;
+
+        case 9:
+        {
+            float x = pcm16_to_f32(s);
+            float z = x;
+            y = f32_to_pcm16(z);
+            break;
+        }
+
+        case 10:
+        {
+            float x = pcm16_to_f32(s);
+            float z = x * 0.5f;
+            y = f32_to_pcm16(z);
+            break;
+        }
+
+        default:
+            y = s;
+            break;
+        }
 
         tx_buf[gi] = y;
 
-        uint32_t arx = abs16_to_u32(s);
-        uint32_t atx = abs16_to_u32(y);
+        {
+            uint32_t arx = abs16_to_u32(s);
+            uint32_t atx = abs16_to_u32(y);
 
-        if (arx > g_rx_peak) g_rx_peak = arx;
-        if (atx > g_tx_peak) g_tx_peak = atx;
+            if (arx > g_rx_peak) g_rx_peak = arx;
+            if (atx > g_tx_peak) g_tx_peak = atx;
+        }
     }
 }
 
 /* =========================
- * PIN POLL + AUTO_REARM SM
+ * AUTO HUNT DRIVER
  * ========================= */
-static void poll_source_pins_and_sm(void)
+static uint8_t do_auto_hunt(const char *tag)
+{
+    uint32_t best_score = 0xFFFFFFFFu;
+    uint32_t best_attempt = 0u;
+    uint8_t success = 0u;
+
+    uart_log("%s: begin, mode=%u (%s), live_score=%lu x1024, live_abs=%lu\r\n",
+             tag,
+             (unsigned long)g_user_mode,
+             user_mode_name(g_user_mode),
+             (unsigned long)g_live_last_score_x1024,
+             (unsigned long)g_live_last_abs);
+
+    for (uint32_t attempt = 1u; attempt <= HUNT_MAX_ATTEMPTS; attempt++)
+    {
+        uint32_t t0;
+        uint32_t score;
+
+        hunt_reset_capture();
+        g_hunt_active = 1u;
+
+        if (!do_rearm_once(tag))
+        {
+            g_hunt_active = 0u;
+            continue;
+        }
+
+        t0 = HAL_GetTick();
+        while ((g_hunt_blocks_done < HUNT_BLOCKS_TARGET) &&
+               ((HAL_GetTick() - t0) < HUNT_CAPTURE_TIMEOUT_MS))
+        {
+            /* callbacks collect metric */
+        }
+
+        g_hunt_active = 0u;
+        score = hunt_compute_score_x1024();
+
+        g_hunt_last_score_x1024 = score;
+        g_hunt_last_attempts = attempt;
+
+        uart_log("%s: attempt=%lu/%u, blocks=%lu/%u, score=%lu x1024, abs=%lu, diff=%lu\r\n",
+                 tag,
+                 (unsigned long)attempt,
+                 HUNT_MAX_ATTEMPTS,
+                 (unsigned long)g_hunt_blocks_done,
+                 HUNT_BLOCKS_TARGET,
+                 (unsigned long)score,
+                 (unsigned long)g_hunt_sum_abs,
+                 (unsigned long)g_hunt_sum_diff);
+
+        if ((g_hunt_blocks_done >= HUNT_BLOCKS_TARGET) && (score < best_score))
+        {
+            best_score = score;
+            best_attempt = attempt;
+        }
+
+        if ((g_hunt_blocks_done >= HUNT_BLOCKS_TARGET) && (score <= HUNT_GOOD_SCORE_X1024))
+        {
+            success = 1u;
+            break;
+        }
+    }
+
+    g_hunt_last_best_score_x1024 = best_score;
+    g_hunt_last_best_attempt = best_attempt;
+
+    if (success)
+    {
+        g_hunt_success_count++;
+        uart_log("%s: SUCCESS, stop_attempt=%lu, best_attempt=%lu, best_score=%lu x1024\r\n",
+                 tag,
+                 (unsigned long)g_hunt_last_attempts,
+                 (unsigned long)g_hunt_last_best_attempt,
+                 (unsigned long)g_hunt_last_best_score_x1024);
+    }
+    else
+    {
+        g_hunt_fail_count++;
+        uart_log("%s: DONE(no threshold hit), last_attempt=%lu, best_attempt=%lu, best_score=%lu x1024\r\n",
+                 tag,
+                 (unsigned long)g_hunt_last_attempts,
+                 (unsigned long)g_hunt_last_best_attempt,
+                 (unsigned long)g_hunt_last_best_score_x1024);
+    }
+
+    return success;
+}
+
+/* =========================
+ * AUTO HUNT POLL
+ * ========================= */
+static void poll_diag_and_auto_hunt(void)
 {
     uint32_t now = HAL_GetTick();
-
-    uint8_t src = (HAL_GPIO_ReadPin(SRC_MUTE_PORT, SRC_MUTE_PIN) == GPIO_PIN_SET) ? 1u : 0u;
-    uint8_t ws  = (HAL_GPIO_ReadPin(WS_SENSE_PORT, WS_SENSE_PIN) == GPIO_PIN_SET) ? 1u : 0u;
+    uint8_t src = read_src_pin();
+    uint8_t ws  = read_ws_pin();
 
     g_last_ws_state = ws;
 
@@ -325,102 +822,251 @@ static void poll_source_pins_and_sm(void)
         g_src_pin_state = src;
         g_src_edge_count++;
 
-        if (src)
-        {
-            uart_log("SRC_MUTE = 1\r\n");
+        uart_log("SRC_MUTE = %u\r\n", (unsigned long)src);
 
-            if (g_auto_rearm_enable)
+        if (g_auto_hunt_enable)
+        {
+            if (src)
             {
-                g_tr_state = TR_WAIT_SRC_END;
+                g_ah_state = AH_WAIT_RELEASE;
+                g_window_active = 0u;
             }
-        }
-        else
-        {
-            uart_log("SRC_MUTE = 0\r\n");
-
-            if (g_auto_rearm_enable)
+            else
             {
-                if (g_tr_state == TR_WAIT_SRC_END || g_tr_state == TR_WAIT_HOLD)
+                if (!mode_needs_hunt(g_user_mode))
                 {
-                    g_hold_deadline_ms = now + g_post_fall_hold_ms;
-                    g_tr_state = TR_WAIT_HOLD;
-                    uart_log("AUTO_REARM: hold %lu ms\r\n", g_post_fall_hold_ms);
-                }
-            }
-        }
-    }
-
-    if (!g_auto_rearm_enable)
-    {
-        if (g_tr_state != TR_IDLE)
-        {
-            g_tr_state = TR_IDLE;
-            g_warmup_halves_left = 0;
-        }
-        return;
-    }
-
-    switch (g_tr_state)
-    {
-        case TR_IDLE:
-            break;
-
-        case TR_WAIT_SRC_END:
-            break;
-
-        case TR_WAIT_HOLD:
-            if (g_src_pin_state)
-            {
-                g_tr_state = TR_WAIT_SRC_END;
-                break;
-            }
-
-            if ((int32_t)(now - g_hold_deadline_ms) >= 0)
-            {
-                if (do_rearm_sequence("AUTO_REARM"))
-                {
-                    if (g_warmup_halves_cfg == 0)
-                    {
-                        g_tr_state = TR_IDLE;
-                        uart_log("AUTO_REARM: no warmup, unmuted\r\n");
-                    }
-                    else
-                    {
-                        g_warmup_halves_left = g_warmup_halves_cfg;
-                        g_tr_state = TR_WARMUP;
-                        uart_log("AUTO_REARM: warmup start, halves=%lu\r\n", g_warmup_halves_cfg);
-                    }
+                    g_auto_hunt_skip_mode_count++;
+                    g_ah_state = AH_IDLE;
                 }
                 else
                 {
-                    g_tr_state = TR_IDLE;
+                    g_ah_state = AH_WAIT_HOLD;
+                    g_ah_deadline_ms = now + g_auto_hunt_hold_ms;
+                    g_ah_retry_left = AUTO_HUNT_EXTRA_RETRIES;
+                    g_window_active = 0u;
+                    uart_log("AUTO_HUNT_ARM: hold=%lu ms\r\n", (unsigned long)g_auto_hunt_hold_ms);
                 }
             }
-            break;
+        }
+    }
 
-        case TR_WARMUP:
-            if (g_src_pin_state)
+    if (!g_auto_hunt_enable || g_hunt_active)
+        return;
+
+    switch (g_ah_state)
+    {
+    case AH_IDLE:
+        break;
+
+    case AH_WAIT_RELEASE:
+        break;
+
+    case AH_WAIT_HOLD:
+        if (g_src_pin_state)
+        {
+            g_ah_state = AH_WAIT_RELEASE;
+            break;
+        }
+
+        if ((int32_t)(now - g_ah_deadline_ms) >= 0)
+        {
+            if (!mode_needs_hunt(g_user_mode))
             {
-                g_tr_state = TR_WAIT_SRC_END;
-                uart_log("AUTO_REARM: new SRC_MUTE during warmup\r\n");
+                g_auto_hunt_skip_mode_count++;
+                g_ah_state = AH_IDLE;
                 break;
             }
 
-            if (g_warmup_halves_left == 0)
-            {
-                g_tr_state = TR_IDLE;
-                uart_log("AUTO_REARM: warmup done, unmuted\r\n");
-            }
-            break;
+            g_ah_state = AH_WAIT_ACTIVITY;
+            uart_log("AUTO_HUNT_WAIT_ACTIVITY: score=%lu x1024, abs=%lu\r\n",
+                     (unsigned long)g_live_last_score_x1024,
+                     (unsigned long)g_live_last_abs);
+        }
+        break;
 
-        default:
-            g_tr_state = TR_IDLE;
+    case AH_WAIT_ACTIVITY:
+        if (g_src_pin_state)
+        {
+            g_ah_state = AH_WAIT_RELEASE;
             break;
+        }
+
+        if (!mode_needs_hunt(g_user_mode))
+        {
+            g_auto_hunt_skip_mode_count++;
+            g_ah_state = AH_IDLE;
+            break;
+        }
+
+        if (g_live_last_abs >= AUTO_HUNT_ACTIVITY_MIN_ABS)
+        {
+            g_auto_hunt_trigger_count++;
+            (void)do_auto_hunt("AUTO_HUNT");
+            window_arm(WK_VERIFY, "AUTO_HUNT", AUTO_VERIFY_WINDOW_MS);
+            g_ah_state = AH_WAIT_VERIFY;
+        }
+        break;
+
+    case AH_WAIT_VERIFY:
+        if (g_src_pin_state)
+        {
+            g_ah_state = AH_WAIT_RELEASE;
+            g_window_active = 0u;
+            break;
+        }
+
+        if ((int32_t)(now - g_window_deadline_ms) >= 0)
+        {
+            uint8_t pass = window_finish_and_decide("AUTO_HUNT",
+                                                    AUTO_VERIFY_MIN_BLOCKS,
+                                                    AUTO_VERIFY_MIN_TOTAL_ABS,
+                                                    AUTO_VERIFY_PASS_AVG_X1024,
+                                                    AUTO_VERIFY_PASS_MAX_X1024);
+
+            if (pass)
+            {
+                window_arm(WK_CONFIRM, "AUTO_CONFIRM", AUTO_CONFIRM_WINDOW_MS);
+                g_ah_state = AH_WAIT_CONFIRM;
+            }
+            else
+            {
+                if (g_ah_retry_left > 0u)
+                {
+                    g_ah_retry_left--;
+                    g_ah_deadline_ms = HAL_GetTick() + AUTO_HUNT_RETRY_DELAY_MS;
+                    g_ah_state = AH_WAIT_RETRY;
+                    g_auto_hunt_verify_fail_retry_arm_count++;
+                    uart_log("AUTO_HUNT_RETRY_ARM: delay=%u ms, retry_left=%u\r\n",
+                             AUTO_HUNT_RETRY_DELAY_MS,
+                             (unsigned int)g_ah_retry_left);
+                }
+                else
+                {
+                    g_ah_state = AH_IDLE;
+                }
+            }
+        }
+        break;
+
+    case AH_WAIT_CONFIRM:
+        if (g_src_pin_state)
+        {
+            g_ah_state = AH_WAIT_RELEASE;
+            g_window_active = 0u;
+            break;
+        }
+
+        if ((int32_t)(now - g_window_deadline_ms) >= 0)
+        {
+            uint8_t pass = window_finish_and_decide("AUTO_CONFIRM",
+                                                    AUTO_CONFIRM_MIN_BLOCKS,
+                                                    AUTO_CONFIRM_MIN_TOTAL_ABS,
+                                                    AUTO_CONFIRM_PASS_AVG_X1024,
+                                                    AUTO_CONFIRM_PASS_MAX_X1024);
+
+            if (pass)
+            {
+                window_arm(WK_GUARD, "AUTO_GUARD", AUTO_GUARD_WINDOW_MS);
+                g_ah_state = AH_WAIT_GUARD;
+            }
+            else
+            {
+                if (g_ah_retry_left > 0u)
+                {
+                    g_ah_retry_left--;
+                    g_ah_deadline_ms = HAL_GetTick() + AUTO_HUNT_RETRY_DELAY_MS;
+                    g_ah_state = AH_WAIT_RETRY;
+                    g_auto_hunt_confirm_fail_retry_arm_count++;
+                    uart_log("AUTO_HUNT_RETRY_ARM(after confirm): delay=%u ms, retry_left=%u\r\n",
+                             AUTO_HUNT_RETRY_DELAY_MS,
+                             (unsigned int)g_ah_retry_left);
+                }
+                else
+                {
+                    g_ah_state = AH_IDLE;
+                }
+            }
+        }
+        break;
+
+    case AH_WAIT_GUARD:
+        if (g_src_pin_state)
+        {
+            g_ah_state = AH_WAIT_RELEASE;
+            g_window_active = 0u;
+            break;
+        }
+
+        if ((int32_t)(now - g_window_deadline_ms) >= 0)
+        {
+            uint8_t pass = window_finish_and_decide("AUTO_GUARD",
+                                                    AUTO_GUARD_MIN_BLOCKS,
+                                                    AUTO_GUARD_MIN_TOTAL_ABS,
+                                                    AUTO_GUARD_PASS_AVG_X1024,
+                                                    AUTO_GUARD_PASS_MAX_X1024);
+
+            if (pass)
+            {
+                g_ah_state = AH_IDLE;
+            }
+            else
+            {
+                if (g_ah_retry_left > 0u)
+                {
+                    g_ah_retry_left--;
+                    g_ah_deadline_ms = HAL_GetTick() + AUTO_HUNT_RETRY_DELAY_MS;
+                    g_ah_state = AH_WAIT_RETRY;
+                    g_auto_hunt_guard_fail_retry_arm_count++;
+                    uart_log("AUTO_HUNT_RETRY_ARM(after guard): delay=%u ms, retry_left=%u\r\n",
+                             AUTO_HUNT_RETRY_DELAY_MS,
+                             (unsigned int)g_ah_retry_left);
+                }
+                else
+                {
+                    g_ah_state = AH_IDLE;
+                }
+            }
+        }
+        break;
+
+    case AH_WAIT_RETRY:
+        if (g_src_pin_state)
+        {
+            g_ah_state = AH_WAIT_RELEASE;
+            break;
+        }
+
+        if (!mode_needs_hunt(g_user_mode))
+        {
+            g_auto_hunt_skip_mode_count++;
+            g_ah_state = AH_IDLE;
+            break;
+        }
+
+        if ((int32_t)(now - g_ah_deadline_ms) >= 0)
+        {
+            if (g_live_last_abs >= AUTO_HUNT_ACTIVITY_MIN_ABS)
+            {
+                g_auto_hunt_retry_trigger_count++;
+                (void)do_auto_hunt("AUTO_HUNT_RETRY");
+                window_arm(WK_VERIFY, "AUTO_HUNT_RETRY", AUTO_VERIFY_WINDOW_MS);
+                g_ah_state = AH_WAIT_VERIFY;
+            }
+            else
+            {
+                g_ah_deadline_ms = HAL_GetTick() + AUTO_HUNT_RETRY_DELAY_MS;
+            }
+        }
+        break;
+
+    default:
+        g_ah_state = AH_IDLE;
+        break;
     }
 }
 
 /* =========================
- * HARD STOP + WS HIGH REARM
+ * I2S START / REARM
  * ========================= */
 static void hard_stop_i2s_path(void)
 {
@@ -442,113 +1088,187 @@ static void hard_stop_i2s_path(void)
     HAL_I2S_DeInit(&hi2s3);
 }
 
-static uint8_t wait_for_ws_phase_high(uint32_t timeout_ms)
-{
-    uint32_t t0 = HAL_GetTick();
-
-    while ((HAL_GetTick() - t0) <= timeout_ms)
-    {
-        if (HAL_GPIO_ReadPin(WS_SENSE_PORT, WS_SENSE_PIN) == GPIO_PIN_SET)
-        {
-            /* quick re-check that we're not exactly on the edge */
-            uint8_t stable = 1;
-            for (volatile uint32_t i = 0; i < 32; i++)
-            {
-                if (HAL_GPIO_ReadPin(WS_SENSE_PORT, WS_SENSE_PIN) != GPIO_PIN_SET)
-                {
-                    stable = 0;
-                    break;
-                }
-            }
-
-            if (stable)
-                return 1;
-        }
-    }
-
-    return 0;
-}
-
-static uint8_t do_rearm_sequence(const char *tag)
+static uint8_t start_i2s_dma_plain(const char *tag)
 {
     HAL_StatusTypeDef st;
-
-    g_rearm_count++;
-    g_rearm_busy = 1;
-
-    uart_log("%s: begin\r\n", tag);
-
-    zero_tx_block(0, DMA_WORDS);
-
-    HAL_NVIC_DisableIRQ(DMA1_Stream2_IRQn);
-    HAL_NVIC_DisableIRQ(DMA1_Stream5_IRQn);
-
-    hard_stop_i2s_path();
-    zero_audio_buffers();
-
-    MX_I2S3_Init();
-
-    if (!wait_for_ws_phase_high(WS_WAIT_TIMEOUT_MS))
-    {
-        HAL_NVIC_EnableIRQ(DMA1_Stream2_IRQn);
-        HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
-
-        uart_log("%s: WS HIGH wait timeout\r\n", tag);
-        g_rearm_fail++;
-        g_rearm_busy = 0;
-        return 0;
-    }
 
     st = HAL_I2SEx_TransmitReceive_DMA(&hi2s3,
                                        (uint16_t *)tx_buf,
                                        (uint16_t *)rx_buf,
                                        DMA_WORDS);
 
+    g_last_ws_state = read_ws_pin();
+
+    if (st != HAL_OK)
+    {
+        uart_log("%s: DMA START FAIL, ws=%u, state=%lu, err=0x%08lX\r\n",
+                 tag,
+                 (unsigned long)g_last_ws_state,
+                 (unsigned long)hi2s3.State,
+                 (unsigned long)HAL_I2S_GetError(&hi2s3));
+        return 0u;
+    }
+
+    uart_log("%s: DMA START OK, ws=%u\r\n", tag, (unsigned long)g_last_ws_state);
+    return 1u;
+}
+
+static void clear_ws_diag(void)
+{
+    g_ws_before_wait   = 0;
+    g_ws_saw_low       = 0;
+    g_ws_saw_rise      = 0;
+    g_ws_before_dma    = 0;
+    g_ws_after_dma     = 0;
+    g_ws_edge_aligned  = 0;
+    g_ws_used_fallback = 0;
+    g_ws_timeout_stage = 0;
+    g_ws_poll_count    = 0;
+}
+
+static uint8_t wait_for_ws_low_then_rise_high(uint32_t timeout_ms)
+{
+    uint32_t t0 = HAL_GetTick();
+    uint8_t ws;
+
+    ws = read_ws_pin();
+    g_last_ws_state = ws;
+    g_ws_before_wait = ws;
+
+    while ((HAL_GetTick() - t0) <= timeout_ms)
+    {
+        ws = read_ws_pin();
+        g_last_ws_state = ws;
+        g_ws_poll_count++;
+
+        if (ws == 0u)
+        {
+            g_ws_saw_low = 1u;
+            break;
+        }
+    }
+
+    if (!g_ws_saw_low)
+    {
+        g_ws_timeout_stage = 1u;
+        g_ws_wait_timeout_low++;
+        return 0u;
+    }
+
+    {
+        uint8_t prev = 0u;
+
+        while ((HAL_GetTick() - t0) <= timeout_ms)
+        {
+            ws = read_ws_pin();
+            g_last_ws_state = ws;
+            g_ws_poll_count++;
+
+            if ((prev == 0u) && (ws != 0u))
+            {
+                uint8_t stable = 1u;
+
+                for (volatile uint32_t i = 0; i < 64u; i++)
+                {
+                    if (read_ws_pin() == 0u)
+                    {
+                        stable = 0u;
+                        break;
+                    }
+                }
+
+                if (stable)
+                {
+                    g_ws_saw_rise = 1u;
+                    g_ws_wait_success++;
+                    return 1u;
+                }
+            }
+
+            prev = ws;
+        }
+    }
+
+    g_ws_timeout_stage = 2u;
+    g_ws_wait_timeout_rise++;
+    return 0u;
+}
+
+static uint8_t do_rearm_once(const char *tag)
+{
+    HAL_StatusTypeDef st;
+    uint8_t aligned;
+
+    g_rearm_count++;
+
+    uart_log("%s: begin, ws_now=%u\r\n", tag, (unsigned long)read_ws_pin());
+
+    HAL_NVIC_DisableIRQ(DMA1_Stream2_IRQn);
+    HAL_NVIC_DisableIRQ(DMA1_Stream5_IRQn);
+
+    hard_stop_i2s_path();
+    zero_audio_buffers();
+    MX_I2S3_Init();
+
+    clear_ws_diag();
+
+    aligned = wait_for_ws_low_then_rise_high(WS_WAIT_TIMEOUT_MS);
+    g_ws_edge_aligned = aligned ? 1u : 0u;
+
+    if (!aligned)
+    {
+        g_ws_used_fallback = 1u;
+        uart_log("%s: WS edge timeout, fallback immediate start, stage=%s, before_wait=%u, saw_low=%u, saw_rise=%u, polls=%lu\r\n",
+                 tag,
+                 ws_timeout_stage_name(g_ws_timeout_stage),
+                 (unsigned long)g_ws_before_wait,
+                 (unsigned long)g_ws_saw_low,
+                 (unsigned long)g_ws_saw_rise,
+                 (unsigned long)g_ws_poll_count);
+    }
+
+    g_ws_before_dma = read_ws_pin();
+    g_last_ws_state = g_ws_before_dma;
+
+    st = HAL_I2SEx_TransmitReceive_DMA(&hi2s3,
+                                       (uint16_t *)tx_buf,
+                                       (uint16_t *)rx_buf,
+                                       DMA_WORDS);
+
+    g_ws_after_dma = read_ws_pin();
+    g_last_ws_state = g_ws_after_dma;
+
     HAL_NVIC_EnableIRQ(DMA1_Stream2_IRQn);
     HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
 
     if (st != HAL_OK)
     {
-        uart_log("%s: DMA start FAIL\r\n", tag);
         g_rearm_fail++;
-        g_rearm_busy = 0;
-        return 0;
+        uart_log("%s: DMA START FAIL, aligned=%u, fallback=%u, ws_before_dma=%u, ws_after_dma=%u, state=%lu, err=0x%08lX\r\n",
+                 tag,
+                 (unsigned long)g_ws_edge_aligned,
+                 (unsigned long)g_ws_used_fallback,
+                 (unsigned long)g_ws_before_dma,
+                 (unsigned long)g_ws_after_dma,
+                 (unsigned long)hi2s3.State,
+                 (unsigned long)HAL_I2S_GetError(&hi2s3));
+        return 0u;
     }
 
     g_rearm_ok++;
-    g_rearm_busy = 0;
 
-    uart_log("%s: OK, ws=%u\r\n",
+    uart_log("%s: OK, aligned=%u, fallback=%u, before_wait=%u, saw_low=%u, saw_rise=%u, ws_before_dma=%u, ws_after_dma=%u, polls=%lu\r\n",
              tag,
-             (uint32_t)((HAL_GPIO_ReadPin(WS_SENSE_PORT, WS_SENSE_PIN) == GPIO_PIN_SET) ? 1u : 0u));
+             (unsigned long)g_ws_edge_aligned,
+             (unsigned long)g_ws_used_fallback,
+             (unsigned long)g_ws_before_wait,
+             (unsigned long)g_ws_saw_low,
+             (unsigned long)g_ws_saw_rise,
+             (unsigned long)g_ws_before_dma,
+             (unsigned long)g_ws_after_dma,
+             (unsigned long)g_ws_poll_count);
 
-    return 1;
-}
-
-/* =========================
- * CONFIG CYCLERS
- * ========================= */
-static void cycle_warmup_cfg(void)
-{
-    if (g_warmup_halves_cfg == 0)       g_warmup_halves_cfg = 4;
-    else if (g_warmup_halves_cfg == 4)  g_warmup_halves_cfg = 8;
-    else if (g_warmup_halves_cfg == 8)  g_warmup_halves_cfg = 16;
-    else if (g_warmup_halves_cfg == 16) g_warmup_halves_cfg = 32;
-    else                                g_warmup_halves_cfg = 0;
-
-    uart_log("\r\nWarmup half-blocks = %lu\r\n", g_warmup_halves_cfg);
-}
-
-static void cycle_hold_cfg(void)
-{
-    if (g_post_fall_hold_ms == 0)         g_post_fall_hold_ms = 50;
-    else if (g_post_fall_hold_ms == 50)   g_post_fall_hold_ms = 100;
-    else if (g_post_fall_hold_ms == 100)  g_post_fall_hold_ms = 200;
-    else if (g_post_fall_hold_ms == 200)  g_post_fall_hold_ms = 500;
-    else if (g_post_fall_hold_ms == 500)  g_post_fall_hold_ms = 1000;
-    else                                  g_post_fall_hold_ms = 0;
-
-    uart_log("\r\nPost-fall hold = %lu ms\r\n", g_post_fall_hold_ms);
+    return 1u;
 }
 
 /* =========================
@@ -558,13 +1278,15 @@ void HAL_I2SEx_TxRxHalfCpltCallback(I2S_HandleTypeDef *hi2s)
 {
     if (hi2s->Instance == SPI3)
     {
-        cb_half_count++;
-        process_block(0, HALF_WORDS);
+        uint32_t t0, dt;
 
-        if (g_tr_state == TR_WARMUP && g_warmup_halves_left > 0)
-        {
-            g_warmup_halves_left--;
-        }
+        cb_half_count++;
+
+        t0 = DWT->CYCCNT;
+        process_block(0u, HALF_WORDS);
+        dt = DWT->CYCCNT - t0;
+
+        if (dt > g_proc_cycles_max_half) g_proc_cycles_max_half = dt;
     }
 }
 
@@ -572,13 +1294,15 @@ void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
 {
     if (hi2s->Instance == SPI3)
     {
-        cb_full_count++;
-        process_block(HALF_WORDS, HALF_WORDS);
+        uint32_t t0, dt;
 
-        if (g_tr_state == TR_WARMUP && g_warmup_halves_left > 0)
-        {
-            g_warmup_halves_left--;
-        }
+        cb_full_count++;
+
+        t0 = DWT->CYCCNT;
+        process_block(HALF_WORDS, HALF_WORDS);
+        dt = DWT->CYCCNT - t0;
+
+        if (dt > g_proc_cycles_max_full) g_proc_cycles_max_full = dt;
     }
 }
 
@@ -597,12 +1321,13 @@ static void uart_log(const char *fmt, ...)
 {
     char buf[256];
     va_list ap;
+
     va_start(ap, fmt);
     int len = vsnprintf(buf, sizeof(buf), fmt, ap);
     va_end(ap);
 
     if (len <= 0) return;
-    if (len > (int)sizeof(buf)) len = sizeof(buf);
+    if (len > (int)sizeof(buf) - 1) len = (int)sizeof(buf) - 1;
 
     HAL_UART_Transmit(&huart2, (uint8_t *)buf, (uint16_t)len, 100);
 }
@@ -614,76 +1339,159 @@ int _write(int file, char *ptr, int len)
     return len;
 }
 
-static const char *mode_name(uint8_t mode)
+static const char *user_mode_name(uint8_t mode)
 {
     switch (mode)
     {
-        case 0:  return "raw copy";
-        case 1:  return "arithmetic identity";
-        case 2:  return "signed shift half (>>1)";
-        case 3:  return "signed divide half (/2)";
-        case 4:  return "invert polarity";
-        case 5:  return "attenuate even words only";
-        case 6:  return "attenuate odd words only";
-        case 7:  return "invert + half (-0.5)";
-        case 8:  return "fixed gain 0.75";
-        case 9:  return "float bypass unity";
-        case 10: return "float gain 0.5";
-        default: return "unknown";
+    case 0:  return "raw bit copy";
+    case 1:  return "int identity";
+    case 2:  return "int half";
+    case 9:  return "float unity";
+    case 10: return "float half";
+    default: return "unknown";
     }
 }
 
-static const char *tr_state_name(transition_state_t st)
+static const char *ws_timeout_stage_name(uint8_t stage)
+{
+    switch (stage)
+    {
+    case 0: return "none";
+    case 1: return "wait_low";
+    case 2: return "wait_rise";
+    default: return "?";
+    }
+}
+
+static const char *ah_state_name(auto_hunt_state_t st)
 {
     switch (st)
     {
-        case TR_IDLE:         return "IDLE";
-        case TR_WAIT_SRC_END: return "WAIT_SRC_END";
-        case TR_WAIT_HOLD:    return "WAIT_HOLD";
-        case TR_WARMUP:       return "WARMUP";
-        default:              return "?";
+    case AH_IDLE:          return "IDLE";
+    case AH_WAIT_RELEASE:  return "WAIT_RELEASE";
+    case AH_WAIT_HOLD:     return "WAIT_HOLD";
+    case AH_WAIT_ACTIVITY: return "WAIT_ACTIVITY";
+    case AH_WAIT_VERIFY:   return "WAIT_VERIFY";
+    case AH_WAIT_CONFIRM:  return "WAIT_CONFIRM";
+    case AH_WAIT_GUARD:    return "WAIT_GUARD";
+    case AH_WAIT_RETRY:    return "WAIT_RETRY";
+    default:               return "?";
+    }
+}
+
+static const char *window_kind_name(window_kind_t kind)
+{
+    switch (kind)
+    {
+    case WK_VERIFY:  return "VERIFY";
+    case WK_CONFIRM: return "CONFIRM";
+    case WK_GUARD:   return "GUARD";
+    default:         return "NONE";
     }
 }
 
 static void print_help(void)
 {
     uart_log("Commands:\r\n");
-    uart_log("  0..9 : set test mode 0..9\r\n");
-    uart_log("  a    : set test mode 10 (float gain 0.5)\r\n");
-    uart_log("  u    : toggle AUTO_REARM ON/OFF\r\n");
-    uart_log("  x    : MANUAL RESYNC now\r\n");
-    uart_log("  w    : cycle warmup half-blocks 0/4/8/16/32\r\n");
-    uart_log("  p    : cycle post-fall hold 0/50/100/200/500/1000 ms\r\n");
-    uart_log("  m    : toggle FORCE_MUTE ON/OFF\r\n");
-    uart_log("  s    : status\r\n");
-    uart_log("  r    : reset counters/peaks\r\n");
-    uart_log("  h    : help\r\n");
+    uart_log(" 0    : raw bit copy\r\n");
+    uart_log(" 1    : int identity\r\n");
+    uart_log(" 2    : int half\r\n");
+    uart_log(" 9    : float unity\r\n");
+    uart_log(" a    : float half\r\n");
+    uart_log(" x    : manual single rearm\r\n");
+    uart_log(" g    : manual auto-hunt now\r\n");
+    uart_log(" u    : toggle AUTO_HUNT ON/OFF\r\n");
+    uart_log(" p    : cycle AUTO_HUNT hold 120/200/350 ms\r\n");
+    uart_log(" s    : status\r\n");
+    uart_log(" r    : reset counters\r\n");
+    uart_log(" h    : help\r\n");
     uart_log("\r\n");
 }
 
 static void print_status(void)
 {
-    uart_log("status: mode=%u (%s), auto=%u, tr=%s, force_mute=%u, rearm_busy=%u, rearm_count=%lu, rearm_ok=%lu, rearm_fail=%lu, warmup_cfg=%lu, warmup_left=%lu, hold_ms=%lu, src=%u, src_edges=%lu, ws=%u, half=%lu, full=%lu, i2s_err=%lu, rx_peak=%lu, tx_peak=%lu\r\n",
-             g_test_mode,
-             mode_name(g_test_mode),
-             g_auto_rearm_enable,
-             tr_state_name(g_tr_state),
-             g_force_mute,
-             g_rearm_busy,
-             g_rearm_count,
-             g_rearm_ok,
-             g_rearm_fail,
-             g_warmup_halves_cfg,
-             g_warmup_halves_left,
-             g_post_fall_hold_ms,
-             g_src_pin_state,
-             g_src_edge_count,
-             g_last_ws_state,
-             cb_half_count,
-             cb_full_count,
-             i2s_err_count,
-             g_rx_peak,
-             g_tx_peak);
+    uart_log("status: mode=%u (%s), src=%u, src_edges=%lu, ws=%u, half=%lu, full=%lu, i2s_err=%lu, rearm_count=%lu, rearm_ok=%lu, rearm_fail=%lu\r\n",
+             (unsigned long)g_user_mode,
+             user_mode_name(g_user_mode),
+             (unsigned long)g_src_pin_state,
+             (unsigned long)g_src_edge_count,
+             (unsigned long)g_last_ws_state,
+             (unsigned long)cb_half_count,
+             (unsigned long)cb_full_count,
+             (unsigned long)i2s_err_count,
+             (unsigned long)g_rearm_count,
+             (unsigned long)g_rearm_ok,
+             (unsigned long)g_rearm_fail);
+
+    uart_log("peaks: rx=%lu, tx=%lu\r\n",
+             (unsigned long)g_rx_peak,
+             (unsigned long)g_tx_peak);
+
+    uart_log("timing: max_half=%lu cyc (~%lu us), max_full=%lu cyc (~%lu us)\r\n",
+             (unsigned long)g_proc_cycles_max_half,
+             (unsigned long)cycles_to_us(g_proc_cycles_max_half),
+             (unsigned long)g_proc_cycles_max_full,
+             (unsigned long)cycles_to_us(g_proc_cycles_max_full));
+
+    uart_log("live: score=%lu x1024, abs=%lu, diff=%lu, blocks=%lu\r\n",
+             (unsigned long)g_live_last_score_x1024,
+             (unsigned long)g_live_last_abs,
+             (unsigned long)g_live_last_diff,
+             (unsigned long)g_live_blocks_scored);
+
+    uart_log("window: active=%u, kind=%s, last_kind=%s, last_pass=%u, last_avg=%lu x1024, last_max=%lu x1024, last_blocks=%lu, last_abs=%lu\r\n",
+             (unsigned long)g_window_active,
+             window_kind_name(g_window_kind),
+             window_kind_name(g_window_last_kind),
+             (unsigned long)g_window_last_pass,
+             (unsigned long)g_window_last_avg_score_x1024,
+             (unsigned long)g_window_last_max_block_score_x1024,
+             (unsigned long)g_window_last_blocks,
+             (unsigned long)g_window_last_total_abs);
+
+    uart_log("window_counts: verify_ok=%lu, verify_fail=%lu, confirm_ok=%lu, confirm_fail=%lu, guard_ok=%lu, guard_fail=%lu\r\n",
+             (unsigned long)g_verify_pass_count,
+             (unsigned long)g_verify_fail_count,
+             (unsigned long)g_confirm_pass_count,
+             (unsigned long)g_confirm_fail_count,
+             (unsigned long)g_guard_pass_count,
+             (unsigned long)g_guard_fail_count);
+
+    uart_log("wsdiag: aligned=%u, fallback=%u, before_wait=%u, saw_low=%u, saw_rise=%u, before_dma=%u, after_dma=%u, timeout_stage=%s, polls=%lu, wait_ok=%lu, tmo_low=%lu, tmo_rise=%lu\r\n",
+             (unsigned long)g_ws_edge_aligned,
+             (unsigned long)g_ws_used_fallback,
+             (unsigned long)g_ws_before_wait,
+             (unsigned long)g_ws_saw_low,
+             (unsigned long)g_ws_saw_rise,
+             (unsigned long)g_ws_before_dma,
+             (unsigned long)g_ws_after_dma,
+             ws_timeout_stage_name(g_ws_timeout_stage),
+             (unsigned long)g_ws_poll_count,
+             (unsigned long)g_ws_wait_success,
+             (unsigned long)g_ws_wait_timeout_low,
+             (unsigned long)g_ws_wait_timeout_rise);
+
+    uart_log("hunt: active=%u, last_attempts=%lu, last_score=%lu x1024, best_attempt=%lu, best_score=%lu x1024, success=%lu, fail=%lu\r\n",
+             (unsigned long)g_hunt_active,
+             (unsigned long)g_hunt_last_attempts,
+             (unsigned long)g_hunt_last_score_x1024,
+             (unsigned long)g_hunt_last_best_attempt,
+             (unsigned long)g_hunt_last_best_score_x1024,
+             (unsigned long)g_hunt_success_count,
+             (unsigned long)g_hunt_fail_count);
+
+    uart_log("auto_hunt: en=%u, state=%s, hold=%lu ms, boot_arm=%lu, trig=%lu, retry_trig=%lu, skip_mode=%lu, verify_fail_retry_arm=%lu, confirm_fail_retry_arm=%lu, guard_fail_retry_arm=%lu, retry_left=%u\r\n",
+             (unsigned long)g_auto_hunt_enable,
+             ah_state_name((auto_hunt_state_t)g_ah_state),
+             (unsigned long)g_auto_hunt_hold_ms,
+             (unsigned long)g_auto_hunt_boot_arm_count,
+             (unsigned long)g_auto_hunt_trigger_count,
+             (unsigned long)g_auto_hunt_retry_trigger_count,
+             (unsigned long)g_auto_hunt_skip_mode_count,
+             (unsigned long)g_auto_hunt_verify_fail_retry_arm_count,
+             (unsigned long)g_auto_hunt_confirm_fail_retry_arm_count,
+             (unsigned long)g_auto_hunt_guard_fail_retry_arm_count,
+             (unsigned int)g_ah_retry_left);
 }
 
 static void reset_runtime_counters(void)
@@ -691,12 +1499,49 @@ static void reset_runtime_counters(void)
     cb_half_count = 0;
     cb_full_count = 0;
     i2s_err_count = 0;
+
     g_rx_peak = 0;
     g_tx_peak = 0;
+
     g_src_edge_count = 0;
+
     g_rearm_count = 0;
     g_rearm_ok = 0;
     g_rearm_fail = 0;
+
+    g_ws_wait_success = 0;
+    g_ws_wait_timeout_low = 0;
+    g_ws_wait_timeout_rise = 0;
+
+    g_proc_cycles_max_half = 0;
+    g_proc_cycles_max_full = 0;
+
+    g_hunt_last_score_x1024 = 0;
+    g_hunt_last_attempts = 0;
+    g_hunt_last_best_score_x1024 = 0;
+    g_hunt_last_best_attempt = 0;
+    g_hunt_success_count = 0;
+    g_hunt_fail_count = 0;
+
+    g_auto_hunt_boot_arm_count = 0;
+    g_auto_hunt_trigger_count = 0;
+    g_auto_hunt_retry_trigger_count = 0;
+    g_auto_hunt_skip_mode_count = 0;
+    g_auto_hunt_verify_fail_retry_arm_count = 0;
+    g_auto_hunt_confirm_fail_retry_arm_count = 0;
+    g_auto_hunt_guard_fail_retry_arm_count = 0;
+
+    g_verify_pass_count = 0;
+    g_verify_fail_count = 0;
+    g_confirm_pass_count = 0;
+    g_confirm_fail_count = 0;
+    g_guard_pass_count = 0;
+    g_guard_fail_count = 0;
+
+    live_metric_reset();
+    hunt_reset_capture();
+    window_reset();
+    clear_ws_diag();
 }
 
 static void handle_uart_commands(void)
@@ -706,93 +1551,106 @@ static void handle_uart_commands(void)
     if (HAL_UART_Receive(&huart2, &ch, 1, 0) != HAL_OK)
         return;
 
-    if (ch >= '0' && ch <= '9')
-    {
-        g_test_mode = (uint8_t)(ch - '0');
-        uart_log("\r\nSET MODE = %u (%s)\r\n", g_test_mode, mode_name(g_test_mode));
-        return;
-    }
-
     switch (ch)
     {
-        case 'a':
-        case 'A':
-            g_test_mode = 10;
-            uart_log("\r\nSET MODE = %u (%s)\r\n", g_test_mode, mode_name(g_test_mode));
-            break;
+    case '0':
+        g_user_mode = 0;
+        uart_log("\r\nSET MODE = %u (%s)\r\n", (unsigned long)g_user_mode, user_mode_name(g_user_mode));
+        break;
 
-        case 'u':
-        case 'U':
-            g_auto_rearm_enable = g_auto_rearm_enable ? 0u : 1u;
-            if (!g_auto_rearm_enable)
+    case '1':
+        g_user_mode = 1;
+        uart_log("\r\nSET MODE = %u (%s)\r\n", (unsigned long)g_user_mode, user_mode_name(g_user_mode));
+        break;
+
+    case '2':
+        g_user_mode = 2;
+        uart_log("\r\nSET MODE = %u (%s)\r\n", (unsigned long)g_user_mode, user_mode_name(g_user_mode));
+        break;
+
+    case '9':
+        g_user_mode = 9;
+        uart_log("\r\nSET MODE = %u (%s)\r\n", (unsigned long)g_user_mode, user_mode_name(g_user_mode));
+        break;
+
+    case 'a':
+    case 'A':
+        g_user_mode = 10;
+        uart_log("\r\nSET MODE = %u (%s)\r\n", (unsigned long)g_user_mode, user_mode_name(g_user_mode));
+        break;
+
+    case 'x':
+    case 'X':
+        do_rearm_once("MANUAL_RESYNC");
+        break;
+
+    case 'g':
+    case 'G':
+        (void)do_auto_hunt("AUTO_HUNT_MANUAL");
+        break;
+
+    case 'u':
+    case 'U':
+        g_auto_hunt_enable = g_auto_hunt_enable ? 0u : 1u;
+
+        if (!g_auto_hunt_enable)
+        {
+            g_ah_state = AH_IDLE;
+            g_window_active = 0u;
+        }
+        else
+        {
+            if (g_src_pin_state)
+                g_ah_state = AH_WAIT_RELEASE;
+            else if (mode_needs_hunt(g_user_mode))
             {
-                g_tr_state = TR_IDLE;
-                g_warmup_halves_left = 0;
+                g_ah_state = AH_WAIT_HOLD;
+                g_ah_deadline_ms = HAL_GetTick() + g_auto_hunt_hold_ms;
+                g_ah_retry_left = AUTO_HUNT_EXTRA_RETRIES;
             }
-            uart_log("\r\nAUTO_REARM = %s\r\n", g_auto_rearm_enable ? "ON" : "OFF");
-            break;
+            else
+                g_ah_state = AH_IDLE;
+        }
 
-        case 'x':
-        case 'X':
-            if (do_rearm_sequence("MANUAL_RESYNC"))
-            {
-                if (g_warmup_halves_cfg == 0)
-                {
-                    g_tr_state = TR_IDLE;
-                    g_warmup_halves_left = 0;
-                }
-                else
-                {
-                    g_warmup_halves_left = g_warmup_halves_cfg;
-                    g_tr_state = TR_WARMUP;
-                    uart_log("MANUAL_RESYNC: warmup start, halves=%lu\r\n", g_warmup_halves_cfg);
-                }
-            }
-            break;
+        uart_log("\r\nAUTO_HUNT = %s\r\n", g_auto_hunt_enable ? "ON" : "OFF");
+        break;
 
-        case 'w':
-        case 'W':
-            cycle_warmup_cfg();
-            break;
+    case 'p':
+    case 'P':
+        if (g_auto_hunt_hold_ms == 120u)      g_auto_hunt_hold_ms = 200u;
+        else if (g_auto_hunt_hold_ms == 200u) g_auto_hunt_hold_ms = 350u;
+        else                                  g_auto_hunt_hold_ms = 120u;
 
-        case 'p':
-        case 'P':
-            cycle_hold_cfg();
-            break;
+        uart_log("\r\nAUTO_HUNT hold = %lu ms\r\n", (unsigned long)g_auto_hunt_hold_ms);
+        break;
 
-        case 'm':
-        case 'M':
-            g_force_mute = g_force_mute ? 0u : 1u;
-            uart_log("\r\nFORCE_MUTE = %s\r\n", g_force_mute ? "ON" : "OFF");
-            break;
+    case 's':
+    case 'S':
+        uart_log("\r\n");
+        print_status();
+        break;
 
-        case 's':
-        case 'S':
-            uart_log("\r\n");
-            print_status();
-            break;
+    case 'r':
+    case 'R':
+        reset_runtime_counters();
+        uart_log("\r\nCounters reset\r\n");
+        print_status();
+        break;
 
-        case 'r':
-        case 'R':
-            reset_runtime_counters();
-            uart_log("\r\nCounters/peaks reset\r\n");
-            print_status();
-            break;
+    case 'h':
+    case 'H':
+        uart_log("\r\n");
+        print_help();
+        break;
 
-        case 'h':
-        case 'H':
-            uart_log("\r\n");
-            print_help();
-            break;
+    case '\r':
+    case '\n':
+        break;
 
-        case '\r':
-        case '\n':
-            break;
-
-        default:
-            uart_log("\r\nUnknown cmd: '%c'\r\n", ch);
-            print_help();
-            break;
+    default:
+        uart_log("\r\nUnknown cmd: '%c'\r\n", ch);
+        print_help();
+        break;
     }
 }
 
@@ -826,7 +1684,6 @@ void SystemClock_Config(void)
                                 | RCC_CLOCKTYPE_SYSCLK
                                 | RCC_CLOCKTYPE_PCLK1
                                 | RCC_CLOCKTYPE_PCLK2;
-
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
