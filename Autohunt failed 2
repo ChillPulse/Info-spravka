@@ -1,0 +1,1180 @@
+Вариант когда звук в итоге остался грязным:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+status: mode=9 (float unity), src=0, src_edges=28, ws=1, half=137723, full=137672, i2s_err=0, rearm_count=64, rearm_ok=64, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=0 x1024, abs=0, diff=0, blocks=46635
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=83074, wait_ok=0, tmo_low=0, tmo_rise=64
+hunt: active=0, last_attempts=6, last_score=445 x1024, best_attempt=6, best_score=445 x1024, success=13, fail=6, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_ACTIVITY, hold=200 ms, boot_arm=1, trig=13, retry_trig=5, skip_mode=0, verify_ok=12, verify_fail=6, retry_left=2
+AUTO_HUNT: begin, mode=9 (float unity), live_score=919 x1024, live_abs=866246
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83166
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=83166
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=222 x1024, abs=22032221, diff=4791916
+AUTO_HUNT: SUCCESS, stop_attempt=1, best_attempt=1, best_score=222 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+AUTO_VERIFY_OK: live_score=95 x1024, live_abs=4074338, hunt_best=222 x1024
+status: mode=9 (float unity), src=0, src_edges=28, ws=1, half=137813, full=137762, i2s_err=0, rearm_count=65, rearm_ok=65, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=46 x1024, abs=5656741, diff=259549, blocks=82
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83166, wait_ok=0, tmo_low=0, tmo_rise=65
+hunt: active=0, last_attempts=1, last_score=222 x1024, best_attempt=1, best_score=222 x1024, success=14, fail=6, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=14, retry_trig=5, skip_mode=0, verify_ok=13, verify_fail=6, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=28, ws=1, half=137919, full=137867, i2s_err=0, rearm_count=65, rearm_ok=65, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=58 x1024, abs=4133743, diff=237437, blocks=293
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83166, wait_ok=0, tmo_low=0, tmo_rise=65
+hunt: active=0, last_attempts=1, last_score=222 x1024, best_attempt=1, best_score=222 x1024, success=14, fail=6, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=14, retry_trig=5, skip_mode=0, verify_ok=13, verify_fail=6, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=28, ws=1, half=138024, full=137973, i2s_err=0, rearm_count=65, rearm_ok=65, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=68 x1024, abs=5391659, diff=359383, blocks=504
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=83166, wait_ok=0, tmo_low=0, tmo_rise=65
+hunt: active=0, last_attempts=1, last_score=222 x1024, best_attempt=1, best_score=222 x1024, success=14, fail=6, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=14, retry_trig=5, skip_mode=0, verify_ok=13, verify_fail=6, retry_left=2
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант когда звук стал идеально чистым:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+AUTO_HUNT: begin, mode=9 (float unity), live_score=1033 x1024, live_abs=14162
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82553
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82553
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=1359 x1024, abs=25177595, diff=33422301
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82784
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82784
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=1342 x1024, abs=25491723, diff=33413226
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82822
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82822
+AUTO_HUNT: attempt=3/6, blocks=6/6, score=1381 x1024, abs=25088840, diff=33852292
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82785
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82785
+AUTO_HUNT: attempt=4/6, blocks=6/6, score=1371 x1024, abs=24807453, diff=33227157
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82774
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82774
+AUTO_HUNT: attempt=5/6, blocks=6/6, score=935 x1024, abs=6292173, diff=5750979
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83034
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83034
+AUTO_HUNT: attempt=6/6, blocks=6/6, score=112 x1024, abs=1975627, diff=216829
+AUTO_HUNT: SUCCESS, stop_attempt=6, best_attempt=6, best_score=112 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=30, ws=1, half=155363, full=155306, i2s_err=0, rearm_count=71, rearm_ok=71, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=117 x1024, abs=393252, diff=44966, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83034, wait_ok=0, tmo_low=0, tmo_rise=71
+hunt: active=0, last_attempts=6, last_score=112 x1024, best_attempt=6, best_score=112 x1024, success=15, fail=6, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=15, retry_trig=5, skip_mode=0, verify_ok=13, verify_fail=6, retry_left=2
+AUTO_VERIFY_OK: live_score=126 x1024, live_abs=351258, hunt_best=112 x1024
+status: mode=9 (float unity), src=0, src_edges=30, ws=0, half=155469, full=155411, i2s_err=0, rearm_count=71, rearm_ok=71, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=29 x1024, abs=1615156, diff=46141, blocks=219
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83034, wait_ok=0, tmo_low=0, tmo_rise=71
+hunt: active=0, last_attempts=6, last_score=112 x1024, best_attempt=6, best_score=112 x1024, success=15, fail=6, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=15, retry_trig=5, skip_mode=0, verify_ok=14, verify_fail=6, retry_left=2
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант когда звук стал идеально чистым:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+AUTO_HUNT: begin, mode=9 (float unity), live_score=423 x1024, live_abs=5620
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82561
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82561
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=768 x1024, abs=762705, diff=572723
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82977
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82977
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=582 x1024, abs=35193, diff=20019
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82349
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82349
+AUTO_HUNT: attempt=3/6, blocks=6/6, score=377 x1024, abs=68684, diff=25323
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82383
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82383
+AUTO_HUNT: attempt=4/6, blocks=6/6, score=1358 x1024, abs=23913757, diff=31722940
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82556
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82556
+AUTO_HUNT: attempt=5/6, blocks=6/6, score=1374 x1024, abs=3752376, diff=5037053
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82603
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82603
+AUTO_HUNT: attempt=6/6, blocks=6/6, score=382 x1024, abs=131253, diff=48986
+AUTO_HUNT: DONE(no threshold hit), last_attempt=6, best_attempt=3, best_score=377 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=32, ws=1, half=163404, full=163342, i2s_err=0, rearm_count=77, rearm_ok=77, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=498 x1024, abs=31542, diff=15361, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82603, wait_ok=0, tmo_low=0, tmo_rise=77
+hunt: active=0, last_attempts=6, last_score=382 x1024, best_attempt=3, best_score=377 x1024, success=15, fail=7, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=16, retry_trig=5, skip_mode=0, verify_ok=14, verify_fail=6, retry_left=2
+AUTO_VERIFY_FAIL: live_score=582 x1024, live_abs=13898, hunt_best=377 x1024, retry_left=2
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=1
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=364 x1024, live_abs=28355
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82761
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82761
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=352 x1024, abs=3382773, diff=1164035
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82949
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82949
+AUTO_HUNT_RETRY: attempt=2/6, blocks=6/6, score=325 x1024, abs=806513, diff=256145
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82362
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82362
+AUTO_HUNT_RETRY: attempt=3/6, blocks=6/6, score=331 x1024, abs=162230, diff=52597
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82464
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82464
+AUTO_HUNT_RETRY: attempt=4/6, blocks=6/6, score=1340 x1024, abs=20887856, diff=27342373
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82697
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82697
+AUTO_HUNT_RETRY: attempt=5/6, blocks=6/6, score=1257 x1024, abs=4330744, diff=5317485
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83050
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83050
+AUTO_HUNT_RETRY: attempt=6/6, blocks=6/6, score=355 x1024, abs=182405, diff=63339
+AUTO_HUNT_RETRY: DONE(no threshold hit), last_attempt=6, best_attempt=2, best_score=325 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=32, ws=1, half=163462, full=163394, i2s_err=0, rearm_count=83, rearm_ok=83, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=382 x1024, abs=33372, diff=12470, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=83050, wait_ok=0, tmo_low=0, tmo_rise=83
+hunt: active=0, last_attempts=6, last_score=355 x1024, best_attempt=2, best_score=325 x1024, success=15, fail=8, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=16, retry_trig=6, skip_mode=0, verify_ok=14, verify_fail=7, retry_left=1
+AUTO_VERIFY_FAIL: live_score=341 x1024, live_abs=71637, hunt_best=325 x1024, retry_left=1
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=0
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=379 x1024, live_abs=36211
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82525
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82525
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=343 x1024, abs=225736, diff=75727
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82564
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82564
+AUTO_HUNT_RETRY: attempt=2/6, blocks=6/6, score=386 x1024, abs=418974, diff=158156
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82528
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82528
+AUTO_HUNT_RETRY: attempt=3/6, blocks=6/6, score=432 x1024, abs=593465, diff=250924
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82427
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82427
+AUTO_HUNT_RETRY: attempt=4/6, blocks=6/6, score=382 x1024, abs=1852769, diff=692068
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82468
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82468
+AUTO_HUNT_RETRY: attempt=5/6, blocks=6/6, score=357 x1024, abs=659297, diff=230109
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82410
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82410
+AUTO_HUNT_RETRY: attempt=6/6, blocks=6/6, score=425 x1024, abs=634053, diff=263571
+AUTO_HUNT_RETRY: DONE(no threshold hit), last_attempt=6, best_attempt=1, best_score=343 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=32, ws=1, half=163520, full=163447, i2s_err=0, rearm_count=89, rearm_ok=89, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=332 x1024, abs=127097, diff=41292, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82410, wait_ok=0, tmo_low=0, tmo_rise=89
+hunt: active=0, last_attempts=6, last_score=425 x1024, best_attempt=1, best_score=343 x1024, success=15, fail=9, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=16, retry_trig=7, skip_mode=0, verify_ok=14, verify_fail=8, retry_left=0
+AUTO_VERIFY_FAIL: live_score=367 x1024, live_abs=45308, hunt_best=343 x1024, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=32, ws=0, half=163624, full=163552, i2s_err=0, rearm_count=89, rearm_ok=89, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=320 x1024, abs=60458, diff=18900, blocks=219
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82410, wait_ok=0, tmo_low=0, tmo_rise=89
+hunt: active=0, last_attempts=6, last_score=425 x1024, best_attempt=1, best_score=343 x1024, success=15, fail=9, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=16, retry_trig=7, skip_mode=0, verify_ok=14, verify_fail=9, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=32, ws=1, half=163730, full=163657, i2s_err=0, rearm_count=89, rearm_ok=89, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=437 x1024, abs=120853, diff=51593, blocks=429
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82410, wait_ok=0, tmo_low=0, tmo_rise=89
+hunt: active=0, last_attempts=6, last_score=425 x1024, best_attempt=1, best_score=343 x1024, success=15, fail=9, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=16, retry_trig=7, skip_mode=0, verify_ok=14, verify_fail=9, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=32, ws=0, half=163835, full=163762, i2s_err=0, rearm_count=89, rearm_ok=89, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179747 cyc (~2139 us)
+live: score=58 x1024, abs=1012023, diff=58115, blocks=639
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82410, wait_ok=0, tmo_low=0, tmo_rise=89
+hunt: active=0, last_attempts=6, last_score=425 x1024, best_attempt=1, best_score=343 x1024, success=15, fail=9, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=16, retry_trig=7, skip_mode=0, verify_ok=14, verify_fail=9, retry_left=0
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант когда звук стал идеально чистым:
+SRC_MUTE = 1
+status: mode=9 (float unity), src=1, src_edges=35, ws=1, half=173405, full=173333, i2s_err=0, rearm_count=90, rearm_ok=90, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=29 x1024, abs=1401719, diff=40851, blocks=930
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82593, wait_ok=0, tmo_low=0, tmo_rise=90
+hunt: active=0, last_attempts=1, last_score=310 x1024, best_attempt=1, best_score=310 x1024, success=16, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_RELEASE, hold=200 ms, boot_arm=1, trig=17, retry_trig=7, skip_mode=0, verify_ok=15, verify_fail=9, retry_left=2
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+AUTO_HUNT: begin, mode=9 (float unity), live_score=1724 x1024, live_abs=447475
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82656
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82656
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=1172 x1024, abs=2333527, diff=2671757
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82833
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82833
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=1353 x1024, abs=20761746, diff=27447300
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82443
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82443
+AUTO_HUNT: attempt=3/6, blocks=6/6, score=572 x1024, abs=10598269, diff=5925533
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82729
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82729
+AUTO_HUNT: attempt=4/6, blocks=6/6, score=969 x1024, abs=1517081, diff=1436181
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82802
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82802
+AUTO_HUNT: attempt=5/6, blocks=6/6, score=298 x1024, abs=12410756, diff=3620154
+AUTO_HUNT: SUCCESS, stop_attempt=5, best_attempt=5, best_score=298 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=36, ws=1, half=173503, full=173426, i2s_err=0, rearm_count=95, rearm_ok=95, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=68 x1024, abs=2062629, diff=137432, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82802, wait_ok=0, tmo_low=0, tmo_rise=95
+hunt: active=0, last_attempts=5, last_score=298 x1024, best_attempt=5, best_score=298 x1024, success=17, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=18, retry_trig=7, skip_mode=0, verify_ok=15, verify_fail=9, retry_left=2
+AUTO_VERIFY_OK: live_score=167 x1024, live_abs=561468, hunt_best=298 x1024
+status: mode=9 (float unity), src=0, src_edges=36, ws=0, half=173609, full=173531, i2s_err=0, rearm_count=95, rearm_ok=95, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=29 x1024, abs=513114, diff=14782, blocks=219
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82802, wait_ok=0, tmo_low=0, tmo_rise=95
+hunt: active=0, last_attempts=5, last_score=298 x1024, best_attempt=5, best_score=298 x1024, success=17, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=18, retry_trig=7, skip_mode=0, verify_ok=16, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=36, ws=1, half=173714, full=173637, i2s_err=0, rearm_count=95, rearm_ok=95, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=16 x1024, abs=2222727, diff=36362, blocks=430
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82802, wait_ok=0, tmo_low=0, tmo_rise=95
+hunt: active=0, last_attempts=5, last_score=298 x1024, best_attempt=5, best_score=298 x1024, success=17, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=18, retry_trig=7, skip_mode=0, verify_ok=16, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=36, ws=1, half=173820, full=173742, i2s_err=0, rearm_count=95, rearm_ok=95, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=162 x1024, abs=143774, diff=22882, blocks=641
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82802, wait_ok=0, tmo_low=0, tmo_rise=95
+hunt: active=0, last_attempts=5, last_score=298 x1024, best_attempt=5, best_score=298 x1024, success=17, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=18, retry_trig=7, skip_mode=0, verify_ok=16, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=36, ws=1, half=173925, full=173847, i2s_err=0, rearm_count=95, rearm_ok=95, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=218 x1024, abs=1934255, diff=412991, blocks=852
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82802, wait_ok=0, tmo_low=0, tmo_rise=95
+hunt: active=0, last_attempts=5, last_score=298 x1024, best_attempt=5, best_score=298 x1024, success=17, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=18, retry_trig=7, skip_mode=0, verify_ok=16, verify_fail=9, retry_left=2
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант, когда пришллось лечить звук командой G 2 раза, до получения идеально чистого звука:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+status: mode=9 (float unity), src=0, src_edges=38, ws=1, half=182465, full=182387, i2s_err=0, rearm_count=95, rearm_ok=95, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=0 x1024, abs=0, diff=0, blocks=17931
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82802, wait_ok=0, tmo_low=0, tmo_rise=95
+hunt: active=0, last_attempts=5, last_score=298 x1024, best_attempt=5, best_score=298 x1024, success=17, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_ACTIVITY, hold=200 ms, boot_arm=1, trig=18, retry_trig=7, skip_mode=0, verify_ok=16, verify_fail=9, retry_left=2
+AUTO_HUNT: begin, mode=9 (float unity), live_score=1233 x1024, live_abs=22903
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82157
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82157
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=743 x1024, abs=8188540, diff=5947625
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82505
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82505
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=141 x1024, abs=21901599, diff=3020567
+AUTO_HUNT: SUCCESS, stop_attempt=2, best_attempt=2, best_score=141 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+AUTO_VERIFY_OK: live_score=72 x1024, live_abs=3431768, hunt_best=141 x1024
+status: mode=9 (float unity), src=0, src_edges=38, ws=0, half=182544, full=182465, i2s_err=0, rearm_count=97, rearm_ok=97, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=77 x1024, abs=4095047, diff=309048, blocks=80
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82505, wait_ok=0, tmo_low=0, tmo_rise=97
+hunt: active=0, last_attempts=2, last_score=141 x1024, best_attempt=2, best_score=141 x1024, success=18, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=0, half=182650, full=182570, i2s_err=0, rearm_count=97, rearm_ok=97, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=250 x1024, abs=3776236, diff=925165, blocks=291
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82505, wait_ok=0, tmo_low=0, tmo_rise=97
+hunt: active=0, last_attempts=2, last_score=141 x1024, best_attempt=2, best_score=141 x1024, success=18, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=78 x1024, live_abs=2998717
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82640
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82640
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=886 x1024, abs=23900903, diff=20683801
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82588
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82588
+AUTO_HUNT_MANUAL: attempt=2/6, blocks=6/6, score=579 x1024, abs=6337455, diff=3583400
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82712
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82712
+AUTO_HUNT_MANUAL: attempt=3/6, blocks=6/6, score=54 x1024, abs=3940488, diff=208474
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=3, best_attempt=3, best_score=54 x1024
+status: mode=9 (float unity), src=0, src_edges=38, ws=0, half=182718, full=182636, i2s_err=0, rearm_count=100, rearm_ok=100, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=56 x1024, abs=647739, diff=35678, blocks=13
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82712, wait_ok=0, tmo_low=0, tmo_rise=100
+hunt: active=0, last_attempts=3, last_score=54 x1024, best_attempt=3, best_score=54 x1024, success=19, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=1, half=182824, full=182741, i2s_err=0, rearm_count=100, rearm_ok=100, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=60 x1024, abs=1672733, diff=98528, blocks=223
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82712, wait_ok=0, tmo_low=0, tmo_rise=100
+hunt: active=0, last_attempts=3, last_score=54 x1024, best_attempt=3, best_score=54 x1024, success=19, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=1, half=182929, full=182847, i2s_err=0, rearm_count=100, rearm_ok=100, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=42 x1024, abs=847247, diff=35504, blocks=434
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82712, wait_ok=0, tmo_low=0, tmo_rise=100
+hunt: active=0, last_attempts=3, last_score=54 x1024, best_attempt=3, best_score=54 x1024, success=19, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=1, half=183035, full=182952, i2s_err=0, rearm_count=100, rearm_ok=100, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=44 x1024, abs=822676, diff=35987, blocks=645
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82712, wait_ok=0, tmo_low=0, tmo_rise=100
+hunt: active=0, last_attempts=3, last_score=54 x1024, best_attempt=3, best_score=54 x1024, success=19, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=1, half=183140, full=183058, i2s_err=0, rearm_count=100, rearm_ok=100, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=506 x1024, abs=43116, diff=21337, blocks=856
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82712, wait_ok=0, tmo_low=0, tmo_rise=100
+hunt: active=0, last_attempts=3, last_score=54 x1024, best_attempt=3, best_score=54 x1024, success=19, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=218 x1024, live_abs=757216
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82401
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82401
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=59 x1024, abs=8872789, diff=517492
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=1, best_attempt=1, best_score=59 x1024
+status: mode=9 (float unity), src=0, src_edges=38, ws=1, half=183237, full=183154, i2s_err=0, rearm_count=101, rearm_ok=101, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=105 x1024, abs=408200, diff=42096, blocks=8
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82401, wait_ok=0, tmo_low=0, tmo_rise=101
+hunt: active=0, last_attempts=1, last_score=59 x1024, best_attempt=1, best_score=59 x1024, success=20, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=0, half=183342, full=183259, i2s_err=0, rearm_count=101, rearm_ok=101, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=673 x1024, abs=842137, diff=553588, blocks=218
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82401, wait_ok=0, tmo_low=0, tmo_rise=101
+hunt: active=0, last_attempts=1, last_score=59 x1024, best_attempt=1, best_score=59 x1024, success=20, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=0, half=183448, full=183364, i2s_err=0, rearm_count=101, rearm_ok=101, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=654 x1024, abs=299972, diff=191839, blocks=429
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82401, wait_ok=0, tmo_low=0, tmo_rise=101
+hunt: active=0, last_attempts=1, last_score=59 x1024, best_attempt=1, best_score=59 x1024, success=20, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=38, ws=0, half=183553, full=183469, i2s_err=0, rearm_count=101, rearm_ok=101, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=57 x1024, abs=1686779, diff=94252, blocks=639
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82401, wait_ok=0, tmo_low=0, tmo_rise=101
+hunt: active=0, last_attempts=1, last_score=59 x1024, best_attempt=1, best_score=59 x1024, success=20, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант, где показалось, что до ретри была мекунда чистого звука (возможно ошибаюсь), но звук в итоге - грязный:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+status: mode=9 (float unity), src=0, src_edges=40, ws=0, half=198425, full=198341, i2s_err=0, rearm_count=101, rearm_ok=101, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=0 x1024, abs=0, diff=0, blocks=30383
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82401, wait_ok=0, tmo_low=0, tmo_rise=101
+hunt: active=0, last_attempts=1, last_score=59 x1024, best_attempt=1, best_score=59 x1024, success=20, fail=9, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_ACTIVITY, hold=200 ms, boot_arm=1, trig=19, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+AUTO_HUNT: begin, mode=9 (float unity), live_score=977 x1024, live_abs=180222
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82943
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82943
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=744 x1024, abs=9654244, diff=7017216
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82993
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82993
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=1077 x1024, abs=21946794, diff=23102328
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82848
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82848
+AUTO_HUNT: attempt=3/6, blocks=6/6, score=1227 x1024, abs=25884406, diff=31035983
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82813
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82813
+AUTO_HUNT: attempt=4/6, blocks=6/6, score=1361 x1024, abs=25158510, diff=33443442
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82804
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82804
+AUTO_HUNT: attempt=5/6, blocks=6/6, score=902 x1024, abs=6837150, diff=6029212
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82930
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82930
+AUTO_HUNT: attempt=6/6, blocks=6/6, score=1261 x1024, abs=21312570, diff=26255754
+AUTO_HUNT: DONE(no threshold hit), last_attempt=6, best_attempt=1, best_score=744 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=40, ws=0, half=198473, full=198383, i2s_err=0, rearm_count=107, rearm_ok=107, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=1250 x1024, abs=4349675, diff=5312776, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82930, wait_ok=0, tmo_low=0, tmo_rise=107
+hunt: active=0, last_attempts=6, last_score=1261 x1024, best_attempt=1, best_score=744 x1024, success=20, fail=10, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=20, retry_trig=7, skip_mode=0, verify_ok=17, verify_fail=9, retry_left=2
+AUTO_VERIFY_FAIL: live_score=1285 x1024, live_abs=4368600, hunt_best=744 x1024, retry_left=2
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=1
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=1254 x1024, live_abs=4255298
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83092
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83092
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=899 x1024, abs=6149884, diff=5404842
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=83432
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=83432
+AUTO_HUNT_RETRY: attempt=2/6, blocks=6/6, score=141 x1024, abs=8291412, diff=1147076
+AUTO_HUNT_RETRY: SUCCESS, stop_attempt=2, best_attempt=2, best_score=141 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+AUTO_VERIFY_FAIL: live_score=783 x1024, live_abs=226708, hunt_best=141 x1024, retry_left=1
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=0
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=1234 x1024, live_abs=28700
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83327
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=83327
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=316 x1024, abs=9333626, diff=2886336
+AUTO_HUNT_RETRY: SUCCESS, stop_attempt=1, best_attempt=1, best_score=316 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=40, ws=0, half=198554, full=198462, i2s_err=0, rearm_count=110, rearm_ok=110, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=244 x1024, abs=1868440, diff=446193, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83327, wait_ok=0, tmo_low=0, tmo_rise=110
+hunt: active=0, last_attempts=1, last_score=316 x1024, best_attempt=1, best_score=316 x1024, success=22, fail=10, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=20, retry_trig=9, skip_mode=0, verify_ok=17, verify_fail=11, retry_left=0
+AUTO_VERIFY_OK: live_score=133 x1024, live_abs=3436648, hunt_best=316 x1024
+status: mode=9 (float unity), src=0, src_edges=40, ws=1, half=198659, full=198568, i2s_err=0, rearm_count=110, rearm_ok=110, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=493 x1024, abs=372314, diff=179455, blocks=220
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83327, wait_ok=0, tmo_low=0, tmo_rise=110
+hunt: active=0, last_attempts=1, last_score=316 x1024, best_attempt=1, best_score=316 x1024, success=22, fail=10, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=20, retry_trig=9, skip_mode=0, verify_ok=18, verify_fail=11, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=40, ws=1, half=198765, full=198673, i2s_err=0, rearm_count=110, rearm_ok=110, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=981 x1024, abs=649265, diff=622411, blocks=431
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83327, wait_ok=0, tmo_low=0, tmo_rise=110
+hunt: active=0, last_attempts=1, last_score=316 x1024, best_attempt=1, best_score=316 x1024, success=22, fail=10, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=20, retry_trig=9, skip_mode=0, verify_ok=18, verify_fail=11, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=40, ws=1, half=198871, full=198779, i2s_err=0, rearm_count=110, rearm_ok=110, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=353 x1024, abs=2281091, diff=788007, blocks=643
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=83327, wait_ok=0, tmo_low=0, tmo_rise=110
+hunt: active=0, last_attempts=1, last_score=316 x1024, best_attempt=1, best_score=316 x1024, success=22, fail=10, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=20, retry_trig=9, skip_mode=0, verify_ok=18, verify_fail=11, retry_left=0
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант, где ретри не вызывалось, звук в итоге - грязный:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+status: mode=9 (float unity), src=0, src_edges=44, ws=1, half=212700, full=212600, i2s_err=0, rearm_count=120, rearm_ok=120, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=0 x1024, abs=0, diff=0, blocks=1070
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82838, wait_ok=0, tmo_low=0, tmo_rise=120
+hunt: active=0, last_attempts=4, last_score=221 x1024, best_attempt=4, best_score=221 x1024, success=23, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_ACTIVITY, hold=200 ms, boot_arm=1, trig=21, retry_trig=10, skip_mode=0, verify_ok=19, verify_fail=12, retry_left=2
+AUTO_HUNT: begin, mode=9 (float unity), live_score=256 x1024, live_abs=1236832
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=83023
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=83023
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=553 x1024, abs=9672758, diff=5226571
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82895
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82895
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=206 x1024, abs=22471521, diff=4538846
+AUTO_HUNT: SUCCESS, stop_attempt=2, best_attempt=2, best_score=206 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+AUTO_VERIFY_OK: live_score=234 x1024, live_abs=3785161, hunt_best=206 x1024
+status: mode=9 (float unity), src=0, src_edges=44, ws=1, half=212780, full=212679, i2s_err=0, rearm_count=122, rearm_ok=122, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=1081 x1024, abs=4365035, diff=4611909, blocks=114
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82895, wait_ok=0, tmo_low=0, tmo_rise=122
+hunt: active=0, last_attempts=2, last_score=206 x1024, best_attempt=2, best_score=206 x1024, success=24, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=22, retry_trig=10, skip_mode=0, verify_ok=20, verify_fail=12, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=44, ws=1, half=212886, full=212784, i2s_err=0, rearm_count=122, rearm_ok=122, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=511 x1024, abs=4345628, diff=2169014, blocks=325
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82895, wait_ok=0, tmo_low=0, tmo_rise=122
+hunt: active=0, last_attempts=2, last_score=206 x1024, best_attempt=2, best_score=206 x1024, success=24, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=22, retry_trig=10, skip_mode=0, verify_ok=20, verify_fail=12, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=44, ws=1, half=212991, full=212889, i2s_err=0, rearm_count=122, rearm_ok=122, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=1041 x1024, abs=4329165, diff=4402026, blocks=536
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82895, wait_ok=0, tmo_low=0, tmo_rise=122
+hunt: active=0, last_attempts=2, last_score=206 x1024, best_attempt=2, best_score=206 x1024, success=24, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=22, retry_trig=10, skip_mode=0, verify_ok=20, verify_fail=12, retry_left=2
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант лечения грязного звука командой g, результат - идеально чистый звук с первого раза:
+status: mode=9 (float unity), src=0, src_edges=44, ws=1, half=220068, full=219967, i2s_err=0, rearm_count=122, rearm_ok=122, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=1329 x1024, abs=4198687, diff=5449990, blocks=14690
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82895, wait_ok=0, tmo_low=0, tmo_rise=122
+hunt: active=0, last_attempts=2, last_score=206 x1024, best_attempt=2, best_score=206 x1024, success=24, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=22, retry_trig=10, skip_mode=0, verify_ok=20, verify_fail=12, retry_left=2
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=1330 x1024, live_abs=4190965
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82986
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82986
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=771 x1024, abs=25334579, diff=19090601
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82744
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82744
+AUTO_HUNT_MANUAL: attempt=2/6, blocks=6/6, score=329 x1024, abs=11678308, diff=3761822
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82709
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82709
+AUTO_HUNT_MANUAL: attempt=3/6, blocks=6/6, score=260 x1024, abs=10365555, diff=2641071
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=3, best_attempt=3, best_score=260 x1024
+status: mode=9 (float unity), src=0, src_edges=44, ws=1, half=220173, full=220070, i2s_err=0, rearm_count=125, rearm_ok=125, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=223 x1024, abs=1145504, diff=250536, blocks=8
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82709, wait_ok=0, tmo_low=0, tmo_rise=125
+hunt: active=0, last_attempts=3, last_score=260 x1024, best_attempt=3, best_score=260 x1024, success=25, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=22, retry_trig=10, skip_mode=0, verify_ok=20, verify_fail=12, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=44, ws=1, half=220279, full=220175, i2s_err=0, rearm_count=125, rearm_ok=125, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=160 x1024, abs=1552406, diff=243523, blocks=219
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82709, wait_ok=0, tmo_low=0, tmo_rise=125
+hunt: active=0, last_attempts=3, last_score=260 x1024, best_attempt=3, best_score=260 x1024, success=25, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=22, retry_trig=10, skip_mode=0, verify_ok=20, verify_fail=12, retry_left=2
+status: mode=9 (float unity), src=0, src_edges=44, ws=0, half=220384, full=220281, i2s_err=0, rearm_count=125, rearm_ok=125, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179753 cyc (~2139 us), max_full=179751 cyc (~2139 us)
+live: score=348 x1024, abs=912717, diff=310798, blocks=430
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82709, wait_ok=0, tmo_low=0, tmo_rise=125
+hunt: active=0, last_attempts=3, last_score=260 x1024, best_attempt=3, best_score=260 x1024, success=25, fail=11, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=22, retry_trig=10, skip_mode=0, verify_ok=20, verify_fail=12, retry_left=2
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант, когда получился идеально чистый звук:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+status: mode=9 (float unity), src=0, src_edges=54, ws=1, half=242444, full=242325, i2s_err=0, rearm_count=147, rearm_ok=147, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=0 x1024, abs=0, diff=0, blocks=1687
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82610, wait_ok=0, tmo_low=0, tmo_rise=147
+hunt: active=0, last_attempts=2, last_score=127 x1024, best_attempt=2, best_score=127 x1024, success=30, fail=13, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_ACTIVITY, hold=200 ms, boot_arm=1, trig=26, retry_trig=13, skip_mode=0, verify_ok=24, verify_fail=15, retry_left=2
+AUTO_HUNT: begin, mode=9 (float unity), live_score=1081 x1024, live_abs=1460171
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82406
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82406
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=1360 x1024, abs=25376453, diff=33724941
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82369
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82369
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=522 x1024, abs=12355829, diff=6308632
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82475
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82475
+AUTO_HUNT: attempt=3/6, blocks=6/6, score=1004 x1024, abs=22383716, diff=21951378
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82321
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82321
+AUTO_HUNT: attempt=4/6, blocks=6/6, score=532 x1024, abs=9257149, diff=4809574
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82523
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82523
+AUTO_HUNT: attempt=5/6, blocks=6/6, score=69 x1024, abs=6172838, diff=417274
+AUTO_HUNT: SUCCESS, stop_attempt=5, best_attempt=5, best_score=69 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=54, ws=1, half=242504, full=242381, i2s_err=0, rearm_count=152, rearm_ok=152, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=44 x1024, abs=1276580, diff=55692, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82523, wait_ok=0, tmo_low=0, tmo_rise=152
+hunt: active=0, last_attempts=5, last_score=69 x1024, best_attempt=5, best_score=69 x1024, success=31, fail=13, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=27, retry_trig=13, skip_mode=0, verify_ok=24, verify_fail=15, retry_left=2
+AUTO_VERIFY_OK: live_score=219 x1024, live_abs=617942, hunt_best=69 x1024
+status: mode=9 (float unity), src=0, src_edges=54, ws=0, half=242610, full=242486, i2s_err=0, rearm_count=152, rearm_ok=152, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=86 x1024, abs=1759852, diff=147900, blocks=219
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82523, wait_ok=0, tmo_low=0, tmo_rise=152
+hunt: active=0, last_attempts=5, last_score=69 x1024, best_attempt=5, best_score=69 x1024, success=31, fail=13, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=27, retry_trig=13, skip_mode=0, verify_ok=25, verify_fail=15, retry_left=2
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант когда атохант и два ретри не справились, а лечить (g) пришлось 3 раза, до получения идеально чистого звука:
+SRC_MUTE = 1
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=250492, full=250357, i2s_err=0, rearm_count=166, rearm_ok=166, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=0 x1024, abs=0, diff=0, blocks=640
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82597, wait_ok=0, tmo_low=0, tmo_rise=166
+hunt: active=0, last_attempts=5, last_score=115 x1024, best_attempt=5, best_score=115 x1024, success=33, fail=14, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_HOLD, hold=200 ms, boot_arm=1, trig=29, retry_trig=14, skip_mode=0, verify_ok=27, verify_fail=16, retry_left=2
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+AUTO_HUNT: begin, mode=9 (float unity), live_score=1381 x1024, live_abs=3825434
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82859
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82859
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=936 x1024, abs=10561782, diff=9662936
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82564
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82564
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=689 x1024, abs=6207464, diff=4182493
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82539
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82539
+AUTO_HUNT: attempt=3/6, blocks=6/6, score=679 x1024, abs=3964808, diff=2630684
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82570
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82570
+AUTO_HUNT: attempt=4/6, blocks=6/6, score=1351 x1024, abs=21460027, diff=28321739
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82349
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82349
+AUTO_HUNT: attempt=5/6, blocks=6/6, score=776 x1024, abs=10166142, diff=7713018
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82457
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82457
+AUTO_HUNT: attempt=6/6, blocks=6/6, score=1357 x1024, abs=20733165, diff=27485279
+AUTO_HUNT: DONE(no threshold hit), last_attempt=6, best_attempt=3, best_score=679 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=250578, full=250437, i2s_err=0, rearm_count=172, rearm_ok=172, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=1385 x1024, abs=4050751, diff=5478832, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82457, wait_ok=0, tmo_low=0, tmo_rise=172
+hunt: active=0, last_attempts=6, last_score=1357 x1024, best_attempt=3, best_score=679 x1024, success=33, fail=15, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=30, retry_trig=14, skip_mode=0, verify_ok=27, verify_fail=16, retry_left=2
+AUTO_VERIFY_FAIL: live_score=1356 x1024, live_abs=4182695, hunt_best=679 x1024, retry_left=2
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=1
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=1420 x1024, live_abs=4202271
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82720
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82720
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=1385 x1024, abs=25091542, diff=33945709
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82624
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82624
+AUTO_HUNT_RETRY: attempt=2/6, blocks=6/6, score=1360 x1024, abs=25051516, diff=33284894
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82606
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82606
+AUTO_HUNT_RETRY: attempt=3/6, blocks=6/6, score=1277 x1024, abs=4716204, diff=5884638
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82899
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82899
+AUTO_HUNT_RETRY: attempt=4/6, blocks=6/6, score=626 x1024, abs=19475916, diff=11922585
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82755
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82755
+AUTO_HUNT_RETRY: attempt=5/6, blocks=6/6, score=1207 x1024, abs=24658649, diff=29073245
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82702
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82702
+AUTO_HUNT_RETRY: attempt=6/6, blocks=6/6, score=1382 x1024, abs=25193704, diff=34004828
+AUTO_HUNT_RETRY: DONE(no threshold hit), last_attempt=6, best_attempt=4, best_score=626 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=250636, full=250490, i2s_err=0, rearm_count=178, rearm_ok=178, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=1335 x1024, abs=4292536, diff=5600030, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82702, wait_ok=0, tmo_low=0, tmo_rise=178
+hunt: active=0, last_attempts=6, last_score=1382 x1024, best_attempt=4, best_score=626 x1024, success=33, fail=16, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=30, retry_trig=15, skip_mode=0, verify_ok=27, verify_fail=17, retry_left=1
+AUTO_VERIFY_FAIL: live_score=1353 x1024, live_abs=4304984, hunt_best=626 x1024, retry_left=1
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=0
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=1425 x1024, live_abs=4216739
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82851
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82851
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=1349 x1024, abs=25394319, diff=33460711
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82722
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82722
+AUTO_HUNT_RETRY: attempt=2/6, blocks=6/6, score=1377 x1024, abs=25680036, diff=34543847
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82686
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82686
+AUTO_HUNT_RETRY: attempt=3/6, blocks=6/6, score=748 x1024, abs=9810339, diff=7173933
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82907
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82907
+AUTO_HUNT_RETRY: attempt=4/6, blocks=6/6, score=279 x1024, abs=5383654, diff=1467362
+AUTO_HUNT_RETRY: SUCCESS, stop_attempt=4, best_attempt=4, best_score=279 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=250692, full=250543, i2s_err=0, rearm_count=182, rearm_ok=182, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=849 x1024, abs=3906715, diff=3239223, blocks=21
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82907, wait_ok=0, tmo_low=0, tmo_rise=182
+hunt: active=0, last_attempts=4, last_score=279 x1024, best_attempt=4, best_score=279 x1024, success=34, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=18, retry_left=0
+AUTO_VERIFY_FAIL: live_score=605 x1024, live_abs=3514017, hunt_best=279 x1024, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=250797, full=250648, i2s_err=0, rearm_count=182, rearm_ok=182, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=508 x1024, abs=3061414, diff=1521226, blocks=231
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82907, wait_ok=0, tmo_low=0, tmo_rise=182
+hunt: active=0, last_attempts=4, last_score=279 x1024, best_attempt=4, best_score=279 x1024, success=34, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=250902, full=250754, i2s_err=0, rearm_count=182, rearm_ok=182, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=697 x1024, abs=2191647, diff=1491860, blocks=442
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82907, wait_ok=0, tmo_low=0, tmo_rise=182
+hunt: active=0, last_attempts=4, last_score=279 x1024, best_attempt=4, best_score=279 x1024, success=34, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=251007, full=250859, i2s_err=0, rearm_count=182, rearm_ok=182, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=300 x1024, abs=1211490, diff=355846, blocks=653
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82907, wait_ok=0, tmo_low=0, tmo_rise=182
+hunt: active=0, last_attempts=4, last_score=279 x1024, best_attempt=4, best_score=279 x1024, success=34, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=251113, full=250964, i2s_err=0, rearm_count=182, rearm_ok=182, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=288 x1024, abs=673069, diff=189347, blocks=864
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82907, wait_ok=0, tmo_low=0, tmo_rise=182
+hunt: active=0, last_attempts=4, last_score=279 x1024, best_attempt=4, best_score=279 x1024, success=34, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=235 x1024, live_abs=461402
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82873
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82873
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=246 x1024, abs=4954030, diff=1193443
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=1, best_attempt=1, best_score=246 x1024
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=251206, full=251056, i2s_err=0, rearm_count=183, rearm_ok=183, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=308 x1024, abs=148740, diff=44844, blocks=28
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82873, wait_ok=0, tmo_low=0, tmo_rise=183
+hunt: active=0, last_attempts=1, last_score=246 x1024, best_attempt=1, best_score=246 x1024, success=35, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=251311, full=251161, i2s_err=0, rearm_count=183, rearm_ok=183, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=360 x1024, abs=366658, diff=128945, blocks=238
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82873, wait_ok=0, tmo_low=0, tmo_rise=183
+hunt: active=0, last_attempts=1, last_score=246 x1024, best_attempt=1, best_score=246 x1024, success=35, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=251416, full=251267, i2s_err=0, rearm_count=183, rearm_ok=183, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=32 x1024, abs=3332174, diff=105044, blocks=449
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82873, wait_ok=0, tmo_low=0, tmo_rise=183
+hunt: active=0, last_attempts=1, last_score=246 x1024, best_attempt=1, best_score=246 x1024, success=35, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=251522, full=251372, i2s_err=0, rearm_count=183, rearm_ok=183, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=81 x1024, abs=1147758, diff=90935, blocks=660
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82873, wait_ok=0, tmo_low=0, tmo_rise=183
+hunt: active=0, last_attempts=1, last_score=246 x1024, best_attempt=1, best_score=246 x1024, success=35, fail=16, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=78 x1024, live_abs=712983
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82441
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82441
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=1327 x1024, abs=21718803, diff=28163580
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82516
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82516
+AUTO_HUNT_MANUAL: attempt=2/6, blocks=6/6, score=1310 x1024, abs=25689995, diff=32887445
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82496
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82496
+AUTO_HUNT_MANUAL: attempt=3/6, blocks=6/6, score=1084 x1024, abs=24762454, diff=26229593
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82516
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82516
+AUTO_HUNT_MANUAL: attempt=4/6, blocks=6/6, score=1257 x1024, abs=26091410, diff=32053557
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82453
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82453
+AUTO_HUNT_MANUAL: attempt=5/6, blocks=6/6, score=1336 x1024, abs=25290019, diff=33009343
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82489
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82489
+AUTO_HUNT_MANUAL: attempt=6/6, blocks=6/6, score=404 x1024, abs=24747537, diff=9768939
+AUTO_HUNT_MANUAL: DONE(no threshold hit), last_attempt=6, best_attempt=6, best_score=404 x1024
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=251594, full=251440, i2s_err=0, rearm_count=189, rearm_ok=189, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=78 x1024, abs=3521187, diff=269374, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82489, wait_ok=0, tmo_low=0, tmo_rise=189
+hunt: active=0, last_attempts=6, last_score=404 x1024, best_attempt=6, best_score=404 x1024, success=35, fail=17, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=251700, full=251546, i2s_err=0, rearm_count=189, rearm_ok=189, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=367 x1024, abs=2168799, diff=779098, blocks=220
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82489, wait_ok=0, tmo_low=0, tmo_rise=189
+hunt: active=0, last_attempts=6, last_score=404 x1024, best_attempt=6, best_score=404 x1024, success=35, fail=17, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=251806, full=251652, i2s_err=0, rearm_count=189, rearm_ok=189, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=319 x1024, abs=2632900, diff=821406, blocks=432
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82489, wait_ok=0, tmo_low=0, tmo_rise=189
+hunt: active=0, last_attempts=6, last_score=404 x1024, best_attempt=6, best_score=404 x1024, success=35, fail=17, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=33 x1024, live_abs=6596090
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82223
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82223
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=152 x1024, abs=13844430, diff=2057835
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=1, best_attempt=1, best_score=152 x1024
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=251899, full=251744, i2s_err=0, rearm_count=190, rearm_ok=190, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=266 x1024, abs=845161, diff=220037, blocks=146
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82223, wait_ok=0, tmo_low=0, tmo_rise=190
+hunt: active=0, last_attempts=1, last_score=152 x1024, best_attempt=1, best_score=152 x1024, success=36, fail=17, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=1, half=252005, full=251849, i2s_err=0, rearm_count=190, rearm_ok=190, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=249 x1024, abs=1099494, diff=267641, blocks=357
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82223, wait_ok=0, tmo_low=0, tmo_rise=190
+hunt: active=0, last_attempts=1, last_score=152 x1024, best_attempt=1, best_score=152 x1024, success=36, fail=17, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=60, ws=0, half=252110, full=251955, i2s_err=0, rearm_count=190, rearm_ok=190, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179752 cyc (~2139 us)
+live: score=556 x1024, abs=1504171, diff=817471, blocks=568
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82223, wait_ok=0, tmo_low=0, tmo_rise=190
+hunt: active=0, last_attempts=1, last_score=152 x1024, best_attempt=1, best_score=152 x1024, success=36, fail=17, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=30, retry_trig=16, skip_mode=0, verify_ok=27, verify_fail=19, retry_left=0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Вариант когда атохант и два ретри не справились до конца (звук был почти чистым но было лёгкое шипение), а лечить (g) пришлось 3 раза, до получения идеально чистого звука:
+SRC_MUTE = 1
+status: mode=9 (float unity), src=1, src_edges=65, ws=0, half=270005, full=269838, i2s_err=0, rearm_count=202, rearm_ok=202, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=0 x1024, abs=0, diff=0, blocks=4437
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82289, wait_ok=0, tmo_low=0, tmo_rise=202
+hunt: active=0, last_attempts=6, last_score=934 x1024, best_attempt=3, best_score=353 x1024, success=37, fail=18, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_RELEASE, hold=200 ms, boot_arm=1, trig=32, retry_trig=16, skip_mode=0, verify_ok=29, verify_fail=19, retry_left=2
+SRC_MUTE = 0
+AUTO_HUNT_ARM: hold=200 ms
+AUTO_HUNT_WAIT_ACTIVITY: score=0 x1024, abs=0
+AUTO_HUNT: begin, mode=9 (float unity), live_score=1181 x1024, live_abs=10869
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82572
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82572
+AUTO_HUNT: attempt=1/6, blocks=6/6, score=1362 x1024, abs=2541947, diff=3382498
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82484
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82484
+AUTO_HUNT: attempt=2/6, blocks=6/6, score=1423 x1024, abs=5336981, diff=7419836
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82482
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82482
+AUTO_HUNT: attempt=3/6, blocks=6/6, score=1368 x1024, abs=5236763, diff=6998245
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82524
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82524
+AUTO_HUNT: attempt=4/6, blocks=6/6, score=1332 x1024, abs=3991672, diff=5193381
+AUTO_HUNT: begin, ws_now=1
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82419
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82419
+AUTO_HUNT: attempt=5/6, blocks=6/6, score=1335 x1024, abs=5525284, diff=7207208
+AUTO_HUNT: begin, ws_now=0
+AUTO_HUNT: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82487
+AUTO_HUNT: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82487
+AUTO_HUNT: attempt=6/6, blocks=6/6, score=1357 x1024, abs=2772982, diff=3675712
+AUTO_HUNT: DONE(no threshold hit), last_attempt=6, best_attempt=4, best_score=1332 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=270122, full=269950, i2s_err=0, rearm_count=208, rearm_ok=208, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1371 x1024, abs=341461, diff=457478, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=1, timeout_stage=wait_rise, polls=82487, wait_ok=0, tmo_low=0, tmo_rise=208
+hunt: active=0, last_attempts=6, last_score=1357 x1024, best_attempt=4, best_score=1332 x1024, success=37, fail=19, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=33, retry_trig=16, skip_mode=0, verify_ok=29, verify_fail=19, retry_left=2
+AUTO_VERIFY_FAIL: live_score=1325 x1024, live_abs=211308, hunt_best=1332 x1024, retry_left=2
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=1
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=1368 x1024, live_abs=171660
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82879
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82879
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=1351 x1024, abs=20828010, diff=27487985
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82671
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82671
+AUTO_HUNT_RETRY: attempt=2/6, blocks=6/6, score=1365 x1024, abs=24552669, diff=32737809
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82753
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82753
+AUTO_HUNT_RETRY: attempt=3/6, blocks=6/6, score=1398 x1024, abs=9554505, diff=13044621
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82735
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82735
+AUTO_HUNT_RETRY: attempt=4/6, blocks=6/6, score=1369 x1024, abs=22022135, diff=29448754
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82630
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82630
+AUTO_HUNT_RETRY: attempt=5/6, blocks=6/6, score=654 x1024, abs=10008521, diff=6393907
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82868
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82868
+AUTO_HUNT_RETRY: attempt=6/6, blocks=6/6, score=1301 x1024, abs=21934624, diff=27868162
+AUTO_HUNT_RETRY: DONE(no threshold hit), last_attempt=6, best_attempt=5, best_score=654 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=270180, full=270003, i2s_err=0, rearm_count=214, rearm_ok=214, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1330 x1024, abs=3986887, diff=5178290, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82868, wait_ok=0, tmo_low=0, tmo_rise=214
+hunt: active=0, last_attempts=6, last_score=1301 x1024, best_attempt=5, best_score=654 x1024, success=37, fail=20, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=33, retry_trig=17, skip_mode=0, verify_ok=29, verify_fail=20, retry_left=1
+AUTO_VERIFY_FAIL: live_score=1430 x1024, live_abs=3875452, hunt_best=654 x1024, retry_left=1
+AUTO_HUNT_RETRY_ARM: delay=120 ms, retry_left=0
+AUTO_HUNT_RETRY: begin, mode=9 (float unity), live_score=1358 x1024, live_abs=4134245
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82834
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82834
+AUTO_HUNT_RETRY: attempt=1/6, blocks=6/6, score=852 x1024, abs=8012098, diff=6670434
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82880
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82880
+AUTO_HUNT_RETRY: attempt=2/6, blocks=6/6, score=1028 x1024, abs=22303230, diff=22401059
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82709
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82709
+AUTO_HUNT_RETRY: attempt=3/6, blocks=6/6, score=1255 x1024, abs=25873426, diff=31731503
+AUTO_HUNT_RETRY: begin, ws_now=0
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82622
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82622
+AUTO_HUNT_RETRY: attempt=4/6, blocks=6/6, score=1348 x1024, abs=24828609, diff=32706220
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82667
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=1, polls=82667
+AUTO_HUNT_RETRY: attempt=5/6, blocks=6/6, score=673 x1024, abs=9216784, diff=6060697
+AUTO_HUNT_RETRY: begin, ws_now=1
+AUTO_HUNT_RETRY: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82875
+AUTO_HUNT_RETRY: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82875
+AUTO_HUNT_RETRY: attempt=6/6, blocks=6/6, score=1309 x1024, abs=21833742, diff=27920181
+AUTO_HUNT_RETRY: DONE(no threshold hit), last_attempt=6, best_attempt=5, best_score=673 x1024
+AUTO_VERIFY_ARM: delay=180 ms
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=270238, full=270056, i2s_err=0, rearm_count=220, rearm_ok=220, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1457 x1024, abs=4188536, diff=5961428, blocks=9
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82875, wait_ok=0, tmo_low=0, tmo_rise=220
+hunt: active=0, last_attempts=6, last_score=1309 x1024, best_attempt=5, best_score=673 x1024, success=37, fail=21, last_hunt_ok=0
+auto_hunt: en=1, state=WAIT_VERIFY, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=21, retry_left=0
+AUTO_VERIFY_FAIL: live_score=1375 x1024, live_abs=4117678, hunt_best=673 x1024, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=270343, full=270162, i2s_err=0, rearm_count=220, rearm_ok=220, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1340 x1024, abs=4147890, diff=5429525, blocks=220
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82875, wait_ok=0, tmo_low=0, tmo_rise=220
+hunt: active=0, last_attempts=6, last_score=1309 x1024, best_attempt=5, best_score=673 x1024, success=37, fail=21, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=270449, full=270267, i2s_err=0, rearm_count=220, rearm_ok=220, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1308 x1024, abs=4239761, diff=5417084, blocks=431
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82875, wait_ok=0, tmo_low=0, tmo_rise=220
+hunt: active=0, last_attempts=6, last_score=1309 x1024, best_attempt=5, best_score=673 x1024, success=37, fail=21, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=270554, full=270373, i2s_err=0, rearm_count=220, rearm_ok=220, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1329 x1024, abs=4136670, diff=5370854, blocks=642
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82875, wait_ok=0, tmo_low=0, tmo_rise=220
+hunt: active=0, last_attempts=6, last_score=1309 x1024, best_attempt=5, best_score=673 x1024, success=37, fail=21, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=270660, full=270478, i2s_err=0, rearm_count=220, rearm_ok=220, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1330 x1024, abs=4243133, diff=5514267, blocks=853
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=wait_rise, polls=82875, wait_ok=0, tmo_low=0, tmo_rise=220
+hunt: active=0, last_attempts=6, last_score=1309 x1024, best_attempt=5, best_score=673 x1024, success=37, fail=21, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=270765, full=270584, i2s_err=0, rearm_count=220, rearm_ok=220, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=1360 x1024, abs=4191658, diff=5569660, blocks=1064
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=0, after_dma=0, timeout_stage=waitg
+_rise, polls=82875, wait_ok=0, tmo_low=0, tmo_rise=220
+hunt: active=0, last_attempts=6, last_score=1309 x1024, best_attempt=5, best_score=673 x1024, success=37, fail=21, last_hunt_ok=0
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=1288 x1024, live_abs=4125495
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82840
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82840
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=1387 x1024, abs=24598789, diff=33320258
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82479
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82479
+AUTO_HUNT_MANUAL: attempt=2/6, blocks=6/6, score=461 x1024, abs=24544466, diff=11051273
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82572
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82572
+AUTO_HUNT_MANUAL: attempt=3/6, blocks=6/6, score=269 x1024, abs=20128261, diff=5304166
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=3, best_attempt=3, best_score=269 x1024
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=270834, full=270649, i2s_err=0, rearm_count=223, rearm_ok=223, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=135 x1024, abs=3236699, diff=428626, blocks=101
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=223
+hunt: active=0, last_attempts=3, last_score=269 x1024, best_attempt=3, best_score=269 x1024, success=38, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=270939, full=270755, i2s_err=0, rearm_count=223, rearm_ok=223, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=977 x1024, abs=4367185, diff=4167602, blocks=312
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=223
+hunt: active=0, last_attempts=3, last_score=269 x1024, best_attempt=3, best_score=269 x1024, success=38, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=271045, full=270860, i2s_err=0, rearm_count=223, rearm_ok=223, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=362 x1024, abs=4185179, diff=1480810, blocks=523
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82572, wait_ok=0, tmo_low=0, tmo_rise=223
+hunt: active=0, last_attempts=3, last_score=269 x1024, best_attempt=3, best_score=269 x1024, success=38, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=154 x1024, live_abs=2444771
+AUTO_HUNT_MANUAL: begin, ws_now=0
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82654
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82654
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=140 x1024, abs=5834020, diff=801155
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=1, best_attempt=1, best_score=140 x1024
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=271137, full=270953, i2s_err=0, rearm_count=224, rearm_ok=224, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=226 x1024, abs=747463, diff=165464, blocks=132
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82654, wait_ok=0, tmo_low=0, tmo_rise=224
+hunt: active=0, last_attempts=1, last_score=140 x1024, best_attempt=1, best_score=140 x1024, success=39, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=271243, full=271058, i2s_err=0, rearm_count=224, rearm_ok=224, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=236 x1024, abs=966867, diff=223143, blocks=343
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82654, wait_ok=0, tmo_low=0, tmo_rise=224
+hunt: active=0, last_attempts=1, last_score=140 x1024, best_attempt=1, best_score=140 x1024, success=39, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=60 x1024, live_abs=1143125
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82994
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82994
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=109 x1024, abs=6514659, diff=696410
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=1, best_attempt=1, best_score=109 x1024
+status: mode=9 (float unity), src=0, src_edges=66, ws=0, half=271335, full=271151, i2s_err=0, rearm_count=225, rearm_ok=225, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=306 x1024, abs=763200, diff=228397, blocks=40
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82994, wait_ok=0, tmo_low=0, tmo_rise=225
+hunt: active=0, last_attempts=1, last_score=109 x1024, best_attempt=1, best_score=109 x1024, success=40, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=271441, full=271256, i2s_err=0, rearm_count=225, rearm_ok=225, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=93 x1024, abs=1072903, diff=97769, blocks=251
+wsdiag: aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, before_dma=1, after_dma=0, timeout_stage=wait_rise, polls=82994, wait_ok=0, tmo_low=0, tmo_rise=225
+hunt: active=0, last_attempts=1, last_score=109 x1024, best_attempt=1, best_score=109 x1024, success=40, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+g
+AUTO_HUNT_MANUAL: begin, mode=9 (float unity), live_score=89 x1024, live_abs=353829
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82249
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82249
+AUTO_HUNT_MANUAL: attempt=1/6, blocks=6/6, score=1231 x1024, abs=21126742, diff=25408043
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82475
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=0, polls=82475
+AUTO_HUNT_MANUAL: attempt=2/6, blocks=6/6, score=740 x1024, abs=7455152, diff=5388439
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=1, saw_low=1, saw_rise=0, polls=82700
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=1, saw_low=1, saw_rise=0, ws_before_dma=0, ws_after_dma=0, polls=82700
+AUTO_HUNT_MANUAL: attempt=3/6, blocks=6/6, score=1062 x1024, abs=22260073, diff=23095393
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82409
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82409
+AUTO_HUNT_MANUAL: attempt=4/6, blocks=6/6, score=564 x1024, abs=8593636, diff=4736198
+AUTO_HUNT_MANUAL: begin, ws_now=1
+AUTO_HUNT_MANUAL: WS edge timeout, fallback immediate start, stage=wait_rise, before_wait=0, saw_low=1, saw_rise=0, polls=82751
+AUTO_HUNT_MANUAL: OK, aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, ws_before_dma=1, ws_after_dma=1, polls=82751
+AUTO_HUNT_MANUAL: attempt=5/6, blocks=6/6, score=271 x1024, abs=5124855, diff=1361221
+AUTO_HUNT_MANUAL: SUCCESS, stop_attempt=5, best_attempt=5, best_score=271 x1024
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=271531, full=271343, i2s_err=0, rearm_count=230, rearm_ok=230, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=217 x1024, abs=781038, diff=165772, blocks=8
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82751, wait_ok=0, tmo_low=0, tmo_rise=230
+hunt: active=0, last_attempts=5, last_score=271 x1024, best_attempt=5, best_score=271 x1024, success=41, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
+status: mode=9 (float unity), src=0, src_edges=66, ws=1, half=271637, full=271448, i2s_err=0, rearm_count=230, rearm_ok=230, rearm_fail=0
+peaks: rx=32768, tx=32767
+timing: max_half=179755 cyc (~2139 us), max_full=179755 cyc (~2139 us)
+live: score=52 x1024, abs=1478269, diff=75571, blocks=219
+wsdiag: aligned=0, fallback=1, before_wait=0, saw_low=1, saw_rise=0, before_dma=1, after_dma=1, timeout_stage=wait_rise, polls=82751, wait_ok=0, tmo_low=0, tmo_rise=230
+hunt: active=0, last_attempts=5, last_score=271 x1024, best_attempt=5, best_score=271 x1024, success=41, fail=21, last_hunt_ok=1
+auto_hunt: en=1, state=IDLE, hold=200 ms, boot_arm=1, trig=33, retry_trig=18, skip_mode=0, verify_ok=29, verify_fail=22, retry_left=0
