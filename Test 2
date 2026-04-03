@@ -1,0 +1,78 @@
+
+=== OMNIA-V STM MASTER PASS/TONE TEST V2 ===
+48k / 16bit / stereo / full-duplex DMA
+PA8/SRC_MUTE ignored in this build
+Commands:
+  help           - this help
+  status         - print status
+  pass           - RX passthrough mode
+  tone on        - internal tone to DAC
+  tone off       - back to passthrough
+  gain N         - gain in % (0..200)
+  restart        - re[00]st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=95/95 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=188/188 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=281/281 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=374/374 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=467/467 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=560/560 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=653/653 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=746/746 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=839/839 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=932/932 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1025/1025 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1118/1118 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1211/1211 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1304/1304 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1397/1397 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1490/1490 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1583/1583 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1676/1676 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1769/1769 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1862/1862 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=1955/1955 err=0
+tone off
+Unknown cmd: tone of
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2048/2048 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2141/2141 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2234/2234 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2327/2327 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2420/2420 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2513/2513 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2606/2606 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2699/2699 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2792/2792 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2885/2885 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=2978/2978 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3071/3071 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3164/3164 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3257/3257 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3350/3350 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3443/3443 err=0
+pass
+MODE: pass
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3536/3536 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3629/3629 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3722/3722 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3815/3815 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=3908/3908 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4001/4001 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4094/4094 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4187/4187 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4280/4280 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4373/4373 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4466/4466 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4559/4559 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4652/4652 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4745/4745 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4838/4838 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=4931/4931 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5024/5024 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5117/5117 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5210/5210 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5303/5303 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5396/5396 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5489/5489 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5582/5582 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5675/5675 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5768/5768 err=0
+st run=1 mode=pass gain=100% rxpk=32768 txpk=32768 cb=5861/5861 err=0
