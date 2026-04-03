@@ -1,0 +1,189 @@
+=== OMNIA-V STM MASTER BASELINE V1 ===
+48k / 16bit / stereo / full-duplex DMA
+SRC_MUTE initial = 1
+Commands:
+  help           - this help
+  status         - print status
+  mute           - soft mute
+  unmute         - soft unmute
+  gain N         - gain in % (0..200)
+  fade N         - fade time ms (1..1000)
+  restart        - restart I2S DMA
+ [00]SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32766 txpk=16384 cb=96/95 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=190/190 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=284/284 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=67%->100% ramp=1408 rxpk=32768 txpk=32768 cb=379/378 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=473/472 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=567/566 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=661/660 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=755/755 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=849/849 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=943/943 err=0 fade=12
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1038/1037 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1132/1131 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1226/1225 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1320/1320 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=55%->100% ramp=1920 rxpk=32768 txpk=32768 cb=1414/1414 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1508/1508 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1602/1602 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1697/1696 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1791/1790 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1885/1884 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=1979/1979 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=2073/2073 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=2167/2167 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=55%->100% ramp=1920 rxpk=32768 txpk=32768 cb=2262/2261 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=2356/2355 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=2450/2449 err=0 fade=12
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+SRC_MUTE: 1 -> soft mute
+SRC_MUTE: 0 -> soft unmute
+st run=1 src=0 muted=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32768 cb=2544/2543 err=0 fade=12
