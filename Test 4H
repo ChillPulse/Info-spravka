@@ -1,0 +1,256 @@
+
+=== OMNIA-V STM MASTER BASELINE V4H ===
+48k / 16bit / stereo / full-duplex DMA
+UART: PA2/PA3 115200
+SRC auto=1 inv=0 raw=1
+Cmds:
+  h      - help
+  s      - status
+  m      - mute
+  u      - unmute
+  gN     - gain, ex: g100 g50
+  fN     - fade ms, ex: f30 f150
+  a0/a1  - auto SRC_MUTE off/on
+  i0/i1  - SRC_MUTE invert off/on
+  r      - restart I2S DMA
+  z      - clea[00]SRC UNMUTE raw=0 inv=0
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=0 cb=95/95 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=0 cb=188/188 err=0 fade=12
+SRC MUTE raw=1 inv=0
+st run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=0 cb=281/281 err=0 fade=12
+SRC UNMUTE raw=0 inv=0
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=0 cb=374/374 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=19732 cb=467/467 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23194 cb=560/560 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23194 cb=653/653 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=746/746 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=839/839 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=932/932 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1025/1025 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1118/1118 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1211/1211 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1304/1304 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1397/1397 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1490/1490 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1583/1583 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1676/1676 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1769/1769 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1862/1862 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=1955/1955 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2048/2048 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2141/2141 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2234/2234 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2327/2327 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2420/2420 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2513/2513 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2606/2606 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2699/2699 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2792/2792 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2885/2885 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=2978/2978 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3071/3071 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3164/3164 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3257/3257 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3350/3350 err=0 fade=12
+u
+UNMUTE 35 ms
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3443/3443 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3536/3536 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3629/3629 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3722/3722 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3815/3815 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=3908/3908 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4001/4001 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4094/4094 err=0 fade=12
+m
+MUTE 12 ms
+st run=1 auto=1 inv=0 raw=0 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=4187/4187 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=4280/4280 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=4373/4373 err=0 fade=12
+u
+UNMUTE 35 ms
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4466/4466 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4559/4559 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4652/4652 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4745/4745 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4838/4838 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=4931/4931 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5024/5024 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5117/5117 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5210/5210 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5303/5303 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5396/5396 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5489/5489 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5582/5582 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5675/5675 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5768/5768 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5861/5861 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=5954/5954 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6047/6047 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6140/6140 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6233/6233 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6326/6326 err=0 fade=12
+a1
+AUTO 1
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6419/6419 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6512/6512 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6605/6605 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6698/6698 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6791/6791 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6884/6884 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=6977/6977 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7070/7070 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7163/7163 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7256/7256 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7350/7349 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7443/7442 err=0 fade=12
+SRC MUTE raw=1 inv=0
+st run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=7536/7535 err=0 fade=12
+SRC UNMUTE raw=0 inv=0
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7629/7628 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7722/7721 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7815/7814 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=7908/7907 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8001/8000 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8094/8093 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8187/8186 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8280/8279 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8373/8372 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8466/8465 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8559/8558 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8652/8651 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8745/8744 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8838/8837 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=8931/8930 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9024/9023 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9117/9116 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9210/9209 err=0 fade=12
+SRC MUTE raw=1 inv=0
+st run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=9303/9302 err=0 fade=12
+SRC UNMUTE raw=0 inv=0
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9396/9395 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9489/9488 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9582/9581 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9675/9674 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9768/9767 err=0 fade=12
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=15%->100% ramp=1424 rxpk=32768 txpk=23197 cb=9861/9860 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=9954/9953 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10047/10046 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10140/10139 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10233/10232 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10326/10325 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10419/10418 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10512/10511 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10605/10604 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10698/10697 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10791/10790 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10884/10883 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=10977/10976 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11070/11069 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11163/11162 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11256/11255 err=0 fade=12
+a0
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11349/11348 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11442/11441 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11535/11534 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11628/11627 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11721/11720 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11814/11813 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11907/11906 err=0 fade=12
+st run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12000/11999 err=0 fade=12
+a0
+AUTO 0
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12093/12092 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12186/12185 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12279/12278 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12372/12371 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12465/12464 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12558/12557 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12651/12650 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12744/12743 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12837/12836 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12930/12929 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13023/13022 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13116/13115 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13209/13208 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13302/13301 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13395/13394 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13488/13487 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13581/13580 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13674/13673 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13767/13766 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13860/13859 err=0 fade=12
+g50
+GAIN 50%
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=50%->50% ramp=0 rxpk=32768 txpk=23197 cb=13953/13952 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=50%->50% ramp=0 rxpk=32768 txpk=23197 cb=14046/14045 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=50%->50% ramp=0 rxpk=32768 txpk=23197 cb=14139/14138 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=50%->50% ramp=0 rxpk=32768 txpk=23197 cb=14232/14231 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=50%->50% ramp=0 rxpk=32768 txpk=23197 cb=14325/14324 err=0 fade=12
+g1
+GAIN 1%
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=14418/14417 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=14511/14510 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=14604/14603 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=14697/14696 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=14790/14789 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=0%->0% ramp=0 rxpk=32768 txpk=23197 cb=14883/14882 err=0 fade=12
+g30
+GAIN 30%
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=29%->29% ramp=0 rxpk=32768 txpk=23197 cb=14976/14975 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=29%->29% ramp=0 rxpk=32768 txpk=23197 cb=15069/15068 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=29%->29% ramp=0 rxpk=32768 txpk=23197 cb=15162/15162 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=29%->29% ramp=0 rxpk=32768 txpk=23197 cb=15255/15255 err=0 fade=12
+g100
+GAIN 100%
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15348/15348 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15441/15441 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15534/15534 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15627/15627 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15720/15720 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15813/15813 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15906/15906 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=15999/15999 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16092/16092 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16185/16185 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16278/16278 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16371/16371 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16464/16464 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16557/16557 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16650/16650 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16743/16743 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16836/16836 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=16929/16929 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17022/17022 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17115/17115 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17208/17208 err=0 fade=12
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17301/17301 err=0 fade=12
+f30
+FADE 1 ms
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17394/17394 err=0 fade=1
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17487/17487 err=0 fade=1
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17580/17580 err=0 fade=1
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17673/17673 err=0 fade=1
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17766/17766 err=0 fade=1
+f150
+FADE 150 ms
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17859/17859 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=17952/17952 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18045/18045 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18138/18138 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18231/18231 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18324/18324 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18417/18417 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18510/18510 err=0 fade=150
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18603/18603 err=0 fade=150
+f30
+FADE 30 ms
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18696/18696 err=0 fade=30
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18789/18789 err=0 fade=30
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18882/18882 err=0 fade=30
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=18975/18975 err=0 fade=30
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=19068/19068 err=0 fade=30
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=19161/19161 err=0 fade=30
+st run=1 auto=0 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=19254/19254 err=0 fade=30
