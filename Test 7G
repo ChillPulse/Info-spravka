@@ -1,0 +1,257 @@
+
+=== OMNIA-V STM MASTER BASELINE V7G ===
+I2S master full-duplex DMA
+CLK HSE25
+UART PA2/PA3 115200
+SRC auto=1 inv=0 raw=1 sr=48000 ratepin=1
+Type h for help
+SRC UNMUTE raw=0 inv=0
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+RATE PIN raw=0 => 44100
+RATE REQ 44100
+RATE OK 44100
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+s1000
+STATUS AUTO 1000 ms
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=2481/2481 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=2568/2568 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=2655/2655 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=2742/2741 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=2829/2828 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=2916/2915 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3002/3002 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3089/3089 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3176/3175 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3263/3262 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3350/3349 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3436/3436 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3523/3523 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3610/3609 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3697/3696 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3784/3783 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3870/3870 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=3957/3957 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4044/4043 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4131/4130 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4218/4217 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4304/4304 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4391/4391 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4478/4478 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4565/4564 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4652/4651 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4738/4738 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4825/4825 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4912/4912 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=4999/4998 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=5086/5085 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=5172/5172 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=5259/5259 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=5346/5346 err=0 fade=12 sp=1000
+s0
+STATUS AUTO 0 ms
+s1000
+STATUS AUTO 1000 ms
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9372/9372 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9459/9458 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9546/9545 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9633/9632 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9719/9719 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9806/9806 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9893/9892 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=9980/9979 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10067/10066 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23196 cb=10153/10153 err=0 fade=12 sp=1000
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10240/10240 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10327/10326 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10414/10413 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10501/10500 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10587/10587 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23196 cb=10674/10674 err=0 fade=12 sp=1000
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10761/10761 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=10848/10847 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=23196 cb=10935/10934 err=0 fade=12 sp=1000
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11021/11021 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11108/11108 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11195/11195 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11282/11281 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11369/11368 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11455/11455 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11542/11542 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11629/11629 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+RATE PIN raw=1 => 48000
+RATE REQ 48000
+RATE OK 48000
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23196 cb=11717/11716 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11810/11810 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11904/11904 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=11998/11997 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12092/12091 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12185/12185 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12279/12279 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12373/12372 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12467/12466 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+RATE PIN raw=0 => 44100
+RATE REQ 44100
+RATE OK 44100
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12558/12558 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12645/12645 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12732/12731 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12819/12818 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12906/12905 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=12992/12992 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13079/13079 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=23197 cb=13166/13166 err=0 fade=12 sp=1000
+RATE PIN raw=1 => 48000
+RATE REQ 48000
+RATE OK 48000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=13256/13255 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=13349/13349 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+SRC MUTE raw=1 inv=0
+SRC UNMUTE raw=0 inv=0
+SRC MUTE raw=1 inv=0
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=1 smute=1 gain=100%->0% ramp=576 rxpk=32768 txpk=32249 cb=13443/13443 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=13537/13536 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=13631/13630 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=13724/13724 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=13818/13818 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=13912/13911 err=0 fade=12 sp=1000
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14006/14005 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14099/14099 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14193/14193 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14287/14286 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14381/14380 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14474/14474 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=1 smute=1 gain=0%->0% ramp=0 rxpk=32768 txpk=32249 cb=14568/14568 err=0 fade=12 sp=1000
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14662/14661 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14756/14755 err=0 fade=12 sp=1000
+st clk=HSE25 sr=48000 rpin=1 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14849/14849 err=0 fade=12 sp=1000
+SRC MUTE raw=1 inv=0
+RATE PIN raw=0 => 44100
+RATE REQ 44100
+RATE OK 44100
+SRC UNMUTE raw=0 inv=0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=14939/14937 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15025/15024 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15112/15111 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15199/15198 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15286/15284 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15373/15371 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15459/15458 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15546/15545 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15633/15632 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15720/15718 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15807/15805 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15894/15892 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=15980/15979 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=16067/16066 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=16154/16152 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=16241/16239 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=16328/16326 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=16414/16413 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=16501/16500 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=16588/16586 err=0 fade=12 sp=1000
+s0
+STATUS AUTO 0 ms
+s1000
+STATUS AUTO 1000 ms
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=25794/25793 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=25881/25880 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=25968/25966 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26055/26053 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26142/26140 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26228/26227 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26315/26314 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26402/26400 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26489/26487 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26576/26574 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26662/26661 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26749/26748 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26836/26834 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=26923/26921 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27010/27008 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27096/27095 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27183/27182 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27270/27268 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27357/27355 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27444/27442 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27530/27529 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27617/27616 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27704/27703 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27791/27789 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27878/27876 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=27964/27963 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=28051/28050 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=28138/28137 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=28225/28223 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=28312/28310 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=28398/28397 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=28485/28484 err=0 fade=12 sp=1000
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=28572/28571 err=0 fade=12 sp=1000
+s0
+STATUS AUTO 0 ms
+h
+Cmds:
+  h       - help
+  s       - one status
+  s0      - auto status off
+  sN      - auto status every N ms
+  m       - mute
+  u       - unmute
+  gN      - gain, ex: g100 g50
+  fN      - fade ms, ex: f30 f150
+  a0/a1   - auto SRC_MUTE off/on
+  [00]m
+MUTE 12 ms
+u
+UNMUTE 35 ms
+f150
+FADE 150 ms
+m
+MUTE 150 ms
+u
+UNMUTE 35 ms
+ f30
+FADE 30 ms
+g50
+GAIN 50%
+g100
+GAIN 100%
+s0
+st clk=HSE25 sr=44100 rpin=0 run=1 auto=1 inv=0 raw=0 smute=0 gain=100%->100% ramp=0 rxpk=32768 txpk=32249 cb=35496/35495 err=0 fade=30 sp=0
