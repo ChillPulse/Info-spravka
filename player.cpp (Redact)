@@ -10,6 +10,30 @@
 
 Player player;
 QueueHandle_t playerQueue;
+#ifndef STM_RATE_PIN
+#define STM_RATE_PIN 4
+#endif
+
+static uint32_t g_last_stm_rate = 0;
+static uint32_t g_last_rate_check_ms = 0;
+
+static void syncRateToStmPins()
+{
+  uint32_t now = millis();
+  if (now - g_last_rate_check_ms < 100) return;
+  g_last_rate_check_ms = now;
+
+  uint32_t sr = player.getSampleRate();
+  if (sr != 44100 && sr != 48000) return;
+  if (sr == g_last_stm_rate) return;
+
+  player.setOutputPins(false);                          // mute
+  digitalWrite(STM_RATE_PIN, (sr == 48000) ? HIGH : LOW);
+  delay(120);                                           // дать STM перестроиться
+  player.setOutputPins(true);                           // unmute
+
+  g_last_stm_rate = sr;
+}
 
 #if VS1053_CS!=255 && !I2S_INTERNAL
 
@@ -57,6 +81,8 @@ void Player::init() {
   memset(burl, 0, MQTT_BURL_SIZE);
 #endif
   if(MUTE_PIN!=255) pinMode(MUTE_PIN, OUTPUT);
+  pinMode(STM_RATE_PIN, OUTPUT);
+digitalWrite(STM_RATE_PIN, HIGH);   // дефолт = 48k
   #if I2S_DOUT!=255
     #if !I2S_INTERNAL
       #ifndef I2S_MCLK
@@ -185,6 +211,7 @@ void Player::loop() {
   }
 
   Audio::loop();
+  syncRateToStmPins();
   if(!isRunning() && _status==PLAYING) _stop(true);
   if(_volTimer){
     if((millis()-_volTicks)>1500){
