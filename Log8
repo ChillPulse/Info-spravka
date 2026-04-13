@@ -1,0 +1,94 @@
+In file included from C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c:36:0:
+C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h:29:10: fatal error: stm32f4xx_hal_conf.h: No such file or directory
+
+****************************************************************************
+* Looking for stm32f4xx_hal_conf.h dependency? Check our library registry!
+*
+* CLI  > platformio lib search "header:stm32f4xx_hal_conf.h"
+* Web  > https://registry.platformio.org/search?q=header:stm32f4xx_hal_conf.h
+*
+****************************************************************************
+
+ #include "stm32f4xx_hal_conf.h"
+          ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+*** [.pio\build\blackpill_f411ce\FrameworkHALDriver\Src\stm32f4xx_hal.o] Error 1
+In file included from C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c:248:0:
+C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h:29:10: fatal error: stm32f4xx_hal_conf.h: No such file or directory
+
+****************************************************************************
+* Looking for stm32f4xx_hal_conf.h dependency? Check our library registry!
+*
+* CLI  > platformio lib search "header:stm32f4xx_hal_conf.h"
+* Web  > https://registry.platformio.org/search?q=header:stm32f4xx_hal_conf.h
+*
+****************************************************************************
+
+ #include "stm32f4xx_hal_conf.h"
+          ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c:86:0:
+C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h:29:10: fatal error: stm32f4xx_hal_conf.h: No such file or directory
+
+****************************************************************************
+* Looking for stm32f4xx_hal_conf.h dependency? Check our library registry!
+*
+* CLI  > platformio lib search "header:stm32f4xx_hal_conf.h"
+* Web  > https://registry.platformio.org/search?q=header:stm32f4xx_hal_conf.h
+*
+****************************************************************************
+
+ #include "stm32f4xx_hal_conf.h"
+          ^~~~~~~~~~~~~~~~~~~~~~
+*** [.pio\build\blackpill_f411ce\FrameworkHALDriver\Src\stm32f4xx_hal_adc.o] Error 1
+compilation terminated.
+*** [.pio\build\blackpill_f411ce\FrameworkHALDriver\Src\stm32f4xx_hal_adc_ex.o] Error 1
+In file included from C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_can.c:213:0:
+C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h:29:10: fatal error: stm32f4xx_hal_conf.h: No such file or directory
+
+****************************************************************************
+* Looking for stm32f4xx_hal_conf.h dependency? Check our library registry!
+*
+* CLI  > platformio lib search "header:stm32f4xx_hal_conf.h"
+* Web  > https://registry.platformio.org/search?q=header:stm32f4xx_hal_conf.h
+*
+****************************************************************************
+
+ #include "stm32f4xx_hal_conf.h"
+          ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+*** [.pio\build\blackpill_f411ce\FrameworkHALDriver\Src\stm32f4xx_hal_can.o] Error 1
+In file included from C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cec.c:113:0:
+C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h:29:10: fatal error: stm32f4xx_hal_conf.h: No such file or directory
+
+****************************************************************************
+* Looking for stm32f4xx_hal_conf.h dependency? Check our library registry!
+*
+* CLI  > platformio lib search "header:stm32f4xx_hal_conf.h"
+* Web  > https://registry.platformio.org/search?q=header:stm32f4xx_hal_conf.h
+*
+****************************************************************************
+
+ #include "stm32f4xx_hal_conf.h"
+          ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+*** [.pio\build\blackpill_f411ce\FrameworkHALDriver\Src\stm32f4xx_hal_cec.o] Error 1
+In file included from C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c:81:0:
+C:\Users\braza\.platformio\packages\framework-stm32cubef4\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h:29:10: fatal error: stm32f4xx_hal_conf.h: No such file or directory
+
+****************************************************************************
+* Looking for stm32f4xx_hal_conf.h dependency? Check our library registry!
+*
+* CLI  > platformio lib search "header:stm32f4xx_hal_conf.h"
+* Web  > https://registry.platformio.org/search?q=header:stm32f4xx_hal_conf.h
+*
+****************************************************************************
+
+ #include "stm32f4xx_hal_conf.h"
+          ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+*** [.pio\build\blackpill_f411ce\FrameworkHALDriver\Src\stm32f4xx_hal_cortex.o] Error 1
+============================ [FAILED] Took 2.21 seconds ============================
+
+ *  The terminal process "C:\Users\braza\.platformio\penv\Scripts\platformio.exe 'run'" terminated with exit code: 1. 
+ *  Terminal will be reused by tasks, press any key to close it.
