@@ -65,7 +65,7 @@ smartstart(x)
 smartstart x : x=2 - x=2 - disable smart start, x=0 or 1 - enable smart start
 -------------
 cli.list
-list        : display list of stations (пример, работает только на радио:list
+list        : display list of stations (пример, работает на радио и SD mode: list
 #CLI.LIST#
 #CLI.LISTNUM#:   1: Р Р°РґРёРѕ РЎР (Р•РєР±.), http://online.radioc.ru:8000/radioc_aacplus
 #CLI.LISTNUM#:   2: Р Р°РґРёРѕ Р’С‹С€РєР° - Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі, http://stream.vyshka24.ru:80/192
