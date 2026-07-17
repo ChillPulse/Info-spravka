@@ -1,0 +1,5170 @@
+Ниже — **обновлённое мастер‑ТЗ** в формате единого документа, в которое **встроены ВСЕ** ранее присланные части ТЗ v7.0 + Addendum‑v1 (Part 1/2/3) + новое решение **UI на ESP32‑S2 mini** + **OMNIA AURA Visual System** + обновлённая политика **SPEC/FFT** и протокола.
+
+Документ очень большой, поэтому делю на части.
+
+---
+
+# OMNIA / STHENOS / v·core — MASTER SPEC **v7.2**  
+(консолидировано из v7.0 + Addendum‑v1 + Addendum “UI=ESP32‑S2 mini + AURA + SPEC policy” + AURA Feature Catalog v1)
+
+**Статус:** LOCKED после переноса в репозиторий  
+**Цель:** “флагманское” ощущение (нулевые лаги, премиальные оверлеи/визуал, click‑free аудио), устойчивость к железу (ST7789/ILI9341, BH1750/VEML7700, разные SPI Flash), подтверждённый BT401 MCLK, гарантии RT на AT32.
+
+---
+
+## ChangeLog (что изменилось относительно v7.0 / v7.1)
+
+### v7.1 (Addendum‑v1)
+1) Введены **Source Matrix** (User Sources) и **Clock Domains** (RADIO vs BT401).  
+2) Зафиксированы **vendor‑гарантии BT401 по MCLK** + обязательный **BT Fs watch + BT_RESYNC**.  
+3) Зафиксирован **legacy baseline** (старый рабочий STM32F401 проект) как reference‑истина.  
+4) Усилены правила **flagship UI**: overlays, event‑driven, no‑lag, performance contract.  
+5) Введены **DSP‑блоки**: AETHER, Anti‑Ad, Night, BassTame, look‑ahead limiter, delay (опц.), профайлер DWT, subscriptions по UART, тест‑план.
+
+### v7.2 (новое решение)
+1) **UI‑МК заменён на ESP32‑S2 mini (ESP32‑S2FN4R2)** вместо STM32F401.   
+2) Введена визуальная платформа **OMNIA AURA** (Design System + Theme Engine + Visualizers + HUD/Toast).  
+3) Политика спектра: **по умолчанию `SPEC:16/32` вместо тяжелого `FFT:base64`**, `FFT_FULL` — только по запросу/диагностике.  
+4) Репозиторий: активный UI переносится в `firmware/omnia_ui_s2mini/`, STM32‑UI остаётся **только как legacy**.  
+5) Добавлены красные флаги и pinmap‑правила под ESP32‑S2 (strapping pins GPIO0/45/46 и т.п.). 
+
+---
+
+# ЧАСТЬ 1/6 — System Overview, Sources/Domains, Hardware, Pinmap, Switching
+
+## 1) Архитектура системы (2 МК, разделение ответственности)
+
+### 1.1 Роли микроконтроллеров
+**AT32 v·core (Real‑time аудио ядро):**
+- I2S аудио тракт, DSP pipeline, meter/FFT/SPEC, limiter, переключения доменов, тайм‑менеджер (NTP через yoRadio), supervisor.
+- UI‑линк: UART (целевой baud 460800/921600).
+- Гарантия: RT без overruns, click‑free аудио.
+
+**UI‑МК: ESP32‑S2 mini (ESP32‑S2FN4R2) — “OMNIA AURA UI/Visual”:**
+- UI/рендер, темы, визуализаторы, сервис‑меню, IR self‑learn, RGB ring эффекты, автояркость (BH1750/VEML7700), хранение UI‑настроек/ассетов.
+- Линк к v·core: UART команды + подписки.
+- USB: нативный USB device (USB‑CDC, сервис/диагностика).
+
+**Почему так:** RT‑аудио и UI не мешают друг другу; UI можно “богатить” без риска сорвать DMA/I2S.  
+
+---
+
+## 2) Source Matrix: “что видит пользователь” ≠ “клок‑домен”
+
+### 2.1 User Sources (то, что показывает UI) — **6 источников**
+1) **yoRadio: WEB** (mode 0)  
+2) **yoRadio: SD** (mode 1)  
+3) **BT401: Bluetooth**  
+4) **BT401: USB Audio (PC/Android)**  
+5) **BT401: TF card**  
+6) **BT401: U‑disk**
+
+### 2.2 System Clock Domains (то, как работает железо) — **2 домена**
+- **DOMAIN_RADIO**: AT32 I2S3 = **MASTER**, yoRadio = **SLAVE** (клоки от AT32).  
+- **DOMAIN_BT401**: BT401 = **MASTER** → 74HC125 → шина → AT32 I2S2/I2S3 = **SLAVE**.
+
+### 2.3 Реализация (как делаем)
+**UI → v·core команды:**
+- Radio:
+  - `SRC:RADIO`
+  - `MODE:WEB|SD`
+- BT401:
+  - `SRC:BT401`
+  - `BT401_MODE:BT|USB_AUDIO|TF|UDISK`
+
+**v·core внутреннее состояние:**
+- `source_group = RADIO | BT401`
+- `source_submode = WEB/SD | BT/USB_AUDIO/TF/UDISK`
+- Если меняется `source_group` → полноценный **domain switch** (STATE_SWITCHING).
+- Если меняется только `source_submode` внутри BT401 → домен не меняем, **но** включаем/контролируем **BT Fs watch** (см. ниже).
+
+**Что тестировать**
+- Переключение между любыми 2 user sources внутри одной группы (например BT ↔ TF) не вызывает полного пересоздания домена, но корректно ловит смену Fs.
+- Переключение RADIO ↔ BT401 всегда делает безопасный click‑free switch.
+
+---
+
+## 3) BT401: vendor‑confirmed MCLK behavior (обязательная опора дизайна)
+
+### 3.1 Гарантии (фиксируем как “источник истины”)
+В мастер‑ТЗ **обязателен** раздел: **Vendor‑confirmed behavior (MCLK window)**
+
+**Гарантии:**
+- BT401 (I2S master версия) выдаёт **MCLK непрерывно и стабильно**, независимо от наличия DATA.
+- При старте нового трека (TF/U‑disk) **MCLK стабилен до появления первых DATA**.
+- Как I2S master, BT401 сначала формирует клок‑домен (MCLK/BCK/LRCK), затем выдаёт DATA.
+- Во время воспроизведения MCLK/BCK/LRCK/DATA синхронны; клоки готовы раньше данных.
+
+**Документирование:**
+- Добавить файл: `docs/vendor_bt401_mclk_confirm.md` (вставить письмо/подтверждение полностью).
+- В тексте ТЗ: “подтверждено в `docs/vendor_bt401_mclk_confirm.md`”.
+
+### 3.2 Зачем нам MCLK (уточнение, чтобы не было путаницы)
+- **PCM5102A внешний MCLK не требует.**
+- MCLK нужен v·core для:
+  1) детекта Fs (обычно MCLK = 256×Fs → 11.2896/12.288 МГц),
+  2) пересчёта DSP коэффициентов/таймингов (PEQ/фильтры/AGC/limiter/FFT/SPEC),
+  3) телеметрии `SR` и диагностики домена.
+
+---
+
+## 4) BT401: Fs НЕ фиксированная + поддерживаем только 44.1/48 (v7.x)
+
+### 4.1 Требование
+BT401 в master‑домене может работать на **44.1k или 48k**; v·core **не имеет права** предполагать фиксированную Fs.
+
+### 4.2 Ограничение v7.x
+Поддерживаем только:
+- `SR:44100`
+- `SR:48000`
+
+Если измеренный MCLK не равен:
+- 11.2896 МГц (±допуск) **или**
+- 12.288 МГц (±допуск)
+
+→ ошибка `ERR:0x0602:BT_MCLK_UNKNOWN`, удерживаем mute, UI показывает “Unsupported sample rate”.
+
+**Почему:** без ресемплера все фильтры/FFT/лимитер будут неверны.
+
+---
+
+## 5) BT Fs watch + BT_RESYNC (обязательный механизм)
+
+### 5.1 BT Fs watch (STATE_BT)
+В `STATE_BT`:
+- измерять MCLK периодически (например 1 раз/сек).
+- если Fs изменилась 44.1 ↔ 48 → выполнить **BT_RESYNC**.
+
+### 5.2 BT_RESYNC: последовательность (click‑free)
+1) `AMP_MUTE=HIGH`  
+2) DSP fade‑out (`TAU_MUTE_IN`)  
+3) Stop DMA I2S2 RX + I2S3 TX  
+4) DeInit I2S2 + I2S3  
+5) Пересчитать DSP коэффициенты под новую Fs  
+6) Init I2S2/I2S3 (slave, 16‑bit в 32‑slot, Philips)  
+7) Start DMA  
+8) fade‑in (`TAU_MUTE_OUT`)  
+9) `AMP_MUTE=LOW`
+
+**Почему:** иначе DSP “останется” на старой Fs и даст артефакты/кривой лимитер/кривые фильтры.
+
+**Что тестировать**
+- Смена Fs внутри BT401 режима (другой трек/режим) → ресинк без щелчков.
+- Статистика: `resync_count` растёт, `overrun_count` не растёт.
+
+---
+
+## 6) Измерение MCLK: два метода (A + B fallback)
+
+### 6.1 Метод A (основной): input capture (период)
+- меряем период MCLK (≈ 81.38 нс для 12.288 МГц → сложно, но возможно при правильной настройке таймера/делителей).
+
+### 6.2 Метод B (fallback): “gate window” подсчёт импульсов за окно
+- считаем фронты за 10–50 мс окно → вычисляем частоту.
+- **Почему:** на высоких частотах период‑метод может быть капризен, gate‑метод — очень надёжный.
+
+**Что тестировать**
+- Метод A работает при стабильной линии.
+- Метод B всегда даёт верный результат даже при шуме/джиттере.
+- Автопереключение A→B при ошибках.
+
+---
+
+## 7) yoRadio: RATE/MUTE handshake + “UART всегда доступен”
+
+### 7.1 Контракт yoRadio (обязательная фиксация)
+- yoRadio сигналами `RATE` и `MUTE` гарантирует окно безопасной перестройки Fs.
+- v·core обязан перестраивать I2S master **только** при `RADIO_MUTE=HIGH` и снимать mute только после `RADIO_MUTE=LOW`.
+
+### 7.2 UART yoRadio активен всегда
+Даже когда активен BT401 домен:
+- UART yoRadio остаётся активным для:
+  - NTP времени и ресинка часов,
+  - Wi‑Fi статуса/RSSI,
+  - диагностики.
+
+**Что тестировать**
+- В RADIO домене 44.1↔48 перестройка без щелчков только внутри окна MUTE.
+- В BT401 домене время продолжает идти, RSSI обновляется.
+
+---
+
+## 8) Legacy baseline policy (reference‑истина)
+
+### 8.1 Что фиксируем
+Старый рабочий проект STM32F401 (Info‑spravka) — **baseline/reference**:
+- хранится в репозитории в `legacy/` (read‑only),
+- помечается git‑tag,
+- служит источником проверенных механик:
+  - full‑duplex DMA модель + half/full callbacks,
+  - yoRadio RATE/MUTE debounce и смена частоты без щелчков,
+  - авто‑рестарт тракта при I2S ошибках,
+  - pull‑up safe defaults на RATE/MUTE.
+
+### 8.2 Структура в репо (обязательная)
+```text
+legacy/info-spravka_f401_baseline_10d731a/
+  main.c
+  platformio.ini
+  stm32f4xx_hal_msp.c
+  stm32f4xx_it.c
+  Project_resume_2.md
+  README.md  (что доказано, что переносим)
+```
+Tag: `baseline_f401_10d731a`.
+
+---
+
+## 9) UI‑МК = LOLIN/WEMOS S2 mini (ESP32‑S2FN4R2) — новая базовая платформа
+
+### 9.1 Аппаратная фиксация
+UI board: **WEMOS S2 mini**, на **ESP32‑S2FN4R2**, USB‑C, **4MB Flash + 2MB PSRAM**, 27 IO.   
+
+### 9.2 Почему (зафиксировано как решение)
+- PSRAM упрощает “дорогой” UI: кэши глифов, history, буферы визуала.
+- Нативный USB device упрощает сервис/USB‑CDC.
+- RMT идеально для WS2812 и IR без битбанга.
+
+---
+
+## 10) Красные флаги ESP32‑S2 (обязательный раздел “не наступить на грабли”)
+
+### 10.1 Strapping pins (осторожность при старте)
+ESP32‑S2 имеет strapping pins **GPIO0, GPIO45, GPIO46** — их уровни читаются при reset и влияют на boot/конфигурацию.   
+
+**Правило ТЗ:** не вешать на них внешние цепи, которые могут жёстко тянуть уровень при старте. GPIO0 не использовать под энкодер/кнопки.
+
+### 10.2 JTAG/UART0/“особые” пины
+- JTAG по умолчанию может использовать GPIO39–GPIO42 (использовать осознанно).   
+- UART0: GPIO43 (U0TXD), GPIO44 (U0RXD) — часто используется ROM‑логами.   
+
+### 10.3 “SPI0/SPI1 pins” и внутренний флеш/PSRAM
+В даташите показаны dedicated линии SPI0/1 (GPIO26–GPIO32 и др.), которые в типовых дизайнах используются под внутреннюю память/интерфейсы.   
+**Правило ТЗ:** не использовать “памятные/системные” линии без необходимости; в случае S2 mini они обычно и так не выведены на гребёнки (ориентироваться на схему платы).
+
+---
+
+## 11) Новый pinmap UI (ESP32‑S2 mini) — single source of truth
+
+### 11.1 Источник истины
+`firmware/omnia_ui_s2mini/include/pinmap_ui.h` — **единственный источник истины**.
+
+### 11.2 Дефолтный маппинг (принят как базовый)
+> Основано на схеме WEMOS S2 mini v1.0.0 (пины присутствуют на разъёмах).   
+
+#### 11.2.1 UART link UI ↔ v·core
+- `VCORE_UART_TX = GPIO7`
+- `VCORE_UART_RX = GPIO8`
+
+#### 11.2.2 TFT SPI (ST7789/ILI9341)
+- `TFT_SCK  = GPIO36`
+- `TFT_MOSI = GPIO35`
+- `TFT_MISO = GPIO37` *(опционально, если подключён)*
+- `TFT_CS   = GPIO21`
+- `TFT_DC   = GPIO17`
+- `TFT_RST  = GPIO18`
+- `TFT_BL   = GPIO16` *(LEDC PWM)*
+
+#### 11.2.3 I2C (BH1750/VEML7700)
+- `I2C_SDA = GPIO33`
+- `I2C_SCL = GPIO34`
+
+#### 11.2.4 RGB ring (WS2812/SK6812)
+- `RGB_DIN = GPIO6` → **SN74AHCT125** → 330Ω → DIN
+
+#### 11.2.5 IR receiver
+- `IR_IN = GPIO5` (RMT RX предпочтительно)
+
+#### 11.2.6 Энкодер + кнопки
+- `ENC_A = GPIO1`
+- `ENC_B = GPIO2`
+- `ENC_BTN = GPIO3`
+- `BUTTONS_ADC = GPIO4` *(пин должен быть ADC‑capable; проверка/фиксирование в коде обязательны)*
+
+### 11.3 Что тестировать (pinmap sanity)
+- Загрузка без “boot‑loop” при подключённой периферии.
+- USB‑CDC работает всегда.
+- Энкодер/кнопки не мешают boot (GPIO0 не задействован).
+- TFT работает на выбранных SPI пинах стабильно.
+
+---
+
+## 12) Дисплей ST7789/ILI9341: Wizard + Rescue + Service Menu (вне пользовательского меню)
+
+### 12.1 Жёсткие правила
+- В обычном пользовательском меню выбора контроллера **нет**.
+- Выбор только:
+  1) Wizard при первом запуске / пустом NVS
+  2) Rescue “вслепую” при старте удержанием кнопки
+  3) Service Menu (скрытый вход)
+
+### 12.2 Почему
+Если выбран неверный контроллер, экран может не показывать — нужен путь восстановления “без экрана”.
+
+---
+
+## 13) WS2812/SK6812: level shifter обязателен + питание
+- DIN от 3.3В напрямую **не допускается** — обязателен **SN74AHCT125**.
+- Рядом с кольцом электролит 470–1000 µF.
+- Ночной режим (lux<20): max brightness 10–15%.
+
+---
+
+## 14) Питание/разводка: backfeed + датчик света
+- USB 5V и внешний 5V: только с развязкой (диоды/ideal diode) или строгая механическая блокировка (запрет backfeed).
+- Датчик света размещать так, чтобы не видел TFT/RGB (иначе автоколебания яркости).
+
+---
+
+## 15) UI↔v·core линк: UART остаётся, но фиксируем дисциплину и рост baud
+- UART — основной UI‑линк.
+- Вводим:
+  - rate limits,
+  - batching,
+  - подписки (`SUBSCRIBE:*`),
+  - целевой baud 460800/921600.
+
+---
+
+**Продолжение:** ЧАСТЬ 2/6 — UI на ESP32‑S2: Performance Contract, OMNIA AURA (Design/Motion/HUD), экраны/навигация, визуализаторы и правила деградации качества.
+# OMNIA / STHENOS / v·core — MASTER SPEC v7.2
+# ЧАСТЬ 2/6 — UI на ESP32‑S2 mini: Performance Contract, OMNIA AURA Visual System, экраны/навигация, визуализаторы, качество
+
+---
+
+## 16) UI Performance Contract (ESP32‑S2 mini) — обязательные правила без исключений
+
+### 16.1 Память и буферизация
+**ESP32‑S2FN4R2:**
+- 4MB internal Flash (assets + LittleFS / NVS),
+- 2MB PSRAM (QSPI integrated in package).
+
+**Fullscreen framebuffer 320×240×RGB565 = 150 KB** — помещается в PSRAM (≪ 2MB).
+
+**Архитектура буферов:**
+```c
+// PSRAM (SPI через esp_heap_caps или psramMalloc):
+uint16_t frame_buf[320 * 240];          // основной фрейм, 150 KB
+uint16_t scratch_buf[320 * 40];         // временный dirty-rect render, ~25 KB
+
+// DRAM (внутренняя, быстрая):
+uint16_t tile_dma[320 * 16];            // tile для SPI DMA push, ~10 KB
+// Ping-pong для визуализатора (если нужен):
+uint16_t vis_a[320 * 16];
+uint16_t vis_b[320 * 16];
+```
+
+**Правило:** всё "большое" идёт в PSRAM; всё "критическое/DMA" идёт во внутренний DRAM.
+
+**Почему:** на STM32F401 у нас было 64KB SRAM и не было framebuffer вообще. Теперь на ESP32-S2 с PSRAM мы можем держать полный фрейм и делать плавные transition и persistence без трюков. Это одна из ключевых причин выбора ESP32-S2.
+
+### 16.2 Рендер-модель: "двойной буфер + DMA push"
+```
+frame_buf (PSRAM)
+    ↓ dirty-rect copy
+tile_dma (DRAM, ping-pong)
+    ↓ SPI DMA
+TFT GRAM
+```
+
+**Цикл:**
+1. Определяем dirty-zоны (виджеты с флагом `dirty`).
+2. Рендерим в `frame_buf` (PSRAM).
+3. Нарезаем нужную область на тайлы 320×16.
+4. DMA push по SPI.
+5. Пока DMA шлёт один тайл — CPU рендерит следующий.
+
+### 16.3 Dirty-rect / Dirty-widget система
+```c
+typedef struct {
+    uint16_t x0, y0, x1, y1;
+    uint8_t  dirty;
+} Widget;
+
+// Пример виджетов HOME:
+Widget w_statusbar;     // y: 0..19
+Widget w_preset_room;   // y: 20..43
+Widget w_meta;          // y: 44..119
+Widget w_indicators;    // y: 120..143
+Widget w_minivisual;    // y: 200..239 (опц.)
+Widget w_vol_osd;       // оверлей: позиционируется динамически
+Widget w_nowplay_toast; // оверлей: позиционируется динамически
+```
+
+**Правило:** в нормальной работе (не смена экрана) никакого full-screen redraw. Только dirty-зоны.
+
+**Почему:** без этого правила даже мощный ESP будет ощущаться "лагучим" из-за SPI-пропускной способности (SPI-дисплей — главный bottleneck, не CPU).
+
+### 16.4 SPI-дисплей: частота и тайминги
+- Целевой SPI clock: 40 МГц (ST7789/ILI9341 обычно тянут 40–80 МГц, проверить на плате).
+- В Service Menu: **SPI Clock Test** (автопонижение при артефактах).
+- Не фиксировать "паспортные" тайминги в ТЗ — делаем максимальную проверенную частоту.
+
+### 16.5 Запреты (нарушение = лаг = "дешёвое ощущение")
+- **НЕЛЬЗЯ** `delay()` / `vTaskDelay(0)` в UI loop критических задач.
+- **НЕЛЬЗЯ** рисовать (вызывать TFT-API) из ISR.
+- **НЕЛЬЗЯ** full-screen redraw в нормальной работе (только при смене экрана).
+- **НЕЛЬЗЯ** блокирующие вызовы в task, отвечающем за обработку энкодера/кнопок.
+- **НЕЛЬЗЯ** читать пиксели обратно из GRAM (медленно/ненадёжно).
+- **НЕЛЬЗЯ** логировать из DMA ISR.
+- **НЕЛЬЗЯ** делать PSRAM-доступ из ISR (кэш-miss из прерывания = катастрофа).
+
+### 16.6 FreeRTOS задачи (ESP32-S2)
+```
+Task: ui_render_task   (Core 0, prio 3, stack 8KB)
+  → рендер dirty-rect, SPI DMA push, анимации
+Task: ui_input_task    (Core 0, prio 5, stack 4KB)
+  → энкодер, кнопки, IR, UART-команды от v·core
+Task: ui_comm_task     (Core 0, prio 4, stack 4KB)
+  → разбор UART-пакетов, dispatch событий
+Task: rgb_task         (Core 0, prio 2, stack 2KB)
+  → RGB ring эффекты, RMT push
+Task: sensor_task      (Core 0, prio 1, stack 2KB)
+  → BH1750/VEML7700, backlight PWM
+```
+
+**Почему:** ESP32-S2 одноядерный (в отличие от ESP32). Задачи должны быть спроектированы так, чтобы `ui_input_task` всегда вытеснял `ui_render_task` при нажатии — это гарантирует "мгновенную реакцию".
+
+### 16.7 Частоты обновления виджетов
+| Виджет | Частота | Примечание |
+|---|---|---|
+| Часы HH:MM | 1 раз/мин | Только при смене минуты |
+| Часы HH:MM:SS | 1 раз/сек | Только в STANDBY/IDLE |
+| Статус-бар | При изменении | Event-driven |
+| Метаданные | При изменении | Toast при смене трека |
+| Мини VU / Spectrum | 20–25 Гц | Только если включён |
+| FFT bars / SPEC | 20–25 Гц | На visual экране |
+| Waterfall | 20–25 Гц | 1 строка + hw scroll |
+| Lissajous / Vectorscope | 20–30 Гц | |
+| Volume OSD / HUD | При изменении + 60 Гц | Таймаут 2.5 сек |
+| RGB ring | 25–50 Гц | RMT, не блокирует |
+| BH1750/VEML7700 опрос | 1 раз/2 сек | |
+| Backlight PWM | Плавный шаг | alpha = 0.05 |
+
+---
+
+## 17) OMNIA AURA — Visual System (Design System, Theme Engine, Motion)
+
+> **Важно:** AURA — это визуал/UI-платформа. AETHER — это аудио-DSP (пространственность). Не смешивать в меню и в коде.
+
+### 17.1 AURA Design System — фундамент
+
+**Layout tokens:**
+- Grid step: **4 px**
+- Insets: **8 / 12 / 16 / 24 px**
+- Corner radius: **12 px** (карточки), **999 px** (пилюли/кнопки)
+- Stroke: **1 px** (light themes), **2 px** (dark themes)
+
+**Typography styles (минимум):**
+| Style | Применение |
+|---|---|
+| `H1` | Часы/громкость (OSD/HUD), крупные цифры |
+| `Title` | Preset / Station |
+| `Body` | Meta (artist – title) |
+| `MonoSmall` | SR/Bits/Bitrate/Headroom/GR/Debug |
+
+**Цветовые токены темы:**
+```c
+typedef struct {
+    uint16_t bg;           // фон экрана
+    uint16_t surface;      // поверхность карточек
+    uint16_t outline;      // рамки, разделители
+    uint16_t text;         // основной текст
+    uint16_t muted_text;   // вторичный текст
+    uint16_t accent;       // акцентный цвет (кнопки, focus ring)
+    uint16_t accent2;      // вторичный акцент
+    uint16_t ok;           // зелёный/успех
+    uint16_t warn;         // оранжевый/предупреждение
+    uint16_t danger;       // красный/ошибка/clip
+    // Для визуализатора:
+    uint16_t spec_colormap[8]; // палитра спектра (8 цветов градиент)
+    // Для RGB кольца:
+    uint8_t  ring_accent_r, ring_accent_g, ring_accent_b;
+} AURA_Theme;
+```
+
+**Почему токены:** при смене темы нужно только сменить структуру, а все виджеты автоматически перерисовываются с новыми цветами.
+
+### 17.2 Темы (принятый набор 8 тем)
+| Имя | Стиль |
+|---|---|
+| **Obsidian** | Глубокий чёрный, голубой акцент |
+| **Carbon** | Тёмно-серый, белый/нейтральный |
+| **Aurora** | Тёмный + aurora-green/violet переливы |
+| **Studio** | Профессиональный: почти чёрный + оранжевый акцент |
+| **Night Warm** | Очень тёмный + тёплый amber |
+| **Ivory** | Светлая тема (опционально) |
+| **Emerald** | Тёмный + изумрудный |
+| **Amber** | Тёмный + янтарный |
+
+**Реализация:**
+```c
+extern const AURA_Theme theme_obsidian;
+extern const AURA_Theme theme_carbon;
+// ...
+const AURA_Theme *aura_active;  // указатель на текущую тему
+
+#define COL(token) (aura_active->token)
+// Пример: fill_rect(x, y, w, h, COL(surface));
+```
+
+### 17.3 Плавная смена темы
+- **Длительность:** 300–500 ms.
+- **Как реализуем без дорогой alpha-blend:**
+  - Интерполируем значения цветовых токенов попарно (lerp по RGB565).
+  - Перерисовываем ключевые зоны (statusbar, карточки, фон) за 5–10 шагов.
+  - Визуализатор: палитра меняется в тот же период (colormap lerp).
+- **Реализация:**
+```c
+void aura_theme_transition(const AURA_Theme *target, uint32_t duration_ms) {
+    // Запустить анимацию: lerp(aura_active tokens → target tokens)
+    // за duration_ms / render_tick интервалов
+    // По окончании: aura_active = target, сохранить в NVS
+}
+```
+
+### 17.4 Motion Spec ("дорогая" анимация)
+
+**Скорости:**
+| Имя | Время | Применение |
+|---|---|---|
+| **Fast** | 140 ms | Нажатие, HUD появление |
+| **Normal** | 220 ms | Переход между экранами, toast |
+| **Slow** | 420 ms | Смена темы, ambient переходы |
+
+**Easing (обязательно):**
+```c
+// easeOutCubic: для "въезда"
+float ease_out_cubic(float t) { return 1.0f - powf(1.0f - t, 3.0f); }
+
+// easeInOutCubic: для плавных переходов
+float ease_in_out_cubic(float t) {
+    return t < 0.5f
+        ? 4.0f * t * t * t
+        : 1.0f - powf(-2.0f * t + 2.0f, 3.0f) / 2.0f;
+}
+
+// Применение:
+float progress = (float)(elapsed_ms) / duration_ms;  // 0..1
+float eased    = ease_out_cubic(clampf(progress, 0, 1));
+uint16_t pos_x = (uint16_t)(start_x + (target_x - start_x) * eased);
+```
+
+**Почему не линейная:** линейная анимация немедленно создаёт "дешёвое" ощущение. Cubic easing — минимальная стоимость при максимальном эффекте.
+
+---
+
+## 18) Interaction Feedback ("дорогое" ощущение нажатия)
+
+### 18.1 "Press" эффект — универсальный примитив
+**Триггер:** выбор пункта меню, подтверждение энкодером, IR OK.  
+**Длительность:** 80–140 ms.
+
+**Визуально:**
+- Карточка/пункт на 80–120 ms: чуть темнее/светлее (delta surface ±15%).
+- Outline становится ярче (accent).
+- Опционально: лёгкое "уменьшение" — меньший внутренний отступ (симуляция scale, без трансформ).
+
+**Рендер:**
+- Dirty-rect только зоны элемента.
+- Никаких полноэкранных эффектов.
+
+```c
+typedef struct {
+    Widget *target;
+    uint32_t start_ms;
+    uint32_t duration_ms;  // 80–140
+    uint8_t  active;
+} PressEffect;
+
+// В render loop:
+if (press.active) {
+    float t = ease_out_cubic((float)(now - press.start_ms) / press.duration_ms);
+    uint16_t col = lerp_color(COL(surface), COL(accent), 0.15f * (1.0f - t));
+    draw_widget_bg(press.target, col);
+    mark_dirty(press.target);
+}
+```
+
+### 18.2 "Focus ring" (флагманский фокус под энкодер)
+- Активный элемент: accent-рамка 2 px.
+- Неактивные: outline 1 px (muted_text цвет).
+- При движении энкодера: focus переходит с ease (140 ms).
+
+**Почему важно:** без focus ring энкодер-навигация ощущается как "случайное тыканье". С focus ring — как "дорогой Hi-Fi".
+
+---
+
+## 19) HUD / Overlays — "флагманские" перекрытия
+
+### 19.1 Volume HUD (обязательный, "выезжающий сбоку")
+**Триггер:** любое изменение громкости (энкодер/IR/команда).  
+**Анимация:** slide-in справа, Fast (140 ms), easeOutCubic.  
+**Таймаут:** 1.2–2.5 сек (настраиваемо) после последнего изменения.  
+**Скрытие:** slide-out + fade, Fast (140 ms).
+
+**Содержимое:**
+```
+┌──────────────────────────┐
+│                          │
+│       −18.0 dB           │  ← H1 шрифт
+│                          │
+│  ████████████░░░░  75%   │  ← шкала (или дуга 0..100%)
+│                          │
+│   VOL    BT401           │  ← MonoSmall: тип + источник
+└──────────────────────────┘
+```
+
+**При MUTE:** HUD показывает `MUTE` с danger-акцентом.  
+**При UNMUTE:** `UNMUTE  −18.0 dB` на 2 сек.  
+
+**Рендер:** dirty-rect только прямоугольника HUD (например правые 96px × 240px при вертикальном).
+
+**Реализация:**
+```c
+typedef struct {
+    uint8_t  active;
+    uint32_t last_change_ms;
+    uint32_t timeout_ms;    // 1200..2500
+    int16_t  pos_x;         // текущая X позиция (для slide-in анимации)
+    int16_t  target_x;      // целевая X
+    float    vol_db;
+    uint8_t  muted;
+} VolumeHUD;
+
+// В ui_input_task при получении VOL/MUTE команды:
+void hud_vol_trigger(float db, uint8_t muted) {
+    vol_hud.vol_db = db;
+    vol_hud.muted  = muted;
+    vol_hud.last_change_ms = xTaskGetTickCount();
+    if (!vol_hud.active) {
+        vol_hud.pos_x   = 320;      // начало за правым краем
+        vol_hud.active  = 1;
+    }
+    mark_dirty(&w_vol_osd);
+}
+```
+
+### 19.2 Now Playing Toast (обязательный)
+**Триггер:** новый `NAMESET` или `META` от v·core.  
+**Появление:** slide-up + fade-in, Normal (220 ms).  
+**Длительность:** 3–4 сек.  
+**Скрытие:** fade-out, Fast (140 ms).
+
+**Содержимое:**
+```
+┌──────────────────────────────────────┐
+│  ♪  Artist / Station name            │
+│     Track Title                      │
+└──────────────────────────────────────┘
+```
+
+**Рендер:** dirty-rect карточки; заставка/экран под ней не перерисовывается.  
+**Важно:** если приходит новый NAMESET пока toast показывается → обновить текст + перезапустить таймер.
+
+### 19.3 Toast notifications (система уведомлений)
+Единый механизм:
+```c
+typedef enum {
+    TOAST_PRESET_SAVED,
+    TOAST_TIME_SYNCED,
+    TOAST_WIFI_WEAK,
+    TOAST_LIM_ACTIVE,
+    TOAST_SR_UNSUPPORTED,
+    TOAST_IR_LEARNED,
+    TOAST_SOURCE_CHANGED,
+    TOAST_PRESET_CHANGED,
+    TOAST_BASSMONO_ON,
+    TOAST_BASSMONO_OFF,
+    // ...
+} ToastType;
+
+typedef struct {
+    ToastType type;
+    char      text[64];
+    uint32_t  duration_ms;  // 2000..3500
+    uint8_t   active;
+} Toast;
+```
+
+**Очередь toast:** максимум 3 в очереди. Следующий показывается сразу после завершения предыдущего.
+
+**Позиция:** снизу по центру, radius 12, surface + accent outline.
+
+### 19.4 Pro-Overlay (DSP метрики, опциональный)
+Строка поверх визуализатора/экрана:
+```
+SR 48k | HR −6.0 | GR 2.4 | CLIP 0 | CPU 38%
+```
+
+**Вкл/выкл:** `Settings → Visual → Pro Overlay: ON/OFF`.  
+**Обновление:** 5–10 Гц (не чаще).  
+**Рендер:** узкая полоса сверху/снизу визуализатора, dirty-rect.
+
+### 19.5 Limiter/Clip micro-pulse (дополнение)
+При клипе:
+- маленький красный импульс в углу экрана (не мигание всего).
+- длительность: 300–500 ms.
+- dirty-rect только угол (например 24×24 px).
+
+---
+
+## 20) UI State Machine (обновлённая, ESP32-S2)
+
+```c
+typedef enum {
+    UI_STATE_HOME,             // основной экран
+    UI_STATE_IDLE,             // заставка/screensaver (по таймауту без действий)
+    UI_STATE_VISUAL_FULL,      // полноэкранный визуализатор ("playback screensaver")
+    UI_STATE_OVERLAY_VOL,      // Volume HUD (поверх любого экрана)
+    UI_STATE_OVERLAY_NOWPLAY,  // Now Playing toast (поверх заставки)
+    UI_STATE_LIST,             // список станций/треков (wheel picker v2)
+    UI_STATE_MENU,             // главное меню
+    UI_STATE_PRESETS,          // пресеты и избранное
+    UI_STATE_EQ,               // редактор EQ (live curve)
+    UI_STATE_GUIDED,           // Guided Tuning мастер
+    UI_STATE_ROOM,             // Room Correction
+    UI_STATE_DIAG,             // Diagnostics / Event log
+    UI_STATE_STANDBY,          // standby clock
+    UI_STATE_SERVICE,          // Service Menu (скрытый)
+    UI_STATE_RESCUE,           // Display Setup Wizard
+} UI_State;
+```
+
+**Правило переходов:**
+- Любое действие (энкодер/IR/кнопка) немедленно переводит из `IDLE/VISUAL_FULL` на предыдущий экран.
+- Volume HUD — overlay, не меняет базовый state.
+- Toast — overlay, не меняет базовый state.
+
+---
+
+## 21) HOME экран (обновлённый, минималистичный)
+
+### 21.1 Сетка HOME (320×240)
+```
+┌──────────────────────────────────────────┐  ← y=0
+│ [BT401] [48k/16] [320k]  [23:45] [WiFi▲]│  ← Статус-бар ~20px
+├──────────────────────────────────────────┤  ← y=20
+│  Preset: Cinema Anti-AD  [ROOM●]         │  ← Preset/Room ~24px
+├──────────────────────────────────────────┤  ← y=44
+│                                          │
+│  Station / Artist                        │  ← Meta строка 1
+│  Track Title                             │  ← Meta строка 2
+│                                          │
+│  [CLIP●] [LIM●]          −18.0 dB        │  ← Индикаторы + громкость
+│                                          │
+│ ════════════════════════════════════════ │  ← Mini visual 0/24px (опц.)
+└──────────────────────────────────────────┘  ← y=239
+```
+
+### 21.2 Статус-бар (event-driven, только при изменении)
+| Элемент | Формат | Обновление |
+|---|---|---|
+| Источник | `BT401` / `WEB` / `SD` + иконка | При смене |
+| Sample Rate | `44k` / `48k` | При смене |
+| Bit depth | `/16` / `/32` | При смене |
+| Bitrate | `320k` / `FLAC` / `--` | При смене трека |
+| Часы | `HH:MM` | 1 раз/мин |
+| Wi-Fi RSSI | иконка 0–4 | Раз в 10 сек |
+| AMP | иконка ON/OFF | При смене |
+
+### 21.3 Индикаторы (event-driven, не постоянные)
+- **CLIP:** вспыхивает на 300–500 ms, затем гаснет.
+- **LIM:** виден только при GR > 1–2 dB.
+- **HEADROOM:** только в Diagnostics или при < 1 dB.
+- **Time sync:** иконка/toast только при потере/восстановлении.
+
+### 21.4 Мини-визуал (опция)
+- `Settings → Visual → Home Mini Visual: Off | Mini VU | Mini Spectrum`
+- По умолчанию: **Off** (минималистичный HOME).
+- Mini VU или Spectrum: узкая полоса 24px внизу HOME.
+
+---
+
+## 22) Заставка / IDLE + Fullscreen Visual (Playback Screensaver)
+
+### 22.1 IDLE (без воспроизведения или по таймауту)
+- Таймаут: `Settings → Visual → Idle Timeout: 15/30/60 сек` → `UI_STATE_IDLE`.
+- Любое действие → возврат на предыдущий экран.
+
+**Доступные заставки (IDLE mode):**
+| Режим | Нагрузка |
+|---|---|
+| **Clock Large** | Очень низкая |
+| **Waterfall** | Низкая (hw scroll) |
+| **Dual VU + Peak Hold** | Низкая |
+| **Lissajous / Vectorscope** | Средняя |
+| **Spectrum Bars** | Средняя |
+
+### 22.2 Fullscreen Visual (Playback Screensaver)
+- `Settings → Visual → Fullscreen Visualizer: OFF | After 10s | Always`
+- Тип: `Spectrum Pro | Waterfall Pro | Vectorscope Pro | Oscilloscope | Aura Ambient`
+- Логика: HOME остаётся информативным; через N секунд во время воспроизведения → `UI_STATE_VISUAL_FULL`.
+- При смене трека в `UI_STATE_VISUAL_FULL`: Now Playing overlay на 3–4 сек поверх визуала.
+- Любое действие → возврат на HOME.
+
+### 22.3 Now Playing Toast в IDLE / VISUAL_FULL
+```
+Триггер: новый NAMESET или META
+
+1. Показать UI_STATE_OVERLAY_NOWPLAY поверх текущего экрана на 3–4 сек
+2. Карточка (dirty-rect, radius 12):
+   ┌─────────────────────────────────────┐
+   │  ♪  Artist / Station                │
+   │     Track Title                     │
+   └─────────────────────────────────────┘
+3. Появление: slide-up + fade-in (Normal 220ms)
+4. Исчезновение: fade-out (Fast 140ms)
+5. Заставка/визуализатор продолжают обновляться своим темпом
+```
+
+---
+
+## 23) Fullscreen Visualizer Pack (OMNIA AURA Visualizers)
+
+### 23.1 Spectrum Pro (must-have)
+**Вход:** `SPEC:16` или `SPEC:32` (uint8 0..255 лог-амплитуды).  
+**Рендер:**
+- Бары: логарифмическая шкала по X, линейная по Y.
+- Сглаженная линия по вершинам (простое скользящее по соседним бинам).
+- Заливка градиентом: 2–3 уровня цвета (без альфы) от accent до bg.
+- Peak dots: отдельные пиксели/короткие линии с медленным спадом (persistence 1–3 сек).
+- **Adaptive palette:** low frequencies — чуть теплее accent; high — чуть холоднее.
+
+**Обновление:** 20–30 Гц в fullscreen, 10–20 Гц в mini-режиме.
+
+**Баллистика (attack/release в UI):**
+```c
+// attack быстрый, release медленный — "флагманский" стиль
+float bar_val[32];
+// При новых данных SPEC:
+for (int i = 0; i < n_bins; i++) {
+    float new_val = spec_data[i] / 255.0f;
+    if (new_val > bar_val[i])
+        bar_val[i] += (new_val - bar_val[i]) * 0.8f;  // fast attack
+    else
+        bar_val[i] += (new_val - bar_val[i]) * 0.15f; // slow release
+}
+```
+
+### 23.2 Waterfall Pro (must-have)
+**Ключ:** аппаратный вертикальный скролл ST7789/ILI9341 (`VSCRDEF 0x33` + `VSCSAD 0x37`).
+
+```
+Алгоритм (каждый кадр):
+1. scroll_ptr = (scroll_ptr + LINE_H) % SCROLL_AREA_H
+2. Команда VSCSAD(scroll_ptr) → аппаратный сдвиг (без перерисовки!)
+3. Рисуем новую строку спектра в tile_dma (colormap по SPEC данным)
+4. DMA push только новой строки в GRAM
+Никакой перерисовки всего экрана!
+```
+
+**Colormap:** привязан к `spec_colormap[8]` текущей темы.  
+**Поверх:** тонкий "current trace" (линия текущего спектра, 2 px).
+
+**ESP32-S2 бонус (v2):**
+- Хранить историю waterfall в PSRAM (до 240 строк = 320×240×1 byte ≈ 75 KB — легко).
+- "Scrub" энкодером назад/вперёд по истории.
+
+### 23.3 Vectorscope Pro / Lissajous (must-have)
+**Вход:** `SCOPE_POINTS:N:x0,y0,x1,y1,...` от v·core (пары L/R значений, downsample).  
+
+**Рендер:**
+- Сетка (тонкая, muted_text).
+- Фигура (line strip или точки).
+- Persistence: след затухает за 0.5–1 сек (хранится в PSRAM-буфере, fade на -1 brightness каждый кадр).
+- Корреляция −1..+1 индикатор (горизонтальная шкала с указателем).
+
+**Обновление:** 20–30 Гц.
+
+### 23.4 Oscilloscope Stereo (nice-to-have)
+**Вход:** `SCOPE_POINTS:...` или отдельный `OSC:...` пакет.  
+**Фичи:**
+- Триггер по нулю (стабильная картинка при периодических сигналах).
+- Режимы: L, R, Mono, Side (L-R).
+
+**Обновление:** 20–30 Гц.
+
+### 23.5 Aura Ambient (топовый "медленный" режим, v2)
+**Идея:** фон живёт медленным градиентом, цвет меняется в зависимости от "тембра" музыки.
+
+**Вход:**
+- `SPEC:16` или `SPEC:32` (обязательный минимум).
+- `FEAT:CENTROID:N` — спектральный центроид (0..255, чем выше, тем "холоднее" цвет), опционально.
+- `FEAT:LOUD:N` — текущая громкость (влияет на яркость фона).
+
+**Рендер:**
+- Полноэкранный медленный gradient sweep (2–3 цвета, переливаются).
+- Цвет градиента lerp к "тарget_hue" из centroid данных (5–10 Гц обновление).
+- Поверх (опционально): мягкие размытые "облака" из амплитуд бинов.
+
+**Обновление:** 5–10 Гц (очень спокойно, минимальная нагрузка).
+
+---
+
+## 24) Boot Splash + "Soft Vignette"
+
+### 24.1 Boot Splash
+`Settings → System → Boot Screen:`
+- `Logo static` — просто лого.
+- `Logo + shimmer` — блик полоской 1–2 сек (premиальный эффект).
+- `Minimal` — только текст "OMNIA STHENOS".
+- `Diagnostics boot` — версии, heap, flash ID.
+
+**Ассеты:** в LittleFS (внутренняя Flash 4MB) или внешней SPI Flash assets.
+
+### 24.2 Shimmer-эффект (дёшево и красиво)
+```c
+// Полоска яркости ~40px шириной, движется по X за 1.5 сек
+for (uint32_t t = 0; t < 1500; t += 40) {
+    float progress = ease_in_out_cubic((float)t / 1500.0f);
+    int shimmer_x = (int)(progress * 320);
+    // Рисуем вертикальную полосу +30% яркости в shimmer_x..shimmer_x+40
+    // Остальное — нормальный логотип
+    // push dirty-rect этой полосы
+}
+```
+
+### 24.3 Soft Vignette (в fullscreen visualizer)
+Статическая виньетка не через alpha-blend, а через 2–3 уровня затемнения по краям:
+```c
+// Один раз при init визуализатора записываем в frame_buf тёмные края:
+// top/bottom: 20px полоса с цветом bg (или 50% между bg и surface)
+// left/right: 16px полоса
+// Это не анимируется, не тратит CPU — просто "рамка"
+```
+
+---
+
+## 25) LIST / Wheel Picker v2
+
+### 25.1 Дизайн
+- Центральный элемент: **полная яркость**, размер шрифта Title, accent outline.
+- Соседние (±1): 75% яркости, нормальный шрифт.
+- Дальние (±2): 50% яркости, MonoSmall.
+- Ещё дальше: не рисуются.
+
+**Индикатор:** `N / Max` + тонкая полоска прокрутки (4px, акцент).
+
+### 25.2 Инерция
+```c
+typedef struct {
+    float    velocity;    // "скорость" прокрутки, сбрасывается к 0
+    float    position;    // float позиция (дробная для инерции)
+    uint32_t last_tick;
+} WheelState;
+
+// При повороте энкодера:
+wheel.velocity += encoder_delta * VELOCITY_FACTOR;
+
+// В render loop:
+wheel.velocity *= 0.85f;  // затухание (easeOut)
+wheel.position += wheel.velocity;
+// Округляем для фактического индекса
+int focused_idx = (int)roundf(wheel.position);
+```
+
+### 25.3 Рендер
+Перерисовываем только "полосу списка" (dirty-rect).  
+При изменении focused_idx — запускаем пресс-эффект на новый центральный элемент.
+
+---
+
+## 26) STANDBY экран
+```
+┌──────────────────────────────────────────┐
+│                                          │
+│              23:45                       │  ← H1 шрифт из Flash
+│           Вт 06.06.26                    │  ← Body: дата
+│                                          │
+│   [WiFi▲]   [BT401]   −18 dB            │  ← MonoSmall статус
+│                                          │
+└──────────────────────────────────────────┘
+RGB ring: Standby Breathing (медленный пульс 8 сек)
+Brightness: max 20% (ночное расписание 22:00–07:00)
+```
+
+---
+
+## 27) Политика текста метаданных (универсальный алгоритм)
+
+### 27.1 Алгоритм (text_layout.c)
+```
+1. Парсинг:
+   - Station  (icy-name)
+   - Meta     ("Artist – Title" / "Artist / Title" / только Title)
+   - Разделители: " - ", " — ", " / "
+
+2. Fit test (в пикселях реального шрифта):
+   a) Влезает в 1 строку → целиком
+   b) Не влезает → word-wrap по словам
+   c) Нет пробелов → перенос по UTF-8 codepoint boundary
+   d) Не влезает в 2 строки → ellipsis "…" + Pager mode
+
+3. Pager mode (default, без анимации):
+   - каждые 5–7 сек: Artist → Title → Station
+   - только смена текстового прямоугольника (dirty-rect)
+   - без wipe/slide анимаций
+   - при смене трека → сброс в начало pager
+
+4. INFO/OK → Now Playing экран:
+   - текст целиком (до 4–6 строк)
+   - без анимаций
+```
+
+### 27.2 Опциональный Marquee
+`Settings → Visual → Text Overflow: Ellipsis+Pager (default) | Marquee`
+
+Если Marquee:
+- 20 Гц обновление.
+- Рисуем только мета-прямоугольник (dirty-rect).
+- `pos_x = f(time)` — не "прибавить пиксель", а вычислять из времени (нет дёрганья при пропуске кадра).
+- Если DMA занято → пропустить тик.
+
+**Default: Ellipsis+Pager.**
+
+---
+
+## 28) MAIN MENU (полная структура, обновлённая)
+```
+HOME
+├─ Source: BT401:BT / BT401:USB Audio / BT401:TF / BT401:UDISK / Radio:WEB / Radio:SD
+│
+├─ Presets & Favorites
+│    ├─ Favorites (быстрый switch)
+│    ├─ All presets (список)
+│    └─ Edit preset / live EQ curve
+│
+├─ Guided Tuning (мастер по шагам)
+│
+├─ Room Correction
+│    ├─ Room profile: ON / OFF
+│    └─ Import via USB-CDC (omniactl.py)
+│
+├─ Shuffle: OFF / Repeat / No Repeat
+│
+├─ Visual
+│    ├─ Idle Visual: Clock | Waterfall | VU | Lissajous | Spectrum
+│    ├─ Fullscreen Visualizer: OFF | After 10s | Always
+│    │    └─ Type: Spectrum Pro | Waterfall Pro | Vectorscope | Oscillo | Aura Ambient
+│    ├─ Show Now Playing in Visual: ON/OFF
+│    ├─ Pro Overlay: ON/OFF
+│    ├─ Home Mini Visual: Off | Mini VU | Mini Spectrum
+│    ├─ Text Overflow: Ellipsis+Pager | Marquee
+│    └─ Idle Timeout: 15 / 30 / 60 сек
+│
+├─ Display & Theme
+│    ├─ Theme: Obsidian | Carbon | Aurora | Studio | Night Warm | Ivory | Emerald | Amber
+│    ├─ Brightness: Auto / Manual / Schedule
+│    └─ Language: RU | EN
+│
+├─ RGB Ring
+│    ├─ Profile (список)
+│    └─ Brightness: Auto | Manual
+│
+├─ Remote Control
+│    ├─ Learn
+│    ├─ Test
+│    └─ Clear All
+│
+├─ Sleep Timer
+│
+├─ Diagnostics / Event Log
+│    ├─ Error log (последние 100 событий)
+│    ├─ SRAM / Heap usage (ESP32-S2 + AT32)
+│    └─ DSP metrics (HEADROOM, LIM_GR, CLIP_CNT, CPU load)
+│
+└─ System
+     ├─ Firmware AT32 version
+     ├─ Firmware ESP32-S2 version
+     ├─ Flash ID + capacity
+     ├─ Heap / SRAM usage
+     ├─ Boot Screen: Logo | Logo+Shimmer | Minimal | Diagnostics
+     └─ Reset Settings
+
+> Display Controller — только в Service Menu (не здесь!)
+```
+
+---
+
+## 29) Кнопки (финальный маппинг, без изменений по сравнению с v7.0)
+| Кнопка | Короткое нажатие | Долгое нажатие |
+|---|---|---|
+| **Enc rotate** | громкость (home) / скролл (список/меню) | — |
+| **Enc press** | OK / Select; home = mute toggle | → MAIN MENU |
+| **PREV** | предыдущая станция/трек | page up в списке |
+| **NEXT** | следующая станция/трек | page down в списке |
+| **BACK** | назад / выход | → HOME |
+| **SOURCE** | BT401 ↔ Radio | список источников |
+| **FAV/PRESET** | следующий favourite | список всех пресетов |
+| **AMP POWER** | вкл/выкл усилитель | → STANDBY |
+
+---
+
+## 30) AURA Quality Scaling (деградация при нагрузке)
+| Уровень | Условие | Действие |
+|---|---|---|
+| **High** (default) | CPU task load < 70% | Visualizers 20–30 Гц, persistence, все эффекты |
+| **Low** (авто) | CPU task load > 80% | Visualizers 10–15 Гц, отключить persistence, SPEC:16 вместо SPEC:32 |
+
+```c
+void aura_quality_check(float cpu_load) {
+    if (cpu_load > 0.80f && aura_quality == AURA_HIGH) {
+        aura_quality = AURA_LOW;
+        spec_bins    = 16;
+        vis_rate_hz  = 12;
+        persistence  = 0;
+        toast_notify(TOAST_QUALITY_REDUCED);  // опц.
+    } else if (cpu_load < 0.60f && aura_quality == AURA_LOW) {
+        aura_quality = AURA_HIGH;
+        spec_bins    = 32;
+        vis_rate_hz  = 25;
+        persistence  = 1;
+    }
+}
+```
+
+---
+
+## 31) Backlight Manager + Датчик света (BH1750 / VEML7700)
+
+### 31.1 Backlight Manager (ESP32-S2)
+```c
+// Каждые 2 сек:
+float lux = sensor_read_lux();   // BH1750 или VEML7700
+lux_filtered += (lux - lux_filtered) * 0.1f;
+
+float target_br;
+if      (lux_filtered > 1000) target_br = 1.00f;
+else if (lux_filtered > 300)  target_br = 0.80f;
+else if (lux_filtered > 100)  target_br = 0.60f;
+else if (lux_filtered > 30)   target_br = 0.35f;
+else if (lux_filtered > 5)    target_br = 0.15f;
+else                           target_br = 0.05f;
+
+// Ночное расписание:
+if (hour >= 22 || hour < 7)
+    target_br = fminf(target_br, 0.20f);
+
+// Плавное изменение:
+current_br += (target_br - current_br) * 0.05f;
+ledc_set_duty(LEDC_CH, (uint32_t)(current_br * 8191));
+ledc_update_duty(LEDC_CH);
+```
+
+### 31.2 Поддерживаемые датчики
+- **BH1750** (I2C 0x23/0x5C) — простой, надёжный.
+- **VEML7700** (I2C 0x10) — лучше в темноте, auto-gain.
+
+**Питание:** строго 3.3В, pull-up 4.7k к 3.3В.  
+**Размещение:** не должен видеть TFT подсветку и RGB кольцо (иначе автоколебания яркости).
+
+### 31.3 VEML7700 auto-gain
+```c
+// Стартовые настройки:
+// GAIN: x1 (ALS_GAIN_1), Integration: 100ms (ALS_IT_100MS)
+// При насыщении (lux > 1000) → снизить gain/integration
+// При низкой освещённости (lux < 5) → поднять gain до x2 или x8
+// Авто-смена gain раз в 10 сек
+```
+
+---
+
+## 32) RGB Кольцо (ESP32-S2 RMT)
+
+### 32.1 Технические требования (обновлено)
+- Управление: **RMT TX** (ESP32-S2 имеет RMT-контроллер, идеален для WS2812).
+- Level-shifter **SN74AHCT125** обязателен (3.3В → 5В).
+- Электролит 470–1000 µF у кольца.
+- Gamma-коррекция: gamma ≈ 2.0 (perceived brightness).
+- Экспоненциальное сглаживание всех эффектов.
+- Ночной режим (lux < 20): max яркость 10–15%.
+
+### 32.2 Профили RGB кольца
+| Профиль | Поведение |
+|---|---|
+| **Theme Sync** | Статичный цвет = `ring_accent_r/g/b` текущей темы AURA |
+| **Volume Arc** | Дуга 0–100% (только если включена) |
+| **VU Ring Stereo** | L половина = L peak, R = R peak |
+| **Limiter/Clip Monitor** | Норм = тема; GR>3dB = тускнеет; clip = красная вспышка |
+| **Spectrum Wheel** | 8–16 полос SPEC по сегментам |
+| **Standby Breathing** | Медленный пульс 8 сек |
+| **Clock Pulse** | Тик раз в секунду |
+| **Ambient Slow** | Медленный HSV перелив |
+| **Source Color** | BT401=синий, Radio WEB=зелёный, Radio SD=оранжевый |
+| **Party** | Только по явному включению |
+| **Off** | Кольцо выключено |
+
+### 32.3 Standby Breathing: параметры и формула (без изменений v7.0)
+- Период T: 8 сек (6–12 с).
+- Атака Ta: 0.8 с; Спад Td: T − Ta.
+- b_max: 8% (ночью 3–5%); b_min: 0%.
+- Обновление: 25 Гц.
+
+```c
+float b;
+if (t < Ta)
+    b = b_min + (b_max - b_min) * (t / Ta) * (t / Ta);
+else {
+    float x = (t - Ta) / Td;
+    b = b_min + (b_max - b_min) * expf(-4.5f * x);
+}
+float b_norm = b / 100.0f;
+uint8_t b_pwm = (uint8_t)(b_norm * b_norm * 255.0f);
+uint8_t r = (uint8_t)((theme_r * b_pwm) >> 8);
+uint8_t g = (uint8_t)((theme_g * b_pwm) >> 8);
+uint8_t b_ch = (uint8_t)((theme_b * b_pwm) >> 8);
+```
+
+---
+
+**Продолжение:** ЧАСТЬ 3/6 — Хранение настроек (SPI Flash/LittleFS/NVS), IR пульт, локализация RU/EN, TFT универсальный драйвер, Service Menu полный, Time Manager.
+# OMNIA / STHENOS / v·core — MASTER SPEC v7.2
+# ЧАСТЬ 3/6 — Хранение настроек, IR пульт, Локализация RU/EN, TFT драйвер, Service Menu, Time Manager
+
+---
+
+## 33) Хранение настроек: где что хранить (обновлено для ESP32-S2)
+
+### 33.1 Карта хранилищ
+
+| Данные | Место | Почему |
+|---|---|---|
+| Темы / шрифты / иконки / boot splash | LittleFS (внутр. Flash 4MB ESP32-S2) | Большие, редко меняются |
+| Пресеты (до 32) | NVS (ESP32 NVS partition) | Нужны UI и v·core |
+| Room profiles (до 5) | LittleFS | Большие (коэффициенты PEQ) |
+| Last state / source | NVS journal | Восстановить при старте |
+| Избранное | NVS | На UI |
+| IR bindings (~12) | NVS | ~1.7 KB |
+| Язык (RU/EN) | NVS | |
+| Тип контроллера TFT | NVS | ST7789 / ILI9341 |
+| AURA theme выбор | NVS | |
+| AURA quality / visual settings | NVS | |
+| DSP параметры (runtime) | RAM AT32 | Быстрый доступ |
+| Event log 100 событий | RAM AT32 (ring buffer) | Runtime only |
+| Crash log 10 последних | NVS (ESP32) | При standby/shutdown |
+| Waterfall history (опц.) | PSRAM (ESP32-S2) | Runtime только |
+| Glyph LRU cache | PSRAM / DRAM | 32–64 глифа |
+
+**Примечание по внешней SPI Flash:**
+- Если ассеты (шрифты, темы, иконки) умещаются во внутренние 4MB Flash ESP32-S2 через LittleFS → внешняя W25Q32 **не обязательна**.
+- Если ассетов много (все 8 тем × шрифты × boot-картинки) → внешняя SPI Flash остаётся как "assets flash".
+- Решение принимается на этапе наполнения ассетами; архитектура должна поддерживать оба варианта.
+
+### 33.2 ESP32 NVS (Non-Volatile Storage)
+
+ESP32 имеет встроенный NVS-механизм поверх Flash с wear-leveling.
+
+**Пространства имён (namespaces):**
+```c
+// Namespace → Key → Value
+"ui_state"   → "src_group"      → uint8 (RADIO/BT401)
+"ui_state"   → "src_submode"    → uint8
+"ui_state"   → "vol_db10"       → int16 (dBx10)
+"ui_state"   → "muted"          → uint8
+"ui_state"   → "preset_slot"    → uint8
+
+"display"    → "ctrl_type"      → uint8 (ST7789/ILI9341)
+"display"    → "brightness"     → uint8
+"display"    → "theme_idx"      → uint8
+"display"    → "language"       → uint8 (0=RU, 1=EN)
+"display"    → "spi_freq_hz"    → uint32
+
+"visual"     → "idle_visual"    → uint8
+"visual"     → "fs_visual"      → uint8
+"visual"     → "fs_timeout_s"   → uint16
+"visual"     → "pro_overlay"    → uint8
+"visual"     → "mini_visual"    → uint8
+"visual"     → "text_overflow"  → uint8
+"visual"     → "idle_timeout_s" → uint16
+
+"ir"         → "binding_N"      → blob (IR_Binding struct)
+
+"presets"    → "slot_N"         → blob (Preset struct)
+"presets"    → "fav_mask"       → uint32
+
+"system"     → "boot_screen"    → uint8
+"system"     → "sleep_timer_m"  → uint16
+```
+
+### 33.3 Политика записи "dirty + timeout + standby" (обязательная)
+
+```c
+// Флаги "грязных" данных:
+#define DIRTY_VOL       (1 << 0)
+#define DIRTY_SOURCE    (1 << 1)
+#define DIRTY_PRESET    (1 << 2)
+#define DIRTY_DISPLAY   (1 << 3)
+#define DIRTY_VISUAL    (1 << 4)
+#define DIRTY_IR        (1 << 5)
+#define DIRTY_SYSTEM    (1 << 6)
+#define DIRTY_ALL       (0xFF)
+
+static uint32_t dirty_flags     = 0;
+static uint32_t dirty_timestamp = 0;
+
+// При любом изменении:
+void mark_nvs_dirty(uint32_t flag) {
+    dirty_flags     |= flag;
+    dirty_timestamp  = xTaskGetTickCount();
+}
+
+// В главном UI loop (sensor_task или отдельный nvs_task):
+void nvs_tick(void) {
+    if (dirty_flags == 0) return;
+    uint32_t now = xTaskGetTickCount();
+    if ((now - dirty_timestamp) > pdMS_TO_TICKS(4000)) {
+        nvs_commit(dirty_flags);
+        dirty_flags = 0;
+    }
+}
+
+// При STANDBY или AMP:OFF — принудительно всё:
+void nvs_force_commit(void) {
+    nvs_commit(DIRTY_ALL);
+    dirty_flags = 0;
+}
+```
+
+### 33.4 Специальные правила записи
+- **Громкость:** писать только если не менялась **3+ сек** или при standby. НЕ писать при каждом шаге энкодера (иначе износ Flash!).
+- **EQ/пресеты:** писать после выхода из редактора EQ.
+- **IR bindings:** писать после завершения обучения.
+- **TFT controller type:** писать при подтверждении в Wizard/Rescue.
+- **Theme:** писать после завершения transition.
+
+### 33.5 LittleFS: структура ассетов
+
+```
+/assets/
+  fonts/
+    body_16.bin         // Body шрифт 16px, UTF-8 (ASCII + Cyrillic)
+    title_20.bin        // Title шрифт 20px
+    h1_32.bin           // H1 шрифт 32px (часы/громкость OSD)
+    mono_12.bin         // MonoSmall 12px
+  icons/
+    src_bt.bin
+    src_web.bin
+    src_sd.bin
+    wifi_0.bin .. wifi_4.bin
+    amp_on.bin, amp_off.bin
+    note.bin            // ♪
+    clip.bin, lim.bin
+  themes/
+    obsidian.bin        // AURA_Theme struct + colormap
+    carbon.bin
+    aurora.bin
+    studio.bin
+    night_warm.bin
+    ivory.bin
+    emerald.bin
+    amber.bin
+  boot/
+    logo.bin            // boot логотип (raw RGB565 или RLE)
+  lang/
+    ru.bin              // языковой пакет RU
+    en.bin              // языковой пакет EN
+```
+
+**Почему бинарный формат ассетов:**
+- Быстрое чтение: нет парсинга.
+- Малый размер: только нужные глифы + bitfield.
+- Glyph LRU cache 32–64 символа в PSRAM/DRAM экономит повторные обращения к Flash.
+
+---
+
+## 34) Универсальный SPI Flash слой (для внешней W25Q32, если используется)
+
+### 34.1 JEDEC + SFDP детект
+
+```c
+// При старте:
+uint8_t jedec[3];
+flash_read_id(jedec);   // команда 0x9F (RDID)
+
+if (flash_read_sfdp(&sfdp) == FLASH_OK) {
+    page_size   = sfdp.page_size;    // обычно 256 байт
+    sector_size = sfdp.erase_size;   // 4K / 32K / 64K
+    total_size  = sfdp.density;
+} else {
+    // Fallback: таблица по JEDEC ID
+    flash_lookup_params(jedec, &page_size, &sector_size, &total_size);
+}
+
+// Единый API (не зависит от чипа):
+flash_read(addr, buf, len);
+flash_page_program(addr, buf, len);   // len <= page_size
+flash_sector_erase(addr);             // выровнено по sector_size
+flash_chip_erase();
+flash_wait_ready();
+```
+
+### 34.2 Почему SFDP обязателен
+- На AliExpress много "W25Q32-совместимых" чипов с разными параметрами (page/sector/capacity).
+- SFDP гарантирует корректную работу без хардкода.
+- Fallback таблица по JEDEC ID — страховка для старых чипов без SFDP.
+
+### 34.3 Ресурс Flash
+- W25Q32: ~100K P/E циклов на сектор.
+- При 10 записях/день → ~27 лет ресурса при правильной политике.
+- Ключевое правило: **НИКОГДА не писать при каждом шаге энкодера** (громкость — только по таймауту 3-4 сек).
+
+---
+
+## 35) IR пульт: универсальный self-learn (полная реализация)
+
+### 35.1 Железо
+- **TSOP4838 / VS1838B** (38 кГц демодулированный, активный LOW).
+- Пин: `GPIO5` (RMT RX — предпочтительно).
+- Питание: 3.3В или 5В (зависит от модуля).
+- Pull-up внутренний ESP32 (10k к 3.3В).
+
+**Почему RMT для IR:**
+- RMT на ESP32-S2 аппаратно измеряет длительности mark/space в тиках таймера.
+- Не требует ISR + ручного таймера.
+- Не нагружает CPU во время захвата.
+- Встроенный idle-детект (конец кадра по паузе).
+
+### 35.2 Архитектура: IR только в ESP32-S2 UI
+- Пульт управляет UI как "виртуальные кнопки".
+- UI отправляет в v·core те же UART-команды, что от физических кнопок.
+- **v·core не знает про пульт** → не ломается при замене УНЧ/пульта.
+
+### 35.3 Захват через RMT
+
+```c
+#define IR_MAX_SYMBOLS  128
+
+typedef struct {
+    rmt_symbol_word_t symbols[IR_MAX_SYMBOLS];
+    size_t            count;
+    bool              complete;
+} IR_Frame;
+
+// Конфигурация RMT RX:
+rmt_rx_channel_config_t rx_cfg = {
+    .gpio_num        = IR_IN,          // GPIO5
+    .clk_src         = RMT_CLK_SRC_DEFAULT,
+    .resolution_hz   = 1000000,        // 1 МГц → 1 мкс/тик
+    .mem_block_symbols = 128,
+    .flags.invert_in = true,           // TSOP4838 активный LOW
+};
+// idle_threshold = 20000 мкс (20 мс) → конец кадра
+```
+
+### 35.4 Нормализация и fingerprint
+
+```c
+// 1. Извлечь длительности mark и space из RMT symbols
+// 2. Найти медиану коротких импульсов (единичный квант)
+// 3. Разделить все длительности на квант → "символы"
+// 4. Квантовать с допуском ±25%
+// 5. fingerprint = CRC32 от нормализованного массива
+
+uint32_t ir_fingerprint(uint16_t *durations, uint8_t count) {
+    uint16_t symbols[IR_MAX_SYMBOLS];
+    uint32_t unit = ir_find_unit(durations, count);  // медиана коротких
+    for (int i = 0; i < count; i++) {
+        symbols[i] = (uint16_t)((durations[i] + unit/2) / unit);
+        if (symbols[i] > 8) symbols[i] = 8;
+    }
+    return crc32(symbols, count * sizeof(uint16_t));
+}
+```
+
+### 35.5 Самообучение (UX + алгоритм)
+
+```
+Settings → Remote → Learn → [выбрать действие из списка]
+
+Для каждого действия:
+1. UI: "Нажмите кнопку 3 раза"
+   (AURA toast + focus на счётчик: "1/3... 2/3... 3/3...")
+2. Захватить 3 кадра через RMT
+3. Вычислить fingerprint каждого
+4. Если 2 из 3 совпадают → сохранить в NVS → toast "IR learned OK"
+5. Если нет → toast "Не распознано, попробуйте ещё"
+
+Runtime матчинг (в ui_input_task):
+1. Захватили кадр → fingerprint
+2. Сравниваем с таблицей NVS:
+   a) Точный CRC32 → действие найдено
+   b) Метрика похожести Σ|dt_i - ref_i|/ref_i < 0.25 → найдено
+   c) Не найдено → игнорируем
+```
+
+### 35.6 Hold / Repeat
+
+```c
+// Кадры приходят с периодом < 200 мс и похожи → Hold
+// hold_count:
+//   0–3   → однократное действие (debounce)
+//   4–10  → авто-повтор VOL: шаг 0.5 dB каждые 150 мс
+//   11+   → ускорение VOL: шаг 1.0 dB каждые 100 мс
+static uint8_t hold_count = 0;
+static uint32_t last_ir_ms = 0;
+
+void ir_on_frame(uint32_t fingerprint) {
+    uint32_t now = xTaskGetTickCount();
+    if ((now - last_ir_ms) < pdMS_TO_TICKS(200) &&
+        fingerprint == last_fingerprint) {
+        hold_count++;
+    } else {
+        hold_count = 0;
+    }
+    last_ir_ms      = now;
+    last_fingerprint = fingerprint;
+
+    if (hold_count == 0 || hold_count >= 4) {
+        float vol_step = (hold_count >= 11) ? 1.0f : 0.5f;
+        ir_dispatch_action(fingerprint, vol_step);
+    }
+}
+```
+
+### 35.7 Маппинг IR → команды v·core
+
+| IR Action | UART в v·core |
+|---|---|
+| VOL+ | `VOL:NNN` (dB×10) |
+| VOL- | `VOL:NNN` |
+| MUTE | `MUTE:TOGGLE` |
+| NEXT | `NEXT` |
+| PREV | `PREV` |
+| PLAY/PAUSE | `TOGGLE` |
+| SOURCE | `SRC:...` + `BT401_MODE:...` / `MODE:...` |
+| POWER/AMP | `AMP:TOGGLE` |
+| MENU | UI only |
+| BACK | UI only |
+| OK | UI only |
+| FAV | `PRESET:LOAD slot=N` |
+
+### 35.8 Хранение IR bindings в NVS
+
+```c
+typedef enum {
+    IR_STORE_RAW,
+    IR_STORE_DECODED
+} IR_StoreMode;
+
+typedef struct {
+    uint8_t      action;         // IR_ACTION_VOL_UP, etc.
+    IR_StoreMode mode;
+    uint32_t     fingerprint;    // CRC32
+    uint16_t     dt_norm[64];    // нормализованные тайминги (мкс)
+    uint8_t      dt_count;
+    uint8_t      valid;
+} IR_Binding;
+// ~12 действий × ~140 байт ≈ 1.7 KB в NVS
+```
+
+### 35.9 Что тестировать (IR)
+- Self-learn 3 повтора → fingerprint совпадает → сохранение в NVS.
+- Runtime матч: точный CRC → действие; ~похожий → действие; чужой код → игнор.
+- Hold VOL: ускорение при hold_count ≥ 11.
+- IR test экран: показывает raw fingerprint и матчинг.
+
+---
+
+## 36) Локализация RU/EN + UTF-8 + шрифты
+
+### 36.1 Правила кодировки
+- Все текстовые поля: **UTF-8** end-to-end.
+- Запрещены raw CR/LF внутри payload (экранировать как `\n`).
+- Максимальная длина строки протокола: **256 байт**.
+- Невалидные UTF-8 байты → заменять на `?` при выводе.
+- Если глиф отсутствует в шрифте → рисовать `□`.
+
+### 36.2 Языковые пакеты
+
+```c
+typedef enum {
+    STR_MENU_SOURCE,   STR_MENU_PRESETS,   STR_MENU_GUIDED,
+    STR_MENU_ROOM,     STR_MENU_SHUFFLE,   STR_MENU_VISUAL,
+    STR_MENU_DISPLAY,  STR_MENU_RGB,       STR_MENU_REMOTE,
+    STR_MENU_SLEEP,    STR_MENU_DIAG,      STR_MENU_SYSTEM,
+    STR_VOL_MUTE,      STR_VOL_UNMUTE,
+    STR_SRC_BT,        STR_SRC_BT_USB,     STR_SRC_BT_TF,
+    STR_SRC_BT_UDISK,  STR_SRC_WEB,        STR_SRC_SD,
+    STR_STANDBY,       STR_NOW_PLAYING,
+    STR_THEME_OBSIDIAN, STR_THEME_CARBON,  STR_THEME_AURORA,
+    STR_IR_LEARN,      STR_IR_TEST,        STR_IR_CLEAR,
+    STR_AURA_HIGH,     STR_AURA_LOW,
+    STR_TOAST_PRESET_SAVED,  STR_TOAST_TIME_SYNCED,
+    STR_TOAST_WIFI_WEAK,     STR_TOAST_LIM_ACTIVE,
+    STR_TOAST_SR_BAD,        STR_TOAST_IR_OK,
+    STR_BOOT_LOGO,     STR_BOOT_SHIMMER,
+    STR_BOOT_MINIMAL,  STR_BOOT_DIAG,
+    // ...все строки UI
+    STR_COUNT
+} StrID;
+
+// Языковые пакеты (из LittleFS/lang/ru.bin, en.bin):
+const char *lang_ru[STR_COUNT];
+const char *lang_en[STR_COUNT];
+const char **lang_active;  // указывает на lang_ru или lang_en
+
+#define STR(id)  (lang_active[id])
+```
+
+**Применение без перепрошивки:**
+- `Settings → Display → Language → RU | EN`
+- При смене: `lang_active = lang_en`, перерисовка текущего экрана (dirty-rect текстовых виджетов).
+
+### 36.3 Шрифты (bitmap из LittleFS)
+
+- Форматы: бинарные bitmap-файлы с таблицей глифов.
+- Минимальный набор глифов в каждом шрифте:
+  - ASCII 0x20..0x7E + пунктуация
+  - Кириллица U+0400..U+04FF (включая Ё/ё)
+  - Цифры, спец. символы (°, µ, ←, →, ▲, ●, …, □, ♪)
+- Glyph LRU cache в PSRAM: **32–64 символа** (экономия обращений к Flash).
+
+```c
+typedef struct {
+    uint32_t codepoint;
+    uint8_t  width, height;
+    int8_t   bearing_x, bearing_y;
+    uint8_t  advance;
+    uint8_t  bitmap[];   // 1-bit или 4-bit grayscale
+} GlyphEntry;
+
+// LRU cache:
+GlyphEntry glyph_cache[64];
+uint32_t   glyph_lru_keys[64];
+uint8_t    glyph_lru_age[64];
+
+GlyphEntry *glyph_get(uint32_t codepoint) {
+    // 1. Проверить cache
+    // 2. Если нет → читать из LittleFS
+    // 3. Положить в cache (вытеснить LRU)
+    // 4. Вернуть указатель
+}
+```
+
+### 36.4 Рендер текста (text_layout.c)
+
+```c
+// UTF-8 декодирование (безопасное):
+uint32_t utf8_next_codepoint(const char **ptr) {
+    const uint8_t *p = (const uint8_t *)(*ptr);
+    uint32_t cp;
+    if (*p < 0x80) {
+        cp = *p++;
+    } else if ((*p & 0xE0) == 0xC0) {
+        cp = (*p++ & 0x1F) << 6;
+        cp |= (*p++ & 0x3F);
+    } else if ((*p & 0xF0) == 0xE0) {
+        cp = (*p++ & 0x0F) << 12;
+        cp |= (*p++ & 0x3F) << 6;
+        cp |= (*p++ & 0x3F);
+    } else {
+        cp = '?'; p++;  // невалидный байт
+    }
+    *ptr = (const char *)p;
+    return cp;
+}
+
+// Fit test:
+uint16_t text_measure_width(const char *str, const Font *font) {
+    uint16_t w = 0;
+    while (*str) {
+        uint32_t cp = utf8_next_codepoint(&str);
+        GlyphEntry *g = glyph_get(cp);
+        w += g ? g->advance : font->default_advance;
+    }
+    return w;
+}
+```
+
+---
+
+## 37) TFT универсальный драйвер (ST7789 / ILI9341)
+
+### 37.1 Универсальный API
+
+```c
+// Единый интерфейс независимо от контроллера:
+void tft_init(TFT_Controller ctrl);
+void tft_set_window(uint16_t x0, uint16_t y0,
+                    uint16_t x1, uint16_t y1);
+void tft_push_pixels_rgb565(uint16_t *buf, uint32_t count);
+void tft_set_rotation(uint8_t rot);
+void tft_invert(uint8_t on);
+void tft_scroll_define(uint16_t tfa, uint16_t vsa, uint16_t bfa);
+void tft_scroll_start(uint16_t vsp);
+void tft_backlight_set(float brightness_0_1);
+
+typedef enum { TFT_ST7789, TFT_ILI9341 } TFT_Controller;
+
+typedef struct {
+    TFT_Controller ctrl;
+    uint16_t  offset_x;    // смещение RAM окна (у ST7789 бывает ненулевым)
+    uint16_t  offset_y;
+    uint8_t   rgb_order;   // 0=RGB, 1=BGR
+    uint32_t  spi_freq_hz; // рабочая SPI частота
+} TFT_Profile;
+```
+
+### 37.2 SPI DMA push (ESP32-S2)
+
+На ESP32-S2 используем `esp_lcd` (IDF component) или прямой SPI DMA через `spi_device_queue_trans`.
+
+```c
+// Инициализация SPI для TFT:
+spi_bus_config_t bus_cfg = {
+    .mosi_io_num = TFT_MOSI,
+    .miso_io_num = TFT_MISO,   // -1 если не нужен readback
+    .sclk_io_num = TFT_SCK,
+    .quadwp_io_num = -1,
+    .quadhd_io_num = -1,
+    .max_transfer_sz = 320 * 16 * 2,   // размер тайла
+};
+spi_bus_initialize(SPI2_HOST, &bus_cfg, SPI_DMA_CH_AUTO);
+
+spi_device_interface_config_t dev_cfg = {
+    .clock_speed_hz = 40 * 1000 * 1000,   // 40 МГц (проверять на плате!)
+    .mode = 0,
+    .spics_io_num = TFT_CS,
+    .queue_size = 7,
+    .pre_cb = tft_spi_pre_cb,   // DC low/high
+};
+spi_bus_add_device(SPI2_HOST, &dev_cfg, &tft_spi_handle);
+```
+
+**SPI Clock Test (обязательно в Service Menu):**
+```c
+// Автопонижение при артефактах:
+// 1. Попробовать 80 МГц
+// 2. Нарисовать тест-паттерн (цветные полосы)
+// 3. Прочитать 1-2 строки (если MISO подключён)
+// 4. Если ошибки → понизить до 40 МГц → повторить
+// 5. Если ошибки → понизить до 20 МГц
+// 6. Сохранить рабочую частоту в NVS (display → spi_freq_hz)
+```
+
+### 37.3 Waterfall: аппаратный скролл
+
+```c
+// ST7789:  VSCRDEF (0x33) + VSCSAD (0x37)
+// ILI9341: VSCRDEF (0x33) + VSCRSADD (0x37)
+
+static uint16_t scroll_ptr = 0;
+
+void waterfall_new_line(uint8_t *spec_bins, uint8_t n_bins) {
+    // 1. Сдвинуть scroll_ptr
+    scroll_ptr = (scroll_ptr + LINE_H) % SCROLL_AREA_H;
+    // 2. Аппаратный сдвиг (без перерисовки!)
+    tft_scroll_start(scroll_ptr);
+    // 3. Рисуем новую строку в tile_dma
+    waterfall_render_line(spec_bins, n_bins, tile_dma, colormap);
+    // 4. DMA push только новой строки
+    tft_set_window(0, scroll_ptr, 319, scroll_ptr + LINE_H - 1);
+    tft_push_pixels_rgb565(tile_dma, 320 * LINE_H);
+}
+```
+
+### 37.4 TE (Tearing Effect) пин (опционально)
+
+Если TE выведен на модуле дисплея:
+```c
+// Команда TEON (0x35) включает синхросигнал TE на пине дисплея
+// GPIO interrupt на TE → синхронизация DMA push с VSync
+// Устраняет tearing при быстрых переходах
+// Если TE не выведен → пропустить, работать без синхронизации
+```
+
+---
+
+## 38) Display Setup Wizard / Rescue / Service Menu
+
+### 38.1 Путь 1 — Display Setup Wizard (первый запуск / NVS пустой)
+
+```
+1. RST дисплея (GPIO TFT_RST)
+2. Init как ST7789 → нарисовать тест-экран "ST7789?" (цветные полосы + текст)
+3. RGB ring → синий
+4. Ждать 3 сек или нажатие ENC_BTN
+5. RST дисплея
+6. Init как ILI9341 → нарисовать тест-экран "ILI9341?" (цветные полосы + текст)
+7. RGB ring → зелёный
+8. Ждать 3 сек или нажатие ENC_BTN
+9. ENC press = подтвердить текущий → сохранить в NVS → reboot
+10. BACK = следующий вариант немедленно
+Цикл повторяется пока не подтверждено.
+```
+
+### 38.2 Путь 2 — Display Rescue (вслепую, без экрана)
+
+```
+При старте удержать ENC_BTN 5 сек
+→ Войти в Display Rescue (= тот же цикл ST7789/ILI9341)
+RGB кольцо:
+  ST7789  → кольцо синее
+  ILI9341 → кольцо зелёное
+  Подтверждение (ENC press) → 3 вспышки белым → сохранить в NVS → reboot
+РАБОТАЕТ ДАЖЕ ЕСЛИ ЭКРАН НИЧЕГО НЕ ПОКАЗЫВАЕТ!
+```
+
+### 38.3 Путь 3 — Service Menu (через экран)
+
+```
+Вход: BACK + ENC_BTN удержать 5 сек
+→ SERVICE MENU (screen_service.c)
+```
+
+### 38.4 Полное Service Menu
+
+```
+SERVICE MENU:
+├─ Display Controller
+│    ├─ ST7789 (init + тест)
+│    ├─ ILI9341 (init + тест)
+│    └─ SPI Clock Test (авто-подбор частоты)
+│
+├─ Flash
+│    ├─ JEDEC ID (вывод hex)
+│    ├─ SFDP info (page/sector/capacity)
+│    └─ LittleFS info (used/free)
+│
+├─ I2S test tone (синус через v·core AT32)
+│
+├─ RGB test
+│    ├─ All red / green / blue / white
+│    ├─ Rainbow
+│    └─ Off
+│
+├─ IR raw capture
+│    ├─ Показывать raw RMT тайминги
+│    └─ Показывать fingerprint CRC32
+│
+├─ UART tests
+│    ├─ v·core ping (отправить INFO.REQ, ждать ответа)
+│    └─ Loopback test
+│
+├─ Sensor test
+│    ├─ BH1750: текущий lux
+│    └─ VEML7700: текущий lux + gain
+│
+├─ Factory Reset
+│    ├─ Clear NVS (все настройки)
+│    ├─ Clear LittleFS (все ассеты → требует reflash)
+│    └─ Clear IR bindings only
+│
+└─ Firmware info
+     ├─ ESP32-S2 fw version + build date
+     ├─ AT32 v·core fw version
+     ├─ Flash JEDEC ID
+     ├─ LittleFS usage
+     ├─ Heap free (internal + PSRAM)
+     └─ IDF version
+```
+
+**Важно:** Display Controller отсутствует в обычном пользовательском меню.
+
+---
+
+## 39) Time Manager (AT32 v·core + UI)
+
+### 39.1 Источник времени
+- Источник: `##SYS.DATE#: YYYY-MM-DDTHH:MM:SS+TZ` от yoRadio через UART5.
+- Формат в протоколе AT32 → UI:
+  - `TIME:HH:MM:SS`
+  - `DATE:YYYY-MM-DD`
+  - `TZ:+HH:MM`
+
+### 39.2 AT32 v·core
+- Ведёт локальные часы по **SysTick** (ms counter).
+- Ресинк: каждые **10–30 мин** + при выходе из standby + при старте yoRadio.
+- При BT-режиме: часы идут по SysTick (yoRadio UART всегда активен для NTP!).
+
+### 39.3 UI (ESP32-S2)
+- Получает время от v·core по UART (`TIME:...`, `DATE:...`).
+- Хранит в переменных, обновляет часы-виджет раз в минуту (или раз в секунду в STANDBY).
+- При потере синхронизации > 30 мин: иконка предупреждения в статус-баре + toast.
+
+```c
+typedef struct {
+    uint8_t  hour, min, sec;
+    uint8_t  year_2d, month, day;  // год 2-значный (26 = 2026)
+    int8_t   tz_hour, tz_min;
+    uint32_t last_sync_ms;         // xTaskGetTickCount() при последнем ресинке
+    uint8_t  synced;
+} TimeState;
+
+void time_on_sync(const char *time_str, const char *date_str) {
+    // парсить HH:MM:SS и YYYY-MM-DD
+    ts.last_sync_ms = xTaskGetTickCount();
+    ts.synced       = 1;
+    mark_dirty(&w_statusbar);
+    mark_dirty(&w_standby_clock);
+}
+
+void time_tick(void) {
+    // Вызывать раз в секунду (sensor_task или отдельный timer callback)
+    uint32_t elapsed = xTaskGetTickCount() - ts.last_sync_ms;
+    if (ts.synced && elapsed > pdMS_TO_TICKS(30 * 60 * 1000)) {
+        ts.synced = 0;
+        toast_notify(TOAST_TIME_LOST);
+        mark_dirty(&w_statusbar);
+    }
+    // Инкремент секунды (программный счётчик между ресинками):
+    ts.sec++;
+    if (ts.sec >= 60) { ts.sec = 0; ts.min++; mark_dirty(&w_statusbar); }
+    if (ts.min >= 60) { ts.min = 0; ts.hour++; }
+    if (ts.hour >= 24) { ts.hour = 0; /* инкремент дня */ }
+    mark_dirty(&w_standby_clock);
+}
+```
+
+### 39.4 Ночное расписание (для яркости и RGB)
+```c
+bool is_night_time(void) {
+    return (ts.hour >= 22 || ts.hour < 7);
+}
+// Использование:
+// backlight.c: if (is_night_time()) target_br = fminf(target_br, 0.20f);
+// rgb_ring.c:  if (is_night_time()) b_max = 0.04f;  // вместо 0.08f
+```
+
+---
+
+## 40) Guided Tuning (без микрофона, полная реализация)
+
+### 40.1 Инициализация при входе в Guided Tuning
+v·core автоматически:
+- Room correction = OFF
+- Loudness = OFF, Psychobass = OFF
+- Limiter = ON (мягко)
+- Фиксированный тестовый уровень (−18 dB)
+
+### 40.2 Встроенные тест-сигналы (AT32 v·core генерирует)
+
+| Сигнал | Описание |
+|---|---|
+| Pink noise | Широкополосный розовый шум |
+| Warble tone | 40/50/63/80/100/125 Гц |
+| Sine sweep | 20–200 Гц плавный свип |
+| Channel check | L only / R only / Mono |
+| Phase check | L+R vs L−R |
+
+**A/B toggle** — одним нажатием (до/после правки).
+
+### 40.3 Шаги мастера
+
+| Шаг | Проблема | DSP под капотом |
+|---|---|---|
+| 1 | Bass Boom (гул/бубнение) | PEQ cut 40–120 Гц + subsonic HPF |
+| 2 | Muddy Mids (мутная середина) | PEQ cut 200–400 Гц |
+| 3 | Harsh Treble (режет ВЧ) | High-shelf −1…−4 dB + cut 3–5 kHz |
+| 4 | Sibilance (свистят С/Ш) | Narrow cut 6–9 kHz |
+| 5 | Subsonic (инфраниз) | Subsonic HPF fc 20–35 Гц |
+| 6 | Tone | Bass/Treble shelves |
+| 7 | Bass Mono | fc + mix |
+| 8 | Psychobass | depth + fc |
+
+---
+
+## 41) Room Correction (Scenario A: REW на ПК)
+
+### 41.1 Процесс подключения
+```
+1. OMNIA → USB к ПК → ESP32-S2 USB-CDC (Virtual COM через нативный USB)
+2. REW на ПК → тест-тон → запись микрофоном
+3. REW → EQ Filters → Export as text
+4. python omniactl.py import-rew room.txt --name "Room:Sofa" --slot 12 --apply
+```
+
+### 41.2 REW text format (пример)
+```
+Filter  1: ON  PK  Fc  55.0 Hz  Gain  -3.5 dB  Q  4.20
+Filter  2: ON  PK  Fc 110.0 Hz  Gain  -2.0 dB  Q  3.00
+Filter  3: ON  LS  Fc  90.0 Hz  Gain  +1.5 dB  Q  0.71
+```
+
+### 41.3 USB-CDC протокол импорта
+```
+PRESET.NEW name="Room:Sofa"
+FS 48000
+ROOMCORR 1
+PEQ 1 PK 55.0 -3.5 4.20
+PEQ 2 PK 110.0 -2.0 3.00
+PEQ 3 LS 90.0 +1.5 0.71
+PRESET.SAVE slot=12
+APPLY slot=12
+← OK / ← ERR reason
+```
+
+### 41.4 Заглушка для тестирования (без микрофона)
+```
+PRESET.NEW name="TestFlat"
+FS 48000
+ROOMCORR 1
+PEQ 1 HP 20.0 0.0 0.707
+PRESET.SAVE slot=11
+```
+
+---
+
+**Продолжение:** ЧАСТЬ 4/6 — DSP pipeline AT32 (AETHER, Anti-Ad, Night, BassTame, Look-ahead Limiter, Delay, Mute/Gain, Profiler, Mute Subsystem, полный DSP граф).
+# OMNIA / STHENOS / v·core — MASTER SPEC v7.2
+# ЧАСТЬ 4/6 — DSP Pipeline AT32: AETHER, Anti-Ad, Night, BassTame, Look-ahead Limiter, Delay, Mute/Gain, Profiler, полный DSP граф
+
+---
+
+## 42) DSP Architecture: общие принципы
+
+### 42.1 Главный принцип: модульность + Feature Gating + Safety Last
+
+```
+Правило 1: Любой "тяжёлый" блок (AETHER ambience, FFT high-N,
+           Night compressor, Anti-Ad) включается пресетами/режимами
+           и НЕ ОБЯЗАН работать одновременно со всеми остальными.
+
+Правило 2: Каждый блок имеет режим деградации (quality scaling)
+           при перегрузке CPU (см. профайлер, раздел 53).
+
+Правило 3: Финальный look-ahead peak limiter ВСЕГДА последним
+           и ВСЕГДА включён — это предохранитель, не художественный эффект.
+
+Правило 4: НИКАКИХ мгновенных скачков gain/volume нигде в тракте.
+           Только Gain Smoother (см. раздел 44).
+```
+
+### 42.2 Полный DSP граф (порядок блоков в pipeline)
+
+```
+I2S RX DMA (stereo, float32 после convert)
+         │
+         ▼
+┌─────────────────────────────┐
+│  1. DC Blocker              │  всегда ON
+│     (high-pass ~0.5 Hz)     │
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  2. Subsonic HPF            │  fc 20–35 Hz, 2nd order
+│     (защита динамиков)      │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  3. PEQ 20 полос (DF2T)     │  параметрический EQ
+│     Biquad cascade          │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  4. Tone (Bass/Treble)      │  low-shelf + high-shelf
+│     shelving filters        │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  5. Loudness                │  freq-dependent boost при тихой гром.
+│     (psychoacoustic)        │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  6. AETHER Engine           │  M/S widening + decorrelation + ambience
+│     (virtual immersive)     │  OFF / WIDE / CINEMA / HEADPHONES
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  7. Bass Mono               │  сумма каналов ниже fc
+│     (fc + mix)              │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  8. Psychobass              │  субгармоники, depth + fc
+│     (subharmonic synth)     │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│  9. Night Mode              │  wideband compressor
+│     compressor              │  вкл/выкл режимом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│ 10. Bass Tame               │  dynamic low-shelf
+│     (dynamic bass control)  │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│ 11. Anti-Ad Leveling        │  downward-only loudness leveling
+│     (Auto-Volume)           │  вкл/выкл пресетом
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│ 12. Delay Compensation      │  ring buffer, L/R/Sub
+│     (опционально)           │  0–30 ms, шаг 0.1 ms
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│ 13. Headroom Manager        │  auto-preamp compensation
+│     (auto_preamp offset)    │  всегда активен при PEQ boost
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│ 14. Master Volume           │  Gain Smoother (TAU_VOL)
+│     + Mute Subsystem        │  TAU_MUTE_IN / TAU_MUTE_OUT
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│ 15. Look-ahead Peak Limiter │  ВСЕГДА последним, ВСЕГДА ON
+│     (safety limiter)        │  ceiling −1 dBFS, look-ahead 5–10 ms
+└─────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│ 16. Metering / FFT / SPEC   │  пост-лимитер замер
+│     (параллельно, не в path)│  PEAK/RMS/LIM_GR/CLIP + SPEC/FFT
+└─────────────────────────────┘
+         │
+         ▼
+I2S TX DMA (PCM5102A → DAC → AMP)
+```
+
+**Почему такой порядок:**
+- Subsonic/PEQ/Tone/Loudness — тональная коррекция первой, чтобы AETHER и компрессоры работали с уже скорректированным сигналом.
+- AETHER после тональной коррекции, до компрессоров — чтобы расширение стерео не создавало проблем с динамической обработкой.
+- Night/BassTame/Anti-Ad — динамическая обработка после тонального EQ.
+- Delay — перед финальным gain/limiter.
+- Headroom Manager — автоматически компенсирует накопленные boost'ы.
+- Master Volume + Mute — перед самым последним блоком.
+- Look-ahead Limiter — **всегда** финальный предохранитель.
+- Metering — после лимитера (честный замер того, что реально выходит).
+
+---
+
+## 43) Базовые блоки DSP (DC, Subsonic, PEQ, Tone, Loudness)
+
+### 43.1 DC Blocker
+
+```c
+// 1-pole high-pass, fc ≈ 0.5 Hz при любом Fs
+// Коэффициент: R = 1 - (2*pi*fc/Fs)
+typedef struct { float x1, y1; float R; } DCBlocker;
+
+void dc_blocker_init(DCBlocker *dc, float fs) {
+    dc->R  = 1.0f - (6.2832f * 0.5f / fs);
+    dc->x1 = dc->y1 = 0.0f;
+}
+float dc_blocker_process(DCBlocker *dc, float x) {
+    float y = x - dc->x1 + dc->R * dc->y1;
+    dc->x1 = x; dc->y1 = y;
+    return y;
+}
+// Применять к обоим каналам, всегда ON
+```
+
+### 43.2 Biquad DF2T (Direct Form II Transposed) — основа PEQ/Tone/Subsonic
+
+```c
+typedef struct {
+    float b0, b1, b2;   // числитель
+    float a1, a2;       // знаменатель (a0=1 нормализован)
+    float s1, s2;       // состояние (transposed)
+} Biquad;
+
+float biquad_process(Biquad *bq, float x) {
+    float y  = bq->b0 * x + bq->s1;
+    bq->s1   = bq->b1 * x - bq->a1 * y + bq->s2;
+    bq->s2   = bq->b2 * x - bq->a2 * y;
+    return y;
+}
+
+// Коэффициенты PEQ (параметрический):
+void biquad_peq(Biquad *bq, float fs, float fc, float gain_db, float Q) {
+    float A  = powf(10.0f, gain_db / 40.0f);
+    float w0 = 6.2832f * fc / fs;
+    float alpha = sinf(w0) / (2.0f * Q);
+    bq->b0 = 1.0f + alpha * A;
+    bq->b1 = -2.0f * cosf(w0);
+    bq->b2 = 1.0f - alpha * A;
+    float a0 = 1.0f + alpha / A;
+    bq->a1 = bq->b1 / a0;
+    bq->a2 = (1.0f - alpha / A) / a0;
+    bq->b0 /= a0; bq->b1 /= a0; bq->b2 /= a0;
+    bq->s1 = bq->s2 = 0.0f;
+}
+
+// Low-shelf:
+void biquad_ls(Biquad *bq, float fs, float fc, float gain_db, float Q) {
+    float A  = powf(10.0f, gain_db / 40.0f);
+    float w0 = 6.2832f * fc / fs;
+    float cosw = cosf(w0), sinw = sinf(w0);
+    float alpha = sinw / (2.0f * Q);
+    float a0 = (A+1) + (A-1)*cosw + 2*sqrtf(A)*alpha;
+    bq->b0 = (A*((A+1) - (A-1)*cosw + 2*sqrtf(A)*alpha)) / a0;
+    bq->b1 = (2*A*((A-1) - (A+1)*cosw)) / a0;
+    bq->b2 = (A*((A+1) - (A-1)*cosw - 2*sqrtf(A)*alpha)) / a0;
+    bq->a1 = (-2*((A-1) + (A+1)*cosw)) / a0;
+    bq->a2 = ((A+1) + (A-1)*cosw - 2*sqrtf(A)*alpha) / a0;
+    bq->s1 = bq->s2 = 0.0f;
+}
+// High-shelf аналогично (знаки cosw инвертированы)
+```
+
+### 43.3 PEQ: 20 полос cascade
+
+```c
+#define PEQ_BANDS 20
+
+typedef struct {
+    Biquad   bq[PEQ_BANDS];
+    uint8_t  enabled[PEQ_BANDS];
+    float    fs;
+} PEQ;
+
+void peq_process_block(PEQ *peq, float *L, float *R, int n) {
+    for (int s = 0; s < n; s++) {
+        float l = L[s], r = R[s];
+        for (int b = 0; b < PEQ_BANDS; b++) {
+            if (!peq->enabled[b]) continue;
+            l = biquad_process(&peq->bq[b], l);
+            // Если стерео PEQ: отдельный biquad для R
+            // Если моно-PEQ (одинаковый на оба): тот же biquad дважды
+            // По умолчанию — одинаковые коэффициенты L/R:
+            r = biquad_process(&peq->bq[b], r);
+        }
+        L[s] = l; R[s] = r;
+    }
+}
+```
+
+### 43.4 Headroom Manager
+
+```c
+// При изменении PEQ/Tone/Loudness пересчитываем auto_preamp:
+// 1. Измерить суммарный boost на частоте максимального подъёма
+// 2. auto_preamp = -max_boost (компенсация)
+// 3. Применять через Gain Smoother
+
+#define AMP_HEADROOM_DB  1.0f   // оставлять минимальный запас
+
+float headroom_compute_preamp(PEQ *peq, Tone *tone) {
+    float max_boost = 0.0f;
+    // Сканируем gains всех полос:
+    for (int b = 0; b < PEQ_BANDS; b++) {
+        if (!peq->enabled[b]) continue;
+        float g = peq->gains_db[b];
+        if (g > max_boost) max_boost = g;
+    }
+    // Учитываем Tone:
+    if (tone->bass_db > max_boost)   max_boost = tone->bass_db;
+    if (tone->treble_db > max_boost) max_boost = tone->treble_db;
+    // Компенсация:
+    return -(max_boost + AMP_HEADROOM_DB);
+}
+```
+
+---
+
+## 44) Mute Subsystem + Gain Smoother ("Премиальная плавность")
+
+### 44.1 Mute Subsystem
+
+```c
+// Две независимые причины mute:
+typedef struct {
+    uint8_t mute_user;    // от пользователя (кнопка/IR MUTE)
+    uint8_t mute_system;  // от системы (SRC switch, ошибка, standby)
+    // итоговый mute: любой из двух → молчание
+} MuteState;
+
+// Приоритеты:
+// mute_system имеет приоритет над mute_user в плане снятия:
+// если mute_system=1, снятие mute_user ничего не даёт на выходе
+// пока mute_system не будет снят системой
+
+uint8_t mute_is_active(MuteState *ms) {
+    return ms->mute_user || ms->mute_system;
+}
+```
+
+**Команды протокола:**
+- `MUTE` → `mute_user = 1`
+- `UNMUTE` → `mute_user = 0`
+- `MUTE:TOGGLE` → переключить `mute_user`
+
+### 44.2 Gain Smoother: 1-pole IIR
+
+```c
+// Константы времени (мс → коэффициент alpha при заданном Fs и block_size):
+// alpha = 1 - exp(-block_size / (fs * tau_sec))
+
+#define TAU_VOL_MS       80.0f    // регулировка громкости
+#define TAU_MUTE_IN_MS  200.0f    // затухание при mute
+#define TAU_MUTE_OUT_MS 350.0f    // нарастание при unmute
+#define TAU_SRC_MS       20.0f    // переключение источника
+
+typedef struct {
+    float current;     // текущий gain (линейный)
+    float target;      // целевой gain (линейный)
+    float alpha;       // коэффициент сглаживания (per-block)
+} GainSmoother;
+
+void gain_smoother_init(GainSmoother *gs, float fs, float block_size,
+                        float tau_ms) {
+    gs->current = gs->target = 1.0f;
+    gs->alpha   = 1.0f - expf(-(block_size / (fs * tau_ms * 0.001f)));
+}
+
+// Вызывать один раз на блок:
+float gain_smoother_tick(GainSmoother *gs) {
+    gs->current += (gs->target - gs->current) * gs->alpha;
+    return gs->current;
+}
+
+// Применение к блоку:
+void gain_smoother_apply(GainSmoother *gs, float *L, float *R, int n) {
+    for (int i = 0; i < n; i++) {
+        float g  = gs->current + (gs->target - gs->current)
+                   * gs->alpha;   // per-sample рампа
+        gs->current = g;
+        L[i] *= g;
+        R[i] *= g;
+    }
+}
+```
+
+**Gain Smoother применяется к:**
+- Master Volume (энкодер/IR).
+- Mute/Unmute.
+- Source trim / headroom offsets.
+- Включение/выключение эффектов, меняющих амплитуду.
+- Dry/wet crossfade (AETHER, Night, Anti-Ad).
+- Любые "enable" переключения в DSP.
+
+### 44.3 Master Volume
+
+```c
+// Хранение: dB × 10 (int16), диапазон -800..0 (-80.0..0.0 dB)
+// Шаг: 5 (= 0.5 dB)
+
+float db_to_linear(float db) {
+    return powf(10.0f, db / 20.0f);
+}
+
+// При получении VOL:NNN от UI:
+void vol_set(int16_t db10) {
+    float db     = db10 / 10.0f;
+    float linear = db_to_linear(db + auto_preamp_db);
+    // Установить target Gain Smoother (с TAU_VOL):
+    gs_vol.target = mute_is_active(&mute) ? 0.0f : linear;
+    gs_vol.alpha  = gain_smoother_alpha(TAU_VOL_MS);
+    // Уведомить UI:
+    uart_ui_send("GAIN:%d\r\n", db10);
+}
+
+// При MUTE:
+void mute_engage(MuteState *ms, uint8_t is_user) {
+    if (is_user) ms->mute_user = 1;
+    else         ms->mute_system = 1;
+    gs_vol.target = 0.0f;
+    gs_vol.alpha  = gain_smoother_alpha(TAU_MUTE_IN_MS);
+}
+
+// При UNMUTE:
+void mute_release(MuteState *ms, uint8_t is_user) {
+    if (is_user) ms->mute_user = 0;
+    else         ms->mute_system = 0;
+    if (!mute_is_active(ms)) {
+        gs_vol.target = db_to_linear(current_vol_db + auto_preamp_db);
+        gs_vol.alpha  = gain_smoother_alpha(TAU_MUTE_OUT_MS);
+    }
+}
+```
+
+---
+
+## 45) AETHER Engine (Virtual Immersive Stereo)
+
+### 45.1 Позиция в pipeline
+После тональных/PEQ блоков, до компрессоров (блок 6 в DSP графе).
+
+### 45.2 Режимы
+
+```c
+typedef enum {
+    AETHER_OFF,
+    AETHER_WIDE,       // для музыки
+    AETHER_CINEMA,     // для кино (+ ambience)
+    AETHER_HEADPHONES  // для наушников (v2, опционально)
+} AETHER_Mode;
+```
+
+### 45.3 Параметры (в пресете)
+
+```c
+typedef struct {
+    AETHER_Mode mode;
+    float width;              // 0.8..1.6 (1.0 = без изменений)
+    float bass_protect_fc;    // 120..200 Hz
+    float decorrelation;      // 0..1.0
+    float ambience;           // 0..1.0 (default max 0.15)
+} AETHER_Params;
+```
+
+### 45.4 Реализация (поэтапная)
+
+#### Этап 1: M/S Widening (дёшево по CPU)
+
+```c
+// M/S encode:
+float M = (L + R) * 0.5f;
+float S = (L - R) * 0.5f;
+
+// Bass protect: не расширяем низкие (через HPF на S-ветке):
+S_protected = hpf_process(&hpf_bass_protect, S);
+// Ниже bass_protect_fc S остаётся нетронутым
+
+// Width:
+float S_wide = S_protected * params.width
+             + S * (1.0f - params.width);
+// (комбинируем с оригинальным S чтобы плавно)
+
+// M/S decode:
+L_out = M + S_wide;
+R_out = M - S_wide;
+```
+
+#### Этап 2: Decorrelator (умеренно по CPU)
+
+```c
+// Минимальная "де-корреляция" через набор all-pass фильтров на S-ветке:
+// 2–4 all-pass с разными частотами создают лёгкий фазовый разброс
+// без изменения амплитуды → "расширение" без "дыры по центру"
+
+typedef struct { Biquad ap[4]; } Decorrelator;
+
+float decorrelator_process(Decorrelator *dc, float x) {
+    float y = x;
+    for (int i = 0; i < 4; i++)
+        y = biquad_process(&dc->ap[i], y);
+    return y;
+}
+// Применяем к S-ветке с весом params.decorrelation:
+S_decor = decorrelator_process(&decor, S_wide) * params.decorrelation
+        + S_wide * (1.0f - params.decorrelation);
+```
+
+#### Этап 3: Ambience (включается только в CINEMA)
+
+```c
+// Schroeder-lite: 2 comb + 1 all-pass реверб очень малой глубины
+// Применяется к Side-ветке с весом params.ambience (max 0.15!)
+// Отключается автоматически при высокой CPU нагрузке (quality scaling)
+
+typedef struct {
+    float  comb_buf_a[2048];   // ~42 ms при 48k
+    float  comb_buf_b[1536];
+    int    comb_ptr_a, comb_ptr_b;
+    float  comb_fb;            // 0.4..0.6
+    Biquad ap;
+} AmbienceReverb;
+
+float ambience_process(AmbienceReverb *rv, float x) {
+    float ca = rv->comb_buf_a[rv->comb_ptr_a];
+    rv->comb_buf_a[rv->comb_ptr_a] = x + ca * rv->comb_fb;
+    rv->comb_ptr_a = (rv->comb_ptr_a + 1) % 2048;
+    float cb = rv->comb_buf_b[rv->comb_ptr_b];
+    rv->comb_buf_b[rv->comb_ptr_b] = x + cb * rv->comb_fb;
+    rv->comb_ptr_b = (rv->comb_ptr_b + 1) % 1536;
+    return biquad_process(&rv->ap, (ca + cb) * 0.5f);
+}
+// ambience = ambience_process(...) * params.ambience
+// S_final = S_decor + ambience  (очень малая доля!)
+```
+
+### 45.5 Плавное включение/выключение AETHER
+
+```c
+// Dry/wet crossfade через GainSmoother:
+GainSmoother gs_aether_wet;    // target: 0 (OFF) или 1 (ON)
+GainSmoother gs_aether_dry;    // target: 1 (OFF) или 0 (ON)
+
+// L_out = L_dry * gs_dry.current + L_wet * gs_wet.current
+// R_out = R_dry * gs_dry.current + R_wet * gs_wet.current
+```
+
+---
+
+## 46) Anti-Ad Leveling (downward-only Auto-Volume)
+
+### 46.1 Назначение
+Фильм тихий → реклама "стена звука". Блок быстро приглушает всплески средней громкости, медленно возвращает.
+
+### 46.2 Параметры
+
+```c
+typedef struct {
+    uint8_t  enable;
+    float    threshold_db;    // +4..+6 dB относительно baseline
+    float    attack_ms;       // 50–150 ms
+    float    release_ms;      // 3000–10000 ms
+    float    hold_ms;         // 500–2000 ms
+    float    max_att_db;      // -12..-18 dB
+    // max_boost_db = 0.0f ВСЕГДА (downward-only!)
+} AntiAd_Params;
+```
+
+### 46.3 Реализация
+
+```c
+typedef struct {
+    AntiAd_Params p;
+    float  rms_short;      // short-term RMS (3s window, упрощённо: IIR)
+    float  rms_baseline;   // long-term baseline (20–60s, с гейтингом тишины)
+    float  gain_target;    // линейный gain (0.0..1.0)
+    float  gain_current;   // через Gain Smoother
+    float  hold_timer;     // таймер hold
+    GainSmoother gs;
+} AntiAd;
+
+void antiad_process_block(AntiAd *aa, float *L, float *R, int n, float fs) {
+    if (!aa->p.enable) return;
+
+    // Вычислить RMS блока:
+    float block_rms = 0.0f;
+    for (int i = 0; i < n; i++)
+        block_rms += (L[i]*L[i] + R[i]*R[i]) * 0.5f;
+    block_rms = sqrtf(block_rms / n);
+
+    // IIR обновление short/long RMS:
+    float alpha_short = 1.0f - expf(-(float)n / (fs * 3.0f));
+    float alpha_long  = 1.0f - expf(-(float)n / (fs * 40.0f));
+    // Gating тишины для baseline (не обновляем если очень тихо):
+    if (block_rms > 0.001f)  // -60 dBFS gate
+        aa->rms_baseline += (block_rms - aa->rms_baseline) * alpha_long;
+    aa->rms_short += (block_rms - aa->rms_short) * alpha_short;
+
+    // Вычислить требуемый gain:
+    float thr_lin = aa->rms_baseline
+                  * powf(10.0f, aa->p.threshold_db / 20.0f);
+    float max_att = powf(10.0f, aa->p.max_att_db / 20.0f);
+
+    if (aa->rms_short > thr_lin) {
+        // Нужно ослабить:
+        float ratio  = aa->rms_short / thr_lin;
+        float needed = 1.0f / ratio;
+        aa->gain_target = fmaxf(needed, max_att);
+        aa->hold_timer  = aa->p.hold_ms;
+        aa->gs.alpha    = gain_smoother_alpha_fs(aa->p.attack_ms, fs, n);
+    } else if (aa->hold_timer > 0) {
+        aa->hold_timer -= (float)n / fs * 1000.0f;
+    } else {
+        // Медленное восстановление:
+        aa->gain_target = 1.0f;
+        aa->gs.alpha    = gain_smoother_alpha_fs(aa->p.release_ms, fs, n);
+    }
+
+    // Применить через smoother:
+    float g = gain_smoother_tick(&aa->gs);
+    for (int i = 0; i < n; i++) {
+        L[i] *= g;
+        R[i] *= g;
+    }
+}
+```
+
+---
+
+## 47) Night Mode Compressor + Bass Tame
+
+### 47.1 Night Mode: wideband downward compressor
+
+**Цель:** ночью диалоги слышны, пики не будят.
+
+```c
+typedef struct {
+    uint8_t enable;
+    float   threshold_db;   // -24..-18 dBFS
+    float   ratio;          // 2.0..4.0
+    float   attack_ms;      // 10–30 ms
+    float   release_ms;     // 100–400 ms
+    float   makeup_db;      // 0..+3 dB
+} Night_Params;
+
+typedef struct {
+    Night_Params p;
+    float  env;            // envelope follower
+    float  gain_current;
+    GainSmoother gs;
+} NightComp;
+
+void night_process_block(NightComp *nc, float *L, float *R,
+                         int n, float fs) {
+    if (!nc->p.enable) return;
+
+    float thr_lin = powf(10.0f, nc->p.threshold_db / 20.0f);
+    float makeup  = powf(10.0f, nc->p.makeup_db / 20.0f);
+
+    for (int i = 0; i < n; i++) {
+        // Peak envelope follower:
+        float peak = fmaxf(fabsf(L[i]), fabsf(R[i]));
+        float a = (peak > nc->env)
+            ? gain_smoother_alpha_fs(nc->p.attack_ms, fs, 1)
+            : gain_smoother_alpha_fs(nc->p.release_ms, fs, 1);
+        nc->env += (peak - nc->env) * a;
+
+        // Gain computer:
+        float g = 1.0f;
+        if (nc->env > thr_lin) {
+            float over = nc->env / thr_lin;
+            g = powf(over, 1.0f / nc->p.ratio - 1.0f);
+        }
+        g *= makeup;
+
+        // Smooth:
+        nc->gain_current += (g - nc->gain_current)
+            * gain_smoother_alpha_fs(nc->p.attack_ms, fs, 1);
+
+        L[i] *= nc->gain_current;
+        R[i] *= nc->gain_current;
+    }
+}
+```
+
+### 47.2 Bass Tame: dynamic low-shelf
+
+**Цель:** прижать басовые всплески, не убивая всё.
+
+```c
+typedef struct {
+    uint8_t enable;
+    float   fc;           // 80..150 Hz
+    float   max_cut_db;   // -3..-9 dB
+    float   attack_ms;    // 20–80 ms
+    float   release_ms;   // 200–800 ms
+} BassTame_Params;
+
+typedef struct {
+    BassTame_Params p;
+    Biquad  lpf;       // детектор: LPF чтобы измерить энергию низа
+    Biquad  shelf;     // управляемый low-shelf
+    float   env;
+    float   shelf_gain_current_db;
+    GainSmoother gs_shelf;
+} BassTame;
+
+void basstame_process_block(BassTame *bt, float *L, float *R,
+                            int n, float fs) {
+    if (!bt->p.enable) return;
+
+    for (int i = 0; i < n; i++) {
+        // Sidechain: энергия НЧ (через LPF):
+        float mono_bass = biquad_process(&bt->lpf,
+                                         (L[i] + R[i]) * 0.5f);
+        float energy = mono_bass * mono_bass;
+
+        // Envelope:
+        float a = (energy > bt->env)
+            ? gain_smoother_alpha_fs(bt->p.attack_ms, fs, 1)
+            : gain_smoother_alpha_fs(bt->p.release_ms, fs, 1);
+        bt->env += (energy - bt->env) * a;
+
+        // Target shelf gain (чем больше бас-энергия, тем больше cut):
+        float level_db = 10.0f * log10f(bt->env + 1e-9f);
+        float cut_db   = 0.0f;
+        if (level_db > -12.0f) {
+            // Плавная функция cut:
+            float over = (level_db + 12.0f) / 12.0f;  // 0..1
+            cut_db = bt->p.max_cut_db * fminf(over, 1.0f);
+        }
+
+        // Применить через управляемый shelf:
+        bt->shelf_gain_current_db += (cut_db - bt->shelf_gain_current_db)
+            * gain_smoother_alpha_fs(bt->p.attack_ms, fs, 1);
+        biquad_ls(&bt->shelf, fs, bt->p.fc,
+                  bt->shelf_gain_current_db, 0.707f);
+        L[i] = biquad_process(&bt->shelf, L[i]);
+        R[i] = biquad_process(&bt->shelf, R[i]);
+    }
+}
+```
+
+---
+
+## 48) Look-ahead Peak Limiter (Safety Limiter, ВСЕГДА последний)
+
+### 48.1 Требования
+- **Всегда ON** (нельзя отключить).
+- Ceiling: **−1.0 dBFS** (гарантирует отсутствие клипа на DAC).
+- Look-ahead: **5–10 ms** (например 480 сэмплов при 48000 Гц).
+- Attack: мгновенный (в пределах look-ahead задержки).
+- Release: 50–200 ms.
+
+### 48.2 Реализация
+
+```c
+#define LIMITER_LOOKAHEAD_SAMPLES  480   // 10 ms @ 48kHz
+
+typedef struct {
+    float   ceiling_lin;    // pow(10, -1.0/20) = 0.8913
+    float   release_coef;   // per-sample
+    // Кольцевые буферы look-ahead:
+    float   buf_L[LIMITER_LOOKAHEAD_SAMPLES];
+    float   buf_R[LIMITER_LOOKAHEAD_SAMPLES];
+    int     buf_ptr;
+    // Gain:
+    float   gain;           // текущий gain (начинаем с 1.0)
+    // Метрики:
+    float   gr_db;          // gain reduction в dB (для телеметрии)
+    uint32_t clip_count;
+} LookAheadLimiter;
+
+void limiter_init(LookAheadLimiter *lim, float fs) {
+    lim->ceiling_lin  = powf(10.0f, -1.0f / 20.0f);
+    lim->release_coef = expf(-1.0f / (fs * 0.100f)); // 100 ms release
+    lim->gain         = 1.0f;
+    lim->buf_ptr      = 0;
+    lim->gr_db        = 0.0f;
+    lim->clip_count   = 0;
+    memset(lim->buf_L, 0, sizeof(lim->buf_L));
+    memset(lim->buf_R, 0, sizeof(lim->buf_R));
+}
+
+void limiter_process(LookAheadLimiter *lim, float *L, float *R, int n) {
+    for (int i = 0; i < n; i++) {
+        // Записываем в lookahead-буфер:
+        lim->buf_L[lim->buf_ptr] = L[i];
+        lim->buf_R[lim->buf_ptr] = R[i];
+
+        // Читаем "старый" сэмпл (задержка lookahead):
+        int read_ptr = (lim->buf_ptr + 1) % LIMITER_LOOKAHEAD_SAMPLES;
+        float out_L  = lim->buf_L[read_ptr];
+        float out_R  = lim->buf_R[read_ptr];
+
+        // Peak detection на "будущем" (входном) сэмпле:
+        float peak = fmaxf(fabsf(L[i]), fabsf(R[i]));
+
+        // Gain computation:
+        if (peak * lim->gain > lim->ceiling_lin) {
+            // Немедленно ограничить:
+            lim->gain = lim->ceiling_lin / (peak + 1e-9f);
+            lim->clip_count++;
+        }
+        // Release:
+        lim->gain = fminf(lim->gain / lim->release_coef, 1.0f);
+
+        // Применить к задержанному сэмплу:
+        L[i] = out_L * lim->gain;
+        R[i] = out_R * lim->gain;
+
+        lim->buf_ptr = (lim->buf_ptr + 1) % LIMITER_LOOKAHEAD_SAMPLES;
+
+        // Телеметрия GR:
+        float gr = (lim->gain < 1.0f)
+            ? 20.0f * log10f(lim->gain)
+            : 0.0f;
+        lim->gr_db = gr;
+    }
+}
+```
+
+**Примечание по задержке:** Look-ahead вносит задержку 10 ms. Это допустимо для Hi-Fi воспроизведения (не стриминг с минимальной задержкой).
+
+---
+
+## 49) Delay Compensation (опциональный модуль)
+
+### 49.1 Назначение
+- `DELAY_L`, `DELAY_R` (0–30 ms, шаг 0.1 ms) — для согласования времён прихода звука.
+- Хранение в `room_profile`.
+
+### 49.2 Реализация
+
+```c
+#define DELAY_MAX_SAMPLES  1440   // 30 ms @ 48kHz
+
+typedef struct {
+    float   buf[DELAY_MAX_SAMPLES];
+    int     write_ptr;
+    int     delay_samples;   // 0..1440
+    float   delay_frac;      // 0..1 (для линейной интерполяции)
+} DelayLine;
+
+void delay_set_ms(DelayLine *dl, float delay_ms, float fs) {
+    float d       = delay_ms * fs * 0.001f;
+    dl->delay_samples = (int)d;
+    dl->delay_frac    = d - dl->delay_samples;
+}
+
+float delay_process(DelayLine *dl, float x) {
+    dl->buf[dl->write_ptr] = x;
+    // Линейная интерполяция между двумя сэмплами:
+    int r0 = (dl->write_ptr - dl->delay_samples
+              + DELAY_MAX_SAMPLES) % DELAY_MAX_SAMPLES;
+    int r1 = (r0 - 1 + DELAY_MAX_SAMPLES) % DELAY_MAX_SAMPLES;
+    float y = dl->buf[r0] * (1.0f - dl->delay_frac)
+            + dl->buf[r1] * dl->delay_frac;
+    dl->write_ptr = (dl->write_ptr + 1) % DELAY_MAX_SAMPLES;
+    return y;
+}
+```
+
+**Изменение задержки (без щелчков):**
+```c
+// При получении DELAY:L N.N:
+// 1. Вычислить новые delay_samples/frac
+// 2. Применить gain_smoother fade: target=0 → обновить задержку → target=1
+```
+
+---
+
+## 50) Bass Mono + Psychobass
+
+### 50.1 Bass Mono
+
+```c
+typedef struct {
+    uint8_t enable;
+    float   fc;       // частота разделения (Hz)
+    float   mix;      // 0..1 (1 = полное моно ниже fc)
+    Biquad  lpf_L, lpf_R, lpf_sum;
+    Biquad  hpf_L, hpf_R;
+} BassMono;
+
+void bassmono_process(BassMono *bm, float *L, float *R, int n) {
+    if (!bm->enable) return;
+    for (int i = 0; i < n; i++) {
+        float bass_L = biquad_process(&bm->lpf_L, L[i]);
+        float bass_R = biquad_process(&bm->lpf_R, R[i]);
+        float bass_M = (bass_L + bass_R) * 0.5f;
+        float hi_L   = biquad_process(&bm->hpf_L, L[i]);
+        float hi_R   = biquad_process(&bm->hpf_R, R[i]);
+        // Crossfade bass_mono/stereo по bm->mix:
+        L[i] = hi_L + bass_L * (1.0f - bm->mix) + bass_M * bm->mix;
+        R[i] = hi_R + bass_R * (1.0f - bm->mix) + bass_M * bm->mix;
+    }
+}
+
+// Toggle команда — через dry/wet GainSmoother (без щелчка):
+// BASSMONO:TOGGLE → crossfade mix: 0→1 или 1→0 за TAU_VOL_MS
+```
+
+### 50.2 Psychobass (subharmonic synthesizer)
+
+```c
+typedef struct {
+    uint8_t enable;
+    float   fc;       // граничная частота (Hz)
+    float   depth;    // 0..1
+    Biquad  lpf;      // выделяем НЧ
+    Biquad  hpf_out;  // фильтр выходной субгармоники
+    float   phase;    // для полуволнового выпрямителя
+} Psychobass;
+
+void psychobass_process(Psychobass *pb, float *L, float *R, int n) {
+    if (!pb->enable) return;
+    for (int i = 0; i < n; i++) {
+        float mono = (L[i] + R[i]) * 0.5f;
+        float low  = biquad_process(&pb->lpf, mono);
+        // Полуволновое выпрямление → октава вниз:
+        float sub  = (low > 0.0f) ? low : 0.0f;
+        sub = biquad_process(&pb->hpf_out, sub);
+        L[i] += sub * pb->depth;
+        R[i] += sub * pb->depth;
+    }
+}
+```
+
+---
+
+## 51) Metering: Peak / RMS / LIM_GR / CLIP (параллельно pipeline)
+
+```c
+typedef struct {
+    float   peak_L, peak_R;       // peak hold (decay медленный)
+    float   rms_L,  rms_R;        // RMS IIR (окно ~300 ms)
+    float   lim_gr_db;            // from LookAheadLimiter.gr_db
+    uint32_t clip_count;          // from LookAheadLimiter.clip_count
+    uint8_t  clip_active;         // мгновенный флаг (сброс через 300ms)
+} Meters;
+
+void meters_update(Meters *m, float *L, float *R, int n, float fs,
+                   LookAheadLimiter *lim) {
+    float alpha_rms  = 1.0f - expf(-(float)n / (fs * 0.300f));
+    float alpha_peak = 1.0f - expf(-(float)n / (fs * 1.500f)); // медл. спад
+
+    for (int i = 0; i < n; i++) {
+        float aL = fabsf(L[i]), aR = fabsf(R[i]);
+        // Peak hold:
+        if (aL > m->peak_L) m->peak_L = aL;
+        else                m->peak_L -= m->peak_L * alpha_peak;
+        if (aR > m->peak_R) m->peak_R = aR;
+        else                m->peak_R -= m->peak_R * alpha_peak;
+        // RMS:
+        m->rms_L += (aL*aL - m->rms_L) * alpha_rms;
+        m->rms_R += (aR*aR - m->rms_R) * alpha_rms;
+    }
+    m->lim_gr_db  = lim->gr_db;
+    m->clip_count = lim->clip_count;
+    m->clip_active = (lim->gr_db < -0.5f) ? 1 : 0;
+}
+```
+
+---
+
+## 52) FFT / SPEC (на AT32, отправляем в UI)
+
+### 52.1 Политика спектра (ключевое решение)
+
+```
+По умолчанию: SPEC:16 или SPEC:32 (uint8 лог-амплитуды)
+Только по запросу: FFT_FULL (base64 полный спектр — только диагностика)
+```
+
+**Почему SPEC вместо FFT_FULL:** UART 115200–460800 легко насыщается; 32 байта SPEC против 64–256+ байт base64 при 20 Гц — разница огромная.
+
+### 52.2 Реализация SPEC
+
+```c
+// Downmix стерео в моно перед FFT:
+float mono[FFT_SIZE];
+for (int i = 0; i < FFT_SIZE; i++)
+    mono[i] = (L[i] + R[i]) * 0.5f;
+
+// Оконная функция (Hann):
+for (int i = 0; i < FFT_SIZE; i++)
+    mono[i] *= 0.5f * (1.0f - cosf(6.2832f * i / (FFT_SIZE - 1)));
+
+// AT32 DSP: arm_rfft_fast_f32 или собственный FFT
+// (AT32F435 имеет FPU и DSP инструкции)
+arm_rfft_fast_f32(&fft_inst, mono, fft_out, 0);
+
+// Amplitude (log):
+uint8_t spec_bins[32];
+int bins_per_spec = (FFT_SIZE / 2) / 32;  // для SPEC:32
+for (int b = 0; b < 32; b++) {
+    float mag = 0.0f;
+    for (int k = 0; k < bins_per_spec; k++) {
+        int idx = b * bins_per_spec + k;
+        float re = fft_out[2*idx], im = fft_out[2*idx+1];
+        mag = fmaxf(mag, sqrtf(re*re + im*im));
+    }
+    float db   = 20.0f * log10f(mag + 1e-9f);
+    float norm = (db + 90.0f) / 90.0f;   // -90 dBFS = 0, 0 dBFS = 255
+    spec_bins[b] = (uint8_t)(fmaxf(0.0f, fminf(1.0f, norm)) * 255.0f);
+}
+
+// Отправка (только по подписке, не чаще sub_spec_hz):
+uart_ui_send("SPEC:32:%u,%u,...\r\n", spec_bins[0], spec_bins[1], ...);
+```
+
+### 52.3 FEAT (опциональные аудиофичи для AURA Ambient)
+
+```c
+// Spectral Centroid (где "центр тяжести" спектра):
+float centroid_num = 0, centroid_den = 0;
+for (int k = 1; k < FFT_SIZE/2; k++) {
+    float mag = sqrtf(fft_out[2*k]*fft_out[2*k]
+                    + fft_out[2*k+1]*fft_out[2*k+1]);
+    centroid_num += k * mag;
+    centroid_den += mag;
+}
+uint8_t centroid = (uint8_t)((centroid_num / (centroid_den + 1e-9f))
+                              / (FFT_SIZE/2) * 255.0f);
+
+// Отправка (5 Гц, только если UI подписан):
+uart_ui_send("FEAT:CENTROID:%u\r\n", centroid);
+uart_ui_send("FEAT:LOUD:%u\r\n", loud_u8);
+```
+
+---
+
+## 53) v·core Performance Profiler (DWT + RAM/Stack + Counters)
+
+### 53.1 DWT CPU profiler
+
+```c
+// Включить DWT при старте:
+void profiler_init(void) {
+    CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+    DWT->CYCCNT       = 0;
+    DWT->CTRL        |= DWT_CTRL_CYCCNTENA_Msk;
+}
+
+typedef struct {
+    uint32_t cycles_last;    // циклы последнего process_block
+    uint32_t cycles_avg;     // скользящее среднее
+    uint32_t cycles_max;     // максимум за сессию
+    float    cpu_load;       // 0.0..1.0
+    uint32_t overrun_count;  // пропущенных half/full событий DMA
+} DSP_Profiler;
+
+// В process_block():
+uint32_t t0 = DWT->CYCCNT;
+// ... весь DSP ...
+uint32_t t1 = DWT->CYCCNT;
+uint32_t cy = t1 - t0;
+prof.cycles_last = cy;
+prof.cycles_max  = (cy > prof.cycles_max) ? cy : prof.cycles_max;
+// EMA:
+prof.cycles_avg  = (prof.cycles_avg * 7 + cy) / 8;
+// Load (AT32F435 @ 288 МГц, block_size=128):
+float budget = (float)BLOCK_SIZE / fs * 288e6f;
+prof.cpu_load = (float)prof.cycles_avg / budget;
+```
+
+### 53.2 Overrun detection
+
+```c
+// В DMA half/full callback:
+static volatile uint8_t dsp_ready = 0;
+
+void dma_half_callback(void) {
+    if (dsp_ready) {
+        prof.overrun_count++;
+        // Лог: ERR:0x0303:DMA_HALF_MISS
+    }
+    dsp_ready = 1;
+    // Сигналить task через semaphore/notification
+}
+```
+
+### 53.3 RAM / Stack watermark
+
+```c
+// Stack watermark (заливка паттерном при старте):
+#define STACK_CANARY  0xDEADBEEF
+
+void stack_fill_canary(uint32_t *stack_base, uint32_t size) {
+    for (uint32_t i = 0; i < size/4; i++)
+        stack_base[i] = STACK_CANARY;
+}
+
+uint32_t stack_high_water(uint32_t *stack_base, uint32_t size) {
+    uint32_t unused = 0;
+    for (uint32_t i = 0; i < size/4; i++) {
+        if (stack_base[i] == STACK_CANARY) unused++;
+        else break;
+    }
+    return (size/4 - unused) * 4;  // байт использовано
+}
+```
+
+### 53.4 Counters (полный список)
+
+```c
+typedef struct {
+    uint32_t dma_half_miss;      // пропущен DMA half event
+    uint32_t dma_full_miss;      // пропущен DMA full event
+    uint32_t i2s_error_count;    // I2S ошибки
+    uint32_t uart_rx_overflow;   // UART RX буфер переполнен
+    uint32_t uart_tx_drop;       // UART TX: сброшен пакет (очередь полна)
+    uint32_t fft_drop_count;     // FFT/SPEC не успел отправить
+    uint32_t resync_count;       // ресинков (BT Fs watch + Radio Fs change)
+    uint32_t clip_count;         // клипы (из лимитера)
+    uint32_t watchdog_resets;    // перезапуски по watchdog
+} RT_Counters;
+```
+
+### 53.5 Quality Scaling (авто-деградация)
+
+```c
+void dsp_quality_check(DSP_Profiler *prof) {
+    if (prof->cpu_load > 0.80f) {
+        // Снизить качество:
+        if (aether_params.ambience > 0.0f) {
+            aether_params.ambience = 0.0f;  // выключить reverb
+        }
+        fft_rate_hz = 10;    // снизить частоту FFT
+        spec_bins   = 16;    // уменьшить бины SPEC
+        uart_ui_send("EVT:DSP quality reduced (CPU %.0f%%)\r\n",
+                     prof->cpu_load * 100.0f);
+    } else if (prof->cpu_load < 0.60f) {
+        // Восстановить:
+        fft_rate_hz = 20;
+        spec_bins   = 32;
+    }
+}
+```
+
+---
+
+## 54) Пресеты: структура и DSP-конфигурация
+
+### 54.1 Структура пресета
+
+```c
+typedef struct {
+    // Заголовок:
+    char     name[32];
+    uint8_t  slot;           // 0..31
+    uint8_t  fav;            // 1 = в избранном
+    uint8_t  room_corr_en;   // Room Correction ON/OFF
+
+    // DSP блоки:
+    uint8_t  subsonic_en;
+    float    subsonic_fc;
+
+    PEQ_Config   peq;        // 20 полос (fc/gain/Q/enabled)
+    ToneConfig   tone;       // bass_db, treble_db, fc_bass, fc_treble
+    LoudConfig   loud;       // enable, amount, fc_bass, fc_treble
+
+    AETHER_Params aether;    // mode, width, bass_fc, decor, ambience
+    BassMono_Params bassmono;
+    Psychobass_Params psychobass;
+    Night_Params  night;
+    BassTame_Params basstame;
+    AntiAd_Params antiad;
+    DelayConfig   delay;     // delay_L_ms, delay_R_ms
+
+    // Метаданные:
+    uint32_t crc32;          // для проверки целостности
+} Preset;
+// Размер ≈ 256–512 байт (зависит от кол-ва PEQ полос)
+```
+
+### 54.2 Встроенные пресеты (factory defaults)
+
+| Слот | Имя | Профиль |
+|---|---|---|
+| 0 | **Music: Neutral** | Всё OFF, flat |
+| 1 | **Music: Warmth** | Лёгкий bass boost + high-shelf cut |
+| 2 | **Music: Wide** | AETHER WIDE, умеренный |
+| 3 | **Cinema Anti-AD** | Anti-Ad ON, Night ON, BassTame ON |
+| 4 | **Cinema AETHER** | AETHER CINEMA, Night ON |
+| 5 | **Night Mode** | Night ON, BassTame ON, громкость -6 dB |
+| 6 | **Bass Boost** | PEQ boost 60–80 Hz, subsonic HPF |
+| 7 | **Vocal Clear** | Cut 200–400 Hz, presence +2 dB 3 kHz |
+| 8–31 | *User* | Пользовательские |
+
+---
+
+## 55) State Machine AT32 v·core (полная)
+
+```c
+typedef enum {
+    STATE_BOOT,           // инициализация железа
+    STATE_RADIO_INIT,     // запуск I2S master, ожидание yoRadio
+    STATE_RADIO_PLAY,     // воспроизведение Radio (DSP active)
+    STATE_RADIO_MUTE,     // Radio mute (RADIO_MUTE=HIGH, смена Fs)
+    STATE_BT_INIT,        // запуск BT домена (MCLK detect)
+    STATE_BT_PLAY,        // воспроизведение BT (DSP active)
+    STATE_BT_RESYNC,      // BT ресинк (смена Fs)
+    STATE_SWITCHING,      // переключение доменов RADIO↔BT
+    STATE_MUTE_USER,      // mute_user=1 (плавный fade-out)
+    STATE_STANDBY,        // standby (DSP остановлен, часы работают)
+    STATE_ERROR,          // критическая ошибка
+} VCore_State;
+
+// Переходы:
+// STATE_BOOT → STATE_RADIO_INIT (default) или STATE_BT_INIT
+// STATE_RADIO_PLAY → STATE_SWITCHING (по SRC:BT401)
+// STATE_SWITCHING → STATE_BT_INIT (→ STATE_BT_PLAY)
+// STATE_BT_PLAY → STATE_BT_RESYNC (BT Fs watch: Fs changed)
+// STATE_BT_RESYNC → STATE_BT_PLAY (после ресинка)
+// Любой STATE → STATE_STANDBY (по STANDBY:ON)
+// STATE_STANDBY → STATE_RADIO_INIT / STATE_BT_INIT (по STANDBY:OFF)
+```
+
+---
+
+**Продолжение:** ЧАСТЬ 5/6 — Полный протокол AT32↔ESP32-S2, коды ошибок, UART bandwidth policy / подписки, репозиторий и сборка.
+# OMNIA / STHENOS / v·core — MASTER SPEC v7.2
+# ЧАСТЬ 5/6 — Полный протокол AT32↔ESP32-S2, коды ошибок, UART bandwidth policy, подписки, репозиторий, сборка, прошивка
+
+---
+
+## 56) UART Bandwidth Policy (как не забить канал)
+
+### 56.1 Главные правила
+
+```
+Правило 1: Event-driven метаданные.
+           NAMESET/META/STATION/GENRE/BITRATE/SR/SRC —
+           только при реальном изменении, НЕ по таймеру.
+
+Правило 2: Batching метрик.
+           PEAK/RMS/LIM_GR/CLIP — одной строкой METERS:... не чаще sub_meters_hz.
+
+Правило 3: Подписки (SUBSCRIBE:*).
+           UI явно сообщает, что ему нужно и с какой частотой.
+           По умолчанию FFT/SPEC выключены.
+
+Правило 4: Приоритеты при перегрузке TX очереди.
+           HIGH:   команды управления, ERR:, EVT:
+           MEDIUM: METERS:, SRC:, STATE:
+           LOW:    SPEC:, FEAT:, TIME: (по подписке)
+           При переполнении TX очереди → drop LOW → uart_tx_drop++
+
+Правило 5: Baudrate.
+           Целевой: 460800 bps (проверить на конкретной разводке).
+           Fallback: 115200 для bring-up.
+           921600 — если линия короткая и стабильная.
+```
+
+### 56.2 Расчёт пропускной способности
+
+```
+460800 bps → ~46080 байт/сек → ~46 KB/сек
+
+Бюджет при типичной нагрузке:
+  METERS: @ 20 Hz, ~60 байт/строка     → 1200 байт/сек
+  SPEC:32 @ 20 Hz, ~80 байт/строка     → 1600 байт/сек
+  META/NAMESET: редко, ~100 байт/раз   → ~50 байт/сек
+  EVT/ERR: редко                        → ~20 байт/сек
+  TIME: @ 1 Hz, ~30 байт               → 30 байт/сек
+  WIFI: @ 0.1 Hz, ~30 байт             → 3 байт/сек
+  ─────────────────────────────────────────────────
+  Итого: ~2903 байт/сек из 46080 → нагрузка ~6.3%
+  Остаток: ~43 KB/сек (большой запас)
+
+FEAT: @ 5 Hz, ~30 байт/строка          → 150 байт/сек (безопасно)
+FFT_FULL: base64 128 бин ≈ 200 байт    → по запросу (раз/5 сек)
+```
+
+**Вывод:** при 460800 baud канал свободен. Подписки нужны для дисциплины, а не из-за дефицита пропускной способности.
+
+### 56.3 Механизм подписок (v·core хранит таблицу)
+
+```c
+typedef struct {
+    uint8_t  meters_hz;    // 0=off, 1..30
+    uint8_t  spec_hz;      // 0=off, 1..25
+    uint8_t  feat_hz;      // 0=off, 1..10
+    uint8_t  time_hz;      // 0=off, 1 (раз в сек)
+    uint16_t net_period_s; // 0=off, 10 (раз в 10 сек)
+    uint8_t  diag_hz;      // 0=off, 1..5 (по запросу)
+} Subscriptions;
+
+static Subscriptions subs = {
+    .meters_hz  = 10,  // default: 10 Гц
+    .spec_hz    = 0,   // default: OFF (включается при открытии визуала)
+    .feat_hz    = 0,   // default: OFF
+    .time_hz    = 1,   // default: 1 Гц
+    .net_period_s = 10,
+    .diag_hz    = 0,
+};
+
+// Обработка SUBSCRIBE команд от UI:
+void parse_subscribe(const char *cmd) {
+    // "SUBSCRIBE:METERS=20" → subs.meters_hz = 20
+    // "SUBSCRIBE:SPEC=10"   → subs.spec_hz = 10
+    // "SUBSCRIBE:FFT=0"     → subs.spec_hz = 0
+    // "SUBSCRIBE:FEAT=5"    → subs.feat_hz = 5
+    // "SUBSCRIBE:TIME=1"    → subs.time_hz = 1
+    // "SUBSCRIBE:NET=0.1"   → subs.net_period_s = 10
+    // "SUBSCRIBE:DIAG=2"    → subs.diag_hz = 2
+    // "SUBSCRIBE:OFF"       → все в 0
+}
+
+// Таймеры отправки (в main DSP loop):
+void telemetry_tick(uint32_t now_ms) {
+    if (subs.meters_hz > 0) {
+        uint32_t period = 1000 / subs.meters_hz;
+        if (now_ms - last_meters_ms >= period) {
+            send_meters();
+            last_meters_ms = now_ms;
+        }
+    }
+    if (subs.spec_hz > 0) {
+        uint32_t period = 1000 / subs.spec_hz;
+        if (now_ms - last_spec_ms >= period) {
+            send_spec();
+            last_spec_ms = now_ms;
+        }
+    }
+    // ... аналогично для feat/time/net/diag
+}
+```
+
+### 56.4 TX очередь с приоритетами
+
+```c
+typedef enum {
+    TX_PRIO_HIGH   = 0,   // ERR:, EVT:, команды-ответы
+    TX_PRIO_MEDIUM = 1,   // METERS:, SRC:, STATE:, GAIN:
+    TX_PRIO_LOW    = 2,   // SPEC:, FEAT:, TIME:
+} TX_Priority;
+
+#define TX_QUEUE_HIGH_SZ   16
+#define TX_QUEUE_MEDIUM_SZ 8
+#define TX_QUEUE_LOW_SZ    4
+
+// При отправке:
+bool uart_tx_enqueue(const char *line, TX_Priority prio) {
+    if (queue_full(prio)) {
+        if (prio == TX_PRIO_LOW) {
+            rt_counters.uart_tx_drop++;
+            return false;   // просто дропаем LOW
+        }
+        // MEDIUM/HIGH: дропаем самый старый LOW
+        queue_drop_oldest(TX_PRIO_LOW);
+        rt_counters.uart_tx_drop++;
+    }
+    queue_push(line, prio);
+    return true;
+}
+```
+
+---
+
+## 57) Полный протокол AT32 ↔ ESP32-S2 (все команды и строки)
+
+### 57.1 Общие правила протокола
+
+```
+Формат:        текстовый, строчный, \r\n (CRLF)
+Кодировка:     UTF-8
+Макс. длина:   256 байт/строка
+Экранирование: \" для кавычек, \\ для слеша, CR/LF → \n в payload
+Скорость:      460800 bps (целевая), 115200 (bring-up)
+Нет заголовков/длин: каждая строка — самостоятельная команда/событие
+```
+
+---
+
+### 57.2 AT32 v·core → ESP32-S2 UI (телеметрия и события)
+
+#### Источник и состояние
+```
+SRC:RADIO               // активный домен = Radio
+SRC:BT401               // активный домен = BT401
+MODE:WEB                // подрежим yoRadio (mode 0)
+MODE:SD                 // подрежим yoRadio (mode 1)
+BT401_MODE:BT           // подрежим BT401
+BT401_MODE:USB_AUDIO
+BT401_MODE:TF
+BT401_MODE:UDISK
+YR_STATE:PLAYING        // состояние yoRadio
+YR_STATE:STOPPED
+```
+
+#### Аудио параметры
+```
+SR:44100                // sample rate (при изменении)
+SR:48000
+BITS:16                 // bit depth
+BITS:32
+BITRATE:320             // kbps (при смене трека)
+BITRATE:FLAC
+BITRATE:--              // неизвестно
+```
+
+#### Метаданные (event-driven, только при изменении)
+```
+NAMESET:N:name          // N = порядковый номер (для ресинка)
+META:text               // "Artist – Title" (может содержать \n)
+STATION:name
+GENRE:genre
+SRCVOL:N                // уровень источника (yoRadio volume 0–254)
+```
+
+#### Время
+```
+TIME:HH:MM:SS           // текущее время (по подписке, 1 Гц)
+DATE:YYYY-MM-DD         // текущая дата
+TZ:+HH:MM               // часовой пояс
+```
+
+#### Сеть
+```
+WIFI:rssi:ip            // rssi в dBm, IP (по подписке net)
+RSSI:N                  // только rssi (дельта-обновление)
+```
+
+#### Усилитель и громкость
+```
+AMP:ON                  // усилитель включён
+AMP:OFF
+MUTE:0                  // mute снят
+MUTE:1                  // mute активен
+MUTE_REASON:USER        // причина mute
+MUTE_REASON:STANDBY
+MUTE_REASON:ERROR
+MUTE_REASON:AMP_OFF
+GAIN:NNN                // текущий gain dB×10 (-800..0)
+```
+
+#### DSP состояния (event-driven, при изменении)
+```
+AETHER:MODE:OFF         // текущий режим AETHER
+AETHER:MODE:WIDE
+AETHER:MODE:CINEMA
+AETHER:MODE:HEADPHONES
+ANTIAD:0                // Anti-Ad состояние
+ANTIAD:1
+NIGHT:0                 // Night Mode состояние
+NIGHT:1
+BASSTAME:0
+BASSTAME:1
+BASSMONO:0
+BASSMONO:1
+ROOMCORR:0              // Room Correction состояние
+ROOMCORR:1
+DELAY_L:N.N             // задержка канала L (ms)
+DELAY_R:N.N
+DELAY_SUB:N.N
+```
+
+#### Метрики DSP (по подписке METERS, батчем)
+```
+METERS:PL=N PR=N RL=N RR=N GR=N.N CL=0
+// PL = PEAK_L (uint8, 0-255 = -90..0 dBFS)
+// PR = PEAK_R
+// RL = RMS_L (uint8)
+// RR = RMS_R
+// GR = LIM_GR (float, dB, например 2.4)
+// CL = CLIP (0|1)
+```
+
+**Почему один батч вместо отдельных строк:**
+- При 20 Гц это 20 строк/сек; одна строка ~50 байт = 1000 байт/сек.
+- Отдельные строки PEAK_L + PEAK_R + RMS_L + ... = 5 строк × 20 Hz = 100 строк/сек = 5000 байт/сек.
+- Экономия в 5 раз только на метриках.
+
+#### Спектр (по подписке SPEC/FFT)
+```
+SPEC:16:v0,v1,...,v15\r\n     // 16 бин, uint8 лог-амплитуды
+SPEC:32:v0,v1,...,v31\r\n     // 32 бина (основной режим)
+FFT_FULL:N:base64data\r\n     // N=64|128 бинов, только по запросу
+```
+
+#### Аудио фичи (по подписке FEAT)
+```
+FEAT:CENTROID:N         // спектральный центроид 0..255 (для Aura Ambient)
+FEAT:LOUD:N             // текущая громкость 0..255 (short-term)
+FEAT:BEAT:0|1           // детект бита (опционально, v2)
+```
+
+#### Scope данные (по подписке, для Vectorscope/Oscilloscope)
+```
+SCOPE:N:x0,y0,x1,y1,...\r\n   // N пар L/R (int8, -128..127)
+                               // downsample до 64–128 пар
+```
+
+#### Плейлист
+```
+NOW_PLAYING:N           // текущий индекс трека (для ресинка)
+LIST.BEGIN count=N      // начало списка
+LIST.ITEM idx=N id=N name="..."
+LIST.END
+```
+
+#### Ошибки и события
+```
+ERR:0xMMEE:description  // код ошибки + описание (см. раздел 59)
+EVT:text                // произвольное событие (лог)
+```
+
+#### Диагностика (по подписке DIAG)
+```
+DIAG:cpu=38 maxcy=12450 avgcy=9820 ovf=0 sram=24576 stack=3840
+     uart_drop=0 dma_miss=0 fft_drop=2 resync=1 clip=14
+// cpu    = CPU load % (из профайлера)
+// maxcy  = максимум циклов process_block за сессию
+// avgcy  = среднее циклов
+// ovf    = overrun_count
+// sram   = свободный SRAM (байт)
+// stack  = high-water mark стека (байт использовано)
+// uart_drop = uart_tx_drop
+// dma_miss  = dma_half_miss + dma_full_miss
+// fft_drop  = fft_drop_count
+// resync    = resync_count
+// clip      = clip_count
+```
+
+---
+
+### 57.3 ESP32-S2 UI → AT32 v·core (команды)
+
+#### Источник и режим
+```
+SRC:RADIO               // выбрать домен Radio
+SRC:BT401               // выбрать домен BT401
+MODE:WEB                // подрежим yoRadio
+MODE:SD
+BT401_MODE:BT           // подрежим BT401
+BT401_MODE:USB_AUDIO
+BT401_MODE:TF
+BT401_MODE:UDISK
+```
+
+#### Воспроизведение
+```
+PLAY:N                  // воспроизвести трек N
+PLAY                    // play (если остановлен)
+NEXT                    // следующий трек/станция
+PREV                    // предыдущий трек/станция
+TOGGLE                  // play/pause
+STOP                    // остановить
+LIST.REQ                // запросить список треков/станций
+SHUFFLE:OFF             // режим воспроизведения
+SHUFFLE:REPEAT
+SHUFFLE:NOREPEAT
+```
+
+#### Громкость и mute
+```
+VOL:NNN                 // установить громкость dB×10 (-800..0)
+MUTE                    // включить mute (mute_user=1)
+UNMUTE                  // снять mute (mute_user=0)
+MUTE:TOGGLE             // переключить mute_user
+SRCVOL:N                // громкость источника yoRadio 0–254
+```
+
+#### Усилитель
+```
+AMP:ON                  // включить усилитель (реле)
+AMP:OFF                 // выключить усилитель
+AMP:TOGGLE              // переключить
+```
+
+#### Standby
+```
+STANDBY:ON              // перейти в standby
+STANDBY:OFF             // выйти из standby
+```
+
+#### DSP: пресеты
+```
+PRESET:LOAD slot=N                        // загрузить пресет
+PRESET:SAVE slot=N name="..." fav=0|1    // сохранить пресет
+PRESET:LIST                               // запросить список пресетов
+```
+
+#### DSP: PEQ и тональная коррекция
+```
+PEQ:N type Fc Gain Q    // установить полосу N
+                        // type: PK|LP|HP|LS|HS|NO|AP
+                        // Fc Hz, Gain dB, Q безразм.
+PEQ:N OFF               // отключить полосу N
+PEQ:CLEAR               // сбросить все полосы
+TONE:BASS N TREBLE N    // тональная коррекция dB (например -6..+6)
+LOUDNESS:0|1 amount=N   // психоакустическая коррекция
+```
+
+#### DSP: Room Correction
+```
+ROOMCORR:0|1            // вкл/выкл Room Correction
+```
+
+#### DSP: AETHER
+```
+AETHER:MODE OFF|WIDE|CINEMA|HEADPHONES
+AETHER:WIDTH N.N        // 0.8..1.6
+AETHER:AMB N            // ambience 0..100
+AETHER:DECOR N          // decorrelation 0..100
+AETHER:BASS_FC N        // bass protect fc (Hz)
+```
+
+#### DSP: Anti-Ad, Night, BassTame, BassMono, Psychobass
+```
+ANTIAD:0|1              // вкл/выкл Anti-Ad
+ANTIAD:THR N            // threshold dB относительно baseline
+ANTIAD:ATK N            // attack ms
+ANTIAD:REL N            // release ms
+ANTIAD:MAXATT N         // max attenuation dB
+
+NIGHT:0|1               // вкл/выкл Night Mode
+NIGHT:THR N             // threshold dBFS
+NIGHT:RATIO N.N         // ratio
+
+BASSTAME:0|1            // вкл/выкл Bass Tame
+BASSTAME:FC N           // fc Hz
+BASSTAME:MAXCUT N       // max cut dB
+
+BASSMONO:0|1            // вкл/выкл Bass Mono
+BASSMONO:FC N           // fc Hz
+BASSMONO:MIX N          // mix 0..100%
+BASSMONO:TOGGLE         // переключить с плавным fade
+
+PSYCHO:0|1              // вкл/выкл Psychobass
+PSYCHO:DEPTH N          // depth 0..100
+PSYCHO:FC N             // fc Hz
+```
+
+#### DSP: Limiter
+```
+LIMITER:thr=N ratio=N   // мягкий лимитер (Guided Tuning)
+                        // safety limiter параметры не меняются извне!
+```
+
+#### DSP: Delay
+```
+DELAY:L N.N             // задержка канала L (ms, 0..30, шаг 0.1)
+DELAY:R N.N             // задержка канала R
+DELAY:SUB N.N           // задержка сабвуфера (если есть)
+```
+
+#### Guided Tuning (тест-сигналы)
+```
+GUIDED:START            // войти в Guided Tuning (Room=OFF, Loud=OFF, Lim=ON)
+GUIDED:STOP             // выйти
+GUIDED:SIG PINK         // включить pink noise
+GUIDED:SIG WARBLE:40    // warble tone 40 Hz
+GUIDED:SIG WARBLE:50
+GUIDED:SIG WARBLE:63
+GUIDED:SIG WARBLE:80
+GUIDED:SIG WARBLE:100
+GUIDED:SIG WARBLE:125
+GUIDED:SIG SWEEP        // sine sweep 20–200 Hz
+GUIDED:SIG CH:L         // только левый канал
+GUIDED:SIG CH:R         // только правый канал
+GUIDED:SIG CH:MONO      // оба одинаково
+GUIDED:SIG PHASE:LR     // L+R
+GUIDED:SIG PHASE:LMINR  // L-R
+GUIDED:SIG OFF          // выключить тест-сигнал
+GUIDED:AB               // A/B toggle (до/после правки)
+```
+
+#### USB-CDC / Room Correction import
+```
+PRESET.NEW name="..."
+FS 48000
+ROOMCORR 1
+PEQ 1 PK 55.0 -3.5 4.20
+PEQ 2 PK 110.0 -2.0 3.00
+PEQ 3 LS 90.0 +1.5 0.71
+PRESET.SAVE slot=12
+APPLY slot=12
+← OK\r\n  или  ← ERR reason\r\n
+```
+
+#### Подписки (UI → v·core)
+```
+SUBSCRIBE:METERS=N      // N = Hz (0=off)
+SUBSCRIBE:SPEC=N        // N = Hz (0=off)
+SUBSCRIBE:FFT=N         // то же что SPEC (alias)
+SUBSCRIBE:FEAT=N        // N = Hz (0=off)
+SUBSCRIBE:SCOPE=N       // N = Hz для Vectorscope/Oscillo (0=off)
+SUBSCRIBE:TIME=N        // N = Hz (обычно 1)
+SUBSCRIBE:NET=N         // N = Hz (обычно 0.1 = раз в 10 сек)
+SUBSCRIBE:DIAG=N        // N = Hz (0=off, обычно 1–2 при открытой диагностике)
+SUBSCRIBE:OFF           // снять все подписки
+```
+
+#### Запросы (одноразовые)
+```
+INFO.REQ                // запросить INFO (версии, Fs, source, vol)
+DIAG.REQ                // запросить один DIAG пакет немедленно
+TIME.REQ                // запросить текущее время немедленно
+LIST.REQ                // запросить плейлист
+FFT_FULL.REQ            // запросить один полный FFT пакет
+```
+
+#### Ответ на INFO.REQ
+```
+INFO:fw_at32=1.0.0 fw_ui=1.0.0 src=RADIO mode=WEB
+     sr=48000 bits=16 vol=-180 muted=0 amp=1
+     preset=3 roomcorr=1
+     aether=WIDE antiad=1 night=0 basstame=0
+```
+
+#### Display / RGB (от UI к v·core — если UI управляет)
+```
+BRIGHTNESS:N            // яркость 0–100 (если AT32 управляет подсветкой)
+RGB:COLOR R G B         // установить цвет кольца
+RGB:PROFILE name        // установить профиль
+```
+
+---
+
+## 58) Supervisor / Watchdog (AT32 v·core)
+
+### 58.1 Hardware Watchdog
+
+```c
+// AT32F435 IWDG:
+// Период: ~2 сек
+// В нормальной работе: feed watchdog в конце каждого DSP блока
+// Если process_block() завис → watchdog reset → reboot → лог в crash log
+
+void supervisor_feed_watchdog(void) {
+    IWDG->KR = 0xAAAA;  // refresh
+}
+
+// В process_block() в конце:
+supervisor_feed_watchdog();
+```
+
+### 58.2 Software Supervisor
+
+```c
+typedef struct {
+    uint32_t last_dsp_tick;     // время последнего DSP блока
+    uint32_t last_ui_ping;      // время последнего пинга от UI
+    uint32_t last_yr_activity;  // время последней активности yoRadio
+    uint8_t  ui_timeout_warned;
+} Supervisor;
+
+void supervisor_tick(Supervisor *sv, uint32_t now_ms) {
+    // DSP overrun:
+    if ((now_ms - sv->last_dsp_tick) > 500) {
+        // DSP завис на 500ms → попытаться перезапустить I2S DMA
+        i2s_restart();
+        uart_log("ERR:0x0203:I2S3_DMA_STALL\r\n");
+    }
+
+    // UI timeout:
+    if ((now_ms - sv->last_ui_ping) > 5000) {
+        if (!sv->ui_timeout_warned) {
+            uart_ui_send("ERR:0x0801:UILINK_TIMEOUT\r\n");
+            sv->ui_timeout_warned = 1;
+        }
+    } else {
+        sv->ui_timeout_warned = 0;
+    }
+
+    // yoRadio timeout (в RADIO режиме):
+    if (state == STATE_RADIO_PLAY &&
+        (now_ms - sv->last_yr_activity) > 10000) {
+        uart_log("ERR:0x0402:UART_YR_FAIL\r\n");
+    }
+}
+```
+
+### 58.3 Crash Log
+
+```c
+// При watchdog reset или критической ошибке:
+// Сохранить в последние N байт Flash (не в NVS — NVS может быть повреждён):
+
+typedef struct {
+    uint32_t timestamp_ms;
+    uint32_t reset_reason;     // IWDG / Software / Power-on
+    uint32_t pc_at_crash;      // program counter (из fault handler)
+    uint32_t lr_at_crash;
+    RT_Counters counters;      // все счётчики на момент краша
+    DSP_Profiler profiler;     // CPU load и т.п.
+    char     description[64];
+} CrashEntry;
+
+#define CRASH_LOG_ENTRIES  10
+// Хранится в специальном Flash-регионе (не перезаписываемом при OTA)
+// При старте — отправить в UI: EVT:crash log N entries
+```
+
+---
+
+## 59) Коды ошибок (полная таблица)
+
+### 59.1 Схема 0xMMEE
+
+| MM | Модуль |
+|---|---|
+| 0x01 | SYS/BOOT |
+| 0x02 | I2S |
+| 0x03 | DMA |
+| 0x04 | UART |
+| 0x05 | YORADIO |
+| 0x06 | BT401 |
+| 0x07 | DSP |
+| 0x08 | UI-LINK |
+| 0x09 | STORAGE |
+| 0x0A | AMP |
+| 0x0B | TIME |
+| 0x0C | RGB/SENSOR |
+| 0x0D | IR |
+| 0x0E | AETHER |
+| 0x0F | ANTIAD |
+
+### 59.2 Полная таблица
+
+| Код | Имя | Описание |
+|---|---|---|
+| 0x0101 | BOOT_JTAG_FAIL | JTAG не отключился |
+| 0x0102 | BOOT_GPIO_FAIL | GPIO init fail |
+| 0x0103 | BOOT_UART_FAIL | UART init fail |
+| 0x0201 | I2S3_INIT_FAIL | I2S3 не инициализировался |
+| 0x0202 | I2S2_INIT_FAIL | I2S2 не инициализировался |
+| 0x0203 | I2S3_DMA_STALL | I2S3 DMA завис |
+| 0x0204 | I2S2_DMA_STALL | I2S2 DMA завис |
+| 0x0205 | I2S_CLK_TIMEOUT | Нет клока на входе |
+| 0x0206 | I2S_SYNC_LOST | Потеря синхронизации I2S |
+| 0x0301 | DMA_TX_OVF | TX DMA overflow |
+| 0x0302 | DMA_RX_OVF | RX DMA overflow |
+| 0x0303 | DMA_HALF_MISS | Пропущен half-transfer |
+| 0x0401 | UART_BT_FAIL | BT401 UART не отвечает |
+| 0x0402 | UART_YR_FAIL | yoRadio не отвечает |
+| 0x0403 | UART_UI_FAIL | UI ESP32 не отвечает |
+| 0x0404 | UART_BUF_OVF | UART буфер переполнен |
+| 0x0501 | YR_PARSE_FAIL | Неизвестный тег yoRadio |
+| 0x0502 | YR_LIST_TIMEOUT | list не пришёл в срок |
+| 0x0503 | YR_SLOW_STREAM | Буфер проседает |
+| 0x0504 | YR_MODE_FAIL | mode 0/1 не выполнился |
+| 0x0505 | YR_NOSYNC_TIME | Нет NTP времени > 30 мин |
+| 0x0601 | BT_MCLK_ABSENT | MCLK не обнаружен |
+| 0x0602 | BT_MCLK_UNKNOWN | MCLK не 44.1/48k |
+| 0x0603 | BT_I2S_NODATA | Нет данных от BT401 |
+| 0x0604 | BT_RESYNC_FAIL | BT_RESYNC не завершился |
+| 0x0701 | DSP_CLIP_HW | Хардварный клип |
+| 0x0702 | DSP_OVERFLOW | Overflow в DSP pipeline |
+| 0x0703 | DSP_COEFF_FAIL | Коэффициенты PEQ невалидны |
+| 0x0704 | DSP_CPU_OVERRUN | DSP не успевает за блоком |
+| 0x0801 | UILINK_TIMEOUT | UI не отвечает > 5 сек |
+| 0x0802 | UILINK_CRC_FAIL | CRC ошибка пакета |
+| 0x0803 | UILINK_PROTO_ERR | Неизвестная команда |
+| 0x0901 | STORAGE_CRC_FAIL | Пресет/запись испорчена |
+| 0x0902 | STORAGE_FULL | NVS раздел полон |
+| 0x0903 | STORAGE_SPI_FAIL | SPI Flash недоступна |
+| 0x0904 | STORAGE_CORRUPT | Структура NVS повреждена |
+| 0x0A01 | AMP_RELAY_FAIL | Реле не включилось |
+| 0x0A02 | AMP_MUTE_STUCK | MUTE не снимается |
+| 0x0B01 | TIME_NO_SYNC | Нет NTP > 60 мин |
+| 0x0B02 | TIME_DRIFT | Большой дрейф часов |
+| 0x0C01 | BH1750_FAIL | Датчик освещённости не отвечает |
+| 0x0C02 | RGB_DMA_FAIL | RMT/DMA для RGB завис |
+| 0x0C03 | VEML7700_FAIL | VEML7700 не отвечает |
+| 0x0D01 | IR_CAPTURE_OVF | IR буфер переполнен |
+| 0x0D02 | IR_LEARN_FAIL | Обучение не удалось (3 попытки) |
+| 0x0E01 | AETHER_COEFF_FAIL | Коэффициенты AETHER невалидны |
+| 0x0F01 | ANTIAD_BASELINE_FAIL | Anti-Ad baseline не устоялся |
+
+---
+
+## 60) Структура репозитория (обновлённая для ESP32-S2 UI)
+
+```
+omnia-sthenos-vcore/
+│
+├─ firmware/
+│   ├─ vcore_dsp_at32/                    // AT32 v·core (DSP ядро)
+│   │   ├─ platformio.ini
+│   │   ├─ src/
+│   │   │   ├─ main.c
+│   │   │   ├─ board_init.c
+│   │   │   ├─ log_uart.c
+│   │   │   ├─ state_machine.c
+│   │   │   ├─ i2s_radio.c
+│   │   │   ├─ i2s_bt.c
+│   │   │   ├─ dsp_process.c              // главный цикл DSP
+│   │   │   ├─ dsp_peq.c                  // PEQ 20 полос
+│   │   │   ├─ dsp_tone.c                 // Bass/Treble shelves
+│   │   │   ├─ dsp_loudness.c             // Loudness
+│   │   │   ├─ dsp_aether.c               // AETHER Engine
+│   │   │   ├─ dsp_bassmono.c             // Bass Mono
+│   │   │   ├─ dsp_psychobass.c           // Psychobass
+│   │   │   ├─ dsp_night.c                // Night Mode compressor
+│   │   │   ├─ dsp_basstame.c             // Bass Tame
+│   │   │   ├─ dsp_antiad.c               // Anti-Ad leveling
+│   │   │   ├─ dsp_delay.c                // Delay compensation
+│   │   │   ├─ dsp_limiter.c              // Look-ahead limiter
+│   │   │   ├─ dsp_meters.c               // Metering
+│   │   │   ├─ dsp_headroom.c             // Headroom Manager
+│   │   │   ├─ dsp_mute.c                 // Mute Subsystem
+│   │   │   ├─ dsp_gain_smoother.c        // Gain Smoother
+│   │   │   ├─ dsp_fft.c                  // FFT + SPEC + FEAT
+│   │   │   ├─ dsp_dc_blocker.c           // DC Blocker
+│   │   │   ├─ yoradio_adapter.c          // yoRadio UART парсер
+│   │   │   ├─ bt401_adapter.c            // BT401 управление
+│   │   │   ├─ mclk_measure.c             // MCLK детект (метод A+B)
+│   │   │   ├─ bt_fs_watch.c              // BT Fs watch + RESYNC
+│   │   │   ├─ time_manager.c             // NTP часы (SysTick)
+│   │   │   ├─ uart_ui.c                  // протокол к ESP32-S2
+│   │   │   ├─ shuffle.c                  // Fisher-Yates shuffle
+│   │   │   ├─ presets.c                  // загрузка/сохранение пресетов
+│   │   │   ├─ profiler.c                 // DWT CPU профайлер
+│   │   │   ├─ supervisor.c               // watchdog + crash log
+│   │   │   └─ guided_tuning.c            // тест-сигналы Guided Tuning
+│   │   └─ include/
+│   │       ├─ pinmap_vcore.h             // SINGLE SOURCE OF TRUTH (AT32)
+│   │       ├─ config.h
+│   │       ├─ state.h
+│   │       ├─ protocol.h
+│   │       └─ error_codes.h
+│   │
+│   └─ omnia_ui_s2mini/                   // ESP32-S2 mini UI (AURA)
+│       ├─ platformio.ini
+│       ├─ src/
+│       │   ├─ main.c
+│       │   ├─ board_init.c
+│       │   ├─ log_uart.c
+│       │   ├─ tft/
+│       │   │   ├─ tft_driver.c           // универсальный API
+│       │   │   ├─ tft_st7789.c           // ST7789 init + profile
+│       │   │   ├─ tft_ili9341.c          // ILI9341 init + profile
+│       │   │   ├─ tft_spi_dma.c          // SPI DMA push (esp_lcd / raw)
+│       │   │   ├─ tft_tile_buf.c         // tile buffer ping-pong
+│       │   │   └─ tft_dirty_rect.c       // dirty-widget engine
+│       │   ├─ aura/
+│       │   │   ├─ aura_theme.c           // Theme Engine + tokens
+│       │   │   ├─ aura_motion.c          // easing functions + анимации
+│       │   │   ├─ aura_press.c           // Press/Focus эффекты
+│       │   │   ├─ aura_hud.c             // Volume HUD + slide-in
+│       │   │   ├─ aura_toast.c           // Toast notifications
+│       │   │   ├─ aura_overlay.c         // Overlay система
+│       │   │   └─ aura_quality.c         // Quality scaling
+│       │   ├─ screens/
+│       │   │   ├─ screen_home.c          // HOME экран
+│       │   │   ├─ screen_idle.c          // IDLE / заставка
+│       │   │   ├─ screen_visual_full.c   // Fullscreen Visualizer
+│       │   │   ├─ screen_list.c          // Wheel Picker v2
+│       │   │   ├─ screen_presets.c       // Пресеты
+│       │   │   ├─ screen_eq.c            // EQ редактор (live curve)
+│       │   │   ├─ screen_standby.c       // STANDBY часы
+│       │   │   ├─ screen_guided.c        // Guided Tuning
+│       │   │   ├─ screen_menu.c          // MAIN MENU
+│       │   │   ├─ screen_diag.c          // Diagnostics
+│       │   │   ├─ screen_service.c       // Service Menu (скрытый)
+│       │   │   └─ screen_rescue.c        // Display Setup Wizard
+│       │   ├─ visualizers/
+│       │   │   ├─ vis_spectrum.c         // Spectrum Pro
+│       │   │   ├─ vis_waterfall.c        // Waterfall Pro (hw scroll)
+│       │   │   ├─ vis_vectorscope.c      // Vectorscope + Lissajous
+│       │   │   ├─ vis_oscilloscope.c     // Oscilloscope Stereo
+│       │   │   └─ vis_aura_ambient.c     // Aura Ambient
+│       │   ├─ rgb_ring.c                 // RGB ring (RMT)
+│       │   ├─ backlight.c                // LEDC PWM + автояркость
+│       │   ├─ buttons.c                  // кнопки ADC-лестница
+│       │   ├─ encoder.c                  // энкодер + инерция
+│       │   ├─ ir_remote.c                // IR self-learn (RMT RX)
+│       │   ├─ uart_vcore.c               // протокол к AT32
+│       │   ├─ usb_cdc.c                  // USB-CDC (нативный USB ESP32-S2)
+│       │   ├─ flash_littlefs.c           // LittleFS (ассеты)
+│       │   ├─ flash_assets.c             // шрифты + glyph LRU cache
+│       │   ├─ nvs_storage.c              // ESP32 NVS обёртка
+│       │   ├─ time_display.c             // отображение времени
+│       │   ├─ localization.c             // RU/EN языковые пакеты
+│       │   └─ text_layout.c              // fit/wrap/ellipsis/pager
+│       └─ include/
+│           ├─ pinmap_ui.h                // SINGLE SOURCE OF TRUTH (ESP32-S2)
+│           ├─ config.h
+│           ├─ protocol.h
+│           └─ error_codes.h
+│
+├─ shared/
+│   └─ protocol/
+│       ├─ proto.h                        // общие константы протокола
+│       ├─ error_codes.h                  // коды ошибок (общие)
+│       ├─ crc16.h / crc16.c
+│       └─ crc32.h / crc32.c
+│
+├─ legacy/
+│   └─ info-spravka_f401_baseline_10d731a/  // read-only reference
+│       ├─ main.c
+│       ├─ platformio.ini
+│       ├─ stm32f4xx_hal_msp.c
+│       ├─ stm32f4xx_it.c
+│       ├─ Project_resume_2.md
+│       └─ README.md
+│
+├─ tools/
+│   ├─ omniactl.py                        // CLI: import-rew, preset, диагностика
+│   ├─ rew_parser.py                      // парсер REW text format
+│   ├─ upload_at32.sh                     // прошивка AT32
+│   ├─ upload_ui.sh                       // прошивка ESP32-S2
+│   ├─ monitor_at32.sh                    // мониторинг AT32 UART
+│   └─ monitor_ui.sh                      // мониторинг ESP32-S2 USB-CDC
+│
+├─ docs/
+│   ├─ 00_master_spec.md                  // это ТЗ (v7.2)
+│   ├─ 01_pinmap_at32.md
+│   ├─ 01_pinmap_ui_esp32s2.md            // pinmap ESP32-S2
+│   ├─ 02_clock_domains.md
+│   ├─ 03_dsp_pipeline.md
+│   ├─ 04_yoradio_adapter.md
+│   ├─ 05_ui_screens.md
+│   ├─ 06_presets.md
+│   ├─ 07_protocol.md
+│   ├─ 08_build_flash_debug.md
+│   ├─ 09_error_codes.md
+│   ├─ 10_storage_nvs.md
+│   ├─ 11_ir_remote.md
+│   ├─ 12_localization.md
+│   ├─ 13_tft_driver.md
+│   ├─ 14_rgb_ring.md
+│   ├─ 15_gain_smoother.md
+│   ├─ 16_aether_engine.md                // новый
+│   ├─ 17_antiad_night_basstame.md        // новый
+│   ├─ 18_profiler.md                     // новый
+│   ├─ 19_aura_visual_system.md           // новый
+│   ├─ 20_esp32s2_bringup.md              // новый
+│   ├─ vendor_bt401_mclk_confirm.md       // подтверждение вендора
+│   └─ 99_chat_handoff.md                 // шаблон смены чата
+│
+├─ .gitignore
+├─ README.md
+└─ omnia-sthenos-vcore.code-workspace
+```
+
+---
+
+## 61) .gitignore
+
+```gitignore
+# PlatformIO build artifacts — НЕ ЗАЛИВАТЬ!
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# ESP-IDF build
+build/
+sdkconfig
+sdkconfig.old
+
+# IDE
+.vscode/
+.idea/
+
+# Build outputs
+*.elf
+*.bin
+*.hex
+*.map
+*.uf2
+
+# OS junk
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+```
+
+---
+
+## 62) platformio.ini
+
+### AT32 v·core
+
+```ini
+[env:omnia_vcore_at32]
+platform    = arterytekat32
+; board     = <из: pio boards arterytekat32>
+framework   = at32firmlib
+upload_protocol = stlink
+debug_tool      = stlink
+monitor_speed   = 921600
+build_type      = release
+build_flags =
+  -O3
+  -DUSE_STDPERIPH_DRIVER
+  -I../../shared/protocol
+  -I../../shared/protocol
+```
+
+### ESP32-S2 mini UI
+
+```ini
+[platformio]
+default_envs = omnia_ui_s2mini
+
+[env:omnia_ui_s2mini]
+platform    = espressif32
+board       = lolin_s2_mini
+framework   = espidf         ; рекомендовано (стабильный USB + PSRAM + RMT)
+; framework = arduino        ; допустимо, если так проще на начальном этапе
+
+monitor_speed = 115200
+monitor_port  = /dev/ttyACM0 ; ESP32-S2 USB-CDC (или COMx на Windows)
+build_type    = release
+build_flags =
+  -O2
+  -I../../shared/protocol
+  -DBOARD_S2_MINI
+  -DPSRAM_ENABLE=1
+
+; Для Arduino framework (если выбран):
+; lib_deps =
+;   lovyan03/LovyanGFX
+;   esphome/ESPAsyncWebServer-esphome
+```
+
+**Почему ESP-IDF (рекомендован):**
+- Нативный USB device (USB-CDC) через IDF значительно стабильнее.
+- RMT API (для WS2812 + IR) полностью поддержан.
+- PSRAM управление надёжнее через `heap_caps_malloc`.
+- Задачи FreeRTOS с явными приоритетами и стеками.
+
+---
+
+## 63) Прошивка и отладка
+
+### 63.1 Прошивка AT32
+
+```bash
+# ST-Link в SWD колодку AT32 (GND / SWCLK / SWDIO / 3V3)
+pio run -d firmware/vcore_dsp_at32 -t upload
+
+# Мониторинг debug UART AT32:
+# AT32: USART3, TX=PB10, RX=PB11, 921600 baud
+pio device monitor -b 921600 -p /dev/ttyUSB0
+```
+
+### 63.2 Прошивка ESP32-S2 mini
+
+```bash
+# Метод 1: USB-CDC (нативный USB, удобно):
+# Удержать BOOT (GPIO0) → подключить USB → отпустить BOOT
+pio run -d firmware/omnia_ui_s2mini -t upload
+
+# Метод 2: Если USB-CDC не стартует:
+# BOOT=LOW (кнопка) + RST → отпустить RST → отпустить BOOT
+esptool.py --chip esp32s2 --port /dev/ttyACM0 write_flash 0x0 firmware.bin
+
+# Мониторинг (USB-CDC):
+pio device monitor -b 115200 -p /dev/ttyACM0
+# или при IDF: idf.py monitor
+```
+
+### 63.3 Debug UART таблица
+
+| МК | Интерфейс | TX пин | RX пин | Скорость |
+|---|---|---|---|---|
+| **AT32 v·core** | USART3 | PB10 | PB11 | **921600** |
+| **ESP32-S2 UI** | USB-CDC (primary) | нативный USB | нативный USB | **115200** |
+| **ESP32-S2 UI** | UART0 (fallback) | GPIO43 | GPIO44 | **115200** |
+
+> **⚠️ НИКОГДА не подключать оба МК к одному USB-UART одновременно!**
+> **⚠️ ESP32-S2 primary debug = USB-CDC (через USB-C S2 mini). UART0 только как fallback.**
+
+---
+
+## 64) docs/99_chat_handoff.md — шаблон смены чата
+
+```markdown
+# OMNIA Chat Handoff v7.2
+
+## Repo
+- URL: https://github.com/<user>/omnia-sthenos-vcore
+- Branch: main
+- Last commit: <hash> — <короткое описание>
+
+## Аппаратура
+- v·core: AT32F435 (или AT32F437), I2S master (Radio) / slave (BT401)
+- UI: LOLIN S2 mini (ESP32-S2FN4R2), 4MB Flash + 2MB PSRAM, USB-C
+- TFT: ST7789 или ILI9341 320×240 (тип определён в NVS)
+- DAC: PCM5102A (I2S, без MCLK)
+- AMP: TPA3116 (или совместимый)
+- BT401: I2S master (44.1/48k)
+- RGB: WS2812/SK6812 через SN74AHCT125 → RMT ESP32-S2
+- IR: TSOP4838 → GPIO5 → RMT RX
+- Light sensor: BH1750 или VEML7700 (I2C)
+
+## Что сделано (последние этапы)
+- [ ] AT32 bring-up
+- [ ] Radio mode I2S
+- [ ] DSP pipeline (DC/Sub/PEQ/Tone/Loud)
+- [ ] AETHER Engine
+- [ ] Anti-Ad / Night / BassTame
+- [ ] Look-ahead Limiter
+- [ ] BT mode + BT Fs watch + BT_RESYNC
+- [ ] yoRadio adapter (все теги)
+- [ ] ESP32-S2 bring-up (USB-CDC, TFT Wizard)
+- [ ] OMNIA AURA (темы, HUD, toast, визуализаторы)
+- [ ] IR self-learn (RMT)
+- [ ] NVS + LittleFS
+- [ ] Полный протокол AT32↔ESP32-S2
+- [ ] ...
+
+## Что сейчас делаем
+<описание текущей задачи>
+
+## Проблема / симптом
+<что не работает, логи, ожидаемое поведение>
+
+## Ключевые файлы
+- firmware/vcore_dsp_at32/src/<файл>
+- firmware/omnia_ui_s2mini/src/<файл>
+- include/pinmap_vcore.h
+- include/pinmap_ui.h
+- docs/00_master_spec.md (v7.2)
+
+## Скорости debug
+- AT32:     PB10/PB11, USART3, 921600 baud
+- ESP32-S2: USB-CDC /dev/ttyACM0, 115200 baud
+            UART0 GPIO43/44 (fallback)
+
+## UI-линк AT32↔ESP32-S2
+- GPIO7(ESP TX) → PB11(AT32 RX)
+- GPIO8(ESP RX) → PB10(AT32 TX)
+- Baud: 460800 (целевой)
+
+## ТЗ
+- docs/00_master_spec.md (v7.2)
+- Vendor BT401 MCLK: docs/vendor_bt401_mclk_confirm.md
+- Legacy baseline: legacy/info-spravka_f401_baseline_10d731a/
+```
+
+---
+
+**Продолжение:** ЧАСТЬ 6/6 — Красные флаги (полный список), Roadmap, Тест-план (полный checklist), TBD (что будет добавлено позже).
+# OMNIA / STHENOS / v·core — MASTER SPEC v7.2
+# ЧАСТЬ 6/6 — Красные флаги, Roadmap, Полный тест-план, TBD, Приложения
+
+---
+
+## 65) КРАСНЫЕ ФЛАГИ (полный список — нарушение любого = гарантированная проблема)
+
+### 65.1 Красные флаги AT32 v·core (аудио/железо)
+
+```
+ФЛАГ 01: НЕЛЬЗЯ запускать I2S до отключения JTAG.
+         PA15/PB3/PB4 — это JTAG пины AT32!
+         Первая операция в main() после инициализации часов:
+         → отключить JTAG remapping
+         → перевести PA15/PB3/PB4 в нужный режим (Input/GPIO)
+         Нарушение: I2S BCK/LRCK/DATA не работают, нет звука.
+
+ФЛАГ 02: НЕЛЬЗЯ устанавливать GPIO дефолты ПОСЛЕ HAL_Init.
+         Только ДО или сразу в board_init.c.
+         Нарушение: нестабильное начальное состояние реле/mute/усилителя.
+
+ФЛАГ 03: НЕЛЬЗЯ подключать BT401 BCK/LRCK к BCLK_NET
+         без 74HC125 (direction control).
+         Нарушение: конфликт двух мастеров на шине.
+
+ФЛАГ 04: НЕЛЬЗЯ использовать 74HC157 (мультиплексор):
+         OE=HIGH → disable → выход 0 (не Hi-Z!).
+         Нарушение: конфликт сигналов при переключении доменов.
+         Использовать только 74HC125 (buffer с OE=Hi-Z при disable).
+
+ФЛАГ 05: НЕЛЬЗЯ делать BT401 slave.
+         BT401 I2S master версия — только MASTER.
+         Только master даёт MCLK для детекта Fs.
+         Нарушение: нет MCLK → нет детекта Fs → DSP некорректен.
+
+ФЛАГ 06: НЕЛЬЗЯ открывать 74HC125 (PB0=LOW) без pin-safe шага.
+         Последовательность:
+         1) PA15/PB3 → Input (убрать конфликт JTAG/I2S пинов)
+         2) Только потом PB0=LOW (открыть 74HC125)
+         Нарушение: короткое замыкание двух driven выходов.
+
+ФЛАГ 07: НЕЛЬЗЯ включать реле (PB1=HIGH) до AMP_MUTE=HIGH (PB2=HIGH).
+         Последовательность AMP ON:
+         1) AMP_MUTE=HIGH (PB2)
+         2) Задержка 10 ms
+         3) RELAY_ON (PB1)
+         4) Задержка 300+ ms (TPA3116 startup)
+         5) DSP fade-in
+         6) AMP_MUTE=LOW (PB2)
+         Нарушение: щелчок/хлопок в динамиках.
+
+ФЛАГ 08: НЕЛЬЗЯ включать TPA3116 без задержки 300+ мс после relay ON.
+         TPA3116 требует времени на внутреннюю инициализацию.
+         Нарушение: щелчок при включении.
+
+ФЛАГ 09: НЕЛЬЗЯ менять клок-домен без полной остановки DMA + DeInit I2S.
+         Последовательность domain switch:
+         1) mute_system=1 + fade-out
+         2) Stop DMA I2S2 RX + I2S3 TX
+         3) DeInit I2S2 + I2S3
+         4) Pin-safe шаг
+         5) Переключить 74HC125
+         6) Init нового домена
+         7) Start DMA
+         8) fade-in + mute_system=0
+         Нарушение: I2S lock-up, артефакты, зависание DMA.
+
+ФЛАГ 10: НЕЛЬЗЯ делать мгновенные изменения gain нигде в тракте.
+         Только через Gain Smoother!
+         Нарушение: щелчки, клипы, "дешёвое" ощущение.
+
+ФЛАГ 11: НЕЛЬЗЯ предполагать фиксированную Fs в BT домене.
+         BT401 может работать на 44.1k или 48k в зависимости от контента.
+         Обязателен BT Fs watch + BT_RESYNC при смене.
+         Нарушение: DSP фильтры/FFT/лимитер работают на неверной Fs.
+
+ФЛАГ 12: НЕЛЬЗЯ включать реверб AETHER ambience при высокой CPU нагрузке.
+         Quality scaling обязателен.
+         Нарушение: CPU overrun → DMA miss → артефакты.
+
+ФЛАГ 13: НЕЛЬЗЯ допускать boost в Anti-Ad (только downward-only).
+         max_boost_db = 0.0f — это не параметр, это константа.
+         Нарушение: усиление тихих пауз/шума, потеря смысла блока.
+
+ФЛАГ 14: НЕЛЬЗЯ отключать look-ahead limiter.
+         Это предохранитель, не художественный эффект.
+         Нарушение: клип на DAC при любой комбинации настроек.
+
+ФЛАГ 15: НЕЛЬЗЯ хранить весь SD плейлист в RAM при count > 5000.
+         Только порционная передача через LIST.BEGIN/ITEM/END.
+         Нарушение: переполнение SRAM AT32.
+```
+
+### 65.2 Красные флаги ESP32-S2 UI (GPIO/boot/железо)
+
+```
+ФЛАГ 16: НЕЛЬЗЯ вешать внешние цепи на strapping pins GPIO0/GPIO45/GPIO46
+         с жёсткой нагрузкой при старте.
+         GPIO0 LOW при reset → boot в Download mode.
+         GPIO46 влияет на ROM messages.
+         Нарушение: ESP32-S2 не загружается или загружается в ненужный режим.
+
+ФЛАГ 17: НЕЛЬЗЯ использовать GPIO0 под энкодер/кнопки/периферию
+         без специальной защиты.
+         Нарушение: boot loop при нажатии кнопки при старте.
+
+ФЛАГ 18: НЕЛЬЗЯ использовать GPIO26–GPIO32 для внешней периферии
+         (в типовом S2 mini эти линии заняты внутренней Flash/PSRAM).
+         Нарушение: конфликт, нестабильная работа памяти.
+
+ФЛАГ 19: НЕЛЬЗЯ делать PSRAM-доступ из ISR (Interrupt Service Routine).
+         PSRAM — это SPI-память с кэш-miss задержкой.
+         Cache miss из прерывания = непредсказуемая задержка = зависание ISR.
+         Нарушение: WDT reset, лаги, нестабильность.
+
+ФЛАГ 20: НЕЛЬЗЯ питать датчик BH1750/VEML7700 от 5В
+         при 3.3В логике ESP32-S2.
+         Нарушение: повреждение GPIO ESP32-S2 (5В на 3.3В-пине).
+
+ФЛАГ 21: НЕЛЬЗЯ использовать PD2 (если применимо) или конфликтующие
+         пины USB без понимания USB stack ESP32-S2.
+         Нарушение: USB-CDC не работает.
+
+ФЛАГ 22: НЕЛЬЗЯ подавать внешний 5В и USB 5В без диодной развязки
+         (anti-backfeed).
+         Нарушение: два источника 5В соединены напрямую → возможна
+         перегрузка USB-порта ПК или повреждение схемы.
+```
+
+### 65.3 Красные флаги UI рендера (ESP32-S2 UI performance)
+
+```
+ФЛАГ 23: НЕЛЬЗЯ вызывать delay() / vTaskDelay(0) в UI loop критических задач.
+         Нарушение: лаг реакции на ввод → "дешёвое" ощущение.
+
+ФЛАГ 24: НЕЛЬЗЯ рисовать (вызывать TFT API) из ISR.
+         Нарушение: конфликт DMA, случайные артефакты на экране.
+
+ФЛАГ 25: НЕЛЬЗЯ делать full-screen redraw в нормальной работе.
+         Только при смене экрана (UI_STATE_*).
+         В нормальной работе — только dirty-rect виджетов.
+         Нарушение: видимые лаги, "мигание" экрана.
+
+ФЛАГ 26: НЕЛЬЗЯ блокировать ui_input_task при обработке рендера.
+         ui_input_task должен ВСЕГДА вытеснять ui_render_task при вводе.
+         Нарушение: энкодер/кнопки не реагируют во время сложного рендера.
+
+ФЛАГ 27: НЕЛЬЗЯ читать пиксели обратно из GRAM (TFT readback).
+         Медленно, ненадёжно, нарушает DMA модель.
+         Нарушение: лаги, случайное зависание SPI.
+
+ФЛАГ 28: НЕЛЬЗЯ логировать (printf/ESP_LOGI) из DMA ISR.
+         Нарушение: ISR зависает на UART, пропуск DMA событий.
+
+ФЛАГ 29: НЕЛЬЗЯ переносить FFT вычисления на ESP32-S2 UI.
+         UI не имеет PCM-данных без забивания UART линка.
+         FFT остаётся на AT32 v·core.
+         Нарушение: UART забит PCM, UI лагает.
+```
+
+### 65.4 Красные флаги хранилища и протокола
+
+```
+ФЛАГ 30: НЕЛЬЗЯ писать в NVS при каждом шаге энкодера (громкость).
+         Только dirty+timeout (3–4 сек) или при standby.
+         Нарушение: ускоренный износ Flash
+                    (~100k циклов P/E на сектор, при 10 шагах/сек
+                    → ресурс за несколько дней).
+
+ФЛАГ 31: НЕЛЬЗЯ хранить ассеты (шрифты/темы) в DRAM ESP32-S2.
+         Только LittleFS (Flash) → glyph LRU cache в PSRAM/DRAM.
+         Нарушение: исчерпание внутренней DRAM, OOM crash.
+
+ФЛАГ 32: НЕЛЬЗЯ отправлять raw CR/LF внутри payload протокола.
+         Только экранированные \n.
+         Нарушение: парсер разрывает строку на две, команда не распознаётся.
+
+ФЛАГ 33: НЕЛЬЗЯ подключать оба МК к одному USB-UART одновременно.
+         Нарушение: конфликт RX, невозможность разобрать логи.
+
+ФЛАГ 34: НЕЛЬЗЯ подключать WS2812 DIN напрямую от 3.3В GPIO.
+         Обязателен SN74AHCT125 (3.3В → 5В level shift).
+         Нарушение: нестабильная работа, "зависание" отдельных светодиодов
+                    (зависит от партии, температуры, длины провода).
+
+ФЛАГ 35: НЕЛЬЗЯ размещать датчик освещённости BH1750/VEML7700
+         там, где он видит подсветку TFT или RGB кольцо.
+         Нарушение: автоколебания яркости (экран → датчик → ярче →
+                    датчик → темнее → ...).
+
+ФЛАГ 36: НЕЛЬЗЯ выбирать контроллер TFT через обычное меню пользователя.
+         Только Wizard/Rescue/Service Menu.
+         Нарушение: пользователь может случайно "ослепить" экран
+                    и не найти пути восстановления.
+```
+
+---
+
+## 66) Roadmap (поэтапный план реализации)
+
+```
+══════════════════════════════════════════════════════════
+ЭТАП 0: Bring-up AT32 v·core (НАЧАЛО)
+══════════════════════════════════════════════════════════
+□ JTAG off — ПЕРВАЯ операция в main()!
+□ GPIO defaults: PB0=HIGH (74HC125 OE), PB1=LOW (RELAY),
+                 PB2=HIGH (AMP_MUTE)
+□ USART3 debug @ 921600 (PB10/PB11)
+□ Баннер: "OMNIA STHENOS v·core v0.1.0"
+□ Watchdog init (IWDG, 2 сек)
+□ SysTick milliseconds counter
+□ Тест: лог в терминале → всё работает
+
+──────────────────────────────────────────────────────────
+ЭТАП 1: Radio mode (I2S + yoRadio)
+──────────────────────────────────────────────────────────
+□ I2S3 master TX + I2S3EXT RX + DMA double buffer
+□ dsp_gain_smoother.c (TAU_VOL, TAU_MUTE_IN, TAU_MUTE_OUT)
+□ dsp_mute.c (mute_user, mute_system, приоритеты)
+□ dsp_dc_blocker.c (всегда ON)
+□ process_block() с gain ramp (minimal DSP: DC + volume)
+□ RADIO_MUTE/RADIO_RATE handshake (pull-up safe defaults)
+□ UART5: yoRadio CLI + теги (yoradio_adapter.c)
+  □ NAMESET, META, STATION, GENRE, BITRATE
+  □ RATE, MUTE (handshake)
+  □ ##SYS.DATE#: время/NTP
+  □ ##WiFi.RSSI#: Wi-Fi
+□ uart_ui.c: заглушка (отправка телеметрии)
+□ time_manager.c: SysTick-часы + NTP ресинк
+□ Тест: радио играет, лог показывает теги yoRadio
+
+──────────────────────────────────────────────────────────
+ЭТАП 2: DSP Pipeline v1 (полный тракт)
+──────────────────────────────────────────────────────────
+□ dsp_peq.c: 20 полос DF2T biquad cascade
+□ dsp_tone.c: Bass/Treble low/high shelf
+□ dsp_loudness.c: freq-dependent psychoacoustic boost
+□ dsp_headroom.c: auto_preamp compensation
+□ dsp_limiter.c: look-ahead peak limiter (ВСЕГДА ON)
+□ dsp_meters.c: Peak/RMS/LIM_GR/CLIP
+□ dsp_fft.c: FFT + SPEC:32 + FEAT:CENTROID
+□ presets.c: структура пресета, load/save, factory defaults
+□ profiler.c: DWT cycles, CPU load, overrun counter
+□ supervisor.c: watchdog feed, DSP overrun detection
+□ Телеметрия в uart_ui: METERS:, SPEC:, FEAT:, DIAG:
+□ Подписки (SUBSCRIBE:*) — базовая обработка
+□ Тест: CPU load < 70% при всех блоках включённых
+        overrun_count = 0 за 1 час воспроизведения
+
+──────────────────────────────────────────────────────────
+ЭТАП 3: BT mode (BT401 domain)
+──────────────────────────────────────────────────────────
+□ mclk_measure.c: метод A (input capture) + метод B (gate window)
+□ MCLK детект: 44.1k (11.2896 МГц) vs 48k (12.288 МГц)
+□ Pin-safe шаг (PA15/PB3 → Input/Analog перед 74HC125)
+□ I2S2 slave RX + I2S3 slave TX (Philips, 16-bit в 32-slot)
+□ 74HC125 управление (PB0)
+□ bt_fs_watch.c: периодический MCLK замер + BT_RESYNC
+□ bt401_adapter.c: управление BT401 (UART команды)
+□ Полная state machine (все переходы Radio↔BT)
+□ AMP sequencing (relay + mute + fade)
+□ Тест:
+  □ BT старт без щелчков
+  □ BT Fs watch: смена 44.1↔48 → BT_RESYNC → no click
+  □ Radio ↔ BT переключение → no click
+
+──────────────────────────────────────────────────────────
+ЭТАП 4: DSP Extensions (AETHER + Anti-Ad + Night + BassTame)
+──────────────────────────────────────────────────────────
+□ dsp_aether.c:
+  □ M/S widening (этап 1)
+  □ Decorrelator all-pass (этап 2)
+  □ Ambience Schroeder-lite (этап 3, CINEMA only)
+  □ dry/wet crossfade через GainSmoother
+□ dsp_antiad.c: downward-only Auto-Volume
+□ dsp_night.c: wideband compressor
+□ dsp_basstame.c: dynamic low-shelf
+□ dsp_bassmono.c: Bass Mono (toggle + crossfade)
+□ dsp_psychobass.c: subharmonic synthesizer
+□ dsp_delay.c: delay compensation L/R (ring buffer + lerp)
+□ Quality scaling: авто-деградация при CPU > 80%
+□ Тест:
+  □ AETHER включение/выключение → no click
+  □ Anti-Ad: реклама/вставка → быстрое ослабление
+  □ Night: диалоги слышны при меньшей громкости
+  □ CPU load < 70% при типичном Cinema пресете
+
+──────────────────────────────────────────────────────────
+ЭТАП 5: yoRadio adapter (полный)
+──────────────────────────────────────────────────────────
+□ Все теги: парсинг, маппинг в UI-протокол
+□ LIST browser (LIST.BEGIN/ITEM/END, порционно)
+□ shuffle_bag (Fisher-Yates, без повторов)
+□ now_playing ресинк по NAMESET (индекс)
+□ SRCVOL управление (yoRadio volume)
+□ Тест:
+  □ list WEB + SD → правильный парсинг, порционно
+  □ play N + NAMESET ресинк → now_playing_index корректен
+  □ Shuffle: все N треков без повторов
+
+──────────────────────────────────────────────────────────
+ЭТАП 6: ESP32-S2 Bring-up (UI МК)
+──────────────────────────────────────────────────────────
+□ Проект omnia_ui_s2mini создан (PlatformIO + ESP-IDF)
+□ pinmap_ui.h заполнен (GPIO7/8 UART, GPIO36/35/21/17/18/16 TFT, ...)
+□ USB-CDC работает (лог через /dev/ttyACM0)
+□ UART к AT32 @ 460800: приём INFO.REQ → ответ INFO:...
+□ tft_driver.c: универсальный API (ST7789 + ILI9341)
+□ screen_rescue.c: Display Setup Wizard (цикл ST7789/ILI9341)
+□ TFT рисует тест-паттерн (цветные полосы)
+□ NVS: базовое сохранение/чтение (display → ctrl_type)
+□ LittleFS: монтирование + чтение ассетов из /assets/
+□ Шрифты: рендер ASCII + кириллицы
+□ RGB ring через RMT: тест-прокрутка цветов
+□ IR RMT RX: захват тайминга, fingerprint в лог
+□ BH1750/VEML7700 I2C: lux в лог
+□ Тест:
+  □ Boot → Wizard → подтверждение → NVS → reboot → HOME
+  □ Кириллица без □
+  □ RGB кольцо без мерцания
+
+──────────────────────────────────────────────────────────
+ЭТАП 7: OMNIA AURA (UI Visual System)
+──────────────────────────────────────────────────────────
+□ aura_theme.c: 8 тем + токены + плавная смена
+□ aura_motion.c: easing functions (easeOutCubic, easeInOutCubic)
+□ aura_press.c: press effect + focus ring
+□ tft_tile_buf.c: ping-pong tile + DMA push
+□ tft_dirty_rect.c: dirty-widget engine
+□ screen_home.c:
+  □ Статус-бар (SRC/SR/BITS/BITRATE/часы/WiFi/AMP)
+  □ Preset/Room индикатор
+  □ Meta (pager/ellipsis)
+  □ Индикаторы CLIP/LIM
+  □ Мелкий dB в статус-баре
+□ overlay_volume.c / aura_hud.c: Volume HUD (slide-in)
+□ overlay_nowplay.c: Now Playing toast (slide-up)
+□ aura_toast.c: Toast notifications система
+□ screen_idle.c: Clock Large + Waterfall + VU + Lissajous + Spectrum
+□ screen_visual_full.c: Fullscreen Visualizer screensaver
+□ visualizers/:
+  □ vis_spectrum.c: Spectrum Pro (bars + peaks + adaptive palette)
+  □ vis_waterfall.c: Waterfall Pro (hw scroll)
+  □ vis_vectorscope.c: Vectorscope + correlation
+  □ vis_oscilloscope.c: Oscilloscope Stereo
+  □ vis_aura_ambient.c: Aura Ambient (centroid-based)
+□ Pro-Overlay (SR/HR/GR/CLIP строка)
+□ screen_list.c: Wheel Picker v2 (inertia + depth + strip)
+□ screen_standby.c: STANDBY часы
+□ aura_quality.c: Quality Scaling (High/Low)
+□ Тест:
+  □ Volume HUD: slide-in при регулировке, таймаут 2.5 сек
+  □ Toast при смене трека: overlay, заставка не перерисовывается
+  □ Waterfall: hw scroll + 1 строка (нет full-redraw)
+  □ Все 5 визуализаторов без лагов при 20–25 Гц
+  □ AURA Quality Low: авто при CPU > 80%
+
+──────────────────────────────────────────────────────────
+ЭТАП 8: Полный UI (меню, пресеты, EQ, сервис, диагностика)
+──────────────────────────────────────────────────────────
+□ screen_menu.c: MAIN MENU полная структура
+□ screen_presets.c: пресеты + избранное
+□ screen_eq.c: EQ редактор (live curve)
+□ screen_guided.c: Guided Tuning мастер (8 шагов + тест-сигналы)
+□ screen_diag.c: Diagnostics + Event log
+□ screen_service.c: Service Menu (скрытый вход)
+□ localization.c: RU/EN (STR() макрос, lang пакеты из LittleFS)
+□ text_layout.c: fit → wrap → ellipsis → pager → optional marquee
+□ backlight.c: LEDC PWM + BH1750/VEML7700 + ночное расписание
+□ ir_remote.c: self-learn + fingerprint + hold/repeat + NVS bindings
+□ buttons.c: ADC-лестница + debounce
+□ encoder.c: энкодер + инерция wheel picker
+□ rgb_ring.c: все профили + Standby Breathing
+□ usb_cdc.c: Room Correction import (omniactl.py)
+□ nvs_storage.c: dirty+timeout+standby commit
+□ Тест:
+  □ RU→EN: мгновенная смена без перепрошивки
+  □ IR learn: 3 повтора → fingerprint → сохранение
+  □ IR hold VOL: ускорение при hold_count ≥ 11
+  □ NVS dirty+timeout: запись через 4 сек
+  □ USB CDC import REW → пресет применяется
+
+──────────────────────────────────────────────────────────
+ЭТАП 9: Полировка и интеграция
+──────────────────────────────────────────────────────────
+□ Boot splash (shimmer эффект)
+□ Crash log AT32 → отображение в UI при старте
+□ SUBSCRIBE:* полная реализация (все подписки)
+□ UART TX очередь с приоритетами (HIGH/MEDIUM/LOW + drop LOW)
+□ Room Correction полный (REW import + apply)
+□ omniactl.py: import-rew, preset CLI, diagnostics
+□ omniactl.py: SPI Flash info, factory reset
+□ docs/: все новые документы (16–20)
+□ Тест: полный чек-лист (см. раздел 67)
+
+══════════════════════════════════════════════════════════
+ЭТАП 10 (v2, опционально): расширения
+══════════════════════════════════════════════════════════
+□ Waterfall history + scrub энкодером (PSRAM история)
+□ Aura Ambient FEAT:BEAT (детект бита)
+□ AETHER:HEADPHONES режим
+□ Multiband limiter v2 (3-band Linkwitz-Riley 4th order)
+□ Psychobass v2 (улучшенный алгоритм)
+□ K-weighted loudness (BS.1770) для Anti-Ad
+□ TE sync (VSync → DMA) если TE пин доступен
+□ OTA обновление прошивки (ESP32-S2 + AT32 через UART)
+```
+
+---
+
+## 67) Полный тест-план (итоговый чек-лист)
+
+### 67.1 AT32 Bring-up и базовая работа
+
+```
+□ Старт без BT401: PB0=HIGH, нет зависания, баннер в debug UART
+□ Старт с BT401 выключен: нет freeze, ERR:0x0601 в лог
+□ JTAG отключён: PA15/PB3/PB4 доступны как GPIO (проверить осциллографом)
+□ Watchdog: при зависании DSP → reset → лог crash
+□ USART3 debug @ 921600: корректный лог без пропусков
+```
+
+### 67.2 Radio mode (I2S + yoRadio)
+
+```
+□ yoRadio UART: все теги парсятся корректно (NAMESET/META/STATION/GENRE)
+□ RADIO_RATE/MUTE handshake: смена 44.1↔48 без дропов и щелчков
+□ Radio → BT: без щелчков, fade-out → switch → fade-in
+□ BT → Radio: без щелчков, RADIO_MUTE handshake корректен
+□ Смена станций: NAMESET ресинк, now_playing_index корректен
+□ TIME: часы обновляются после NTP ресинка
+□ WIFI RSSI: обновляется каждые 10 сек
+□ yoRadio UART активен в BT режиме (NTP продолжает приходить)
+```
+
+### 67.3 BT mode (BT401 domain)
+
+```
+□ MCLK детект: 44.1k определяется как 11.2896 МГц ± допуск
+□ MCLK детект: 48k определяется как 12.288 МГц ± допуск
+□ MCLK до DATA: v·core корректно меряет Fs до появления первых данных
+□ BT старт: нет щелчков, fade-in плавный
+□ BT Fs watch: смена 44.1↔48 внутри BT → BT_RESYNC → no click
+□ BT неподдерживаемый MCLK: ERR:0x0602, safe mute, UI показывает ошибку
+□ Pin-safe шаг: PA15/PB3 → Input перед открытием 74HC125
+□ 74HC125: OE=LOW (открыт) только в BT режиме, OE=HIGH в Radio
+□ resync_count растёт при BT_RESYNC, overrun_count = 0
+```
+
+### 67.4 AMP Sequencing (Усилитель)
+
+```
+□ AMP ON: AMP_MUTE=HIGH → задержка 10ms → RELAY=ON →
+          задержка 300ms → DSP fade-in → AMP_MUTE=LOW → нет щелчка
+□ AMP OFF: DSP fade-out → AMP_MUTE=HIGH → RELAY=OFF → тишина
+□ MUTE по кнопке: плавный fade-out (TAU_MUTE_IN = 200ms)
+□ UNMUTE: плавный fade-in (TAU_MUTE_OUT = 350ms) к прежней громкости
+□ Громкость при mute: значение в dB НЕ меняется (только gain→0)
+□ STANDBY: AMP OFF + NVS force commit
+```
+
+### 67.5 DSP Pipeline
+
+```
+□ DC Blocker: нет DC offset на выходе (проверить осциллографом)
+□ Subsonic HPF: -3dB на fc (20–35 Гц), проверить sweep
+□ PEQ 20 полос: каждая полоса меняет АЧХ корректно (проверить pink noise + анализатор)
+□ Tone Bass/Treble: shelves работают (проверить sweep)
+□ Headroom Manager: при PEQ boost → auto_preamp снижается автоматически
+□ Look-ahead limiter: ceiling -1 dBFS, clip_count = 0 при нормальной работе
+□ Limiter с пинком: при подаче -0.5 dBFS → GR > 0, нет клипа
+□ CLIP индикатор: UI получает CLIP:1 при перегрузке, гаснет через 300ms
+□ Metering: PEAK_L/R, RMS_L/R адекватны уровням (проверить тон -18 dBFS)
+```
+
+### 67.6 AETHER Engine
+
+```
+□ AETHER OFF → WIDE: плавный crossfade, нет щелчка
+□ AETHER WIDE → OFF: плавный crossfade, нет щелчка
+□ WIDE: стерео расширяется, центр не "проваливается"
+□ CINEMA: ambience слышен, не доминирует
+□ Bass protect: низкие частоты остаются "в центре" (ниже bass_fc)
+□ Декорреляция: стерео "шире" без фазовых артефактов
+□ CPU load при CINEMA: не выше 70% на типичном блоке
+□ AETHER ambience авто-выключается при CPU > 80%
+```
+
+### 67.7 Anti-Ad / Night / BassTame / BassMono
+
+```
+□ Anti-Ad: подача -6 dBFS тихого → затем 0 dBFS (реклама) →
+           ослабление за 50–150ms, возврат медленно (3–10 сек)
+□ Anti-Ad: downward-only (тихое НЕ усиливается)
+□ Anti-Ad: baseline не обновляется при тишине (gating работает)
+□ Night Mode: пики ограничены, диалоги слышнее относительно пиков
+□ Bass Tame: басовые удары приглушаются без "убийства" середины/высоких
+□ Bass Tame sidechain: реагирует только на НЧ (проверить тоном 80 Гц vs 1 кГц)
+□ BassMono: включение/выключение без щелчка
+□ BassMono: иконка статуса обновляется в UI
+```
+
+### 67.8 Delay Compensation
+
+```
+□ DELAY:L 5.0: задержка L канала = 5 ms ± 0.5 ms (проверить осциллографом)
+□ DELAY:R 10.0: задержка R канала = 10 ms
+□ Изменение delay: без щелчков (crossfade)
+□ DELAY:L 0.0: задержка снята, каналы синхронны
+```
+
+### 67.9 Профайлер и RT-гарантии
+
+```
+□ CPU load < 70% при типичном пресете (Music: Wide + умеренный PEQ)
+□ CPU load < 80% при Cinema пресете (AETHER CINEMA + Night + Anti-Ad)
+□ overrun_count = 0 за 1 час непрерывного воспроизведения
+□ dma_half_miss = 0 за 1 час
+□ uart_tx_drop = 0 при HOME без визуала (FFT off)
+□ uart_tx_drop = только LOW priority (SPEC) при Visual@25Hz
+□ Команды управления (VOL/MUTE/SRC) не задерживаются при активном SPEC
+□ Stack high-water mark: stack usage < 80% для каждой задачи
+```
+
+### 67.10 UART протокол
+
+```
+□ Все команды из раздела 57.3 парсятся без ERR:0x0803
+□ SUBSCRIBE:SPEC=20 → SPEC:32 приходит 20 раз/сек ± 2
+□ SUBSCRIBE:METERS=10 → METERS: приходит 10 раз/сек ± 1
+□ SUBSCRIBE:OFF → ничего не приходит (кроме event-driven)
+□ FFT_FULL.REQ → один FFT_FULL пакет в ответ
+□ INFO.REQ → корректный INFO: ответ со всеми полями
+□ Строки > 256 байт: не отправляются (обрезать или split)
+□ Кириллица в META: UTF-8, корректно парсится на UI
+□ Экранированные \n в META: корректно отображаются
+```
+
+### 67.11 ESP32-S2 Bring-up и TFT
+
+```
+□ Boot без зависания за 3 сек
+□ USB-CDC /dev/ttyACM0 виден сразу после подключения
+□ LittleFS монтируется: /assets/ читается
+□ TFT: цветные полосы на экране без артефактов
+□ TFT: rotationок (landscape 320×240)
+□ Display Wizard: ST7789 → синее кольцо; ILI9341 → зелёное кольцо
+□ Display Rescue: работает при GPIO0=HIGH без экрана
+□ Подтверждение Wizard → NVS → reboot → корректный контроллер при старте
+□ SPI Clock Test: находит максимальную стабильную частоту
+□ TFT без tearing при смене полного экрана (или TE sync если доступен)
+```
+
+### 67.12 OMNIA AURA UI
+
+```
+□ Все 8 тем: корректные цвета, без "грязи"
+□ Смена темы: плавная (300–500ms), нет резкого перехода
+□ Focus ring: виден при навигации энкодером
+□ Press effect: видим при выборе пункта (80–140ms)
+□ Volume HUD: slide-in за 140ms при VOL+/-
+□ Volume HUD: таймаут 2.5 сек → slide-out
+□ Volume HUD: показывает MUTE при mute
+□ Now Playing toast: slide-up при NAMESET, 3–4 сек, затем fade-out
+□ Toast notifications: очередь до 3, не перекрываются
+□ Pro-Overlay: SR/HR/GR/CLIP обновляется 5–10 Гц
+□ Clip micro-pulse: красный угол при клипе, 300–500ms
+□ HOME: нет full-redraw в нормальной работе (проверить dirty flags)
+□ Idle timeout: переход в заставку через N сек
+□ Fullscreen Visual: переход через N сек при воспроизведении
+□ Любое действие → выход из IDLE/VISUAL → предыдущий экран
+```
+
+### 67.13 Визуализаторы (OMNIA AURA Visualizers)
+
+```
+□ Spectrum Pro: бары корректны (проверить тон 1кГц → 1 пик в нужном бине)
+□ Spectrum Pro: peak dots медленно спадают (persistence)
+□ Spectrum Pro: adaptive palette (низкие теплее, высокие холоднее)
+□ Spectrum Pro: attack быстрый, release медленный (баллистика)
+□ Waterfall: hw scroll работает (нет full-redraw, нет мерцания)
+□ Waterfall: colormap соответствует теме
+□ Vectorscope: сетка + фигура + persistence
+□ Vectorscope: корреляция -1..+1 индикатор работает
+□ Oscilloscope: триггер по нулю (стабильная картинка на синусе)
+□ Aura Ambient: медленный gradient, меняется при смене тембра
+□ Все визуализаторы: 20–25 Гц без видимых лагов
+□ AURA Quality Low: авто при CPU > 80%, уменьшение fps + persistence
+□ Мини-визуал HOME: Mini VU или Mini Spectrum 24px полоса
+```
+
+### 67.14 Wheel Picker v2
+
+```
+□ Центральный элемент: полная яркость + accent outline
+□ Соседние ±1: 75% яркости
+□ Дальние ±2: 50% яркости
+□ Инерция: быстрый поворот → ускорение → плавная остановка
+□ Preview strip: N/Max корректен
+□ Pressed: press effect при выборе элемента
+□ Большой список (500+ станций): нет зависания при прокрутке
+□ Порционная загрузка LIST: нет OOM
+```
+
+### 67.15 IR пульт
+
+```
+□ RMT RX: захват тайминга, fingerprint в лог (Service → IR raw capture)
+□ Self-learn: 3 нажатия → fingerprint совпадает → toast "IR learned OK"
+□ Runtime матч: точный CRC → действие
+□ Runtime матч: похожий (~similarity) → действие
+□ Runtime матч: чужой код → игнор (нет случайных действий)
+□ Hold VOL+: ускорение при hold_count ≥ 11 (шаг 1.0 dB vs 0.5 dB)
+□ Hold VOL-: аналогично
+□ MUTE:TOGGLE: корректно переключает mute
+□ IR bindings: сохраняются в NVS, работают после reboot
+□ Clear All: все bindings удалены, IR перестаёт реагировать
+□ IR Test экран: показывает raw fingerprint и матчинг
+```
+
+### 67.16 RGB кольцо
+
+```
+□ RMT TX: кольцо работает без мерцания (нет bit-bang артефактов)
+□ SN74AHCT125: 3.3В → 5В level shift (проверить осциллографом)
+□ Theme Sync: цвет = ring_accent текущей темы
+□ Standby Breathing: период ~8 сек, мягкий хвост
+□ Standby Breathing: яркость ≤ 8% (ночью ≤ 4%)
+□ Spectrum Wheel: бины FFT отображаются по сегментам
+□ Limiter/Clip Monitor: при клипе → красная вспышка
+□ Source Color: BT401=синий, WEB=зелёный, SD=оранжевый
+□ Ночной режим (22:00–07:00): яркость ≤ 15%
+```
+
+### 67.17 Датчик освещённости и подсветка
+
+```
+□ BH1750/VEML7700: lux читается, значение адекватно
+□ Автояркость: lux > 1000 → подсветка 100%; lux < 5 → 5%
+□ Ночное расписание: max 20% после 22:00
+□ Плавность: нет резких скачков подсветки (alpha = 0.05)
+□ Датчик не видит TFT/RGB: нет автоколебаний яркости
+□ Ручной режим: автоматика отключается, PWM не меняется
+□ VEML7700 auto-gain: корректно переключается при насыщении/темноте
+```
+
+### 67.18 Хранилище (NVS + LittleFS)
+
+```
+□ NVS dirty+timeout: запись через 4 сек после последнего изменения
+□ NVS при standby: принудительная запись DIRTY_ALL
+□ Громкость: НЕ пишется при каждом шаге энкодера (проверить счётчиком записей)
+□ EQ/пресеты: запись после выхода из редактора EQ
+□ IR bindings: запись после завершения обучения
+□ Crash сценарий: намеренный WDT reset → данные не потеряны после reboot
+□ LittleFS: все ассеты читаются (шрифты, темы, иконки, lang пакеты)
+□ LittleFS full: корректная ошибка ERR:0x0902, нет crash
+□ NVS corrupt: ERR:0x0904, factory reset предлагается
+□ W25Q32 (если используется): SFDP читается, page/sector определены
+□ Внутренняя Flash 4MB: LittleFS умещает все ассеты
+```
+
+### 67.19 Room Correction + USB-CDC + omniactl.py
+
+```
+□ USB-CDC: /dev/ttyACM0 виден сразу (без CH340/CP2102!)
+□ omniactl.py import-rew room.txt --slot 12:
+  → пресет создан, PEQ полосы установлены, ROOMCORR=1, сохранено
+□ APPLY slot=12: пресет применён, DSP изменился
+□ Заглушка TestFlat (HPF 20 Гц): импортируется без ошибок
+□ REW Export text → omniactl: все 3 типа фильтров (PK/LS/HS)
+□ USB-CDC ответ: OK при успехе, ERR reason при ошибке
+□ Длинный список PEQ (20 полос): импортируется без timeout
+```
+
+### 67.20 Локализация и текст
+
+```
+□ RU→EN: мгновенная смена без перепрошивки
+□ EN→RU: мгновенная смена
+□ Кириллица: все символы без □ (Ё/ё включительно)
+□ Спец. символы: ♪, °, µ, ←, →, ▲, ●, …, □
+□ Text pager: Artist → Title → Station каждые 5–7 сек
+□ Ellipsis: длинные строки обрезаются корректно (не обрезает кириллицу на полубайте)
+□ Word wrap: перенос по словам корректен
+□ UTF-8 boundary: перенос на кириллице не ломает символ
+□ Marquee (если включён): плавное движение, нет дёрганья при пропуске кадра
+```
+
+### 67.21 Service Menu и Diagnostics
+
+```
+□ Вход Service Menu: BACK + ENC_BTN 5 сек → скрытое меню
+□ Display Controller: init ST7789/ILI9341 + тест-паттерн
+□ SPI Clock Test: авто-подбор частоты, запись в NVS
+□ Flash info: JEDEC ID отображается корректно
+□ LittleFS info: used/free адекватны
+□ RGB test: Red/Green/Blue/White/Rainbow работают
+□ IR raw capture: тайминги и fingerprint в реальном времени
+□ v·core ping: INFO.REQ → INFO: в логе
+□ Sensor test: lux адекватен
+□ Factory Reset: NVS очищен, reboot → Display Wizard
+□ Firmware info: версии ESP32 + AT32 отображаются
+□ Diagnostics экран: HEADROOM/LIM_GR/CLIP_CNT/CPU load актуальны
+□ Error log: 100 последних событий, FIFO при переполнении
+```
+
+### 67.22 Интеграционные тесты (сквозные сценарии)
+
+```
+□ Сценарий "утреннее прослушивание":
+  Старт → Radio WEB → смена станций → громкость → IDLE → toast при смене трека
+  → вернуться → выключить AMP → STANDBY
+
+□ Сценарий "ночной кинопросмотр":
+  BT401:USB Audio → Cinema Anti-AD пресет → Night ON → BassTame ON
+  → реклама → ослабление Anti-Ad → кино → тишина → Standby Breathing
+
+□ Сценарий "настройка EQ":
+  Guided Tuning → Pink noise → Bass Boom шаг → A/B toggle →
+  → подтвердить → сохранить пресет → USB CDC экспорт
+
+□ Сценарий "смена источника":
+  Radio WEB → SRC:BT401:BT → музыка → SRC:BT401:TF →
+  → Fs изменилась → BT_RESYNC → нет щелчка
+
+□ Сценарий "восстановление дисплея":
+  Нет картинки → удержать ENC 5 сек →
+  RGB=синий → ENC press → RGB 3 белых → reboot → HOME
+```
+
+---
+
+## 68) TBD (будет добавлено позже)
+
+```
+TBD 01: BT401 UART команды
+         (управление режимами, метаданные BT401, статусы)
+         → bt401_adapter.c (парсер команд + ответов BT401)
+
+TBD 02: Board ID для AT32 в PlatformIO
+         (`pio boards arterytekat32` — уточнить после проверки на железе)
+
+TBD 03: TE (Tearing Effect) пин TFT
+         Если выведен на модуле:
+         → TEON команда (0x35) + EXTI на TE пин ESP32-S2
+         → синхронизация DMA push с VSync (устранение tearing)
+         Если не выведен → пропустить
+
+TBD 04: Multiband Limiter v2
+         3-band Linkwitz-Riley 4th order (опционально v2)
+         Более точный контроль динамики по полосам
+
+TBD 05: Psychobass v2
+         Улучшенный алгоритм субгармоник
+         (возможно: full-wave rectifier + BPF вместо half-wave)
+
+TBD 06: K-weighted loudness для Anti-Ad
+         BS.1770-style измерение вместо простого RMS
+         (более точное определение "воспринимаемой громкости рекламы")
+
+TBD 07: AETHER:HEADPHONES режим
+         Crossfeed + лёгкая EQ компенсация для наушников
+         (v2 после базового AETHER готов)
+
+TBD 08: OTA обновление прошивки
+         ESP32-S2: стандартный ESP OTA через USB-CDC или Wi-Fi
+         AT32: OTA через UART от ESP32-S2 (bootloader AT32)
+
+TBD 09: Waterfall history + scrub
+         Хранение истории в PSRAM (240 строк)
+         Навигация энкодером по истории waterfall (v2)
+
+TBD 10: FEAT:BEAT детект
+         Beat detection для Aura Ambient (пульс на бит)
+         (v2, требует тестирования на разном материале)
+
+TBD 11: BT401 метаданные
+         Парсинг Artist/Title из BT401 UART
+         (зависит от протокола конкретной версии BT401)
+
+TBD 12: Сетевое управление (опционально)
+         Web UI или MQTT через ESP32-S2 Wi-Fi
+         (ESP32-S2 имеет Wi-Fi — возможно без дополнительного железа)
+
+TBD 13: Экспорт пресетов
+         omniactl.py export-preset → JSON/REW format
+         Обмен пресетами между устройствами
+
+TBD 14: Калибровка датчика освещённости
+         Ручная калибровка offset/gain для конкретного размещения
+         (если автоматика не устраивает в конкретной инсталляции)
+```
+
+---
+
+## ПРИЛОЖЕНИЕ A — Финальные красные флаги (краткий справочник)
+
+```
+# AT32 (аудио/железо):
+01  JTAG off — ПЕРВАЯ операция main()
+02  GPIO defaults — до HAL_Init
+03  74HC125 обязателен (не 74HC157!)
+04  BT401 — только MASTER
+05  Pin-safe шаг перед открытием 74HC125
+06  AMP_MUTE=HIGH до RELAY=ON
+07  300+ мс после RELAY до AMP_MUTE=LOW
+08  DeInit I2S при смене домена
+09  Только Gain Smoother — никаких мгновенных gain
+10  BT Fs watch — Fs НЕ фиксирована
+11  AETHER ambience — только при CPU < 80%
+12  Anti-Ad — только downward (max_boost=0)
+13  Limiter — нельзя отключить (предохранитель)
+14  SD плейлист > 5000 — только порционно
+
+# ESP32-S2 (GPIO/boot):
+15  GPIO0 — не использовать под кнопки/периферию
+16  GPIO45/46 — strapping, осторожно
+17  GPIO26-32 — заняты Flash/PSRAM
+18  ISR + PSRAM — НЕЛЬЗЯ (cache-miss = зависание)
+19  BH1750/VEML7700 — только 3.3В питание
+20  Anti-backfeed: USB 5V + внешний 5V — диоды!
+
+# ESP32-S2 (UI рендер):
+21  delay() в UI loop — НЕЛЬЗЯ
+22  TFT API из ISR — НЕЛЬЗЯ
+23  Full-screen redraw в работе — НЕЛЬЗЯ
+24  GRAM readback — НЕЛЬЗЯ
+25  Логирование из DMA ISR — НЕЛЬЗЯ
+26  FFT на UI МК — НЕЛЬЗЯ
+
+# Хранилище/протокол:
+27  NVS при каждом шаге энкодера — НЕЛЬЗЯ
+28  Ассеты в DRAM — НЕЛЬЗЯ (только LittleFS + cache)
+29  Raw CR/LF в payload — НЕЛЬЗЯ (экранировать \n)
+30  Два USB-UART одновременно — НЕЛЬЗЯ
+31  WS2812 без SN74AHCT125 — НЕЛЬЗЯ
+32  Датчик света видит TFT/RGB — НЕЛЬЗЯ
+33  Выбор TFT в обычном меню — НЕЛЬЗЯ (только Wizard/Service)
+```
+
+---
+
+## ПРИЛОЖЕНИЕ B — Версионирование и changelog
+
+```
+v7.0  — Исходное финальное ТЗ
+         (STM32F401 UI, базовый DSP, протокол, хранилище)
+
+v7.1  — Addendum-v1 (Part 1/2/3):
+         + Source Matrix + Clock Domains
+         + BT401 vendor-confirmed MCLK
+         + BT Fs watch + BT_RESYNC
+         + Legacy baseline policy
+         + AETHER Engine (первое появление)
+         + Anti-Ad / Night / BassTame
+         + Look-ahead limiter
+         + v·core profiler (DWT)
+         + UART subscriptions + bandwidth policy
+
+v7.2  — Текущая версия (этот документ):
+         + UI МК: STM32F401 → ESP32-S2 mini (FN4R2)
+         + OMNIA AURA Visual System
+           (Design System, Theme Engine, Motion, HUD, Toast,
+            Visualizers: Spectrum Pro / Waterfall Pro /
+            Vectorscope / Oscilloscope / Aura Ambient)
+         + Wheel Picker v2 (inertia + depth)
+         + Quality Scaling (High/Low)
+         + Политика SPEC:16/32 (вместо FFT:base64 по умолчанию)
+         + Новый pinmap ESP32-S2
+         + Красные флаги ESP32-S2
+         + Репозиторий: omnia_ui_s2mini
+         + PlatformIO: lolin_s2_mini
+         + FreeRTOS задачи ESP32-S2
+         + Boot Splash + Shimmer
+         + Soft Vignette
+         + Clip micro-pulse
+         + Adaptive palette
+         + Waterfall history (TBD v2)
+         + SCOPE: протокол для Vectorscope/Oscilloscope
+         + FEAT: CENTROID/LOUD/BEAT протокол
+         + Полный тест-план (67 групп тестов)
+         + Полный красный флаг-лист (36 флагов)
+         + Расширенный Roadmap (10 этапов)
+         + Полный TBD список (14 пунктов)
+
+Следующая версия:
+v8.0  — После bt401_adapter.c + первый работающий BT401 bring-up
+```
+
+---
+
+## ПРИЛОЖЕНИЕ C — Ключевые константы (single source of truth)
+
+```c
+// === AT32 v·core ===
+#define BLOCK_SIZE              128       // samples per DSP block
+#define PEQ_BANDS               20        // полос PEQ
+#define LIMITER_LOOKAHEAD_MS    10.0f     // ms (5–10 мс)
+#define LIMITER_CEILING_DB      -1.0f     // dBFS
+#define LIMITER_RELEASE_MS      100.0f    // ms
+#define AMP_HEADROOM_DB         1.0f      // запас headroom
+#define DELAY_MAX_MS            30.0f     // ms
+#define VOL_MIN_DB              -80.0f    // dB
+#define VOL_MAX_DB              0.0f      // dB
+#define VOL_STEP_DB10           5         // шаг × 10 (= 0.5 dB)
+
+// Gain Smoother TAU:
+#define TAU_VOL_MS              80.0f
+#define TAU_MUTE_IN_MS          200.0f
+#define TAU_MUTE_OUT_MS         350.0f
+#define TAU_SRC_MS              20.0f
+
+// UART:
+#define UART_UI_BAUD            460800    // целевой
+#define UART_UI_BAUD_BRINGUP    115200    // для bring-up
+#define UART_DEBUG_AT32_BAUD    921600
+
+// BT401:
+#define MCLK_44K_HZ             11289600UL  // 256 × 44100
+#define MCLK_48K_HZ             12288000UL  // 256 × 48000
+#define MCLK_TOLERANCE_HZ       50000UL     // ±50 кГц допуск
+
+// === ESP32-S2 UI ===
+#define TILE_W                  320
+#define TILE_H                  16
+#define FRAME_W                 320
+#define FRAME_H                 240
+#define GLYPH_LRU_SIZE          64        // глифов в LRU кэше
+
+// Volume HUD:
+#define VOL_HUD_TIMEOUT_MS      2500      // таймаут OSD
+#define VOL_HUD_FADE_MS         140       // время slide-in/out
+
+// Toast:
+#define TOAST_NOW_PLAYING_MS    3500      // длительность now-playing toast
+#define TOAST_NOTIFY_MS         2500      // длительность системных toast
+
+// Motion:
+#define MOTION_FAST_MS          140
+#define MOTION_NORMAL_MS        220
+#define MOTION_SLOW_MS          420
+
+// AURA Quality:
+#define AURA_CPU_HIGH_THRESH    0.80f     // выше → Low quality
+#define AURA_CPU_LOW_THRESH     0.60f     // ниже → High quality
+#define AURA_VIS_RATE_HIGH_HZ   25        // Hz при High quality
+#define AURA_VIS_RATE_LOW_HZ    12        // Hz при Low quality
+
+// RGB Standby Breathing:
+#define BREATH_PERIOD_S         8.0f
+#define BREATH_ATTACK_S         0.8f
+#define BREATH_BMAX_PCT         8.0f      // % (ночью 4%)
+#define BREATH_UPDATE_HZ        25
+
+// NVS dirty timeout:
+#define NVS_DIRTY_TIMEOUT_MS    4000
+#define NVS_VOL_TIMEOUT_MS      3000
+
+// IR:
+#define IR_HOLD_REPEAT_START    4         // hold_count для начала repeat
+#define IR_HOLD_FAST_START      11        // hold_count для ускорения
+#define IR_VOL_STEP_SLOW_DB10   5         // 0.5 dB × 10
+#define IR_VOL_STEP_FAST_DB10   10        // 1.0 dB × 10
+#define IR_SIMILARITY_THRESH    0.25f     // порог похожести fingerprint
+```
+
+---
+
+*Конец MASTER SPEC v7.2*
+*Все принятые решения включены. Версия зафиксирована.*
+*Готово к переносу в репозиторий: `docs/00_master_spec.md`*
+*Следующий шаг: commit → push → новый чат с handoff шаблоном из раздела 64.*
