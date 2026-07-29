@@ -1,55 +1,103 @@
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663\\sketch\\src\\AsyncWebServer\\WebResponses.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663\\sketch\\src\\AsyncWebServer\\WebResponses.cpp.o"
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663\\sketch\\src\\AsyncWebServer\\WebServer.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663\\sketch\\src\\AsyncWebServer\\WebServer.cpp.o"
-In file included from C:\Youradio_Omnia_ESP32S3\yoRadio\src\main.cpp:67:
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h: In function 'void audio_eof_mp3(const char*)':
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:163:16: error: 'RepeatMode' does not name a type
-  163 |         extern RepeatMode omnia_shuffle_get_repeat();
-      |                ^~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:164:16: error: 'ShuffleMode' does not name a type
-  164 |         extern ShuffleMode omnia_shuffle_get_shuffle();
-      |                ^~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:166:9: error: 'RepeatMode' was not declared in this scope
-  166 |         RepeatMode r = omnia_shuffle_get_repeat();
-      |         ^~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:167:9: error: 'ShuffleMode' was not declared in this scope
-  167 |         ShuffleMode s = omnia_shuffle_get_shuffle();
-      |         ^~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:168:12: error: 'r' was not declared in this scope
-  168 |         if(r==REPEAT_ONE){
-      |            ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:168:15: error: 'REPEAT_ONE' was not declared in this scope
-  168 |         if(r==REPEAT_ONE){
-      |               ^~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:174:12: error: 's' was not declared in this scope; did you mean 'fs'?
-  174 |         if(s==SHUFFLE_ON){
-      |            ^
-      |            fs
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:174:15: error: 'SHUFFLE_ON' was not declared in this scope
-  174 |         if(s==SHUFFLE_ON){
-      |               ^~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:186:16: error: 'r' was not declared in this scope
-  186 |             if(r==REPEAT_OFF){
-      |                ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:186:19: error: 'REPEAT_OFF' was not declared in this scope
-  186 |             if(r==REPEAT_OFF){
-      |                   ^~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\audiohandlers.h:194:25: error: 'REPEAT_ALL' was not declared in this scope
-  194 |             }else if(r==REPEAT_ALL){
-      |                         ^~~~~~~~~~
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663\\sketch\\src\\GT911_Touchscreen\\TAMC_GT911.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_217663\\sketch\\src\\GT911_Touchscreen\\TAMC_GT911.cpp.o"
-Используем библиотеку FS версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\FS 
-Используем библиотеку WiFi версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\WiFi 
-Используем библиотеку Network версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Network 
-Используем библиотеку Wire версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Wire 
-Используем библиотеку Ticker версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Ticker 
-Используем библиотеку SPI версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\SPI 
-Используем библиотеку SPIFFS версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\SPIFFS 
-Используем библиотеку EEPROM версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\EEPROM 
-Используем библиотеку SD версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\SD 
-Используем библиотеку FFat версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\FFat 
-Используем библиотеку NetworkClientSecure версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\NetworkClientSecure 
-Используем библиотеку Update версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Update 
-Используем библиотеку ESPmDNS версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\ESPmDNS 
-exit status 1
-Ошибка компиляции для платы ESP32S3 Dev Module.
-
+#CLI.LIST# SD files
+#CLI.LISTNUM#:   1: SD track 0
+#CLI.LISTNUM#:   2: SD track 1070513048
+#CLI.LISTNUM#:   3: SD track 1070513068
+#CLI.LISTNUM#:   4: SD track 1070513068
+#CLI.LISTNUM#:   5: SD track 1070513068
+#CLI.LISTNUM#:   6: SD track 1070513068
+#CLI.LISTNUM#:   7: SD track 1070513068
+#CLI.LISTNUM#:   8: SD track 1070513068
+#CLI.LISTNUM#:   9: SD track 1070513068
+#CLI.LISTNUM#:  10: SD track 1070513068
+#CLI.LISTNUM#:  11: SD track 1070513068
+#CLI.LISTNUM#:  12: SD track 1070513068
+#CLI.LISTNUM#:  13: SD track 1070513068
+#CLI.LISTNUM#:  14: SD track 1070513068
+#CLI.LISTNUM#:  15: SD track 1070513068
+#CLI.LISTNUM#:  16: SD track 1070513068
+#CLI.LISTNUM#:  17: SD track 1070513068
+#CLI.LISTNUM#:  18: SD track 1070513068
+#CLI.LISTNUM#:  19: SD track 1070513068
+#CLI.LISTNUM#:  20: SD track 1070513068
+#CLI.LISTNUM#:  21: SD track 1070513068
+#CLI.LISTNUM#:  22: SD track 1070513068
+#CLI.LISTNUM#:  23: SD track 1070513068
+#CLI.LISTNUM#:  24: SD track 1070513068
+#CLI.LISTNUM#:  25: SD track 1070513068
+#CLI.LISTNUM#:  26: SD track 1070513068
+#CLI.LISTNUM#:  27: SD track 1070513068
+#CLI.LISTNUM#:  28: SD track 1070513068
+#CLI.LISTNUM#:  29: SD track 1070513068
+#CLI.LISTNUM#:  30: SD track 1070513068
+#CLI.LISTNUM#:  31: SD track 1070513068
+#CLI.LISTNUM#:  32: SD track 1070513068
+#CLI.LISTNUM#:  33: SD track 1070513068
+#CLI.LISTNUM#:  34: SD track 1070513068
+#CLI.LISTNUM#:  35: SD track 1070513068
+#CLI.LISTNUM#:  36: SD track 1070513068
+#CLI.LISTNUM#:  37: SD track 1070513068
+#CLI.LISTNUM#:  38: SD track 1070513068
+#CLI.LISTNUM#:  39: SD track 1070513068
+#CLI.LISTNUM#:  40: SD track 1070513068
+#CLI.LISTNUM#:  41: SD track 1070513068
+#CLI.LISTNUM#:  42: SD track 1070513068
+#CLI.LISTNUM#:  43: SD track 1070513068
+#CLI.LISTNUM#:  44: SD track 1070513068
+#CLI.LISTNUM#:  45: SD track 1070513068
+#CLI.LISTNUM#:  46: SD track 1070513068
+#CLI.LISTNUM#:  47: SD track 1070513068
+#CLI.LISTNUM#:  48: SD track 1070513068
+#CLI.LISTNUM#:  49: SD track 1070513068
+#CLI.LISTNUM#:  50: SD track 1070513068
+#CLI.LISTNUM#:  51: SD track 1070513068
+#CLI.LISTNUM#:  52: SD track 1070513068
+#CLI.LISTNUM#:  53: SD track 1070513068
+#CLI.LISTNUM#:  54: SD track 1070513068
+#CLI.LISTNUM#:  55: SD track 1070513068
+#CLI.LISTNUM#:  56: SD track 1070513068
+#CLI.LISTNUM#:  57: SD track 1070513068
+#CLI.LISTNUM#:  58: SD track 1070513068
+#CLI.LISTNUM#:  59: SD track 1070513068
+#CLI.LISTNUM#:  60: SD track 1070513068
+#CLI.LISTNUM#:  61: SD track 1070513068
+#CLI.LISTNUM#:  62: SD track 1070513068
+#CLI.LISTNUM#:  63: SD track 1070513068
+#CLI.LISTNUM#:  64: SD track 1070513068
+#CLI.LISTNUM#:  65: SD track 1070513068
+#CLI.LISTNUM#:  66: SD track 1070513068
+#CLI.LISTNUM#:  67: SD track 1070513068
+#CLI.LISTNUM#:  68: SD track 1070513068
+#CLI.LISTNUM#:  69: SD track 1070513068
+#CLI.LISTNUM#:  70: SD track 1070513068
+#CLI.LISTNUM#:  71: SD track 1070513068
+#CLI.LISTNUM#:  72: SD track 1070513068
+#CLI.LISTNUM#:  73: SD track 1070513068
+#CLI.LISTNUM#:  74: SD track 1070513068
+#CLI.LISTNUM#:  75: SD track 1070513068
+#CLI.LISTNUM#:  76: SD track 1070513068
+#CLI.LISTNUM#:  77: SD track 1070513068
+#CLI.LISTNUM#:  78: SD track 1070513068
+#CLI.LISTNUM#:  79: SD track 1070513068
+#CLI.LISTNUM#:  80: SD track 1070513068
+#CLI.LISTNUM#:  81: SD track 1070513068
+#CLI.LISTNUM#:  82: SD track 1070513068
+#CLI.LISTNUM#:  83: SD track 1070513068
+#CLI.LISTNUM#:  84: SD track 1070513068
+#CLI.LISTNUM#:  85: SD track 1070513068
+#CLI.LISTNUM#:  86: SD track 1070513068
+#CLI.LISTNUM#:  87: SD track 1070513068
+#CLI.LISTNUM#:  88: SD track 1070513068
+#CLI.LISTNUM#:  89: SD track 1070513068
+#CLI.LISTNUM#:  90: SD track 1070513068
+#CLI.LISTNUM#:  91: SD track 1070513068
+#CLI.LISTNUM#:  92: SD track 1070513068
+#CLI.LISTNUM#:  93: SD track 1070513068
+#CLI.LISTNUM#:  94: SD track 1070513068
+#CLI.LISTNUM#:  95: SD track 1070513068
+#CLI.LISTNUM#:  96: SD track 1070513068
+#CLI.LISTNUM#:  97: SD track 1070513068
+#CLI.LISTNUM#:  98: SD track 1070513068
+#CLI.LISTNUM#:  99: SD track 1070513068
+#CLI.LISTNUM#: 100: SD track 1070513068
+#CLI.LISTNUM#: ... total 267
+##CLI.LIST#
