@@ -1,212 +1,144 @@
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\core\\omniaplus\\seek.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\core\\omniaplus\\seek.cpp.o"
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\core\\omniaplus\\shuffle_fix.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\core\\omniaplus\\shuffle_fix.cpp.o"
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:256:24: error: missing terminating " character
-  256 |       printf(clientId, "#CLI.LIST# WEB stations
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:257:1: error: missing terminating " character
-  257 | ");
-      | ^~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:260:26: error: missing terminating " character
-  260 |         printf(clientId, "##CLI.LIST#
-      |                          ^~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:261:3: error: missing terminating " character
-  261 | > ");
-      |   ^~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:268:50: error: missing terminating ' character
-  268 |         if (config.parseCSV(file.readStringUntil('
-      |                                                  ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:269:1: error: missing terminating ' character
-  269 | ').c_str(), sName, sUrl, sOvol)) {
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:270:28: error: missing terminating " character
-  270 |           printf(clientId, "#CLI.LISTNUM#: %*d: %s, %s
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:271:1: error: missing terminating " character
-  271 | ", 3, c, sName, sUrl);
-      | ^~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:276:24: error: missing terminating " character
-  276 |       printf(clientId, "##CLI.LIST#
-      |                        ^~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:277:3: error: missing terminating " character
-  277 | > ");
-      |   ^~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:283:24: error: missing terminating " character
-  283 |       printf(clientId, "#CLI.LIST# SD files (%u total) from %s
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:284:1: error: missing terminating " character
-  284 | ", total, PLAYLIST_SD_PATH);
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:290:26: error: missing terminating " character
-  290 |         printf(clientId, "##CLI.LIST# no SD playlist file, indexing...
-      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:291:3: error: missing terminating " character
-  291 | > ");
-      |   ^~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:298:44: error: missing terminating ' character
-  298 |         String line = file.readStringUntil('
-      |                                            ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:299:1: error: missing terminating ' character
-  299 | ');
-      | ^~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:303:28: error: missing terminating " character
-  303 |           printf(clientId, "#CLI.LISTNUM#: %3d: %s
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:304:1: error: missing terminating " character
-  304 | ", c, sName);
-      | ^~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:306:28: error: missing terminating " character
-  306 |           printf(clientId, "#CLI.LISTNUM#: %3d: %s
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:307:1: error: missing terminating " character
-  307 | ", c, line.c_str());
-      | ^~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:312:38: error: missing terminating " character
-  312 |       if(total>200) printf(clientId, "#CLI.LISTNUM#: ... total %u tracks
-      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:313:1: error: missing terminating " character
-  313 | ", total);
-      | ^~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:314:24: error: missing terminating " character
-  314 |       printf(clientId, "##CLI.LIST#
-      |                        ^~~~~~~~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:315:3: error: missing terminating " character
-  315 | > ");
-      |   ^~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'void Telnet::on_input(const char*, uint8_t)':
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:258:12: error: expected primary-expression before 'file'
-  258 |       File file = SPIFFS.open(PLAYLIST_PATH, "r");
-      |            ^~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:259:12: error: 'file' was not declared in this scope; did you mean 'File'?
-  259 |       if (!file || file.isDirectory()) {
-      |            ^~~~
-      |            File
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:261:1: error: expected primary-expression before '>' token
-  261 | > ");
-      | ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:262:9: error: expected primary-expression before 'return'
-  262 |         return;
-      |         ^~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:267:14: error: 'file' was not declared in this scope; did you mean 'File'?
-  267 |       while (file.available()) {
-      |              ^~~~
-      |              File
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:272:14: error: expected ')' before ';' token
-  272 |           c++;
-      |              ^
-      |              )
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:270:17: note: to match this '('
-  270 |           printf(clientId, "#CLI.LISTNUM#: %*d: %s, %s
-      |                 ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:272:14: error: expected ')' before ';' token
-  272 |           c++;
-      |              ^
-      |              )
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:268:12: note: to match this '('
-  268 |         if (config.parseCSV(file.readStringUntil('
-      |            ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:275:7: error: 'file' was not declared in this scope; did you mean 'File'?
-  275 |       file.close();
-      |       ^~~~
-      |       File
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:277:1: error: expected primary-expression before '>' token
-  277 | > ");
-      | ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:278:7: error: expected primary-expression before 'return'
-  278 |       return;
-      |       ^~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:285:12: error: expected primary-expression before 'file'
-  285 |       File file = config.SDPLFS()->open(PLAYLIST_SD_PATH, "r");
-      |            ^~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:286:12: error: 'file' was not declared in this scope; did you mean 'File'?
-  286 |       if (!file || file.isDirectory()) {
-      |            ^~~~
-      |            File
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:289:12: error: 'file' was not declared in this scope; did you mean 'File'?
-  289 |       if (!file || file.isDirectory()) {
-      |            ^~~~
-      |            File
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:291:1: error: expected primary-expression before '>' token
-  291 | > ");
-      | ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:292:9: error: expected primary-expression before 'return'
-  292 |         return;
-      |         ^~~~~~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:297:14: error: 'file' was not declared in this scope; did you mean 'File'?
-  297 |       while (file.available() && c<=200) {
-      |              ^~~~
-      |              File
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:300:20: error: expected ')' before ';' token
-  300 |         line.trim();
-      |                    ^
-      |                    )
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:298:43: note: to match this '('
-  298 |         String line = file.readStringUntil('
-      |                                           ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:305:9: error: expected primary-expression before '}' token
-  305 |         } else {
-      |         ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:308:9: error: expected primary-expression before '}' token
-  308 |         }
-      |         ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:311:7: error: 'file' was not declared in this scope; did you mean 'File'?
-  311 |       file.close();
-      |       ^~~~
-      |       File
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:315:1: error: expected primary-expression before '>' token
-  315 | > ");
-      | ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:316:7: error: expected primary-expression before 'return'
-  316 |       return;
-      |       ^~~~~~
+"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\core\\omniaplus\\seek.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\core\\omniaplus\\seek.cpp.o"
+"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\core\\omniaplus\\shuffle_fix.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\core\\omniaplus\\shuffle_fix.cpp.o"
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'bool Telnet::_isIPSet(IPAddress)':
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:13:24: error: 'class Config' has no member named 'ipToStr'
+   13 |   return strcmp(config.ipToStr(ip), "0.0.0.0") == 0;
+      |                        ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'bool Telnet::begin(bool)':
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:25:5: error: 'toggle' was not declared in this scope
+   25 |     toggle();
+      |     ^~~~~~
+In file included from C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:3:
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:29:61: error: 'class Config' has no member named 'ipToStr'
+   29 |       BOOTLOG("Ready! Go to http:/%s/ to configure", config.ipToStr(WiFi.localIP()));
+      |                                                             ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\config.h:36:55: note: in definition of macro 'BOOTLOG'
+   36 | #define BOOTLOG( ... ) { char buf[120]; sprintf( buf, __VA_ARGS__ ) ; Serial.print("##[BOOT]#\t"); Serial.println(buf); }
+      |                                                       ^~~~~~~~~~~
 C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: At global scope:
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:422:3: error: expected unqualified-id before 'if'
-  422 |   if (strcmp(str, "sys.version") == 0 || strcmp(str, "version") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:426:3: error: expected unqualified-id before 'if'
-  426 |   if (strcmp(str, "sys.boot") == 0 || strcmp(str, "boot") == 0 || strcmp(str, "reboot") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:430:3: error: expected unqualified-id before 'if'
-  430 |   if (strcmp(str, "sys.reset") == 0 || strcmp(str, "reset") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:434:3: error: expected unqualified-id before 'if'
-  434 |   if (strcmp(str, "wifi.list") == 0 || strcmp(str, "wifi") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:455:3: error: expected unqualified-id before 'if'
-  455 |   if (strcmp(str, "wifi.con") == 0 || strcmp(str, "conn") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:471:3: error: expected unqualified-id before 'if'
-  471 |   if (strcmp(str, "wifi.station") == 0 || strcmp(str, "station") == 0 || strcmp(str, "ssid") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:488:3: error: expected unqualified-id before 'if'
-  488 |   if (sscanf(str, "wifi.con(\"%[^\"]\",\"%[^\"]\")", newssid, newpass) == 2 || sscanf(str, "wifi.con(%[^,],%[^)])", newssid, newpass) == 2 || sscanf(str, "wifi.con(%[^ ] %[^)])", newssid, newpass) == 2 || sscanf(str, "wifi %[^ ] %s", newssid, newpass) == 2) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:498:3: error: expected unqualified-id before 'if'
-  498 |   if (strcmp(str, "wifi.status") == 0 || strcmp(str, "status") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:508:3: error: expected unqualified-id before 'if'
-  508 |   if (strcmp(str, "wifi.rssi") == 0 || strcmp(str, "rssi") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:512:3: error: expected unqualified-id before 'if'
-  512 |   if (strcmp(str, "sys.heap") == 0 || strcmp(str, "heap") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:516:3: error: expected unqualified-id before 'if'
-  516 |   if (strcmp(str, "sys.config") == 0 || strcmp(str, "config") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:521:3: error: expected unqualified-id before 'if'
-  521 |   if (strcmp(str, "wifi.discon") == 0 || strcmp(str, "discon") == 0 || strcmp(str, "disconnect") == 0) {
-      |   ^~
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:527:3: error: expected unqualified-id before '{' token
-  527 |   {
-      |   ^
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:535:3: error: 'telnet' does not name a type; did you mean 'Telnet'?
-  535 |   telnet.printf(clientId, "##CMD_ERROR#\tunknown command <%s>\n> ", str);
-      |   ^~~~~~
-      |   Telnet
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:536:1: error: expected declaration before '}' token
-  536 | }
-      | ^
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\core\\omniaplus\\usb_host.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\core\\omniaplus\\usb_host.cpp.o"
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\displays\\displayGC9106.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_209691\\sketch\\src\\displays\\displayGC9106.cpp.o"
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:39:6: error: no declaration matches 'void Telnet::start()'
+   39 | void Telnet::start() {
+      |      ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:39:6: note: no functions named 'void Telnet::start()'
+In file included from C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:6:
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.h:9:7: note: 'class Telnet' defined here
+    9 | class Telnet {
+      |       ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:48:6: error: no declaration matches 'void Telnet::toggle()'
+   48 | void Telnet::toggle() {
+      |      ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:48:6: note: no functions named 'void Telnet::toggle()'
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.h:9:7: note: 'class Telnet' defined here
+    9 | class Telnet {
+      |       ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'void Telnet::loop()':
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:88:19: error: 'struct config_t' has no member named 'telnet'
+   88 |   if(config.store.telnet){
+      |                   ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:102:31: error: 'class Config' has no member named 'ipToStr'
+  102 |             on_connect(config.ipToStr(clients[i].remoteIP()), i);
+      |                               ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'void Telnet::printf(const char*, ...)':
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:153:13: error: 'cmBuf' was not declared in this scope
+  153 |   vsnprintf(cmBuf, sizeof(cmBuf), format, args);
+      |             ^~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'void Telnet::printf(uint8_t, const char*, ...)':
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:170:13: error: 'cmBuf' was not declared in this scope
+  170 |   vsnprintf(cmBuf, sizeof(cmBuf), format, argptr);
+      |             ^~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'void Telnet::info()':
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:188:19: error: 'class Config' has no member named 'tmpBuf'
+  188 |   strftime(config.tmpBuf, sizeof(config.tmpBuf), "%Y-%m-%dT%H:%M:%S+03:00", &network.timeinfo);
+      |                   ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:188:41: error: 'class Config' has no member named 'tmpBuf'
+  188 |   strftime(config.tmpBuf, sizeof(config.tmpBuf), "%Y-%m-%dT%H:%M:%S+03:00", &network.timeinfo);
+      |                                         ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:189:45: error: 'class Config' has no member named 'tmpBuf'
+  189 |   telnet.printf("##SYS.DATE#: %s\n", config.tmpBuf); //TODO timezone offset
+      |                                             ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: At global scope:
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:203:6: error: no declaration matches 'void Telnet::printHeapFragmentationInfo(uint8_t)'
+  203 | void Telnet::printHeapFragmentationInfo(uint8_t id){
+      |      ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:203:6: note: no functions named 'void Telnet::printHeapFragmentationInfo(uint8_t)'
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.h:9:7: note: 'class Telnet' defined here
+    9 | class Telnet {
+      |       ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp: In member function 'void Telnet::on_input(const char*, uint8_t)':
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:289:72: error: 'class Config' has no member named 'tmpBuf'
+  289 |         if (config.parseCSV(file.readStringUntil('\n').c_str(), config.tmpBuf, config.tmpBuf2, sOvol)) {
+      |                                                                        ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:289:87: error: 'class Config' has no member named 'tmpBuf2'
+  289 |         if (config.parseCSV(file.readStringUntil('\n').c_str(), config.tmpBuf, config.tmpBuf2, sOvol)) {
+      |                                                                                       ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:290:73: error: 'class Config' has no member named 'tmpBuf'
+  290 |           printf(clientId, "#CLI.LISTNUM#: %*d: %s, %s\n", 3, c, config.tmpBuf, config.tmpBuf2);
+      |                                                                         ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:290:88: error: 'class Config' has no member named 'tmpBuf2'
+  290 |           printf(clientId, "#CLI.LISTNUM#: %*d: %s, %s\n", 3, c, config.tmpBuf, config.tmpBuf2);
+      |                                                                                        ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:300:23: error: 'class Config' has no member named 'tmpBuf'
+  300 |       strftime(config.tmpBuf, sizeof(config.tmpBuf), "%Y-%m-%dT%H:%M:%S", &network.timeinfo);
+      |                       ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:300:45: error: 'class Config' has no member named 'tmpBuf'
+  300 |       strftime(config.tmpBuf, sizeof(config.tmpBuf), "%Y-%m-%dT%H:%M:%S", &network.timeinfo);
+      |                                             ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:302:63: error: 'class Config' has no member named 'tmpBuf'
+  302 |         printf(clientId, "##SYS.DATE#: %s%03d:%02d\n", config.tmpBuf, config.store.tzHour, config.store.tzMin);
+      |                                                               ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:304:64: error: 'class Config' has no member named 'tmpBuf'
+  304 |         printf(clientId, "##SYS.DATE#: %s+%02d:%02d\n", config.tmpBuf, config.store.tzHour, config.store.tzMin);
+      |                                                                ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:439:73: error: 'class Config' has no member named 'tmpBuf'
+  439 |         if (config.parseSsid(file.readStringUntil('\n').c_str(), config.tmpBuf, config.tmpBuf2)) {
+      |                                                                         ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:439:88: error: 'class Config' has no member named 'tmpBuf2'
+  439 |         if (config.parseSsid(file.readStringUntil('\n').c_str(), config.tmpBuf, config.tmpBuf2)) {
+      |                                                                                        ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:440:54: error: 'class Config' has no member named 'tmpBuf'
+  440 |           printf(clientId, "%d: %s, %s\n", c, config.tmpBuf, config.tmpBuf2);
+      |                                                      ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:440:69: error: 'class Config' has no member named 'tmpBuf2'
+  440 |           printf(clientId, "%d: %s, %s\n", c, config.tmpBuf, config.tmpBuf2);
+      |                                                                     ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:454:73: error: 'class Config' has no member named 'tmpBuf'
+  454 |         if (config.parseSsid(file.readStringUntil('\n').c_str(), config.tmpBuf, config.tmpBuf2)) {
+      |                                                                         ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:454:88: error: 'class Config' has no member named 'tmpBuf2'
+  454 |         if (config.parseSsid(file.readStringUntil('\n').c_str(), config.tmpBuf, config.tmpBuf2)) {
+      |                                                                                        ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:455:83: error: 'class Config' has no member named 'tmpBuf'
+  455 |           if(c==config.store.lastSSID) printf(clientId, "%d: %s, %s\n", c, config.tmpBuf, config.tmpBuf2);
+      |                                                                                   ^~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:455:98: error: 'class Config' has no member named 'tmpBuf2'
+  455 |           if(c==config.store.lastSSID) printf(clientId, "%d: %s, %s\n", c, config.tmpBuf, config.tmpBuf2);
+      |                                                                                                  ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:468:14: error: 'cmBuf' was not declared in this scope
+  468 |     snprintf(cmBuf, sizeof(cmBuf), "New SSID: \"%s\" with PASS: \"%s\" for next boot\n> ", ssidbuf, passbuff);
+      |              ^~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:479:39: error: 'class Config' has no member named 'ipToStr'
+  479 |       WiFi.getMode()==WIFI_STA?config.ipToStr(WiFi.localIP()):config.ipToStr(WiFi.softAPIP()),
+      |                                       ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:479:70: error: 'class Config' has no member named 'ipToStr'
+  479 |       WiFi.getMode()==WIFI_STA?config.ipToStr(WiFi.localIP()):config.ipToStr(WiFi.softAPIP()),
+      |                                                                      ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:480:39: error: 'class Config' has no member named 'ipToStr'
+  480 |       WiFi.getMode()==WIFI_STA?config.ipToStr(WiFi.subnetMask()):"255.255.255.0",
+      |                                       ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:481:39: error: 'class Config' has no member named 'ipToStr'
+  481 |       WiFi.getMode()==WIFI_STA?config.ipToStr(WiFi.gatewayIP()):config.ipToStr(WiFi.softAPIP()),
+      |                                       ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:481:72: error: 'class Config' has no member named 'ipToStr'
+  481 |       WiFi.getMode()==WIFI_STA?config.ipToStr(WiFi.gatewayIP()):config.ipToStr(WiFi.softAPIP()),
+      |                                                                        ^~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:492:5: error: 'printHeapFragmentationInfo' was not declared in this scope
+  492 |     printHeapFragmentationInfo(clientId);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Youradio_Omnia_ESP32S3\yoRadio\src\core\telnet.cpp:498:5: error: 'printHeapFragmentationInfo' was not declared in this scope
+  498 |     printHeapFragmentationInfo(clientId);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\core\\omniaplus\\usb_host.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\core\\omniaplus\\usb_host.cpp.o"
+"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" -MMD -c "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/cpp_flags" -w -Os -Werror=return-type -DF_CPU=240000000L -DARDUINO=10819 -DARDUINO_ESP32S3_DEV -DARDUINO_ARCH_ESP32 "-DARDUINO_BOARD=\"ESP32S3_DEV\"" "-DARDUINO_VARIANT=\"esp32s3\"" -DARDUINO_PARTITION_default_8MB "-DARDUINO_HOST_OS=\"windows\"" "-DARDUINO_FQBN=\"esp32:esp32:esp32s3:JTAGAdapter=default,PSRAM=opi,FlashMode=qio,FlashSize=16M,LoopCore=1,EventsCore=0,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_8MB,CPUFreq=240,UploadSpeed=921600,DebugLevel=none,EraseFlash=none,ZigbeeMode=default\"" -DESP32=ESP32 -DCORE_DEBUG_LEVEL=0 -DARDUINO_RUNNING_CORE=1 -DARDUINO_EVENT_RUNNING_CORE=0 -DBOARD_HAS_PSRAM -DARDUINO_USB_MODE=1 -DARDUINO_USB_CDC_ON_BOOT=0 -DARDUINO_USB_MSC_ON_BOOT=0 -DARDUINO_USB_DFU_ON_BOOT=0 "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/defines" "-IC:\\Youradio_Omnia_ESP32S3\\yoRadio" -iprefix "C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/include/" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/includes" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi/include" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\cores\\esp32" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\variants\\esp32s3" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\WiFi\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Network\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Wire\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Ticker\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPI\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SPIFFS\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\EEPROM\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\SD\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\FFat\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\NetworkClientSecure\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\Update\\src" "-IC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.0\\libraries\\ESPmDNS\\src" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/build_opt.h" "@C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156/file_opts" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\displays\\displayGC9106.cpp" -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_184156\\sketch\\src\\displays\\displayGC9106.cpp.o"
 Используем библиотеку FS версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\FS 
 Используем библиотеку WiFi версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\WiFi 
 Используем библиотеку Network версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Network 
