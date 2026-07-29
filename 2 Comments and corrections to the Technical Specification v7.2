@@ -1,0 +1,2213 @@
+Отлично! А такие спектроанализаторы реально сделать?
+Вращающийся спектроанализатор:
+https://pin.it/6rexP5pTg
+А как насчёт такой ауры спектроанализатора:
+https://pin.it/KJa0Y3f8r
+Вот такой осциллосректр:
+https://pin.it/46QMjiLsa
+Вот такой растущий, наподобие водопада только больше похож на гидру:
+https://pin.it/5i7yFQSJG
+
+Сначала посмотрю, что именно на этих Pinterest-ссылках, чтобы точно оценить реализуемость на ESP32-S2 + AURA.Pinterest отдаёт мало контента без JS. Достану прямые изображения и описания.Попробую вытащить прямые картинки с Pinterest другим способом.**Да, реально сделать** — и довольно близко к тому, что на пинах, в рамках OMNIA AURA на ESP32-S2 mini + ST7789/ILI9341 + PSRAM + поток `SPEC:16/32` (и опционально SCOPE/FEAT). Полный 1-в-1 «киношный» 60 fps с тысячами частиц/raymarching/blur — нет, но **флагманский премиальный вид на 20–30 Гц** с persistence, градиентами, glow-эффектами и motion — да, и это хорошо ложится в Performance Contract и Quality Scaling.
+
+### Краткий разбор по каждому
+
+**1. Вращающийся спектроанализатор** (circular / radial rotating)  
+Типичный pin: круговой/радиальный спектр (бары или лучи из центра), часто с вращением, glow, particles или soft trails.  
+**Реализуемость: высокая (must-have кандидат в Visual Pack).**  
+- Полярные координаты: bin → угол + длина (амплитуда).  
+- Плавное вращение всей фигуры или phase-offset по времени + beat/centroid.  
+- Сглаженные бары/лучи + peak hold + лёгкий trail (PSRAM persistence buffer, fade).  
+- Colormap из темы AURA + adaptive (низкие частоты теплее).  
+- Оптимизация: precomputed sin/cos table, dirty-rect только кольца/сектора, 16–32 бина.  
+Уже близко к Spectrum Pro + polar mode. Можно добавить как **Spectrum Radial / Spectrum Wheel Pro**.
+
+**2. Аура спектроанализатора** (fluid / magic / ethereal aura)  
+Мягкое свечение, fluid-like облака, органический glow вокруг/из спектра.  
+**Реализуемость: хорошая → отличная (прямо в духе Aura Ambient).**  
+- В специ уже есть **Aura Ambient**: медленный gradient sweep + мягкие «облака» из бинов + centroid → hue + loudness → brightness.  
+- Усилить: multi-layer soft blobs (несколько полупрозрачных эллипсов/радиальных falloff по бинам), vignette, shimmer.  
+- Без настоящего Gaussian blur (дорого) — аппроксимация: concentric rings с falloff, pre-baked glow sprites в flash/PSRAM, или multi-pass dimming.  
+- 5–15 Гц для «живой» ауры (очень низкая нагрузка).  
+Идеально как эволюция **Aura Ambient** или отдельный **Aura Spectrum**.
+
+**3. Осциллосректр** (oscilloscope + spectrum hybrid)  
+Волна + спектр вместе (waveform сверху/снизу + bars, или спектр, модулирующий осцилло, или split-view).  
+**Реализуемость: высокая.**  
+- В спеке уже есть **Oscilloscope** (с trigger, L/R/Mono/Side) и **Spectrum Pro** + **Vectorscope**.  
+- Гибрид:  
+  - Split: верх — scope (SCOPE_POINTS или downsample waveform), низ — spectrum bars.  
+  - Overlay: спектр как «толщина»/цвет волны, или spectrum-modulated scope.  
+  - Classic «spectrogram-oscillo» стиль.  
+Данные уже есть (SPEC + scope points). Рендер на 20–30 Гц лёгкий. Добавить как **OscilloSpectrum** или режим в Oscilloscope Pro.
+
+**4. Растущий «гидр а» / waterfall-like branching (neon wireframe tree of life)**  
+Растущие/ветвящиеся структуры (как гидра/корни/нейронное дерево), реагирующие на спектр, neon wireframe.  
+**Реализуемость: средняя–хорошая (самый «креативный», v1.5–v2).**  
+- Не классический waterfall (тот уже must-have с hw scroll).  
+- Варианты на железе:  
+  - Radial/organic growth: из центра или снизу «стволы» + ветки, длина/толщина/угол от low/mid/high bins + energy.  
+  - L-system / recursive branches упрощённо (2–4 уровня, лимит сегментов ~50–100).  
+  - Particle trails или polyline growth с fade (PSRAM history).  
+  - Neon: яркие линии + glow-аппроксимация (двойная линия + dim outer).  
+- Анимация: рост/пульсация на attack, медленное увядание на release.  
+- Нагрузка контролировать Quality Scaling (меньше веток на Low).  
+Отлично как **Hydra / Tree Spectrum** или **Organic Growth** в Fullscreen Visualizer Pack. Выглядит очень «премиально» и уникально.
+
+### Общие выводы по железу и AURA
+- **ESP32-S2 + 2 MB PSRAM + dirty-rect/DMA tiles + 20–30 Гц** — комфортно тянет всё перечисленное (особенно с SPEC:16/32 по умолчанию).  
+- Persistence, history, multi-layer — в PSRAM.  
+- Glow/fluid — аппроксимации (не real-time blur/particles thousands).  
+- Темы AURA (colormap, accent) + motion tokens сразу дают цельный вид.  
+- Waterfall уже с hw scroll — супер-эффективно.  
+- Можно делать режимы с деградацией: High = полные эффекты + trails, Low = упрощённые бары/меньше слоёв.  
+- RGB ring можно синхронизировать (Spectrum Wheel уже есть в идеях).
+
+**Рекомендация по приоритету в AURA Visualizer Pack:**
+1. Spectrum Radial (вращающийся) — быстро и эффектно.  
+2. Усиленный Aura Ambient / Aura Spectrum.  
+3. OscilloSpectrum hybrid.  
+4. Hydra/Tree Growth — как wow-фича.
+
+Хочешь — могу сразу набросать:
+- Точные параметры/режимы для добавления в специ (раздел 23),
+- Псевдокод рендера (polar spectrum, aura blobs, simple hydra growth),
+- Структуры данных под PSRAM,
+- Как вписать в меню Visual и Quality Scaling,
+- Оценку CPU/RAM.
+
+Отлично, придумай названия, а ещё я надеюсь ты правильно меня понял по поводу гидры: я имел в виду хаотично (характер движения зависит от данных fft если я правильно понял) по траектории вверх движущиеся частицы и от их траектории зависит хвост. То есть создаётся впечатление постоянного полёта этих частиц как хвостики движущихся головастиков в зависимости от характера данных
+
+**Да, теперь понял идеально.**  
+Спасибо за уточнение — это не ветвящееся дерево/кораллы, а **частичная система**: частицы хаотично (но преимущественно вверх) летят по траекториям, характер движения, скорость, разброс, плотность и «живость» зависят от FFT/энергии/атаки/centroid/басов и т.д., а за ними тянутся хвосты-т rail’ы, которые повторяют их путь. Визуально — постоянный поток «головастиков» / комет / whiptail-частиц, создающий ощущение живого восходящего роя или органического водопада из хвостатых существ. Очень красиво, органично и «дорого» смотрится.
+
+На ESP32-S2 + PSRAM это **отлично реализуемо** (particle pool 80–250 штук, ring-buffer или fixed trail length 8–20 точек на частицу, dirty-rect/update только активных, Quality Scaling сильно помогает).
+
+### Названия в стиле OMNIA / AURA / STHENOS
+Я сделал несколько вариантов для каждого — от мифологически-эфирных до более технических. Все хорошо ложатся в Design System (можно привязать к motion tokens, colormaps и accent’ам).
+
+**1. Вращающийся спектроанализатор (radial/circular rotating)**  
+- **AURA Gyre** (рекомендую — gyre = водоворот/круговое течение)  
+- Spectra Vortex  
+- Orbital Aether  
+- Radial Helix  
+- CircumSpectra  
+- Nova Wheel  
+
+**2. Аура спектроанализатора (soft fluid/glow aura)**  
+- **AURA Veil** (рекомендую)  
+- Ethereal Mist  
+- Luminous Halo  
+- Spectra Phantom  
+- Aether Bloom  
+- Glowdrift  
+
+**3. Осциллосректр (oscilloscope + spectrum hybrid)**  
+- **OscilloAether** (рекомендую)  
+- SpectraScope  
+- Waveform Hybrid  
+- Aether Oscillo  
+- ScopeFlux  
+- Hybrid Wave  
+
+**4. Восходящие частицы с хвостами («гидра» / tadpole-comets)**  
+- **Hydra Flux** (рекомендую — оставляем твой образ + «flux» = поток)  
+- Aether Trails  
+- Caudal Swarm (caudal = хвостовой)  
+- Wisp Ascension  
+- Comet Hydra  
+- Spawn Drift  
+- Spectra Serpents  
+- Trailbloom  
+- Ascendant Wisps  
+- Plasma Tadpoles (более игриво)
+
+### Мой топ-набор для Visual Pack (звучит цельно):
+- **AURA Gyre** — вращающийся  
+- **AURA Veil** — мягкая аура  
+- **OscilloAether** — гибрид осцилло + спектр  
+- **Hydra Flux** — частицы с хвостами вверх  
+
+Альтернативный более «тёмный/мифический» сет:  
+**Gyre**, **Veil**, **OscilloAether**, **Caudal Swarm** / **Aether Trails**.
+
+Эти названия можно сразу вписать в спецификацию (раздел Visualizers / Fullscreen Visual Pack) с коротким описанием поведения, параметрами влияния FFT и уровнями Quality Scaling.
+
+Хочешь — сейчас сделаю:
+1. Финальные 4 названия + короткие description для спеки.
+2. Технический бриф по **Hydra Flux** (структура частицы, как именно мапить FFT → velocity/chaos/tail length/spawn rate/color, оптимизация под S2 + PSRAM, псевдокод update/render).
+3. То же самое для остальных трёх вкратце.
+4. Предложения, как они выглядят в меню и как переключаются.
+
+Какой вариант названий больше нравится, или скорректируем? И с чего начнём детализацию — с Hydra Flux?
+
+Отлично , фиксируем, действуем по твоим рекомендациям. А если я захочу например сделать на экране аналоговый стрелочный индикатор? Мне понадобится реалистичная картинка, а стрелку будем рисовать программно? И я тут подумал, что если сделать потом возможность полного управления ещё и через приложение по wi-fi через ESP32-S2? Не будет конфликта с нашим esp32-s3 на котором Ё-радио?
+
+**Да, фиксируем названия по рекомендациям:**
+
+- **AURA Gyre** — вращающийся/радиальный спектроанализатор  
+- **AURA Veil** — мягкая ethereal-аура / fluid glow  
+- **OscilloAether** — гибрид осциллограф + спектр  
+- **Hydra Flux** — восходящие хаотичные частицы с хвостами (головастики/кометы), траектории и поведение зависят от FFT/энергии/атаки/centroid и т.д.
+
+Эти названия можно сразу вносить в раздел Visualizers / Fullscreen Visual Pack спеки.
+
+### 1. Аналоговый стрелочный индикатор (VU / needle meter)
+
+**Да, именно так и делается — это классика и очень хорошо ложится в AURA.**
+
+- **Фон (шкала, корпус, стекло, риски, подпись dB/VU/% и т.п.)** — реалистичная статичная картинка (asset).  
+  Хранится в Flash/LittleFS как RGB565 (или сжатый формат). Можно несколько вариантов под темы (Obsidian dark metal, Ivory vintage, Studio etc.). Размер обычно 200–280 px по ширине — отлично помещается.
+
+- **Стрелка** — рисуется программно каждый кадр (или только при изменении):  
+  - Тонкая линия / полигон (треугольник + хвостовик) + лёгкий anti-aliasing (или просто 1–2 px + dim outer для glow).  
+  - Pivot-точка (ось), угол = f(level) с ballistics (быстрый attack, медленный release — настоящий VU-баллистик или PPM).  
+  - Опционально: тень стрелки, блик, пиковая стрелка (peak hold), цвет от темы/уровня (зелёный → жёлтый → красный).
+
+**Почему это эффективно на ESP32-S2:**
+- Фон блитится один раз (или как static layer).
+- Dirty-rect только под область движения стрелки (небольшой сектор/прямоугольник).
+- 20–30 Гц более чем достаточно + плавная интерполяция угла.
+- Можно сделать dual-needle (L/R), или большой центральный + мелкие side meters.
+- Отлично смотрится как fullscreen visual, как виджет на HOME, или в Diagnostics.
+
+Дополнительно можно добавить:
+- Реалистичное «дрожание» на низких уровнях.
+- Подсветку шкалы (glow) от текущего уровня.
+- Режимы: VU, PPM, Peak, RMS и т.д.
+
+Это must-have кандидат в Visual Pack (назовём, например, **AURA Needle** / **Analog Aether** / **VU Classic**).
+
+### 2. Полное управление через приложение по Wi-Fi с ESP32-S2
+
+**Да, реально и уже заложено как опция в спецификации (TBD 12: Сетевое управление — Web UI или MQTT через ESP32-S2 Wi-Fi).**
+
+**Конфликта с ESP32-S3 (yoRadio) не будет**, если сделать правильно:
+
+- **yoRadio (обычно ESP32/ESP32-S3)** — основной «радио-мозг»: Wi-Fi для стриминга WEB/SD, NTP, свои веб-интерфейс/настройки станций. Он отдаёт на AT32 по UART: метаданные, RATE/MUTE, время, RSSI/Wi-Fi статус. UART остаётся активным всегда (даже в BT401-домене).
+- **ESP32-S2 (UI)** — сейчас чистый UI/Visual + UART к AT32 + USB-CDC. У него **есть свой Wi-Fi** (S2 поддерживает 802.11 b/g/n).
+
+**Как это работает без конфликтов:**
+- Два независимых Wi-Fi клиента (разные MAC/IP) в одной сети — абсолютно нормально.
+- S2 подключается к той же домашней сети (или поднимает свой SoftAP только для первичной настройки/фолбэка).
+- Приложение (Web UI / PWA / нативное / MQTT) общается **только с S2**.
+- S2 транслирует команды по уже существующему UART-протоколу на AT32 (volume, source, preset, mute, visual mode и т.д.).
+- Статус/телеметрия S2 забирает с AT32 (и при необходимости проксирует часть yoRadio-данных).
+- Для управления самим yoRadio (смена станций, плейлисты) — либо расширяем протокол AT32 ↔ yoRadio, либо приложение умеет ходить и на yoRadio, либо S2 выступает хабом.
+
+**На что обратить внимание (чтобы не убить flagship-feel):**
+- ESP32-S2 **одноядерный**. Тяжёлый веб-сервер + рендер визуализаторов + UART на 20–30 Гц — нужно жёстко приоритизировать задачи (ui_input/render выше сетевых), использовать async (esp_http_server + WebSocket или MQTT), Quality Scaling (при активном приложении можно понижать fps визуала или отключать самые тяжёлые эффекты).
+- RAM/PSRAM: веб-ассеты, буферы сокетов — следить за кучей.
+- Лучшие варианты реализации (по приоритету простоты/надёжности):
+  1. Лёгкий WebSocket + JSON API + простая PWA (работает с телефона как приложение).
+  2. MQTT (очень лёгкий, удобно для Home Assistant).
+  3. Полноценный Web UI (как у yoRadio, но для всей системы).
+- OTA для S2 тоже удобно делать по Wi-Fi (уже в TBD 08).
+- Безопасность: хотя бы basic auth / token на первом этапе.
+
+**Рекомендация по архитектуре:**  
+Сделать сетевое управление **опциональным модулем** (включается в меню/NVS). В v1 можно ограничиться USB-CDC + IR + энкодер, а Wi-Fi app добавить в v1.1–v1.5. Это не ломает текущий Performance Contract.
+
+**Итого по обоим пунктам:**  
+Оба идеи отлично вписываются. Стрелочный индикатор — быстрая и эффектная победа для Visual Pack. Wi-Fi app — мощное расширение, уже предусмотренное в TBD, без аппаратных конфликтов с yoRadio-S3.
+
+Хочешь, чтобы я сразу:
+- Добавил в концепт спеки описания **AURA Gyre / Veil / OscilloAether / Hydra Flux + AURA Needle**?
+- Набросал структуру частицы и update/render для **Hydra Flux**?
+- Расписал технический бриф по аналоговому needle (ballistics, asset format, dirty-rect)?
+- Или набросал high-level архитектуру Wi-Fi control (протокол, задачи FreeRTOS, что проксировать)?
+
+С чего начнём детализацию?
+
+Да, сделай всё сразу что предложил. А по приложению - тогда может потом лучше сделать управление через Ё-радио, добавив в него уарт команды для отправки и управления всем устройством? И хотел узнать, на нашем модуле esp32 s2 не очень много памяти чтобы хранить шрифты, какие то визуальные данные, может иконки и прочее необходимое. Можно ли к пинам модуля подпаять микру памяти восьминожную как в старых материнках на 4МБ чтобы закрыть вопрос с памятью?
+
+Сначала уточню точные характеристики модуля ESP32-S2 mini и текущие положения спеки по памяти/пинам, затем подготовлю полный пакет.Проверяю возможность добавления внешней памяти и актуальные разделы спеки по ассетам/памяти.Собрал полный пакет. Ниже — всё сразу: описания визуализаторов для спеки, детали Hydra Flux и Needle, архитектура управления, и ответ по памяти + внешней микросхеме.**Всё зафиксировано и сделано.** Ниже полный пакет.
+
+### 1. Фиксированные названия + описания для MASTER SPEC (раздел Visualizers / Fullscreen Visual Pack)
+
+Добавить в §23 (или новый подраздел 23.x):
+
+**AURA Gyre** (Radial / Rotating Spectrum)  
+Круговой/радиальный спектроанализатор. Бины SPEC раскладываются по углу, амплитуда → длина луча/бара. Плавное вращение всей фигуры (или phase-offset) + реакция на beat/centroid/energy. Peak-hold, soft trails, colormap темы, лёгкий glow. Quality Scaling: High — trails + glow + 32 bins; Low — простые лучи без persistence.
+
+**AURA Veil** (Ethereal Aura / Fluid Glow)  
+Мягкая «аура» вокруг/из спектра. Multi-layer soft blobs / radial falloff по бинам, медленный gradient sweep, centroid → hue, loudness → intensity + shimmer. Очень низкая нагрузка (5–15 Гц). Эволюция Aura Ambient. Идеально как фоновый/ambient режим или overlay.
+
+**OscilloAether** (Oscilloscope + Spectrum Hybrid)  
+Гибрид: split-view (scope сверху/снизу + spectrum bars) или overlay (спектр модулирует толщину/цвет волны). Использует SCOPE_POINTS + SPEC. Trigger, L/R/Mono/Side. Persistence опционально.
+
+**Hydra Flux** (Ascending Tadpole / Comet Particles)  
+Поток восходящих частиц («головастики»/кометы). Частицы спавнятся снизу/из зоны спектра, летят преимущественно вверх с хаосом, скорость/разброс/плотность/живость зависят от FFT/энергии/атаки/centroid/басов. За каждой тянется хвост (trail), повторяющий траекторию. Создаёт ощущение постоянного живого полёта/роя. Neon/glow стиль. Подробности ниже.
+
+**AURA Needle** (Analog VU / Needle Meter)  
+Реалистичный стрелочный индикатор. Фон — статичный asset (шкала + корпус), стрелка рисуется программно с ballistics. Dual L/R или single + peak. Режимы VU/PPM/Peak/RMS. Отлично как fullscreen, виджет HOME или Diagnostics.
+
+Все привязаны к AURA Theme Engine (colormap, accent, motion tokens) и Quality Scaling.
+
+### 2. Hydra Flux — технический бриф (структура + update/render)
+
+```c
+// В PSRAM
+#define MAX_PARTICLES   180          // High: 180, Med: 100, Low: 50
+#define TRAIL_LEN       12           // точек хвоста
+#define SPAWN_ZONE_Y    220          // нижняя зона спавна
+
+typedef struct {
+    float x, y;                      // позиция
+    float vx, vy;                    // скорость
+    float life;                      // 0..1 (1 = только родился)
+    float thickness;                 // толщина головы/хвоста
+    uint16_t color;                  // RGB565 или индекс colormap
+    uint8_t  active;
+    // Trail (ring buffer)
+    int8_t   trail_head;
+    float    trail_x[TRAIL_LEN];
+    float    trail_y[TRAIL_LEN];
+} Particle;
+
+Particle particles[MAX_PARTICLES];   // в PSRAM
+```
+
+**Маппинг данных (каждый кадр ~20–30 Гц):**
+- `total_energy` / `loudness` → spawn_rate (0.5–8 частиц/кадр)
+- `low_bins` (басы) → вертикальный импульс + толщина + «тяжесть»
+- `mid/high` + centroid → горизонтальный хаос (vx spread) + цвет/hue shift
+- `attack` / `onset` → burst spawn + acceleration
+- `spectral_flux` → турбулентность (random walk force)
+- Peak bins → предпочтительные x-позиции спавна (частицы «рождаются» из ярких баров)
+
+**Update (псевдокод):**
+```c
+void hydra_update(float dt, const SpecFrame* spec) {
+    // 1. Вычисляем forces из SPEC
+    float energy = spec->rms_or_energy;
+    float bass = avg(spec->bins[0..3]);
+    float chaos = centroid_variance + flux;
+    
+    // 2. Spawn
+    int to_spawn = (int)(spawn_rate * energy * dt * quality_mul);
+    for (...) {
+        Particle* p = get_free();
+        p->x = random_or_weighted_by_bins();
+        p->y = SPAWN_ZONE_Y + rand(-5,5);
+        p->vy = - (base_speed + bass*boost);   // вверх = отрицательный Y
+        p->vx = (rand(-1,1) * chaos_factor);
+        p->life = 1.0f;
+        p->thickness = 1.5f + bass*2;
+        // init trail
+    }
+    
+    // 3. Integrate
+    for each active p {
+        // силы: постоянный подъём + turbulence + лёгкое притяжение к центру/барам
+        p->vy += lift_force * dt;
+        p->vx += (rand_noise(chaos) + attract) * dt;
+        p->vx *= drag;
+        p->x += p->vx * dt;
+        p->y += p->vy * dt;
+        
+        // записываем в trail
+        p->trail_x[head] = p->x; ...
+        p->life -= decay * dt;
+        if (p->y < -10 || p->life <= 0) kill(p);
+    }
+}
+```
+
+**Render:**
+- Для каждой частицы: голова (маленький круг/капля с glow — 2–3 concentric) + polyline хвоста с fade alpha/thickness к концу + colormap.
+- Dirty-rect: bounding box всех активных частиц + небольшой padding (или full dirty если много).
+- Оптимизации: precomputed fade table, fixed-point где можно, Quality Scaling режет MAX_PARTICLES / TRAIL_LEN / glow layers.
+- Цвет: от темы + speed/life/bin origin.
+
+На S2 + 2MB PSRAM это комфортно (даже 200 частиц × 12 точек ≈ мелочь).
+
+### 3. AURA Needle — технический бриф
+
+- **Asset фона**: RGB565 (или RLE-сжатый) 240–300×160–200 px. Несколько вариантов под темы (dark metal, vintage bakelite, studio white). Хранится в LittleFS / external Flash. Блитится один раз при входе в режим (или как static layer).
+- **Стрелка**: программная.
+  - Pivot (cx, cy) — ось.
+  - Угол = map(level_dB или normalized, min_angle, max_angle).
+  - Ballistics (обязательно для «аналогового» feel):
+    ```c
+    // Classic VU-ish
+    if (target > current) current += (target - current) * attack_coef;  // быстрый
+    else                  current += (target - current) * release_coef; // медленный
+    // + небольшое damping / overshoot опционально
+    ```
+  - Рисуем: толстая линия или полигон (треугольник острия + хвостовик) + тонкая тень/glow (смещение + dim color). Anti-alias — простой 2-px или Wu при желании.
+  - Peak needle (вторая стрелка, очень медленный release или hold + drop).
+- **Dirty-rect**: только сектор/прямоугольник возможного движения стрелки (очень маленький).
+- Дополнительно: лёгкое дрожание на тишине, подсветка зоны шкалы от уровня, dual needle L/R.
+- Обновление 25–30 Гц + lerp угла.
+
+Название в меню: **AURA Needle** / Analog Meter.
+
+### 4. Управление через приложение / Wi-Fi и вариант через yoRadio
+
+**Два рабочих пути (рекомендую гибрид с приоритетом yoRadio):**
+
+**Вариант A (твой новый) — управление через yoRadio (предпочтительный для v1–v1.5)**  
+- yoRadio (ESP32-S3) уже в сети, уже имеет (или легко расширяется) Web UI / приложение.  
+- Добавляем в yoRadio UART-команды к AT32 (расширяем существующий протокол).  
+- AT32 обрабатывает audio/DSP команды сам и **форвардит UI-команды** на ESP32-S2 по своему UART.  
+- Обратно: S2/AT32 шлют статус/телеметрию → yoRadio → приложение.  
+
+**Плюсы:**  
+- S2 остаётся максимально разгруженным (только render + local input). Performance Contract в безопасности.  
+- Один Wi-Fi клиент/точка входа для пользователя.  
+- Меньше работы по безопасности/OTA на S2.  
+
+**Минусы:** небольшая дополнительная задержка (обычно незаметна), нужно трогать прошивку yoRadio.
+
+**Вариант B — напрямую с ESP32-S2 (как в TBD 12)**  
+S2 поднимает WebSocket/MQTT/PWA. Работает, но одноядерный S2 + тяжёлый visual + сеть требует жёсткого Quality Scaling и приоритетов задач.
+
+**Рекомендация:**  
+Сделать **основным** путь через yoRadio + UART-форвардинг.  
+Параллельно оставить на S2 лёгкий MQTT/WebSocket как опцию (для продвинутых/Home Assistant) и для OTA/сервиса.  
+В спеке: «Network Control Plane — primary via yoRadio, secondary direct on S2 (optional)».
+
+High-level поток:
+```
+Phone App ↔ Wi-Fi ↔ yoRadio (S3)
+                      ↕ UART
+                   AT32 v·core  ↔ UART ↔ ESP32-S2 (AURA)
+```
+
+### 5. Память ESP32-S2 и внешняя 8-ногая микросхема
+
+**Текущее состояние (уже в спеке):**  
+- ESP32-S2FN4R2: **4 MB Flash + 2 MB PSRAM** (in-package).  
+- 4 MB Flash хватает на прошивку + LittleFS с базовым набором шрифтов, иконок, 1–2 boot splash, несколько тем.  
+- 2 MB PSRAM — отлично для framebuffer (150 KB), particle systems, waterfall history, glyph cache, trails и т.д.  
+- Спека уже предусматривает: если ассетов много — **внешняя SPI Flash** (W25Q32 и т.п.) как assets-flash.
+
+**Можно ли подпаять 8-ногий SOP8 (W25Q32/W25Q64/W25Q128 — 4/8/16 МБ)?**  
+**Да, абсолютно реально и рекомендуется как опция.**
+
+- Внутренние Flash + PSRAM сидят на SPI0/SPI1 (пины обычно не выведены на гребёнку S2 mini).  
+- Для внешней Flash используем **SPI2 (FSPI)** или SPI3 на любых свободных GPIO.  
+- Типичная распиновка (пример, можно менять):
+  - CS   → свободный GPIO
+  - SCK  → GPIO
+  - MOSI → GPIO
+  - MISO → GPIO
+  - WP/HOLD → 3.3V (или тоже GPIO)
+  - VCC 3.3V, GND.
+
+Это стандартная практика. В ESP-IDF есть полная поддержка external SPI flash + можно монтировать LittleFS/FatFS или memory-map.
+
+**Что даёт:**
+- Шрифты всех размеров + кириллица без компромиссов.
+- Много вариантов needle backgrounds, boot screens, иконок высокого качества, дополнительные темы, даже небольшие анимации.
+- Запас на будущее.
+
+**Рекомендация по железу:**  
+- Заложить на плате место под SOP8 W25Q64 (8 МБ) + необходимые GPIO в pinmap_ui.h как `EXT_FLASH_*`.  
+- В прошивке: auto-detect (читать JEDEC ID). Если есть — использовать как `/assets` partition, если нет — fallback на internal 4 MB.  
+- Это уже почти прописано в §33 спеки («разные SPI Flash», external как option).
+
+Дополнительно PSRAM расширять сложнее и обычно не нужно (2 МБ достаточно). Flash — именно то, что нужно для ассетов.
+
+---
+
+**Итоговые действия (что я предлагаю внести в спеку прямо сейчас):**
+1. Добавить 5 визуализаторов с описаниями + Quality Scaling.
+2. Hydra Flux и AURA Needle — detailed subsections.
+3. Network Control: primary via yoRadio UART extension + optional direct S2.
+4. External SPI Flash: обязательно поддержать, pinmap + auto-detect + LittleFS assets, рекомендованный W25Q64.
+
+Хочешь — следующим сообщением я выдам готовый текст патча/addendum для вставки в MASTER SPEC v7.2 (или v7.3), включая структуры данных, псевдокод и изменения pinmap/TBD.
+
+Что делаем дальше:  
+- Готовый addendum-текст?  
+- Более детальный pinmap под ext flash + свободные GPIO?  
+- Расширение UART-протокола под форвардинг команд от yoRadio?  
+- Или сразу приоритеты реализации визуализаторов?
+
+Проверь всё ещё раз, реально ли это всё нам сделать?
+
+**Да, всё это реально сделать.** Я перепроверил по железу, производительности, примерам проектов, возможностям ESP-IDF/Arduino, yoRadio и ограничениям ESP32-S2 mini (ESP32-S2FN4R2: 240 МГц single-core, 4 МБ Flash + 2 МБ PSRAM). 
+
+Ниже — честный и детальный вердикт по каждому пункту + bottlenecks + как закрыть риски. Всё укладывается в философию MASTER SPEC v7.2 (Quality Scaling, dirty-rect/DMA, SPEC:16/32 по умолчанию, PSRAM, external assets option, Performance Contract 20–30 Гц).
+
+### 1. Визуализаторы (AURA Gyre, Veil, OscilloAether, Hydra Flux, Needle)
+
+**Вердикт: Полностью реально, на High Quality — 20–30 FPS комфортно.**
+
+- **AURA Gyre** (radial/rotating) — легко. Полярные координаты + precomputed sin/cos table + bars/лучи + лёгкий trail/peak. Обычный spectrum + transform. Много примеров spectrum visualizer на ESP32 + TFT (TFT_eSPI / LovyanGFX).
+- **AURA Veil** — очень легко и дёшево по CPU (5–15 Гц хватит). Soft blobs, radial falloff, gradient sweep, centroid/loudness mapping. Идеально как ambient.
+- **OscilloAether** — стандарт. Waveform (SCOPE points) + bars/split/overlay. Лёгкий.
+- **Hydra Flux** (частицы-головастики с хвостами) — реально и красиво. 50–180 частиц (High/Med/Low), trail 8–15 точек на частицу.  
+  Update: простой Euler + силы из bins/energy/bass/centroid/flux/attack.  
+  Render: голова (круг/капля + 1–2 glow layer) + polyline хвоста с fade.  
+  Память: ~20–40 КБ в PSRAM — мелочь.  
+  Примеры particle/fluid-систем на ESP32 (в т.ч. на матрицах) показывают, что сотни простых частиц тянутся. С dirty-rect или partial update + Quality Scaling (режем число частиц/trail/glow) — 20–30 Гц стабильно. Не thousands particles с physics, а именно наш roй «tadpoles» — отлично.
+- **AURA Needle** — тривиально и эффектно. Статичный asset фона (blit один раз) + программная стрелка (line/polygon + ballistics attack/release) + peak needle. Dirty-rect крошечный. Классика VU-метров.
+
+**Общее по графике:**  
+ESP32-S2 + хороший library (рекомендую LovyanGFX — отличная поддержка S2, DMA, partial windows) + SPI-дисплей (ST7789/ILI9341 240×320) спокойно даёт нужные FPS при оптимизациях, которые уже в спеке. Full-frame 20–40 FPS достижимо, dirty/partial — выше. PSRAM на S2 работает лучше, чем на классическом ESP32 (меньше проблем с shared cache).
+
+### 2. Аналоговый стрелочный индикатор
+**100% реально и рекомендуется как быстрая победа.**  
+Именно asset (фон/шкала) + software needle. Несколько вариантов assets под темы. Ballistics обязательны для «аналогового» feel.
+
+### 3. Управление через приложение (предпочтительно через yoRadio)
+**Реально и предпочтительно именно так, как ты предложил.**
+
+- yoRadio (ESP32-S3) **уже имеет UART-команды** (тот же набор, что telnet/web) + легко расширяется. Есть MQTT, web-интерфейс, HA-интеграция.  
+- Расширяем протокол: yoRadio → UART → AT32 (audio/DSP команды) + форвард UI-команд на ESP32-S2. Обратно — телеметрия.  
+- Конфликта с S2 нет: два разных устройства, разные MAC/IP. S2 может даже не поднимать свой Wi-Fi в базовом режиме (экономия ресурсов).  
+- Прямой Wi-Fi на S2 (WebSocket/MQTT/PWA) — как secondary/optional (для сервиса/OTA/продвинутых). Single-core требует приоритетов задач и Quality Scaling, но MQTT лёгкий.
+
+Это даже лучше для Performance Contract — S2 максимально разгружен под render + local input (энкодер/IR/touch).
+
+### 4. Память и внешняя 8-ногая Flash (W25Q32/64/128 SOP8)
+**Да, можно и нужно подпаять.**  
+
+- Внутренние 4 МБ Flash + 2 МБ PSRAM: хватает на прошивку + базовые шрифты/иконки/1–2 темы + runtime (FB ~150 КБ, particles, caches). Но для «богатых» assets (много needle backgrounds, качественные шрифты с кириллицей всех размеров, иконки, boot animations, дополнительные темы) — тесно.  
+- Внешняя SPI Flash на свободных GPIO через SPI2/FSPI (или SPI3) — **стандартная практика**. ESP-IDF полностью поддерживает (secondary flash, LittleFS/FatFS, memory-map).  
+- На WEMOS/Lolin S2 mini много свободных GPIO (1–14, 17–21, 33–40 и др., избегая strapping, display, UART к AT32, IR, RGB и т.д.). Пины маппятся свободно через GPIO matrix.  
+- Рекомендация: заложить на плате footprint под W25Q64 (8 МБ) + auto-detect по JEDEC ID. Если есть — монтируем как `/assets`, если нет — fallback на internal. Это уже почти в духе §33 спеки.
+
+PSRAM расширять не нужно и сложнее — 2 МБ достаточно.
+
+### Потенциальные bottlenecks и как закрываем (честно)
+
+| Риск                      | Уровень | Решение / Митигация |
+|---------------------------|---------|---------------------|
+| Single-core S2 + render + UART + (opt) Wi-Fi | Средний | FreeRTOS priorities (render highest), async, Quality Scaling, primary control через yoRadio |
+| PSRAM latency             | Низкий–средний | Hot data в internal SRAM где возможно; S2 лучше original ESP32; 40 МБ/с хватает |
+| Много particles + glow    | Средний | Quality Scaling (High 150–180 / Med 80–100 / Low 40–60), короткие trails, precomputed tables, dirty-rect |
+| Assets/fonts              | Средний без ext flash | External W25Q + LittleFS (обязательно заложить) |
+| Разработка glow/fluid approx | Средний (время) | Аппроксимации (concentric, sprites, multi-pass dim), не настоящий blur |
+| Общая сложность UI/AURA   | Средний–высокий | Поэтапно + уже заложенная Design System |
+
+**Ничего из этого не является блокером.** Это обычный engineering для флагманского UI на таком железе. Многие делают более тяжёлые вещи (full fluid sims, video, сложные dashboards).
+
+### Итоговая оценка реализуемости
+- **Ядро + простые visualizers + Needle + базовая AURA** — легко/средне, быстро.  
+- **Hydra Flux + продвинутые эффекты + темы** — средне, с Quality Scaling отлично.  
+- **External Flash + yoRadio UART extension + optional direct control** — стандартно и надёжно.  
+- **Всё вместе в polished flagship-виде** — реально за разумное время при правильной приоритизации и тестировании на железе.
+
+**Рекомендация по фазам:**
+1. Базовый render + Spectrum bars + Needle + Gyre (быстрые победы).  
+2. Veil + OscilloAether + Hydra Flux (с scaling).  
+3. External Flash + assets pipeline.  
+4. yoRadio protocol extension + app control.  
+5. Полировка AURA (motion tokens, themes, transitions).
+
+Всё, что мы нагенерили (названия, структуры частиц, ballistics, архитектура control, pinmap notes), можно смело вносить в addendum к спеке (v7.3).
+
+Хочешь — прямо сейчас выдам готовый текст addendum’а для вставки в MASTER SPEC (описания visualizers, Hydra/Needle details, Network Control, External Flash rules + red flags). Или сначала детальный pinmap proposal под ext flash + текущие периферии? Или приоритетный roadmap реализации?
+
+Всё под контролем, двигаемся.
+
+АльхамдулиЛях, двигаемся. Так нужно ли в итоге определить заранее определить пины для подпайки микросхемы памяти, вообще она нужна? Если да, то стоит сделать чтобы можно было подпаять любой марки, не только winbond
+
+Сначала уточню актуальный pinmap ESP32-S2 mini и положения спеки по внешней Flash, чтобы дать точный ответ.**АльхамдулиЛлях, двигаемся.**  
+
+### Короткий и чёткий ответ
+
+**Нужна ли внешняя Flash вообще?**  
+**Желательна как опция (recommended option), но не строго обязательна для первого рабочего флагмана.**
+
+- Внутренние **4 МБ Flash + 2 МБ PSRAM** на ESP32-S2FN4R2 уже позволяют:
+  - Прошивку + NVS + базовый LittleFS.
+  - Несколько хороших шрифтов (включая кириллицу).
+  - Иконки, 1–2 boot splash, несколько тем AURA.
+  - 1–3 варианта фона для **AURA Needle**.
+  - Все runtime-буферы (framebuffer 150 КБ, Hydra Flux particles + trails, waterfall history, glyph cache и т.д.) спокойно живут в PSRAM.
+
+- Для **настоящего flagship-запаса** (много вариантов Needle/шкал под разные темы, полный набор качественных шрифтов всех размеров, богатые иконки, дополнительные splash/анимации, будущие темы, возможно небольшие звуковые/другие ассеты) — **внешняя SPI Flash очень желательна**. Спека уже прямо говорит про «разные SPI Flash» и assets во внутренней или внешней.
+
+**Нужно ли заранее жёстко определить пины?**  
+**Да, обязательно.**  
+В `pinmap_ui.h` (единственный source of truth) сразу закладываем:
+
+```c
+// External SPI Flash (optional assets)
+#define EXT_FLASH_CS     GPIOxx
+#define EXT_FLASH_SCK    GPIOyy
+#define EXT_FLASH_MOSI   GPIOzz
+#define EXT_FLASH_MISO   GPIOww
+// WP/HOLD можно на 3.3V или тоже на GPIO
+```
+
++ auto-detect при старте (чтение JEDEC ID).  
+Если чип найден и отвечает — монтируем как `/assets` (LittleFS или raw), если нет — полный fallback на internal 4 МБ без ошибок и без потери функционала.
+
+**Любая марка, не только Winbond?**  
+**Да, именно так и нужно делать.**  
+
+ESP-IDF (esp_flash + spi_flash) отлично поддерживает auto-detect по JEDEC ID и работает с:
+- Winbond (W25Qxx)
+- GigaDevice (GD25Q)
+- Macronix (MX25)
+- ISSI, XMC, BOYA, FM и большинством generic SPI NOR Flash
+
+Достаточно стандартного 3.3V SPI NOR в SOP8 (4/8/16 МБ — W25Q64/GD25Q64 и аналоги идеальны). Никакой привязки к Winbond. В коде — generic driver + таблица известных ID + fallback «unknown but try generic commands».
+
+### Рекомендация по реализации (внести в спеку / pinmap)
+
+1. **Заложить на плате** footprint под SOP8 (стандартный 8-pin SPI Flash) + необходимыемые резисторы/конденсаторы рядом с S2 mini (или на основной плате).
+2. Выбрать **4 свободных GPIO**, которые:
+   - Не strapping (избегаем GPIO0, 45, 46).
+   - Не заняты текущим pinmap (UART 7/8, TFT 35/36/37/21/17/18/16, I2C 33/34, RGB 6, IR 5, Enc 1/2/3, ADC buttons 4).
+   - Хорошие кандидаты (из доступных на гребёнке): GPIO9, 10, 11, 12, 13, 14, 38, 39, 40 и т.п. (окончательно выберем после полной проверки конфликтов с JTAG/USB если нужно).
+   - Лучше использовать отдельный SPI2/FSPI (не тот же, что TFT), чтобы не делить шину и не тормозить дисплей.
+3. В прошивке:
+   - `spi_bus_initialize` + `spi_bus_add_flash_device` + `esp_flash_init`.
+   - Auto-detect size + manufacturer.
+   - LittleFS mount на external (или partition).
+   - Diagnostics: показывать Flash ID + size в Service Menu (уже почти есть).
+4. Питание 3.3V, CS с pull-up, стандартная обвязка.
+
+**Итог-решение (фиксируем):**
+- Внешняя Flash = **optional but strongly recommended** для full AURA assets.
+- Пины определяем заранее в pinmap (с комментарием «optional»).
+- Поддержка **любой** стандартной SPI NOR Flash через JEDEC auto-detect + generic fallback.
+- Если чипа нет — система работает полностью на internal 4 МБ (просто меньше вариантов ассетов).
+
+Хочешь — прямо сейчас предложу конкретные пины (4 штуки) из свободных + текст для addendum в MASTER SPEC (раздел 11 pinmap + 33 хранение + red flags). Или сначала посмотрим полный список свободных GPIO относительно текущего pinmap спеки и выберем оптимальные?
+
+Двигаем дальше?
+
+Да, сначала лучше посмотреть и убедиться, что у ESP32-S2 точно всё распределили по двум уартам - один для сообщения с ат32 другой для диагностики и отладки (если не ошибаюсь у нас в концепции так, есть ещё отдельный уарт для диагностики ат32). В общем проверь все кнопки, rgb кольцо и прочее и выбирай наиболее оптимальные для памяти и фиксируем, чтобы ин ша Аллах вставить всё в ТЗ
+
+**АльхамдулиЛлях, всё проверил детально по MASTER SPEC v7.2 (раздел 11 pinmap + red flags) + реальный pinout WEMOS/LOLIN S2 mini + возможности ESP32-S2.**
+
+### 1. UART-ы — всё распределено правильно и конфликтов нет
+
+**На ESP32-S2 (UI):**
+- **Основной линк UI ↔ AT32 v·core**:  
+  `VCORE_UART_TX = GPIO7`  
+  `VCORE_UART_RX = GPIO8`  
+  (высокий baud 460800/921600, отдельный UART-контроллер). Это единственный аппаратный UART, выделенный под связь.
+
+- **Диагностика / отладка / сервис S2**:  
+  **Нативный USB-CDC** (USB Device).  
+  Спека прямо фиксирует: «USB: нативный USB device (USB-CDC, сервис/диагностика)» + «USB-CDC работает всегда».  
+  Это лучший вариант на S2 — не занимает GPIO, работает параллельно, удобно для логов, команд, OTA-сервиса, Rescue и т.д.
+
+- UART0 (GPIO43 TX / GPIO44 RX) — в основном для ROM-логов, на S2 mini часто **не выведен** на гребёнку. Мы его не трогаем.
+
+**На AT32 стороне** (как ты правильно помнишь):  
+Есть отдельный диагностический/debug UART (помимо UI-линка). Это полностью на стороне v·core и не касается S2.
+
+**Итог по UART:** Концепция соблюдена идеально. Один выделенный UART на S2 → AT32. Диагностика S2 = USB-CDC. Диагностика AT32 = свой UART. Никакого пересечения, никакой нехватки.
+
+### 2. Полный текущий pinmap (из SPEC §11.2) — всё на месте
+
+| Функция              | GPIO     | Примечание |
+|----------------------|----------|----------|
+| ENC_A                | 1        |          |
+| ENC_B                | 2        |          |
+| ENC_BTN              | 3        |          |
+| BUTTONS_ADC          | 4        | ADC1 — отлично |
+| IR_IN                | 5        | RMT RX   |
+| RGB_DIN              | 6        | → 74AHCT125 |
+| VCORE_UART_TX        | 7        | → AT32   |
+| VCORE_UART_RX        | 8        | ← AT32   |
+| TFT_BL               | 16       | LEDC PWM |
+| TFT_DC               | 17       |          |
+| TFT_RST              | 18       |          |
+| TFT_CS               | 21       |          |
+| I2C_SDA              | 33       | BH1750/VEML |
+| I2C_SCL              | 34       |          |
+| TFT_MOSI             | 35       | SPI      |
+| TFT_SCK              | 36       | SPI      |
+| TFT_MISO             | 37       | опционально |
+
+**Занято:** 1–8, 16–18, 21, 33–37.  
+**Strapping (0, 45, 46)** — не используются (отлично).  
+**JTAG (39–42)** — свободны.  
+**Onboard LED** — GPIO15 (оставляем свободным).
+
+Всё остальное (кнопки через ADC, RGB, IR, энкодер, датчик света, дисплей) — проверено, конфликтов нет, boot-safe.
+
+### 3. Свободные GPIO (наиболее полезные)
+
+Хорошие свободные: **GPIO9, 10, 11, 12, 13, 14, 15, 19, 20, 38, 39, 40, 41, 42** и др.
+
+### 4. Внешняя SPI Flash — нужна ли + оптимальные пины (фиксируем)
+
+**Нужна?**  
+**Да, как strongly recommended option** (не hard-required для MVP, но для полноценного AURA flagship — да).  
+Внутренних 4 МБ + 2 МБ PSRAM хватает на базовое, но для богатых ассетов (много фонов Needle, качественные шрифты + кириллица всех размеров, иконки, темы, splash) — внешняя 8–16 МБ закрывает вопрос на годы.
+
+**Поддержка любой марки:** Да. Через JEDEC ID auto-detect + generic SPI NOR driver (Winbond W25Q, GigaDevice GD25Q, Macronix, ISSI, XMC, Boya и т.д.). Никакой привязки к Winbond.
+
+**Оптимальные пины (рекомендую и фиксируем):**  
+Используем **отдельный SPI-контроллер** (SPI2/FSPI или SPI3), чтобы **не делить шину с TFT** (критично для Performance Contract — дисплей не должен тормозить из-за Flash).
+
+```c
+// External SPI Flash (optional assets) — pinmap_ui.h
+#define EXT_FLASH_CS     GPIO10
+#define EXT_FLASH_SCK    GPIO12
+#define EXT_FLASH_MOSI   GPIO11
+#define EXT_FLASH_MISO   GPIO13
+// WP и HOLD — на 3.3V (или GPIO14 если нужен hardware protect)
+```
+
+**Почему именно эти:**
+- Все выведены на гребёнку S2 mini.
+- Не strapping, не JTAG, не заняты.
+- Отличный диапазон для secondary SPI (GPIO9–14 хорошо маппятся).
+- GPIO10/11/12/13 — чистые, рядом логически.
+- Оставляет GPIO9, 14, 15, 19, 20, 38+ полностью свободными на будущее (доп. кнопки, датчики, второй UART если когда-нибудь понадобится и т.д.).
+
+**Альтернатива (если захочешь ещё дальше от нижних пинов):** GPIO38 (SCK), 39 (MOSI), 40 (MISO), 41 (CS) — тоже нормально, но JTAG-пины (использовать осознанно).
+
+**В прошивке (обязательно):**
+- Auto-detect при boot (esp_flash + JEDEC).
+- Если чип есть и size ≥ 4 МБ → монтируем LittleFS `/assets`.
+- Если нет → полный silent fallback на internal 4 МБ.
+- В Service/Diagnostics показывать: Manufacturer ID, Size, Status.
+
+### 5. Что фиксируем для вставки в ТЗ (готово)
+
+В `pinmap_ui.h` + раздел 11 SPEC добавляем блок External Flash.  
+В раздел 10 (red flags) / 33 (хранение) — правила optional + any vendor + auto-detect.  
+В hardware notes — footprint SOP-8 + обвязка на плате.
+
+**Всё готово к фиксации.**  
+
+Могу сразу выдать полный готовый текст addendum (обновлённый §11 pinmap + § про Ext Flash + visualizers + Network Control + Hydra/Needle) для вставки в MASTER SPEC как v7.3 или Addendum.
+
+Подтверждаешь пины GPIO10/11/12/13 для Flash?  
+Или предпочитаешь другой набор (скажи — поправим)?  
+
+После твоего «ок» — выдаю финальный блок для ТЗ. Двигаем, ин ша Аллах.
+
+Подтверждаю, сделай всё подробно, с образцами по ссылкам в Пинтерест, потом если что будем добавлять ещё фичи, ин ша Аллах
+
+**АльхамдулиЛлях, подтверждаю и фиксируем.**  
+
+Пины для внешней Flash принимаются: **GPIO10 (CS), GPIO11 (MOSI), GPIO12 (SCK), GPIO13 (MISO)**.  
+Отдельный SPI-хост (SPI2/FSPI или SPI3), не разделяем шину с TFT. Поддержка **любой** стандартной SPI NOR Flash (Winbond W25Q, GigaDevice GD25Q, Macronix MX25, ISSI, XMC, Boya и generic) через JEDEC ID auto-detect + silent fallback на internal 4 МБ.
+
+Ниже — **полный подробный Addendum** для вставки в MASTER SPEC (рекомендую как **v7.3** или отдельный Addendum v7.2 → v7.3).  
+Всё проверено на реализуемость, соответствует Performance Contract, Quality Scaling, dirty-rect/DMA, PSRAM, AURA Design System и текущему pinmap.
+
+Я включил:
+- Обновлённый pinmap
+- External Flash rules
+- Подробные описания всех 5 визуализаторов с привязкой к твоим Pinterest-образцам
+- Технические структуры, маппинг FFT, Quality Scaling
+- Network Control (primary через yoRadio)
+- Готовые формулировки для разделов
+
+---
+
+# MASTER SPEC Addendum — Visual Pack AURA + Hardware Extensions  
+**Версия:** 7.3 (на базе 7.2 LOCKED)  
+**Дата:** [текущая]  
+**Статус:** Proposed → Fixed after review
+
+### 1. Обновление Pinmap UI (ESP32-S2 mini) — §11.2
+
+Добавить в `pinmap_ui.h` и таблицу:
+
+```c
+// === External SPI Flash (optional assets, strongly recommended) ===
+// Separate SPI host (SPI2/FSPI or SPI3) — DO NOT share with TFT
+#define EXT_FLASH_CS     10      // GPIO10
+#define EXT_FLASH_MOSI   11      // GPIO11
+#define EXT_FLASH_SCK    12      // GPIO12
+#define EXT_FLASH_MISO   13      // GPIO13
+// WP / HOLD → 3.3V (or optional GPIO14 if hardware protect needed)
+```
+
+**Полный актуальный занятый список (проверено):**  
+1–8 (Enc + ADC buttons + IR + RGB + VCORE_UART), 10–13 (Ext Flash), 16–18 + 21 + 35–37 (TFT), 33–34 (I2C light sensor).  
+
+**Свободные на будущее:** 9, 14, 15 (onboard LED), 19, 20, 38–42 и др.  
+Strapping (0, 45, 46) не используются.  
+UART: VCORE_UART = GPIO7/8 (единственный выделенный аппаратный к AT32).  
+Диагностика/отладка S2 = нативный USB-CDC (всегда доступен).  
+Диагностика AT32 = отдельный UART на стороне v·core (без изменений).
+
+**Red flags (дополнить §10):**  
+- Ext Flash только на отдельном SPI-хосте.  
+- Auto-detect обязателен.  
+- При отсутствии чипа — полный fallback, никаких ошибок/hang.
+
+### 2. External SPI Flash — правила (§33 + новый подраздел)
+
+- **Статус:** Optional but **strongly recommended** for full flagship AURA assets.  
+- Внутренние 4 МБ Flash + 2 МБ PSRAM достаточны для MVP + базовых тем/шрифтов/1–2 Needle assets + весь runtime (FB, particles, caches).  
+- Внешняя 8–16 МБ (рекомендуется W25Q64 / GD25Q64 или любой аналог) закрывает: много вариантов фонов Needle, полный набор шрифтов + кириллица всех размеров, богатые иконки, дополнительные темы, splash/анимации.  
+- **Любая марка** стандартной 3.3V SPI NOR Flash (SOP8).  
+- Boot: `esp_flash` + чтение JEDEC ID + size.  
+  - Найден и ≥ 4 МБ → mount LittleFS (или raw partition) как `/assets`.  
+  - Не найден → silent fallback на internal LittleFS/partition.  
+- Diagnostics/Service Menu: показывать Manufacturer, Device ID, Size, Status.  
+- На плате: footprint SOP8 + стандартная обвязка (100 nF, pull-up CS и т.д.).
+
+### 3. Fullscreen Visual Pack AURA — новые визуализаторы (§23)
+
+Все визуализаторы:
+- Используют `SPEC:16/32` по умолчанию (полный FFT только по запросу).
+- Привязаны к AURA Theme Engine (colormap, accent, motion tokens, brightness).
+- Поддерживают Quality Scaling (High / Medium / Low) + Performance Contract (целевой 20–30 Гц, dirty-rect/DMA tiles).
+- Могут работать fullscreen, как виджет на HOME или в Diagnostics.
+- Данные: SPEC bins + energy/rms/loudness + centroid + flux/attack/onset + bass/mid/high groups + (опционально) SCOPE_POINTS.
+
+#### 3.1 AURA Gyre (Radial / Rotating Spectrum)
+**Вдохновение / образец:** https://pin.it/6rexP5pTg (Abstract Circle Art / circular radial forms).  
+
+Круговой/радиальный спектроанализатор. Бины раскладываются по полярному углу (равномерно или weighted), амплитуда → радиус/длина луча или бара.  
+Плавное вращение всей фигуры (constant speed + modulation от beat/energy) или phase-offset по бинам.  
+Peak-hold rings, soft trails/persistence, colormap + glow-аппроксимация (concentric dim layers).  
+Центр может пульсировать от bass/energy.  
+
+**Quality Scaling:**  
+- High: 32 bins + trails + multi-layer glow + smooth rotation.  
+- Medium: 24 bins + peak + light trail.  
+- Low: 16 bins, простые лучи без persistence.
+
+#### 3.2 AURA Veil (Ethereal Aura / Fluid Glow)
+**Вдохновение / образец:** https://pin.it/KJa0Y3f8r (#fluid #magic #effect — мягкие fluid/magic glow облака).  
+
+Мягкая ethereal-аура / fluid glow, эволюция Aura Ambient.  
+Multi-layer soft blobs или radial falloff, привязанные к группам бинов.  
+Медленный gradient sweep + shimmer.  
+Centroid → hue shift, loudness/energy → intensity + scale, bass → «дыхание»/expansion.  
+Очень низкая нагрузка, идеально как ambient/background или overlay на другие режимы.  
+Аппроксимация glow без тяжёлого blur (pre-baked falloff, concentric, multi-pass dimming).
+
+**Quality Scaling:** High — 4–6 слоёв + shimmer; Low — 1–2 слоя, 5–10 Гц.
+
+#### 3.3 OscilloAether (Oscilloscope + Spectrum Hybrid)
+**Вдохновение / образец:** https://pin.it/46QMjiLsa (Graph / vibration / music sound wave graph).  
+
+Гибрид осциллографа и спектра.  
+Режимы:  
+- Split-view (waveform сверху/снизу + spectrum bars).  
+- Overlay (спектр модулирует толщину, цвет или «энергетическую оболочку» волны).  
+- Side-by-side или classic spectroscope style.  
+
+Использует SCOPE_POINTS (downsample) + SPEC.  
+Trigger (rising/falling/auto), L/R/Mono/Side, persistence/afterglow опционально.  
+Отлично читается и выглядит премиально.
+
+#### 3.4 Hydra Flux (Ascending Tadpole / Comet Particles)
+**Вдохновение:** оригинальный pin https://pin.it/5i7yFQSJG (Neon wireframe tree of life) + **уточнённая концепция пользователя**.  
+
+**Уточнённое поведение (фиксируем):**  
+Хаотичный (характер движения зависит от FFT-данных) поток частиц, преимущественно движущихся **вверх**.  
+За каждой частицей тянется хвост (trail), точно повторяющий её траекторию.  
+Визуально — постоянный живой полёт «головастиков» / комет / whiptail-wisps / caudal swarm.  
+Создаёт ощущение органического восходящего роя.
+
+**Техническая реализация (рекомендуемая):**
+```c
+#define MAX_PARTICLES_HIGH  180
+#define MAX_PARTICLES_MED   100
+#define MAX_PARTICLES_LOW    50
+#define TRAIL_LEN_HIGH       14
+#define TRAIL_LEN_MED        10
+#define TRAIL_LEN_LOW         7
+
+typedef struct {
+    float x, y;
+    float vx, vy;
+    float life;          // 1.0 → 0.0
+    float thickness;
+    uint16_t color;      // или colormap index + energy
+    uint8_t  active;
+    int8_t   trail_idx;
+    float    trail_x[TRAIL_LEN_MAX];
+    float    trail_y[TRAIL_LEN_MAX];
+} Particle;
+```
+(Массив в PSRAM).
+
+**Маппинг FFT → поведение (каждый кадр):**
+- total_energy / loudness → spawn_rate + overall speed
+- low bins (bass) → vertical lift + thickness + «weight»
+- mid/high + centroid → horizontal chaos / spread (vx)
+- spectral_flux + attack/onset → turbulence + burst spawn
+- peak bins → предпочтительные зоны спавна по X (частицы рождаются «из» ярких баров)
+- Дополнительно: лёгкое притяжение/отталкивание от центра или от сильных бинов.
+
+Update: Euler integration + drag + noise forces.  
+Render: голова (small circle/drop + 1–2 glow concentric) + polyline trail с fade alpha/thickness к хвосту + colormap темы.  
+Dirty-rect по bounding-box активных частиц (или full при высокой плотности).
+
+**Quality Scaling** сильно режет MAX_PARTICLES / TRAIL_LEN / glow layers / spawn.
+
+#### 3.5 AURA Needle (Analog VU / Needle Meter)
+Реалистичный стрелочный индикатор.  
+
+- **Фон (шкала, корпус, стекло, риски, подписи):** статичный asset (RGB565 или RLE) в `/assets`. Несколько вариантов под темы AURA (Obsidian metal, Vintage, Studio и т.д.).  
+- **Стрелка:** полностью программная (line / polygon + optional shadow/glow).  
+- Pivot-точка + угол = f(level) с **ballistics** (быстрый attack, медленный release — classic VU/PPM style).  
+- Peak needle (вторая стрелка, hold + slow drop).  
+- Dual L/R или single big + side meters.  
+- Режимы: VU, PPM, Peak, RMS, custom.  
+- Лёгкое дрожание на тишине, подсветка зон шкалы от уровня.  
+
+Dirty-rect — только сектор движения стрелки (очень дёшево).  
+25–30 Гц + lerp достаточно для идеальной плавности.
+
+**Название в меню:** AURA Needle / Analog Meter.
+
+### 4. Network Control Plane (обновление TBD 12)
+
+**Primary (рекомендуемый для v1+):**  
+Управление через yoRadio (ESP32-S3).  
+- Расширяем UART-протокол yoRadio ↔ AT32.  
+- AT32 исполняет audio/DSP команды и **форвардит** UI-команды (visual mode, theme, brightness, source и т.д.) на ESP32-S2.  
+- Телеметрия обратно: S2/AT32 → yoRadio → App / Web / MQTT / HA.  
+
+**Плюсы:** S2 максимально разгружен (только render + local input), один вход для пользователя, нет конфликта Wi-Fi.  
+
+**Secondary (optional):**  
+Прямой лёгкий WebSocket / MQTT / PWA на ESP32-S2 (для сервиса, OTA, продвинутых пользователей).  
+Требует Quality Scaling и высоких приоритетов render-задачи.
+
+Конфликта с yoRadio-S3 нет (разные устройства/MAC/IP).
+
+### 5. Прочие фиксации
+- Все новые visualizers добавляются в меню Visual / Fullscreen Visual Pack с превью и Quality hint.  
+- AURA motion tokens применяются ко всем (easing, attack/release визуальные).  
+- RGB ring может синхронизироваться (особенно красиво с Gyre и Hydra Flux).  
+- External Flash auto-detect + Diagnostics обязательны.
+
+---
+
+**Всё выше — готово к прямой вставке в ТЗ.**  
+
+Я сделал максимально подробно, с привязкой к твоим Pinterest-образцам (даже если оригинальный «tree of life» pin мы адаптировали под уточнённые «головастики с хвостами» — это даже лучше и уникальнее).  
+
+**Следующие шаги (на твой выбор, ин ша Аллах):**
+1. Ты вставляешь этот addendum в репозиторий / MASTER SPEC и даёшь знать.
+2. Я готовлю ещё более детальный псевдокод / структуры данных / file layout для Hydra Flux + Needle + Ext Flash driver.
+3. Расширение UART-протокола (команды для visualizers + форвардинг).
+4. Приоритетный roadmap реализации (что делать первым на железе).
+5. Дополнительные фичи, которые захочешь добавить позже.
+
+Всё реалистично, всё ложится, запасы по GPIO/памяти/производительности есть.  
+
+Подтверждаешь addendum как есть, или нужно что-то подправить/расширить прямо сейчас? Двигаем дальше!
+
+Вот ещё замечания/дополнения/изменения к ТЗ v7.2
+https://github.com/ChillPulse/Info-spravka/blob/main/Comments%20and%20corrections%20to%20the%20Technical%20Specification%20v7.2
+Приобщи это к нашим дополнениям в единый максимально подробный со схемами/схематичными рисунками (если это нужно), с объяснениями и если всё не поместится в один ответ, то раздели на несколько ответов.
+
+**АльхамдулиЛлях.**  
+
+Я полностью ознакомился с файлом Comments and corrections to the Technical Specification v7.2 (весь текст ~1210 строк) и **приобщил его** к нашим предыдущим дополнениям (AURA Gyre / Veil / OscilloAether / Hydra Flux / Needle, Ext Flash на GPIO10–13, Network Control primary через yoRadio, pinmap, Performance и т.д.).
+
+Ниже начинается **единый максимально подробный Addendum v7.3 — Flagship Polish & Completeness** (на базе LOCKED v7.2).  
+
+Документ сделан так, чтобы его можно было практически целиком (или блоками) вставлять/мержить в `docs/00_master_spec.md` или как отдельный `docs/00_master_spec_addendum_v7.3.md`.  
+
+Я включил:
+- Все 3 явных пропуска + 2 усиления формулировок из аудита.
+- Полную новую архитектуру Room + single PEQ20 merge (как ты уточнил).
+- Preset Library ≥ 32 с desc/tags/badges/allow_mask.
+- AETHER composition (под-блоки + регулировки).
+- Все UX-экраны (Preset Browser/Detail, Room Studio, PEQ live-curve, Source Picker, Volume Right Arc + dB).
+- Расширенный Visual Style Pack (наши 5 + Neon Thin + Vintage Thin/LED Matrix и др. + theme colormap).
+- Hydra Flux, Needle и остальные с привязкой к Pinterest.
+- Ext Flash, Network, Non-Goals, Storage note, SPI DMA only, pin verification.
+- Схематические ASCII-диаграммы / текстовые схемы где полезно.
+- Data models, правила merge, Quality/Load Profiles, red flags.
+
+Поскольку объём очень большой, **разбиваю на несколько ответов** (как ты разрешил).  
+
+**Этот ответ = Часть 1/3** (Hardware, Non-Goals, Storage, Performance, Pinmap, DSP Architecture: Room + PEQ20 merge + Delays + Tone + AETHER overview).  
+
+Следующие части:  
+- Часть 2 — Presets Library (полный список 32+), UX-экраны, Chain View, Allow Mask, Load Profiles.  
+- Часть 3 — Полный Visual Pack (все стили + Hydra/Needle/Gyre/Veil/OscilloAether + Neon Thin), Volume HUD, Network, Onboarding, Backup, Diagnostics, итоговый чеклист вставки + red flags.
+
+---
+
+# MASTER SPEC ADDENDUM v7.3  
+## Flagship Polish, Completeness & Architecture Refinements  
+**База:** MASTER SPEC v7.2 LOCKED + наши предыдущие Visual/Hardware дополнения + Comments & Corrections  
+**Статус:** Fixed for insertion  
+**Цель:** Ничего не упущено, устройство ощущается умным современным флагманом на имеющемся железе (AT32 v·core + ESP32-S2 mini), с предсказуемым RT, богатым UX и запасом.
+
+### 0. Краткая сводка изменений (что именно «доклеиваем»)
+
+**Из аудита (обязательные 3 + 2):**
+1. AMP FAULT/FAULTZ — explicit отказ.
+2. Раздел **Non-Goals v7.3**.
+3. Storage migration note (ESP-NVS primary + journal только для external settings).
+4. SPI DMA — единственный способ push пикселей (жёстко).
+5. Pinmap — обязательный bring-up тест + “подлежит верификации по ревизии платы”.
+
+**Архитектурные (твои правки):**
+- Room Correction = **глобальный слой** поверх любого пресета.
+- **Один единственный PEQ20** в тракте (room + preset merge через slot ownership + gain deltas). Никакого второго PEQ.
+- RoomProfile включает до 20 PEQ + **Delays L/R/Sub** (+ опц. trims).
+- Пресеты ≥ 32, с `desc`, `tags`, `chain_mask`, `allow_mask`.
+- Пользователь регулирует параметры включённых блоков + может включать только то, что в `allow_mask`. Цепочку произвольно менять нельзя.
+- AETHER = составной (M/S + HF width + Bass protect + Decor + Ambience) с Advanced параметрами.
+- Tone (Bass/Treble) — удобный quick-контроль (рекомендуется отдельный дешёвый блок).
+
+**Наши + новые Visual/UI:**
+- AURA Gyre, Veil, OscilloAether, Hydra Flux (tadpole trails), AURA Needle.
+- Neon Thin Spectrum (референс pin.it/7Drdm2Lkr) + 8+ styles + theme colormap.
+- Volume Right Arc (полукруг от нижнего до верхнего правого угла) + обязательные крупные dB.
+- И т.д. (подробно в Части 3).
+
+**Hardware:**
+- Ext Flash optional strongly recommended на **GPIO10=CS, 11=MOSI, 12=SCK, 13=MISO** (отдельный SPI host), any vendor via JEDEC.
+
+---
+
+### 1. Hardware / AMP / Sequencing (новые/уточнённые пункты)
+
+#### 1.1 AMP FAULT pin — explicit отказ
+В разделе AMP / Power Sequencing / Protections добавить:
+
+> **FAULT / FAULTZ pin усилителя не используется** в логике управления и диагностике.  
+> Причина: сохранить полную заменяемость усилительного модуля (разные vendor’ы имеют разную полярность/поведение FAULT).  
+> Все защиты и диагностика строятся исключительно на:
+> - аудио-метриках (clip, peak, RMS),
+> - состоянии look-ahead limiter,
+> - состояниях реле / mute / soft-start,
+> - температурных/токовых датчиках (если установлены отдельно).  
+> Это правило жёсткое.
+
+#### 1.2 External SPI Flash (подтверждаем и фиксируем окончательно)
+```c
+// pinmap_ui.h — External SPI Flash (optional, strongly recommended)
+#define EXT_FLASH_CS     10
+#define EXT_FLASH_MOSI   11
+#define EXT_FLASH_SCK    12
+#define EXT_FLASH_MISO   13
+// WP/HOLD → 3.3V (или GPIO14 при необходимости)
+```
+- Отдельный SPI host (SPI2/FSPI или SPI3) — **не делить с TFT**.
+- Любая стандартная 3.3V SPI NOR Flash (W25Q, GD25Q, MX25, ISSI, XMC, Boya…).
+- Boot: JEDEC ID + SFDP + size detect.
+- Если присутствует и ≥ 4 МБ → LittleFS `/assets` (шрифты, Needle backgrounds, иконки, темы, splash).
+- Если отсутствует → silent full fallback на internal 4 МБ Flash.
+- Diagnostics: Manufacturer, Device ID, Size, Status, Free space.
+- На плате: footprint SOP-8 + 100 nF + pull-up CS.
+
+#### 1.3 Pinmap verification (усиление)
+В §11 Pinmap добавить:
+
+> Pinmap приведён по схеме WEMOS/LOLIN S2 mini v1.0.0 + текущей разводке.  
+> **Обязательный bring-up тест** при первой прошивке/новой ревизии платы:  
+> проверка availability и отсутствия конфликтов всех используемых GPIO (особенно TFT 35/36/37, UART 7/8, Ext Flash 10–13, strapping 0/45/46).  
+> При другой разводке меняется **только** `pinmap_ui.h` + комментарий ревизии.  
+> JTAG-пины (39–42) оставляем свободными по возможности.
+
+**Полный занятый pinmap (финальный на сейчас):**  
+1–8 (Enc A/B/Btn, ADC buttons, IR, RGB, VCORE_UART TX/RX),  
+10–13 (Ext Flash),  
+16–18 + 21 + 35–37 (TFT),  
+33–34 (I2C light).  
+Свободные: 9, 14, 15, 19, 20, 38+ и др.
+
+UART-ы подтверждены:  
+- S2 ↔ AT32 = GPIO7/8 (единственный выделенный).  
+- Диагностика S2 = USB-CDC (нативный).  
+- Диагностика AT32 = свой отдельный UART.
+
+---
+
+### 2. Non-Goals v7.3 (новый раздел, вставить после Goals или в начало)
+
+**Что мы сознательно НЕ делаем в v7.x (чтобы документ не расползался и ожидания были честными):**
+
+- Нет настоящего Dolby Atmos / Dolby Digital / любого лицензируемого многоканального декодирования. Вместо пространственности — **AETHER Engine**.
+- Нет ресемплера. Поддерживаются только 44.1 kHz и 48 kHz (BT_RESYNC + yoRadio RATE).
+- Нет передачи PCM/аудиосэмплов по UART на UI-МК (только meters, SPEC:16/32, SCOPE points, FEAT, DIAG).
+- FFT_FULL — только для диагностики/Service. Основной визуальный протокол = **SPEC**.
+- Нет встроенного микрофона и auto-EQ по измерению комнаты в реальном времени (Room = REW-import + Guided + manual).
+- Нет тяжёлых эффектов типа chorus/flanger/reverb full / multiband mastering compressor в базовой цепи (чтобы гарантированно тянуть).
+- Wi-Fi Web UI / приложение на S2 — secondary/optional; primary control plane = через yoRadio.
+
+---
+
+### 3. Storage migration note (новый короткий раздел §33 или Storage)
+
+> **Основное хранилище настроек, пресетов, IR, тем и NVS-данных в v7.2/v7.3 = ESP-IDF NVS** (встроенный wear-leveling).  
+> Используется dirty + timeout + standby commit.  
+>  
+> Старая схема custom NVS Journal (magic/seq/type/len/payload/CRC32 + compaction при <20% free) из v7.0 **заменена** на ESP-NVS.  
+>  
+> **Исключение:** если часть настроек/пресетов/ассетов хранится напрямую во внешней SPI NOR Flash (не через NVS), то для этой области применяется journal-формат v7.0 (см. `docs/10_storage_nvs.md` или Appendix). Compaction запускается при свободном месте < 20%.  
+>  
+> External Flash в первую очередь используется как `/assets` (read-mostly).
+
+---
+
+### 4. UI Performance Contract — усиление (добавить строку)
+
+В раздел Performance Contract / Render:
+
+> **Любые отрисовки в дисплей выполняются только через SPI DMA queue.**  
+> Синхронные / blocking SPI-транзакции в render loop **запрещены**.  
+> Dirty-rect + tile/ partial update + DMA — обязательны.  
+> Целевой framerate визуализаторов 20–30 Гц (Quality Scaling автоматически снижает при нагрузке).
+
+---
+
+### 5. DSP Architecture — ключевые изменения (Room + single PEQ20 + Delays)
+
+#### 5.1 Высокоуровневый порядок обработки (фиксируем жёстко)
+
+```
+Input (I2S domain) 
+→ DC Block / Subsonic HPF (защита)
+→ [Preset blocks: Tone? / Loudness / AETHER / BassMono / Psychobass / Night / BassTame / Anti-Ad / …]
+→ Room Stage (если room_enable): R-PEQ merge into PEQ20 + R-Delay L/R/Sub (+ trims)
+→ Headroom / Volume / Mute (GainSmoother)
+→ Look-ahead Limiter (always last, ceiling −1 dBFS, 5–10 ms)
+→ Output + Meters / SPEC / SCOPE
+```
+
+**Room = глобальный слой**, применяется **поверх** любого пресета.  
+Пресеты **не содержат** room_enable и room-фильтров.
+
+#### 5.2 Single PEQ20 — модель merge (твоя идея, реализуем оптимально)
+
+В тракте существует **ровно один** блок `PEQ20` (20 × DF2T biquad на канал).
+
+**RoomProfile** хранит:
+- `room_enable` (глобально)
+- `room_slot_mask` (uint32, какие из 20 слотов принадлежат комнате)
+- `room_filter[20]`: type (PK/LS/HS/HP/BP/Notch…), Fc, Q, gain_db, enabled
+- `delay_L_ms`, `delay_R_ms`, `delay_sub_ms` (0–30.0, шаг 0.1)
+- опционально `trim_L_db`, `trim_R_db` (±6 dB)
+
+**Preset** хранит:
+- свои `preset_filter[]` только для **свободных** слотов (не в room_slot_mask)
+- и/или **macro-deltas** (tilt, presence, air, punch) + Tone offsets
+- `chain_mask` + `allow_mask`
+
+**Runtime merge (выполняется редко — при смене Room/Preset/редактировании, вне audio ISR):**
+Для каждого слота i = 0..19:
+- Если i ∈ room_slot_mask:
+  - type/Fc/Q берутся из Room (фиксированы)
+  - `gain_total = gain_room + gain_preset_delta` (clamp ±12…18 dB safety)
+- Иначе (свободный):
+  - полностью из Preset (или OFF)
+- Tone (Bass/Treble) — рекомендуется **отдельным дешёвым блоком** из 2 biquad (low-shelf + high-shelf) после/до PEQ. Это проще и предсказуемее, чем запекать всё в 20 слотов. CPU-копейки.
+
+**Преимущества:**
+- CPU real-time не растёт (всё те же 20 biquad).
+- Пользовательский PEQ20 остаётся мощным.
+- Room можно A/B, ON/OFF, иметь несколько профилей.
+- Пресеты остаются “характером”, а не “комнатой”.
+
+**Импорт REW/RAW расширяем:**
+Поддерживаем стандартные REW EQ-строки + наши:
+```
+Delay L: 0.3
+Delay R: 0.0
+Delay Sub: 2.5
+Trim L: -0.5
+```
+Или команды `RDELAY L 0.3` и т.д. по USB-CDC / UART.
+
+#### 5.3 AETHER (“ЭФИР”) — состав и регулировки (фиксируем)
+
+AETHER — **составной движок**, а не монолит:
+
+1. **M/S Encoder ↔ Decoder**
+2. **HF-only Widening** (Side × width, низ защищён)
+   - Width (0.8…1.6 или Low/Med/High)
+   - Bass protect Fc (120…200 Hz)
+3. **Decorrelator** (2–4 all-pass или micro-Haas)
+   - Decor 0…100 %
+4. **Ambience** (Schroeder-lite, только CINEMA, wet очень маленький)
+   - Ambience 0…15 % (hard limit 30 % в Advanced)
+5. **Dry/Wet crossfade** (click-free)
+
+**Режимы:** OFF / WIDE / CINEMA (/ HEADPHONES — TBD v2)  
+**UI:**  
+- Обычный: Mode + Width (ступени)  
+- Advanced: все параметры числом + Bass protect Fc  
+
+Quality Scaling: при нехватке CPU ambience → 0 принудительно, остальное сохраняется.
+
+**Маркетинг:** “ЭФИР” = AETHER Engine (WIDE = стерео-расширение, CINEMA = псевдо-surround/объём).
+
+#### 5.4 DSP Load Profiles (жёсткие, для стабильности)
+
+- **Lite**: PEQ20 + Tone + Limiter + Meters + SPEC  
+- **Music**: + AETHER WIDE (без ambience) + Loudness + BassMono?  
+- **Cinema**: + Anti-Ad + Night + BassTame + AETHER CINEMA (ambience conditional)
+
+UI и v·core уважают `allow_mask` пресета + текущий Load Profile.  
+Запрещённые включения → EVT:Denied + toast.
+
+---
+
+**Конец Части 1/3.**
+
+Всё выше уже максимально подробно, с объяснениями “почему” и готово к вставке.  
+
+Подтверди, что Часть 1 ок (или скажи что поправить), и я сразу выдам **Часть 2** (Presets 32+ полный примерный список + все UX-экраны + data models + chain view).  
+
+Затем Часть 3 — Visuals (включая твой новый Neon Thin + наши Hydra Flux и т.д.) + остальное.  
+
+Двигаем, ин ша Аллах! Готов продолжать без паузы.
+
+БаракАллах, продолжаем!
+
+**БаракАллаху фик, продолжаем.**  
+
+Вот **Часть 2/3** единого Addendum v7.3.  
+
+Она полностью приобщает все замечания/дополнения из файла Comments (пресеты ≥32, desc/tags/chain_mask/allow_mask, живой Room Studio, 3-уровневый UX, Chain View, PEQ live-curve на маленьком экране, Load Profiles, AETHER composition детали и т.д.) + наши предыдущие решения (single PEQ20 merge, Room как глобальный слой, Delays в RoomProfile и т.п.).
+
+---
+
+# MASTER SPEC ADDENDUM v7.3 — Часть 2/3  
+## Preset Library, Data Models, UX Screens, Room Studio, Chain View, PEQ Editor, Load Profiles
+
+### 6. Preset Library (фиксируем ≥ 32 фабричных)
+
+**Минимум:** 32 фабричных пресета (слоты 0…31).  
+Пользовательские пресеты — дополнительно (до 64 всего, если память позволяет; NVS + optional Ext Flash).
+
+**Структура Preset (C-подобная, для NVS/JSON):**
+```c
+typedef struct {
+    char     name[32];           // "Music: Wide"
+    char     desc[96];           // краткое описание 70–90 символов UTF-8
+    uint32_t tags;               // битмаска (см. ниже)
+    uint32_t chain_mask;         // какие блоки включены по умолчанию
+    uint32_t allow_mask;         // какие блоки пользователь может дополнительно включать/регулировать
+    // ... параметры блоков (Tone gains, AETHER mode/width, Night ratio, PEQ deltas или full free slots, Loudness, etc.)
+    // PEQ: либо full 20 filters для free slots, либо macro (tilt/presence/air/punch) + Tone
+    uint8_t  version;
+    uint32_t crc;
+} Preset;
+```
+
+**Tags (битмаска):**
+- BIT0: MUSIC
+- BIT1: CINEMA / TV
+- BIT2: NIGHT
+- BIT3: VOICE / PODCAST
+- BIT4: BASS
+- BIT5: ROOM / SPEAKERS
+- BIT6: PARTY
+- BIT7: DESK / NEARFIELD
+- BIT8: HEADPHONE (future)
+- и т.д.
+
+**chain_mask / allow_mask** — биты для блоков:  
+DC_Block, Subsonic, PEQ20, Tone, Loudness, AETHER, BassMono, Psychobass, Night, BassTame, AntiAd, Delay (Room), Headroom, Limiter (всегда ON и не в mask).
+
+**Правило:**  
+Пользователь **не может** произвольно менять порядок цепочки.  
+Он может:
+- регулировать параметры уже включённых блоков (в пределах allow);
+- включать дополнительные блоки только из `allow_mask` пресета (через crossfade);
+- Room всегда глобальный и поверх.
+
+### 6.1 Пример фабричной библиотеки (32 пресета)
+
+**Music (1–10)**  
+1. Music: Neutral — «Чисто, без окраса. Всё выключено, только safety limiter.»  
+2. Music: Warm — «Тёплый низ + мягкие ВЧ. Комфортно на тихой громкости.»  
+3. Music: Bright Detail — «Больше воздуха и деталей, без резкости и усталости.»  
+4. Music: Vocal Focus — «Голос вперёд: минус муть 200–400 Гц, плюс разборчивость.»  
+5. Music: Wide — «AETHER WIDE, широкая сцена, бас защищён.»  
+6. Music: Tight Bass — «Бас сухой и быстрый: Subsonic + лёгкий BassTame.»  
+7. Music: Low Volume — «Loudness + чуть тепла. Идеально поздно вечером.»  
+8. Music: Party Safe — «Энергия + заметный limiter. Без клиппинга на танцах.»  
+9. Music: Rock Punch — «Удар и плотность в mid-bass, V-shape умеренный.»  
+10. Music: Jazz Smooth — «Мягкая середина, естественная сцена, минимум обработки.»
+
+**Cinema / TV (11–18)**  
+11. Cinema: Reference — «Ровно, максимум разборчивости, без эффектов.»  
+12. Cinema: Anti-Ad — «Реклама тише (Anti-Ad downward only), медленный возврат.»  
+13. Cinema: Night — «Пики мягче (Night), диалоги читаются на низкой громкости.»  
+14. Cinema: Dialog+ — «Диалоги вперёд + лёгкий Night.»  
+15. Cinema: AETHER — «AETHER CINEMA + очень лёгкий ambience (CPU-safe).»  
+16. Cinema: Bass Control — «Бас под жёстким контролем (BassTame сильный).»  
+17. Cinema: Explosive — «Динамика фильмов + controlled bass + AETHER.»  
+18. TV: News / Speech — «Максимальная разборчивость речи, минимум баса.»
+
+**Room / Speakers / Desk (19–24)**  
+19. Room: Small — «Меньше гула и boom в маленькой комнате.»  
+20. Room: Big / Living — «Контроль баса + чуть шире сцена.»  
+21. Desk / Nearfield — «Меньше низа, чище середина (мониторы близко).»  
+22. Sofa Late Night — «Night + Loudness + минимум раздражающих ВЧ.»  
+23. Bookshelf Friendly — «Компенсация типичных bookshelf-провалов.»  
+24. Sub + Satellites — «Оптимизация под саб + сателлиты (delay/trim ready).»
+
+**Bass / Special / Fix (25–32)**  
+25. Bass Boost — «Акцент 50–80 Гц + subsonic защита.»  
+26. Bass Mono — «Низ в моно — tighter image, меньше фазовых проблем.»  
+27. Psychobass Light — «Очень аккуратные субгармоники (“вау” без грязи).»  
+28. Harsh Treble Fix — «Мягче верх: high-shelf вниз + cut 3–5 кГц.»  
+29. Sibilance Fix — «Узкий cut 6–9 кГц против свиста.»  
+30. Podcast / Voice — «Максимум midrange clarity + лёгкий de-ess.»  
+31. Gaming / Immersive — «AETHER + controlled bass + presence.»  
+32. Test / Flat — «Полностью flat + фиксированный ref level −18 dBFS (для измерений).»
+
+Каждый имеет осмысленный `desc`, tags и allow_mask (например, в Music: Wide можно дополнительно включать Night/BassTame, но не Anti-Ad).
+
+### 7. DSP Chain View & Allow Mask (экран)
+
+**Порядок цепочки (жёсткий, для отображения):**  
+`Input → DC/Subsonic → PEQ20 → Tone → Loudness → AETHER → BassMono → Psychobass → Night → BassTame → Anti-Ad → Room-Delay → Headroom → Volume/Mute → Look-ahead Limiter → Output`
+
+**Экран Preset Detail / Chain View (схематично):**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Music: Wide                          [Apply] [Edit] [A/B]   │
+│ «AETHER WIDE, широкая сцена, бас защищён»                   │
+│ Tags: MUSIC  WIDE                                           │
+├─────────────────────────────────────────────────────────────┤
+│ Chain:                                                      │
+│ DC → Sub → [PEQ] → Tone → Loud → [AETHER WIDE] → … → Limiter│
+│                                                             │
+│  [PEQ20] ON   (3 free slots used)     ← OK = edit          │
+│  [Tone]  ON   Bass +1.5  Treble +0.5                       │
+│  [AETHER] WIDE  Width 1.35  Decor 40%                      │
+│  [Night] OFF          [+] Add (allowed)                    │
+│  [BassTame] OFF       [+] Add                              │
+│  [Anti-Ad] OFF        (not allowed in this preset)         │
+│  …                                                          │
+│ Room: ON (Sofa profile)   Delays: L0.0 R0.2 Sub1.5 ms      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+- Энкодер ходит по блокам.  
+- OK на блоке → параметры блока.  
+- На OFF + allowed → «Add» (включает через crossfade + toast).  
+- Not allowed → серый + tooltip «Недоступно в этом пресете».
+
+### 8. Room Studio (живой 3-уровневый UX)
+
+Room = **глобальный** (не часть пресета).
+
+**Уровни:**
+
+**1. Quick Room**  
+- Room Correction: ON/OFF (большой switch)  
+- Current Profile: [Sofa / Desk / Living / Custom 1…]  
+- A/B Compare: Original ↔ Corrected (мгновенно, с visual feedback)  
+- Import REW (USB-CDC)  
+- Quick delay trims
+
+**2. Guided Room Tuning** (без микрофона — “умный” диалог)  
+- Low-end focus: warble tones 40/50/63/80/100/125 Hz  
+- UI: «Где сильнее гул/boom?» → пользователь выбирает → система предлагает cut (Q и depth)  
+- Null finder (типовые)  
+- Target curve preview (Flat / House / Night)  
+- A/B на каждом шаге  
+- «Применить рекомендованные 3–5 фильтров в room slots»
+
+**3. Advanced Room**  
+- Полный список до 20 room-фильтров (слоты с lock-иконкой)  
+- Delay L/R/Sub (0.0–30.0 ms, step 0.1) + phase invert опционально  
+- Trims ±6 dB  
+- Target curve + correction range (20–200 Hz default, 20–500, full)  
+- Export/Import profile  
+- Slot ownership visual (какие слоты locked by Room)
+
+**Схема merge (повтор для ясности):**  
+Один PEQ20. Room slots имеют приоритет по type/Fc/Q, gain = room_gain + preset_delta (clamped). Free slots — полностью пресет.
+
+### 9. PEQ20 Editor на маленьком экране (флагманский UX)
+
+**Главный вид — Live Curve + Bands:**
+
+```
+┌──────────────────────────────────────────────┐
+│ PEQ20          Room slots locked  [3/20]     │
+│                                          [A/B]│
+│     ╭─── curve preview (live) ───╮           │
+│    ╱                             ╲          │
+│  ─╱───────┬───────┬───────┬───────╲─  0 dB  │
+│           80     300     3k     10k          │
+│                                              │
+│ Bands (swipe/encoder):                       │
+│ 01 PK  80Hz  Q2.1  +2.5dB   [Room]          │
+│ 02 PK 220Hz  Q1.4  −1.8dB   [Free] ← focus  │
+│ 03 HS  8k    Q0.7  +1.2dB   [Free]          │
+│ …                                            │
+│ [Add Band]  [Sort]  [Clear Free]  [Flat]     │
+└──────────────────────────────────────────────┘
+```
+
+- Верх: live frequency response curve (рисуется по текущим 20 biquad, 30–40 точек, очень дёшево).  
+- Room-слоты — другим цветом + lock.  
+- Фокус на band → большие controls: Type / Fc (log) / Q / Gain.  
+- Drag на curve (если touch) или encoder + modifier.  
+- Макросы: Tilt, Presence, Air, Punch (влияют на free slots или deltas).  
+- Все изменения — через GainSmoother / coeff ramping (click-free).
+
+**Режимы просмотра:** Overlay (curve + spectrum), Before/After, Solo band и т.д.
+
+### 10. Load Profiles & Feature Gating
+
+**Три профиля нагрузки (v·core сообщает UI):**  
+- **Lite** — минимум (PEQ + Tone + Limiter + meters)  
+- **Music** — + AETHER WIDE (без ambience) + Loudness + BassMono  
+- **Cinema** — полный (Anti-Ad + Night + BassTame + AETHER CINEMA, ambience только если cycles позволяют)
+
+UI уважает текущий Load Profile + `allow_mask` пресета.  
+При попытке включить тяжёлое → EVT:Denied + toast «Недостаточно ресурсов, переключите Load Profile» + предложение.
+
+AETHER Quality Scaling внутри: ambience первым отключается.
+
+### 11. Source Picker (интересный UX)
+
+- Карточки источников с иконками + статус (playing, rate, signal).  
+- Быстрые избранные (long-press).  
+- При выборе источника — рекомендация пресета («Для BT рекомендуем Music: Wide»).  
+- Preview metadata если есть.
+
+### 12. Volume Right Arc (обновление)
+
+Выезжающий справа **полукруглый arc** от нижнего правого угла до верхнего правого угла (270° или визуально приятный сектор).  
+Крупный dB-число в центре/рядом (обязательно).  
+Плавная анимация + ballistics.  
+Цвет от уровня + theme.  
+Исчезает по таймауту или жесту.
+
+---
+
+**Конец Части 2/3.**
+
+Всё это согласовано с single-PEQ20, Room global, Performance Contract и маленьким экраном ST7789/ILI9341.
+
+**Следующий ответ (Часть 3/3)** будет содержать:  
+- Полный Visual Style Pack (AURA Gyre, Veil, OscilloAether, Hydra Flux, AURA Needle, Neon Thin Spectrum + Vintage LED Matrix + остальные 8–10 стилей + theme colormaps).  
+- Схематичные рисунки/ASCII для visualizers.  
+- Onboarding, Backup/Restore, Diagnostics расширения.  
+- Network Control details.  
+- Итоговый чеклист вставки в MASTER SPEC + red flags summary.  
+- Готовые diff-блоки если нужно.
+
+Подтверждай или правь Часть 2 — и я сразу выдам Часть 3 (финальную).  
+Двигаем!
+
+Перед 3 частью всё же хотел уточнить, я имел ввиду что у нас есть параметры Room коррекции и уже на них мы накладываем наши эффекты, то есть возможно даже изменяем и настройки рум коррекции. Или скажи как будет правильней, чтобы эффекты были слышны, а то вдруг файл коррекции займет большинство полос peq 20 и на эффекты свободных полос не останется и соответственно толку от эффектов будет ноль. Как сделать правильно?
+
+**БаракАллаху фик за отличный и очень правильный вопрос.** Это критически важный момент архитектуры — от него зависит, будут ли пресеты и эффекты реально слышны и полезны, или Room “съест” всё.
+
+### В чём реальная проблема (ты абсолютно прав)
+
+Если Room Correction (особенно хороший импорт из REW) занимает 12–18 полос из 20, то на пресетные/музыкальные эффекты остаётся 2–8 полос.  
+В этом случае:
+- Тонкая хирургическая коррекция пресета почти невозможна.
+- “Вау”-эффекты, которые живут в PEQ (tilt, presence, air, punch, V-shape и т.д.), становятся слабыми.
+- Пользователь чувствует, что пресеты “не работают”, особенно на уже выровненной комнате.
+
+Просто “накладывать gain-дельты” на room-полосы помогает лишь частично.
+
+### Как сделать правильно (лучшие варианты)
+
+Я рассмотрел 3 реалистичных подхода специально под наше железо (AT32 v·core = Cortex-M4F + FPU + CMSIS-DSP — довольно мощный для biquad’ов).
+
+#### Вариант A: Один PEQ20 + жёсткое резервирование слотов (самый безопасный по CPU)
+- Room может занимать **максимум 12 полос** (по умолчанию), система всегда резервирует **минимум 8 свободных** слотов для пресетов.
+- Пресеты в основном живут за счёт:
+  - Свободных 8 слотов
+  - **Gain-дельт** на room-полосах (±6…8 dB)
+  - Сильных **макросов** (Tilt, Presence, Air, Warmth, Punch), которые умно распределяют изменения.
+  - Отдельных дешёвых блоков (Tone shelves, etc.)
+- Плюс: Room Scale 0–100% (можно ослабить всю коррекцию комнаты одним движком).
+
+**Плюсы**: CPU предсказуем, один блок PEQ.  
+**Минусы**: Всё ещё компромисс, если Room хочет много полос.
+
+#### Вариант B: Dual PEQ (Рекомендую как оптимальный Flagship) — **мой главный совет**
+Разделяем на два независимых блока:
+
+1. **RoomPEQ** — до **16 полос** (глобальный, коррекция комнаты + delays + trims).
+2. **CreativePEQ / PresetPEQ** — **8–12 полос** (полностью для пресетов и ручного творчества).
+
+**Порядок в тракте:**
+```
+Input → DC/Subsonic 
+→ RoomPEQ (до 16) + Room Delays/Trims 
+→ CreativePEQ (8–12) 
+→ Tone (Bass/Treble shelves) 
+→ Loudness → AETHER → BassMono/Psychobass 
+→ Night → BassTame → Anti-Ad 
+→ Headroom/Volume → Look-ahead Limiter 
+→ Output
+```
+
+**Почему это правильно:**
+- Room Correction всегда полноценная и не мешает.
+- Эффекты и пресеты **всегда** имеют свои 8–12 полос + все динамические/пространственные блоки — они будут отлично слышны.
+- Можно даже делать “Room Offset” (пресет может слегка наклонять или масштабировать Room-кривую).
+- На AT32 (M4F) 16 + 12 = 28 biquad’ов стерео на 48 kHz — вполне подъёмно при хорошей оптимизации (DF2T, CMSIS-DSP или hand-optimized, Load Profiles). В Lite/Music профиле можно снижать количество активных полос.
+
+Это именно тот подход, который используют многие серьёзные устройства (miniDSP + user PEQ поверх, Dirac + manual EQ и т.д.).
+
+#### Вариант C: RoomPEQ + очень сильные не-PEQ эффекты + макро-движки
+Оставить один PEQ20 почти полностью под Room, а всю “магию” пресетов делать через:
+- Мощный Tone
+- AETHER
+- Dynamic processors
+- Специальные макро-процессоры, которые генерируют временные biquad’ы или работают параллельно.
+
+Менее гибко для ручного копания.
+
+---
+
+### Моя сильная рекомендация для OMNIA / STHENOS (фиксируем в v7.3)
+
+**Идём по Варианту B — Dual PEQ (RoomPEQ 16 + CreativePEQ 10–12)** с умным Quality/Load Scaling.
+
+**Дополнительно усиливаем:**
+- Room всегда глобальный и идёт **раньше** creative-эффектов (сначала выравниваем комнату, потом красим звук).
+- Пресеты по умолчанию почти не трогают RoomPEQ (только опциональный Room Scale / mild tilt).
+- В Advanced пользователь может:
+  - Разрешить пресету писать дельты в RoomPEQ.
+  - Временно брать полосы из Room в Creative (с предупреждением).
+- Tone (2 полки) — всегда отдельный очень дешёвый блок.
+- Все “дорогие” штуки (AETHER ambience, Psychobass, тяжёлый Night и т.д.) уже имеют Quality Scaling.
+
+**Обновлённый высокоуровневый signal flow (схема):**
+
+```
+I2S Input
+    ↓
+DC Block + Subsonic HPF
+    ↓
+┌─────────────────────────────┐
+│       ROOM STAGE (global)   │
+│  RoomPEQ (max 16 bands)     │
+│  + Delays L/R/Sub           │
+│  + Trims ±6 dB              │
+│  + Room Scale 0–100%        │
+└─────────────────────────────┘
+    ↓
+┌─────────────────────────────┐
+│     CREATIVE / PRESET       │
+│  CreativePEQ (8–12 bands)   │
+│  + Tone (Bass/Treble)       │
+│  + Loudness                 │
+│  + AETHER (M/S + Width…)    │
+│  + BassMono / Psychobass    │
+│  + Night / BassTame / Anti-Ad│
+└─────────────────────────────┘
+    ↓
+Headroom / Volume / Mute (smoothed)
+    ↓
+Look-ahead Limiter (always last)
+    ↓
+Output + Meters/SPEC/SCOPE
+```
+
+Такой подход гарантирует:
+- Room Correction работает полноценно.
+- Любой пресет и эффект будет хорошо слышен.
+- Есть запас и на будущее.
+- CPU контролируется через Load Profiles (Lite = меньше активных полос Room + Creative).
+
+---
+
+**Вопрос к тебе (чтобы зафиксировать перед Частью 3):**
+
+1. Согласен идти в **Dual PEQ (Room 16 + Creative 10/12)** как основной вариант?
+2. Или предпочитаешь остаться на одном PEQ20 + жёсткий резерв 8 свободных слотов + сильные макросы (чуть проще по коду и CPU)?
+3. Какой максимум полос Room тебе комфортен (12 / 14 / 16)?
+
+Как только подтвердишь — я обновлю соответствующие разделы (signal flow, data models, Room Studio, PEQ Editor, Presets) и сразу выдам **Часть 3/3** уже с правильной архитектурой + полным Visual Pack + всем остальным.
+
+Как поступаем, брат?
+
+Да, согласен на твой сильный вариант B. И кстати, хотел по поводу плавности добавить,  она нужна в визуале (главное чтобы без мерцания) и в звуке: например когда выключаем функцию mute - звук возвращается на прежний уровень громкости, согласно уровню регулятора громкости, очень плавно, по-флагмански, тем самым бережёт наш слух и акустику. Есть ли у тебя что ещё дополнить?
+
+**БаракАллаху фик. Принято и фиксируем.**
+
+### Окончательное решение по архитектуре DSP
+
+**Вариант B (Dual PEQ) — утверждён как основной для v7.3:**
+
+- **RoomPEQ**: до **16 полос** (глобальный слой коррекции комнаты).
+- **CreativePEQ** (Preset/User PEQ): **12 полос** (полностью в распоряжении пресетов и ручного творчества).
+- Tone (Bass/Treble) — отдельный очень лёгкий блок из 2 полок.
+- Room всегда идёт **перед** creative-эффектами.
+- Room Scale 0–100 % + возможность пресету давать мягкий tilt/offset на Room (опционально, Advanced).
+- Load Profiles автоматически снижают количество активных полос при нехватке CPU (сначала Creative, потом Room).
+
+**Финальный signal flow:**
+
+```
+I2S In
+ → DC Block + Subsonic HPF
+ → ROOM STAGE (global):
+      RoomPEQ (≤16) + Delays L/R/Sub + Trims + Room Scale
+ → CREATIVE STAGE:
+      CreativePEQ (12) + Tone (Bass/Treble) 
+      + Loudness + AETHER + BassMono/Psychobass 
+      + Night + BassTame + Anti-Ad
+ → Headroom / Volume / Soft-Mute (GainSmoother)
+ → Look-ahead Limiter (always last, ceiling –1 dBFS)
+ → Out + Meters/SPEC/SCOPE
+```
+
+Это гарантирует, что даже при сильной Room-коррекции эффекты и пресеты всегда будут хорошо слышны.
+
+---
+
+### Плавность (Flagship Feel) — добавляем обязательно
+
+Ты абсолютно прав. Плавность — это то, что отличает хороший продукт от флагмана.
+
+#### 1. Аудио-плавность (критично)
+
+**Soft Unmute / Soft Mute (обязательно):**
+- При снятии Mute звук **никогда** не появляется скачком.
+- Громкость плавно возвращается exactly к текущему положению регулятора громкости (тому, что показывает Volume Arc / энкодер).
+- Время рампы: настраиваемое 100–800 мс (по умолчанию 350–450 мс — очень приятно и безопасно для слуха и динамиков).
+- Кривая: exponential или raised-cosine (самая естественная).
+- Реализуется через уже существующий **GainSmoother** (единый для Volume, Mute, Source switch, Bypass блоков, AETHER Dry/Wet и т.д.).
+- Аналогично при включении Mute — быстрый, но не кликающий fade-out (80–150 мс).
+
+**Дополнительно усиливаем по всему тракту:**
+- Все continuous-параметры (gain, Fc, Q, Width, Dry/Wet, Night strength и т.д.) имеют smoothing / coeff ramping.
+- Переключение пресетов, Room ON/OFF, A/B — только через crossfade или GainSmoother (click-free).
+- Source domain switch (уже было) — оставляем эталоном.
+- Look-ahead Limiter всегда с гладким gain reduction.
+- Защита слуха: при любом unmute / source change / preset apply максимальная скорость нарастания ограничена.
+
+#### 2. Визуальная плавность (без мерцания)
+
+- Главный приоритет: **отсутствие flickering и tearing**.
+- Только SPI DMA + double-buffering (или careful partial update + vsync-подобная синхронизация по готовности дисплея).
+- Все анимации (Volume Arc, Needle, Hydra particles, Gyre rotation, Veil, переходы тем, появление HUD) используют **motion tokens** (единые easing-кривые + duration).
+- Постоянный frame pacing (не «то 45, то 12 fps»).
+- При высокой нагрузке Quality Scaling снижает эффекты раньше, чем появляется мерцание или пропуски кадров.
+- Яркость, colormap transitions — тоже с crossfade.
+
+---
+
+### Что ещё я рекомендую добавить в v7.3 (высокий приоритет)
+
+Эти вещи сильно поднимают ощущение «дорогого умного устройства» и почти не стоят CPU:
+
+1. **Soft Bypass** всех DSP-блоков (не hard on/off) — с коротким crossfade.
+2. **Volume Ballistics** — разная скорость изменения громкости вверх/вниз + acceleration при быстром вращении энкодера (как у хороших интегральников).
+3. **Hearing & Speaker Protection**:
+   - Max volume ramp rate.
+   - При первом включении после долгого простоя — более длинный soft-start.
+   - Опциональный «Safe Volume» ceiling.
+4. **A/B Compare** везде, где возможно (Preset, Room, отдельные блоки) — с визуальным и звуковым индикатором.
+5. **Undo / History** последних 5–10 действий (особенно в PEQ и Room Studio).
+6. **Visual Load Meter** (маленький индикатор, насколько сейчас тяжёлый DSP + UI) — для гиков в Diagnostics и Advanced.
+7. **Adaptive Dim + Auto-Visual** (уже почти есть) + «Cinema Mode» (минимум UI, максимум visual + приглушённый свет).
+
+Этого достаточно, чтобы закрыть 95 % «флагманских» ощущений.
+
+---
+
+**Всё выше фиксируем.**
+
+Теперь у меня есть полное основание для финальной части.  
+
+**Сейчас выдаю Часть 3/3** — уже с учётом:
+- Dual PEQ (Room 16 + Creative 12)
+- Полной системы плавности (аудио + визуал)
+- Всех предыдущих visualizers + Neon Thin
+- Остальных пунктов из Comments
+- Схемами
+
+---
+
+# MASTER SPEC ADDENDUM v7.3 — Часть 3/3 (финальная)  
+## Visual Style Pack, Smoothness System, Volume HUD, Network, Onboarding, Diagnostics, Insertion Checklist
+
+### 13. Система плавности (Flagship Smoothness System) — новый подраздел
+
+**Аудио:**
+- Единый `GainSmoother` используется для: Volume, Mute/Unmute, Source switch, Block Bypass, AETHER Dry/Wet, Preset/Room transitions, Limiter makeup.
+- Soft Unmute: ramp 100–800 мс (default 400 мс) от –∞ к target volume по raised-cosine.
+- Soft Mute: 80–150 мс.
+- Все biquad-коэффициенты и continuous-параметры — с ramping (минимум 5–10 мс).
+- Запрещены любые мгновенные изменения gain в audio path.
+
+**Визуал:**
+- Запрещено мерцание (flickering) и tearing.
+- Только DMA SPI + double buffer / tear-free partial update.
+- Все motion — через AURA Motion Tokens (duration + easing).
+- Frame pacing с приоритетом стабильности над пиковым FPS.
+- Quality Scaling срабатывает превентивно.
+
+### 14. Fullscreen Visual Style Pack (полный)
+
+Все стили поддерживают Quality Scaling, theme colormap, motion tokens, 20–30 Гц target, dirty-rect.
+
+**Основные (наши + из Comments):**
+
+1. **AURA Gyre** — вращающийся радиальный спектр (образец pin.it/6rexP5pTg).
+2. **AURA Veil** — ethereal fluid/magic aura (pin.it/KJa0Y3f8r).
+3. **OscilloAether** — гибрид осциллограф + спектр (pin.it/46QMjiLsa).
+4. **Hydra Flux** — восходящие частицы-головастики с хвостами, хаос от FFT (уточнённая концепция + pin.it/5i7yFQSJG как mood).
+5. **AURA Needle** — аналоговый стрелочный VU/PPM с ballistics + asset-фон.
+6. **Neon Thin Spectrum** (новый сильный) — очень тонкие яркие неон-бары / линии с glow, тёмный фон, высокий контраст (образец pin.it/7Drdm2Lkr и аналоги). Отлично смотрится на AMOLED-подобных и обычных IPS.
+7. **Vintage LED Matrix** — пиксельная/матричная эстетика (как старые спектральные анализаторы).
+8. **Classic Bars** (толстые/тонкие, mirrored, peak-hold).
+9. **Waterfall / Spectrogram** (уже был, hw-scroll).
+10. **Particles / Energy Field** (более абстрактный рой).
+11. **Waveform Landscape** + reflection.
+12. **Minimal HUD** (только важные meters + time + source).
+
+**Дополнительно (по желанию в v7.3/v7.4):**  
+Radial Waterfall, Mirror Spectrum, Frequency Rings, Beat Reactive Bloom.
+
+Каждый стиль имеет:
+- 3 уровня Quality (High/Med/Low)
+- Привязку к RGB-кольцу (опционально)
+- Возможность быть виджетом на HOME
+
+**Hydra Flux** (напоминание ключевых параметров):  
+spawn_rate, lift, chaos, trail_length, thickness от energy/bass/centroid/flux/attack.  
+Max particles 50/100/180.  
+Trail 7/10/14.
+
+**AURA Needle**: asset + software needle + dual peak + ballistics.
+
+### 15. Volume Right Arc + dB (финально)
+
+- Выезжает справа.
+- Форма: плавный полукруглый/секторный arc от нижнего правого до верхнего правого угла.
+- Крупное значение в dB (обязательно, шрифт большой, читаемый).
+- Плавная анимация появления/исчезновения + volume ballistics.
+- Цвет и glow зависят от уровня и темы.
+- Исчезает по таймауту (1.5–3 с) или тапу/жесту.
+
+### 16. Network Control (подтверждение)
+
+- **Primary**: через yoRadio (расширение UART-команд + форвардинг на S2).
+- **Secondary**: лёгкий MQTT/WebSocket на S2 (optional).
+- Никакого конфликта с ESP32-S3 yoRadio.
+
+### 17. Onboarding, Backup, Diagnostics (кратко)
+
+- First Boot Wizard: язык → калибровка энкодера/экрана → выбор Room profile → демо visualizers → Safe Volume.
+- Backup/Restore: NVS + presets + IR + themes на USB-CDC или Ext Flash / yoRadio.
+- Diagnostics: расширенный (включая Ext Flash JEDEC, DSP Load, Particle count, Softness status, pin bring-up results).
+
+### 18. Non-Goals, Storage, SPI DMA, AMP FAULT, Pinmap — уже зафиксированы в Части 1 (без изменений).
+
+### 19. Итоговый чеклист вставки в MASTER SPEC
+
+Обязательно добавить/обновить разделы:
+- [ ] Dual PEQ architecture + signal flow diagram
+- [ ] RoomPEQ ≤16 + CreativePEQ 12 + Tone
+- [ ] Soft Unmute / GainSmoother rules (время, кривая)
+- [ ] Visual Smoothness (no flicker, DMA only, motion tokens)
+- [ ] Full Visual Style Pack (12 стилей) + описания + Pinterest references
+- [ ] Preset Library ≥32 с desc/tags/allow_mask
+- [ ] Room Studio 3-level UX
+- [ ] PEQ Editor live-curve
+- [ ] Volume Right Arc
+- [ ] Ext Flash pins 10/11/12/13 + any vendor
+- [ ] Network primary via yoRadio
+- [ ] Non-Goals
+- [ ] Storage migration note
+- [ ] AMP FAULT explicit reject
+- [ ] Pinmap verification mandatory
+- [ ] Load Profiles
+
+---
+
+**Всё. Addendum v7.3 полностью готов** (Части 1+2+3).
+
+Он максимально подробный, со схемами, объяснениями «почему», data models, UX-wireframes в ASCII, привязкой к твоим Pinterest и всеми замечаниями из файла Comments.
+
+**Что дальше, ин ша Аллах?**
+
+1. Я могу выдать **единый цельный файл** (все 3 части вместе) красиво отформатированный для копирования в GitHub.
+2. Могу сделать краткую версию «только изменения» (diff-style).
+3. Могу начать писать конкретные структуры данных / псевдокод GainSmoother + Dual PEQ merge + Hydra Flux.
+4. Или сперва ты вставляешь текущее в репозиторий и мы правим по факту.
+
+Скажи, как удобнее продолжить, и я сразу сделаю.  
+
+Всё реально, всё сбалансировано, всё флагмански. Двигаем!
+
+АльхамдулиЛях, спасибо. Да, чуть позже можно будет сделать один единый цельный файл (все три части с изменениями). Но сначала Вот что: я хочу ещё усовершенствовать наше Ё-радио мод Maleksm добавив туда функцию проигрывания USB flash, дополнить UART новыми командами и функциями, например взять из её web интерфейса функции плавной перемотки по треку и визуализации прогресса проигрывания трека в режимах sd кард и будущего usb flash, и другие полезные для нас фичи чтобы дополнить ощущение флагмана. Если инфу (или команду при удержании кнопки перемотки) о прогрессе проигрывания трека и перемотки по прогрессу трека давать по уарт - то справится ли потом ат32 с общим уартом на ui чтобы передавать ещё и fft для спектроанализатора или будет перегруз и команды/инфа будет тормозить/тротлить друг друга и соответственно лучше отказаться от затеи шкалы прогресса трека и перемотки?
+
+**АльхамдулиЛлях, отличный вопрос — очень по делу.**  
+
+Я тщательно проанализировал архитектуру (yoRadio S3 ↔ UART ↔ AT32 ↔ UART ↔ ESP32-S2), типичные baud rates из спеки (460800/921600), объёмы данных SPEC, возможности ESP32-audioI2S (и Maleksm-модов), нагрузку на Cortex-M4F AT32 и реальные практики.
+
+### Короткий вердикт
+
+**Нет, отказываться от шкалы прогресса и плавной перемотки не нужно.**  
+AT32 **спокойно справится** с общим UART на UI, даже если одновременно гонять:
+- SPEC/FFT данные (16/32 бина) на 20–30 Гц,
+- прогресс трека,
+- команды seek/перемотки при удержании кнопки,
+- метаданные, статус, RATE/MUTE и т.д.
+
+Перегруза, троттлинга или взаимного торможения при правильном дизайне протокола **не будет**.
+
+### Почему это безопасно (расчёт нагрузки)
+
+**SPEC данные (самые «тяжёлые»):**
+- 32 бина × 2 байта = 64 байта + заголовок/CRC ≈ 80–120 байт на кадр.
+- При 25–30 Гц → **2.5–4 КБ/с**.
+
+**Прогресс трека:**
+- current_ms + duration_ms + state (playing/paused/seeking) + track_id ≈ 12–20 байт.
+- Даже каждые 100–200 мс → **0.1–0.2 КБ/с**.
+- При удержании перемотки можно слать чаще (5–10 Гц) — всё равно копейки.
+
+**Команды seek:**
+- Короткие (`seek +5`, `seek 123456` ms, `seek_rel +3000` и т.п.) — единицы-десятки байт.
+- При удержании кнопки ограничиваем rate (например, не чаще 15–20 раз в секунду) + делаем ускоряющуюся перемотку (x2 → x4 → x8 → x16).
+
+**Суммарно** даже в пике (SPEC 30 Гц + progress 10 Гц + seek 15 Гц + метаданные) — **менее 10–15 КБ/с**.  
+На 460800 бод это ~3–4 % утилизации канала, на 921600 — ещё меньше.  
+
+AT32 (M4F + DMA + ring-buffer + FreeRTOS/приоритеты) легко это переваривает. Главное — не делать блокирующий парсинг в audio-ISR и использовать:
+- DMA UART RX/TX,
+- отдельные очереди/приоритеты сообщений (SPEC — высокий, progress — средний, команды — по необходимости),
+- компактный бинарный или очень плотный текстовый протокол,
+- sequence number / msg_id для надёжности.
+
+В спеке уже заложен высокий baud и разделение доменов — это как раз под такие расширения.
+
+### Реализация на стороне yoRadio (Maleksm mod)
+
+**1. USB Flash playback**  
+- ESP32-S3 имеет USB-OTG Host.  
+- Можно добавить USB MSC (Mass Storage) + FatFS.  
+- ESP32-audioI2S в базовом виде больше заточен под SD/HTTP, но Maleksm-моды и форки уже активно дорабатывают локальное воспроизведение (FLAC, high-bitrate и т.д.).  
+- Реализуемо, но потребует работы: USB Host stack + интеграция в player + сканирование/плейлисты.  
+- Рекомендация: сначала довести идеально SD + progress/seek, потом USB как v1.1–v1.5 (с тем же API).
+
+**2. Прогресс + плавная перемотка (из web-интерфейса)**  
+В ESP32-audioI2S есть:
+- `getAudioCurrentTime()` / `getAudioFileDuration()`
+- `setAudioPlayPosition()` / `setAudioPlayTime()` (работают для локальных файлов, для некоторых форматов лучше/хуже)
+
+Нужно:
+- Периодически (или по изменению) слать на AT32:  
+  `PROGRESS <current_ms> <duration_ms> <state>`
+- Команды:  
+  `SEEK <ms>`  
+  `SEEK_REL <+/-ms>`  
+  `SEEK_PERCENT <0-1000>` (для точности)  
+  При удержании кнопки на UI/AT32 — генерировать серию SEEK_REL с ускорением.
+
+AT32 просто форвардит эти команды на yoRadio и транслирует PROGRESS на ESP32-S2 для красивой шкалы + времени + percent.
+
+**Плавность перемотки (флагмански):**
+- При hold — сначала медленно, потом ускоряется.
+- Визуально на UI: шкала двигается плавно + preview time.
+- Звук: при seek можно делать короткий soft-mute / crossfade или просто полагаться на библиотеку (многие делают небольшой gap — это нормально, главное без щелчков).
+
+### Рекомендуемый дизайн UART-расширения (чтобы точно не тормозило)
+
+Разделить типы сообщений:
+
+| Тип              | Направление       | Частота          | Приоритет | Пример |
+|------------------|-------------------|------------------|---------|--------|
+| SPEC / Meters    | AT32 → S2        | 20–30 Гц        | Высокий | Бинарный пакет |
+| PROGRESS         | yoRadio → AT32 → S2 | 2–10 Гц (или on-change) | Средний | `P 124500 243000 1` |
+| META (title/artist) | yoRadio → …    | on-change       | Средний | |
+| Commands (seek, play, etc.) | S2/AT32 → yoRadio | по событию     | Высокий (но rate-limited) | |
+| STATUS / RATE / MUTE | yoRadio → AT32 | on-change + periodic | Средний | |
+
+- Использовать **бинарный протокол** для high-rate (SPEC + progress) + текстовый/JSON-light для редких команд (как сейчас в yoRadio).
+- AT32 выступает умным хабом: парсит, валидирует, форвардит, добавляет свой timestamp/sequence.
+- При перегрузке (маловероятно) — Quality Scaling: снижать rate SPEC или progress.
+
+### Другие полезные флагманские фичи для yoRadio-мода (рекомендую добавить)
+
+- Полный progress + elapsed/remaining + progress bar на UI.
+- Плавная перемотка ± (с ускорением при hold).
+- ID3/метаданные (title, artist, album, year) → на UI и в AURA.
+- Next/Prev track + playlist position (x of y).
+- Shuffle / Repeat modes.
+- Быстрый jump по процентам или по главам (если есть).
+- Буфер/статус загрузки для сетевых, bitrate, format.
+- «Seek preview» (показывать время при перемотке).
+- Интеграция с нашими пресетами: при смене трека можно предлагать/запоминать пресет.
+- Volume sync и soft commands через тот же UART.
+- Расширенная диагностика (heap, SD/USB status, decode errors).
+
+Всё это отлично ложится в «primary control via yoRadio».
+
+### Итоговая рекомендация
+
+**Делаем:**
+1. Progress + визуализация шкалы + времени — обязательно (очень флагмански).
+2. Плавную/ускоряющуюся перемотку при hold — обязательно.
+3. Расширение UART-команд — да, аккуратно и с приоритетами.
+4. USB Flash — планируем, но после стабильного SD + progress (чтобы не расползтись).
+
+Риска перегруза AT32/UART на UI **нет**, если соблюдать rate-limiting и хороший framing. Это стандартная нагрузка для таких систем.
+
+---
+
+Хочешь — следующим шагом я подготовлю:
+- Конкретный список новых UART-команд (с форматами пакетов),
+- Рекомендуемую частоту и приоритизацию,
+- Как это будет выглядеть на UI (progress bar + time + seek feedback),
+- План внедрения в Maleksm-мод + изменения в AT32 и S2,
+- Или сразу кусок для Addendum v7.3 / отдельный раздел «yoRadio Extensions».
+
+Как двигаем дальше, брат? Готов углубиться в протокол или в USB-часть.
+
+Давай тогда тогда так: какие уарт команды/фичи нам пригодятся, что и для чего, полный план действий для переделки, включая USB flash
+
+**АльхамдулиЛлях.**  
+
+Ниже — полный, практичный и флагманский план.
+
+### 1. Какие UART-команды и фичи нам реально нужны
+
+Я разбил на категории.  
+**Направление:**  
+- `Y→A` = yoRadio → AT32 (статус/данные)  
+- `A→Y` = AT32 → yoRadio (команды управления)  
+- `A↔S2` = AT32 форвардит/добавляет своё на UI (S2)
+
+AT32 всегда выступает **умным хабом**: парсит, валидирует, rate-limit’ит, форвардит, добавляет sequence/timestamp, приоритизирует.
+
+#### A. Базовое управление воспроизведением (обязательно)
+| Команда | Направление | Назначение | Пример / формат |
+|---------|-------------|----------|-----------------|
+| `play` / `start` | A→Y | Старт | `play` или `play 5` (станция/трек) |
+| `stop` | A→Y | Стоп | `stop` |
+| `toggle` / `pause` | A→Y | Play/Pause | `toggle` |
+| `next` / `prev` | A→Y | След/пред трек или станция | `next` |
+| `mode` | A→Y | WEB / SD / USB | `mode sd` / `mode usb` / `mode web` |
+| `vol` / `vol+` / `vol-` / `vol X` | A→Y | Громкость (синхронизация) | `vol 180` |
+
+#### B. Прогресс + перемотка (ключевая флагманская фича)
+| Команда / сообщение | Направление | Назначение | Частота / примечание |
+|---------------------|-------------|----------|----------------------|
+| `PROGRESS` | Y→A→S2 | current_ms, duration_ms, state, percent | 2–5 Гц обычно, до 10 Гц при seek |
+| `SEEK <ms>` | A→Y | Абсолютная перемотка | По событию |
+| `SEEK_REL <+/-ms>` | A→Y | Относительная | При hold кнопки (с ускорением) |
+| `SEEK_PERCENT <0–1000>` | A→Y | По промилле (точнее) | Удобно для шкалы |
+| `SEEK_STOP` | A→Y | Отпустить перемотку | |
+
+**Поведение hold (флагмански):**  
+Короткое нажатие = ±5–15 сек.  
+Удержание = ускоряющаяся перемотка (x2 → x4 → x8 → x16) + live обновление шкалы и времени на UI.  
+При отпускании — плавный догон.
+
+#### C. Метаданные и информация о треке
+| Сообщение | Направление | Содержание |
+|---------|-------------|----------|
+| `META` | Y→A→S2 | title, artist, album, year, genre, bitrate, format, channels |
+| `TRACK` | Y→A→S2 | track_num / total_tracks, playlist_name, path (короткий) |
+| `INFO` | Y→A | Полный статус (расширение существующего `info`) |
+
+#### D. Плейлист / навигация по файлам (SD + USB)
+- `list` / `playlist` — список (пагинация)
+- `playfile <path_or_index>`
+- `cd <folder>`, `up`, `root`
+- `scan` (пересканировать носитель)
+- `shuffle on/off`, `repeat off/one/all`
+- `random`
+
+#### E. Источник, статус, ошибки, служебные
+- `SOURCE` / `MODE` status (WEB/SD/USB + state: playing/paused/stopped/error/buffering)
+- `RATE` / `MUTE` (уже есть в концепции — оставляем и усиливаем)
+- `STATUS` (heap, rssi, buffer, decode errors, fs free и т.д.)
+- `ERROR <code> <msg>`
+- `USB_STATUS` (mounted/ejected/error/size/fs)
+- `SD_STATUS`
+- `PING` / `PONG` + sequence для watchdog
+
+#### F. Интеграция с нашей системой (OMNIA)
+- `PRESET <id>` или `PRESET_NAME` — yoRadio может запрашивать/рекомендовать
+- `DSP_LOAD` / запрос текущего Load Profile
+- `SOFT_MUTE` / `SOFT_UNMUTE` (координация с GainSmoother на AT32)
+- `DOMAIN` (RADIO / BT401) — уже есть
+- Команды для визуализаций (если нужно что-то специфическое)
+
+#### G. Высокочастотные данные (уже планировались)
+- `SPEC` / meters (AT32 → S2) — 20–30 Гц, бинарный
+- `PROGRESS` — средний приоритет
+- Всё остальное — on-change + низкий rate
+
+**Рекомендуемый протокол:**  
+- Бинарные пакеты с заголовком (msg_id, len, seq, crc8/16) для SPEC + PROGRESS.  
+- Текстовые/CLI-подобные (как сейчас в yoRadio) для команд управления — проще отлаживать.  
+- Или единый лёгкий бинарный + human-readable debug mode.
+
+Baud: 460800 (минимум), лучше 921600.
+
+---
+
+### 2. Полный план действий по переделке (поэтапный)
+
+#### Этап 0. Подготовка (1–3 дня)
+- Форкнуть/взять текущий Maleksm-мод yoRadio.
+- Зафиксировать текущий UART-протокол между yoRadio ↔ AT32 (что уже работает).
+- Определить финальный baud, framing, buffer sizes, приоритеты FreeRTOS задач.
+- Добавить в AT32 кольцевые буферы + DMA UART + очереди сообщений по приоритетам.
+- Документировать протокол в `docs/uart_protocol_v1.md` (или в MASTER SPEC).
+
+#### Этап 1. Прогресс + Seek на SD (самый высокий приоритет, быстрая победа)
+1. В yoRadio (ESP32-audioI2S):
+   - Периодически (или по таймеру/изменению) читать `getAudioCurrentTime()` + `getAudioFileDuration()`.
+   - Слать `PROGRESS` пакет.
+   - Реализовать обработку `SEEK`, `SEEK_REL`, `SEEK_PERCENT` через `setAudioPlayPosition` / `setAudioPlayTime` / position.
+2. В AT32:
+   - Принимать PROGRESS → форвардить на S2 + хранить last known.
+   - Принимать команды seek от S2/UI → форвардить на yoRadio.
+   - Rate-limit seek при hold.
+3. В ESP32-S2 (AURA):
+   - Красивая progress bar + elapsed / remaining / total time.
+   - Seek bar с preview при перемотке.
+   - Плавная анимация + haptic/visual feedback при hold.
+4. Тесты: разные форматы (MP3, FLAC, AAC, WAV), длинные треки, быстрый seek туда-сюда, hold acceleration.
+5. Soft-mute на время тяжёлого seek (опционально, через AT32).
+
+**Результат этапа:** полноценная флагманская перемотка и шкала на SD.
+
+#### Этап 2. Метаданные + плейлист + расширенный статус
+- Парсинг ID3 / метаданных → `META` + `TRACK`.
+- Отображение title/artist на UI + в визуализациях (если нужно).
+- Next/Prev, Shuffle, Repeat, position in playlist.
+- Обработка ошибок декодирования, buffering и т.д.
+- Красивые карточки источника + «Now Playing».
+
+#### Этап 3. USB Flash Playback (полноценный)
+**Аппаратно:**  
+На ESP32-S3 уже есть USB-OTG. Нужен разъём USB-A female (или Type-C с OTG) + питание (внешнее 5V желательно для нормальных флешек).
+
+**Программно (рекомендуемый путь — ESP-IDF стиль или Arduino-ESP32 + USB Host):**
+1. Включить USB Host MSC.
+2. Монтировать FatFS (поддержка FAT32, exFAT по возможности).
+3. Сканирование папок/файлов (рекурсивно или по выбранной папке, фильтр по расширениям: mp3, flac, aac, wav, opus и т.д.).
+4. Интеграция с audio-библиотекой: открывать файл с USB так же, как с SD (через VFS/FatFS).
+5. Те же команды `PROGRESS` / `SEEK` / `META` / `next` / `prev` должны работать идентично SD.
+6. Hot-plug: detect mount/eject, безопасный unmount, сообщение на UI.
+7. Плейлисты, папки, «USB root», избранное.
+
+**Сложности, которые заложим:**
+- Некоторые флешки просят больше тока → питание.
+- Скорость чтения (особенно FLAC high-res) — буферизация.
+- Длинные пути и кириллица — UTF-8 поддержка.
+- Одновременная работа SD + USB (переключение источника).
+
+**Порядок внутри этапа 3:**  
+Сначала простое воспроизведение файла с USB → progress/seek → полный браузер файлов → hotplug → полировка.
+
+#### Этап 4. Глубокая интеграция с OMNIA / AT32 / S2
+- При смене трека/источника — автоматический soft transition + возможность auto-preset.
+- Синхронизация громкости и mute.
+- Передача bitrate, sample rate, format на UI и в DSP (для info и возможной адаптации).
+- Расширенная диагностика (USB/SD status в Service Menu).
+- Команды для управления пресетами/Room с телефона через yoRadio web/MQTT (раз уж primary control через него).
+
+#### Этап 5. Полировка и флагманский UX
+- Ускоряющаяся перемотка + tactile feel.
+- Красивая анимация progress + glow при seek.
+- «Now Playing» полноэкранный режим + mini-player.
+- История последних треков.
+- Быстрые жесты/кнопки (long-press next = folder next и т.д.).
+- Backup плейлистов, избранное.
+- Тесты на устойчивость (выдернул флешку во время play, длинный seek, куча файлов, кириллица, 2000+ треков).
+
+#### Этап 6. Документация + Addendum
+- Полный UART Protocol Specification.
+- Обновление MASTER SPEC (раздел Source Matrix + yoRadio Extensions + USB).
+- Примеры пакетов, state machine, error codes.
+- Тест-кейсы.
+
+---
+
+### Рекомендуемые приоритеты внедрения
+
+1. **Сейчас (высокий ROI):** Progress + Seek + Meta на существующем SD + красивая шкала на UI.  
+2. Расширение команд управления и статуса.  
+3. USB Flash (после того, как SD-часть станет идеальной).  
+4. Глубокая интеграция с пресетами/AETHER/Room.  
+5. Дополнительные «вау» (shuffle smart, folder art если будет, и т.д.).
+
+---
+
+**Хочешь, я сразу сделаю следующий конкретный артефакт?**
+
+- Полную таблицу UART-протокола (все сообщения + бинарный layout + текстовые алиасы).  
+- State machine источника (WEB/SD/USB).  
+- Псевдокод hold-to-seek с ускорением.  
+- Список изменений по файлам в Maleksm-моде.  
+- Или раздел для MASTER SPEC «yoRadio & USB Extensions».
+
+Скажи, с чего начать детализацию, и я сделаю максимально готовый к внедрению текст.  
+
+Двигаем флагмански, ин ша Аллах!
+
+Screen of..., Sd card..., uart - вот мои выдержки по поведению уарта в действующий режимах Ё-радио из репо:
+https://github.com/ChillPulse/Info-spravka/tree/main
+Замечания по твоим командам: ты говоришь быстрое нажатие и холд для перемотки внутри трека, а тогда как переключать между треками? Я уже подпаялся к выводам под USB в нашем esp32-s3 пины 20 и 19, обеспечил отдельное мощное питание, самовосстановливающийся предохранитель на 0.75А 6 вольт, конденсаторы прямо на разъёме юсб мама. Это всё потому, что оказывается, если не ошибаюсь, имеющиеся на модуле usb-c разъемы могут работать только а одном направлении, то есть не подойдут чтобы просто взять USB отг шнур и соединить юсб флешку. И думаю, сначала полностью подготовить Ё-радио, контролируя результат в уарт и на слух, а уже потом готовый модуль интегрировать в проект омниа. Пока Ё-радио следенино с stm32f401rct6 - исходная рабочая связка которая раньше служила для внедрения пин рейт и мьют, а сейчас будет служить только для полной модернизации нашего радио. И ещё, модуль Bt401 будет давать нам Bluetooth и usb audio pc/android
+
+**АльхамдулиЛлях.** Я внимательно изучил твои выдержки:
+
+- `UART` — текущий CLI на 115200 (mode 0/1/2, prev/next/toggle/stop/play/vol/list/info и т.д., плюс ##CLI.* и ##AUDIO.* сообщения).
+- `SD Card playback screen` и `Screen of station playback` — реальные логи с ID3, Duration, BitRate, SampleRate, META-обновлениями, переключением треков.
+- `commandhandler.cpp` + куски `player.cpp` — уже есть `sdpos`, `snuffle`, resume position, getFilePos, syncRateToStmPins, connecttoFS с позицией.
+- Audio-библиотека поддерживает duration, current time, file seek / position.
+
+Всё это — отличная база.
+
+### 1. Исправление по управлению (Next/Prev vs Seek)
+
+Ты прав — нельзя забирать short/hold только под seek.
+
+**Рекомендуемая флагманская схема (стандарт многих хороших плееров и автомагнитол):**
+
+**Физические кнопки / энкодер (будущий UI и текущий тест со STM32):**
+- **Short press Next** → следующий трек (или станция)
+- **Short press Prev** → предыдущий трек (или если прошло > 3–5 сек текущего трека — перезапуск текущего)
+- **Hold / Long press Next** → перемотка вперёд внутри трека (с ускорением: 2x → 4x → 8x → 16x)
+- **Hold / Long press Prev** → перемотка назад внутри трека (с ускорением)
+- **Encoder rotation** → громкость (основной режим)
+- **Encoder button short** → Play/Pause
+- **Encoder button long** → Source / Context menu / Seek mode (опционально)
+
+При hold-перемотке:
+- На UI (и в логах) сразу показывается live-прогресс + время.
+- По отпускании — точный seek + небольшой soft-transition если нужно.
+
+**По UART/CLI** (для теста и будущего AT32):
+- `next` / `prev` — смена трека (как сейчас)
+- `seek <ms>` / `seek_rel <+/-ms>` / `seek_percent <0-1000>` — перемотка внутри
+- `seek_start +` / `seek_start -` + `seek_stop` — для эмуляции hold с ускорением
+
+Это чисто разделяет функции и очень удобно.
+
+### 2. Аппаратная часть USB — отлично
+
+Ты всё сделал правильно:
+- Отдельные пины 19/20 на ESP32-S3 под USB Host.
+- Внешнее мощное питание + самовосстанавливающийся предохранитель 0.75А + конденсаторы на разъёме.
+- Onboard USB-C действительно обычно только Device, поэтому Host через GPIO + external USB-A — правильный и надёжный путь.
+
+BT401 остаётся источником Bluetooth + USB Audio (PC/Android) — это отдельно, в другом домене.
+
+### 3. Стратегия разработки (принимаю полностью)
+
+**Да, именно так и делаем:**
+
+1. Полностью модернизируем **Ё-радио (Maleksm)** в standalone-режиме.
+2. Сейчас оно работает в связке со **STM32F401RCT6** (старая UI) — используем её только как тестовый стенд для UART-команд, rate/mute пинов и прослушивания.
+3. Все новые фичи (progress, seek, USB Flash, расширенный статус, метаданные и т.д.) доводим до идеала, контролируя:
+   - Логи UART (Serial 115200)
+   - Поведение на слух
+   - Стабильность (выдергивание флешки, длинные seek, кириллица, разные форматы, heap)
+4. Только когда Ё-радио станет полностью готовым и отполированным модулем — интегрируем его в OMNIA (заменяем/стыкуем с AT32 v·core + ESP32-S2 AURA).
+
+Это самый правильный и безопасный путь.
+
+### 4. Какие UART-команды/фичи нам нужны (обновлённый список под текущий CLI)
+
+Сохраняем полную обратную совместимость с существующим CLI + добавляем.
+
+**Управление воспроизведением (расширение):**
+- `next`, `prev`, `toggle`, `stop`, `start`/`play`, `play <n>` — оставить как есть
+- `mode 0/1/2` + новый `mode usb` (или mode 3)
+- `vol`, `vol+`, `vol-`, `vol <x>`
+
+**Прогресс и перемотка (новое, ключевое):**
+- Исходящее (Y→STM/AT32):  
+  `##PROGRESS#: <current_ms> <duration_ms> <state> <percent_x10>`  
+  (state: 0=stop, 1=play, 2=pause, 3=seeking)  
+  Частота: 2–5 Гц обычно, до 10 Гц во время seek.
+- Входящие:  
+  `seek <ms>`  
+  `seek_rel <+/-ms>`  
+  `seek_percent <0-1000>`  
+  `sdpos <pos>` (уже почти есть — усилить)  
+  `seek_start +` / `seek_start -` + `seek_stop` (для hold)
+
+**Метаданные и Now Playing:**
+- Усилить существующие `##CLI.META#`, `##CLI.NAMESET#`, `##AUDIO.ID3#`
+- Добавить структурировано:  
+  `##META#: title=...;artist=...;album=...;year=...;bitrate=...;fmt=...;sr=...`
+
+**USB / SD статус:**
+- `##USB.STATUS#: mounted/ejected/error size=... fs=...`
+- `##SD.STATUS#: ...`
+- `usb_scan`, `usb_list`, `usb_play <path/index>` и т.д. (по аналогии с SD)
+
+**Плейлист / навигация:**
+- `list`, `play <n>`, shuffle/repeat уже частично есть — довести до ума + папки.
+
+**Служебные для OMNIA (на будущее):**
+- `rate` / уведомление о sample rate (уже есть через пин + можно дублировать по UART)
+- `mute` / `softmute`
+- `status` (расширенный info)
+- `ping` / sequence для watchdog
+
+Протокол оставляем текстовым CLI-style (как сейчас) + для high-rate (PROGRESS + будущий SPEC) можно добавить компактный бинарный или просто частые короткие строки. На 115200 пока хватит, позже поднимем до 460800/921600 при интеграции с AT32.
+
+### 5. Полный план действий (поэтапный, с приоритетами)
+
+**Этап 0. Подготовка (сейчас)**
+- Зафиксировать текущий протокол (ты уже выложил).
+- Поднять baud в перспективе, но пока работаем на 115200.
+- Добавить в player/Audio удобные обёртки: `getCurrentTimeMs()`, `getDurationMs()`, `seekToMs()`, `seekRelative()`.
+
+**Этап 1. Progress + Seek на SD (самый высокий приоритет)**
+1. Периодическая отправка `##PROGRESS#:` 
+2. Обработка `seek` / `seek_rel` / `seek_percent` / усиление `sdpos`
+3. Hold-эмуляция с ускорением
+4. Тесты на STM32-стенде + слух + логи
+5. Красивое отображение (пока хотя бы в Serial, потом на дисплее Ё-радио)
+
+**Этап 2. Метаданные, плейлист, shuffle/repeat, ошибки**
+- Полный Now Playing
+- Надёжный next/prev + folder navigation
+- Обработка конца трека, ошибок декодера и т.д.
+
+**Этап 3. USB Flash Playback**
+- USB Host MSC на GPIO 19/20
+- FatFS mount, hot-plug detect
+- Тот же API, что и SD (`mode usb`, list, play, progress, seek, meta)
+- Питание и предохранитель уже готовы — тестируем разные флешки
+- Кириллица, длинные пути, exFAT/FAT32, FLAC/MP3/AAC/WAV
+
+**Этап 4. Полировка Ё-радио**
+- Стабильность, heap monitoring, красивые логи
+- Web-интерфейс тоже обновить под progress/seek/USB (раз уж он есть)
+- Документация новых команд
+
+**Этап 5. Интеграция в OMNIA**
+- Замена/стыковка с AT32 (высокий baud, бинарный SPEC + PROGRESS, rate/mute handshake)
+- Форвардинг на ESP32-S2
+- Primary control через yoRadio
+
+---
+
+**Следующий конкретный шаг, который я предлагаю:**
+
+Я прямо сейчас могу подготовить:
+
+1. Точный список новых/изменённых CLI-команд и форматов сообщений (с примерами).
+2. Рекомендуемую реализацию progress + seek (куда вставлять в player.cpp / Audio / loop).
+3. Схему hold-to-seek с ускорением.
+4. План по USB Host (какие библиотеки/компоненты ESP-IDF/Arduino лучше взять).
+
+Скажи, с чего начать в первую очередь (команды + progress/seek, или сразу USB-исследование, или полный документ «yoRadio Modernization Spec»), и я сделаю максимально готовый к копированию текст.  
+
+Всё идёт правильно. Двигаем.
+
+Нужно добавить ещё команду перемешать с повтором и без. Кстати насколько помню, с перемешиванием не проигрывался один трек, глянь в оригинальный код на официальной странице Ё-радио, нужно избавиться от этой ошибки, а ещё вроде сд режим не может якобы работать без вай фай, проверь и это наверное тоже необходимо будет исправить грамотно
+
+
+
+Какой из четырёх делаем первым или все в концепт? Могу также предложить названия в стиле OMNIA (типа **AURA Radial**, **Hydra Bloom**, **OscilloAether** и т.д.).
