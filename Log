@@ -1234,3 +1234,6 @@ Waiting for SD card indexing...	done
 ##AUDIO.INFO#: BitRate: 169892
 ##AUDIO.BITRATE#: 169892
 ##AUDIO.INFO#: stream ready
+##SEEK#: absolute 60000 ms
+> ##USB.SCAN#: start
+##USB.LIST#: path=/ (TODO scan FAT)
