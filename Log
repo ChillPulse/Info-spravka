@@ -1,23 +1,1236 @@
-Архивирование откомпилированного ядра (кэширование) в: C:\Users\braza\AppData\Local\Temp\arduino_cache_328243\core\core_3a5ee4e5b7daeb49913d1cd37fb1978d.a
-cmd /c type nul > "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606/file_opts"
-Linking everything together...
-"C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp-x32\\2411/bin/xtensa-esp32s3-elf-g++" "-Wl,--Map=C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606/yoRadio.ino.map" "-LC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/lib" "-LC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/ld" "-LC:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/qio_opi" -Wl,--wrap=esp_panic_handler "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/ld_flags" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/ld_scripts" -Wl,--start-group "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\yoRadio.ino.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\fonts\\yofont10x14.c.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\fonts\\yofont5x7.c.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\Adafruit_GC9106Ex\\Adafruit_GC9106Ex.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\Adafruit_GC9A01A\\Adafruit_GC9A01A.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\Adafruit_ST7796S\\Adafruit_ST7796S_kbv.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\AsyncEventSource.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\AsyncTCP.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\AsyncWebSocket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\SPIFFSEditor.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\WebAuthentication.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\WebHandlers.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\WebRequest.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\WebResponses.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\AsyncWebServer\\WebServer.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\GT911_Touchscreen\\TAMC_GT911.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\ILI9225Fix\\TFT_22_ILI9225Fix.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\ILI9488\\ILI9486_SPI.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\IRac.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\IRrecv.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\IRsend.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\IRtext.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\IRtimer.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\IRutils.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_NEC.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_Panasonic.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_Samsung.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_Sanyo.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_Sharp.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_Sony.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_Tcl.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\IRremoteESP8266\\ir_Toshiba.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\LiquidCrystalI2C\\LiquidCrystalI2CEx.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\OneButton\\OneButton.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\SSD1322\\SSD1322.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\ST7920\\ST7920.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\ConnAckPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\Connect.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\Disconn.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\OutPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\PingReq.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\PubAck.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\Publish.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\Subscribe.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\Out\\Unsubscribe.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\PingRespPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\PubAckPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\PubCompPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\PubRecPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\PubRelPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\PublishPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\SubAckPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\async-mqtt-client\\AsyncMqttClient\\Packets\\UnsubAckPacket.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\Audio.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\aac_decoder\\aac_decoder.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\aac_decoder\\libfaad\\neaacdec.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\flac_decoder\\flac_decoder.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\mp3_decoder\\mp3_decoder.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\opus_decoder\\celt.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\opus_decoder\\opus_decoder.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\opus_decoder\\silk.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioI2S\\vorbis_decoder\\vorbis_decoder.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\audioVS1053\\audioVS1053Ex.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\commandhandler.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\config.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\controls.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\display.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\mqtt.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\netserver.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\network.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\omniaplus\\cli_extensions.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\omniaplus\\progress.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\omniaplus\\seek.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\omniaplus\\shuffle_fix.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\omniaplus\\usb_host.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\player.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\rtcsupport.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\sdmanager.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\telnet.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\core\\touchscreen.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayGC9106.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayGC9A01A.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayILI9225.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayILI9341.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayILI9488.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayLC1602.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayN5110.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displaySH1106.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displaySSD1305.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displaySSD1306.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displaySSD1322.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displaySSD1327.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayST7735.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayST7789.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayST7796.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\displayST7920.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\nextion.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\widgets\\pages.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\displays\\widgets\\widgets.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\main.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\pluginsManager\\pluginsManager.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\sketch\\src\\yoEncoder\\yoEncoder.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\FS\\FS.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\FS\\vfs_api.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\AP.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\STA.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\WiFi.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\WiFiAP.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\WiFiGeneric.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\WiFiMulti.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\WiFiSTA.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\WiFi\\WiFiScan.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Network\\NetworkClient.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Network\\NetworkEvents.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Network\\NetworkInterface.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Network\\NetworkManager.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Network\\NetworkServer.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Network\\NetworkUdp.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Wire\\Wire.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Ticker\\Ticker.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\SPI\\SPI.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\SPIFFS\\SPIFFS.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\EEPROM\\EEPROM.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\SD\\sd_diskio_crc.c.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\SD\\SD.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\SD\\sd_diskio.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\FFat\\FFat.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\NetworkClientSecure\\NetworkClientSecure.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\NetworkClientSecure\\ssl_client.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Update\\HttpsOTAUpdate.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\Update\\Updater.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\libraries\\ESPmDNS\\ESPmDNS.cpp.o" "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606\\core\\core.a" "@C:\\Users\\braza\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\esp32-arduino-libs\\idf-release_v5.5-b66b5448-v1\\esp32s3/flags/ld_libs" -Wl,--end-group -Wl,-EL -o "C:\\Users\\braza\\AppData\\Local\\Temp\\arduino_build_617606/yoRadio.ino.elf"
-C:/Users/braza/AppData/Local/Arduino15/packages/esp32/tools/esp-x32/2411/bin/../lib/gcc/xtensa-esp-elf/14.2.0/../../../../xtensa-esp-elf/bin/ld.exe: C:\Users\braza\AppData\Local\Temp\arduino_build_617606\sketch\src\core\config.cpp.o:(.literal._ZN6Config10setSnuffleEb+0x0): undefined reference to `omnia_shuffle_set(int)'
-C:/Users/braza/AppData/Local/Arduino15/packages/esp32/tools/esp-x32/2411/bin/../lib/gcc/xtensa-esp-elf/14.2.0/../../../../xtensa-esp-elf/bin/ld.exe: C:\Users\braza\AppData\Local\Temp\arduino_build_617606\sketch\src\core\config.cpp.o: in function `Config::setSnuffle(bool)':
-C:\Youradio_Omnia_ESP32S3\yoRadio\src\core/config.cpp:568:(.text._ZN6Config10setSnuffleEb+0x15): undefined reference to `omnia_shuffle_set(int)'
-collect2.exe: error: ld returned 1 exit status
-Используем библиотеку FS версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\FS 
-Используем библиотеку WiFi версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\WiFi 
-Используем библиотеку Network версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Network 
-Используем библиотеку Wire версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Wire 
-Используем библиотеку Ticker версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Ticker 
-Используем библиотеку SPI версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\SPI 
-Используем библиотеку SPIFFS версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\SPIFFS 
-Используем библиотеку EEPROM версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\EEPROM 
-Используем библиотеку SD версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\SD 
-Используем библиотеку FFat версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\FFat 
-Используем библиотеку NetworkClientSecure версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\NetworkClientSecure 
-Используем библиотеку Update версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\Update 
-Используем библиотеку ESPmDNS версии 3.3.0 из папки: C:\Users\braza\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.0\libraries\ESPmDNS 
-exit status 1
-Ошибка компиляции для платы ESP32S3 Dev Module.
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1180
+load:0x403c8700,len:0xc2c
+load:0x403cb700,len:0x311c
+entry 0x403c88b8
+##[BOOT]#	************************************************
+##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.3.0
+##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+##[BOOT]#	ir:		NONE
+##[BOOT]#	SD:		CS-39
+##[BOOT]#	battery:	battery ON
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+##USB.STATUS#: init 5V power check polyfuse 0.75A
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+##[BOOT]#	....
+##[BOOT]#	done
+##[BOOT]#	SD search	done
+##[BOOT]#	netserver.begin	done
+##[BOOT]#	telnet.begin	done
+##[BOOT]#
+##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+##CLI.META#: [готов]
+##CLI.META#: [соединение]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 177116 bytes
+##AUDIO.INFO#: connect to: "radiorecord.hostingradio.ru" on port 443 path "/chil96.aacp"
+##AUDIO.INFO#: SSL has been established in 1298 ms
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: icy-genre: Dance
+##AUDIO.INFO#: icy-name: Record Chillout
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.META#: Record Chillout
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 1970-01-01T03:00:04+03:00
+##CLI.NAMESET#: 198 RR Chill-Out
+##CLI.META#: Record Chillout
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: Record Chillout
+##CLI.META#: ANFIELD - Places We've Never Been
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 90267
+##AUDIO.BITRATE#: 90267
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+SD Mounted
+Waiting for SD card indexing...	done
+##ERROR#:	audio is not a file
+##ERROR#:	audio is not a file
+##AUDIO.INFO#: Closing web file "https://radiorecord.hostingradio.ru:443/chil96.aacp"
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##CLI.META#: audio is not a file
+##CLI.META#: [next track]
+##CLI.VOL#: 52
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/sistemsboy - Моя звезда (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6201117
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:39:11+03:00
+##CLI.NAMESET#: 8 sistemsboy - Моя звезда (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.76.100
+##AUDIO.INFO#: Audio-Length: 6201072
+##AUDIO.INFO#: frames 12178
+##AUDIO.INFO#: bytes 6201072
+##AUDIO.INFO#: Duration: 292 (s)
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:39:12+03:00
+##CLI.NAMESET#: 8 sistemsboy - Моя звезда (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:39:12+03:00
+##CLI.NAMESET#: 8 sistemsboy - Моя звезда (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+#CLI.LIST# SD files
+#CLI.LISTNUM#:   1: SD track 0
+#CLI.LISTNUM#:   2: SD track 1070513208
+#CLI.LISTNUM#:   3: SD track 1070513228
+#CLI.LISTNUM#:   4: SD track 1070513228
+#CLI.LISTNUM#:   5: SD track 1070513228
+#CLI.LISTNUM#:   6: SD track 1070513228
+#CLI.LISTNUM#:   7: SD track 1070513228
+#CLI.LISTNUM#:   8: SD track 1070513228
+#CLI.LISTNUM#:   9: SD track 1070513228
+#CLI.LISTNUM#:  10: SD track 1070513228
+##CLI.LIST#
+> ##OMNIA.STATUS#: mode=SD shuffle=OFF repeat=OFF total=10 cur=8
+##SD.STATUS#: shuffle=OFF repeat=OFF
+##PROGRESS#: cur/dur via WebUI sdpos/sdtpos — open WebUI for bar
+> ##SHUFFLE#: OFF (sdsnuffle=0) — normal order
+> ##AUDIO.INFO#: Closing audio file "sistemsboy - Моя звезда (promodj.com).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176436 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:44:04+03:00
+##CLI.NAMESET#: 9 sistemsboy - Моя звезда (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176436 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/drama - dark rain (hitmos.fm).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 7299422
+##AUDIO.INFO#: ID3 framesSize: 55145
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:44:04+03:00
+##CLI.NAMESET#: 9 drama - dark rain (hitmos.fm).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: Year: 2022
+##AUDIO.ID3#: ContentType: soul
+##AUDIO.ID3#: Track: 2
+##CLI.META#: Dark Rain
+##AUDIO.ID3#: Title: Dark Rain
+##AUDIO.ID3#: Artist: DRAMA
+##AUDIO.ID3#: Band: DRAMA
+##CLI.META#: Dark Rain - Don't Wait Up
+##AUDIO.ID3#: Album: Don't Wait Up
+##AUDIO.INFO#: Audio-Length: 7244277
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##AUDIO.INFO#: Closing audio file "drama - dark rain (hitmos.fm).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176436 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:47:04+03:00
+##CLI.NAMESET#: 10 DRAMA
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8569252
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:47:05+03:00
+##CLI.NAMESET#: 10 kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 8569207
+##AUDIO.INFO#: frames 8200
+##AUDIO.INFO#: bytes 8569207
+##AUDIO.INFO#: Duration: 214 (s)
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: Closing audio file "kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:50:38+03:00
+##CLI.NAMESET#: 1 kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176436 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 2608506
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:50:38+03:00
+##CLI.NAMESET#: 1 brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: Zzz Sleep Sound: White Noise
+##AUDIO.ID3#: Title: Zzz Sleep Sound: White Noise
+##AUDIO.ID3#: Artist: Brown Noise Deep Sleep Baby, White Noise Sleep
+##CLI.META#: Zzz Sleep Sound: White Noise - Brown Noise for Baby Sleep [All Night Loopable]
+##AUDIO.ID3#: Album: Brown Noise for Baby Sleep [All Night Loopable]
+##AUDIO.ID3#: Year: 2019
+##AUDIO.INFO#: Audio-Length: 2521466
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##AUDIO.ID3#: Title: Zzz Sleep Sound: White Noise
+##AUDIO.ID3#: Artist: Brown Noise Deep Sleep Baby, W
+##AUDIO.ID3#: Album: Brown Noise for Baby Sleep [Al
+##AUDIO.ID3#: Year: 2019
+##AUDIO.INFO#: ID3 Version 1.1
+##AUDIO.ID3#: Track Number: 0
+##AUDIO.INFO#: Closing audio file "brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176436 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:51:41+03:00
+##CLI.NAMESET#: 2 Brown Noise Deep Sleep Baby, White Noise Sleep
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176436 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 10584340
+##AUDIO.INFO#: ID3 framesSize: 4180
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:51:41+03:00
+##CLI.NAMESET#: 2 romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: Ты-гандон, Саша!
+##AUDIO.ID3#: Title: Ты-гандон, Саша!
+##AUDIO.ID3#: Artist: RomusD/Eva Mermaid
+##AUDIO.INFO#: Audio-Length: 10580160
+##AUDIO.INFO#: frames 11020
+##AUDIO.INFO#: bytes 10580160
+##AUDIO.INFO#: Duration: 264 (s)
+##AUDIO.INFO#: BitRate: 320610
+##AUDIO.BITRATE#: 320610
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320610
+##AUDIO.BITRATE#: 320610
+##AUDIO.INFO#: Closing audio file "romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:56:06+03:00
+##CLI.NAMESET#: 3 RomusD/Eva Mermaid
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T19:56:06+03:00
+##CLI.NAMESET#: 3 Зелёный храм (disco-jungle).m4a
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:12:05+03:00
+##CLI.NAMESET#: 3 Зелёный храм (disco-jungle).m4a
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	Error connecting to /Скорость Света (clear vocal mix).m4a
+##CLI.META#: Error connecting to /Скорость Света (clear vocal m
+##ERROR#:	Error connecting to /Скорость Света (clear vocal mix).m4a
+##AUDIO.INFO#: buffers freed, free Heap: 176580 bytes
+##CLI.META#: Error connecting to /Скорость Света (clear vocal m
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:12:12+03:00
+##CLI.NAMESET#: 4 Скорость Света (clear vocal mix).m4a
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176436 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Гончаров А. - Зима (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8740627
+##AUDIO.INFO#: ID3 framesSize: 56
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:12:21+03:00
+##CLI.NAMESET#: 5 Гончаров А. - Зима (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: Year: 2025
+##AUDIO.ID3#: Encoded by: LAME in FL Studio 21
+##AUDIO.INFO#: Audio-Length: 8740571
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##SHUFFLE#: ON (sdsnuffle=1) — next track will be shuffled, current preserved
+> [WEBSOCKET] client #1 connected from 192.168.1.96
+[WEBSOCKET] client #1 disconnected
+[WEBSOCKET] client #2 connected from 192.168.1.96
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:13+03:00
+##CLI.NAMESET#: 5 Гончаров А. - Зима (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Гончаров А. - Зима (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175648 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/drama - dark rain (hitmos.fm).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 7299422
+##AUDIO.INFO#: ID3 framesSize: 55145
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:16+03:00
+##CLI.NAMESET#: 9 drama - dark rain (hitmos.fm).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: Year: 2022
+##AUDIO.ID3#: ContentType: soul
+##AUDIO.ID3#: Track: 2
+##CLI.META#: Dark Rain
+##AUDIO.ID3#: Title: Dark Rain
+##AUDIO.ID3#: Artist: DRAMA
+##AUDIO.ID3#: Band: DRAMA
+##CLI.META#: Dark Rain - Don't Wait Up
+##AUDIO.ID3#: Album: Don't Wait Up
+##AUDIO.INFO#: Audio-Length: 7244277
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "drama - dark rain (hitmos.fm).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175552 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/sistemsboy - Моя звезда (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6201117
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:20+03:00
+##CLI.NAMESET#: 8 sistemsboy - Моя звезда (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.76.100
+##AUDIO.INFO#: Audio-Length: 6201072
+##AUDIO.INFO#: frames 12178
+##AUDIO.INFO#: bytes 6201072
+##AUDIO.INFO#: Duration: 292 (s)
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##AUDIO.INFO#: stream ready
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sistemsboy - Моя звезда (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175556 bytes
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	Error connecting to /Скорость Света (clear vocal mix).m4a
+##CLI.META#: Error connecting to /Скорость Света (clear vocal m
+##ERROR#:	Error connecting to /Скорость Света (clear vocal mix).m4a
+##AUDIO.INFO#: buffers freed, free Heap: 175216 bytes
+##CLI.META#: Error connecting to /Скорость Света (clear vocal m
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:25+03:00
+##CLI.NAMESET#: 4 Скорость Света (clear vocal mix).m4a
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175280 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 10584340
+##AUDIO.INFO#: ID3 framesSize: 4180
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:27+03:00
+##CLI.NAMESET#: 2 romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: Ты-гандон, Саша!
+##AUDIO.ID3#: Title: Ты-гандон, Саша!
+##AUDIO.ID3#: Artist: RomusD/Eva Mermaid
+##AUDIO.INFO#: Audio-Length: 10580160
+##AUDIO.INFO#: frames 11020
+##AUDIO.INFO#: bytes 10580160
+##AUDIO.INFO#: Duration: 264 (s)
+##AUDIO.INFO#: BitRate: 320610
+##AUDIO.BITRATE#: 320610
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320610
+##AUDIO.BITRATE#: 320610
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175540 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 2608506
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:29+03:00
+##CLI.NAMESET#: 1 brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: Zzz Sleep Sound: White Noise
+##AUDIO.ID3#: Title: Zzz Sleep Sound: White Noise
+##AUDIO.ID3#: Artist: Brown Noise Deep Sleep Baby, White Noise Sleep
+##CLI.META#: Zzz Sleep Sound: White Noise - Brown Noise for Baby Sleep [All Night Loopable]
+##AUDIO.ID3#: Album: Brown Noise for Baby Sleep [All Night Loopable]
+##AUDIO.ID3#: Year: 2019
+##AUDIO.INFO#: Audio-Length: 2521466
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##AUDIO.INFO#: stream ready
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175456 bytes
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##AUDIO.INFO#: buffers freed, free Heap: 174952 bytes
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:31+03:00
+##CLI.NAMESET#: 3 Зелёный храм (disco-jungle).m4a
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175344 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 4083377
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:33+03:00
+##CLI.NAMESET#: 6 effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 4083377
+##AUDIO.INFO#: frames 7089
+##AUDIO.INFO#: bytes 4083377
+##AUDIO.INFO#: Duration: 170 (s)
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175540 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8569252
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:35+03:00
+##CLI.NAMESET#: 10 kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 8569207
+##AUDIO.INFO#: frames 8200
+##AUDIO.INFO#: bytes 8569207
+##AUDIO.INFO#: Duration: 214 (s)
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: stream ready
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175640 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 9382182
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:38+03:00
+##CLI.NAMESET#: 7 kumulaciya - big fat noise (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 9382137
+##AUDIO.INFO#: frames 8978
+##AUDIO.INFO#: bytes 9382137
+##AUDIO.INFO#: Duration: 234 (s)
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##AUDIO.INFO#: stream ready
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175532 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8569252
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:40+03:00
+##CLI.NAMESET#: 10 kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 8569207
+##AUDIO.INFO#: frames 8200
+##AUDIO.INFO#: bytes 8569207
+##AUDIO.INFO#: Duration: 214 (s)
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175680 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 4083377
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:43+03:00
+##CLI.NAMESET#: 6 effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 4083377
+##AUDIO.INFO#: frames 7089
+##AUDIO.INFO#: bytes 4083377
+##AUDIO.INFO#: Duration: 170 (s)
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175508 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8569252
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:46+03:00
+##CLI.NAMESET#: 10 kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 8569207
+##AUDIO.INFO#: frames 8200
+##AUDIO.INFO#: bytes 8569207
+##AUDIO.INFO#: Duration: 214 (s)
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175636 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 9382182
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:13:49+03:00
+##CLI.NAMESET#: 7 kumulaciya - big fat noise (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 9382137
+##AUDIO.INFO#: frames 8978
+##AUDIO.INFO#: bytes 9382137
+##AUDIO.INFO#: Duration: 234 (s)
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##REPEAT#: ALL — loop playlist
+> ##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175688 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/sistemsboy - Моя звезда (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6201117
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:26+03:00
+##CLI.NAMESET#: 8 sistemsboy - Моя звезда (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.76.100
+##AUDIO.INFO#: Audio-Length: 6201072
+##AUDIO.INFO#: frames 12178
+##AUDIO.INFO#: bytes 6201072
+##AUDIO.INFO#: Duration: 292 (s)
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sistemsboy - Моя звезда (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175524 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 10584340
+##AUDIO.INFO#: ID3 framesSize: 4180
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:28+03:00
+##CLI.NAMESET#: 2 romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: Ты-гандон, Саша!
+##AUDIO.ID3#: Title: Ты-гандон, Саша!
+##AUDIO.ID3#: Artist: RomusD/Eva Mermaid
+##AUDIO.INFO#: Audio-Length: 10580160
+##AUDIO.INFO#: frames 11020
+##AUDIO.INFO#: bytes 10580160
+##AUDIO.INFO#: Duration: 264 (s)
+##AUDIO.INFO#: BitRate: 320610
+##AUDIO.BITRATE#: 320610
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320610
+##AUDIO.BITRATE#: 320610
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "romusd & eva mermaid - Г_ндон, Саша! 18+ -2025- (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175704 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/drama - dark rain (hitmos.fm).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 7299422
+##AUDIO.INFO#: ID3 framesSize: 55145
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:30+03:00
+##CLI.NAMESET#: 9 drama - dark rain (hitmos.fm).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: Year: 2022
+##AUDIO.ID3#: ContentType: soul
+##AUDIO.ID3#: Track: 2
+##CLI.META#: Dark Rain
+##AUDIO.ID3#: Title: Dark Rain
+##AUDIO.ID3#: Artist: DRAMA
+##AUDIO.ID3#: Band: DRAMA
+##CLI.META#: Dark Rain - Don't Wait Up
+##AUDIO.ID3#: Album: Don't Wait Up
+##AUDIO.INFO#: Audio-Length: 7244277
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "drama - dark rain (hitmos.fm).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175636 bytes
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##ERROR#:	Error connecting to /Зелёный храм (disco-jungle).m4a
+##AUDIO.INFO#: buffers freed, free Heap: 175432 bytes
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.META#: Error connecting to /Зелёный храм (disco-jungle).m4a
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:32+03:00
+##CLI.NAMESET#: 3 Зелёный храм (disco-jungle).m4a
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175308 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 2608506
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:33+03:00
+##CLI.NAMESET#: 1 brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##CLI.META#: Zzz Sleep Sound: White Noise
+##AUDIO.ID3#: Title: Zzz Sleep Sound: White Noise
+##AUDIO.ID3#: Artist: Brown Noise Deep Sleep Baby, White Noise Sleep
+##CLI.META#: Zzz Sleep Sound: White Noise - Brown Noise for Baby Sleep [All Night Loopable]
+##AUDIO.ID3#: Album: Brown Noise for Baby Sleep [All Night Loopable]
+##AUDIO.ID3#: Year: 2019
+##AUDIO.INFO#: Audio-Length: 2521466
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "brown_noise_deep_sleep_baby_white_noise_sleep_-_zzz_sleep_sound_white_noise.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175668 bytes
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	The .m4a format is not supported
+##ERROR#:	Error connecting to /Скорость Света (clear vocal mix).m4a
+##ERROR#:	Error connecting to /Скорость Света (clear vocal mix).m4a
+##AUDIO.INFO#: buffers freed, free Heap: 175380 bytes
+##CLI.META#: Error connecting to /Скорость Света (clear vocal m
+##CLI.META#: Error connecting to /Скорость Света (clear vocal m
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:35+03:00
+##CLI.NAMESET#: 4 Скорость Света (clear vocal mix).m4a
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175484 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 9382182
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:37+03:00
+##CLI.NAMESET#: 7 kumulaciya - big fat noise (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 9382137
+##AUDIO.INFO#: frames 8978
+##AUDIO.INFO#: bytes 9382137
+##AUDIO.INFO#: Duration: 234 (s)
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175628 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 4083377
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:38+03:00
+##CLI.NAMESET#: 6 effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 4083377
+##AUDIO.INFO#: frames 7089
+##AUDIO.INFO#: bytes 4083377
+##AUDIO.INFO#: Duration: 170 (s)
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175552 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 9382182
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:40+03:00
+##CLI.NAMESET#: 7 kumulaciya - big fat noise (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 9382137
+##AUDIO.INFO#: frames 8978
+##AUDIO.INFO#: bytes 9382137
+##AUDIO.INFO#: Duration: 234 (s)
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175556 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 4083377
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:42+03:00
+##CLI.NAMESET#: 6 effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 4083377
+##AUDIO.INFO#: frames 7089
+##AUDIO.INFO#: bytes 4083377
+##AUDIO.INFO#: Duration: 170 (s)
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175532 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8569252
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:14:43+03:00
+##CLI.NAMESET#: 10 kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 8569207
+##AUDIO.INFO#: frames 8200
+##AUDIO.INFO#: bytes 8569207
+##AUDIO.INFO#: Duration: 214 (s)
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320344
+##AUDIO.BITRATE#: 320344
+##AUDIO.INFO#: stream ready
+##REPEAT#: ONE — repeat current track
+> ##AUDIO.INFO#: Closing audio file "kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 175584 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:15:19+03:00
+##CLI.NAMESET#: 5 kumulaciya - hight speed (need for speed edition tb-303) (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 174952 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Гончаров А. - Зима (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8740627
+##AUDIO.INFO#: ID3 framesSize: 56
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:15:19+03:00
+##CLI.NAMESET#: 5 Гончаров А. - Зима (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: Year: 2025
+##AUDIO.ID3#: Encoded by: LAME in FL Studio 21
+##AUDIO.INFO#: Audio-Length: 8740571
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##OMNIA.STATUS#: mode=SD shuffle=ON repeat=ONE total=10 cur=5
+##SD.STATUS#: shuffle=ON repeat=ONE
+##PROGRESS#: cur/dur via WebUI sdpos/sdtpos — open WebUI for bar
+> ##SHUFFLE#: OFF (sdsnuffle=0) — order normal
+> ##OMNIA.STATUS#: mode=SD shuffle=OFF repeat=ONE total=10 cur=5
+##SD.STATUS#: shuffle=OFF repeat=ONE
+##PROGRESS#: cur/dur via WebUI sdpos/sdtpos — open WebUI for bar
+> ##AUDIO.INFO#: Closing audio file "Гончаров А. - Зима (promodj.com).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 175724 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:16:49+03:00
+##CLI.NAMESET#: 6 Гончаров А. - Зима (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175376 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/effectummus-fantasy from a dream (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 4083377
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##AUDIO.INFO#: Audio-Length: 4083377
+##AUDIO.INFO#: frames 7089
+##AUDIO.INFO#: bytes 4083377
+##AUDIO.INFO#: Duration: 170 (s)
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:16:49+03:00
+##CLI.NAMESET#: 6 effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.INFO#: stream ready
+##CLI.META#: effectummus-fantasy from a dream (promodj.com).mp3
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192158
+##AUDIO.BITRATE#: 192158
+##OMNIA.STATUS#: mode=SD shuffle=OFF repeat=ONE total=10 cur=6
+##SD.STATUS#: shuffle=OFF repeat=ONE
+##PROGRESS#: cur/dur via WebUI sdpos/sdtpos — open WebUI for bar
+> ##AUDIO.INFO#: Closing audio file "effectummus-fantasy from a dream (promodj.com).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 175580 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:17:15+03:00
+##CLI.NAMESET#: 7 effectummus-fantasy from a dream (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175164 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/kumulaciya - big fat noise (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 9382182
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:17:15+03:00
+##CLI.NAMESET#: 7 kumulaciya - big fat noise (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.12.100
+##AUDIO.INFO#: Audio-Length: 9382137
+##AUDIO.INFO#: frames 8978
+##AUDIO.INFO#: bytes 9382137
+##AUDIO.INFO#: Duration: 234 (s)
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320756
+##AUDIO.BITRATE#: 320756
+##REPEAT#: OFF — stop at end of list
+> ##REPEAT#: ONE — repeat current track
+> ##AUDIO.INFO#: Closing audio file "kumulaciya - big fat noise (promodj.com).mp3"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 175720 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:18:01+03:00
+##CLI.NAMESET#: 8 kumulaciya - big fat noise (promodj.com).mp3
+##CLI.VOL#: 52
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175276 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/sistemsboy - Моя звезда (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6201117
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-29T20:18:01+03:00
+##CLI.NAMESET#: 8 sistemsboy - Моя звезда (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 52
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.76.100
+##AUDIO.INFO#: Audio-Length: 6201072
+##AUDIO.INFO#: frames 12178
+##AUDIO.INFO#: bytes 6201072
+##AUDIO.INFO#: Duration: 292 (s)
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 169892
+##AUDIO.BITRATE#: 169892
+##AUDIO.INFO#: stream ready
