@@ -2208,6 +2208,103 @@ BT401 остаётся источником Bluetooth + USB Audio (PC/Android) �
 
 Нужно добавить ещё команду перемешать с повтором и без. Кстати насколько помню, с перемешиванием не проигрывался один трек, глянь в оригинальный код на официальной странице Ё-радио, нужно избавиться от этой ошибки, а ещё вроде сд режим не может якобы работать без вай фай, проверь и это наверное тоже необходимо будет исправить грамотно
 
+**Да, разобрал оригинал ё-радио (репозиторий e2002/yoradio, актуальный main).**
 
+### 1. SD-режим без Wi-Fi
+Уже **исправлено и работает** начиная с v0.9.300.  
+В wiki прямо написано:  
+«Starting from v0.9.300, playback in SD CARD mode can work without an Internet connection. When loading in SDCARD mode, the player can operate without a network connection, and the network connection happens in the background.»
 
-Какой из четырёх делаем первым или все в концепт? Могу также предложить названия в стиле OMNIA (типа **AURA Radial**, **Hydra Bloom**, **OscilloAether** и т.д.).
+- При загрузке в SD-режиме сеть поднимается в фоне.  
+- Без RTC время стартует с 00:00 и синхронизируется при появлении сети.  
+- Кнопки PLAY/MODE и IR `*` позволяют форсировать переход в SD даже из AP/LOST.  
+- В changelog много фиксов по SD (indexing, hot-plug, resume, switching WEB↔SD без зависаний).
+
+В нашем форке/модернизации это уже должно быть (или легко подтвердить/сохранить). Если у тебя на текущей прошивке SD всё ещё требует Wi-Fi — скажи версию/коммит, посмотрим конкретный diff. В любом случае в план модернизации добавим явный тест «SD offline + hot-plug + resume после потери сети».
+
+### 2. Shuffle (sdsnuffle) + баг с одним/последним треком
+Команда уже есть: **`snuffle`** (да, с опечаткой «snuffle» вместо shuffle) — `snuffle true/false`.  
+Она вызывает `config.setSnuffle()`, которая сохраняет `store.sdsnuffle` и сразу делает `player.next()`.
+
+**Критический баг в `Player::next()` (player.cpp):**
+
+```cpp
+void Player::next() {
+  uint16_t lastStation = config.lastStation();
+  if(config.getMode()==PM_WEB || !config.store.sdsnuffle){
+    // sequential wrap-around
+    if (lastStation == config.playlistLength()) config.lastStation(1); else config.lastStation(lastStation+1);
+  }else{
+    config.lastStation(random(1, config.playlistLength()));  // ← БАГ!
+  }
+  sendCommand({PR_PLAY, config.lastStation()});
+}
+```
+
+Arduino/`esp32` `random(min, max)` возвращает **[min, max)** (max не включается).  
+Поэтому при `playlistLength() == N`:
+- random(1, N) даёт только 1 … N-1  
+- **Последний трек никогда не выбирается** в режиме shuffle.  
+- При N=1: random(1,1) по спецификации возвращает 1 (if min >= max return min), так что один трек должен рестартиться. Но из-за off-by-one + особенностей eof/resume пользователи часто видят, что «один трек не играет» или shuffle ведёт себя криво.
+
+`prev()` в shuffle-режиме вообще ничего не меняет — просто реплеит текущий (что логично для random, но можно улучшить).
+
+`audio_eof_mp3` просто вызывает `player.next()` — поэтому баг проявляется при каждом окончании трека.
+
+**Исправление (минимальное и правильное):**
+```cpp
+} else {
+  uint16_t len = config.playlistLength();
+  if (len <= 1) {
+    config.lastStation(1);           // один трек — просто рестарт
+  } else {
+    uint16_t next;
+    do {
+      next = random(1, len + 1);     // теперь 1 … len включительно
+    } while (next == lastStation && len > 1);  // опционально: не повторять сразу тот же
+    config.lastStation(next);
+  }
+}
+```
+
+Можно сделать ещё лучше (настоящий shuffle-плейлист с перемешанным индексом без повторов до конца круга) — это уже v1.1, но для начала off-by-one + защита от N=1 обязательны.
+
+### 3. Команды «перемешать с повтором и без»
+Сейчас есть только один флаг `sdsnuffle` (random next / sequential).  
+**Repeat** как отдельной сущности нет (ни repeat one, ни repeat all, ни «shuffle + no-repeat-until-end»).
+
+Предлагаю добавить в CLI (и сохранить обратную совместимость):
+
+**Новые/расширенные команды:**
+- `snuffle` / `shuffle` 0|1|true|false          — как сейчас (random next)
+- `repeat` 0|1|2|off|one|all  
+  - 0/off — после последнего трека стоп (или по кругу? уточним)
+  - 1/one — бесконечный повтор текущего трека
+  - 2/all — после конца плейлиста сначала (классический loop)
+- `playmode` / `sdmode` shuffle|repeatone|repeatall|normal   — удобный комбинированный
+- Или битовая маска/флаги: `sdsnuffle` + `sdrepeat` (0/1/2)
+
+При `repeat one` — `next()`/`eof` просто рестартует тот же stationId (и сбрасывает sdResumePos=0).  
+При `repeat all` + `!sdsnuffle` — обычный wrap.  
+При `sdsnuffle` + `repeat all` — random, но можно (позже) сделать shuffle-bag.
+
+Также в `##PROGRESS#` / status / meta будем отдавать текущие флаги shuffle/repeat.
+
+В `setSnuffle` и новых сеттерах — сразу `player.next()` или мягкий apply без разрыва, если уже играет.
+
+### План внедрения (встраиваем в Этап 2 «Метаданные, плейлист, shuffle/repeat»)
+1. Починить off-by-one в `next()` + защиту N≤1 (и желательно do-while против мгновенного повтора).  
+2. Добавить `store.sdrepeat` (uint8_t 0/1/2) + `setRepeat()` + команду `repeat`.  
+3. Обновить `prev()`/`next()`/`audio_eof_mp3` с учётом repeat.  
+4. В status/PROGRESS/META отдавать `shuffle=1 repeat=2`.  
+5. Веб-интерфейс + telnet/UART — новые контролы.  
+6. Тесты: 1 трек + shuffle + repeat one/all; 2–3 трека; конец плейлиста; hot next/prev во время shuffle.
+
+Хочешь — прямо сейчас напишу:
+- Точный патч для `player.cpp` + `config.h/cpp` + `commandhandler.cpp` (готовый к копированию).
+- Обновлённый список CLI-команд с примерами.
+- Как это будет выглядеть в `##PROGRESS#:` и status.
+
+С какого куска начнём прямо сейчас — фикс бага shuffle + команды repeat, или сначала полный документ «yoRadio Modernization Spec» (progress/seek + эти фичи + USB)?  
+
+Всё идёт чётко, двигаем.
