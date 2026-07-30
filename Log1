@@ -1,5 +1,6 @@
+ESP-ROM:esp32s3-20210327
 Build:Mar 27 2021
-rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+rst:0x1 (POWERON),boot:0x2b (SPI_FAST_FLASH_BOOT)
 SPIWP:0xee
 mode:DIO, clock div:1
 load:0x3fce2820,len:0x1180
@@ -50,244 +51,112 @@ entry 0x403c88b8
 ##AUDIO.INFO#: inputBufferSize: 655349 bytes
 ##AUDIO.INFO#: buffers freed, free Heap: 177120 bytes
 ##AUDIO.INFO#: connect to: "radiorecord.hostingradio.ru" on port 443 path "/chil96.aacp"
-##AUDIO.INFO#: SSL has been established in 1332 ms
+##AUDIO.INFO#: SSL has been established in 1374 ms
 ##AUDIO.INFO#: format is aac
 ##AUDIO.INFO#: icy-genre: Dance
 ##AUDIO.INFO#: icy-name: Record Chillout
 ##AUDIO.INFO#: AACDecoder has been initialized
 ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
 ##CLI.META#: Record Chillout
-##AUDIO.INFO#: stream ready
 ##CLI.INFO#
 ##SYS.DATE#: 1970-01-01T03:00:04+03:00
 ##CLI.NAMESET#: 198 RR Chill-Out
 ##CLI.META#: Record Chillout
-##AUDIO.INFO#: syncword found at pos 0
-##CLI.VOL#: 33
+##CLI.VOL#: 22
 ##CLI.PLAYING#
+##AUDIO.INFO#: stream ready
 ##CLI.META#: Record Chillout
-##CLI.META#: MARC HARTMAN - Under My Skin
+##AUDIO.INFO#: syncword found at pos 0
 ##AUDIO.INFO#: Channels: 2
 ##AUDIO.INFO#: SampleRate: 44100 (Hz)
 ##AUDIO.INFO#: BitsPerSample: 16
-##AUDIO.INFO#: BitRate: 91645
-##AUDIO.BITRATE#: 91645
+##AUDIO.INFO#: BitRate: 93367
+##AUDIO.BITRATE#: 93367
 ##AUDIO.INFO#: AAC HeaderFormat: ADTS
-[WEBSOCKET] client #1 connected from 192.168.1.96
+##CLI.META#: NOMYN - Mirage
 SD Mounted
 Waiting for SD card indexing...	done
 ##ERROR#:	audio is not a file
 ##ERROR#:	audio is not a file
 ##AUDIO.INFO#: Closing web file "https://radiorecord.hostingradio.ru:443/chil96.aacp"
-##AUDIO.INFO#: buffers freed, free Heap: 175752 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 176460 bytes
 ##CLI.META#: audio is not a file
 ##CLI.META#: [next track]
-##CLI.VOL#: 33
-##AUDIO.INFO#: buffers freed, free Heap: 175260 bytes
+##CLI.VOL#: 22
+##AUDIO.INFO#: buffers freed, free Heap: 176456 bytes
 ##AUDIO.INFO#: format is mp3
-##AUDIO.INFO#: Reading file: "/balkanbazaroflove#3 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: Reading file: "/Моя Мишель - Мария.mp3"
 ##AUDIO.INFO#: MP3Decoder has been initialized
-##AUDIO.INFO#: File-Size: 138300636
-##AUDIO.INFO#: ID3 framesSize: 157468
+##AUDIO.INFO#: File-Size: 5840298
+##AUDIO.INFO#: ID3 framesSize: 199768
 ##AUDIO.INFO#: ID3 version: 2.3
-##PROGRESS#: 0 0 1 0 265 267
 ##CLI.INFO#
-##SYS.DATE#: 2026-07-30T01:05:28+03:00
-##CLI.NAMESET#: 265 balkanbazaroflove#3 by mcold (promodj.com).mp3
+##SYS.DATE#: 2026-07-30T14:36:29+03:00
+##CLI.NAMESET#: 262 Моя Мишель - Мария.mp3
 ##CLI.META#: 
-##CLI.VOL#: 33
+##CLI.VOL#: 22
 ##CLI.PLAYING#
-##AUDIO.ID3#: Album: JustBeHappy
-##PROGRESS#: 0 0 1 0 265 267
+##PROGRESS#: 0 0 1 0 262 267
 ##CLI.INFO#
-##SYS.DATE#: 2026-07-30T01:05:28+03:00
-##CLI.NAMESET#: 265 balkanbazaroflove#3 by mcold (promodj.com).mp3
-##CLI.META#: JustBeHappy
-##CLI.VOL#: 33
+##SYS.DATE#: 2026-07-30T14:36:30+03:00
+##CLI.NAMESET#: 262 Моя Мишель - Мария.mp3
+##CLI.META#: Мария
+##CLI.VOL#: 22
 ##CLI.PLAYING#
-##AUDIO.ID3#: ContentType: Deep House
-##CLI.META#: JustBeHappy
-##CLI.META#: JustBeHappy - Balkan Bazar Of Love #3
-##AUDIO.ID3#: Title: Balkan Bazar Of Love #3
+##AUDIO.ID3#: Title: Мария
+##CLI.META#: Мария
+##AUDIO.ID3#: Band: lmusic.kz
+##CLI.META#: Мария
 ##CLI.INFO#
-##SYS.DATE#: 2026-07-30T01:05:28+03:00
-##CLI.NAMESET#: 265 balkanbazaroflove#3 by mcold (promodj.com).mp3
-##CLI.META#: JustBeHappy - Balkan Bazar Of Love #3
-##CLI.VOL#: 33
+##SYS.DATE#: 2026-07-30T14:36:30+03:00
+##CLI.NAMESET#: 262 Моя Мишель - Мария.mp3
+##CLI.META#: Мария
+##CLI.VOL#: 22
 ##CLI.PLAYING#
-##CLI.META#: JustBeHappy - Balkan Bazar Of Love #3
-##AUDIO.ID3#: Artist: McOld
-##CLI.META#: JustBeHappy - Balkan Bazar Of Love #3
-##AUDIO.ID3#: Year: 2021
-##AUDIO.INFO#: Audio-Length: 138143168
+##AUDIO.ID3#: Artist: Моя Мишель
+##CLI.META#: Мария
+##AUDIO.ID3#: Album: lmusic.kz
+##CLI.META#: Мария - lmusic.kz
+##AUDIO.ID3#: Year: lmusic.kz
+##AUDIO.ID3#: Composer: lmusic.kz
+##AUDIO.ID3#: Comment: lmusic.kz
+##AUDIO.INFO#: Audio-Length: 5640530
+##AUDIO.INFO#: frames 5397
+##AUDIO.INFO#: bytes 5640358
+##AUDIO.INFO#: Duration: 140 (s)
+##AUDIO.INFO#: BitRate: 322306
+##AUDIO.BITRATE#: 322306
 ##AUDIO.INFO#: syncword found at pos 0
 ##AUDIO.INFO#: MPEG-1 Layer III
 ##AUDIO.INFO#: Channels: 2
-##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
 ##AUDIO.INFO#: BitsPerSample: 16
-##AUDIO.INFO#: BitRate: 320000
-##AUDIO.BITRATE#: 320000
+##AUDIO.INFO#: BitRate: 322306
+##AUDIO.BITRATE#: 322306
 ##AUDIO.INFO#: stream ready
-##PROGRESS#: 0 0 1 1 265 267
-##PROGRESS#: 0 0 1 1 265 267
-##PROGRESS#: 1000 0 1 1 265 267
-##PROGRESS#: 1000 0 1 1 265 267
-##PROGRESS#: 2000 0 1 1 265 267
-##PROGRESS#: 2000 0 1 1 265 267
-##PROGRESS#: 3000 0 1 2 265 267
-##PROGRESS#: 3000 0 1 2 265 267
-##PROGRESS#: 4000 0 1 2 265 267
-##PROGRESS#: 4000 0 1 2 265 267
-##PROGRESS#: 5000 0 1 2 265 267
-##PROGRESS#: 5000 0 1 2 265 267
-##PROGRESS#: 6000 0 1 2 265 267
-##PROGRESS#: 6000 0 1 3 265 267
-##PROGRESS#: 7000 0 1 3 265 267
-##PROGRESS#: 7000 0 1 3 265 267
-#CLI.LIST# SD files
-#CLI.LISTNUM#:   1: SD track 1
-#CLI.LISTNUM#:   2: SD track 2
-#CLI.LISTNUM#:   3: SD track 3
-#CLI.LISTNUM#:   4: SD track 4
-#CLI.LISTNUM#:   5: SD track 5
-#CLI.LISTNUM#:   6: SD track 6
-#CLI.LISTNUM#:   7: SD track 7
-#CLI.LISTNUM#:   8: SD track 8
-#CLI.LISTNUM#:   9: SD track 9
-#CLI.LISTNUM#:  10: SD track 10
-#CLI.LISTNUM#:  11: SD track 11
-#CLI.LISTNUM#:  12: SD track 12
-#CLI.LISTNUM#:  13: SD track 13
-#CLI.LISTNUM#:  14: SD track 14
-#CLI.LISTNUM#:  15: SD track 15
-#CLI.LISTNUM#:  16: SD track 16
-#CLI.LISTNUM#:  17: SD track 17
-#CLI.LISTNUM#:  18: SD track 18
-#CLI.LISTNUM#:  19: SD track 19
-#CLI.LISTNUM#:  20: SD track 20
-#CLI.LISTNUM#:  21: SD track 21
-#CLI.LISTNUM#:  22: SD track 22
-#CLI.LISTNUM#:  23: SD track 23
-#CLI.LISTNUM#:  24: SD track 24
-#CLI.LISTNUM#:  25: SD track 25
-#CLI.LISTNUM#:  26: SD track 26
-#CLI.LISTNUM#:  27: SD track 27
-#CLI.LISTNUM#:  28: SD track 28
-#CLI.LISTNUM#:  29: SD track 29
-#CLI.LISTNUM#:  30: SD track 30
-#CLI.LISTNUM#:  31: SD track 31
-#CLI.LISTNUM#:  32: SD track 32
-#CLI.LISTNUM#:  33: SD track 33
-#CLI.LISTNUM#:  34: SD track 34
-#CLI.LISTNUM#:  35: SD track 35
-#CLI.LISTNUM#:  36: SD track 36
-#CLI.LISTNUM#:  37: SD track 37
-#CLI.LISTNUM#:  38: SD track 38
-#CLI.LISTNUM#:  39: SD track 39
-#CLI.LISTNUM#:  40: SD track 40
-#CLI.LISTNUM#:  41: SD track 41
-#CLI.LISTNUM#:  42: SD track 42
-#CLI.LISTNUM#:  43: SD track 43
-#CLI.LISTNUM#:  44: SD track 44
-#CLI.LISTNUM#:  45: SD track 45
-#CLI.LISTNUM#:  46: SD track 46
-#CLI.LISTNUM#:  47: SD track 47
-#CLI.LISTNUM#:  48: SD track 48
-#CLI.LISTNUM#:  49: SD track 49
-#CLI.LISTNUM#:  50: SD track 50
-#CLI.LISTNUM#:  51: SD track 51
-#CLI.LISTNUM#:  52: SD track 52
-#CLI.LISTNUM#:  53: SD track 53
-#CLI.LISTNUM#:  54: SD track 54
-#CLI.LISTNUM#:  55: SD track 55
-#CLI.LISTNUM#:  56: SD track 56
-#CLI.LISTNUM#:  57: SD track 57
-#CLI.LISTNUM#:  58: SD track 58
-#CLI.LISTNUM#:  59: SD track 59
-#CLI.LISTNUM#:  60: SD track 60
-#CLI.LISTNUM#:  61: SD track 61
-#CLI.LISTNUM#:  62: SD track 62
-#CLI.LISTNUM#:  63: SD track 63
-#CLI.LISTNUM#:  64: SD track 64
-#CLI.LISTNUM#:  65: SD track 65
-#CLI.LISTNUM#:  66: SD track 66
-#CLI.LISTNUM#:  67: SD track 67
-#CLI.LISTNUM#:  68: SD track 68
-#CLI.LISTNUM#:  69: SD track 69
-#CLI.LISTNUM#:  70: SD track 70
-#CLI.LISTNUM#:  71: SD track 71
-#CLI.LISTNUM#:  72: SD track 72
-#CLI.LISTNUM#:  73: SD track 73
-#CLI.LISTNUM#:  74: SD track 74
-#CLI.LISTNUM#:  75: SD track 75
-#CLI.LISTNUM#:  76: SD track 76
-#CLI.LISTNUM#:  77: SD track 77
-#CLI.LISTNUM#:  78: SD track 78
-#CLI.LISTNUM#:  79: SD track 79
-#CLI.LISTNUM#:  80: SD track 80
-#CLI.LISTNUM#:  81: SD track 81
-#CLI.LISTNUM#:  82: SD track 82
-#CLI.LISTNUM#:  83: SD track 83
-#CLI.LISTNUM#:  84: SD track 84
-#CLI.LISTNUM#:  85: SD track 85
-#CLI.LISTNUM#:  86: SD track 86
-#CLI.LISTNUM#:  87: SD track 87
-#CLI.LISTNUM#:  88: SD track 88
-#CLI.LISTNUM#:  89: SD track 89
-#CLI.LISTNUM#:  90: SD track 90
-#CLI.LISTNUM#:  91: SD track 91
-#CLI.LISTNUM#:  92: SD track 92
-#CLI.LISTNUM#:  93: SD track 93
-#CLI.LISTNUM#:  94: SD track 94
-#CLI.LISTNUM#:  95: SD track 95
-#CLI.LISTNUM#:  96: SD track 96
-#CLI.LISTNUM#:  97: SD track 97
-#CLI.LISTNUM#:  98: SD track 98
-#CLI.LISTNUM#:  99: SD track 99
-#CLI.LISTNUM#: 100: SD track 100
-#CLI.LISTNUM#: ... total 267
-##CLI.LIST#
-> ##PROGRESS#: 8000 0 1 3 265 267
-##PROGRESS#: 8000 0 1 3 265 267
-##PROGRESS#: 9000 0 1 3 265 267
-##PROGRESS#: 10000 0 1 4 265 267
-##PROGRESS#: 10000 0 1 4 265 267
-##PROGRESS#: 11000 0 1 4 265 267
-##PROGRESS#: 11000 0 1 4 265 267
-##PROGRESS#: 11000 0 1 4 265 267
-##PROGRESS#: 12000 0 1 4 265 267
-##PROGRESS#: 13000 0 1 4 265 267
-##PROGRESS#: 13000 0 1 5 265 267
-##PROGRESS#: 14000 0 1 5 265 267
-##PROGRESS#: 14000 0 1 5 265 267
-##PROGRESS#: 15000 0 1 5 265 267
-##PROGRESS#: 15000 0 1 5 265 267
-##PROGRESS#: 16000 0 1 5 265 267
-##PROGRESS#: 16000 0 1 5 265 267
-##PROGRESS#: 17000 0 1 6 265 267
-##PROGRESS#: 17000 0 1 6 265 267
-##PROGRESS#: 18000 0 1 6 265 267
-##PROGRESS#: 18000 0 1 6 265 267
-##PROGRESS#: 19000 0 1 6 265 267
-##PROGRESS#: 19000 0 1 6 265 267
-##PROGRESS#: 20000 0 1 6 265 267
-##PROGRESS#: 20000 0 1 7 265 267
-##PROGRESS#: 21000 0 1 7 265 267
-##PROGRESS#: 21000 0 1 7 265 267
-##PROGRESS#: 22000 0 1 7 265 267
-##PROGRESS#: 22000 0 1 7 265 267
-##PROGRESS#: 23000 0 1 7 265 267
-##PROGRESS#: 23000 0 1 7 265 267
-##PROGRESS#: 24000 0 1 8 265 267
-##PROGRESS#: 24000 0 1 8 265 267
-##CLI.META#: [остановлено]
-##AUDIO.INFO#: Closing audio file "balkanbazaroflove#3 by mcold (promodj.com).mp3"
-##AUDIO.INFO#: buffers freed, free Heap: 175648 bytes
-##CLI.INFO#
-##SYS.DATE#: 2026-07-30T01:05:54+03:00
-##CLI.NAMESET#: 265 McOld
-##CLI.VOL#: 33
-##CLI.STOPPED#
+##PROGRESS#: 0 140000 1 0 262 267
+##PROGRESS#: 0 140000 1 0 262 267
+##PROGRESS#: 1000 140000 1 7 262 267
+##PROGRESS#: 1000 140000 1 7 262 267
+##PROGRESS#: 2000 140000 1 14 262 267
+##PROGRESS#: 2000 140000 1 14 262 267
+##PROGRESS#: 3000 140000 1 21 262 267
+##PROGRESS#: 3000 140000 1 21 262 267
+##PROGRESS#: 4000 140000 1 28 262 267
+##PROGRESS#: 4000 140000 1 28 262 267
+##PROGRESS#: 5000 140000 1 35 262 267
+##PROGRESS#: 5000 140000 1 35 262 267
+##PROGRESS#: 6000 140000 1 42 262 267
+##PROGRESS#: 6000 140000 1 42 262 267
+##PROGRESS#: 7000 140000 1 50 262 267
+##PROGRESS#: 7000 140000 1 50 262 267
+##PROGRESS#: 8000 140000 1 57 262 267
+##PROGRESS#: 8000 140000 1 57 262 267
+##PROGRESS#: 9000 140000 1 64 262 267
+##PROGRESS#: 9000 140000 1 64 262 267
+##PROGRESS#: 10000 140000 1 71 262 267
+##PROGRESS#: 10000 140000 1 71 262 267
+##PROGRESS#: 11000 140000 1 78 262 267
 #CLI.LIST# SD files (267 total) from /data/playlistsd.csv
 #CLI.LISTNUM#:   1: brainstorm - maybe (minus).mp3
 #CLI.LISTNUM#:   2: brainstorm — maybe.mp3
@@ -489,5 +358,604 @@ Waiting for SD card indexing...	done
 #CLI.LISTNUM#: 198: 11.  c.a.t. - good news (original version).flac
 #CLI.LISTNUM#: 199: 12.  velvet dreamer; tim gelo - summer madness (original mix).flac
 #CLI.LISTNUM#: 200: 13.  roberto sol; ines prados - te amo.flac
-#CLI.LISTNUM#: ... total 267
-##CLI.LIST#
+#CLI.LISTNUM#: 201: 14.  corrado saija - uk race (original mix).flac
+#CLI.LISTNUM#: 202: 15.  sunburn in cyprus - now the wind (pnfa square dub).flac
+#CLI.LISTNUM#: 203: 16.  tigerforest - trade winds (original mix).flac
+#CLI.LISTNUM#: 204: 17.  roberto bronco - dandelion (original mix).flac
+#CLI.LISTNUM#: 205: 18.  lenny mac dowell - summertime (original mix).flac
+#CLI.LISTNUM#: 206: 19.  artur bayramgalin - down the smooth river (jazz hop version).flac
+#CLI.LISTNUM#: 207: 20.  milky bay - the ultimate seduction (original mix).flac
+#CLI.LISTNUM#: 208: 21.  lemongrass - blue moon (original mix).flac
+#CLI.LISTNUM#: 209: 22.  faro - tiramisu (original mix).flac
+#CLI.LISTNUM#: 210: 23.  bahramji; maneesh de moor; bashir; sudha; zhubin kalhor - crazy heart (original mix).flac
+#CLI.LISTNUM#: 211: 24.  mo'jardo - silken feeling (original mix).flac
+#CLI.LISTNUM#: 212: 25.  collioure - bright stars (original mix).flac
+#CLI.LISTNUM#: 213: 26.  harrison & daicz - contando mariposas (galician version).flac
+#CLI.LISTNUM#: 214: 27.  weber & weber - wake up, get up (original mix).flac
+#CLI.LISTNUM#: 215: 28.  lounge groove avenue - not right.flac
+#CLI.LISTNUM#: 216: 29.  alejandro fernandez lecce; paul eerhart - morning in brooklyn (original mix).flac
+#CLI.LISTNUM#: 217: 30.  eskadet; tafubar - sex sniper (original mix).flac
+#CLI.LISTNUM#: 218: vanilla - more than love (hitmos.fm).mp3
+#CLI.LISTNUM#: 219: zeb samuels - new light (hitmos.fm).mp3
+#CLI.LISTNUM#: 220: vanilla - summer night (hitmos.fm).mp3
+#CLI.LISTNUM#: 221: vanilla - waves (hitmos.fm).mp3
+#CLI.LISTNUM#: 222: vanilla - how i feel (hitmos.fm).mp3
+#CLI.LISTNUM#: 223: vanilla - nana, pt. ii (hitmos.fm).mp3
+#CLI.LISTNUM#: 224: vanilla - dreams (hitmos.fm).mp3
+#CLI.LISTNUM#: 225: vanilla - wishiknew (hitmos.fm).mp3
+#CLI.LISTNUM#: 226: vanilla - keep on (hitmos.fm).mp3
+#CLI.LISTNUM#: 227: vanilla - who gets your love (hitmos.fm).mp3
+#CLI.LISTNUM#: 228: vanilla - 2gether (hitmos.fm).mp3
+#CLI.LISTNUM#: 229: vanilla - all night (hitmos.fm).mp3
+#CLI.LISTNUM#: 230: vanilla - snowdance (hitmos.fm).mp3
+#CLI.LISTNUM#: 231: vanilla - rise (hitmos.fm).mp3
+#CLI.LISTNUM#: 232: vanilla - lazy days (hitmos.fm).mp3
+#CLI.LISTNUM#: 233: vanilla - ao (hitmos.fm).mp3
+#CLI.LISTNUM#: 234: vanilla - rashida (hitmos.fm).mp3
+#CLI.LISTNUM#: 235: balkanbazaroflovestories#2 [dancing horses] by mcold (promodj.com).mp3
+#CLI.LISTNUM#: 236: shura_-_touch_48095292.mp3
+#CLI.LISTNUM#: 237: shura_-_touch_48119674.mp3
+#CLI.LISTNUM#: 238: shura_-_what_happened_to_us_48119680.mp3
+#CLI.LISTNUM#: 239: shura_-_tongue_tied_48119684.mp3
+#CLI.LISTNUM#: 240: shura_-_indecision_48119677.mp3
+#CLI.LISTNUM#: 241: shura_-_just_once_66059651.mp3
+#CLI.LISTNUM#: 242: drama - dark rain (hitmos.fm).mp3
+#CLI.LISTNUM#: 243: drama - 3am (hitmos.fm).mp3
+#CLI.LISTNUM#: 244: drama - dead and gone (hitmos.fm).mp3
+#CLI.LISTNUM#: 245: drama - hold on (hitmos.fm).mp3
+#CLI.LISTNUM#: 246: drama - hopes up (hitmos.fm).mp3
+#CLI.LISTNUM#: 247: drama feat gorgon city - you've done enough (hitmos.fm).mp3
+#CLI.LISTNUM#: 248: drama - assume the worst (lies after love 2018) (hitmos.fm).mp3
+#CLI.LISTNUM#: 249: shura_-_indecision_53874385.mp3
+#CLI.LISTNUM#: 250: shura_-_make_it_up_48119686.mp3
+#CLI.LISTNUM#: 251: shura_-_touch_48095291.mp3
+#CLI.LISTNUM#: 252: shura_talib_kweli_-_touch_48095278.mp3
+#CLI.LISTNUM#: 253: shura_-_touch_48095280.mp3
+#CLI.LISTNUM#: 254: shura_-_touch_48095287.mp3
+#CLI.LISTNUM#: 255: favoritetracksinmycar [formywife] by mcold (promodj.com).mp3
+#CLI.LISTNUM#: 256: Моя Мишель, Баста - Не поняла.mp3
+#CLI.LISTNUM#: 257: Моя Мишель, ЛСП - Курточка.mp3
+#CLI.LISTNUM#: 258: Моя Мишель - Иногда.mp3
+#CLI.LISTNUM#: 259: Моя Мишель - Город ангелов.mp3
+#CLI.LISTNUM#: 260: soda luv, Моя Мишель - Звездопад.mp3
+#CLI.LISTNUM#: 261: Моя Мишель, Минаева, liili - Фейерверк.mp3
+#CLI.LISTNUM#: 262: Моя Мишель - Мария.mp3
+#CLI.LISTNUM#: 263: Моя Мишель - Сезам.mp3
+#CLI.LISTNUM#: 264: justbehappy#4 by mcold (promodj.com).mp3
+#CLI.LISTNUM#: 265: balkanbazaroflove#3 by mcold (promodj.com).mp3
+#CLI.LISTNUM#: 266: balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+#CLI.LISTNUM#: 267: relaxium - sound waves (promodj.com).mp3
+##CLI.LIST# 267 tracks shown
+> ##PROGRESS#: 13000 140000 1 92 262 267
+##PROGRESS#: 13000 140000 1 92 262 267
+##PROGRESS#: 14000 140000 1 100 262 267
+##PROGRESS#: 14000 140000 1 100 262 267
+##PROGRESS#: 15000 140000 1 107 262 267
+##PROGRESS#: 15000 140000 1 107 262 267
+##PROGRESS#: 16000 140000 1 114 262 267
+##PROGRESS#: 16000 140000 1 114 262 267
+##PROGRESS#: 17000 140000 1 121 262 267
+##PROGRESS#: 17000 140000 1 121 262 267
+##PROGRESS#: 18000 140000 1 128 262 267
+##PROGRESS#: 18000 140000 1 128 262 267
+##PROGRESS#: 19000 140000 1 135 262 267
+##PROGRESS#: 19000 140000 1 135 262 267
+##PROGRESS#: 20000 140000 1 142 262 267
+##PROGRESS#: 20000 140000 1 142 262 267
+##PROGRESS#: 21000 140000 1 150 262 267
+##PROGRESS#: 21000 140000 1 150 262 267
+##PROGRESS#: 22000 140000 1 157 262 267
+##PROGRESS#: 22000 140000 1 157 262 267
+##PROGRESS#: 23000 140000 1 164 262 267
+##PROGRESS#: 23000 140000 1 164 262 267
+##PROGRESS#: 24000 140000 1 171 262 267
+##PROGRESS#: 24000 140000 1 171 262 267
+##PROGRESS#: 25000 140000 1 178 262 267
+##PROGRESS#: 25000 140000 1 178 262 267
+##PROGRESS#: 26000 140000 1 185 262 267
+##PROGRESS#: 26000 140000 1 185 262 267
+##PROGRESS#: 27000 140000 1 192 262 267
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "Моя Мишель - Мария.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176604 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:36:58+03:00
+##CLI.NAMESET#: 262 Моя Мишель
+##CLI.VOL#: 22
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 176604 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Моя Мишель - Мария.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 5840298
+##AUDIO.INFO#: ID3 framesSize: 199768
+##AUDIO.INFO#: ID3 version: 2.3
+##PROGRESS#: 0 0 1 0 262 267
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:37:48+03:00
+##CLI.NAMESET#: 262 Моя Мишель - Мария.mp3
+##CLI.META#: 
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##CLI.META#: Мария
+##AUDIO.ID3#: Title: Мария
+##PROGRESS#: 0 0 1 0 262 267
+##AUDIO.ID3#: Band: lmusic.kz
+##AUDIO.ID3#: Artist: Моя Мишель
+##CLI.META#: Мария - lmusic.kz
+##AUDIO.ID3#: Album: lmusic.kz
+##AUDIO.ID3#: Year: lmusic.kz
+##AUDIO.ID3#: Composer: lmusic.kz
+##AUDIO.ID3#: Comment: lmusic.kz
+##AUDIO.INFO#: Audio-Length: 5640530
+##AUDIO.INFO#: frames 5397
+##AUDIO.INFO#: bytes 5640358
+##AUDIO.INFO#: Duration: 140 (s)
+##AUDIO.INFO#: BitRate: 322306
+##AUDIO.BITRATE#: 322306
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 322306
+##AUDIO.BITRATE#: 322306
+##PROGRESS#: 23000 140000 1 164 262 267
+##PROGRESS#: 23000 140000 1 164 262 267
+##PROGRESS#: 24000 140000 1 171 262 267
+##PROGRESS#: 24000 140000 1 171 262 267
+##PROGRESS#: 25000 140000 1 178 262 267
+##PROGRESS#: 25000 140000 1 178 262 267
+##PROGRESS#: 26000 140000 1 185 262 267
+##PROGRESS#: 26000 140000 1 185 262 267
+##PROGRESS#: 27000 140000 1 192 262 267
+##SHUFFLE#: ON (sdsnuffle=1) — next track will be shuffled, current preserved
+> ##PROGRESS#: 27000 140000 1 192 262 267
+##PROGRESS#: 28000 140000 1 200 262 267
+##PROGRESS#: 28000 140000 1 200 262 267
+##PROGRESS#: 29000 140000 1 207 262 267
+##PROGRESS#: 29000 140000 1 207 262 267
+##PROGRESS#: 30000 140000 1 214 262 267
+##PROGRESS#: 30000 140000 1 214 262 267
+##PROGRESS#: 31000 140000 1 221 262 267
+##PROGRESS#: 31000 140000 1 221 262 267
+##PROGRESS#: 32000 140000 1 228 262 267
+##PROGRESS#: 32000 140000 1 228 262 267
+##PROGRESS#: 33000 140000 1 235 262 267
+##PROGRESS#: 33000 140000 1 235 262 267
+##PROGRESS#: 34000 140000 1 242 262 267
+##PROGRESS#: 34000 140000 1 242 262 267
+##PROGRESS#: 35000 140000 1 250 262 267
+##PROGRESS#: 35000 140000 1 250 262 267
+##PROGRESS#: 36000 140000 1 257 262 267
+##PROGRESS#: 36000 140000 1 257 262 267
+##PROGRESS#: 37000 140000 1 264 262 267
+##PROGRESS#: 37000 140000 1 264 262 267
+##SEEK#: absolute 60000 ms
+##SEEK#: setFilePos 2502984 (fileSize 5840298 dur 140000) ok=1
+> ##PROGRESS#: 38000 140000 1 271 262 267
+##PROGRESS#: 57000 140000 1 407 262 267
+##PROGRESS#: 58000 140000 1 414 262 267
+##PROGRESS#: 58000 140000 1 414 262 267
+##PROGRESS#: 59000 140000 1 421 262 267
+##PROGRESS#: 59000 140000 1 421 262 267
+##PROGRESS#: 60000 140000 1 428 262 267
+##PROGRESS#: 60000 140000 1 428 262 267
+##SEEK#: absolute 60000 ms
+##SEEK#: setFilePos 2502984 (fileSize 5840298 dur 140000) ok=1
+> ##PROGRESS#: 57000 140000 1 407 262 267
+##PROGRESS#: 57000 140000 1 407 262 267
+##PROGRESS#: 58000 140000 1 414 262 267
+##PROGRESS#: 58000 140000 1 414 262 267
+##PROGRESS#: 59000 140000 1 421 262 267
+##PROGRESS#: 59000 140000 1 421 262 267
+##PROGRESS#: 60000 140000 1 428 262 267
+##PROGRESS#: 60000 140000 1 428 262 267
+##PROGRESS#: 61000 140000 1 435 262 267
+##PROGRESS#: 61000 140000 1 435 262 267
+##PROGRESS#: 62000 140000 1 442 262 267
+##PROGRESS#: 62000 140000 1 442 262 267
+##PROGRESS#: 63000 140000 1 450 262 267
+##PROGRESS#: 63000 140000 1 450 262 267
+##PROGRESS#: 64000 140000 1 457 262 267
+##PROGRESS#: 64000 140000 1 457 262 267
+##PROGRESS#: 65000 140000 1 464 262 267
+##PROGRESS#: 66000 140000 1 471 262 267
+##PROGRESS#: 66000 140000 1 471 262 267
+##PROGRESS#: 66000 140000 1 471 262 267
+##PROGRESS#: 67000 140000 1 478 262 267
+##PROGRESS#: 67000 140000 1 478 262 267
+##PROGRESS#: 68000 140000 1 485 262 267
+##PROGRESS#: 68000 140000 1 485 262 267
+##PROGRESS#: 69000 140000 1 492 262 267
+##PROGRESS#: 69000 140000 1 492 262 267
+##PROGRESS#: 70000 140000 1 500 262 267
+##PROGRESS#: 70000 140000 1 500 262 267
+##PROGRESS#: 71000 140000 1 507 262 267
+##PROGRESS#: 72000 140000 1 514 262 267
+##PROGRESS#: 72000 140000 1 514 262 267
+##PROGRESS#: 73000 140000 1 521 262 267
+##PROGRESS#: 73000 140000 1 521 262 267
+##PROGRESS#: 73000 140000 1 521 262 267
+##PROGRESS#: 74000 140000 1 528 262 267
+##PROGRESS#: 75000 140000 1 535 262 267
+##PROGRESS#: 75000 140000 1 535 262 267
+##PROGRESS#: 75000 140000 1 535 262 267
+##PROGRESS#: 76000 140000 1 542 262 267
+##PROGRESS#: 77000 140000 1 550 262 267
+##PROGRESS#: 77000 140000 1 550 262 267
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "Моя Мишель - Мария.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175896 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:28+03:00
+##CLI.NAMESET#: 262 Моя Мишель
+##CLI.VOL#: 22
+##CLI.STOPPED#
+[WEBSOCKET] client #1 connected from 192.168.1.96
+##CLI.META#: [остановлено]
+##CLI.VOL#: 22
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:37+03:00
+##CLI.NAMESET#: 262 Моя Мишель
+##CLI.VOL#: 22
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 174840 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/cc_music_factory_-_everybody_dance_now_dj_kaktuz_remix.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 10746574
+##AUDIO.INFO#: ID3 framesSize: 86158
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##PROGRESS#: 0 0 1 0 110 267
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:41+03:00
+##CLI.NAMESET#: 110 cc_music_factory_-_everybody_dance_now_dj_kaktuz_remix.mp3
+##CLI.META#: 
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##AUDIO.ID3#: Title: CC Music Factory - Everybody Dance Now (DJ KaktuZ Remix)
+##CLI.META#: CC Music Factory - Everybody Dance Now (DJ KaktuZ Remix)
+##AUDIO.ID3#: Artist: ТОП
+##AUDIO.ID3#: Year: 0
+##AUDIO.INFO#: Audio-Length: 10660416
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##AUDIO.INFO#: stream ready
+##PROGRESS#: 0 0 1 291 110 267
+##PROGRESS#: 76000 0 1 294 110 267
+##PROGRESS#: 77000 0 1 295 110 267
+##PROGRESS#: 77000 0 1 297 110 267
+##PROGRESS#: 78000 0 1 299 110 267
+##PROGRESS#: 78000 0 1 301 110 267
+##PROGRESS#: 79000 0 1 303 170 267
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "cc_music_factory_-_everybody_dance_now_dj_kaktuz_remix.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175196 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/satin jackets - gelee royale.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 17282877
+##AUDIO.INFO#: ID3 framesSize: 377473
+##AUDIO.INFO#: ID3 version: 2.2
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:45+03:00
+##CLI.NAMESET#: 170 satin jackets - gelee royale.mp3
+##CLI.META#: Gelee Royale
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##AUDIO.ID3#: Title/Songname/Content description: Gelee Royale
+##CLI.META#: Gelee Royale
+##AUDIO.ID3#: Lead artist(s)/Lead performer(s)/Soloist(s)/Performing group: Satin Jackets
+##AUDIO.ID3#: Band/Orchestra/Accompaniment: Satin Jackets
+##CLI.META#: Gelee Royale - Foreign Affair - Single
+##AUDIO.ID3#: Album/Movie/Show title: Foreign Affair - Single
+##AUDIO.ID3#: Track number/Position in set: 2/3
+##PROGRESS#: 0 0 1 0 170 267
+##AUDIO.ID3#: Part of a set: 1/1
+##AUDIO.ID3#: Year: 2014
+##AUDIO.ID3#: Content type: ÿþ-;5:B@>==0O 
+##AUDIO.ID3#: Comments: engiTunPGAP
+##AUDIO.ID3#: Encoded by: iTunes 11.3.1
+##AUDIO.ID3#: Comments: engiTunNORM
+##AUDIO.ID3#: Comments: engiTunSMPB
+##AUDIO.INFO#: unknown tag: 
+##AUDIO.INFO#: Audio-Length: 16905404
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 0 0 1 22 170 267
+##PROGRESS#: 0 0 1 23 170 267
+##PROGRESS#: 1000 0 1 24 170 267
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "satin jackets - gelee royale.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 174956 bytes
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: Reading file: "/VA - Fantasy Island (Summer Lounge Tunes), Vol. 2 (2025) [FLAC] (16bit-44.1kHz)/16.  tigerforest - trade winds (original mix).flac"
+##AUDIO.INFO#: FLACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 203 267
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:48+03:00
+##CLI.NAMESET#: 203 16.  tigerforest - trade winds (original mix).flac
+##CLI.META#: 
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##AUDIO.INFO#: FLAC maxBlockSize: 4608
+##AUDIO.INFO#: FLAC maxFrameSize: 14532
+##AUDIO.INFO#: FLAC sampleRate: 44100 (Hz)
+##AUDIO.INFO#: FLAC numChannels: 2
+##AUDIO.INFO#: FLAC bitsPerSample: 16
+##AUDIO.INFO#: total samples in stream: 14924160
+##AUDIO.ID3#: VENDOR_STRING: 
+##PROGRESS#: 0 0 1 0 203 267
+##AUDIO.INFO#: Audio-Length: 36443181
+##AUDIO.INFO#: Duration: 338 (s)
+##AUDIO.INFO#: nominal bitrate : 862560 (b/s)
+##AUDIO.INFO#: BitRate: 862560
+##AUDIO.BITRATE#: 862560
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 862560
+##AUDIO.BITRATE#: 862560
+##PROGRESS#: 0 338000 1 0 203 267
+##PROGRESS#: 0 338000 1 0 203 267
+##PROGRESS#: 0 338000 1 0 203 267
+##PROGRESS#: 0 338000 1 0 203 267
+##PROGRESS#: 0 338000 1 0 203 267
+##PROGRESS#: 1000 338000 1 2 203 267
+##PROGRESS#: 1000 338000 1 2 203 267
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "16.  tigerforest - trade winds (original mix).flac"
+##AUDIO.INFO#: buffers freed, free Heap: 175140 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/zeb samuels - new light (hitmos.fm).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 11782269
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: zeb samuels - new light (hitmos.fm).mp3
+##PROGRESS#: 0 0 1 0 219 267
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:53+03:00
+##CLI.NAMESET#: 219 zeb samuels - new light (hitmos.fm).mp3
+##CLI.META#: zeb samuels - new light (hitmos.fm).mp3
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 11782269
+##AUDIO.INFO#: stream ready
+##CLI.META#: zeb samuels - new light (hitmos.fm).mp3
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 0 0 1 1 219 267
+##PROGRESS#: 0 0 1 3 219 267
+##PROGRESS#: 1000 0 1 4 219 267
+##PROGRESS#: 1000 0 1 6 219 267
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "zeb samuels - new light (hitmos.fm).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175188 bytes
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: Reading file: "/VA - Fantasy Island (Summer Lounge Tunes), Vol. 2 (2025) [FLAC] (16bit-44.1kHz)/16.  tigerforest - trade winds (original mix).flac"
+##AUDIO.INFO#: FLACDecoder has been initialized
+##CLI.META#: 
+##PROGRESS#: 0 0 1 0 203 267
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:55+03:00
+##CLI.NAMESET#: 203 16.  tigerforest - trade winds (original mix).flac
+##CLI.META#: 
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##AUDIO.INFO#: FLAC maxBlockSize: 4608
+##AUDIO.INFO#: FLAC maxFrameSize: 14532
+##AUDIO.INFO#: FLAC sampleRate: 44100 (Hz)
+##AUDIO.INFO#: FLAC numChannels: 2
+##AUDIO.INFO#: FLAC bitsPerSample: 16
+##AUDIO.INFO#: total samples in stream: 14924160
+##AUDIO.ID3#: VENDOR_STRING: 
+##AUDIO.INFO#: Audio-Length: 36443181
+##AUDIO.INFO#: Duration: 338 (s)
+##AUDIO.INFO#: nominal bitrate : 862560 (b/s)
+##AUDIO.INFO#: BitRate: 862560
+##AUDIO.BITRATE#: 862560
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 862560
+##AUDIO.BITRATE#: 862560
+##PROGRESS#: 0 338000 1 0 203 267
+##PROGRESS#: 0 338000 1 0 203 267
+##PROGRESS#: 0 338000 1 0 203 267
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "16.  tigerforest - trade winds (original mix).flac"
+##AUDIO.INFO#: buffers freed, free Heap: 175044 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/zeb samuels - new light (hitmos.fm).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 11782269
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: zeb samuels - new light (hitmos.fm).mp3
+##PROGRESS#: 0 0 1 0 219 267
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:38:57+03:00
+##CLI.NAMESET#: 219 zeb samuels - new light (hitmos.fm).mp3
+##CLI.META#: zeb samuels - new light (hitmos.fm).mp3
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 11782269
+##CLI.META#: zeb samuels - new light (hitmos.fm).mp3
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##AUDIO.INFO#: stream ready
+##PROGRESS#: 0 0 1 1 219 267
+##PROGRESS#: 0 0 1 3 219 267
+##PROGRESS#: 1000 0 1 4 219 267
+##PROGRESS#: 1000 0 1 6 219 267
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "zeb samuels - new light (hitmos.fm).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175040 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/nora_en_pure_-_turn_it_around_original_mix.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8730564
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##PROGRESS#: 0 0 1 0 156 267
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:39:00+03:00
+##CLI.NAMESET#: 156 nora_en_pure_-_turn_it_around_original_mix.mp3
+##CLI.META#: 
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##CLI.META#: Turn It Around
+##AUDIO.ID3#: Title: Turn It Around
+##AUDIO.ID3#: Artist: Nora En Pure
+##CLI.META#: Turn It Around - Turn It Around
+##AUDIO.ID3#: Album: Turn It Around
+##AUDIO.ID3#: Year: 2015
+##AUDIO.INFO#: Audio-Length: 8643524
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 0 0 1 9 156 267
+##PROGRESS#: 0 0 1 12 156 267
+##PROGRESS#: 0 0 1 14 156 267
+##PROGRESS#: 1000 0 1 16 156 267
+##PROGRESS#: 2000 0 1 19 156 267
+##PROGRESS#: 2000 0 1 21 156 267
+##PROGRESS#: 3000 0 1 23 156 267
+##PROGRESS#: 3000 0 1 26 156 267
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "nora_en_pure_-_turn_it_around_original_mix.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175208 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/shura_-_touch_48095291.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 12992701
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##PROGRESS#: 0 0 1 0 251 267
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:39:05+03:00
+##CLI.NAMESET#: 251 shura_-_touch_48095291.mp3
+##CLI.META#: 
+##CLI.VOL#: 22
+##CLI.PLAYING#
+##CLI.META#: Touch [muzmo.ru]
+##AUDIO.ID3#: Title: Touch [muzmo.ru]
+##AUDIO.ID3#: Artist: [muzmo.ru] Shura
+##CLI.META#: Touch [muzmo.ru] - [muzmo.ru]
+##AUDIO.ID3#: Album: [muzmo.ru]
+##AUDIO.INFO#: Comment: text encoding; UTF-16, language eng, content_descriptor: http://muzmo.ru - Вся музыка мира!
+##AUDIO.ID3#: Comment: 䍈䕮倄紘斓í脀笐挢牵敲瑮㨢㈠ㄵ≽∺慮敭敳≴‬瘢污敵㨢∠桳牵彡弭潴捵彨㠴㤰㈵ㄹ洮㍰索絝䈇⃟䘀㰁ȏῐꢔ妡䈇ࣟ䔀
+##AUDIO.ID3#: User defined URL link frame: 
+##AUDIO.ID3#: Copyright: http://muzmo.ru
+##AUDIO.INFO#: Lyrics: text_encoding: UTF-16, language: eng, size 114
+##AUDIO.INFO#: Lyrics: content_descriptor: http://muzmo.ru - Бесплатная музыка!
+ Shura - Touch 裢꺅闦뎕觢噸몭y
+##AUDIO.INFO#: audiofile contains synchronized lyrics
+##PROGRESS#: 0 0 1 0 251 267
+##AUDIO.INFO#: Audio-Length: 12905661
+##AUDIO.INFO#: frames 12350
+##AUDIO.INFO#: bytes 12905533
+##AUDIO.INFO#: Duration: 322 (s)
+##AUDIO.INFO#: BitRate: 320634
+##AUDIO.BITRATE#: 320634
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320634
+##AUDIO.BITRATE#: 320634
+##PROGRESS#: 0 322000 1 0 251 267
+##PROGRESS#: 0 322000 1 0 251 267
+##PROGRESS#: 1000 322000 1 3 251 267
+##PROGRESS#: 1000 322000 1 3 251 267
+##PROGRESS#: 2000 322000 1 6 251 267
+##PROGRESS#: 2000 322000 1 6 251 267
+##PROGRESS#: 3000 322000 1 9 251 267
+##PROGRESS#: 3000 322000 1 9 251 267
+##PROGRESS#: 4000 322000 1 12 251 267
+##PROGRESS#: 4000 322000 1 12 251 267
+##PROGRESS#: 5000 322000 1 15 251 267
+##PROGRESS#: 5000 322000 1 15 251 267
+##PROGRESS#: 6000 322000 1 18 251 267
+##PROGRESS#: 6000 322000 1 18 251 267
+##PROGRESS#: 7000 322000 1 21 251 267
+##PROGRESS#: 7000 322000 1 21 251 267
+##PROGRESS#: 8000 322000 1 24 251 267
+##PROGRESS#: 8000 322000 1 24 251 267
+##PROGRESS#: 9000 322000 1 27 251 267
+##PROGRESS#: 9000 322000 1 27 251 267
+##PROGRESS#: 10000 322000 1 31 251 267
+##PROGRESS#: 11000 322000 1 34 251 267
+##PROGRESS#: 11000 322000 1 34 251 267
+##PROGRESS#: 11000 322000 1 34 251 267
+##PROGRESS#: 12000 322000 1 37 251 267
+##PROGRESS#: 13000 322000 1 40 251 267
+##PROGRESS#: 13000 322000 1 40 251 267
+##PROGRESS#: 13000 322000 1 40 251 267
+##PROGRESS#: 14000 322000 1 43 251 267
+##PROGRESS#: 15000 322000 1 46 251 267
+##PROGRESS#: 15000 322000 1 46 251 267
+##PROGRESS#: 16000 322000 1 49 251 267
+##PROGRESS#: 16000 322000 1 49 251 267
+##PROGRESS#: 17000 322000 1 52 251 267
+##PROGRESS#: 17000 322000 1 52 251 267
+##PROGRESS#: 18000 322000 1 55 251 267
+##PROGRESS#: 18000 322000 1 55 251 267
+##PROGRESS#: 19000 322000 1 59 251 267
+##PROGRESS#: 19000 322000 1 59 251 267
+##PROGRESS#: 20000 322000 1 62 251 267
+##PROGRESS#: 20000 322000 1 62 251 267
+##PROGRESS#: 21000 322000 1 65 251 267
+##PROGRESS#: 21000 322000 1 65 251 267
+##PROGRESS#: 22000 322000 1 68 251 267
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "shura_-_touch_48095291.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175068 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-07-30T14:39:27+03:00
+##CLI.NAMESET#: 251 [muzmo.ru] Shura
+##CLI.VOL#: 22
+##CLI.STOPPED#
+##SHUFFLE#: OFF (sdsnuffle=0) — order normal
+> 
