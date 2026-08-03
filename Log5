@@ -1,0 +1,732 @@
+SD Mounted
+##[BOOT]#	Waiting for SD card indexing...		done
+##[BOOT]#	Ready in SD Mode!
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+[WEBSOCKET] client #1 connected from 192.168.1.96
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1180
+load:0x403c8700,len:0xc2c
+load:0x403cb700,len:0x311c
+entry 0x403c88b8
+##[BOOT]#	************************************************
+##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.3.0
+##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+##[BOOT]#	ir:		NONE
+##[BOOT]#	SD:		CS-39
+##[BOOT]#	battery:	battery ON
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+##USB.STATUS#: init 5V power check polyfuse 0.75A
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	done
+##[BOOT]#	SD search	SD Mounted
+##[BOOT]#	Waiting for SD card indexing...		done
+##[BOOT]#	Ready in SD Mode!
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+[WEBSOCKET] client #1 connected from 192.168.1.96
+##CLI.META#: [next track]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 175880 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: begin: ftyp not found
+##ERROR#:	begin: ftyp not found
+##ERROR#:	begin: ftyp not found
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:13:21+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.VOL#: 69
+##CLI.STOPPED#
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175976 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample3.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 311456
+##AUDIO.BITRATE#: 311456
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:13:28+03:00
+##CLI.NAMESET#: 273 sample3.aac
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##PROGRESS#: 293 73267 1 4 273 274
+##PROGRESS#: 586 73267 1 8 273 274
+##PROGRESS#: 879 73267 1 12 273 274
+##PROGRESS#: 1172 73267 1 16 273 274
+##PROGRESS#: 1465 73267 1 20 273 274
+##PROGRESS#: 1000 40884 1 24 273 274
+##PROGRESS#: 1000 34932 1 28 273 274
+##PROGRESS#: 1000 30716 1 32 273 274
+##PROGRESS#: 1000 27289 1 36 273 274
+##PROGRESS#: 1000 24649 1 40 273 274
+##PROGRESS#: 2000 44610 1 44 273 274
+##PROGRESS#: 2000 41102 1 48 273 274
+##PROGRESS#: 2000 37783 1 52 273 274
+##PROGRESS#: 2000 35268 1 56 273 274
+##PROGRESS#: 2000 33001 1 60 273 274
+##PROGRESS#: 2000 31134 1 64 273 274
+##PROGRESS#: 3000 44016 1 68 273 274
+##PROGRESS#: 3000 41768 1 71 273 274
+##PROGRESS#: 3000 39650 1 75 273 274
+##PROGRESS#: 3000 37759 1 79 273 274
+##PROGRESS#: 3000 36008 1 83 273 274
+##PROGRESS#: 3000 34435 1 87 273 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample3.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 176260 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/videoplayback.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: subtype 'MA4 ', 'isom' or 'mp42' expected, but found 'dash '
+##ERROR#:	subtype 'MA4 ', 'isom' or 'mp42' expected, but found 'dash '
+##ERROR#:	subtype 'MA4 ', 'isom' or 'mp42' expected, but found 'dash '
+##AUDIO.INFO#: Closing audio file "videoplayback.m4a"
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:13:37+03:00
+##CLI.NAMESET#: 272 videoplayback.m4a
+##CLI.VOL#: 69
+##CLI.STOPPED#
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175916 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:13:42+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 69
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.PLAYING#
+##PROGRESS#: 169 169115 1 1 271 274
+##PROGRESS#: 1000 316993 1 3 271 274
+##PROGRESS#: 1000 211163 1 4 271 274
+##PROGRESS#: 2000 316166 1 6 271 274
+##PROGRESS#: 2000 248982 1 8 271 274
+##PROGRESS#: 3000 312646 1 9 271 274
+##PROGRESS#: 3000 266044 1 11 271 274
+##PROGRESS#: 4000 310886 1 12 271 274
+##PROGRESS#: 4000 274929 1 14 271 274
+##PROGRESS#: 5000 309789 1 16 271 274
+##PROGRESS#: 5000 280605 1 17 271 274
+##PROGRESS#: 6000 309163 1 19 271 274
+##PROGRESS#: 6000 284512 1 21 271 274
+##PROGRESS#: 7000 308652 1 22 271 274
+##PROGRESS#: 8000 328483 1 24 271 274
+##PROGRESS#: 8000 308347 1 25 271 274
+##PROGRESS#: 9000 325820 1 27 271 274
+##PROGRESS#: 9000 308134 1 29 271 274
+##PROGRESS#: 10000 323592 1 30 271 274
+##PROGRESS#: 10000 307868 1 32 271 274
+##PROGRESS#: 11000 321930 1 34 271 274
+##PROGRESS#: 11000 307725 1 35 271 274
+##PROGRESS#: 12000 320532 1 37 271 274
+##PROGRESS#: 12000 307550 1 39 271 274
+##PROGRESS#: 13000 319428 1 40 271 274
+##PROGRESS#: 14000 331035 1 42 271 274
+##PROGRESS#: 14000 318329 1 43 271 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample4.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 176232 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:13:54+03:00
+##CLI.NAMESET#: 270 skysea (cover) круто (replaced) основа.m4a
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: Closing audio file "skysea (cover) круто (replaced) основа.m4a"
+##CLI.META#: Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175968 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:13:56+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle).m4a"
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175856 bytes
+##AUDIO.INFO#: format is wav
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle) (cover).wav"
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:13:59+03:00
+##CLI.NAMESET#: 268 Зелёный храм (disco-jungle) (cover).wav
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: FormatCode: 1
+##AUDIO.INFO#: DataRate: 176400
+##AUDIO.INFO#: DataBlockSize: 4
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##AUDIO.INFO#: Audio-Length: 35520468
+##AUDIO.INFO#: Duration: 201 (s)
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##PROGRESS#: 402 201000 1 2 268 274
+##PROGRESS#: 804 201000 1 4 268 274
+##PROGRESS#: 1000 201000 1 6 268 274
+##PROGRESS#: 1000 201000 1 8 268 274
+##PROGRESS#: 2000 201000 1 10 268 274
+##PROGRESS#: 2000 201000 1 12 268 274
+##PROGRESS#: 2000 201000 1 14 268 274
+##PROGRESS#: 3000 201000 1 16 268 274
+##PROGRESS#: 3000 201000 1 18 268 274
+##PROGRESS#: 4000 201000 1 20 268 274
+##PROGRESS#: 4000 201000 1 22 268 274
+##PROGRESS#: 4000 201000 1 24 268 274
+##PROGRESS#: 5000 201000 1 26 268 274
+##PROGRESS#: 5000 201000 1 28 268 274
+##PROGRESS#: 6000 201000 1 30 268 274
+##PROGRESS#: 6000 201000 1 32 268 274
+##PROGRESS#: 7000 201000 1 34 268 274
+##PROGRESS#: 7000 201000 1 36 268 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle) (cover).wav"
+##AUDIO.INFO#: buffers freed, free Heap: 176112 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/relaxium - sound waves (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 140873392
+##AUDIO.INFO#: ID3 framesSize: 28911
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:07+03:00
+##CLI.NAMESET#: 267 relaxium - sound waves (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Sound Waves
+##AUDIO.ID3#: Title: Sound Waves
+##CLI.META#: Sound Waves - Sound Waves
+##AUDIO.ID3#: Album: Sound Waves
+##AUDIO.ID3#: Artist: Relaxium
+##AUDIO.ID3#: Comment: FILE "RELAXIUM - SOUND WAVES .wav" WAVE
+  TRACK 01 AUDIO
+    TITLE "Pensees (Original mix)"
+    PERFORMER "Mashk feat. Soul Button"
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO
+    TITLE "The Sky"
+    PERFORMER "Keyhard & ZELENIN"
+    INDEX 01 07:25:00
+  TRACK 03 AUDIO
+    TITLE "M##AUDIO.ID3#: ContentType: Progressive House
+##AUDIO.ID3#: Year: 2025
+##AUDIO.ID3#: User defined URL link frame: 
+##AUDIO.ID3#: Encoded by: Lavf59.31.100
+##AUDIO.ID3#: OriginalArtist: Relaxium
+##AUDIO.INFO#: Audio-Length: 140844481
+##AUDIO.INFO#: Syncword not found
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 1
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 1000 1927871 1 0 267 274
+##PROGRESS#: 1000 1575906 1 0 267 274
+##PROGRESS#: 1000 1332614 1 0 267 274
+##PROGRESS#: 2000 2327101 1 0 267 274
+##PROGRESS#: 2000 2050678 1 0 267 274
+##PROGRESS#: 3000 2749433 1 1 267 274
+##PROGRESS#: 3000 2485536 1 1 267 274
+##PROGRESS#: 3000 2267862 1 1 267 274
+##PROGRESS#: 4000 2793555 1 1 267 274
+##PROGRESS#: 4000 2584453 1 1 267 274
+##PROGRESS#: 5000 3005595 1 1 267 274
+##PROGRESS#: 5000 2809916 1 1 267 274
+##PROGRESS#: 5000 2638158 1 1 267 274
+##PROGRESS#: 6000 2993572 1 2 267 274
+##PROGRESS#: 6000 2829997 1 2 267 274
+##PROGRESS#: 7000 3130606 1 2 267 274
+##PROGRESS#: 7000 2976392 1 2 267 274
+##PROGRESS#: 7000 2836664 1 2 267 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "relaxium - sound waves (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176064 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 114448717
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:16+03:00
+##CLI.NAMESET#: 266 balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##CLI.META#: balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 114448717
+##AUDIO.INFO#: frames 109530
+##AUDIO.INFO#: bytes 114448717
+##AUDIO.INFO#: Duration: 2861 (s)
+##AUDIO.INFO#: BitRate: 320024
+##AUDIO.BITRATE#: 320024
+##CLI.META#: balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320024
+##AUDIO.BITRATE#: 320024
+##AUDIO.INFO#: stream ready
+##PROGRESS#: 1000 2861000 1 0 266 274
+##PROGRESS#: 1000 2861000 1 0 266 274
+##PROGRESS#: 1000 2861000 1 0 266 274
+##PROGRESS#: 2000 2861000 1 0 266 274
+##PROGRESS#: 2000 2861000 1 0 266 274
+##PROGRESS#: 3000 2861000 1 1 266 274
+##PROGRESS#: 3000 2861000 1 1 266 274
+##PROGRESS#: 3000 2861000 1 1 266 274
+##PROGRESS#: 4000 2861000 1 1 266 274
+##PROGRESS#: 4000 2861000 1 1 266 274
+##PROGRESS#: 5000 2861000 1 1 266 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176176 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/balkanbazaroflove#3 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 138300636
+##AUDIO.INFO#: ID3 framesSize: 157468
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:22+03:00
+##CLI.NAMESET#: 265 balkanbazaroflove#3 by mcold (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: JustBeHappy
+##AUDIO.ID3#: Album: JustBeHappy
+##AUDIO.ID3#: ContentType: Deep House
+##CLI.META#: JustBeHappy - Balkan Bazar Of Love #3
+##AUDIO.ID3#: Title: Balkan Bazar Of Love #3
+##AUDIO.ID3#: Artist: McOld
+##AUDIO.ID3#: Year: 2021
+##AUDIO.INFO#: Audio-Length: 138143168
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 5762 5762526 1 1 265 274
+##PROGRESS#: 5762 5762526 1 1 265 274
+##PROGRESS#: 1000 695859 1 1 265 274
+##PROGRESS#: 1000 643055 1 1 265 274
+##PROGRESS#: 1000 600190 1 1 265 274
+##PROGRESS#: 2000 1120986 1 1 265 274
+##PROGRESS#: 2000 1051444 1 1 265 274
+##PROGRESS#: 3000 1485039 1 2 265 274
+##PROGRESS#: 3000 1403080 1 2 265 274
+##PROGRESS#: 3000 1333799 1 2 265 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "balkanbazaroflove#3 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176240 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/justbehappy#4 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 119182150
+##AUDIO.INFO#: ID3 framesSize: 4096
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:27+03:00
+##CLI.NAMESET#: 264 justbehappy#4 by mcold (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: JustBeHappy#4
+##AUDIO.ID3#: Title: JustBeHappy#4
+##AUDIO.ID3#: Artist: McOld
+##AUDIO.ID3#: Year: 2025
+##AUDIO.INFO#: Audio-Length: 119178054
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 1000 2331601 1 0 264 274
+##PROGRESS#: 1000 1784457 1 0 264 274
+##PROGRESS#: 1000 1427194 1 0 264 274
+##PROGRESS#: 2000 2403326 1 0 264 274
+##PROGRESS#: 2000 2056637 1 0 264 274
+##PROGRESS#: 3000 2717478 1 1 264 274
+##PROGRESS#: 3000 2411099 1 1 264 274
+##PROGRESS#: 3000 2180626 1 1 264 274
+##PROGRESS#: 4000 2638480 1 1 264 274
+##PROGRESS#: 4000 2427866 1 1 264 274
+##PROGRESS#: 5000 2796718 1 1 264 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "justbehappy#4 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176088 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Моя Мишель - Сезам.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 7940543
+##AUDIO.INFO#: ID3 framesSize: 199768
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:33+03:00
+##CLI.NAMESET#: 263 Моя Мишель - Сезам.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Сезам
+##AUDIO.ID3#: Title: Сезам
+##AUDIO.ID3#: Band: lmusic.kz
+##AUDIO.ID3#: Artist: Моя Мишель
+##CLI.META#: Сезам - lmusic.kz
+##AUDIO.ID3#: Album: lmusic.kz
+##AUDIO.ID3#: Year: lmusic.kz
+##AUDIO.ID3#: Composer: lmusic.kz
+##AUDIO.ID3#: Comment: lmusic.kz
+##AUDIO.INFO#: Audio-Length: 7740775
+##AUDIO.INFO#: frames 7407
+##AUDIO.INFO#: bytes 7740603
+##AUDIO.INFO#: Duration: 193 (s)
+##AUDIO.INFO#: BitRate: 320854
+##AUDIO.BITRATE#: 320854
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320854
+##AUDIO.BITRATE#: 320854
+##PROGRESS#: 5018 193000 1 26 263 274
+##PROGRESS#: 5404 193000 1 28 263 274
+##PROGRESS#: 1000 193000 1 30 263 274
+##PROGRESS#: 1000 193000 1 32 263 274
+##PROGRESS#: 1000 193000 1 34 263 274
+##PROGRESS#: 2000 193000 1 36 263 274
+##PROGRESS#: 2000 193000 1 38 263 274
+##PROGRESS#: 3000 193000 1 40 263 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Моя Мишель - Сезам.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176100 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Моя Мишель - Мария.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 5840298
+##AUDIO.INFO#: ID3 framesSize: 199768
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:38+03:00
+##CLI.NAMESET#: 262 Моя Мишель - Мария.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Мария
+##AUDIO.ID3#: Title: Мария
+##AUDIO.ID3#: Band: lmusic.kz
+##AUDIO.ID3#: Artist: Моя Мишель
+##CLI.META#: Мария - lmusic.kz
+##AUDIO.ID3#: Album: lmusic.kz
+##AUDIO.ID3#: Year: lmusic.kz
+##AUDIO.ID3#: Composer: lmusic.kz
+##AUDIO.ID3#: Comment: lmusic.kz
+##AUDIO.INFO#: Audio-Length: 5640530
+##AUDIO.INFO#: frames 5397
+##AUDIO.INFO#: bytes 5640358
+##AUDIO.INFO#: Duration: 140 (s)
+##AUDIO.INFO#: BitRate: 322306
+##AUDIO.BITRATE#: 322306
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 322306
+##AUDIO.BITRATE#: 322306
+##PROGRESS#: 4900 140000 1 35 262 274
+##PROGRESS#: 5320 140000 1 38 262 274
+##PROGRESS#: 5740 140000 1 41 262 274
+##PROGRESS#: 1000 140000 1 43 262 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Моя Мишель - Мария.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176156 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Моя Мишель, Минаева, liili - Фейерверк.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 9902901
+##AUDIO.INFO#: ID3 framesSize: 199808
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:40+03:00
+##CLI.NAMESET#: 261 Моя Мишель, Минаева, liili - Фейерверк.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.ID3#: Title: Фейерверк
+##CLI.META#: Фейерверк
+##AUDIO.ID3#: Band: lmusic.kz
+##AUDIO.ID3#: Artist: Моя Мишель, Минаева, Liili
+##CLI.META#: Фейерверк - lmusic.kz
+##AUDIO.ID3#: Album: lmusic.kz
+##AUDIO.ID3#: Year: lmusic.kz
+##AUDIO.ID3#: Composer: lmusic.kz
+##AUDIO.ID3#: Comment: lmusic.kz
+##AUDIO.INFO#: Audio-Length: 9703093
+##AUDIO.INFO#: frames 9285
+##AUDIO.INFO#: bytes 9702921
+##AUDIO.INFO#: Duration: 242 (s)
+##AUDIO.INFO#: BitRate: 320757
+##AUDIO.BITRATE#: 320757
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320757
+##AUDIO.BITRATE#: 320757
+##PROGRESS#: 4840 242000 1 20 261 274
+##PROGRESS#: 5324 242000 1 22 261 274
+##PROGRESS#: 5808 242000 1 24 261 274
+##PROGRESS#: 1000 242000 1 25 261 274
+##PROGRESS#: 1000 242000 1 27 261 274
+##PROGRESS#: 2000 242000 1 29 261 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Моя Мишель, Минаева, liili - Фейерверк.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175928 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/soda luv, Моя Мишель - Звездопад.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6258353
+##AUDIO.INFO#: ID3 framesSize: 246011
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:44+03:00
+##CLI.NAMESET#: 260 soda luv, Моя Мишель - Звездопад.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Звездопад
+##AUDIO.ID3#: Title: Звездопад
+##AUDIO.ID3#: Artist: SODA LUV/Моя Мишель
+##AUDIO.ID3#: Band: SODA LUV,Моя Мишель
+##CLI.META#: Звездопад - SODA LUV
+##AUDIO.ID3#: Album: SODA LUV
+##AUDIO.ID3#: Year: 2024
+##AUDIO.ID3#: ContentType: ruspop
+##AUDIO.ID3#: Track: 1
+##AUDIO.INFO#: Audio-Length: 6012342
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 10430 260764 1 40 260 274
+##PROGRESS#: 10952 260764 1 42 260 274
+##PROGRESS#: 11734 260764 1 45 260 274
+##PROGRESS#: 1000 20764 1 48 260 274
+##PROGRESS#: 1000 19738 1 50 260 274
+##PROGRESS#: 2000 37499 1 53 260 274
+##PROGRESS#: 2000 35817 1 55 260 274
+##PROGRESS#: 3000 51273 1 58 260 274
+##PROGRESS#: 3000 49169 1 61 260 274
+##PROGRESS#: 3000 47230 1 63 260 274
+##PROGRESS#: 4000 60432 1 66 260 274
+##PROGRESS#: 4000 58229 1 68 260 274
+##PROGRESS#: 5000 70061 1 71 260 274
+##PROGRESS#: 5000 67533 1 74 260 274
+##PROGRESS#: 5000 65324 1 76 260 274
+##PROGRESS#: 6000 75745 1 79 260 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "soda luv, Моя Мишель - Звездопад.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176240 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Моя Мишель - Город ангелов.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 10087991
+##AUDIO.INFO#: ID3 framesSize: 65203
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:51+03:00
+##CLI.NAMESET#: 259 Моя Мишель - Город ангелов.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.ID3#: Artist: Moya Mishel
+##CLI.META#: Город ангелов
+##AUDIO.ID3#: Title: Город ангелов
+##AUDIO.INFO#: Audio-Length: 10022788
+##AUDIO.INFO#: frames 9591
+##AUDIO.INFO#: bytes 10022660
+##AUDIO.INFO#: Duration: 250 (s)
+##AUDIO.INFO#: BitRate: 320725
+##AUDIO.BITRATE#: 320725
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320725
+##AUDIO.BITRATE#: 320725
+##AUDIO.INFO#: stream ready
+##PROGRESS#: 1750 250000 1 7 259 274
+##PROGRESS#: 2250 250000 1 9 259 274
+##PROGRESS#: 1000 250000 1 10 259 274
+##PROGRESS#: 1000 250000 1 12 259 274
+##PROGRESS#: 1000 250000 1 14 259 274
+##PROGRESS#: 2000 250000 1 15 259 274
+##PROGRESS#: 2000 250000 1 17 259 274
+##PROGRESS#: 3000 250000 1 18 259 274
+##PROGRESS#: 3000 250000 1 20 259 274
+##PROGRESS#: 3000 250000 1 22 259 274
+##PROGRESS#: 4000 250000 1 23 259 274
+##PROGRESS#: 4000 250000 1 25 259 274
+##PROGRESS#: 5000 250000 1 26 259 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Моя Мишель - Город ангелов.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175932 bytes
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: Reading file: "/VA - Fantasy Island (Summer Lounge Tunes), Vol. 2 (2025) [FLAC] (16bit-44.1kHz)/27.  weber & weber - wake up, get up (original mix).flac"
+##AUDIO.INFO#: FLACDecoder has been initialized
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:14:57+03:00
+##CLI.NAMESET#: 214 27.  weber & weber - wake up, get up (original mix).flac
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: FLAC maxBlockSize: 4608
+##AUDIO.INFO#: FLAC maxFrameSize: 14955
+##AUDIO.INFO#: FLAC sampleRate: 44100 (Hz)
+##AUDIO.INFO#: FLAC numChannels: 2
+##AUDIO.INFO#: FLAC bitsPerSample: 16
+##AUDIO.INFO#: total samples in stream: 13827313
+##AUDIO.ID3#: VENDOR_STRING: 
+##AUDIO.INFO#: Audio-Length: 33212257
+##AUDIO.INFO#: Duration: 313 (s)
+##AUDIO.INFO#: nominal bitrate : 848875 (b/s)
+##AUDIO.INFO#: BitRate: 848875
+##AUDIO.BITRATE#: 848875
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 848875
+##AUDIO.BITRATE#: 848875
+##PROGRESS#: 939 313000 1 3 214 274
+##PROGRESS#: 1565 313000 1 5 214 274
+##PROGRESS#: 1000 313000 1 6 214 274
+##PROGRESS#: 1000 313000 1 7 214 274
+##PROGRESS#: 1000 313000 1 8 214 274
+##PROGRESS#: 2000 313000 1 9 214 274
+##PROGRESS#: 2000 313000 1 11 214 274
+##PROGRESS#: 2000 313000 1 12 214 274
+##PROGRESS#: 3000 313000 1 13 214 274
+##PROGRESS#: 3000 313000 1 14 214 274
+##PROGRESS#: 4000 313000 1 16 214 274
+##PROGRESS#: 4000 313000 1 17 214 274
+##PROGRESS#: 4000 313000 1 18 214 274
+##PROGRESS#: 5000 313000 1 19 214 274
+##PROGRESS#: 5000 313000 1 21 214 274
+##PROGRESS#: 6000 313000 1 22 214 274
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "27.  weber & weber - wake up, get up (original mix).flac"
+##AUDIO.INFO#: buffers freed, free Heap: 176116 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T15:15:05+03:00
+##CLI.NAMESET#: 214 27.  weber & weber - wake up, get up (original mix).flac
+##CLI.VOL#: 69
+##CLI.STOPPED#
