@@ -1,0 +1,546 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1180
+load:0x403c8700,len:0xc2c
+load:0x403cb700,len:0x311c
+entry 0x403c88b8
+##[BOOT]#	************************************************
+##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.3.0
+##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+##[BOOT]#	ir:		NONE
+##[BOOT]#	SD:		CS-39
+##[BOOT]#	battery:	battery ON
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+##USB.STATUS#: init 5V power check polyfuse 0.75A
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	done
+##[BOOT]#	SD search	SD Mounted
+##[BOOT]#	Waiting for SD card indexing...		done
+##[BOOT]#	Ready in SD Mode!
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+[WEBSOCKET] client #1 connected from 192.168.1.96
+##CLI.META#: [next track]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 176136 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: m4a: no ftyp, looks like raw AAC (ADTS). Switch to CODEC_AAC
+##PROGRESS#: 0 0 1 0 274 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:47:45+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 374505
+##AUDIO.BITRATE#: 374505
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 0 220000 1 0 274 274
+##PROGRESS#: 440 220000 1 2 274 274
+##PROGRESS#: 660 220000 1 3 274 274
+##PROGRESS#: 880 220000 1 4 274 274
+##PROGRESS#: 1000 220000 1 5 274 274
+##PROGRESS#: 1000 220000 1 7 274 274
+##PROGRESS#: 1000 220000 1 8 274 274
+##PROGRESS#: 2000 220000 1 9 274 274
+##PROGRESS#: 2000 220000 1 10 274 274
+##PROGRESS#: 2000 220000 1 11 274 274
+##PROGRESS#: 2000 220000 1 12 274 274
+##PROGRESS#: 3000 220000 1 14 274 274
+##PROGRESS#: 3000 220000 1 15 274 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 176240 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample3.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 273 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:47:50+03:00
+##CLI.NAMESET#: 273 sample3.aac
+##CLI.META#: 
+##CLI.VOL#: 30
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 311456
+##AUDIO.BITRATE#: 311456
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 90 45000 1 2 273 274
+##PROGRESS#: 270 45000 1 6 273 274
+##PROGRESS#: 405 45000 1 9 273 274
+##PROGRESS#: 540 45000 1 12 273 274
+##PROGRESS#: 675 45000 1 15 273 274
+##PROGRESS#: 810 45000 1 18 273 274
+##PROGRESS#: 945 45000 1 21 273 274
+##PROGRESS#: 1000 45000 1 24 273 274
+##PROGRESS#: 1000 45000 1 27 273 274
+##PROGRESS#: 1000 45000 1 30 273 274
+##PROGRESS#: 1000 45000 1 33 273 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample3.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 176236 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 271 274
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:47:54+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##PROGRESS#: 0 333000 1 0 271 274
+##PROGRESS#: 666 333000 1 2 271 274
+##PROGRESS#: 1000 333000 1 3 271 274
+##PROGRESS#: 1000 333000 1 4 271 274
+##PROGRESS#: 1000 333000 1 5 271 274
+##PROGRESS#: 2000 333000 1 6 271 274
+##PROGRESS#: 2000 333000 1 863 271 274
+##PROGRESS#: 288000 333000 1 864 271 274
+##PROGRESS#: 288000 333000 1 866 271 274
+##PROGRESS#: 288000 333000 1 867 271 274
+##PROGRESS#: 289000 333000 1 868 271 274
+##PROGRESS#: 289000 333000 1 869 271 274
+##PROGRESS#: 290000 333000 1 871 271 274
+##AUDIO.INFO#: Closing audio file "sample4.aac"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176224 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:47:58+03:00
+##CLI.NAMESET#: 272 sample4.aac
+##CLI.VOL#: 30
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175564 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/videoplayback.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 272 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:47:58+03:00
+##CLI.NAMESET#: 272 videoplayback.m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##PROGRESS#: 0 0 1 0 272 274
+##AUDIO.INFO#: Duration: 208 (s)
+##CLI.META#: No DecoderSpecificInfo found in esds
+##ERROR#:	No DecoderSpecificInfo found in esds
+##ERROR#:	No DecoderSpecificInfo found in esds
+##AUDIO.ID3#: Encoder: Google
+##AUDIO.INFO#: Audio-Length: 160177
+##AUDIO.INFO#: Duration: 208 (s)
+##AUDIO.INFO#: BitRate: 6160
+##AUDIO.BITRATE#: 6160
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 6160
+##AUDIO.BITRATE#: 6160
+##PROGRESS#: 3000 208000 1 1 272 274
+##PROGRESS#: 9000 208000 1 3 272 274
+##PROGRESS#: 15000 208000 1 4 272 274
+##PROGRESS#: 22000 208000 1 5 272 274
+##PROGRESS#: 28000 208000 1 7 272 274
+##PROGRESS#: 34000 208000 1 8 272 274
+##PROGRESS#: 41000 208000 1 10 272 274
+##PROGRESS#: 47000 208000 1 11 272 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "videoplayback.m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 176236 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample3.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 273 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:02+03:00
+##CLI.NAMESET#: 273 sample3.aac
+##CLI.META#: 
+##CLI.VOL#: 30
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 311456
+##AUDIO.BITRATE#: 311456
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 90 45000 1 2 273 274
+##PROGRESS#: 270 45000 1 6 273 274
+##PROGRESS#: 405 45000 1 9 273 274
+##PROGRESS#: 540 45000 1 12 273 274
+##AUDIO.INFO#: Closing audio file "sample3.aac"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176232 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:03+03:00
+##CLI.NAMESET#: 274 sample3.aac
+##CLI.VOL#: 30
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175784 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: m4a: no ftyp, looks like raw AAC (ADTS). Switch to CODEC_AAC
+##PROGRESS#: 0 0 1 0 274 274
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 374505
+##AUDIO.BITRATE#: 374505
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:04+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##PROGRESS#: 0 220000 1 0 274 274
+##PROGRESS#: 440 220000 1 2 274 274
+##PROGRESS#: 660 220000 1 3 274 274
+##PROGRESS#: 1000 220000 1 4 274 274
+##PROGRESS#: 1000 220000 1 5 274 274
+##PROGRESS#: 1000 220000 1 7 274 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 176240 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample3.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 273 274
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:06+03:00
+##CLI.NAMESET#: 273 sample3.aac
+##CLI.META#: 
+##CLI.VOL#: 30
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 311456
+##AUDIO.BITRATE#: 311456
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.PLAYING#
+##PROGRESS#: 135 45000 1 3 273 274
+##PROGRESS#: 270 45000 1 6 273 274
+##PROGRESS#: 34000 45000 1 774 273 274
+##PROGRESS#: 35000 45000 1 777 273 274
+##PROGRESS#: 35000 45000 1 780 273 274
+##PROGRESS#: 35000 45000 1 783 273 274
+##PROGRESS#: 35000 45000 1 786 273 274
+##PROGRESS#: 35000 45000 1 788 273 274
+##PROGRESS#: 35000 45000 1 791 273 274
+##PROGRESS#: 35000 45000 1 794 273 274
+##PROGRESS#: 36000 45000 1 797 273 274
+##PROGRESS#: 36000 45000 1 800 273 274
+##PROGRESS#: 36000 45000 1 803 273 274
+##PROGRESS#: 36000 45000 1 805 273 274
+##PROGRESS#: 36000 45000 1 808 273 274
+##PROGRESS#: 36000 45000 1 811 273 274
+##PROGRESS#: 36000 45000 1 814 273 274
+##PROGRESS#: 36000 45000 1 817 273 274
+##PROGRESS#: 37000 45000 1 820 273 274
+##PROGRESS#: 37000 45000 1 823 273 274
+##PROGRESS#: 37000 45000 1 825 273 274
+##PROGRESS#: 37000 45000 1 828 273 274
+##PROGRESS#: 37000 45000 1 831 273 274
+##PROGRESS#: 37000 45000 1 834 273 274
+##PROGRESS#: 37000 45000 1 837 273 274
+##PROGRESS#: 37000 45000 1 839 273 274
+##PROGRESS#: 38000 45000 1 842 273 274
+##PROGRESS#: 38000 45000 1 845 273 274
+##PROGRESS#: 38000 45000 1 848 273 274
+##PROGRESS#: 38000 45000 1 851 273 274
+##PROGRESS#: 38000 45000 1 853 273 274
+##PROGRESS#: 38000 45000 1 856 273 274
+##PROGRESS#: 38000 45000 1 859 273 274
+##PROGRESS#: 38000 45000 1 862 273 274
+##AUDIO.INFO#: Closing audio file "sample3.aac"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176216 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:16+03:00
+##CLI.NAMESET#: 274 sample3.aac
+##CLI.VOL#: 30
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175564 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: m4a: no ftyp, looks like raw AAC (ADTS). Switch to CODEC_AAC
+##PROGRESS#: 0 0 1 0 274 274
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: 
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 374505
+##AUDIO.BITRATE#: 374505
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:17+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##PROGRESS#: 0 220000 1 0 274 274
+##PROGRESS#: 440 220000 1 2 274 274
+##PROGRESS#: 660 220000 1 3 274 274
+##PROGRESS#: 1000 220000 1 4 274 274
+##PROGRESS#: 1000 220000 1 5 274 274
+##PROGRESS#: 1000 220000 1 7 274 274
+##PROGRESS#: 1000 220000 1 8 274 274
+##PROGRESS#: 2000 220000 1 9 274 274
+##PROGRESS#: 2000 220000 1 10 274 274
+##PROGRESS#: 2000 220000 1 11 274 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 176140 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:20+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: non-progressive M4A: mdat before moov, size 3559118, skipping for SD
+##AUDIO.INFO#: skip 3559118 bytes
+##AUDIO.INFO#: Duration: 196 (s)
+##AUDIO.INFO#: AAC Profile: AAC LC (Low Complexity)
+##AUDIO.INFO#: AAC Channels; 2
+##AUDIO.INFO#: AAC Sample Rate: 44100
+##AUDIO.INFO#: AAC Bits Per Sample: 16
+##PROGRESS#: 0 0 1 0 269 274
+##AUDIO.ID3#: Encoder: fdkaac 1.0.6, libfdk-aac 4.0.1, VBR mode 3
+##AUDIO.INFO#: ---- tag not supported
+##AUDIO.INFO#: position larger than size 701572934 > 3595577
+##AUDIO.INFO#: skip 697977357 bytes
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: audioHeader reading timeout
+##ERROR#:	audioHeader reading timeout
+##ERROR#:	audioHeader reading timeout
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 171268 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 270 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:28+03:00
+##CLI.NAMESET#: 270 skysea (cover) круто (replaced) основа.m4a
+##CLI.VOL#: 30
+##CLI.STOPPED#
+##ERROR#:	begin: ftyp not found
+##ERROR#:	begin: ftyp not found
+##AUDIO.INFO#: Closing audio file "skysea (cover) круто (replaced) основа.m4a"
+##CLI.META#: Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175996 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:34+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: non-progressive M4A: mdat before moov, size 3559118, skipping for SD
+##AUDIO.INFO#: skip 3559118 bytes
+##AUDIO.INFO#: Duration: 196 (s)
+##AUDIO.INFO#: AAC Profile: AAC LC (Low Complexity)
+##AUDIO.INFO#: AAC Channels; 2
+##AUDIO.INFO#: AAC Sample Rate: 44100
+##AUDIO.INFO#: AAC Bits Per Sample: 16
+##PROGRESS#: 0 0 1 0 269 274
+##AUDIO.ID3#: Encoder: fdkaac 1.0.6, libfdk-aac 4.0.1, VBR mode 3
+##AUDIO.INFO#: ---- tag not supported
+##AUDIO.INFO#: position larger than size 701572934 > 3595577
+##AUDIO.INFO#: skip 697977357 bytes
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175996 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:42+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.VOL#: 30
+##CLI.STOPPED#
+##ERROR#:	begin: ftyp not found
+##ERROR#:	begin: ftyp not found
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle).m4a"
+##CLI.META#: Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175992 bytes
+##AUDIO.INFO#: format is wav
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle) (cover).wav"
+##PROGRESS#: 0 0 1 0 268 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:54+03:00
+##CLI.NAMESET#: 268 Зелёный храм (disco-jungle) (cover).wav
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: FormatCode: 1
+##AUDIO.INFO#: DataRate: 176400
+##AUDIO.INFO#: DataBlockSize: 4
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##PROGRESS#: 0 201363 1 0 268 274
+##AUDIO.INFO#: Audio-Length: 35520468
+##AUDIO.INFO#: Duration: 201 (s)
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##PROGRESS#: 201 201000 1 1 268 274
+##PROGRESS#: 402 201000 1 2 268 274
+##PROGRESS#: 22000 201000 1 111 268 274
+##PROGRESS#: 22000 201000 1 113 268 274
+##PROGRESS#: 43000 201000 1 218 268 274
+##PROGRESS#: 44000 201000 1 220 268 274
+##PROGRESS#: 44000 201000 1 221 268 274
+##PROGRESS#: 44000 201000 1 435 268 274
+##PROGRESS#: 88000 201000 1 437 268 274
+##PROGRESS#: 88000 201000 1 439 268 274
+##PROGRESS#: 88000 201000 1 440 268 274
+##PROGRESS#: 88000 201000 1 442 268 274
+##PROGRESS#: 89000 201000 1 443 268 274
+##PROGRESS#: 89000 201000 1 445 268 274
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle) (cover).wav"
+##AUDIO.INFO#: buffers freed, free Heap: 176228 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:48:59+03:00
+##CLI.NAMESET#: 268 Зелёный храм (disco-jungle) (cover).wav
+##CLI.VOL#: 30
+##CLI.STOPPED#
