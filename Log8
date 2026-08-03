@@ -1,0 +1,2460 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1180
+load:0x403c8700,len:0xc2c
+load:0x403cb700,len:0x311c
+entry 0x403c88b8
+##[BOOT]#	************************************************
+##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.3.0
+##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+##[BOOT]#	ir:		NONE
+##[BOOT]#	SD:		CS-39
+##[BOOT]#	battery:	battery ON
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+##USB.STATUS#: init 5V power check polyfuse 0.75A
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	done
+##[BOOT]#	SD search	SD Mounted
+##[BOOT]#	Waiting for SD card indexing...		done
+##[BOOT]#	Ready in SD Mode!
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+[WEBSOCKET] client #1 connected from 192.168.1.96
+##CLI.META#: [next track]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 171244 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: m4a: no ftyp, looks like raw AAC (ADTS). Switch to CODEC_AAC
+##PROGRESS#: 0 0 1 0 274 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 1970-01-01T03:00:05+03:00
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 374505
+##AUDIO.BITRATE#: 374505
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 220 220000 1 1 274 274
+##PROGRESS#: 440 220000 1 2 274 274
+##PROGRESS#: 660 220000 1 3 274 274
+##PROGRESS#: 1000 220000 1 4 274 274
+##PROGRESS#: 1000 220000 1 6 274 274
+##PROGRESS#: 1000 220000 1 7 274 274
+##PROGRESS#: 1000 220000 1 8 274 274
+##PROGRESS#: 2000 220000 1 9 274 274
+##PROGRESS#: 2000 220000 1 10 274 274
+##PROGRESS#: 2000 220000 1 12 274 274
+##PROGRESS#: 2000 220000 1 13 274 274
+##PROGRESS#: 3000 220000 1 14 274 274
+##PROGRESS#: 3000 220000 1 15 274 274
+##PROGRESS#: 3000 220000 1 16 274 274
+##PROGRESS#: 3000 220000 1 17 274 274
+##PROGRESS#: 4000 220000 1 19 274 274
+##PROGRESS#: 4000 220000 1 20 274 274
+##PROGRESS#: 4000 220000 1 21 274 274
+##PROGRESS#: 4000 220000 1 22 274 274
+##PROGRESS#: 5000 220000 1 23 274 274
+##PROGRESS#: 5000 220000 1 25 274 274
+##PROGRESS#: 5000 220000 1 26 274 274
+##PROGRESS#: 6000 220000 1 27 274 274
+##PROGRESS#: 6000 220000 1 28 274 274
+##PROGRESS#: 6000 220000 1 29 274 274
+##PROGRESS#: 6000 220000 1 31 274 274
+##PROGRESS#: 7000 220000 1 32 274 274
+##PROGRESS#: 7000 220000 1 33 274 274
+##PROGRESS#: 7000 220000 1 34 274 274
+##PROGRESS#: 7000 220000 1 35 274 274
+##PROGRESS#: 8000 220000 1 36 274 274
+##PROGRESS#: 8000 220000 1 38 274 274
+##PROGRESS#: 8000 220000 1 39 274 274
+##PROGRESS#: 8000 220000 1 40 274 274
+##PROGRESS#: 9000 220000 1 41 274 274
+##PROGRESS#: 9000 220000 1 42 274 274
+##PROGRESS#: 9000 220000 1 44 274 274
+##PROGRESS#: 9000 220000 1 45 274 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 171580 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample3.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 273 274
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 1970-01-01T03:00:17+03:00
+##CLI.NAMESET#: 273 sample3.aac
+##CLI.META#: 
+##CLI.VOL#: 30
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 311456
+##AUDIO.BITRATE#: 311456
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.PLAYING#
+##PROGRESS#: 135 45000 1 3 273 274
+##PROGRESS#: 270 45000 1 6 273 274
+##PROGRESS#: 405 45000 1 9 273 274
+##PROGRESS#: 540 45000 1 12 273 274
+##PROGRESS#: 675 45000 1 15 273 274
+##PROGRESS#: 810 45000 1 18 273 274
+##PROGRESS#: 945 45000 1 21 273 274
+##PROGRESS#: 1000 45000 1 24 273 274
+##PROGRESS#: 1000 45000 1 27 273 274
+##PROGRESS#: 1000 45000 1 30 273 274
+##PROGRESS#: 1000 45000 1 33 273 274
+##PROGRESS#: 1000 45000 1 36 273 274
+##PROGRESS#: 1000 45000 1 39 273 274
+##PROGRESS#: 1000 45000 1 42 273 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample3.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 176096 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/videoplayback.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 272 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:00+03:00
+##CLI.NAMESET#: 272 videoplayback.m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##PROGRESS#: 0 0 1 0 272 274
+##AUDIO.INFO#: Duration: 208 (s)
+##CLI.META#: No DecoderSpecificInfo found in esds
+##ERROR#:	No DecoderSpecificInfo found in esds
+##ERROR#:	No DecoderSpecificInfo found in esds
+##AUDIO.ID3#: Encoder: Google
+##AUDIO.INFO#: Audio-Length: 160177
+##AUDIO.INFO#: Duration: 208 (s)
+##AUDIO.INFO#: BitRate: 6160
+##AUDIO.BITRATE#: 6160
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 6160
+##AUDIO.BITRATE#: 6160
+##PROGRESS#: 3000 208000 1 1 272 274
+##PROGRESS#: 9000 208000 1 3 272 274
+##PROGRESS#: 15000 208000 1 4 272 274
+##PROGRESS#: 22000 208000 1 5 272 274
+##PROGRESS#: 28000 208000 1 7 272 274
+##PROGRESS#: 34000 208000 1 8 272 274
+##PROGRESS#: 41000 208000 1 10 272 274
+##PROGRESS#: 47000 208000 1 11 272 274
+##PROGRESS#: 53000 208000 1 13 272 274
+##PROGRESS#: 60000 208000 1 14 272 274
+##PROGRESS#: 66000 208000 1 16 272 274
+##PROGRESS#: 72000 208000 1 17 272 274
+##PROGRESS#: 79000 208000 1 18 272 274
+##PROGRESS#: 85000 208000 1 20 272 274
+##PROGRESS#: 90000 208000 1 21 272 274
+##PROGRESS#: 98000 208000 1 23 272 274
+##PROGRESS#: 104000 208000 1 24 272 274
+##PROGRESS#: 109000 208000 1 26 272 274
+##PROGRESS#: 116000 208000 1 27 272 274
+##PROGRESS#: 122000 208000 1 28 272 274
+##PROGRESS#: 128000 208000 1 30 272 274
+##PROGRESS#: 135000 208000 1 31 272 274
+##PROGRESS#: 141000 208000 1 33 272 274
+##PROGRESS#: 147000 208000 1 34 272 274
+##PROGRESS#: 154000 208000 1 36 272 274
+##PROGRESS#: 160000 208000 1 37 272 274
+##PROGRESS#: 167000 208000 1 39 272 274
+##PROGRESS#: 173000 208000 1 40 272 274
+##PROGRESS#: 178000 208000 1 41 272 274
+##PROGRESS#: 186000 208000 1 43 272 274
+##PROGRESS#: 191000 208000 1 44 272 274
+##PROGRESS#: 197000 208000 1 46 272 274
+##PROGRESS#: 205000 208000 1 47 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 206000 208000 1 48 272 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 6160
+##AUDIO.BITRATE#: 6160
+##PROGRESS#: 208000 208000 1 49 272 274
+##PROGRESS#: 208000 208000 1 51 272 274
+##PROGRESS#: 208000 208000 1 52 272 274
+##PROGRESS#: 208000 208000 1 54 272 274
+##PROGRESS#: 208000 208000 1 55 272 274
+##PROGRESS#: 208000 208000 1 56 272 274
+##PROGRESS#: 208000 208000 1 58 272 274
+##PROGRESS#: 208000 208000 1 59 272 274
+##PROGRESS#: 208000 208000 1 61 272 274
+##PROGRESS#: 208000 208000 1 62 272 274
+##PROGRESS#: 208000 208000 1 64 272 274
+##PROGRESS#: 208000 208000 1 65 272 274
+##PROGRESS#: 208000 208000 1 66 272 274
+##PROGRESS#: 208000 208000 1 68 272 274
+##PROGRESS#: 208000 208000 1 69 272 274
+##PROGRESS#: 208000 208000 1 71 272 274
+##PROGRESS#: 208000 208000 1 72 272 274
+##PROGRESS#: 208000 208000 1 74 272 274
+##PROGRESS#: 208000 208000 1 75 272 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "videoplayback.m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 176232 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 271 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:23+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 30
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 0 333000 1 0 271 274
+[WEBSOCKET] client #2 connected from 192.168.1.96
+##PROGRESS#: 666 333000 1 2 271 274
+##PROGRESS#: 1000 333000 1 3 271 274
+##PROGRESS#: 1000 333000 1 4 271 274
+##PROGRESS#: 1000 333000 1 5 271 274
+##PROGRESS#: 2000 333000 1 6 271 274
+##PROGRESS#: 2000 333000 1 8 271 274
+##PROGRESS#: 3000 333000 1 9 271 274
+##PROGRESS#: 3000 333000 1 10 271 274
+##PROGRESS#: 3000 333000 1 11 271 274
+##PROGRESS#: 4000 333000 1 13 271 274
+##PROGRESS#: 4000 333000 1 14 271 274
+##PROGRESS#: 5000 333000 1 15 271 274
+##PROGRESS#: 5000 333000 1 16 271 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample4.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 175588 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 270 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:28+03:00
+##CLI.NAMESET#: 270 skysea (cover) круто (replaced) основа.m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: non-progressive M4A: mdat before moov, size 2823940, skipping for SD
+##AUDIO.INFO#: skip 2823940 bytes
+##AUDIO.INFO#: Duration: 201 (s)
+##AUDIO.INFO#: AAC Profile: AAC LC (Low Complexity)
+##AUDIO.INFO#: AAC Channels; 2
+##AUDIO.INFO#: AAC Sample Rate: 44100
+##AUDIO.INFO#: AAC Bits Per Sample: 16
+##AUDIO.ID3#: Encoder: fdkaac 1.0.6, libfdk-aac 4.0.1, VBR mode 3
+##AUDIO.INFO#: ---- tag not supported
+##AUDIO.INFO#: position larger than size 217673537 > 2861163
+##AUDIO.INFO#: skip 214812374 bytes
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##PROGRESS#: 0 0 1 0 270 274
+##CLI.META#: audioHeader reading timeout
+##ERROR#:	audioHeader reading timeout
+##ERROR#:	audioHeader reading timeout
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 170376 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 271 274
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:36+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 30
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.PLAYING#
+##PROGRESS#: 0 333000 1 0 271 274
+##PROGRESS#: 666 333000 1 2 271 274
+##PROGRESS#: 1000 333000 1 3 271 274
+##PROGRESS#: 1000 333000 1 4 271 274
+##PROGRESS#: 1000 333000 1 5 271 274
+##PROGRESS#: 2000 333000 1 6 271 274
+##PROGRESS#: 2000 333000 1 8 271 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample4.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 175744 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 270 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:39+03:00
+##CLI.NAMESET#: 270 skysea (cover) круто (replaced) основа.m4a
+##CLI.VOL#: 30
+##CLI.STOPPED#
+##ERROR#:	begin: ftyp not found
+##ERROR#:	begin: ftyp not found
+##AUDIO.INFO#: Closing audio file "skysea (cover) круто (replaced) основа.m4a"
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175472 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:43+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: non-progressive M4A: mdat before moov, size 3559118, skipping for SD
+##AUDIO.INFO#: skip 3559118 bytes
+##AUDIO.INFO#: Duration: 196 (s)
+##AUDIO.INFO#: AAC Profile: AAC LC (Low Complexity)
+##AUDIO.INFO#: AAC Channels; 2
+##AUDIO.INFO#: AAC Sample Rate: 44100
+##AUDIO.INFO#: AAC Bits Per Sample: 16
+##AUDIO.ID3#: Encoder: fdkaac 1.0.6, libfdk-aac 4.0.1, VBR mode 3
+##AUDIO.INFO#: ---- tag not supported
+##PROGRESS#: 0 0 1 0 269 274
+##AUDIO.INFO#: position larger than size 701572934 > 3595577
+##AUDIO.INFO#: skip 697977357 bytes
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: audioHeader reading timeout
+##ERROR#:	audioHeader reading timeout
+##ERROR#:	audioHeader reading timeout
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 170604 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 270 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:51+03:00
+##CLI.NAMESET#: 270 skysea (cover) круто (replaced) основа.m4a
+##CLI.VOL#: 30
+##CLI.STOPPED#
+##ERROR#:	begin: ftyp not found
+##ERROR#:	begin: ftyp not found
+##AUDIO.INFO#: Closing audio file "skysea (cover) круто (replaced) основа.m4a"
+##CLI.META#: Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175288 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:02:52+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##AUDIO.INFO#: non-progressive M4A: mdat before moov, size 3559118, skipping for SD
+##AUDIO.INFO#: skip 3559118 bytes
+##AUDIO.INFO#: Duration: 196 (s)
+##AUDIO.INFO#: AAC Profile: AAC LC (Low Complexity)
+##AUDIO.INFO#: AAC Channels; 2
+##AUDIO.INFO#: AAC Sample Rate: 44100
+##AUDIO.INFO#: AAC Bits Per Sample: 16
+##AUDIO.ID3#: Encoder: fdkaac 1.0.6, libfdk-aac 4.0.1, VBR mode 3
+##AUDIO.INFO#: ---- tag not supported
+##PROGRESS#: 0 0 1 0 269 274
+##AUDIO.INFO#: position larger than size 701572934 > 3595577
+##AUDIO.INFO#: skip 697977357 bytes
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##PROGRESS#: 0 0 1 0 269 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175220 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/relaxium - sound waves (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 140873392
+##AUDIO.INFO#: ID3 framesSize: 28911
+##AUDIO.INFO#: ID3 version: 2.3
+##PROGRESS#: 0 0 1 0 267 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:03:00+03:00
+##CLI.NAMESET#: 267 relaxium - sound waves (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##CLI.META#: Sound Waves
+##AUDIO.ID3#: Title: Sound Waves
+##PROGRESS#: 0 0 1 0 267 274
+##CLI.META#: Sound Waves - Sound Waves
+##AUDIO.ID3#: Album: Sound Waves
+##AUDIO.ID3#: Artist: Relaxium
+##AUDIO.ID3#: Comment: FILE "RELAXIUM - SOUND WAVES .wav" WAVE
+  TRACK 01 AUDIO
+    TITLE "Pensees (Original mix)"
+    PERFORMER "Mashk feat. Soul Button"
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO
+    TITLE "The Sky"
+    PERFORMER "Keyhard & ZELENIN"
+    INDEX 01 07:25:00
+  TRACK 03 AUDIO
+    TITLE "M##AUDIO.ID3#: ContentType: Progressive House
+##AUDIO.ID3#: Year: 2025
+##AUDIO.ID3#: User defined URL link frame: 
+##AUDIO.ID3#: Encoded by: Lavf59.31.100
+##AUDIO.ID3#: OriginalArtist: Relaxium
+##AUDIO.INFO#: Audio-Length: 140844481
+##AUDIO.INFO#: Syncword not found
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 1
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 0 3521000 1 0 267 274
+##PROGRESS#: 0 3521000 1 0 267 274
+##PROGRESS#: 0 3521000 1 0 267 274
+##PROGRESS#: 1000 3521000 1 0 267 274
+##PROGRESS#: 1000 3521000 1 0 267 274
+##PROGRESS#: 1000 3521000 1 0 267 274
+##PROGRESS#: 1000 3521000 1 0 267 274
+##PROGRESS#: 2000 3521000 1 0 267 274
+##PROGRESS#: 2000 3521000 1 0 267 274
+##PROGRESS#: 2000 3521000 1 1 267 274
+##PROGRESS#: 3000 3521000 1 1 267 274
+##PROGRESS#: 3000 3521000 1 1 267 274
+##PROGRESS#: 3000 3521000 1 1 267 274
+##PROGRESS#: 4000 3521000 1 1 267 274
+##PROGRESS#: 4000 3521000 1 1 267 274
+##PROGRESS#: 4000 3521000 1 1 267 274
+##PROGRESS#: 5000 3521000 1 1 267 274
+##PROGRESS#: 5000 3521000 1 1 267 274
+##PROGRESS#: 5000 3521000 1 1 267 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "relaxium - sound waves (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175460 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/balkanbazaroflove#3 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 138300636
+##AUDIO.INFO#: ID3 framesSize: 157468
+##AUDIO.INFO#: ID3 version: 2.3
+##PROGRESS#: 0 0 1 0 265 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:03:07+03:00
+##CLI.NAMESET#: 265 balkanbazaroflove#3 by mcold (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 30
+##CLI.PLAYING#
+##CLI.META#: JustBeHappy
+##AUDIO.ID3#: Album: JustBeHappy
+##PROGRESS#: 0 0 1 0 265 274
+##AUDIO.ID3#: ContentType: Deep House
+##CLI.META#: JustBeHappy - Balkan Bazar Of Love #3
+##AUDIO.ID3#: Title: Balkan Bazar Of Love #3
+##AUDIO.ID3#: Artist: McOld
+##AUDIO.ID3#: Year: 2021
+##AUDIO.INFO#: Audio-Length: 138143168
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 3454 3454000 1 1 265 274
+##PROGRESS#: 3454 3454000 1 1 265 274
+##PROGRESS#: 3454 3454000 1 1 265 274
+##PROGRESS#: 3454 3454000 1 1 265 274
+##PROGRESS#: 1000 3454000 1 1 265 274
+##PROGRESS#: 1000 3454000 1 1 265 274
+##PROGRESS#: 1000 3454000 1 1 265 274
+##PROGRESS#: 2000 3454000 1 1 265 274
+##PROGRESS#: 2000 3454000 1 1 265 274
+##PROGRESS#: 2000 3454000 1 1 265 274
+##PROGRESS#: 3000 3454000 1 2 265 274
+##PROGRESS#: 3000 3454000 1 2 265 274
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "balkanbazaroflove#3 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175628 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-04T00:03:11+03:00
+##CLI.NAMESET#: 265 McOld
+##CLI.VOL#: 30
+##CLI.STOPPED#
+[WEBSOCKET] client #1 disconnected
+[WEBSOCKET] client #2 disconnected
+[WEBSOCKET] client #3 connected from 192.168.1.96
+[WEBSOCKET] client #4 connected from 192.168.1.96
