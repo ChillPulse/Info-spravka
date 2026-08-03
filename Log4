@@ -1,0 +1,1236 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1180
+load:0x403c8700,len:0xc2c
+load:0x403cb700,len:0x311c
+entry 0x403c88b8
+##[BOOT]#	************************************************
+##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.3.0
+##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+##[BOOT]#	ir:		NONE
+##[BOOT]#	SD:		CS-39
+##[BOOT]#	battery:	battery ON
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+##USB.STATUS#: init 5V power check polyfuse 0.75A
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	done
+##[BOOT]#	SD search	SD Mounted
+##[BOOT]#	Waiting for SD card indexing...		done
+##[BOOT]#	Ready in SD Mode!
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+[WEBSOCKET] client #1 connected from 192.168.1.96
+##CLI.META#: [next track]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 175848 bytes
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: Reading file: "/ogg.oga"
+##AUDIO.INFO#: Closing audio file "ogg.oga"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176052 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:26:40+03:00
+##CLI.NAMESET#: 277 ogg.oga
+##CLI.VOL#: 69
+##CLI.STOPPED#
+##CLI.META#: [остановлено]
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:26:40+03:00
+##CLI.NAMESET#: 277 ogg.oga
+##CLI.VOL#: 69
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175852 bytes
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: Reading file: "/oggy-ogg.ogg"
+##AUDIO.INFO#: Closing audio file "oggy-ogg.ogg"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176060 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:26:43+03:00
+##CLI.NAMESET#: 276 oggy-ogg.ogg
+##CLI.VOL#: 69
+##CLI.STOPPED#
+##CLI.META#: [остановлено]
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:26:43+03:00
+##CLI.NAMESET#: 276 oggy-ogg.ogg
+##CLI.VOL#: 69
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175856 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample3.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:26:44+03:00
+##CLI.NAMESET#: 275 sample3.aac
+##CLI.META#: 
+##CLI.VOL#: 69
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 311456
+##AUDIO.BITRATE#: 311456
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 293 73267 1 4 275 277
+##PROGRESS#: 586 73267 1 8 275 277
+##PROGRESS#: 879 73267 1 12 275 277
+##PROGRESS#: 1172 73267 1 16 275 277
+##PROGRESS#: 1465 73267 1 20 275 277
+##PROGRESS#: 1000 40884 1 24 275 277
+##PROGRESS#: 1000 34932 1 28 275 277
+##PROGRESS#: 1000 30716 1 32 275 277
+##PROGRESS#: 1000 27289 1 36 275 277
+##PROGRESS#: 1000 24649 1 40 275 277
+##PROGRESS#: 2000 44610 1 44 275 277
+##PROGRESS#: 2000 41102 1 48 275 277
+##PROGRESS#: 2000 37783 1 52 275 277
+##PROGRESS#: 2000 35268 1 56 275 277
+##PROGRESS#: 2000 33001 1 60 275 277
+##PROGRESS#: 2000 31134 1 64 275 277
+##PROGRESS#: 3000 44016 1 68 275 277
+##PROGRESS#: 3000 41768 1 71 275 277
+##PROGRESS#: 3000 39650 1 75 275 277
+##PROGRESS#: 3000 37759 1 79 275 277
+##PROGRESS#: 3000 36008 1 83 275 277
+##PROGRESS#: 3000 34435 1 87 275 277
+##PROGRESS#: 4000 43969 1 90 275 277
+##PROGRESS#: 4000 42268 1 94 275 277
+##PROGRESS#: 4000 40582 1 98 275 277
+##PROGRESS#: 4000 39061 1 102 275 277
+##PROGRESS#: 4000 37623 1 106 275 277
+##PROGRESS#: 4000 36397 1 109 275 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample3.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 176064 bytes
+##AUDIO.INFO#: format is opus
+##AUDIO.INFO#: Reading file: "/sample2.opus"
+##AUDIO.INFO#: OPUSDecoder has been initialized
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:26:56+03:00
+##CLI.NAMESET#: 274 sample2.opus
+##CLI.META#: 
+##CLI.VOL#: 69
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.PLAYING#
+##AUDIO.INFO#: Opus Mode: CELT_ONLY
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 176248
+##AUDIO.BITRATE#: 176248
+##PROGRESS#: 142 142506 1 1 274 277
+##PROGRESS#: 285 142506 1 2 274 277
+##PROGRESS#: 570 142506 1 4 274 277
+##PROGRESS#: 855 142506 1 6 274 277
+##PROGRESS#: 1000 127593 1 7 274 277
+##PROGRESS#: 1000 104755 1 9 274 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample2.opus"
+##AUDIO.INFO#: buffers freed, free Heap: 176152 bytes
+##AUDIO.INFO#: format is opus
+##AUDIO.INFO#: Reading file: "/sample1.opus"
+##AUDIO.INFO#: OPUSDecoder has been initialized
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##AUDIO.INFO#: syncword found at pos 0
+##SYS.DATE#: 2026-08-03T13:27:00+03:00
+##CLI.NAMESET#: 273 sample1.opus
+##AUDIO.INFO#: Opus Mode: CELT_ONLY
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 169133
+##AUDIO.BITRATE#: 169133
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##PROGRESS#: 155 51828 1 3 273 277
+##PROGRESS#: 362 51828 1 7 273 277
+##PROGRESS#: 570 51828 1 11 273 277
+##PROGRESS#: 829 51828 1 16 273 277
+##PROGRESS#: 1000 49666 1 20 273 277
+##PROGRESS#: 1000 40991 1 24 273 277
+##PROGRESS#: 1000 35146 1 28 273 277
+##PROGRESS#: 1000 30446 1 32 273 277
+##PROGRESS#: 2000 53552 1 37 273 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample1.opus"
+##AUDIO.INFO#: buffers freed, free Heap: 175932 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/videoplayback.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##ERROR#:	subtype 'MA4 ', 'isom' or 'mp42' expected, but found 'dash '
+##ERROR#:	subtype 'MA4 ', 'isom' or 'mp42' expected, but found 'dash '
+##AUDIO.INFO#: Closing audio file "videoplayback.m4a"
+##CLI.META#: Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:04+03:00
+##CLI.NAMESET#: 272 videoplayback.m4a
+##CLI.VOL#: 69
+##CLI.STOPPED#
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175844 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:06+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##PROGRESS#: 338 169115 1 2 271 277
+##PROGRESS#: 1000 234070 1 4 271 277
+##PROGRESS#: 1000 170709 1 5 271 277
+##PROGRESS#: 2000 265132 1 7 271 277
+##PROGRESS#: 2000 219062 1 9 271 277
+##PROGRESS#: 3000 277542 1 10 271 277
+##PROGRESS#: 4000 322618 1 12 271 277
+##PROGRESS#: 4000 284014 1 14 271 277
+##PROGRESS#: 5000 319023 1 15 271 277
+##PROGRESS#: 5000 288163 1 17 271 277
+##PROGRESS#: 6000 316764 1 18 271 277
+##PROGRESS#: 6000 290949 1 20 271 277
+##PROGRESS#: 7000 315229 1 22 271 277
+##PROGRESS#: 7000 292920 1 23 271 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample4.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 176020 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:12+03:00
+##CLI.NAMESET#: 270 skysea (cover) круто (replaced) основа.m4a
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: Closing audio file "skysea (cover) круто (replaced) основа.m4a"
+##CLI.META#: Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##ERROR#:	Processing stopped due to invalid audio header
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175812 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:21+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175660 bytes
+##AUDIO.INFO#: format is wav
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle) (cover).wav"
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:21+03:00
+##CLI.NAMESET#: 268 Зелёный храм (disco-jungle) (cover).wav
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: FormatCode: 1
+##AUDIO.INFO#: DataRate: 176400
+##AUDIO.INFO#: DataBlockSize: 4
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##AUDIO.INFO#: Audio-Length: 35520468
+##AUDIO.INFO#: Duration: 201 (s)
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##PROGRESS#: 402 201000 1 2 268 277
+##PROGRESS#: 804 201000 1 4 268 277
+##PROGRESS#: 1000 201000 1 6 268 277
+##PROGRESS#: 1000 201000 1 8 268 277
+##PROGRESS#: 2000 201000 1 10 268 277
+##PROGRESS#: 2000 201000 1 12 268 277
+##PROGRESS#: 2000 201000 1 14 268 277
+##PROGRESS#: 3000 201000 1 16 268 277
+##PROGRESS#: 3000 201000 1 18 268 277
+##PROGRESS#: 4000 201000 1 20 268 277
+##PROGRESS#: 4000 201000 1 22 268 277
+##PROGRESS#: 4000 201000 1 24 268 277
+##PROGRESS#: 5000 201000 1 26 268 277
+##PROGRESS#: 5000 201000 1 28 268 277
+##PROGRESS#: 6000 201000 1 30 268 277
+##PROGRESS#: 6000 201000 1 32 268 277
+##PROGRESS#: 6000 201000 1 34 268 277
+##PROGRESS#: 7000 201000 1 36 268 277
+##PROGRESS#: 7000 201000 1 38 268 277
+##PROGRESS#: 8000 201000 1 40 268 277
+##PROGRESS#: 8000 201000 1 42 268 277
+##PROGRESS#: 8000 201000 1 44 268 277
+##PROGRESS#: 9000 201000 1 46 268 277
+##PROGRESS#: 9000 201000 1 48 268 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle) (cover).wav"
+##AUDIO.INFO#: buffers freed, free Heap: 175900 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/relaxium - sound waves (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 140873392
+##AUDIO.INFO#: ID3 framesSize: 28911
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:32+03:00
+##CLI.NAMESET#: 267 relaxium - sound waves (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Sound Waves
+##AUDIO.ID3#: Title: Sound Waves
+##CLI.META#: Sound Waves - Sound Waves
+##AUDIO.ID3#: Album: Sound Waves
+##AUDIO.ID3#: Artist: Relaxium
+##AUDIO.ID3#: Comment: FILE "RELAXIUM - SOUND WAVES .wav" WAVE
+  TRACK 01 AUDIO
+    TITLE "Pensees (Original mix)"
+    PERFORMER "Mashk feat. Soul Button"
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO
+    TITLE "The Sky"
+    PERFORMER "Keyhard & ZELENIN"
+    INDEX 01 07:25:00
+  TRACK 03 AUDIO
+    TITLE "M##AUDIO.ID3#: ContentType: Progressive House
+##AUDIO.ID3#: Year: 2025
+##AUDIO.ID3#: User defined URL link frame: 
+##AUDIO.ID3#: Encoded by: Lavf59.31.100
+##AUDIO.ID3#: OriginalArtist: Relaxium
+##AUDIO.INFO#: Audio-Length: 140844481
+##AUDIO.INFO#: Syncword not found
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 1
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 1000 1927871 1 0 267 277
+##PROGRESS#: 1000 1575906 1 0 267 277
+##PROGRESS#: 1000 1332614 1 0 267 277
+##PROGRESS#: 2000 2327101 1 0 267 277
+##PROGRESS#: 2000 2050678 1 0 267 277
+##PROGRESS#: 3000 2749433 1 1 267 277
+##PROGRESS#: 3000 2485536 1 1 267 277
+##PROGRESS#: 3000 2267862 1 1 267 277
+##PROGRESS#: 4000 2793555 1 1 267 277
+##PROGRESS#: 4000 2584453 1 1 267 277
+##PROGRESS#: 5000 3005595 1 1 267 277
+##PROGRESS#: 5000 2809916 1 1 267 277
+##PROGRESS#: 5000 2638158 1 1 267 277
+##PROGRESS#: 6000 2993572 1 2 267 277
+##PROGRESS#: 6000 2829997 1 2 267 277
+##PROGRESS#: 7000 3130606 1 2 267 277
+##PROGRESS#: 7000 2976392 1 2 267 277
+##PROGRESS#: 7000 2836664 1 2 267 277
+##PROGRESS#: 8000 3104716 1 2 267 277
+##PROGRESS#: 8000 2971134 1 2 267 277
+##PROGRESS#: 9000 3204654 1 2 267 277
+##PROGRESS#: 9000 3077694 1 2 267 277
+##PROGRESS#: 10000 3289349 1 3 267 277
+##PROGRESS#: 10000 3175461 1 3 267 277
+##PROGRESS#: 10000 3062789 1 3 267 277
+##PROGRESS#: 11000 3253624 1 3 267 277
+##PROGRESS#: 11000 3145829 1 3 267 277
+##PROGRESS#: 11000 3044948 1 3 267 277
+##PROGRESS#: 12000 3224440 1 3 267 277
+##PROGRESS#: 12000 3127097 1 3 267 277
+##PROGRESS#: 13000 3288409 1 3 267 277
+##PROGRESS#: 13000 3194788 1 4 267 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "relaxium - sound waves (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 174980 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 114448717
+##AUDIO.INFO#: file has no ID3 tag, skip metadata
+##CLI.META#: balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:47+03:00
+##CLI.NAMESET#: 266 balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##CLI.META#: balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: Audio-Length: 114448717
+##AUDIO.INFO#: frames 109530
+##AUDIO.INFO#: bytes 114448717
+##AUDIO.INFO#: Duration: 2861 (s)
+##AUDIO.INFO#: BitRate: 320024
+##AUDIO.BITRATE#: 320024
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320024
+##AUDIO.BITRATE#: 320024
+##AUDIO.INFO#: stream ready
+##CLI.META#: balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3
+##PROGRESS#: 1000 2861000 1 0 266 277
+##PROGRESS#: 1000 2861000 1 0 266 277
+##PROGRESS#: 1000 2861000 1 0 266 277
+##PROGRESS#: 2000 2861000 1 0 266 277
+##PROGRESS#: 2000 2861000 1 0 266 277
+##PROGRESS#: 3000 2861000 1 1 266 277
+##PROGRESS#: 3000 2861000 1 1 266 277
+##PROGRESS#: 3000 2861000 1 1 266 277
+##PROGRESS#: 4000 2861000 1 1 266 277
+##PROGRESS#: 4000 2861000 1 1 266 277
+##PROGRESS#: 5000 2861000 1 1 266 277
+##PROGRESS#: 5000 2861000 1 1 266 277
+##PROGRESS#: 6000 2861000 1 2 266 277
+##PROGRESS#: 6000 2861000 1 2 266 277
+##PROGRESS#: 6000 2861000 1 2 266 277
+##PROGRESS#: 7000 2861000 1 2 266 277
+##PROGRESS#: 7000 2861000 1 2 266 277
+##PROGRESS#: 8000 2861000 1 2 266 277
+##PROGRESS#: 8000 2861000 1 2 266 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "balkanbazaroflovestories#4[atmos] by mcold (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176036 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/balkanbazaroflove#3 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 138300636
+##AUDIO.INFO#: ID3 framesSize: 157468
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:27:56+03:00
+##CLI.NAMESET#: 265 balkanbazaroflove#3 by mcold (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: JustBeHappy
+##AUDIO.ID3#: Album: JustBeHappy
+##AUDIO.ID3#: ContentType: Deep House
+##CLI.META#: JustBeHappy - Balkan Bazar Of Love #3
+##AUDIO.ID3#: Title: Balkan Bazar Of Love #3
+##AUDIO.ID3#: Artist: McOld
+##AUDIO.ID3#: Year: 2021
+##AUDIO.INFO#: Audio-Length: 138143168
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##AUDIO.INFO#: stream ready
+##PROGRESS#: 5762 5762526 1 1 265 277
+##PROGRESS#: 5762 5762526 1 1 265 277
+##PROGRESS#: 1000 692514 1 1 265 277
+##PROGRESS#: 1000 643055 1 1 265 277
+##PROGRESS#: 1000 597700 1 1 265 277
+##PROGRESS#: 2000 1120986 1 1 265 277
+##PROGRESS#: 2000 1051444 1 1 265 277
+##PROGRESS#: 3000 1485039 1 2 265 277
+##PROGRESS#: 3000 1403080 1 2 265 277
+##PROGRESS#: 3000 1333799 1 2 265 277
+##PROGRESS#: 4000 1689745 1 2 265 277
+##PROGRESS#: 4000 1609513 1 2 265 277
+##PROGRESS#: 5000 1920695 1 2 265 277
+##PROGRESS#: 5000 1837406 1 2 265 277
+##PROGRESS#: 5000 1765355 1 2 265 277
+##PROGRESS#: 6000 2033694 1 2 265 277
+##PROGRESS#: 6000 1955480 1 3 265 277
+##PROGRESS#: 7000 2196904 1 3 265 277
+##PROGRESS#: 7000 2118446 1 3 265 277
+##PROGRESS#: 7000 2049558 1 3 265 277
+##PROGRESS#: 8000 2264124 1 3 265 277
+##PROGRESS#: 8000 2190953 1 3 265 277
+##PROGRESS#: 9000 2387663 1 3 265 277
+##PROGRESS#: 9000 2315182 1 3 265 277
+##PROGRESS#: 9000 2250877 1 3 265 277
+##PROGRESS#: 10000 2429278 1 4 265 277
+##PROGRESS#: 10000 2361580 1 4 265 277
+##PROGRESS#: 11000 2527308 1 4 265 277
+##PROGRESS#: 11000 2460597 1 4 265 277
+##PROGRESS#: 11000 2400948 1 4 265 277
+##PROGRESS#: 12000 2553450 1 4 265 277
+##PROGRESS#: 12000 2490904 1 4 265 277
+##PROGRESS#: 13000 2633959 1 4 265 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "balkanbazaroflove#3 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176012 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/justbehappy#4 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 119182150
+##AUDIO.INFO#: ID3 framesSize: 4096
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:10+03:00
+##CLI.NAMESET#: 264 justbehappy#4 by mcold (promodj.com).mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: JustBeHappy#4
+##AUDIO.ID3#: Title: JustBeHappy#4
+##AUDIO.ID3#: Artist: McOld
+##AUDIO.ID3#: Year: 2025
+##AUDIO.INFO#: Audio-Length: 119178054
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 1000 2331601 1 0 264 277
+##PROGRESS#: 1000 1784457 1 0 264 277
+##PROGRESS#: 1000 1427194 1 0 264 277
+##PROGRESS#: 2000 2403326 1 0 264 277
+##PROGRESS#: 2000 2056637 1 0 264 277
+##PROGRESS#: 3000 2717478 1 1 264 277
+##PROGRESS#: 3000 2411099 1 1 264 277
+##PROGRESS#: 3000 2180626 1 1 264 277
+##PROGRESS#: 4000 2638480 1 1 264 277
+##PROGRESS#: 4000 2427866 1 1 264 277
+##PROGRESS#: 5000 2796718 1 1 264 277
+##PROGRESS#: 5000 2593241 1 1 264 277
+##PROGRESS#: 6000 2913196 1 2 264 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "justbehappy#4 by mcold (promodj.com).mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176116 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/Моя Мишель - Сезам.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 7940543
+##AUDIO.INFO#: ID3 framesSize: 199768
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:17+03:00
+##CLI.NAMESET#: 263 Моя Мишель - Сезам.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Сезам
+##AUDIO.ID3#: Title: Сезам
+##AUDIO.ID3#: Band: lmusic.kz
+##AUDIO.ID3#: Artist: Моя Мишель
+##CLI.META#: Сезам - lmusic.kz
+##AUDIO.ID3#: Album: lmusic.kz
+##AUDIO.ID3#: Year: lmusic.kz
+##AUDIO.ID3#: Composer: lmusic.kz
+##AUDIO.ID3#: Comment: lmusic.kz
+##AUDIO.INFO#: Audio-Length: 7740775
+##AUDIO.INFO#: frames 7407
+##AUDIO.INFO#: bytes 7740603
+##AUDIO.INFO#: Duration: 193 (s)
+##AUDIO.INFO#: BitRate: 320854
+##AUDIO.BITRATE#: 320854
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320854
+##AUDIO.BITRATE#: 320854
+##PROGRESS#: 5018 193000 1 26 263 277
+##PROGRESS#: 5404 193000 1 28 263 277
+##PROGRESS#: 5790 193000 1 30 263 277
+##PROGRESS#: 1000 193000 1 32 263 277
+##PROGRESS#: 1000 193000 1 34 263 277
+##PROGRESS#: 2000 193000 1 36 263 277
+##PROGRESS#: 2000 193000 1 38 263 277
+##PROGRESS#: 2000 193000 1 40 263 277
+##PROGRESS#: 3000 193000 1 42 263 277
+##PROGRESS#: 3000 193000 1 44 263 277
+##PROGRESS#: 4000 193000 1 46 263 277
+##PROGRESS#: 4000 193000 1 48 263 277
+##PROGRESS#: 5000 193000 1 50 263 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Моя Мишель - Сезам.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176036 bytes
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: Reading file: "/VA - Fantasy Island (Summer Lounge Tunes), Vol. 2 (2025) [FLAC] (16bit-44.1kHz)/28.  lounge groove avenue - not right.flac"
+##AUDIO.INFO#: FLACDecoder has been initialized
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:24+03:00
+##CLI.NAMESET#: 215 28.  lounge groove avenue - not right.flac
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: FLAC maxBlockSize: 4608
+##AUDIO.INFO#: FLAC maxFrameSize: 15495
+##AUDIO.INFO#: FLAC sampleRate: 44100 (Hz)
+##AUDIO.INFO#: FLAC numChannels: 2
+##AUDIO.INFO#: FLAC bitsPerSample: 16
+##AUDIO.INFO#: total samples in stream: 10190706
+##AUDIO.ID3#: VENDOR_STRING: 
+##AUDIO.INFO#: Audio-Length: 23481675
+##AUDIO.INFO#: Duration: 231 (s)
+##AUDIO.INFO#: nominal bitrate : 813218 (b/s)
+##AUDIO.INFO#: BitRate: 813218
+##AUDIO.BITRATE#: 813218
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 813218
+##AUDIO.BITRATE#: 813218
+##PROGRESS#: 924 231000 1 4 215 277
+##PROGRESS#: 1386 231000 1 6 215 277
+##PROGRESS#: 1617 231000 1 7 215 277
+##PROGRESS#: 1848 231000 1 8 215 277
+##PROGRESS#: 1000 231000 1 9 215 277
+##PROGRESS#: 1000 231000 1 10 215 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "28.  lounge groove avenue - not right.flac"
+##AUDIO.INFO#: buffers freed, free Heap: 175892 bytes
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: Reading file: "/VA - Fantasy Island (Summer Lounge Tunes), Vol. 2 (2025) [FLAC] (16bit-44.1kHz)/16.  tigerforest - trade winds (original mix).flac"
+##AUDIO.INFO#: FLACDecoder has been initialized
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:27+03:00
+##CLI.NAMESET#: 203 16.  tigerforest - trade winds (original mix).flac
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.INFO#: FLAC maxBlockSize: 4608
+##AUDIO.INFO#: FLAC maxFrameSize: 14532
+##AUDIO.INFO#: FLAC sampleRate: 44100 (Hz)
+##AUDIO.INFO#: FLAC numChannels: 2
+##AUDIO.INFO#: FLAC bitsPerSample: 16
+##AUDIO.INFO#: total samples in stream: 14924160
+##AUDIO.ID3#: VENDOR_STRING: 
+##AUDIO.INFO#: Audio-Length: 36443181
+##AUDIO.INFO#: Duration: 338 (s)
+##AUDIO.INFO#: nominal bitrate : 862560 (b/s)
+##AUDIO.INFO#: BitRate: 862560
+##AUDIO.BITRATE#: 862560
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 862560
+##AUDIO.BITRATE#: 862560
+##PROGRESS#: 1014 338000 1 3 203 277
+##PROGRESS#: 1014 338000 1 3 203 277
+##PROGRESS#: 1014 338000 1 3 203 277
+##PROGRESS#: 1352 338000 1 4 203 277
+##PROGRESS#: 1352 338000 1 4 203 277
+##PROGRESS#: 1690 338000 1 5 203 277
+##PROGRESS#: 1000 338000 1 5 203 277
+##PROGRESS#: 1000 338000 1 6 203 277
+##PROGRESS#: 1000 338000 1 6 203 277
+##PROGRESS#: 1000 338000 1 7 203 277
+##PROGRESS#: 1000 338000 1 8 203 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "16.  tigerforest - trade winds (original mix).flac"
+##AUDIO.INFO#: buffers freed, free Heap: 176028 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/ryksopp_-_here_she_comes_again.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6374319
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:32+03:00
+##CLI.NAMESET#: 164 ryksopp_-_here_she_comes_again.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Here She Comes Again
+##AUDIO.ID3#: Title: Here She Comes Again
+##AUDIO.ID3#: Artist: Röyksopp
+##CLI.META#: Here She Comes Again - Танцевальный рай: Best DJ's, Vol. 3
+##AUDIO.ID3#: Album: Танцевальный рай: Best DJ's, Vol. 3
+##AUDIO.ID3#: Year: 2016
+##AUDIO.INFO#: Audio-Length: 6287279
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 3983 265596 1 15 164 277
+##PROGRESS#: 4780 265596 1 18 164 277
+##PROGRESS#: 1000 48686 1 20 164 277
+##PROGRESS#: 1000 43173 1 23 164 277
+##PROGRESS#: 1000 39030 1 25 164 277
+##PROGRESS#: 2000 70811 1 28 164 277
+##PROGRESS#: 2000 65140 1 30 164 277
+##PROGRESS#: 3000 90021 1 33 164 277
+##PROGRESS#: 3000 83835 1 35 164 277
+##PROGRESS#: 3000 78110 1 38 164 277
+##PROGRESS#: 4000 97880 1 40 164 277
+##PROGRESS#: 4000 91977 1 43 164 277
+##PROGRESS#: 5000 108819 1 45 164 277
+##PROGRESS#: 5000 103292 1 48 164 277
+##PROGRESS#: 5000 97983 1 51 164 277
+##PROGRESS#: 6000 111831 1 53 164 277
+##PROGRESS#: 6000 106931 1 56 164 277
+##PROGRESS#: 7000 119182 1 58 164 277
+##PROGRESS#: 7000 114393 1 61 164 277
+##PROGRESS#: 8000 125362 1 63 164 277
+##PROGRESS#: 8000 120710 1 66 164 277
+##PROGRESS#: 8000 116115 1 68 164 277
+##PROGRESS#: 9000 126128 1 71 164 277
+##PROGRESS#: 9000 121657 1 73 164 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "ryksopp_-_here_she_comes_again.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175912 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/ryksopp_-_monument.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 11550742
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:43+03:00
+##CLI.NAMESET#: 165 ryksopp_-_monument.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Monument [muzmo.ru]
+##AUDIO.ID3#: Title: Monument [muzmo.ru]
+##AUDIO.ID3#: Artist: [muzmo.ru] Röyksopp
+##CLI.META#: Monument [muzmo.ru] - [muzmo.ru]
+##AUDIO.ID3#: Album: [muzmo.ru]
+##AUDIO.INFO#: Comment: text encoding; UTF-16, language eng, content_descriptor: http://muzmo.ru - Вся музыка мира!
+##AUDIO.ID3#: Comment: ૳┚僽簘샹!脀笐挢牵敲瑮㨢ㄠ㔶≽∺慮敭敳≴‬瘢污敵㨢∠祲獫灯彰弭潭畮敭瑮洮㍰索絝꣤妡䈇僟樀㰁ȏῐꢔ妡䈇ࣟ䔀
+##AUDIO.ID3#: User defined URL link frame: 
+##AUDIO.ID3#: Copyright: http://muzmo.ru
+##AUDIO.INFO#: Lyrics: text_encoding: UTF-16, language: eng, size 126
+##AUDIO.INFO#: Lyrics: content_descriptor: http://muzmo.ru - Бесплатная музыка!
+ Röyksopp - Monument 뒉噸몭ġ
+##AUDIO.INFO#: audiofile contains synchronized lyrics
+##AUDIO.INFO#: Audio-Length: 11463702
+##AUDIO.INFO#: frames 10970
+##AUDIO.INFO#: bytes 11463574
+##AUDIO.INFO#: Duration: 286 (s)
+##AUDIO.INFO#: BitRate: 320659
+##AUDIO.BITRATE#: 320659
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320659
+##AUDIO.BITRATE#: 320659
+##AUDIO.INFO#: stream ready
+##PROGRESS#: 2288 286000 1 8 165 277
+##PROGRESS#: 2574 286000 1 9 165 277
+##PROGRESS#: 3146 286000 1 11 165 277
+##PROGRESS#: 1000 286000 1 12 165 277
+##PROGRESS#: 1000 286000 1 13 165 277
+##PROGRESS#: 2000 286000 1 15 165 277
+##PROGRESS#: 2000 286000 1 16 165 277
+##PROGRESS#: 3000 286000 1 18 165 277
+##PROGRESS#: 3000 286000 1 19 165 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "ryksopp_-_monument.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176116 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/ryksopp_-_something_in_my_heart.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 13256016
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:48+03:00
+##CLI.NAMESET#: 166 ryksopp_-_something_in_my_heart.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Something in My Heart [muzmo.ru]
+##AUDIO.ID3#: Title: Something in My Heart [muzmo.ru]
+##AUDIO.ID3#: Artist: [muzmo.ru] Röyksopp
+##CLI.META#: Something in My Heart [muzmo.ru] - [muzmo.ru]
+##AUDIO.ID3#: Album: [muzmo.ru]
+##AUDIO.INFO#: Comment: text encoding; UTF-16, language eng, content_descriptor: http://muzmo.ru - Вся музыка мира!
+##AUDIO.ID3#: Comment: 
+##AUDIO.ID3#: User defined URL link frame: 
+##AUDIO.ID3#: Copyright: http://muzmo.ru
+##AUDIO.INFO#: Lyrics: text_encoding: UTF-16, language: eng, size 152
+##AUDIO.INFO#: Lyrics: content_descriptor: http://muzmo.ru - Бесплатная музыка!
+ Röyksopp - Something in My Heart 
+##AUDIO.INFO#: audiofile contains synchronized lyrics
+##AUDIO.INFO#: Audio-Length: 13168976
+##AUDIO.INFO#: frames 12602
+##AUDIO.INFO#: bytes 13168848
+##AUDIO.INFO#: Duration: 329 (s)
+##AUDIO.INFO#: BitRate: 320215
+##AUDIO.BITRATE#: 320215
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320215
+##AUDIO.BITRATE#: 320215
+##PROGRESS#: 2303 329000 1 7 166 277
+##PROGRESS#: 2632 329000 1 8 166 277
+##PROGRESS#: 2961 329000 1 9 166 277
+##PROGRESS#: 1000 329000 1 10 166 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "ryksopp_-_something_in_my_heart.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176048 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/ryksopp_robyn_-_do_it_again.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 12342775
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:50+03:00
+##CLI.NAMESET#: 167 ryksopp_robyn_-_do_it_again.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Do It Again [muzmo.ru]
+##AUDIO.ID3#: Title: Do It Again [muzmo.ru]
+##AUDIO.ID3#: Artist: [muzmo.ru] Röyksopp, Robyn
+##CLI.META#: Do It Again [muzmo.ru] - [muzmo.ru]
+##AUDIO.ID3#: Album: [muzmo.ru]
+##AUDIO.INFO#: Comment: text encoding; UTF-16, language eng, content_descriptor: http://muzmo.ru - Вся музыка мира!
+##AUDIO.ID3#: Comment: 
+##AUDIO.ID3#: User defined URL link frame: 
+##AUDIO.ID3#: Copyright: http://muzmo.ru
+##AUDIO.INFO#: Lyrics: text_encoding: UTF-16, language: eng, size 146
+##AUDIO.INFO#: Lyrics: content_descriptor: http://muzmo.ru - Бесплатная музыка!
+ Röyksopp, Robyn - Do It Again 냐!
+##AUDIO.INFO#: audiofile contains synchronized lyrics
+##AUDIO.INFO#: Audio-Length: 12255735
+##AUDIO.INFO#: frames 11728
+##AUDIO.INFO#: bytes 12255607
+##AUDIO.INFO#: Duration: 306 (s)
+##AUDIO.INFO#: BitRate: 320408
+##AUDIO.BITRATE#: 320408
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320408
+##AUDIO.BITRATE#: 320408
+##PROGRESS#: 2142 306000 1 7 167 277
+##PROGRESS#: 2754 306000 1 9 167 277
+##PROGRESS#: 3060 306000 1 10 167 277
+##PROGRESS#: 1000 306000 1 11 167 277
+##PROGRESS#: 1000 306000 1 12 167 277
+##PROGRESS#: 2000 306000 1 14 167 277
+##PROGRESS#: 2000 306000 1 15 167 277
+##PROGRESS#: 3000 306000 1 16 167 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "ryksopp_robyn_-_do_it_again.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175924 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/melosense-lovebreak.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 7448455
+##AUDIO.INFO#: ID3 framesSize: 26418
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:54+03:00
+##CLI.NAMESET#: 143 melosense-lovebreak.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: LoveBreak
+##AUDIO.ID3#: Album: LoveBreak
+##CLI.META#: LoveBreak - LoveBreak
+##AUDIO.ID3#: Title: LoveBreak
+##AUDIO.ID3#: Artist: Melosense
+##AUDIO.ID3#: Track: 1
+##AUDIO.ID3#: Year: 2018
+##AUDIO.ID3#: UserDefinedText: major_brand
+##AUDIO.ID3#: UserDefinedText: minor_version
+##AUDIO.ID3#: UserDefinedText: compatible_brands
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.10.100
+##AUDIO.ID3#: Comment: (myzuka)
+##AUDIO.INFO#: Audio-Length: 7422037
+##AUDIO.INFO#: frames 7102
+##AUDIO.INFO#: bytes 7421909
+##AUDIO.INFO#: Duration: 185 (s)
+##AUDIO.INFO#: BitRate: 320947
+##AUDIO.BITRATE#: 320947
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320947
+##AUDIO.BITRATE#: 320947
+##PROGRESS#: 740 185000 1 4 143 277
+##PROGRESS#: 1110 185000 1 6 143 277
+##PROGRESS#: 1480 185000 1 8 143 277
+##PROGRESS#: 1000 185000 1 10 143 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "melosense-lovebreak.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176048 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/melosense_-_in_love.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8108849
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:28:56+03:00
+##CLI.NAMESET#: 139 melosense_-_in_love.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: In Love
+##AUDIO.ID3#: Title: In Love
+##AUDIO.ID3#: Artist: Melosense
+##CLI.META#: In Love - Armada Winter Chill
+##AUDIO.ID3#: Album: Armada Winter Chill
+##AUDIO.ID3#: Year: 2017
+##AUDIO.INFO#: Audio-Length: 8021809
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 4054 337868 1 12 139 277
+##PROGRESS#: 4730 337868 1 14 139 277
+##PROGRESS#: 1000 61444 1 16 139 277
+##PROGRESS#: 1000 54921 1 18 139 277
+##PROGRESS#: 1000 49335 1 20 139 277
+##PROGRESS#: 2000 90080 1 22 139 277
+##PROGRESS#: 2000 82866 1 24 139 277
+##PROGRESS#: 3000 114517 1 26 139 277
+##PROGRESS#: 3000 106161 1 28 139 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "melosense_-_in_love.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176020 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/martin_graff_eva_kade_-_here_now_original_mix_original_mix.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 13849518
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:29:01+03:00
+##CLI.NAMESET#: 138 martin_graff_eva_kade_-_here_now_original_mix_original_mix.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Here & Now (Original Mix) (Original Mix)
+##AUDIO.ID3#: Title: Here & Now (Original Mix) (Original Mix)
+##AUDIO.ID3#: Artist: Martin Graff, Eva Kade
+##AUDIO.ID3#: Year: 0
+##AUDIO.INFO#: Audio-Length: 13762478
+##AUDIO.INFO#: frames 13170
+##AUDIO.INFO#: bytes 13762350
+##AUDIO.INFO#: Duration: 344 (s)
+##AUDIO.INFO#: BitRate: 320054
+##AUDIO.BITRATE#: 320054
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320054
+##AUDIO.BITRATE#: 320054
+##PROGRESS#: 2408 344000 1 7 138 277
+##PROGRESS#: 2752 344000 1 8 138 277
+##PROGRESS#: 1000 344000 1 9 138 277
+##PROGRESS#: 1000 344000 1 10 138 277
+##PROGRESS#: 1000 344000 1 11 138 277
+##PROGRESS#: 2000 344000 1 13 138 277
+##PROGRESS#: 2000 344000 1 14 138 277
+##PROGRESS#: 3000 344000 1 15 138 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "martin_graff_eva_kade_-_here_now_original_mix_original_mix.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176104 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/jnl feat. vikings - into the fire.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8642395
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:29:05+03:00
+##CLI.NAMESET#: 130 jnl feat. vikings - into the fire.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf57.71.100
+##AUDIO.INFO#: Audio-Length: 8642350
+##AUDIO.INFO#: frames 8270
+##AUDIO.INFO#: bytes 8642350
+##AUDIO.INFO#: Duration: 216 (s)
+##AUDIO.INFO#: BitRate: 320087
+##AUDIO.BITRATE#: 320087
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320087
+##AUDIO.BITRATE#: 320087
+##PROGRESS#: 432 216000 1 2 130 277
+##PROGRESS#: 864 216000 1 4 130 277
+##PROGRESS#: 1000 216000 1 6 130 277
+##PROGRESS#: 1000 216000 1 7 130 277
+##PROGRESS#: 2000 216000 1 9 130 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "jnl feat. vikings - into the fire.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175888 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/eva_kade_martin_graff_-_destiny_original_mix.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6640446
+##AUDIO.INFO#: ID3 framesSize: 86086
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:29:08+03:00
+##CLI.NAMESET#: 126 eva_kade_martin_graff_-_destiny_original_mix.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Destiny (Original Mix)
+##AUDIO.ID3#: Title: Destiny (Original Mix)
+##AUDIO.ID3#: Artist: Eva Kade, Martin Graff
+##AUDIO.ID3#: Year: 0
+##AUDIO.INFO#: Audio-Length: 6554360
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 3873 276685 1 14 126 277
+##PROGRESS#: 4703 276685 1 17 126 277
+##PROGRESS#: 1000 50698 1 19 126 277
+##PROGRESS#: 1000 45284 1 22 126 277
+##PROGRESS#: 1000 40653 1 24 126 277
+##PROGRESS#: 2000 74194 1 26 126 277
+##PROGRESS#: 2000 67861 1 29 126 277
+##PROGRESS#: 3000 94250 1 31 126 277
+##PROGRESS#: 3000 87347 1 34 126 277
+##PROGRESS#: 3000 81735 1 36 126 277
+##PROGRESS#: 4000 101990 1 39 126 277
+##PROGRESS#: 4000 96205 1 41 126 277
+##PROGRESS#: 5000 113802 1 43 126 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "eva_kade_martin_graff_-_destiny_original_mix.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175904 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/emma_brammer_-_willing_able_feat_le_flex_68808269.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 10260293
+##AUDIO.INFO#: ID3 framesSize: 87040
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:29:14+03:00
+##CLI.NAMESET#: 125 emma_brammer_-_willing_able_feat_le_flex_68808269.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: Willing & Able (feat. Le Flex)
+##AUDIO.ID3#: Title: Willing & Able (feat. Le Flex)
+##AUDIO.ID3#: Artist: Emma Brammer
+##AUDIO.ID3#: Year: 0
+##AUDIO.INFO#: Audio-Length: 10173253
+##AUDIO.INFO#: frames 9735
+##AUDIO.INFO#: bytes 10173125
+##AUDIO.INFO#: Duration: 254 (s)
+##AUDIO.INFO#: BitRate: 320413
+##AUDIO.BITRATE#: 320413
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320413
+##AUDIO.BITRATE#: 320413
+##PROGRESS#: 2286 254000 1 9 125 277
+##PROGRESS#: 2794 254000 1 11 125 277
+##PROGRESS#: 1000 254000 1 12 125 277
+##PROGRESS#: 1000 254000 1 14 125 277
+##PROGRESS#: 1000 254000 1 15 125 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "emma_brammer_-_willing_able_feat_le_flex_68808269.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176044 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/ekkah — last chance to dance.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 8905709
+##AUDIO.INFO#: ID3 framesSize: 45
+##AUDIO.INFO#: ID3 version: 2.4
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:29:17+03:00
+##CLI.NAMESET#: 123 ekkah — last chance to dance.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##AUDIO.ID3#: SettingsForEncoding: Lavf58.20.100
+##AUDIO.INFO#: Audio-Length: 8905664
+##AUDIO.INFO#: frames 8522
+##AUDIO.INFO#: bytes 8905664
+##AUDIO.INFO#: Duration: 222 (s)
+##AUDIO.INFO#: BitRate: 320924
+##AUDIO.BITRATE#: 320924
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320924
+##AUDIO.BITRATE#: 320924
+##PROGRESS#: 222 222000 1 1 123 277
+##PROGRESS#: 666 222000 1 3 123 277
+##PROGRESS#: 1000 222000 1 5 123 277
+##PROGRESS#: 1000 222000 1 7 123 277
+##PROGRESS#: 1000 222000 1 8 123 277
+##PROGRESS#: 2000 222000 1 10 123 277
+##PROGRESS#: 2000 222000 1 12 123 277
+##PROGRESS#: 3000 222000 1 14 123 277
+##PROGRESS#: 3000 222000 1 16 123 277
+##PROGRESS#: 3000 222000 1 17 123 277
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "ekkah — last chance to dance.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 175728 bytes
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: Reading file: "/dj_belite_-_all_eyes_on_me_75563579.mp3"
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: File-Size: 6640120
+##AUDIO.INFO#: ID3 framesSize: 16384
+##AUDIO.INFO#: ID3 version: 2.3
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:29:22+03:00
+##CLI.NAMESET#: 119 dj_belite_-_all_eyes_on_me_75563579.mp3
+##CLI.META#: 
+##CLI.VOL#: 69
+##CLI.PLAYING#
+##CLI.META#: All Eyes on Me
+##AUDIO.ID3#: Title: All Eyes on Me
+##AUDIO.ID3#: Artist: Dj Belite
+##CLI.META#: All Eyes on Me - All Eyes on Me
+##AUDIO.ID3#: Album: All Eyes on Me
+##AUDIO.ID3#: Year: 2022
+##AUDIO.INFO#: Audio-Length: 6623736
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##PROGRESS#: 1106 276671 1 4 119 277
+##PROGRESS#: 1936 276671 1 7 119 277
+##PROGRESS#: 1000 106482 1 9 119 277
+##PROGRESS#: 1000 83970 1 11 119 277
+##PROGRESS#: 1000 70079 1 14 119 277
+##PROGRESS#: 2000 119138 1 16 119 277
+##PROGRESS#: 2000 104451 1 19 119 277
+##PROGRESS#: 3000 138469 1 21 119 277
+##PROGRESS#: 3000 124865 1 24 119 277
+##PROGRESS#: 3000 113021 1 26 119 277
+##PROGRESS#: 4000 138389 1 28 119 277
+##PROGRESS#: 4000 127299 1 31 119 277
+##PROGRESS#: 5000 147320 1 33 119 277
+##PROGRESS#: 5000 137740 1 36 119 277
+##PROGRESS#: 6000 154568 1 38 119 277
+##PROGRESS#: 6000 145708 1 41 119 277
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "dj_belite_-_all_eyes_on_me_75563579.mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 176064 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-03T13:29:29+03:00
+##CLI.NAMESET#: 119 Dj Belite
+##CLI.VOL#: 69
+##CLI.STOPPED#
