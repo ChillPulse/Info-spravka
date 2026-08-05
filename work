@@ -1,0 +1,32 @@
+Исправляю ошибку с необъявленными методами.
+
+Исправляю пропущенные объявления методов.
+
+Добавил недостающие объявления и реализацию индекса для M4A.
+
+Пофиксил ошибку из `Log13`:
+
+```
+Audio.cpp:7129:6: error: no declaration matches 'bool Audio::omnia_m4aSeekMs(uint32_t)'
+```
+
+Было: в `Audio.cpp` добавил реализацию `omnia_m4aSeekMs()`, `omnia_m4aIndexReset()` и т.д., а в `AudioEx.h` забыл объявить `void omnia_m4aIndexReset();` и т.д. — линковщик не нашёл.
+
+**Залил `ee1216f` — `git pull` и пересобери:**
+
+Теперь в `AudioEx.h`:
+```cpp
+void omnia_m4aIndexReset();
+void omnia_m4aIndexInitIfPossible();
+void omnia_m4aIndexTick(uint16_t maxEntries = 256);
+bool omnia_m4aSeekMs(uint32_t ms);
+```
+и поля `m_m4aIdxFile`, `m_m4aIdxValid`, `m_m4aDurSec`, `m_m4aSecFrame/Off` и т.д.
+
+После этого должны собраться все фиксы из `Chat recomendation 6`:
+
+- `list` = WEB станции (родное), `sdlist` = реальные SD имена без лимита (флагман)
+- `sdlist` теперь без мусора `1070513048` — пофиксил `printf` где был один аргумент вместо двух
+- unified EOF `audio_eof` + `audio_eof_mp3` → auto-next
+- прогресс бар чёрный → fallback 128k + всегда шлётся
+- seek для M4A отключён (byte-seek нестабилен), для MP3/AAC/WAV/FLAC через `sd_min..sd_max`
