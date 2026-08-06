@@ -1,3 +1,6 @@
+Вышла ошибка компиляции:
+https://github.com/ChillPulse/Info-spravka/blob/main/Log17
+
 Это **не ошибка компиляции C++**, а **ошибка линковки**: `ld.exe: undefined reference ...` — т.е. функции **объявлены** в `AudioEx.h`, но их **реализаций нет** ни в одном `.cpp`. В вашем `Log17` линкер ругается на целый набор методов `Audio`, включая `computeLimit()`, `getBitRate()`, `inBufferFilled()`, `getSampleRate()`, `setTone()`, `setBalance()`, `setVolume()` и т.д. 
 
 ### Почему так случилось (конкретно по вашему репо)
