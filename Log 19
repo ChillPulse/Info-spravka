@@ -1,0 +1,983 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x29 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1180
+load:0x403c8700,len:0xc2c
+load:0x403cb700,len:0x311c
+entry 0x403c88b8
+##[BOOT]#	************************************************
+##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.3.0
+##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+##[BOOT]#	ir:		NONE
+##[BOOT]#	SD:		CS-39
+##[BOOT]#	battery:	battery ON
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+##USB.STATUS#: init 5V power check polyfuse 0.75A
+##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	done
+##[BOOT]#	SD search	SD Mounted
+##[BOOT]#	Waiting for SD card indexing...		done
+##[BOOT]#	Ready in SD Mode!
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+[WEBSOCKET] client #1 connected from 192.168.1.96
+##CLI.META#: [готов]
+##CLI.VOL#: 32
+##CLI.INFO#
+##SYS.DATE#: 1970-01-01T03:00:03+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.VOL#: 32
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 175860 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: m4a: no ftyp, looks like raw AAC (ADTS). Switch to CODEC_AAC
+##PROGRESS#: 0 643536 1 0 274 274
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 374505
+##AUDIO.BITRATE#: 374505
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:49:29+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##PROGRESS#: 220 220000 1 1 274 274
+##PROGRESS#: 440 220000 1 2 274 274
+##PROGRESS#: 660 220000 1 3 274 274
+##PROGRESS#: 1000 220000 1 4 274 274
+##PROGRESS#: 1000 220000 1 6 274 274
+##PROGRESS#: 1000 220000 1 7 274 274
+##PROGRESS#: 1000 220000 1 8 274 274
+##PROGRESS#: 2000 220000 1 9 274 274
+##PROGRESS#: 2000 220000 1 10 274 274
+##PROGRESS#: 2000 220000 1 11 274 274
+##PROGRESS#: 2000 220000 1 13 274 274
+##PROGRESS#: 3000 220000 1 14 274 274
+##PROGRESS#: 3000 220000 1 15 274 274
+##PROGRESS#: 3000 220000 1 16 274 274
+##PROGRESS#: 3000 220000 1 17 274 274
+##PROGRESS#: 4000 220000 1 19 274 274
+##PROGRESS#: 4000 220000 1 20 274 274
+##PROGRESS#: 4000 220000 1 21 274 274
+##PROGRESS#: 4000 220000 1 22 274 274
+##SEEK#: absolute 60000 ms -> pos 2808160 (range 0-10296588 dur 220000)
+##SEEK#: setFilePos 2808160 ok=1
+> ##PROGRESS#: 60000 220000 1 273 274 274
+##PROGRESS#: 60000 220000 1 275 274 274
+##PROGRESS#: 60000 220000 1 276 274 274
+##PROGRESS#: 60000 220000 1 277 274 274
+##PROGRESS#: 61000 220000 1 278 274 274
+##PROGRESS#: 61000 220000 1 279 274 274
+##PROGRESS#: 61000 220000 1 281 274 274
+##PROGRESS#: 62000 220000 1 282 274 274
+##PROGRESS#: 62000 220000 1 283 274 274
+##PROGRESS#: 62000 220000 1 284 274 274
+##PROGRESS#: 62000 220000 1 285 274 274
+##PROGRESS#: 63000 220000 1 286 274 274
+##PROGRESS#: 63000 220000 1 288 274 274
+##PROGRESS#: 63000 220000 1 289 274 274
+##PROGRESS#: 63000 220000 1 290 274 274
+##PROGRESS#: 64000 220000 1 291 274 274
+##PROGRESS#: 64000 220000 1 292 274 274
+##PROGRESS#: 64000 220000 1 294 274 274
+##PROGRESS#: 64000 220000 1 295 274 274
+##PROGRESS#: 65000 220000 1 296 274 274
+##PROGRESS#: 65000 220000 1 297 274 274
+##PROGRESS#: 65000 220000 1 298 274 274
+##PROGRESS#: 65000 220000 1 300 274 274
+##PROGRESS#: 66000 220000 1 301 274 274
+##PROGRESS#: 66000 220000 1 302 274 274
+##PROGRESS#: 66000 220000 1 303 274 274
+##PROGRESS#: 66000 220000 1 304 274 274
+##PROGRESS#: 67000 220000 1 305 274 274
+##PROGRESS#: 67000 220000 1 307 274 274
+##PROGRESS#: 67000 220000 1 308 274 274
+##PROGRESS#: 68000 220000 1 309 274 274
+##PROGRESS#: 68000 220000 1 310 274 274
+##PROGRESS#: 68000 220000 1 311 274 274
+##PROGRESS#: 68000 220000 1 313 274 274
+##PROGRESS#: 69000 220000 1 314 274 274
+##PROGRESS#: 69000 220000 1 315 274 274
+##PROGRESS#: 69000 220000 1 316 274 274
+##PROGRESS#: 69000 220000 1 317 274 274
+##PROGRESS#: 70000 220000 1 318 274 274
+##PROGRESS#: 70000 220000 1 320 274 274
+##PROGRESS#: 70000 220000 1 321 274 274
+##PROGRESS#: 70000 220000 1 322 274 274
+##PROGRESS#: 71000 220000 1 323 274 274
+##PROGRESS#: 71000 220000 1 324 274 274
+##PROGRESS#: 71000 220000 1 326 274 274
+##PROGRESS#: 71000 220000 1 327 274 274
+##PROGRESS#: 72000 220000 1 328 274 274
+##PROGRESS#: 72000 220000 1 329 274 274
+##PROGRESS#: 72000 220000 1 330 274 274
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 176016 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:49:49+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.VOL#: 32
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175796 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: m4a: no ftyp, looks like raw AAC (ADTS). Switch to CODEC_AAC
+##PROGRESS#: 0 643536 1 0 274 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:49:53+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.META#: 
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 374505
+##AUDIO.BITRATE#: 374505
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##PROGRESS#: 73000 220000 1 332 274 274
+##PROGRESS#: 73000 220000 1 333 274 274
+##PROGRESS#: 73000 220000 1 334 274 274
+##PROGRESS#: 73000 220000 1 335 274 274
+##PROGRESS#: 74000 220000 1 337 274 274
+##PROGRESS#: 74000 220000 1 338 274 274
+##PROGRESS#: 74000 220000 1 339 274 274
+##PROGRESS#: 74000 220000 1 340 274 274
+##PROGRESS#: 75000 220000 1 341 274 274
+##PROGRESS#: 75000 220000 1 342 274 274
+##PROGRESS#: 75000 220000 1 344 274 274
+##PROGRESS#: 75000 220000 1 345 274 274
+##PROGRESS#: 76000 220000 1 346 274 274
+##PROGRESS#: 76000 220000 1 347 274 274
+##PROGRESS#: 76000 220000 1 348 274 274
+##PROGRESS#: 76000 220000 1 350 274 274
+##PROGRESS#: 77000 220000 1 351 274 274
+##PROGRESS#: 77000 220000 1 352 274 274
+##PROGRESS#: 77000 220000 1 353 274 274
+##PROGRESS#: 78000 220000 1 354 274 274
+##SEEK#: absolute 60000 ms -> pos 2808160 (range 0-10296588 dur 220000)
+##SEEK#: setFilePos 2808160 ok=1
+> ##PROGRESS#: 78000 220000 1 272 274 274
+##PROGRESS#: 60000 220000 1 274 274 274
+##PROGRESS#: 60000 220000 1 275 274 274
+##PROGRESS#: 60000 220000 1 277 274 274
+##PROGRESS#: 61000 220000 1 278 274 274
+##PROGRESS#: 61000 220000 1 279 274 274
+##PROGRESS#: 61000 220000 1 280 274 274
+##PROGRESS#: 61000 220000 1 281 274 274
+##PROGRESS#: 62000 220000 1 283 274 274
+##PROGRESS#: 62000 220000 1 284 274 274
+##PROGRESS#: 62000 220000 1 285 274 274
+##PROGRESS#: 63000 220000 1 286 274 274
+##PROGRESS#: 63000 220000 1 287 274 274
+##PROGRESS#: 63000 220000 1 289 274 274
+##PROGRESS#: 63000 220000 1 290 274 274
+##PROGRESS#: 64000 220000 1 291 274 274
+##PROGRESS#: 64000 220000 1 292 274 274
+##PROGRESS#: 64000 220000 1 293 274 274
+##PROGRESS#: 64000 220000 1 294 274 274
+##PROGRESS#: 65000 220000 1 296 274 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175896 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 253673 1 0 271 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:50:05+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 333 333000 1 1 271 274
+##PROGRESS#: 666 333000 1 2 271 274
+##PROGRESS#: 1000 333000 1 3 271 274
+##PROGRESS#: 1000 333000 1 4 271 274
+##PROGRESS#: 1000 333000 1 6 271 274
+##PROGRESS#: 2000 333000 1 7 271 274
+##PROGRESS#: 2000 333000 1 8 271 274
+##PROGRESS#: 3000 333000 1 9 271 274
+##PROGRESS#: 3000 333000 1 10 271 274
+##PROGRESS#: 4000 333000 1 12 271 274
+##PROGRESS#: 4000 333000 1 13 271 274
+##PROGRESS#: 4000 333000 1 14 271 274
+##PROGRESS#: 5000 333000 1 15 271 274
+##PROGRESS#: 5000 333000 1 17 271 274
+##PROGRESS#: 6000 333000 1 18 271 274
+##PROGRESS#: 6000 333000 1 19 271 274
+##PROGRESS#: 6000 333000 1 20 271 274
+##PROGRESS#: 7000 333000 1 21 271 274
+##PROGRESS#: 7000 333000 1 23 271 274
+##SEEK#: absolute 60000 ms -> pos 731312 (range 0-4058782 dur 333000)
+##SEEK#: setFilePos 731312 ok=1
+> ##PROGRESS#: 60000 333000 1 181 271 274
+##PROGRESS#: 60000 333000 1 182 271 274
+##PROGRESS#: 61000 333000 1 184 271 274
+##PROGRESS#: 61000 333000 1 185 271 274
+##PROGRESS#: 62000 333000 1 186 271 274
+##PROGRESS#: 62000 333000 1 188 271 274
+##PROGRESS#: 62000 333000 1 189 271 274
+##PROGRESS#: 63000 333000 1 190 271 274
+##PROGRESS#: 63000 333000 1 191 271 274
+##PROGRESS#: 64000 333000 1 193 271 274
+##PROGRESS#: 64000 333000 1 194 271 274
+##PROGRESS#: 65000 333000 1 195 271 274
+##PROGRESS#: 65000 333000 1 196 271 274
+##PROGRESS#: 65000 333000 1 198 271 274
+##PROGRESS#: 66000 333000 1 199 271 274
+##PROGRESS#: 66000 333000 1 200 271 274
+##PROGRESS#: 67000 333000 1 201 271 274
+##PROGRESS#: 67000 333000 1 203 271 274
+##PROGRESS#: 68000 333000 1 204 271 274
+##PROGRESS#: 68000 333000 1 205 271 274
+##PROGRESS#: 68000 333000 1 206 271 274
+##PROGRESS#: 69000 333000 1 208 271 274
+##PROGRESS#: 69000 333000 1 209 271 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "sample4.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 176000 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 178822 1 0 270 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:50:19+03:00
+##CLI.NAMESET#: 270 skysea (cover) круто (replaced) основа.m4a
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##AUDIO.INFO#: non-progressive M4A: mdat before moov, size 2823940, saving and skipping for SD
+##AUDIO.INFO#: skip 2823940 bytes
+##AUDIO.INFO#: Duration: 201 (s)
+##AUDIO.INFO#: AAC Profile: AAC LC (Low Complexity)
+##AUDIO.INFO#: AAC Channels; 2
+##AUDIO.INFO#: AAC Sample Rate: 44100
+##AUDIO.INFO#: AAC Bits Per Sample: 16
+##AUDIO.ID3#: Encoder: fdkaac 1.0.6, libfdk-aac 4.0.1, VBR mode 3
+##AUDIO.INFO#: ---- tag not supported
+##AUDIO.INFO#: non-progressive M4A: moov parsed, seeking back to mdat at 48 size 2823932
+##PROGRESS#: 0 178822 1 0 270 274
+##AUDIO.INFO#: Duration: 201 (s)
+##AUDIO.INFO#: BitRate: 113877
+##AUDIO.BITRATE#: 113877
+##AUDIO.INFO#: omnia_m4aIndexInit dur=201s 201000ms stszPos=2824524 entries=8664 valid=1
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 113877
+##AUDIO.BITRATE#: 113877
+##PROGRESS#: 0 201000 1 0 270 274
+##PROGRESS#: 402 201000 1 2 270 274
+##PROGRESS#: 603 201000 1 3 270 274
+##PROGRESS#: 804 201000 1 4 270 274
+##PROGRESS#: 1000 201000 1 5 270 274
+##PROGRESS#: 1000 201000 1 6 270 274
+##PROGRESS#: 1000 201000 1 8 270 274
+##PROGRESS#: 1000 201000 1 9 270 274
+##PROGRESS#: 2000 201000 1 10 270 274
+##PROGRESS#: 2000 201000 1 11 270 274
+##SEEK#: M4A time seek 60000 ms via stsz index
+> ##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 2000 201000 1 298 270 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 113877
+##AUDIO.BITRATE#: 113877
+##PROGRESS#: 60000 201000 1 300 270 274
+##PROGRESS#: 60000 201000 1 302 270 274
+##PROGRESS#: 61000 201000 1 304 270 274
+##PROGRESS#: 61000 201000 1 305 270 274
+##PROGRESS#: 61000 201000 1 307 270 274
+##PROGRESS#: 62000 201000 1 309 270 274
+##PROGRESS#: 62000 201000 1 310 270 274
+##PROGRESS#: 62000 201000 1 311 270 274
+##PROGRESS#: 62000 201000 1 313 270 274
+##PROGRESS#: 63000 201000 1 314 270 274
+##PROGRESS#: 63000 201000 1 316 270 274
+##PROGRESS#: 63000 201000 1 317 270 274
+##PROGRESS#: 64000 201000 1 319 270 274
+##PROGRESS#: 64000 201000 1 321 270 274
+##PROGRESS#: 64000 201000 1 322 270 274
+##PROGRESS#: 65000 201000 1 324 270 274
+##PROGRESS#: 65000 201000 1 326 270 274
+##PROGRESS#: 65000 201000 1 328 270 274
+##PROGRESS#: 66000 201000 1 329 270 274
+##PROGRESS#: 66000 201000 1 331 270 274
+##PROGRESS#: 66000 201000 1 332 270 274
+##PROGRESS#: 67000 201000 1 334 270 274
+##PROGRESS#: 67000 201000 1 335 270 274
+##PROGRESS#: 67000 201000 1 337 270 274
+##PROGRESS#: 68000 201000 1 338 270 274
+##PROGRESS#: 68000 201000 1 340 270 274
+##PROGRESS#: 68000 201000 1 341 270 274
+##PROGRESS#: 68000 201000 1 343 270 274
+##PROGRESS#: 69000 201000 1 344 270 274
+##PROGRESS#: 69000 201000 1 346 270 274
+##PROGRESS#: 69000 201000 1 348 270 274
+##PROGRESS#: 70000 201000 1 350 270 274
+##PROGRESS#: 70000 201000 1 352 270 274
+##PROGRESS#: 71000 201000 1 354 270 274
+##SEEK#: M4A time seek 60000 ms via stsz index
+> ##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 71000 201000 1 298 270 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 113877
+##AUDIO.BITRATE#: 113877
+##PROGRESS#: 60000 201000 1 299 270 274
+##PROGRESS#: 60000 201000 1 301 270 274
+##PROGRESS#: 60000 201000 1 303 270 274
+##PROGRESS#: 61000 201000 1 305 270 274
+##PROGRESS#: 61000 201000 1 306 270 274
+##PROGRESS#: 61000 201000 1 308 270 274
+##PROGRESS#: 62000 201000 1 309 270 274
+##PROGRESS#: 62000 201000 1 311 270 274
+##PROGRESS#: 62000 201000 1 312 270 274
+##PROGRESS#: 63000 201000 1 314 270 274
+##PROGRESS#: 63000 201000 1 315 270 274
+##PROGRESS#: 63000 201000 1 317 270 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "skysea (cover) круто (replaced) основа.m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175928 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 224723 1 0 269 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:50:37+03:00
+##CLI.NAMESET#: 269 Зелёный храм (disco-jungle).m4a
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##AUDIO.INFO#: non-progressive M4A: mdat before moov, size 3559118, saving and skipping for SD
+##AUDIO.INFO#: skip 3559118 bytes
+##AUDIO.INFO#: Duration: 196 (s)
+##AUDIO.INFO#: AAC Profile: AAC LC (Low Complexity)
+##AUDIO.INFO#: AAC Channels; 2
+##AUDIO.INFO#: AAC Sample Rate: 44100
+##AUDIO.INFO#: AAC Bits Per Sample: 16
+##AUDIO.ID3#: Encoder: fdkaac 1.0.6, libfdk-aac 4.0.1, VBR mode 3
+##AUDIO.INFO#: ---- tag not supported
+##PROGRESS#: 0 224723 1 0 269 274
+##AUDIO.INFO#: non-progressive M4A: moov parsed, seeking back to mdat at 48 size 3559110
+##AUDIO.INFO#: Duration: 196 (s)
+##AUDIO.INFO#: BitRate: 146758
+##AUDIO.BITRATE#: 146758
+##AUDIO.INFO#: omnia_m4aIndexInit dur=196s 196000ms stszPos=3559702 entries=8482 valid=1
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 146758
+##AUDIO.BITRATE#: 146758
+##PROGRESS#: 196 196000 1 1 269 274
+##PROGRESS#: 392 196000 1 2 269 274
+##PROGRESS#: 784 196000 1 4 269 274
+##PROGRESS#: 1000 196000 1 6 269 274
+##PROGRESS#: 1000 196000 1 8 269 274
+##PROGRESS#: 1000 196000 1 10 269 274
+##PROGRESS#: 2000 196000 1 11 269 274
+##PROGRESS#: 2000 196000 1 13 269 274
+##PROGRESS#: 2000 196000 1 15 269 274
+##PROGRESS#: 3000 196000 1 16 269 274
+##SEEK#: M4A time seek 60000 ms via stsz index
+> ##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 3000 196000 1 306 269 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 146758
+##AUDIO.BITRATE#: 146758
+##PROGRESS#: 60000 196000 1 307 269 274
+##PROGRESS#: 60000 196000 1 309 269 274
+##PROGRESS#: 61000 196000 1 311 269 274
+##PROGRESS#: 61000 196000 1 313 269 274
+##PROGRESS#: 61000 196000 1 315 269 274
+##PROGRESS#: 62000 196000 1 317 269 274
+##PROGRESS#: 62000 196000 1 319 269 274
+##PROGRESS#: 62000 196000 1 321 269 274
+##PROGRESS#: 63000 196000 1 323 269 274
+##PROGRESS#: 63000 196000 1 325 269 274
+##PROGRESS#: 63000 196000 1 326 269 274
+##PROGRESS#: 64000 196000 1 328 269 274
+##PROGRESS#: 64000 196000 1 330 269 274
+##PROGRESS#: 65000 196000 1 332 269 274
+##PROGRESS#: 65000 196000 1 334 269 274
+##PROGRESS#: 65000 196000 1 336 269 274
+##PROGRESS#: 66000 196000 1 338 269 274
+##PROGRESS#: 66000 196000 1 339 269 274
+##PROGRESS#: 66000 196000 1 341 269 274
+##PROGRESS#: 67000 196000 1 343 269 274
+##PROGRESS#: 67000 196000 1 345 269 274
+##PROGRESS#: 68000 196000 1 347 269 274
+##PROGRESS#: 68000 196000 1 349 269 274
+##PROGRESS#: 68000 196000 1 351 269 274
+##PROGRESS#: 69000 196000 1 353 269 274
+##PROGRESS#: 69000 196000 1 355 269 274
+##PROGRESS#: 69000 196000 1 357 269 274
+##PROGRESS#: 70000 196000 1 359 269 274
+##PROGRESS#: 70000 196000 1 360 269 274
+##PROGRESS#: 71000 196000 1 362 269 274
+##PROGRESS#: 71000 196000 1 364 269 274
+##PROGRESS#: 71000 196000 1 366 269 274
+##PROGRESS#: 72000 196000 1 368 269 274
+##PROGRESS#: 72000 196000 1 370 269 274
+##PROGRESS#: 72000 196000 1 372 269 274
+##PROGRESS#: 73000 196000 1 374 269 274
+##PROGRESS#: 73000 196000 1 376 269 274
+##PROGRESS#: 74000 196000 1 378 269 274
+##PROGRESS#: 74000 196000 1 379 269 274
+##PROGRESS#: 74000 196000 1 381 269 274
+##PROGRESS#: 75000 196000 1 383 269 274
+##PROGRESS#: 75000 196000 1 385 269 274
+##PROGRESS#: 75000 196000 1 387 269 274
+##PROGRESS#: 76000 196000 1 389 269 274
+##PROGRESS#: 76000 196000 1 391 269 274
+##PROGRESS#: 77000 196000 1 393 269 274
+##PROGRESS#: 77000 196000 1 395 269 274
+##PROGRESS#: 77000 196000 1 397 269 274
+##PROGRESS#: 78000 196000 1 399 269 274
+##SEEK#: M4A time seek 60000 ms via stsz index
+> ##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##PROGRESS#: 78000 196000 1 306 269 274
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 146758
+##AUDIO.BITRATE#: 146758
+##PROGRESS#: 60000 196000 1 308 269 274
+##PROGRESS#: 60000 196000 1 310 269 274
+##PROGRESS#: 61000 196000 1 311 269 274
+##PROGRESS#: 61000 196000 1 313 269 274
+##PROGRESS#: 61000 196000 1 316 269 274
+##PROGRESS#: 62000 196000 1 317 269 274
+##PROGRESS#: 62000 196000 1 764 269 274
+##PROGRESS#: 150000 196000 1 766 269 274
+##PROGRESS#: 150000 196000 1 767 269 274
+##PROGRESS#: 150000 196000 1 768 269 274
+##PROGRESS#: 176000 196000 1 898 269 274
+##PROGRESS#: 176000 196000 1 900 269 274
+##PROGRESS#: 176000 196000 1 901 269 274
+##PROGRESS#: 177000 196000 1 903 269 274
+##PROGRESS#: 177000 196000 1 904 269 274
+##PROGRESS#: 177000 196000 1 906 269 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175836 bytes
+##AUDIO.INFO#: format is wav
+##AUDIO.INFO#: Reading file: "/Зелёный храм (disco-jungle) (cover).wav"
+##PROGRESS#: 0 2220036 1 0 268 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:51:02+03:00
+##CLI.NAMESET#: 268 Зелёный храм (disco-jungle) (cover).wav
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##AUDIO.INFO#: FormatCode: 1
+##AUDIO.INFO#: DataRate: 176400
+##AUDIO.INFO#: DataBlockSize: 4
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##PROGRESS#: 0 201363 1 0 268 274
+##AUDIO.INFO#: Audio-Length: 35520512
+##AUDIO.INFO#: Duration: 201 (s)
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1411200
+##AUDIO.BITRATE#: 1411200
+##PROGRESS#: 201 201000 1 1 268 274
+##PROGRESS#: 402 201000 1 2 268 274
+##PROGRESS#: 804 201000 1 4 268 274
+##PROGRESS#: 1000 201000 1 5 268 274
+##PROGRESS#: 1000 201000 1 7 268 274
+##PROGRESS#: 1000 201000 1 8 268 274
+##PROGRESS#: 2000 201000 1 10 268 274
+##PROGRESS#: 2000 201000 1 11 268 274
+##PROGRESS#: 2000 201000 1 13 268 274
+##PROGRESS#: 3000 201000 1 14 268 274
+##SEEK#: absolute 60000 ms -> pos 10603215 (range 78-35520590 dur 201000)
+##SEEK#: setFilePos 10603215 ok=1
+> ##PROGRESS#: 3000 201000 1 298 268 274
+##PROGRESS#: 60000 201000 1 300 268 274
+##PROGRESS#: 60000 201000 1 302 268 274
+##PROGRESS#: 61000 201000 1 303 268 274
+##PROGRESS#: 61000 201000 1 305 268 274
+##PROGRESS#: 61000 201000 1 306 268 274
+##PROGRESS#: 62000 201000 1 308 268 274
+##PROGRESS#: 62000 201000 1 309 268 274
+##PROGRESS#: 62000 201000 1 311 268 274
+##PROGRESS#: 62000 201000 1 312 268 274
+##PROGRESS#: 63000 201000 1 314 268 274
+##PROGRESS#: 63000 201000 1 315 268 274
+##PROGRESS#: 63000 201000 1 317 268 274
+##PROGRESS#: 64000 201000 1 318 268 274
+##PROGRESS#: 64000 201000 1 320 268 274
+##PROGRESS#: 64000 201000 1 321 268 274
+##PROGRESS#: 65000 201000 1 323 268 274
+##PROGRESS#: 65000 201000 1 324 268 274
+##PROGRESS#: 65000 201000 1 326 268 274
+##PROGRESS#: 65000 201000 1 327 268 274
+##PROGRESS#: 66000 201000 1 329 268 274
+##PROGRESS#: 66000 201000 1 330 268 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "Зелёный храм (disco-jungle) (cover).wav"
+##AUDIO.INFO#: buffers freed, free Heap: 175892 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 253673 1 0 271 274
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:51:13+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##PROGRESS#: 333 333000 1 1 271 274
+##PROGRESS#: 666 333000 1 2 271 274
+##PROGRESS#: 1000 333000 1 3 271 274
+##PROGRESS#: 1000 333000 1 4 271 274
+##PROGRESS#: 1000 333000 1 6 271 274
+##PROGRESS#: 2000 333000 1 7 271 274
+##PROGRESS#: 2000 333000 1 8 271 274
+##PROGRESS#: 3000 333000 1 9 271 274
+##PROGRESS#: 3000 333000 1 10 271 274
+##SEEK#: absolute 60000 ms -> pos 6400170 (range 78-35520590 dur 333000)
+##SEEK#: setFilePos 6400170 ok=1
+> ##AUDIO.INFO#: Closing audio file "sample4.aac"
+##CLI.META#: audio is not a file
+##ERROR#:	audio is not a file
+##ERROR#:	audio is not a file
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 174656 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/videoplayback.m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 211194 1 0 272 274
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:51:16+03:00
+##CLI.NAMESET#: 272 videoplayback.m4a
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##PROGRESS#: 0 211194 1 0 272 274
+##AUDIO.INFO#: Duration: 208 (s)
+##CLI.META#: No DecoderSpecificInfo found in esds
+##ERROR#:	No DecoderSpecificInfo found in esds
+##ERROR#:	No DecoderSpecificInfo found in esds
+##AUDIO.ID3#: Encoder: Google
+##AUDIO.INFO#: Audio-Length: 160185
+##AUDIO.INFO#: Duration: 208 (s)
+##AUDIO.INFO#: BitRate: 6160
+##AUDIO.BITRATE#: 6160
+##AUDIO.INFO#: omnia_m4aIndexInit dur=208s 208000ms stszPos=616 entries=0 valid=1
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 6160
+##AUDIO.BITRATE#: 6160
+##PROGRESS#: 3000 208000 1 1 272 274
+##PROGRESS#: 9000 208000 1 3 272 274
+##PROGRESS#: 15000 208000 1 4 272 274
+##PROGRESS#: 22000 208000 1 5 272 274
+##PROGRESS#: 28000 208000 1 7 272 274
+##PROGRESS#: 34000 208000 1 8 272 274
+##PROGRESS#: 41000 208000 1 10 272 274
+##PROGRESS#: 47000 208000 1 11 272 274
+##CLI.META#: [next track]
+##AUDIO.INFO#: Closing audio file "videoplayback.m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175388 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/sample4.aac"
+##AUDIO.INFO#: AACDecoder has been initialized
+##PROGRESS#: 0 253673 1 0 271 274
+##CLI.META#: 
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:51:19+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 97502
+##AUDIO.BITRATE#: 97502
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##PROGRESS#: 333 333000 1 1 271 274
+##PROGRESS#: 666 333000 1 2 271 274
+##PROGRESS#: 1000 333000 1 3 271 274
+##PROGRESS#: 1000 333000 1 4 271 274
+##PROGRESS#: 1000 333000 1 6 271 274
+##PROGRESS#: 2000 333000 1 7 271 274
+##PROGRESS#: 2000 333000 1 8 271 274
+##PROGRESS#: 3000 333000 1 9 271 274
+##PROGRESS#: 3000 333000 1 10 271 274
+##PROGRESS#: 4000 333000 1 12 271 274
+##SEEK#: absolute 60000 ms -> pos 31693 (range 2831-163016 dur 333000)
+##SEEK#: setFilePos 31693 ok=1
+> ##PROGRESS#: 2000 333000 1 8 271 274
+##PROGRESS#: 3000 333000 1 9 271 274
+##PROGRESS#: 3000 333000 1 11 271 274
+##PROGRESS#: 4000 333000 1 12 271 274
+##PROGRESS#: 4000 333000 1 13 271 274
+##PROGRESS#: 4000 333000 1 15 271 274
+##PROGRESS#: 5000 333000 1 16 271 274
+##PROGRESS#: 5000 333000 1 17 271 274
+##PROGRESS#: 6000 333000 1 18 271 274
+##PROGRESS#: 6000 333000 1 20 271 274
+##PROGRESS#: 7000 333000 1 21 271 274
+##PROGRESS#: 7000 333000 1 22 271 274
+##PROGRESS#: 7000 333000 1 23 271 274
+##PROGRESS#: 8000 333000 1 24 271 274
+##PROGRESS#: 8000 333000 1 26 271 274
+##PROGRESS#: 9000 333000 1 27 271 274
+##PROGRESS#: 9000 333000 1 28 271 274
+##PROGRESS#: 9000 333000 1 29 271 274
+##PROGRESS#: 10000 333000 1 30 271 274
+##PROGRESS#: 10000 333000 1 32 271 274
+##PROGRESS#: 11000 333000 1 33 271 274
+##PROGRESS#: 11000 333000 1 34 271 274
+##SEEK#: absolute 60000 ms -> pos 31693 (range 2831-163016 dur 333000)
+##SEEK#: setFilePos 31693 ok=1
+> ##PROGRESS#: 2000 333000 1 8 271 274
+##PROGRESS#: 3000 333000 1 10 271 274
+##PROGRESS#: 3000 333000 1 11 271 274
+##PROGRESS#: 4000 333000 1 13 271 274
+##PROGRESS#: 4000 333000 1 14 271 274
+##PROGRESS#: 5000 333000 1 15 271 274
+##PROGRESS#: 5000 333000 1 16 271 274
+##PROGRESS#: 5000 333000 1 17 271 274
+##PROGRESS#: 6000 333000 1 19 271 274
+##PROGRESS#: 6000 333000 1 20 271 274
+##PROGRESS#: 7000 333000 1 21 271 274
+##PROGRESS#: 7000 333000 1 22 271 274
+##PROGRESS#: 7000 333000 1 23 271 274
+##PROGRESS#: 8000 333000 1 25 271 274
+##PROGRESS#: 8000 333000 1 26 271 274
+##PROGRESS#: 9000 333000 1 27 271 274
+##PROGRESS#: 9000 333000 1 28 271 274
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "sample4.aac"
+##AUDIO.INFO#: buffers freed, free Heap: 175452 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:51:34+03:00
+##CLI.NAMESET#: 271 sample4.aac
+##CLI.VOL#: 32
+##CLI.STOPPED#
+##CLI.META#: [next track]
+##AUDIO.INFO#: buffers freed, free Heap: 175216 bytes
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: Reading file: "/Свежесть леса (1).m4a"
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: m4a: no ftyp, looks like raw AAC (ADTS). Switch to CODEC_AAC
+##PROGRESS#: 0 643536 1 0 274 274
+##AUDIO.INFO#: stream ready
+##CLI.META#: 
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 374505
+##AUDIO.BITRATE#: 374505
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:51:37+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.META#: 
+##CLI.VOL#: 32
+##CLI.PLAYING#
+##PROGRESS#: 2000 220000 1 12 274 274
+##PROGRESS#: 2000 220000 1 13 274 274
+##PROGRESS#: 3000 220000 1 15 274 274
+##PROGRESS#: 3000 220000 1 16 274 274
+##PROGRESS#: 3000 220000 1 17 274 274
+##PROGRESS#: 4000 220000 1 18 274 274
+##PROGRESS#: 4000 220000 1 19 274 274
+##PROGRESS#: 4000 220000 1 21 274 274
+##PROGRESS#: 4000 220000 1 22 274 274
+##PROGRESS#: 5000 220000 1 23 274 274
+##PROGRESS#: 5000 220000 1 24 274 274
+##PROGRESS#: 5000 220000 1 25 274 274
+##PROGRESS#: 5000 220000 1 26 274 274
+##PROGRESS#: 6000 220000 1 28 274 274
+##PROGRESS#: 6000 220000 1 29 274 274
+##PROGRESS#: 6000 220000 1 30 274 274
+##PROGRESS#: 6000 220000 1 31 274 274
+##SEEK#: absolute 60000 ms -> pos 46517 (range 2831-163016 dur 220000)
+##SEEK#: setFilePos 46517 ok=1
+> ##PROGRESS#: 1000 220000 1 5 274 274
+##PROGRESS#: 1000 220000 1 6 274 274
+##PROGRESS#: 1000 220000 1 7 274 274
+##PROGRESS#: 1000 220000 1 9 274 274
+##PROGRESS#: 2000 220000 1 10 274 274
+##PROGRESS#: 2000 220000 1 11 274 274
+##PROGRESS#: 2000 220000 1 12 274 274
+##PROGRESS#: 3000 220000 1 13 274 274
+##PROGRESS#: 3000 220000 1 15 274 274
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing audio file "Свежесть леса (1).m4a"
+##AUDIO.INFO#: buffers freed, free Heap: 175308 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-06T23:51:45+03:00
+##CLI.NAMESET#: 274 Свежесть леса (1).m4a
+##CLI.VOL#: 32
+##CLI.STOPPED#
