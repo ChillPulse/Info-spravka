@@ -1,0 +1,126 @@
+Нет — **в репо сейчас не всё исправлено**: `AudioEx.h` уже переведён на “2 хэндла” (`m_m4aIdxFileBuild/Seek`, `m_aacIdxFileBuild/Seek`) и добавлен `m_aacSecCap`, но **`Audio.cpp` всё ещё использует старые переменные** `m_m4aIdxFile` и `m_aacIdxFile` (их больше нет в классе), плюс в AAC‑индексе осталась **опасная запись за границы массива**. 
+
+Это означает: либо изменения `Audio.cpp` не запушены, либо у тебя локально другой файл. В текущем виде “как на GitHub” после чистой сборки должен вылезти компилятор (а не рантайм).
+
+## Что именно не так в текущем `Audio.cpp` (по репо)
+
+### 1) M4A: всё ещё один хэндл (и ещё и не тот)
+- В `omnia_m4aIndexReset/Init/Tick/SeekMs` используется `m_m4aIdxFile` (одиночный), хотя в `AudioEx.h` теперь `m_m4aIdxFileBuild`/`m_m4aIdxFileSeek`. 
+
+### 2) AAC: всё ещё один хэндл (и переполнение массива)
+- В AAC‑части используется `m_aacIdxFile`, а должен быть `m_aacIdxFileBuild/Seek`. 
+- В `omnia_aacIndexInitIfPossible()` ты выделяешь `m_aacSecOff` размером `(estSec+1)`, но **в tick пишешь секунды до 10000**, не ограничиваясь `estSec` → это потенциально **write out-of-bounds** и “тихая порча памяти”. 
+
+---
+
+# Как исправить правильно (готовый план правок)
+
+## A) M4A: заменить `m_m4aIdxFile` на Build/Seek
+
+### 1) `omnia_m4aIndexReset()`
+Заменить закрытие на два хэндла:
+```cpp
+if(m_m4aIdxFileBuild) m_m4aIdxFileBuild.close();
+if(m_m4aIdxFileSeek)  m_m4aIdxFileSeek.close();
+```
+(сейчас закрывается `m_m4aIdxFile`). 
+
+### 2) `omnia_m4aIndexInitIfPossible()`
+Открывать **build обязательно**, seek — опционально:
+```cpp
+m_m4aIdxFileBuild = m_localFS->open(m_localPath, "r");
+if(!m_m4aIdxFileBuild){ omnia_m4aIndexReset(); return; }
+m_m4aIdxFileBuild.seek(m_stsz_position);
+
+m_m4aIdxFileSeek = m_localFS->open(m_localPath, "r"); // может не открыться — ок
+```
+(сейчас у тебя `m_m4aIdxFile = open(...)`). 
+
+### 3) `omnia_m4aIndexTick()`
+Читать **только из build** + перед чтением всегда выставлять позицию:
+```cpp
+if(!m_m4aIdxFileBuild) { m_m4aIdxValid=false; return; }
+uint32_t needPos = m_stsz_position + m_m4aBuildNextFrame * 4UL;
+if(m_m4aIdxFileBuild.position() != needPos) m_m4aIdxFileBuild.seek(needPos, SeekSet);
+```
+(иначе любой seek собьёт позицию). 
+
+### 4) `omnia_m4aSeekMs()`
+Читать `stsz` **только из seek**, если он открыт:
+```cpp
+File* f = m_m4aIdxFileSeek ? &m_m4aIdxFileSeek : &m_m4aIdxFileBuild;
+f->seek(stszBase, SeekSet);
+f->read(...);
+```
+(сейчас читается из `m_m4aIdxFile`, которого не должно быть). 
+
+---
+
+## B) AAC: заменить `m_aacIdxFile` на Build/Seek + починить границы массива
+
+### 1) `omnia_aacIndexReset()`
+Закрывать оба и сбрасывать cap:
+```cpp
+if(m_aacIdxFileBuild) m_aacIdxFileBuild.close();
+if(m_aacIdxFileSeek)  m_aacIdxFileSeek.close();
+m_aacSecCap = 0;
+```
+(сейчас закрывается `m_aacIdxFile`). 
+
+### 2) `omnia_aacIndexInitIfPossible()`
+Открывать build + seek, сохранять cap:
+```cpp
+m_aacIdxFileBuild = m_localFS->open(m_localPath, "r");
+if(!m_aacIdxFileBuild){ AUDIO_ERROR(...); return; }
+
+m_aacIdxFileSeek = m_localFS->open(m_localPath, "r"); // optional
+
+uint32_t estSec = ...;
+m_aacSecCap = estSec;
+...
+m_aacIdxFileBuild.seek(m_aacBuildPos, SeekSet);
+```
+(сейчас `m_aacIdxFile = open(...)` и `m_aacSecCap` вообще не используется). 
+
+### 3) `omnia_aacIndexTick()`: ограничить запись `m_aacSecOff[]`
+Заменить:
+```cpp
+while(m_aacBuildNextSec <= curSec && m_aacBuildNextSec < 10000){
+  m_aacSecOff[m_aacBuildNextSec] = ...
+  m_aacBuildNextSec++;
+}
+```
+на:
+```cpp
+while(m_aacBuildNextSec <= curSec && m_aacBuildNextSec <= m_aacSecCap){
+  m_aacSecOff[m_aacBuildNextSec] = (uint32_t)m_aacBuildCumBytes;
+  m_aacBuildNextSec++;
+}
+```
+И добавить “броню позиции” в начале tick:
+```cpp
+if(m_aacIdxFileBuild.position() != m_aacBuildPos)
+  m_aacIdxFileBuild.seek(m_aacBuildPos, SeekSet);
+```
+Сейчас у тебя есть `m_aacSecCap` в хедере, но tick его не применяет. 
+
+### 4) `omnia_aacSeekMs()`: использовать `m_aacIdxFileSeek`
+Заменить:
+```cpp
+File *f = m_aacIdxFile ? &m_aacIdxFile : nullptr;
+```
+на:
+```cpp
+File *f = m_aacIdxFileSeek ? &m_aacIdxFileSeek : (m_aacIdxFileBuild ? &m_aacIdxFileBuild : nullptr);
+```
+(сейчас переменная `m_aacIdxFile` вообще “лишняя” для новой архитектуры). 
+
+---
+
+## После этих правок — можно будет сказать “да, сделано”
+Потому что:
+- build и seek больше не мешают друг другу,
+- не будет деградации индекса после активного таскания шкалы,
+- не будет скрытой порчи heap из-за выхода за границы `m_aacSecOff`.
+
+Если хочешь быстрый контроль: после внесения правок сделай **обязательно чистую сборку** (в PlatformIO: `Clean` / удалить `.pio`) — текущая версия в репо иначе может “случайно собраться” из кеша, а на CI/другом ПК развалится.
