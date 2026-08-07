@@ -1,0 +1,193 @@
+проверь, я всё сделал правильно?
+
+Смотрю по репо: **в целом ты сделал всё “как надо”**, и у тебя уже реально включён “флагманский” путь (индексы + фоновая достройка) — можно продолжать тестирование. Но я нашёл **одну важную тонкую ошибку**, которая почти гарантированно вылезет позже: **ты используешь один и тот же `File`‑хэндл индекса и для фоновой достройки, и для чтения внутри seek**, из‑за чего после первого же seek фоновые `IndexTick()` могут начать читать “не с того места” и постепенно портить индекс.
+
+Ниже — что верно, и что надо поправить.
+
+---
+
+## Что сделано правильно (и это уже “флагман”)
+
+1) **AAC/ADTS**: ты правильно объявляешь диапазон (`audio_progress`) и запускаешь init индекса сразу при старте AAC.   
+2) **WAV**: правильно исправил `m_audioDataSize = cs;` и добавил `audio_progress` для WAV, чтобы WebUI сразу знал диапазон.   
+3) **M4A/MP4**: в `M4A_AMRDY` ты вызываешь `omnia_m4aIndexInitIfPossible()` и отправляешь `audio_progress(...)` — это правильно.   
+4) **Освобождение памяти**: ты сбрасываешь оба индекса на `stopSong()` — утечек быть не должно.   
+5) **Фоновая достройка индексов**: ты реально вызываешь `omnia_m4aIndexTick()` / `omnia_aacIndexTick()` в `Player::loop()` только когда буфер заполнен — это правильный “без лагов” режим.   
+6) **EOF/auto-next**: у тебя есть `g_eofHandled`/`g_lastEofMs` в `audiohandlers.h`, и `Player::loop()` теперь ждёт очередь команд вместо мгновенного `_stop(true)` — это правильный фикс “стоп в конце вместо next”.   
+
+---
+
+## Что НЕ до конца правильно (важно исправить сейчас)
+
+### Проблема: один `m_m4aIdxFile` (и один `m_aacIdxFile`) используется и для **tick**, и для **seek**
+- В `omnia_m4aIndexTick()` ты читаешь `m_m4aIdxFile` последовательно.   
+- В `omnia_m4aSeekMs()` ты делаешь `m_m4aIdxFile.seek(stszBase, SeekSet)` и читаешь куски таблицы — этим ты **сдвигаешь указатель файла**.   
+
+То же самое у AAC: `omnia_aacIndexTick()` читает/двигает `m_aacIdxFile`, а `omnia_aacSeekMs()` тоже делает `seek()` по этому же хэндлу.   
+
+**Итог:** после 1–2 перемоток индекс может начать строиться “с середины” и станет неточным/сломается (особенно если пользователь активно таскает шкалу).
+
+---
+
+## Как исправить (лучший минимальный патч)
+
+### A) В `omnia_m4aIndexTick()` всегда принудительно выставляй позицию чтения
+В начало `Audio::omnia_m4aIndexTick()` добавь:
+
+```cpp
+uint32_t needPos = m_stsz_position + m_m4aBuildNextFrame * 4UL;
+if(m_m4aIdxFile.position() != needPos){
+  m_m4aIdxFile.seek(needPos, SeekSet);
+}
+```
+
+Так tick будет устойчивым даже после seek.
+
+### B) В `omnia_m4aSeekMs()` сохраняй/восстанавливай позицию `m_m4aIdxFile`
+Перед любыми `seek()` внутри `omnia_m4aSeekMs()`:
+
+```cpp
+uint32_t savedPos = m_m4aIdxFile ? (uint32_t)m_m4aIdxFile.position() : 0;
+...
+// твои чтения stsz
+...
+if(m_m4aIdxFile) m_m4aIdxFile.seek(savedPos, SeekSet);
+```
+
+### C) Аналогично для AAC
+- В начале `omnia_aacIndexTick()`:
+
+```cpp
+if(m_aacIdxFile.position() != m_aacBuildPos){
+  m_aacIdxFile.seek(m_aacBuildPos, SeekSet);
+}
+```
+
+- В `omnia_aacSeekMs()` сохраняй/восстанавливай `position()`.
+
+---
+
+## После этого можно считать “сделано правильно” и продолжать тесты
+Да: после фикса выше у тебя будет:
+- стабильный фоновой индекс,
+- стабильный seek даже при многократном перетаскивании шкалы,
+- без деградации “со временем”.
+
+Если хочешь — следующим шагом можно ещё сделать “совсем флагман”: **не использовать один хэндл на индекс**, а держать 2 (`m_*IdxFileBuild` и `m_*IdxFileSeek`) — тогда вообще не надо сохранять/восстанавливать позицию, и будет меньше шансов на гонки при WebUI-событиях.
+
+да,  если это не навредит железу и оно вытянет, то давай делать “совсем флагман”
+
+Железу это **не навредит**: ты добавляешь **только дополнительные чтения** с SD и ещё по одному файловому дескриптору на трек (для M4A/AAC). Износа нет (изнашивают только записи), а ESP32‑S3 с PSRAM это спокойно тянет. Риск ровно один: **лимит одновременно открытых файлов** в FATFS. Поэтому делаем “совсем флагман” так, чтобы было **2 хэндла**, но с **fallback**, если второй `open()` не дался.
+
+Сейчас у тебя действительно **1 хэндл на индекс** (`m_m4aIdxFile`, `m_aacIdxFile`) , и он используется **и для build tick, и для seek** (например, M4A seek делает `m_m4aIdxFile.seek(...)` прямо внутри `omnia_m4aSeekMs()` ; AAC seek использует `File *f = m_aacIdxFile ? &m_aacIdxFile : nullptr;` ). Это и есть то, что мы “дожимаем” до флагмана.
+
+## Что именно сделать (коротко и по делу)
+
+### 1) `AudioEx.h`: заменить 1 хэндл на 2 (Build + Seek)
+Было:
+```cpp
+File m_m4aIdxFile;
+File m_aacIdxFile;
+```
+Сделай:
+```cpp
+File m_m4aIdxFileBuild;
+File m_m4aIdxFileSeek;
+
+File m_aacIdxFileBuild;
+File m_aacIdxFileSeek;
+```
+(остальные поля оставь как есть). 
+
+---
+
+### 2) `Audio.cpp`: reset — закрывать оба
+В `omnia_m4aIndexReset()`:
+```cpp
+if(m_m4aIdxFileBuild) m_m4aIdxFileBuild.close();
+if(m_m4aIdxFileSeek)  m_m4aIdxFileSeek.close();
+```
+В `omnia_aacIndexReset()`:
+```cpp
+if(m_aacIdxFileBuild) m_aacIdxFileBuild.close();
+if(m_aacIdxFileSeek)  m_aacIdxFileSeek.close();
+```
+
+---
+
+### 3) `Audio.cpp`: init — открывать оба (второй может быть optional)
+**M4A init** (в `omnia_m4aIndexInitIfPossible()`):
+```cpp
+m_m4aIdxFileBuild = m_localFS->open(m_localPath, "r");
+if(!m_m4aIdxFileBuild){ omnia_m4aIndexReset(); return; }
+m_m4aIdxFileBuild.seek(m_stsz_position);
+
+m_m4aIdxFileSeek = m_localFS->open(m_localPath, "r"); // может не открыться — это ОК
+// если не открылся, просто оставь пустым: fallback будет через Build + safe reseek
+```
+
+**AAC init** (в `omnia_aacIndexInitIfPossible()`):
+```cpp
+m_aacIdxFileBuild = m_localFS->open(m_localPath, "r");
+if(!m_aacIdxFileBuild){ AUDIO_ERROR("aacIndex: failed open build"); return; }
+
+m_aacIdxFileSeek = m_localFS->open(m_localPath, "r"); // optional
+```
+
+Дальше **весь код init/tick**, который сейчас использует `m_aacIdxFile`, переведи на `m_aacIdxFileBuild` (seek-хэндл оставь для `SeekMs`).
+
+---
+
+### 4) `Audio.cpp`: tick — читать ТОЛЬКО из Build и каждый тик принудительно reseek на ожидаемую позицию
+Это прям “броня от гонок”, даже если fallback будет использовать Build-хэндл на seek:
+
+**M4A tick** (в начале `omnia_m4aIndexTick`):
+```cpp
+if(!m_m4aIdxFileBuild) { m_m4aIdxValid=false; return; }
+uint32_t needPos = m_stsz_position + m_m4aBuildNextFrame * 4UL;
+if(m_m4aIdxFileBuild.position() != needPos) m_m4aIdxFileBuild.seek(needPos, SeekSet);
+```
+и дальше `read(b,4)` делай из `m_m4aIdxFileBuild`.
+
+**AAC tick** — то же самое: в начале `omnia_aacIndexTick()`:
+```cpp
+if(!m_aacIdxFileBuild) { m_aacIdxValid=false; return; }
+if(m_aacIdxFileBuild.position() != m_aacBuildPos) m_aacIdxFileBuild.seek(m_aacBuildPos, SeekSet);
+```
+
+---
+
+### 5) `Audio.cpp`: seek — читать ТОЛЬКО из Seek-хэндла (или fallback)
+**M4A**: в `omnia_m4aSeekMs()` в месте где ты сейчас делаешь:
+```cpp
+if(m_m4aIdxFile){ m_m4aIdxFile.seek(...); m_m4aIdxFile.read(...); }
+```
+замени на:
+```cpp
+File* f = m_m4aIdxFileSeek ? &m_m4aIdxFileSeek : (m_m4aIdxFileBuild ? &m_m4aIdxFileBuild : nullptr);
+if(f){
+  f->seek(stszBase, SeekSet);
+  ...
+  f->read(...)
+} else {
+  // как у тебя уже есть: audioFileSeek/audioFileRead
+}
+```
+
+**AAC**: в `omnia_aacSeekMs()` замени:
+```cpp
+File *f = m_aacIdxFile ? &m_aacIdxFile : nullptr;
+```
+на:
+```cpp
+File *f = m_aacIdxFileSeek ? &m_aacIdxFileSeek : (m_aacIdxFileBuild ? &m_aacIdxFileBuild : nullptr);
+```
+
+---
+
+## Почему это “совсем флагман”
+- Build-хэндл всегда читает последовательно и не сбивается seek-ами.
+- Seek-хэндл можно дёргать как угодно, хоть 100 раз/сек таская мышкой — индекс не “поползёт”.
+- Если `m_*IdxFileSeek` не открылся (лимит FATFS) — всё равно будет работать, потому что tick каждый раз делает `seek(needPos)` и не зависит от текущего position.
+
+Если ты внесёшь изменения ровно по пунктам 1–5 — это будет именно тот “совсем флагман”, который мы обсуждали, без побочных эффектов для железа.
