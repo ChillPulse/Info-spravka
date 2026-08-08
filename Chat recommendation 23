@@ -1,0 +1,67 @@
+Полировку ты сделал **верно**: в `readAudioHeader()` для `CODEC_AAC` теперь сначала запускается `omnia_aacIndexInitIfPossible()`, и `audio_progress()` шлётся только если индекс не поднялся — это как раз убирает двойной `SDLEN`/«мигание» шкалы. 
+
+Но для следующего шага “точное время/прогресс из индексов” у тебя сейчас есть **1 критичная несостыковка** (из‑за твоего перехода на ABS оффсеты в AAC индексе):
+
+---
+
+## 1) Ошибка: `calculateAudioTime()` для AAC сравнивает ABS `m_aacSecOff[]` с REL `offset`
+
+Ты правильно сделал `m_aacSecOff[sec] = m_aacBuildPos` (абсолютные позиции в файле). 
+
+Но в `calculateAudioTime()` AAC-ветка всё ещё делает бинарный поиск по условию:
+
+```cpp
+if(m_aacSecOff[mid] <= offset) ...
+```
+
+а `offset` там считается как `curFilePos - m_audioDataStart` (то есть **относительно**). 
+
+### Как исправить (точечно)
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `Audio::calculateAudioTime(...)`  
+Блок `if(m_codec==CODEC_AAC && m_aacSecOff...)`
+
+Замени в AAC-ветке `offset` на **абсолютную** позицию:
+
+```cpp
+uint32_t absPos = curFilePos;  // абсолютная позиция в файле
+...
+if(m_aacSecOff[mid] <= absPos) { ... }
+```
+
+То есть минимально:
+
+```diff
+- if(m_aacSecOff[mid] <= offset){
++ if(m_aacSecOff[mid] <= curFilePos){
+    sec = mid;
+    lo = mid+1;
+  }
+```
+
+После этого `player.getAudioCurrentTime()` начнёт быть точным для AAC так же, как для M4A. 
+
+---
+
+## 2) Следующий “флагманский” шаг (чтобы `sdtend` стал точным без fallback): финализировать duration/bitrate для AAC по индексу
+
+Сейчас AAC индекс в `omnia_aacIndexTick()` уже считает `m_aacDurMs/m_aacDurSec` по сэмплам.   
+Но `getAudioFileDuration()` возвращает 0, если `getBitRate()==0`.   
+А в WebUI `sdtend` берётся из `getAudioFileDuration()` (и только если 0 — включается оценка через bitrate/fallback). 
+
+### Что сделать
+Добавь флаг “duration finalized” и, когда индекс достроился до конца файла, один раз:
+- `m_audioFileDuration = m_aacDurSec;`
+- `m_nominal_bitrate = (m_audioDataSize * 8) / m_audioFileDuration;`
+
+Тогда:
+- `getBitRate()` станет ненулевым,
+- `getAudioFileDuration()` начнёт отдавать точную длительность,
+- WebUI перестанет жить на приблизительном fallback.
+
+---
+
+### Итог
+- **Полировка — ок.**   
+- **Но сейчас нужно обязательно поправить AAC в `calculateAudioTime()` (ABS vs REL)** — иначе “точный прогресс из индекса” для AAC будет работать неправильно на файлах с `m_aacFirstFramePos > 0`.   
+- После этого — делаем финализацию AAC duration/bitrate, и можно считать “флагман по прогрессу/времени” доведённым. 
