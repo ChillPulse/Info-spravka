@@ -1,0 +1,38 @@
+Сделал проверку по `main` в репо — **поправил ты правильно**, можно двигаться дальше.
+
+### Что проверил — и оно ОК
+1) **AAC “мигание” шкалы убрано**: в `readAudioHeader()` для `CODEC_AAC` ты сначала запускаешь `omnia_aacIndexInitIfPossible()`, и только если индекс не поднялся — шлёшь `audio_progress()` один раз.   
+2) **Точное время по индексу для AAC теперь корректное (ABS vs REL)**: в `calculateAudioTime()` AAC ветка сравнивает `m_aacSecOff[]` с `absPos = curFilePos` (абсолют), а не с offset от `m_audioDataStart`.   
+3) **AAC duration/bitrate финализируется**, чтобы `getAudioFileDuration()` перестал возвращать 0 после достройки индекса: есть `m_aacDurFinalized`, и при достижении EOF выставляются `m_audioFileDuration` и `m_nominal_bitrate`.   
+
+---
+
+## Дальше по “флагману”: доводим M4A, чтобы `getAudioFileDuration()` всегда был точный (без fallback 128k)
+
+Сейчас у тебя M4A duration может вычисляться в `omnia_m4aIndexInitIfPossible()` по `stsz` (если в заголовке не было duration).   
+Но **битрейт (`m_nominal_bitrate`) в этом сценарии может остаться 0**, потому что он считается в `M4A_AMRDY` *до* вызова `omnia_m4aIndexInitIfPossible()`.   
+А `getAudioFileDuration()` возвращает 0, если `getBitRate()==0`. 
+
+### Что сделать (точечно, 5 строк)
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `Audio::omnia_m4aIndexInitIfPossible()`
+
+Сразу после блока, где ты при `m_audioFileDuration==0` вычисляешь duration по `stsz`:
+
+```cpp
+if(m_nominal_bitrate == 0 && m_audioFileDuration > 0 && m_audioDataSize > 0){
+  m_nominal_bitrate = (uint64_t)m_audioDataSize * 8ULL / m_audioFileDuration;
+}
+```
+
+Так WebUI будет получать **точный `sdtend` из `getAudioFileDuration()`**, а не “оценку по 128k”. (`SDPOS` сейчас делает fallback, если `sdtend==0`, но нам он будет почти не нужен.) 
+
+---
+
+## Ещё одна мелкая “флагманская” правка (рекомендую)
+В `calculateAudioTime()` у тебя в бинарном поиске стоят “safety break” типа `if(hi>10000) break;`.   
+Для длинных треков (дольше ~2:46:40) это начнёт ломать точность времени. Лучше убрать эти ограничения и оставить обычный бинарный поиск (у тебя и так `hi = m_*BuildNextSec-1`, он уже ограничен размером массива).
+
+---
+
+Если внесёшь **M4A nominal bitrate при duration-from-stsz** + уберёшь `hi>10000`-break’и, то следующий шаг можно считать закрытым: **точное `sdtpos/sdtend` из индексов для AAC+M4A** без дрейфа и без “приблизительных” оценок.
