@@ -1,0 +1,18 @@
+Да — теперь “по‑взрослому” для AAC/ADTS с ID3 в начале сделано **корректно**.
+
+Что проверил по репо:
+
+- Добавлено и сбрасывается `m_aacFirstFramePos` (в reset).   
+- В `omnia_aacIndexInitIfPossible()`:
+  - находится первый ADTS sync (0 или смещение в первых 4096 байт),
+  - `m_aacFirstFramePos = m_aacBuildPos`,
+  - **аудиодиапазон реально сдвигается**: `m_audioDataStart = firstFramePos`, `m_audioDataSize = fileSize - start`,
+  - и сразу повторно отправляется `audio_progress(start, start+size)` (т.е. WebUI больше не считает ID3 частью аудио).   
+- `m_aacSecOff[0]` теперь хранит **абсолютную позицию** первого кадра.   
+- В `omnia_aacIndexTick()` секунды тоже записываются **абсолютными file offset** (`m_aacBuildPos`), а не “накопленными байтами”, и запись ограничена `m_aacSecCap` (нет риска выйти за границы массива).   
+- В `omnia_aacSeekMs()` быстрый путь действительно трактует `secOff` как ABS (`basePos`) и делает seek/скан кадров, возвращая `setFilePos(curPos)` тоже в ABS — это теперь согласовано.   
+
+### Маленькая необязательная полировка (не ошибка)
+Сейчас в `readAudioHeader()` для AAC ты сначала объявляешь диапазон `0..fileSize`, а потом `omnia_aacIndexInitIfPossible()` переобъявляет диапазон уже “с firstFramePos”. Это работает, но если хочешь вообще без “мигания” шкалы в UI — можно поменять порядок: сначала `omnia_aacIndexInitIfPossible()`, потом один раз `audio_progress(...)`.   
+
+Дальше по “флагману” логичный следующий шаг — **точное время/прогресс для AAC и M4A из индексов** (а не по bitrate), но по части этой доработки с `m_aacFirstFramePos` у тебя всё сделано правильно.
