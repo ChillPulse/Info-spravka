@@ -1,0 +1,112 @@
+Полировка сделана **верно**: в `readAudioHeader()` для `CODEC_AAC` ты теперь сначала вызываешь `omnia_aacIndexInitIfPossible()` (которая сама находит первый ADTS‑кадр/ID3 и отправляет `audio_progress()` один раз), а `audio_progress()` из `readAudioHeader()` шлётся только если индекс не инициализировался — это как раз убирает “двойной прогресс” и мигание UI. 
+
+Дальше — следующий “флагманский” шаг: **точное время/длительность (sdtpos/sdtend) из индексов**.
+
+---
+
+## 1) Починить точное время для AAC (важно после перехода на ABS secOff)
+
+Ты сделал `m_aacSecOff[]` **абсолютными file offsets** (`m_aacSecOff[sec] = m_aacBuildPos`), это правильно для ID3‑кейса. 
+
+Но в `calculateAudioTime()` бинарный поиск для AAC сейчас сравнивает `m_aacSecOff[mid]` с `offset`, который вычисляется **относительно `m_audioDataStart`**.   
+После твоего перехода на ABS это надо привести в соответствие.
+
+### Что менять
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `Audio::calculateAudioTime(...)` (блок `Chat16 Step5`)
+
+**Было (AAC часть):**
+```cpp
+uint32_t offset = (curFilePos > m_audioDataStart) ? (curFilePos - m_audioDataStart) : 0;
+...
+if(m_codec==CODEC_AAC && m_aacSecOff ...){
+  ...
+  if(m_aacSecOff[mid] <= offset) { ... }
+}
+```
+
+**Нужно:**
+- оставить `offset` для M4A (там secOff относительный и всё ок),
+- для AAC использовать **абсолютную позицию** `curFilePos`.
+
+Прямо минимальный патч:
+
+```cpp
+uint32_t curFilePos = (m_audioFilePosition > inBufferFilled()) ? (m_audioFilePosition - inBufferFilled()) : 0;
+uint32_t offset = (curFilePos > m_audioDataStart) ? (curFilePos - m_audioDataStart) : 0; // для M4A OK
+
+...
+
+if(m_codec==CODEC_AAC && m_aacSecOff && m_aacDurSec>0 && m_aacBuildNextSec>1){
+    uint32_t absPos = curFilePos;                 // <-- ВАЖНО: ABS
+    uint32_t lo=0, hi=m_aacBuildNextSec-1, sec=0;
+    while(lo<=hi){
+        uint32_t mid = (lo+hi)/2;
+        if(m_aacSecOff[mid] <= absPos){
+            sec = mid;
+            lo = mid+1;
+        } else {
+            if(mid==0) break;
+            hi = mid-1;
+        }
+    }
+    if(sec <= m_aacDurSec) m_audioCurrentTime = sec;
+}
+```
+
+---
+
+## 2) Сделать “sdtend” точным и стабильным: финализировать duration/bitrate для AAC, когда индекс дошёл до конца
+
+Сейчас AAC индекс в `omnia_aacIndexTick()` обновляет `m_aacDurMs/m_aacDurSec` по накопленным сэмплам (это отлично), но **не фиксирует** `m_audioFileDuration` + `m_nominal_bitrate`.   
+А `getAudioFileDuration()` возвращает 0, если `getBitRate()==0`.   
+В результате WebUI часто живёт на fallback‑оценке.
+
+### Что сделать
+1) В `AudioEx.h` добавь флаг (private рядом с AAC полями):
+```cpp
+bool m_aacDurFinalized = false;
+```
+
+2) В `omnia_aacIndexReset()` сбрасывай:
+```cpp
+m_aacDurFinalized = false;
+```
+
+3) В конце `omnia_aacIndexTick()` (после расчёта `m_aacDurSec`) добавь финализацию **один раз**, когда дошли до конца файла:
+
+```cpp
+// после:
+// m_aacDurSec = durMs / 1000;
+
+if(!m_aacDurFinalized && m_aacBuildPos + 8 >= m_audioFileSize && m_aacDurSec > 0){
+    m_aacDurFinalized = true;
+
+    // exact duration -> into common fields used by WebUI
+    m_audioFileDuration = m_aacDurSec;
+
+    // make getBitRate() non-zero so getAudioFileDuration() starts returning value
+    if(m_audioDataSize && m_audioFileDuration){
+        m_nominal_bitrate = (uint64_t)m_audioDataSize * 8ULL / m_audioFileDuration;
+    }
+
+    AUDIO_INFO("aacIndex finalized: dur=%lus br=%lu", (unsigned long)m_audioFileDuration, (unsigned long)m_nominal_bitrate);
+}
+```
+
+Это даст:
+- `player.getAudioFileDuration()` начнёт возвращать точное значение (без fallback), потому что появится bitrate. 
+- WebUI `SDPOS` будет получать корректный `sdtend` напрямую. 
+
+---
+
+## 3) M4A: время уже “флагмански” считается из индекса (у тебя это есть)
+В `calculateAudioTime()` M4A берёт `offset` (relative) и делает binary search по `m_m4aSecOff[]` (relative) — это правильно.   
+Там ничего критичного менять не нужно.
+
+---
+
+Если внесёшь пункты (1) и (2), у тебя станет “по‑флагмански”:
+- **точное текущее время** (`sdtpos`) для AAC и M4A из индексов,
+- **точная длительность** (`sdtend`) для AAC после полной достройки индекса,
+- без миганий шкалы (твоя полировка уже правильная). 
