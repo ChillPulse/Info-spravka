@@ -1,0 +1,119 @@
+Сделал loop теперь вроде скоростная перемотка работает, но после тех двух треков всё также воспроизведение стопится:
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+в общем тут видимо я не то сделал?
+глянь пожалуйста, проверь, где я ошибся?
+
+Ты **не “не то сделал”** с ускоренной перемоткой — `omnia_seek_loop()` у тебя действительно вызывается в `Player::loop()` (и поэтому `seek_start +/-` начинает работать как удержание). 
+
+А вот **STOP после этих двух M4A** и “сыпь”:
+
+```
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: syncword found at pos 0
+...
+```
+
+— это уже **не про seek-loop**, а про **неправильное определение EOF в `playAudioData()` для non‑progressive M4A**, где аудио‑диапазон (`mdat`) заканчивается раньше конца файла.
+
+### Почему так происходит (по коду и по твоему логу)
+1) Эти файлы — **non-progressive M4A** (`mdat before moov`) — это прямо в Log20.   
+2) Ты уже правильно ограничил чтение в `processLocalFile()` до `m_audioDataStart + m_audioDataSize` (то есть до конца `mdat`).   
+3) Но в `playAudioData()` расчёт “сколько осталось” всё ещё идёт от **`m_audioFileSize`**, а не от конца аудиоблока. Вот эти строки:   
+```cpp
+m_pad.bytesToDecode = min(m_audioFileSize - m_audioFilePosition + InBuff.bufferFilled(), InBuff.getMaxBlockSize());
+if(m_audioFileSize - m_audioFilePosition == 0) m_f_allDataReceived = true;
+if(m_pad.bytesToDecode == 0) { m_f_eof = true; ... }
+```
+Для non-progressive M4A это ломается: `m_audioFilePosition` до `m_audioFileSize` **никогда не доходит** (мы же специально перестали читать “хвост” файла после `mdat`). В итоге аудиотаск начинает “крутиться” на пустом буфере, переинициализировать синхронизацию (отсюда повторяющиеся `syncword found at pos 0`) и в конце концов у тебя возникает STOP, как в Log20 на `skysea...m4a`. 
+
+---
+
+## Исправление №1 (главное): сделать EOF в `playAudioData()` по “логическому концу аудиоблока”, а не по `m_audioFileSize`
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `Audio::playAudioData()`  
+Заменить расчёт `bytesToDecode`/`remaining` и `m_f_allDataReceived` на вариант с `logicalEnd`.
+
+### Вставь прямо перед расчётом `m_pad.bytesToDecode = ...` (внутри ветки localfile/webfile)
+```cpp
+uint32_t logicalEnd = m_audioFileSize;
+if(m_audioDataSize){
+  uint32_t endAB = m_audioDataStart + m_audioDataSize;
+  // если audiodata короче файла — используем конец аудиоблока
+  if(endAB > m_audioDataStart && endAB < logicalEnd) logicalEnd = endAB;
+}
+uint32_t remaining = (m_audioFilePosition < logicalEnd) ? (logicalEnd - m_audioFilePosition) : 0;
+```
+
+### И дальше замени 2 места:
+
+**Было**:   
+```cpp
+m_pad.bytesToDecode = min(m_audioFileSize - m_audioFilePosition + InBuff.bufferFilled(), InBuff.getMaxBlockSize());
+
+if(m_audioFileSize - m_audioFilePosition == 0) m_f_allDataReceived = true;
+```
+
+**Нужно**:
+```cpp
+m_pad.bytesToDecode = min(remaining + InBuff.bufferFilled(), InBuff.getMaxBlockSize());
+
+if(remaining == 0) m_f_allDataReceived = true;
+```
+
+Это уберёт “вечное ожидание конца файла” у non-progressive M4A и сделает нормальный `m_f_eof → audio_eof_mp3 → auto-next`.
+
+---
+
+## Исправление №2 (страховка): сбрасывать `g_eofHandled` при старте каждого трека
+Сейчас `g_eofHandled` выставляется в `onAudioEofCommon()` и дальше живёт глобально.   
+Если для какого-то файла EOF-колбэк не пришёл (ошибка/обрыв), `Player::loop()` может неправильно считать “EOF уже обработан” и уйти в STOP. 
+
+Файл: `yoRadio/src/core/player.cpp`  
+Функция: `Player::_play(uint16_t stationId)`  
+В самом начале `_play()` добавь:
+
+```cpp
+extern volatile uint32_t g_lastEofMs;
+extern volatile bool g_eofHandled;
+g_eofHandled = false;
+g_lastEofMs = 0;
+```
+
+---
+
+## Почему ты видел именно “syncword found at pos 0” несколько раз
+Это сообщение печатает `findNextSync()` при `nextSync == 0` (то есть “синхра на нуле”).   
+Для M4A оно тоже может сыпаться, если аудиотаск повторно пытается “завести декодер” на пустом/невалидном блоке — что и происходит из-за неверного EOF-условия (исправление №1).
+
+---
+
+## Как проверять ускоренную перемотку по UART (конкретные сценарии)
+После того, как `omnia_seek_loop()` уже вызывается (у тебя да), делай так:
+
+1) Удержание вперёд ~8 секунд:
+```
+seek_start +
+(подожди ~8 секунд)
+seek_stop
+```
+
+2) Удержание назад ~5 секунд:
+```
+seek_start -
+(подожди ~5 секунд)
+seek_stop
+```
+
+Ожидаемое: шаги должны ускоряться (5s → 10s → 30s → 60s), и в логе должны появляться `##SEEK#` с растущими “delta”.
+
+Если хочешь сделать “автотест без ожидания руками”: отправь `seek_start +`, подожди в терминале ровно 9–10 секунд (таймером), затем `seek_stop`.
+
+---
+
+## Что именно у тебя “ошибка”
+Не в seek-loop. Ошибка в том, что `playAudioData()` до сих пор считает “конец файла” по `m_audioFileSize`, хотя для non-progressive M4A ты уже работаешь в модели “конец аудио = конец `mdat`”. Это надо синхронизировать (исправление №1). 
+
+Сделаешь эти 2 исправления — и оба трека (`Зелёный храм...m4a`, `skysea...m4a`) должны перестать стопиться и начнут стабильно переходить на следующий.
