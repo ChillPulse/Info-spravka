@@ -1,0 +1,63 @@
+Сейчас в `main` на GitHub видно, что ИИ‑агент сделал **частично правильно**, но **не довёл до конца**. Конкретно:
+
+## 1) `m_pad.count`: всё ещё сломан EOF‑fallback
+В `yoRadio/src/audioI2S/Audio.cpp` внутри `Audio::playAudioData()` у тебя **до сих пор есть** сброс счётчика на каждом вызове:
+
+```cpp
+m_pad.count = 0;
+```
+
+строка около **4080**. 
+
+А ниже логика ожидает, что `m_pad.count` накопится до 30, чтобы выставить `m_f_eof` (это как раз “вылечивает” зависания на конце non‑progressive M4A). Но из‑за сброса в начале он никогда не накопится. 
+
+### Как исправить
+В `playAudioData()` **удали/закомментируй** только этот сброс в начале (оставь сбросы в `firstPlayCall` и после успешного decode, они у тебя уже есть):
+
+```diff
+- m_pad.count = 0;
++ // do not reset m_pad.count here; it must accumulate to reach EOF fallback
++ // m_pad.count = 0;
+```
+
+---
+
+## 2) Repeat сохранение: в `config.cpp` уже есть, но в `config.h` НЕТ объявлений (так проект нормально не должен собраться)
+В `config.cpp` функции `getSdRepeat()` / `setSdRepeat()` уже есть.   
+И восстановление repeat/shuffle при старте в `initPlaylistMode()` тоже есть. 
+
+Но в `config.h` этих методов **нет в классе Config** (поиск по `getSdRepeat`/`setSdRepeat` ничего не находит). 
+
+### Как исправить
+В `yoRadio/src/core/config.h` в `class Config` добавь объявления:
+```cpp
+uint8_t getSdRepeat();
+void    setSdRepeat(uint8_t r); // 0=OFF,1=ONE,2=ALL
+```
+
+---
+
+## 3) CLI `repeat ...` всё ещё НЕ сохраняет в EEPROM
+В `yoRadio/src/core/omniaplus/cli_extensions.cpp` команды `repeat off/one/all` всё ещё вызывают `omnia_shuffle_set_repeat(...)`, а не `config.setSdRepeat(...)`. 
+
+### Как исправить
+Заменить:
+- `omnia_shuffle_set_repeat(REPEAT_OFF);` → `config.setSdRepeat(0);`
+- `...REPEAT_ONE` → `config.setSdRepeat(1);`
+- `...REPEAT_ALL` → `config.setSdRepeat(2);`
+
+---
+
+## Что уже сделано правильно (для уверенности)
+- В `audiohandlers.h` Repeat ONE “как у флагманов” на EOF уже реализован корректно (повтор текущего трека). 
+- В `config.cpp` восстановление shuffle/repeat на старте SD‑режима уже есть. 
+
+---
+
+### Итог
+Сейчас **ещё не всё правильно**: минимум нужно добить **п.1 (m_pad.count)** и **п.2–3 (объявления в config.h + CLI repeat через setSdRepeat)**. После этого можно прошивать и тестировать “флагманскую” комбинацию Shuffle/Repeat уверенно.
+
+Если хочешь быстрый способ убедиться, что агент реально внёс правки: перед сборкой делай 3 grep’а:
+- `m_pad.count = 0;` в `Audio.cpp` (этой строки в начале `playAudioData()` быть не должно)
+- `getSdRepeat` в `config.h` (должно находиться)
+- `config.setSdRepeat` в `cli_extensions.cpp` (должно находиться)
