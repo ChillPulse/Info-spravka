@@ -1,0 +1,312 @@
+Нет, по репо сейчас **не всё исправлено** — как минимум один критичный пункт из “m_pad.count” всё ещё сделан неправильно, и из‑за него могут возвращаться зависания/STOP на конце (особенно на “сложных” non‑progressive M4A).
+
+## 1) `m_pad.count` — всё ещё сбрасывается каждый вызов `playAudioData()` (это ошибка)
+
+В `yoRadio/src/audioI2S/Audio.cpp` внутри `Audio::playAudioData()` у тебя всё ещё есть строка:
+
+```cpp
+m_pad.count = 0;
+```
+
+прямо в начале функции (перед `if(m_f_firstPlayCall)`). 
+
+Это **ломает** задумку “досчитать до 30 попыток и признать EOF/ошибку”: счётчик никогда не накапливается, и на конце трека ты можешь снова получить бесконечный цикл вида “syncword found at pos 0”.
+
+### Как должно быть
+- Убрать **этот** сброс `m_pad.count = 0;` из общего начала функции.
+- Оставить сбросы:
+  - внутри `if(m_f_firstPlayCall)` (как и сейчас) 
+  - и после успешного decode (`m_pad.count = 0;` у тебя уже есть ниже) 
+
+**Что конкретно менять:**
+В `Audio.cpp` в `playAudioData()` удалить/закомментировать строку на уровне:
+
+```cpp
+// m_pad.count = 0;   // УДАЛИТЬ (оставить только в firstPlayCall и при bytesDecoded>0)
+```
+
+---
+
+## 2) Shuffle после ребута: флаг сохраняется, но движок shuffle не восстанавливается на boot
+
+Ты сохраняешь `store.sdsnuffle` в `Config::setSnuffle()` и там же вызываешь `omnia_shuffle_set(...)`.   
+Но при старте/после ребута в `initPlaylistMode()` **нет применения** сохранённого `store.sdsnuffle` к shuffle-движку. Там просто выбирается `_lastStation`, вызывается `lastStation()` и `loadStation()`. 
+
+Отсюда симптом: в логе “shuffle ON”, а реально — порядок обычный (движок `pls.shuffle` остался по умолчанию).
+
+### Правильно (минимальный флагман-фикс)
+В `Config::initPlaylistMode()` **после** `lastStation(_lastStation);` добавь:
+
+```cpp
+omnia_shuffle_init(playlistLength());
+omnia_shuffle_set(store.sdsnuffle ? SHUFFLE_ON : SHUFFLE_OFF);
+```
+
+---
+
+## 3) Repeat: сейчас он действительно **не сохраняется** и в “флагманском” смысле работает не так, как ты ожидаешь
+
+### 3.1 Не сохраняется
+В CLI ты делаешь `omnia_shuffle_set_repeat(...)` (только RAM), без EEPROM.   
+В `config_t` нет отдельного поля repeat (есть только `_reserved`), и в `config.cpp` нет `setSdRepeat/getSdRepeat`. 
+
+### 3.2 “Repeat ONE” по факту у тебя отрабатывает только на границе плейлиста
+Сейчас `omnia_shuffle_next()` возвращает `REPEAT_ONE` **только если дошли до конца списка** (см. ветки на конце списка).   
+А `audiohandlers.h` на EOF вообще не делает “повтор текущего трека всегда” — там просто вызывается `omnia_shuffle_next()` и `PR_PLAY(nxt)` / `PR_STOP`. 
+
+### Флагман-решение
+- Сохранять repeat в EEPROM (лучше всего — 2 бита в `store._reserved`)
+- Восстанавливать repeat при старте (в `initPlaylistMode`)
+- Для **Repeat ONE** сделать поведение как в нормальных плеерах: “EOF → играть этот же трек снова” (а ручной next пусть остаётся next)
+
+---
+
+# Итог: сейчас правильно не всё
+1) **Сначала** убери `m_pad.count = 0;` из начала `playAudioData()` (это обязательный фикс).   
+2) Потом уже доводи “флагман” по режимам: восстановление shuffle/repeat после ребута + сохранение repeat в `_reserved`. 
+
+Если хочешь — я дам точный готовый патч (diff) на 3 файла: `config.cpp/.h`, `cli_extensions.cpp`, `audiohandlers.h`, чтобы repeat/shuffle стали полностью “флагманскими” и сохранялись корректно.
+
+да, давай
+
+Ниже — **готовый “патч‑план” (diff-стилем)**, который закрывает сразу 3 вещи:
+
+1) **`m_pad.count`**: чтобы “30 попыток → EOF” реально работало (сейчас `m_pad.count` сбрасывается каждый вызов `playAudioData()` и из‑за этого может зависать конец трека).   
+2) **Shuffle после ребута**: флаг `store.sdsnuffle` сохраняется, но при старте движок shuffle не инициализируется/не включается (в `initPlaylistMode()` сейчас этого нет).   
+3) **Repeat OFF/ONE/ALL**: сейчас команды `repeat ...` меняют только RAM (`omnia_shuffle_set_repeat`) и **ничего не сохраняют** (поэтому после ребута “как будто выключено”).   
+Плюс: **Repeat ONE “как у флагманов”** — повторять текущий трек **на любом EOF**, а не только на конце плейлиста (сейчас `omnia_shuffle_next()` повторяет ONE только в конце списка).   
+
+---
+
+## 0) Контекст: что сейчас в репо не так
+
+### `m_pad.count`
+В `Audio::playAudioData()` сейчас есть `m_pad.count = 0;` в начале каждого вызова, поэтому `m_pad.count++` никогда не накапливается до 30 и EOF-страховка может не сработать.   
+
+### Repeat/Shuffle persistence
+- `store.sdsnuffle` есть и сохраняется, но в `initPlaylistMode()` нет восстановления движка.   
+- `repeat` сейчас меняется только через `omnia_shuffle_set_repeat(...)` в CLI и теряется после ребута.   
+
+---
+
+# 1) FIX: `m_pad.count` (Audio.cpp)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+Найди в `Audio::playAudioData()` этот блок (примерно как в твоём репо сейчас): 
+
+```cpp
+//--------------------------------------------------------------------------------
+m_pad.count = 0;
+m_pad.bytesToDecode = InBuff.bufferFilled();
+m_pad.bytesDecoded = 0;
+if(m_f_firstPlayCall) {
+  ...
+  m_pad.count = 0;
+  ...
+}
+```
+
+**Замени** на:
+
+```diff
+@@ void Audio::playAudioData() {
+-    m_pad.count = 0;
++    // do NOT reset m_pad.count here; it must accumulate to reach the "30 tries" EOF fallback
++    m_pad.lastFrames = false;
+     m_pad.bytesToDecode = InBuff.bufferFilled();
+     m_pad.bytesDecoded = 0;
+     if(m_f_firstPlayCall) {
+         m_f_firstPlayCall = false;
+         m_pad.count = 0;
+         m_pad.oldAudioDataSize = 0;
+         m_bytesNotConsumed = 0;
+         m_pad.lastFrames = false;
+         m_f_eof = false;
+     }
+```
+
+Почему так: счётчик должен сбрасываться **только**:
+- на старте трека (`m_f_firstPlayCall`)
+- после успешного декода (у тебя уже есть `m_pad.count = 0;` после `bytesDecoded > 0`)   
+
+---
+
+# 2) Добавляем “repeat persistence” в EEPROM через `store._reserved` (config.h / config.cpp)
+
+У тебя уже есть `uint16_t _reserved;` в `config_t`.   
+Используем младшие 2 бита:
+
+- 0 = REPEAT_OFF  
+- 1 = REPEAT_ONE  
+- 2 = REPEAT_ALL  
+
+## 2.1) config.h — добавить API
+
+Файл: `yoRadio/src/core/config.h`
+
+В `class Config` (public) добавь:
+
+```diff
+@@ class Config {
+   void setSnuffle(bool sn);
++  uint8_t getSdRepeat();        // 0=OFF,1=ONE,2=ALL  (stored in store._reserved bits[1:0])
++  void    setSdRepeat(uint8_t); // persists + applies to shuffle engine
+```
+
+## 2.2) config.cpp — реализовать get/set
+
+Файл: `yoRadio/src/core/config.cpp`
+
+Добавь рядом с `setSnuffle()` (после него — норм место):   
+
+```diff
+@@ void Config::setSnuffle(bool sn){
+   ...
+ }
+
++uint8_t Config::getSdRepeat(){
++  return (uint8_t)(store._reserved & 0x03);
++}
++
++void Config::setSdRepeat(uint8_t r){
++  if(r > 2) r = 0;
++  uint16_t v = store._reserved;
++  v = (v & ~0x03) | (uint16_t)r;
++  saveValue(&store._reserved, v);
++
++  // apply immediately (SD mode only)
++  if(getMode() == PM_SDCARD){
++    if(r == 1)      omnia_shuffle_set_repeat(REPEAT_ONE);
++    else if(r == 2) omnia_shuffle_set_repeat(REPEAT_ALL);
++    else            omnia_shuffle_set_repeat(REPEAT_OFF);
++  }
++}
+```
+
+---
+
+# 3) Восстановление Shuffle + Repeat при старте/смене режима (initPlaylistMode)
+
+Сейчас `initPlaylistMode()` выбирает `_lastStation` и делает `loadStation`, но **не восстанавливает** shuffle/repeat.   
+
+Файл: `yoRadio/src/core/config.cpp`
+
+В конце `Config::initPlaylistMode()` **после**:
+
+```cpp
+loadStation(_lastStation);
+```
+
+добавь:
+
+```diff
+@@ void Config::initPlaylistMode(){
+   loadStation(_lastStation);
++
++  // Restore SD play-modes after boot / after mode switch
++  if(getMode() == PM_SDCARD){
++    uint16_t total = playlistLength();
++    omnia_shuffle_init(total);
++    omnia_shuffle_set(store.sdsnuffle ? SHUFFLE_ON : SHUFFLE_OFF);
++
++    uint8_t r = getSdRepeat();
++    if(r == 1)      omnia_shuffle_set_repeat(REPEAT_ONE);
++    else if(r == 2) omnia_shuffle_set_repeat(REPEAT_ALL);
++    else            omnia_shuffle_set_repeat(REPEAT_OFF);
++  }
+ }
+```
+
+---
+
+# 4) Repeat ONE “как у флагманов”: повторять трек на любом EOF (audiohandlers.h)
+
+Сейчас `onAudioEofCommon()` всегда делает `nxt = omnia_shuffle_next()` и если `0` — STOP.   
+А `REPEAT_ONE` у тебя внутри `omnia_shuffle_next()` фактически влияет только на “конец списка”.   
+
+Файл: `yoRadio/src/core/audiohandlers.h`
+
+В `onAudioEofCommon()` внутри `if(config.getMode()!=0)` вставь проверку repeat one **до** вызова `omnia_shuffle_next()`:
+
+```diff
+@@ static void onAudioEofCommon(const char *info){
+   ...
+   if(config.getMode()!=0){
++      // Flagship behavior: REPEAT_ONE repeats current track on any EOF (not only at playlist end)
++      if(omnia_shuffle_get_repeat() == REPEAT_ONE){
++          uint16_t cur = config.lastStation();
++          config.setLastStation(cur);
++          player.sendCommand({PR_PLAY, (int)cur});
++          return;
++      }
+       extern uint16_t omnia_shuffle_next();
+       uint16_t nxt = omnia_shuffle_next();
+       ...
+   }
+ }
+```
+
+---
+
+# 5) CLI: `repeat off/one/all` должен сохранять в EEPROM (cli_extensions.cpp)
+
+Сейчас CLI делает только `omnia_shuffle_set_repeat(...)`.   
+
+Файл: `yoRadio/src/core/omniaplus/cli_extensions.cpp`
+
+Замени repeat‑ветки:
+
+```diff
+@@ if(strncmp(cmd,"repeat",6)==0){
+     if(strstr(cmd,"off")){
+-      omnia_shuffle_set_repeat(REPEAT_OFF);
++      config.setSdRepeat(0);
+       Serial.println("##REPEAT#: OFF — stop at end of list");
+       return true;
+     }
+     if(strstr(cmd,"one")){
+-      omnia_shuffle_set_repeat(REPEAT_ONE);
++      config.setSdRepeat(1);
+       Serial.println("##REPEAT#: ONE — repeat current track");
+       return true;
+     }
+     if(strstr(cmd,"all")){
+-      omnia_shuffle_set_repeat(REPEAT_ALL);
++      config.setSdRepeat(2);
+       Serial.println("##REPEAT#: ALL — loop playlist");
+       return true;
+     }
+```
+
+Статус можно оставить через `omnia_shuffle_get_repeat()` (он теперь будет восстановлен на старте через `initPlaylistMode()`).
+
+---
+
+# Как проверить, что всё работает (быстрые тесты)
+
+1) Поставить режимы:
+```text
+shuffle on
+repeat all
+```
+
+2) Перезагрузить питание → сразу проверить:
+```text
+omnia_status
+shuffle status
+repeat
+```
+Должно показывать ON/ALL и **реально** играть в перемешку и зацикливать плейлист.
+
+3) Repeat one:
+```text
+repeat one
+```
+Дай треку доиграть до конца → он должен стартовать заново (даже если это не конец плейлиста).
+
+4) `m_pad.count` фикс: на проблемных non‑progressive M4A (где раньше зависало на конце) теперь должен приходить EOF → `audio_eof` → auto-next.
+
+---
+
+Если хочешь — после того как прошьёшь эти изменения, скинь следующий лог (EOF проблемных M4A + `repeat one` тест) и я быстро подтвержу по строкам лога, что пошёл именно путь `REPEAT_ONE`/`NEXT` и что EOF больше не “залипает”.
