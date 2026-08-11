@@ -2538,3 +2538,653 @@ Free heap:	129668 bytes
 ##CLI.NAMESET#: 331 (flc) Insanityradio - Community Radio on FM and Internet
 ##CLI.VOL#: 39
 ##CLI.STOPPED#
+##CLI.META#: [соединение]
+##AUDIO.INFO#: buffers freed, free Heap: 173256 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/space-mp3"
+##AUDIO.INFO#: Connection has been established in 28 ms
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: icy-bitrate : 112000 (b/s)
+##AUDIO.INFO#: icy-genre: Traditional electronic, Tracker, Berlin school, New age, Ambient
+##AUDIO.INFO#: icy-name: SECTOR  |  Space channel
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:50:59+03:00
+##CLI.NAMESET#: 275 SECTOR Space (mp3)
+##CLI.META#: SECTOR  |  Space channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 228
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 112000
+##AUDIO.BITRATE#: 112000
+##CLI.META#: Galactic Warriors - Rise Of The Robots, 2013
+Free heap:	171696 bytes
+> Free heap:	171720 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/space-mp3"
+##AUDIO.INFO#: buffers freed, free Heap: 173544 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/nota-56"
+##AUDIO.INFO#: Connection has been established in 29 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 88000 (b/s)
+##AUDIO.INFO#: icy-genre: Classical, Neoclassic, Epic, Opera, Classic soundtrack
+##AUDIO.INFO#: icy-name: SECTOR Nota
+##CLI.META#: SECTOR Nota
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:52:01+03:00
+##CLI.NAMESET#: 276 SECTOR Nota 56 (ogg-opus)
+##CLI.META#: SECTOR Nota
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR Nota
+##AUDIO.INFO#: OPUSDecoder has been initialized
+##AUDIO.INFO#: format is opus
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Opus Mode: CELT_ONLY
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 88000
+##AUDIO.BITRATE#: 88000
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171860 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/nota-56"
+##AUDIO.INFO#: buffers freed, free Heap: 173600 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/space-56"
+##AUDIO.INFO#: Connection has been established in 28 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 64000 (b/s)
+##AUDIO.INFO#: icy-genre: Traditional electronic, Tracker, Berlin school, New age, Ambient
+##AUDIO.INFO#: icy-name: SECTOR  |  Space channel
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:52:26+03:00
+##CLI.NAMESET#: 272 SECTOR Space 56 (ogg-opus)
+##CLI.META#: SECTOR  |  Space channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: OPUSDecoder has been initialized
+##AUDIO.INFO#: format is opus
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Opus Mode: CELT_ONLY
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 64000
+##AUDIO.BITRATE#: 64000
+Free heap:	171712 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171712 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171712 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/space-56"
+##AUDIO.INFO#: buffers freed, free Heap: 173452 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/space-160"
+##AUDIO.INFO#: Connection has been established in 29 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+##AUDIO.INFO#: icy-genre: Traditional electronic, Tracker, Berlin school, New age, Ambient
+##AUDIO.INFO#: icy-name: SECTOR  |  Space channel
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:52:58+03:00
+##CLI.NAMESET#: 273 SECTOR Space 192 (ogg-vorbis)
+##CLI.META#: SECTOR  |  Space channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: VORBISDecoder has been initialized
+##AUDIO.INFO#: format is vorbis
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: Galactic Warriors - Rise Of The Robots, 2013
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192000
+##AUDIO.BITRATE#: 192000
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171720 bytes
+> Free heap:	171716 bytes
+> Free heap:	171720 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/space-160"
+##AUDIO.INFO#: buffers freed, free Heap: 173600 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/space-flac"
+##AUDIO.INFO#: Connection has been established in 27 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+##AUDIO.INFO#: icy-genre: Traditional electronic, Tracker, Berlin school, New age, Ambient
+##AUDIO.INFO#: icy-name: SECTOR  |  Space channel
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:53:27+03:00
+##CLI.NAMESET#: 274 SECTOR Space (flac)
+##CLI.META#: SECTOR  |  Space channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Space channel
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/space-flac"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 173616 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:53:28+03:00
+##CLI.NAMESET#: 274 SECTOR Space (flac)
+##CLI.VOL#: 39
+##CLI.STOPPED#
+##CLI.META#: [соединение]
+##AUDIO.INFO#: buffers freed, free Heap: 173236 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/progressive-160"
+##AUDIO.INFO#: Connection has been established in 28 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 160000 (b/s)
+##AUDIO.INFO#: icy-genre: EDM, IDM, Trop-hop, Techno, House, Trance, Noise, Electroacoustic, Berlin school, Ambient
+##AUDIO.INFO#: icy-name: SECTOR  |  Progressive channel
+##CLI.META#: SECTOR  |  Progressive channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:53:46+03:00
+##CLI.NAMESET#: 268 SECTOR Progressive (ogg-vorbis)
+##CLI.META#: SECTOR  |  Progressive channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Progressive channel
+##AUDIO.INFO#: VORBISDecoder has been initialized
+##AUDIO.INFO#: format is vorbis
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: Eagle (Synth. Music) - Roadside Picnic, 2025 [Walterswald • Nederlands]
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 160000
+##AUDIO.BITRATE#: 160000
+##CLI.META#: Ishome - Fund (Teknoshluha remix), 2010 [Nakhodka • Russia]
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171728 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171716 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/progressive-160"
+##AUDIO.INFO#: buffers freed, free Heap: 173460 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/progressive-56"
+##AUDIO.INFO#: Connection has been established in 38 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 88000 (b/s)
+##AUDIO.INFO#: icy-genre: EDM, IDM, Trip-hop, Techno, House, Trance, Noise, Electroacoustic, Berlin school, Ambient
+##AUDIO.INFO#: icy-name: SECTOR  |  Progressive channel
+##CLI.META#: SECTOR  |  Progressive channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:54:14+03:00
+##CLI.NAMESET#: 269 SECTOR Progressive (ogg-opus)
+##CLI.META#: SECTOR  |  Progressive channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Progressive channel
+##AUDIO.INFO#: OPUSDecoder has been initialized
+##AUDIO.INFO#: format is opus
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Opus Mode: CELT_ONLY
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 88000
+##AUDIO.BITRATE#: 88000
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171712 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171712 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171728 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171712 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/progressive-56"
+##AUDIO.INFO#: buffers freed, free Heap: 173596 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/progressive-flac"
+##AUDIO.INFO#: Connection has been established in 38 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+##AUDIO.INFO#: icy-genre: EDM, IDM, Trip-hop, Techno, House, Trance, Noise, Electroacoustic, Berlin school, Ambient
+##AUDIO.INFO#: icy-name: SECTOR  |  Progressive channel
+##CLI.META#: SECTOR  |  Progressive channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:54:41+03:00
+##CLI.NAMESET#: 270 SECTOR Progressive (flac)
+##CLI.META#: SECTOR  |  Progressive channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Progressive channel
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/progressive-flac"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 173616 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:54:42+03:00
+##CLI.NAMESET#: 270 SECTOR Progressive (flac)
+##CLI.VOL#: 39
+##CLI.STOPPED#
+##CLI.META#: [соединение]
+##AUDIO.INFO#: buffers freed, free Heap: 173248 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-56"
+##AUDIO.INFO#: Connection has been established in 29 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 56000 (b/s)
+##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+##AUDIO.INFO#: icy-name: SECTOR | Next channel
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:54:51+03:00
+##CLI.NAMESET#: 284 SECTOR Next 56 (ogg-opus)
+##CLI.META#: SECTOR | Next channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: OPUSDecoder has been initialized
+##AUDIO.INFO#: format is opus
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Opus Mode: CELT_ONLY
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 56000
+##AUDIO.BITRATE#: 56000
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171720 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-56"
+##AUDIO.INFO#: buffers freed, free Heap: 173544 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-160"
+##AUDIO.INFO#: Connection has been established in 27 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+##AUDIO.INFO#: icy-name: SECTOR | Next channel
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:55:03+03:00
+##CLI.NAMESET#: 285 SECTOR Next 192 (ogg-vorbis)
+##CLI.META#: SECTOR | Next channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: VORBISDecoder has been initialized
+##AUDIO.INFO#: format is vorbis
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: MC Hammer - Crime story, 1990 [Auckland • USA]
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192000
+##AUDIO.BITRATE#: 192000
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171840 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-160"
+##AUDIO.INFO#: buffers freed, free Heap: 173604 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-flac"
+##AUDIO.INFO#: Connection has been established in 28 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+##AUDIO.INFO#: icy-name: SECTOR | Next channel
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:55:15+03:00
+##CLI.NAMESET#: 286 SECTOR Next (flac)
+##CLI.META#: SECTOR | Next channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-flac"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 173472 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:55:16+03:00
+##CLI.NAMESET#: 286 SECTOR Next (flac)
+##CLI.VOL#: 39
+##CLI.STOPPED#
+##CLI.META#: [соединение]
+##AUDIO.INFO#: buffers freed, free Heap: 173236 bytes
+##AUDIO.INFO#: connect to: "somafm.com" on port 443 path "/spacestation130.pls"
+##AUDIO.INFO#: SSL has been established in 1343 ms
+##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_PLAYLISTINIT, streamType: WEBSTREAM
+##CLI.META#: 
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:55:47+03:00
+##CLI.NAMESET#: 300 Space Station Soma (aac-128)
+##CLI.META#: 
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##AUDIO.INFO#: next URL: "https://ice6.somafm.com/spacestation-128-aac"
+##AUDIO.INFO#: playlistFormat PLS, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+##AUDIO.INFO#: format is aac
+##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+##AUDIO.INFO#: icy-genre:  Ambient Space
+##AUDIO.INFO#: icy-name: Space Station Soma from SomaFM.com [SomaFM]
+##CLI.META#: Space Station Soma from SomaFM.com [SomaFM]
+##AUDIO.INFO#: AACDecoder has been initialized
+##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 128000
+##AUDIO.BITRATE#: 128000
+##AUDIO.INFO#: AAC HeaderFormat: ADTS
+##AUDIO.INFO#: Stream URL; StreamUrl='https://somafm.com/logos/512/spacestation512.png'
+##CLI.META#: Hydra - The Joy Of The World
+Free heap:	128924 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "https://somafm.com/spacestation130.pls"
+##AUDIO.INFO#: buffers freed, free Heap: 173460 bytes
+##AUDIO.INFO#: connect to: "149.13.0.81" on port 80 path "/radio1rock.ogg"
+##AUDIO.INFO#: Connection has been established in 92 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-genre:  Rock Music
+##AUDIO.INFO#: icy-name: RADIO 1 ROCK
+##CLI.META#: RADIO 1 ROCK
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:56:19+03:00
+##CLI.NAMESET#: 306 Radio1 Rock (ogg)
+##CLI.META#: RADIO 1 ROCK
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##AUDIO.INFO#: VORBISDecoder has been initialized
+##AUDIO.INFO#: format is vorbis
+##AUDIO.INFO#: stream ready
+##CLI.META#: RADIO 1 ROCK
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: IRON MAIDEN - WASTED YEARS
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 96000
+##AUDIO.BITRATE#: 96000
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171580 bytes
+> ##AUDIO.INFO#: slow stream, dropouts are possible
+[WEBSOCKET] client #1 disconnected
+[WEBSOCKET] client #2 connected from 192.168.1.96
+##AUDIO.INFO#: slow stream, dropouts are possible
+##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://149.13.0.81/radio1rock.ogg"
+##AUDIO.INFO#: buffers freed, free Heap: 173544 bytes
+##AUDIO.INFO#: connect to: "stream.metacast.eu" on port 80 path "/radio1.opus"
+##AUDIO.INFO#: Connection has been established in 211 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-genre:  Pop Music
+##AUDIO.INFO#: icy-name: RADIO 1
+##CLI.META#: RADIO 1
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:56:35+03:00
+##CLI.NAMESET#: 305 Радио Плевен (opus)
+##CLI.META#: RADIO 1
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##AUDIO.INFO#: OPUSDecoder has been initialized
+##AUDIO.INFO#: format is opus
+##AUDIO.INFO#: stream ready
+##CLI.META#: RADIO 1
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: NA
+##AUDIO.INFO#: Opus Mode: CELT_ONLY
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 48000 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 133230
+##AUDIO.BITRATE#: 133230
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171728 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://stream.metacast.eu/radio1.opus"
+##AUDIO.INFO#: buffers freed, free Heap: 173488 bytes
+##AUDIO.INFO#: connect to: "stream.bigb21.nl" on port 8002 path "/"
+##AUDIO.INFO#: Connection has been established in 207 ms
+##AUDIO.INFO#: icy-name: BigB21
+##AUDIO.INFO#: icy-genre: Pop
+##AUDIO.INFO#: format is mp3
+##AUDIO.INFO#: MP3Decoder has been initialized
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.META#: BigB21
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: MPEG-1 Layer III
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 320000
+##AUDIO.BITRATE#: 320000
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:56:50+03:00
+##CLI.NAMESET#: 310 65-Big (asx)
+##CLI.META#: BigB21
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: BigB21
+##CLI.META#: AC/DC - Thunderstruck
+##AUDIO.INFO#: slow stream, dropouts are possible
+##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://stream.bigb21.nl:8002/"
+##AUDIO.INFO#: buffers freed, free Heap: 173468 bytes
+##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/flac"
+##AUDIO.INFO#: Connection has been established in 181 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-genre:  Eclectic
+##AUDIO.INFO#: icy-name: Radio Paradise (flac) - playlist: radioparadise.com
+##CLI.META#: Radio Paradise (flac) - playlist: radioparadise.com
+##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:56:54+03:00
+##CLI.NAMESET#: 312 (flc) Paradise Main
+##CLI.META#: Radio Paradise (flac) - playlist: radioparadise.com
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##CLI.META#: Radio Paradise (flac) - playlist: radioparadise.com
+[WEBSOCKET] client #2 disconnected
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1441000
+##AUDIO.BITRATE#: 1441000
+[WEBSOCKET] client #3 connected from 192.168.1.96
+Free heap:	171748 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/flac"
+##AUDIO.INFO#: buffers freed, free Heap: 173484 bytes
+##AUDIO.INFO#: connect to: "stream10.xdevel.com" on port 443 path "/audio17s976748-2218/stream/icecast.audio"
+##AUDIO.INFO#: SSL has been established in 722 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-name: stream
+##CLI.META#: stream
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:57:15+03:00
+##CLI.NAMESET#: 334 (flc) Le Bon Mix
+##CLI.META#: stream
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: stream
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1008529
+##AUDIO.BITRATE#: 1008529
+Free heap:	127452 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "https://stream10.xdevel.com/audio17s976748-2218/stream/icecast.audio"
+##AUDIO.INFO#: buffers freed, free Heap: 173532 bytes
+##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 443 path "/roxy_FLAC"
+##AUDIO.INFO#: SSL has been established in 650 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-genre:  Pop, dance, house
+##AUDIO.INFO#: icy-name: Roxy Rádió
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.META#: Roxy Rádió
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:57:28+03:00
+##CLI.NAMESET#: 337 (flc) Roxy Radio - Rock, Pop and Chillout Pop
+##CLI.META#: Roxy Rádió
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: Roxy Rádió
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: Brooks - Like I Do feat. David Guetta, Martin Garrix
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 1151595
+##AUDIO.BITRATE#: 1151595
+Free heap:	129176 bytes
+> ##CLI.META#: [соединение]
+##AUDIO.INFO#: Closing web file "https://s2.audiostream.hu/roxy_FLAC"
+##AUDIO.INFO#: buffers freed, free Heap: 173480 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-160"
+##AUDIO.INFO#: Connection has been established in 30 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+##CLI.META#: SECTOR  |  Zed channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T18:57:59+03:00
+##CLI.NAMESET#: 293 SECTOR Zed 192 (ogg-vorbis)
+##CLI.META#: SECTOR  |  Zed channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR  |  Zed channel
+##AUDIO.INFO#: VORBISDecoder has been initialized
+##AUDIO.INFO#: format is vorbis
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: syncword found at pos 0
+##CLI.META#: SECTOR Hi-Res | Missio - Sing to me, 2019 [Austin • USA]
+##AUDIO.INFO#: Channels: 2
+##AUDIO.INFO#: SampleRate: 44100 (Hz)
+##AUDIO.INFO#: BitsPerSample: 16
+##AUDIO.INFO#: BitRate: 192000
+##AUDIO.BITRATE#: 192000
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171744 bytes
+> ##CLI.META#: Tony Bennett - Nature boy, 2019 [Queens • USA]
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: slow stream, dropouts are possible
+Free heap:	171732 bytes
+> ##CLI.META#: [остановлено]
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-160"
+##AUDIO.INFO#: buffers freed, free Heap: 173472 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T19:00:22+03:00
+##CLI.NAMESET#: 293 SECTOR Zed 192 (ogg-vorbis)
+##CLI.VOL#: 39
+##CLI.STOPPED#
