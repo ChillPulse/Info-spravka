@@ -1,0 +1,91 @@
+Ниже — готовое ТЗ для ИИ‑агента (копипаст) на “краш при Closing web file … (LoadProhibited EXCVADDR=0x14)” из Log28. Цель — сделать закрытие web‑соединения **безопасным и детерминированным**, не через указатель `m_client`.
+
+---
+
+# ТЗ агенту: Fix crash on “Closing web file …” (Log28) — stop both clients directly
+
+## Контекст
+В Log28 при WEB FLAC (`http://hd.stream.frequence3.net/frequence3.flac`) после строки:
+
+`##AUDIO.INFO#: Closing web file "http://hd.stream.frequence3.net/frequence3.flac"`
+
+происходит **Guru Meditation (LoadProhibited, EXCVADDR=0x14)**.
+
+Похоже на разыменование/использование невалидного `m_client` или гонку при `m_client->stop()`.
+
+## Цель
+При остановке/закрытии WEB потока:
+- не падать
+- гарантированно останавливать сетевое соединение
+- вернуть `m_client` в безопасное состояние
+
+---
+
+# Изменение (обязательное)
+
+## Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+## Функция
+`Audio::stopSong()`
+
+### Заменить “stop через m_client” на “stop обоих клиентов напрямую”
+
+Найти в `stopSong()` блок вида:
+
+```cpp
+if(m_client && m_client->connected()){
+  AUDIO_INFO("Closing web file \"%s\"", m_lastHost.c_get());
+  m_client->stop();
+}
+```
+
+Заменить на:
+
+```cpp
+// close network safely (avoid calling stop() via m_client pointer)
+if(m_dataMode == AUDIO_DATA || m_streamType == ST_WEBFILE || m_f_stream){
+  AUDIO_INFO("Closing web file \"%s\"", m_lastHost.c_get());
+  client.stop();
+  clientsecure.stop();
+  m_client = static_cast<NetworkClient*>(&client); // restore safe default
+}
+```
+
+> Примечание: если у тебя есть более точный признак “мы реально в web‑режиме” — используй его. Главное: **не вызывать stop() через m_client**.
+
+---
+
+# Самопроверка агента (обязательная)
+
+## 1) grep-проверки (приложить вывод)
+```bash
+git grep -n "Closing web file" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_client->stop" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "clientsecure.stop" yoRadio/src/audioI2S/Audio.cpp
+```
+
+Ожидаем:
+- `client.stop();` и `clientsecure.stop();` присутствуют в `stopSong()`
+- `m_client->stop` **не используется** (или хотя бы не используется в `stopSong()`)
+
+## 2) Сборка
+Собрать прошивку (Arduino 1.8.19 / PlatformIO) без ошибок.
+
+## 3) Рантайм критерий
+После прошивки:
+- Запустить станцию 330 (`http://hd.stream.frequence3.net/frequence3.flac`)
+- Переключиться на другую станцию или STOP
+- В логе должна быть строка `Closing web file ...`
+- И **не должно** быть Guru Meditation / reboot.
+
+---
+
+# Git-процесс
+- Работать только в `main`
+- Один коммит: `Fix: safe web client stop (avoid m_client->stop)`  
+- Push в `origin/main`
+
+---
+
+Эта правка максимально безопасная: мы не трогаем декодеры и буферы, только делаем “закрытие” соединения предсказуемым, что в твоём логе и является точкой падения.
