@@ -1,0 +1,210 @@
+В общем результаты тестов неоднозначные:
+https://github.com/ChillPulse/Info-spravka/blob/main/Log26
+По `Log26` проблема уже не “неоднозначная”, а вполне конкретная: **WEB‑станция Frequence3 Dance (329) вызывает краш при старте Ogg‑FLAC**. 
+
+### Что именно происходит по логу
+1) Подключение по HTTPS успешно.   
+2) `Content-Type` определяется как `ogg` → далее `determineOggCodec()` выбирает FLAC → инициализируется `FLACDecoder`.   
+3) Сразу после `syncword found at pos 0` происходит **Guru Meditation (InstrFetchProhibited / PC=0)**.   
+
+Это очень похоже на ситуацию, когда **Ogg‑страница/metadata блок больше вашего `m_frameSizeFLAC` (24576)**, и декодер/парсер OGG/FLAC начинает работать с обрезанным блоком. У upstream ESP32-audioI2S как раз отмечено, что OGG может доходить до ~64KB в метаданных, и там `m_frameSizeFLAC = UINT16_MAX`. 
+
+---
+
+## Что нужно поправить в репо (минимально и “флагмански”)
+
+### FIX 1 — увеличить max block size для FLAC (и лучше для всех OGG-кодеков)
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+Сейчас у тебя:
+```cpp
+constexpr size_t m_frameSizeFLAC = 4096 * 6; // 24576
+```
+
+
+Сделай как у актуального upstream (и это реально решает OGG-метаданные):
+```cpp
+constexpr size_t m_frameSizeFLAC   = UINT16_MAX; // 65535, max ogg size
+constexpr size_t m_frameSizeOPUS   = UINT16_MAX; // тоже ogg wrapper
+constexpr size_t m_frameSizeVORBIS = UINT16_MAX; // тоже ogg wrapper
+```
+(Если боишься менять OPUS/VORBIS — можно начать только с FLAC, но “флагмански” лучше сразу все ogg‑контейнерные.)
+
+### FIX 2 — чуть увеличить стек аудио‑таски (страховка от крашей при больших метаданных)
+У тебя:
+```cpp
+constexpr size_t AUDIO_STACK_SIZE = 3300;
+```
+
+
+Сделай хотя бы:
+```cpp
+constexpr size_t AUDIO_STACK_SIZE = 5000;
+```
+(Upstream сейчас держит 3700, но у тебя проект “жирнее” и PSRAM есть — 5000 нормально.)
+
+### FIX 3 (не обязателен, но правильный) — OGG‑FLAC: не пытаться читать “raw FLAC header” как обязательную стадию
+Твой `read_FLAC_Header()` при `OggS` просто выставляет `m_controlCounter = FLAC_OKAY` и дальше по сути “зависает” в этом состоянии.   
+Это не причина именно этого краша, но это некорректная логика.
+
+Сделай так (в `read_FLAC_Header`, ветка `FLAC_MAGIC`):
+
+```cpp
+if(specialIndexOf(data, "OggS", 10) == 0) {
+    m_rflh.headerSize = 0;
+    m_rflh.retvalue = 0;
+    m_controlCounter = 100;   // сразу считаем header готовым — ogg/flac разберёт сам декодер
+    return 0;
+}
+```
+
+---
+
+## Про станцию 330 (Frequence3 Paris flac) “unknown content”
+В `Log26` она уходит в редирект на `https://...frequence3.flac`, после чего получаешь `unknown content found`.   
+Это чаще всего означает: сервер вернул **не audio/flac** (например HTML/403/редирект/что-то без Content-Type), и твой парсер честно отказался. Это нормально как “флагманская строгость”, но если хочешь UX‑улучшение — можно добавить “fallback по расширению URL” (если `.flac`, а Content-Type непонятен → попытаться как FLAC). Но сначала я бы устранил именно **краш**, он важнее.
+
+---
+
+## Инструкция для агента (короткая, чтобы сделал без ошибок)
+1) В `yoRadio/src/audioI2S/Audio.cpp` заменить `m_frameSizeFLAC` на `UINT16_MAX` (и желательно также OPUS/VORBIS).  
+2) Там же увеличить `AUDIO_STACK_SIZE` до 5000.  
+3) В `read_FLAC_Header()` при `OggS` поставить `m_controlCounter = 100` (как выше).  
+4) Перепрошить и повторить тест станции `329 Frequence3 Dance - flac`.  
+Критерий успеха: **нет Guru Meditation**, поток либо играет, либо хотя бы корректно останавливается.
+
+Если после этих трёх правок станция 329 всё ещё не играет, но уже не падает — тогда следующий шаг: декодировать backtrace (addr2line по .elf) и смотреть, в каком месте FLAC/Ogg парсер ломается именно на этом потоке. Но по симптомам и по отличию от upstream, 99% это именно “слишком маленький maxBlockSize для OGG”.
+
+окей, давай сделаем все действия, так мы делаем стабильный флагман. Ещё раз дай подробную и понятную инструкцию для ИИ агента
+
+Ниже — подробное ТЗ для ИИ‑агента (копипаст). Оно делает 3 вещи: **убирает краш OGG‑FLAC**, делает обработку OGG‑FLAC логически корректнее, и добавляет проверки, чтобы агент не “сказал сделал”, а реально доказал.
+
+---
+
+# ТЗ для агента: Stabilize WEB OGG‑FLAC (Log26) — no crash, graceful behavior
+
+## Контекст
+По `Log26` при запуске WEB станции `Frequence3 Dance (flac)` происходит:
+- `format is ogg` → `determineOggCodec -> FLAC`
+- `Initializing FLACDecoder...`
+- затем **Guru Meditation (InstrFetchProhibited / PC=0)**
+
+Это типично для случая, когда Ogg pages / metadata блок больше текущего `m_frameSizeFLAC` (у нас сейчас 24576), и парсер/декодер работает с обрезанным блоком.
+
+---
+
+## Цели (Definition of Done)
+1) Станция `Frequence3 Dance (flac)` **не должна крашить** устройство (никаких Guru Meditation).  
+2) Если поток поддержан — он играет. Если не поддержан — плеер корректно останавливается/пишет ошибку, но **без паники**.  
+3) Изменения в `main`, без дополнительных веток.
+
+---
+
+# Изменения в коде (обязательные)
+
+## 1) Увеличить размер блока для OGG‑обёрнутых кодеков (FLAC/OPUS/VORBIS)
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`
+
+Найти константы (у тебя сейчас примерно так):
+```cpp
+constexpr size_t m_frameSizeOPUS   = 4096 * 4;
+constexpr size_t m_frameSizeVORBIS = 4096 * 4;
+constexpr size_t m_frameSizeFLAC   = 4096 * 6; // 24576
+```
+
+Заменить на “флагманский” вариант:
+
+```cpp
+#include <limits.h>   // если нужно для UINT16_MAX
+
+constexpr size_t m_frameSizeOPUS   = UINT16_MAX; // Ogg pages may be large
+constexpr size_t m_frameSizeVORBIS = UINT16_MAX; // Ogg pages may be large
+constexpr size_t m_frameSizeFLAC   = UINT16_MAX; // Ogg-FLAC metadata/pages may be large
+```
+
+> Причина: OGG страницы/мета могут быть до ~64KB; 24KB недостаточно и приводит к UB/крашу.
+
+---
+
+## 2) Увеличить стек аудио‑таска (страховка)
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`
+
+Найти:
+```cpp
+constexpr size_t AUDIO_STACK_SIZE = 3300;
+```
+
+Заменить на:
+```cpp
+constexpr size_t AUDIO_STACK_SIZE = 5000;
+```
+
+> Это снижает вероятность падения на тяжелых ветках парсинга/SSL/OGG.
+
+---
+
+## 3) Исправить логику `read_FLAC_Header()` для OGG‑FLAC
+Сейчас у тебя при `OggS` ветка ставит `m_controlCounter = FLAC_OKAY` и зависает в этом состоянии, что некорректно. Для OGG‑FLAC “сырой flac‑header” не нужен как обязательная стадия.
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `Audio::read_FLAC_Header(uint8_t* data, uint16_t len)`
+
+Внутри `case FLAC_MAGIC:` найти ветку:
+
+```cpp
+if(specialIndexOf(data, "OggS", 10) == 0) {
+    m_rflh.headerSize = 0;
+    m_rflh.retvalue = 0;
+    m_controlCounter = FLAC_OKAY;
+    return 0;
+}
+```
+
+Заменить на:
+
+```cpp
+if(specialIndexOf(data, "OggS", 10) == 0) {
+    // Ogg-FLAC: treat header as ready; decoder will parse Ogg pages/FLAC packets itself
+    m_rflh.headerSize = 0;
+    m_rflh.retvalue = 0;
+    m_controlCounter = 100; // header finished
+    return 0;
+}
+```
+
+---
+
+# Самопроверка агента (обязательная)
+
+## A) grep-проверки (приложить вывод)
+Агент обязан приложить вывод команд:
+
+```bash
+git grep -n "m_frameSizeFLAC" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "AUDIO_STACK_SIZE" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "Ogg-FLAC" yoRadio/src/audioI2S/Audio.cpp
+```
+
+Ожидаем:
+- `m_frameSizeFLAC` = `UINT16_MAX`
+- `AUDIO_STACK_SIZE` = `5000`
+- в `read_FLAC_Header()` есть комментарий/ветка `Ogg-FLAC` и `m_controlCounter = 100`.
+
+## B) Сборка
+Собрать прошивку (Arduino/PlatformIO) без ошибок.
+
+## C) Рантайм критерии (что должно быть в логе после прошивки)
+На станции `Frequence3 Dance (flac)`:
+- **нет** Guru Meditation
+- либо начинается нормальный декод, либо аккуратный stop/error без перезагрузки
+
+---
+
+# Важные ограничения
+- Никаких новых веток `arena/*`
+- Все изменения прямо в `main`
+- Один коммит или два (но с понятными сообщениями)
+
+---
+
+Если агент выполнит это ТЗ, мы получим именно то, что нужно для “стабильного флагмана”: даже “тяжелые” OGG‑FLAC потоки не должны убивать устройство.
