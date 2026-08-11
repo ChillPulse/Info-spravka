@@ -1,0 +1,112 @@
+##CLI.NAMESET#: 286 SECTOR Next (flac)
+##CLI.META#: SECTOR | Next channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: slow stream, dropouts are possible
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-flac"
+Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  1 register dump:
+PC      : 0x42063066  PS      : 0x00060e30  A0      : 0x8201e3c0  A1      : 0x3fcebf80  
+A2      : 0x00000000  A3      : 0x00000000  A4      : 0x00060c20  A5      : 0x00000000  
+A6      : 0x00000000  A7      : 0x3fca1600  A8      : 0x00000000  A9      : 0x3fcebf50  
+A10     : 0x00000000  A11     : 0x3fcebf7f  A12     : 0x00000001  A13     : 0x00000009  
+A14     : 0x00000001  A15     : 0x3fcebf5c  SAR     : 0x0000000d  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x00000014  LBEG    : 0x40056fc5  LEND    : 0x40056fe7  LCOUNT  : 0xffffffff  
+
+
+Backtrace: 0x42063063:0x3fcebf80 0x4201e3bd:0x3fcebfa0 0x42024e41:0x3fcebfd0 0x4205d696:0x3fcec020 0x42060367:0x3fcec050 0x4206df28:0x3fcec070 0x40380de1:0x3fcec090
+
+
+
+
+ELF file SHA256: 632ac710d
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x42132266
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1180
+load:0x403c8700,len:0xc2c
+load:0x403cb700,len:0x311c
+entry 0x403c88b8
+##[BOOT]#	************************************************
+##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+##[BOOT]#	************************************************
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	arduino:	10819
+##[BOOT]#	compiler:	14.2.0
+##[BOOT]#	esp32core:	3.3.0
+##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+##[BOOT]#	audioinfo:	false
+##[BOOT]#	smartstart:	0
+##[BOOT]#	vumeter:	false
+##[BOOT]#	softapdelay:	0
+##[BOOT]#	flipscreen:	false
+##[BOOT]#	invertdisplay:	false
+##[BOOT]#	showweather:	false
+##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+##[BOOT]#	ir:		NONE
+##[BOOT]#	SD:		CS-39
+##[BOOT]#	battery:	battery ON
+##[BOOT]#	------------------------------------------------
+##[BOOT]#	CONFIG_VERSION	4
+##[BOOT]#	SPIFFS mounted
+##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+##USB.STATUS#: init 5V power check polyfuse 0.75A
+##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+##[BOOT]#	player.init	done
+##[BOOT]#	network.begin
+##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+##[BOOT]#	.....
+##[BOOT]#	done
+##[BOOT]#	SD search	done
+##[BOOT]#	netserver.begin	done
+##[BOOT]#	telnet.begin	done
+##[BOOT]#
+##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+##[BOOT]#	------------------------------------------------
+##[BOOT]#
+##CLI.META#: [готов]
+##CLI.META#: [соединение]
+##AUDIO.INFO#: inputBufferSize: 655349 bytes
+##AUDIO.INFO#: buffers freed, free Heap: 177136 bytes
+##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-flac"
+##AUDIO.INFO#: Connection has been established in 28 ms
+##AUDIO.INFO#: format is ogg
+##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+##AUDIO.INFO#: icy-name: SECTOR | Next channel
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+##CLI.INFO#
+##SYS.DATE#: 1900-01-00T00:00:00+03:00
+##CLI.NAMESET#: 286 SECTOR Next (flac)
+##CLI.META#: SECTOR | Next channel
+##CLI.VOL#: 39
+##CLI.PLAYING#
+##CLI.META#: SECTOR | Next channel
+##AUDIO.INFO#: FLACDecoder has been initialized
+##AUDIO.INFO#: format is flac
+##AUDIO.INFO#: stream ready
+##AUDIO.INFO#: syncword found at pos 0
+##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-flac"
+##CLI.META#: [остановлено]
+##AUDIO.INFO#: buffers freed, free Heap: 176644 bytes
+##CLI.INFO#
+##SYS.DATE#: 2026-08-11T13:07:52+03:00
+##CLI.NAMESET#: 286 SECTOR Next (flac)
+##CLI.VOL#: 39
+##CLI.STOPPED#
+[WEBSOCKET] client #1 connected from 192.168.1.96
