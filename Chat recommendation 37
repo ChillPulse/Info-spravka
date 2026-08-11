@@ -1,0 +1,117 @@
+По `Log30` watchdog **сработал**, но “reconnect” сейчас сделан **неправильно**, поэтому вместо чистого переподключения ты получаешь:
+
+- `Decode stalled -> reconnect ...`   
+- затем сразу идёт `dataMode HTTP_RESPONSE_HEADER`, но в поток продолжают лететь бинарные `OggS` → отсюда `responseHeaderline overflow` 
+
+Это полностью объясняется кодом: в `processWebStream()` / `processWebFile()` watchdog сейчас делает **только** `httpPrint(m_lastHost.get())` и `return;`   
+`httpPrint()` шлёт новый HTTP-запрос **в существующее соединение**, не закрывая старый поток и не очищая входной буфер — в результате парсер HTTP-заголовков начинает жевать аудиоданные.
+
+## Что нужно сделать (правильный “флагманский” reconnect)
+Нужно, чтобы при stall выполнялось **полное переподключение**:
+1) сохранить URL
+2) корректно закрыть текущий поток (`stopSong()`)
+3) очистить/переинициализировать буферы
+4) сделать `connecttohost(url)` заново  
+И добавить троттлинг/лимит попыток (чтобы не долбиться бесконечно).
+
+---
+
+# Инструкция для ИИ‑агента (копипаст)
+
+### 1) Добавить поля в `AudioEx.h`
+Файл: `yoRadio/src/audioI2S/AudioEx.h`, `class Audio` private:
+
+```cpp
+uint32_t m_lastStallReconnectMs = 0;
+uint8_t  m_stallReconnectTries = 0;
+```
+
+Сбрасывать их в `setDefaults()`:
+```cpp
+m_lastStallReconnectMs = 0;
+m_stallReconnectTries = 0;
+```
+
+### 2) Сделать helper в `Audio.cpp`
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+Добавить метод (лучше рядом с `processWebStream`/`processWebFile`):
+
+```cpp
+bool Audio::stallReconnect(const char* reason){
+    if(!m_lastHost.valid()) return false;
+
+    // throttle: не чаще 1 раза в 2 секунды
+    if(m_lastStallReconnectMs && (millis() - m_lastStallReconnectMs) < 2000) return false;
+    m_lastStallReconnectMs = millis();
+
+    m_stallReconnectTries++;
+    AUDIO_ERROR("Decode stalled -> reconnect #%u (%s)", (unsigned)m_stallReconnectTries, reason);
+
+    // после 3 попыток — сдаёмся (иначе бесконечная карусель)
+    if(m_stallReconnectTries > 3){
+        AUDIO_ERROR("Decode stalled: giving up");
+        stopSong();
+        return true;
+    }
+
+    // сохранить URL ДО stopSong(), т.к. stopSong()/setDefaults() могут очистить m_lastHost
+    ps_ptr<char> url(__LINE__);
+    url.assign(m_lastHost.get());
+
+    stopSong();                 // корректно закрывает client/clientsecure и сбрасывает состояния
+    InBuff.resetBuffer();       // на всякий случай (можно и без этого, но лучше явно)
+    return connecttohost(url.get());
+}
+```
+
+### 3) Заменить `httpPrint(m_lastHost.get())` в watchdog на `stallReconnect(...)`
+Файл: `Audio.cpp`
+
+В `processWebStream()` блоке watchdog (сейчас он такой): 
+```cpp
+httpPrint(m_lastHost.get());
+return;
+```
+
+Заменить на:
+```cpp
+stallReconnect("webstream");
+return;
+```
+
+То же самое в `processWebFile()` watchdog.
+
+### 4) Сбрасывать tries при “хорошем декоде”
+У тебя уже есть:
+```cpp
+m_lastGoodDecodeMs = millis();
+m_resyncSkipCnt = 0;
+```
+оставить, но добавь:
+```cpp
+m_stallReconnectTries = 0;
+```
+в том же месте (после `playChunk()`), чтобы после восстановления декода “счётчик” не копился.
+
+### 5) Самопроверка агента (обязательная)
+Агент должен приложить вывод:
+
+```bash
+git grep -n "stallReconnect" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "httpPrint(m_lastHost.get())" yoRadio/src/audioI2S/Audio.cpp
+```
+
+Ожидаем:
+- `stallReconnect` найден
+- `httpPrint(m_lastHost.get())` **не используется** в watchdog местах (может оставаться только в нормальных путях подключения, если нужно)
+
+### 6) Критерий успеха по логу
+Для `singsingFlac` и подобных:
+- появляется `Decode stalled -> reconnect #1`
+- затем **видно реальное** `connect to: ...` / `SSL has been established...` / `playlistFormat..., dataMode HTTP_RESPONSE_HEADER...`
+- и **нет** `responseHeaderline overflow` после reconnect (это ключевой показатель, что теперь соединение чисто перезапускается)
+
+---
+
+Если это внедрить, watchdog станет реально “флагманским”: не просто печатает “reconnect”, а действительно делает безопасный reconnect без порчи HTTP-парсинга.
