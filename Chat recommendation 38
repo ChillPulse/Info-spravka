@@ -1,0 +1,70 @@
+По `Log31` у тебя две разные проблемы:
+
+1) **Реальные ребуты (Guru Meditation / LoadProhibited EXCVADDR=0x14)** происходят *строго* в момент  
+`Closing web file "http://hd.stream.frequence3.net/frequence3.flac"`   
+2) Есть **долгие подвисания/таймауты на WEB**, особенно на “цепочках редиректов/521/timeout” (joyhits и т.п.). 
+
+Сейчас в `main` в `Audio::stopSong()` закрытие WEB сделано так: **останавливаются и `client`, и `clientsecure` всегда**, независимо от того, был ли SSL.   
+Это выглядит “безопасно”, но на практике именно на HTTP (порт 80) **вызов `clientsecure.stop()` может приводить к крашу** (особенно если secure‑клиент в странном состоянии).
+
+---
+
+## Инструкция для ИИ‑агента (копипаст): Fix reboot on Closing web file (stop only active client)
+
+### Цель
+Убрать ребуты на `Frequence3 ... /frequence3.flac` и любые аналогичные: **stopSong() должен стопать только активный клиент**, а не оба.
+
+### Изменение
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `uint32_t Audio::stopSong()`
+
+Найти текущий блок:
+
+```cpp
+AUDIO_INFO("Closing web file \"%s\"", m_lastHost.c_get());
+client.stop();
+clientsecure.stop();
+m_client = static_cast<NetworkClient*>(&client);
+```
+
+Заменить на:
+
+```cpp
+AUDIO_INFO("Closing web file \"%s\" (ssl=%d)", m_lastHost.c_get(), (int)m_f_ssl);
+
+// Stop ONLY the active client. Stopping the unused one may crash on some cores/streams.
+if(m_f_ssl){
+    clientsecure.stop();
+} else {
+    client.stop();
+}
+
+// restore safe defaults
+m_f_ssl = false;
+m_client = static_cast<NetworkClient*>(&client);
+```
+
+> Смысл: если поток был HTTP (как `hd.stream.frequence3.net:80` в логе), мы вообще не трогаем `clientsecure.stop()`.
+
+---
+
+### Самопроверка агентом (обязательная)
+
+1) grep-пруф (приложить вывод):
+```bash
+git grep -n "Closing web file" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "clientsecure.stop();" yoRadio/src/audioI2S/Audio.cpp
+```
+
+Ожидаем:
+- В `stopSong()` есть строка `ssl=%d`
+- **Нет** безусловного `clientsecure.stop()` рядом с `client.stop()`; он должен быть только в `if(m_f_ssl)`.
+
+2) Рантайм критерий:
+- Запустить станцию `Frequence3 ... frequence3.flac`
+- Переключиться на другую станцию (или сделать STOP)
+- В логе должен быть `Closing web file ... (ssl=0)`
+- **Не должно быть** Guru Meditation / reboot.
+
+Если агент применит патч выше — пришли следующий лог (буквально 30–60 строк вокруг `Closing web file`), и можно будет уверенно переходить к “лимиту попыток / быстрым retry”.
