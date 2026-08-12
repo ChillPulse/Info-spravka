@@ -1,0 +1,149 @@
+По `Log35` ты уже очень близко к “флагману”: ребутов не видно, а основные “провалы” сейчас — это:
+
+1) **долгое ожидание HTTP‑заголовков** (у тебя оно жёстко зашито в `4500ms`) → в логе “timeout” появляется именно такими пачками.   
+2) в коде остались **reconnect‑подключения без таймаута** (`m_client->connect(host, port)` без 3‑го аргумента), и они потенциально могут подвисать “как повезёт” на проблемных хостах.   
+3) “syncword found …” у тебя уже неплохо лечится watchdog’ом, но можно сделать ещё быстрее (аккуратно) — без вреда железу.   
+
+Ниже — **инструкция для ИИ‑агента**: минимальный, безопасный набор изменений, который сильно сокращает задержки и убирает “подвисания на reconnect”, при этом не требует большого рефакторинга и не “убивает железо”.
+
+---
+
+## Инструкция для ИИ‑агента (Rec42): shorten WEB timeouts + make all reconnect connect() timed + faster resync watchdog
+
+### Цель
+- Сократить “timeout” ожидания с ~4.5 сек до ~2–3 сек
+- Убрать потенциальные подвисания на reconnect, где `connect()` вызывается без timeout
+- Немного ускорить stall watchdog (без ложных срабатываний)
+
+Работа **только в `main`**, 2–3 небольших коммита.
+
+---
+
+# A) Сделать HTTP header timeout управляемым и короче (главное)
+
+### Файлы
+- `yoRadio/src/audioI2S/AudioEx.h`
+- `yoRadio/src/audioI2S/Audio.cpp`
+
+### A1) Добавить два поля в `class Audio` (private) в `AudioEx.h`
+Рядом с `m_timeout_ms / m_timeout_ms_ssl` (они сейчас 250/2700 по умолчанию). 
+
+Добавить:
+
+```cpp
+uint16_t m_hdr_timeout_ms = 2000;       // HTTP header timeout (plain)
+uint16_t m_hdr_timeout_ms_ssl = 3000;   // HTTP header timeout (SSL)
+```
+
+И в `setDefaults()` сбрасывать к дефолтам (по желанию, но лучше оставить как есть, чтобы не “прыгало”).
+
+### A2) Заменить жёсткие `4500` на эти поля
+В `Audio.cpp`:
+
+- в `parseHttpResponseHeader()` заменить:
+```cpp
+m_phreh.timeout = 4500;
+```
+на:
+```cpp
+m_phreh.timeout = m_f_ssl ? m_hdr_timeout_ms_ssl : m_hdr_timeout_ms;
+```
+
+- в `parseHttpRangeHeader()` заменить:
+```cpp
+m_phrah.timeout = 4500;
+```
+на:
+```cpp
+m_phrah.timeout = m_f_ssl ? m_hdr_timeout_ms_ssl : m_hdr_timeout_ms;
+```
+
+Сейчас у тебя там 4500ms “хардкодом”. 
+
+### Самопроверка агентом (обязательно)
+```bash
+git grep -n "m_phreh.timeout" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_phrah.timeout" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "4500" yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем: `4500` в этих двух местах исчезло.
+
+---
+
+# B) Все `connect()` на reconnect путях должны иметь timeout (чтобы не “висло”)
+
+Сейчас в `Audio.cpp` есть подключения без таймаута в `httpPrint()` и `httpRange()` (и это как раз те места, где могут быть “долгие подключения”). 
+
+### B1) В `httpPrint()` заменить reconnect без timeout
+Найти блок (около строк ~795–803), где сейчас:
+
+```cpp
+if(!m_client->connect(hwoe.get(), port)) { ... }
+```
+
+Заменить на:
+
+```cpp
+uint16_t ct = m_f_ssl ? m_timeout_ms_ssl : m_timeout_ms;
+m_client->setTimeout(ct);
+if(!m_client->connect(hwoe.get(), port, ct)) { ... }
+```
+
+### B2) В `httpRange()` заменить connect без timeout
+Найти (около ~889):
+
+```cpp
+if(!m_client->connect(hwoe.get(), port)) { ... }
+```
+
+Заменить аналогично (через `ct` и `connect(..., ct)`).
+
+### Самопроверка агентом (обязательно)
+```bash
+git grep -n "connect(hwoe.get(), port))" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "connect(hwoe.get(), port," yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем: “безтаймаутных” вызовов больше нет в этих местах.
+
+---
+
+# C) Ещё чуть быстрее “syncword… → reconnect” (аккуратно)
+
+Сейчас watchdog уже быстрый, но можно сделать ещё “флагмански” (провал короче), при этом не уходить в агрессию.
+
+### Что менять
+В watchdog‑условиях `processWebStream()` и `processWebFile()`:
+
+- `millis() - ref > 1200` → **900**
+- `m_resyncSkipCnt > 10` → **> 6**
+
+И в `stallReconnect()` throttle:
+
+- `< 800` → **< 600**
+
+(Это уменьшит “провал”, но не должно вызвать дерготню, потому что условие всё равно требует буфер `> maxBlockSize*2` и накопление resync‑счётчика.)
+
+### Самопроверка агентом
+```bash
+git grep -n "millis() - ref >" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_resyncSkipCnt >" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "< 600" yoRadio/src/audioI2S/Audio.cpp
+```
+
+---
+
+## Почему это “не смертельно по железу”
+- Мы не увеличиваем буферы (у тебя уже большой буфер + резерв согласован).   
+- Мы не добавляем тяжёлых структур, только несколько полей и более короткие таймауты.
+- Мы уменьшаем время “ожиданий”, то есть скорее **снижаем** время зависания в плохих состояниях.
+
+---
+
+## Ожидаемый эффект по логам
+- “timeout” будет наступать быстрее (2–3 сек вместо 4.5 сек) и быстрее переходить к retry/stop.   
+- “завис на reconnect connect” станет намного реже, потому что все reconnect‑connect тоже будут ограничены таймаутом.   
+- “syncword found …” провалы станут короче, потому что watchdog сработает раньше.   
+
+---
+
+Если агент внесёт эти правки и ты прогонишь тот же набор станций, дальше уже можно уверенно переходить к USB Flash mode (зеркальные команды SD), потому что WEB‑часть станет заметно “строже и быстрее” по ошибкам — как раз то, что обычно отличает флагман от “игрушки”.
