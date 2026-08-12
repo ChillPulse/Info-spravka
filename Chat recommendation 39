@@ -1,0 +1,48 @@
+По `Log32` (и это же поведение ты сейчас видишь в `Log32/Log29`‑серии) причина **HTTP/1.1 400 Bad Request на Paradise Mellow** очень конкретная:
+
+- Плеер подключается к `stream.radioparadise.com` на **порт 443**, но пишет **`Connection has been established`** (то есть *без TLS/SSL*) и сразу получает `HTTP/1.1 400 Bad Request`.   
+- Позже на том же хосте/пути появляется **`SSL has been established`** и поток уже идёт нормально (`format is ogg`, `icy-name ... Mellow Mix`).   
+
+Это классика: **сервер ждёт TLS на 443**, а мы иногда шлём туда “обычный HTTP” → сервер отвечает 400. Второй/третий “Play” иногда случайно попадает в путь, где URL распарсился как HTTPS, поэтому начинает работать.
+
+### Почему это происходит в коде
+В вашей `Audio::dismantle_host()` SSL определяется **только по префиксу `https://`**, а если схема отсутствует (или `http://` + порт 443) — `ssl=false`, даже если порт 443.   
+То есть URL вида `stream.radioparadise.com:443/mellow-flac` или `http://stream.radioparadise.com:443/mellow-flac` будет трактоваться как **не‑SSL**, и вы получите ровно то, что в логе.   
+
+---
+
+## Что сделать (маленький “флагманский” фикс)
+Сделать так, чтобы **порт 443 принудительно включал SSL**, даже если схема не указана/указана как `http://`.
+
+### Инструкция для ИИ‑агента (копипаст)
+
+**Цель:** убрать 400 на станциях, где URL “без https://”, но порт 443.
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `audiolib::hwoe_t Audio::dismantle_host(const char* host)`
+
+**Изменение:**
+После блока извлечения порта (сразу после `result.port = atoi(...)` / `result.rqh_host.appendf(":%u", result.port);`) добавить:
+
+```cpp
+// Flagship: if port is 443, treat as SSL even if scheme is missing or "http://"
+if(result.port == 443 && result.ssl == false){
+  result.ssl = true;
+}
+```
+
+(Можно добавить `AUDIO_INFO` в connecttohost для диагностики, но в dismantle_host лучше без логов.)
+
+### Самопроверка агента (обязательная)
+1) `git grep -n "result.port == 443" yoRadio/src/audioI2S/Audio.cpp`
+2) Рантайм критерий: Paradise Mellow больше **не должен** выдавать `HTTP/1.1 400 Bad Request` на первом старте; в логе должен быть `SSL has been established...` при коннекте на 443.
+
+---
+
+## Двигаться к USB можно уже сейчас?
+Да, после этого маленького фикса можно спокойно идти в USB mode (зеркальные команды SD), потому что:
+- краши на “Closing web file” вы уже сняли,
+- stall watchdog теперь делает полноценный reconnect,
+- остаётся только привести “443 → SSL” к детерминированному поведению (это как раз “флагманская полировка”, чтобы не требовалось “нажми play ещё раз”).
+
+Если хочешь, следующим шагом дам схему USB mode так, чтобы **SD и USB делили один и тот же интерфейс команд** (list/scan/play/seek/meta), а отличался только backend FS и индексатор.
