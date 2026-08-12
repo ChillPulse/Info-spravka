@@ -1,0 +1,1392 @@
+16:28:25.593 -> Build:Mar 27 2021
+16:28:25.593 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+16:28:25.593 -> SPIWP:0xee
+16:28:25.593 -> mode:DIO, clock div:1
+16:28:25.593 -> load:0x3fce2820,len:0x1180
+16:28:25.593 -> load:0x403c8700,len:0xc2c
+16:28:25.593 -> load:0x403cb700,len:0x311c
+16:28:25.593 -> entry 0x403c88b8
+16:28:25.969 -> ##[BOOT]#	************************************************
+16:28:25.969 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+16:28:25.969 -> ##[BOOT]#	************************************************
+16:28:26.016 -> ##[BOOT]#	------------------------------------------------
+16:28:26.016 -> ##[BOOT]#	arduino:	10819
+16:28:26.016 -> ##[BOOT]#	compiler:	14.2.0
+16:28:26.016 -> ##[BOOT]#	esp32core:	3.3.0
+16:28:26.016 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+16:28:26.016 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+16:28:26.016 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+16:28:26.016 -> ##[BOOT]#	audioinfo:	false
+16:28:26.016 -> ##[BOOT]#	smartstart:	0
+16:28:26.016 -> ##[BOOT]#	vumeter:	false
+16:28:26.016 -> ##[BOOT]#	softapdelay:	0
+16:28:26.016 -> ##[BOOT]#	flipscreen:	false
+16:28:26.063 -> ##[BOOT]#	invertdisplay:	false
+16:28:26.063 -> ##[BOOT]#	showweather:	false
+16:28:26.063 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+16:28:26.063 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+16:28:26.063 -> ##[BOOT]#	ir:		NONE
+16:28:26.063 -> ##[BOOT]#	SD:		CS-39
+16:28:26.063 -> ##[BOOT]#	battery:	battery ON
+16:28:26.063 -> ##[BOOT]#	------------------------------------------------
+16:28:26.063 -> ##[BOOT]#	CONFIG_VERSION	4
+16:28:26.158 -> ##[BOOT]#	SPIFFS mounted
+16:28:26.533 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+16:28:26.533 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+16:28:26.533 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+16:28:26.581 -> ##[BOOT]#	player.init	done
+16:28:26.628 -> ##[BOOT]#	network.begin
+16:28:26.675 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+16:28:26.675 -> ##[BOOT]#	....
+16:28:28.211 -> ##[BOOT]#	done
+16:28:28.211 -> ##[BOOT]#	SD search	done
+16:28:28.258 -> ##[BOOT]#	netserver.begin	done
+16:28:28.258 -> ##[BOOT]#	telnet.begin	done
+16:28:28.258 -> ##[BOOT]#
+16:28:28.258 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+16:28:28.258 -> ##[BOOT]#	------------------------------------------------
+16:28:28.258 -> ##[BOOT]#
+16:28:28.258 -> ##CLI.META#: [готов]
+16:28:28.350 -> ##CLI.META#: [соединение]
+16:28:28.396 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+16:28:28.396 -> ##AUDIO.INFO#: buffers freed, free Heap: 175284 bytes
+16:28:28.396 -> ##AUDIO.INFO#: connect to: "listen4.myradio24.com" on port 443 path "/dance80"
+16:28:29.046 -> ##AUDIO.INFO#: SSL has been established in 657 ms
+16:28:29.324 -> ##AUDIO.INFO#: format is mp3
+16:28:29.324 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:28:29.324 -> ##AUDIO.INFO#: icy-name: Евроданс
+16:28:29.324 -> ##CLI.META#: Евроданс
+16:28:29.324 -> ##AUDIO.INFO#: icy-genre:  
+16:28:29.324 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+16:28:29.324 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:28:29.464 -> ##CLI.INFO#
+16:28:29.464 -> ##SYS.DATE#: 2026-08-12T16:28:28+03:00
+16:28:29.464 -> ##CLI.NAMESET#: 165 Дискотека 80-х & 90-х
+16:28:29.464 -> ##CLI.META#: Евроданс
+16:28:29.464 -> ##CLI.VOL#: 24
+16:28:29.464 -> ##CLI.PLAYING#
+16:28:29.464 -> ##AUDIO.INFO#: stream ready
+16:28:29.464 -> ##AUDIO.INFO#: syncword found at pos 0
+16:28:29.464 -> ##CLI.META#: Евроданс
+16:28:29.464 -> ##AUDIO.INFO#: MPEG-1 Layer III
+16:28:29.464 -> ##AUDIO.INFO#: Channels: 2
+16:28:29.464 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:28:29.464 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:28:29.510 -> ##AUDIO.INFO#: BitRate: 128000
+16:28:29.510 -> ##AUDIO.BITRATE#: 128000
+16:28:29.510 -> ##CLI.META#: Pharao - I Show You Secrets
+16:28:50.653 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+16:28:50.699 -> ##CLI.META#: Pharao - I Show You Secrets
+16:28:50.699 -> ##CLI.VOL#: 24
+16:28:50.699 -> ##CLI.INFO#
+16:28:50.699 -> ##SYS.DATE#: 2026-08-12T16:28:49+03:00
+16:28:50.699 -> ##CLI.NAMESET#: 165 Дискотека 80-х & 90-х
+16:28:50.699 -> ##CLI.META#: Pharao - I Show You Secrets
+16:28:50.699 -> ##CLI.VOL#: 24
+16:28:50.699 -> ##CLI.PLAYING#
+16:28:59.313 -> ##CLI.META#: [соединение]
+16:28:59.360 -> ##AUDIO.INFO#: Closing web file "https://listen4.myradio24.com:443/dance80" (ssl=1)
+16:28:59.360 -> ##AUDIO.INFO#: buffers freed, free Heap: 174268 bytes
+16:28:59.360 -> ##AUDIO.INFO#: connect to: "somafm.com" on port 443 path "/spacestation130.pls"
+16:29:00.242 -> ##AUDIO.INFO#: SSL has been established in 873 ms
+16:29:00.473 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_PLAYLISTINIT, streamType: WEBSTREAM
+16:29:00.473 -> ##CLI.META#: 
+16:29:00.473 -> ##CLI.INFO#
+16:29:00.473 -> ##SYS.DATE#: 2026-08-12T16:28:59+03:00
+16:29:00.473 -> ##CLI.NAMESET#: 300 Space Station Soma (aac-128)
+16:29:00.473 -> ##CLI.META#: 
+16:29:00.473 -> ##CLI.VOL#: 24
+16:29:00.473 -> ##CLI.PLAYING#
+16:29:00.473 -> ##AUDIO.INFO#: next URL: "https://ice2.somafm.com/spacestation-128-aac"
+16:29:01.537 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:29:01.861 -> ##AUDIO.INFO#: format is aac
+16:29:01.861 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:29:01.861 -> ##AUDIO.INFO#: icy-genre:  Ambient Space
+16:29:01.861 -> ##AUDIO.INFO#: icy-name: Space Station Soma from SomaFM.com [SomaFM]
+16:29:01.861 -> ##CLI.META#: Space Station Soma from SomaFM.com [SomaFM]
+16:29:01.861 -> ##AUDIO.INFO#: AACDecoder has been initialized
+16:29:01.861 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:01.861 -> ##AUDIO.INFO#: stream ready
+16:29:01.861 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:01.861 -> ##AUDIO.INFO#: Channels: 2
+16:29:01.861 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:01.907 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:01.907 -> ##AUDIO.INFO#: BitRate: 128000
+16:29:01.907 -> ##AUDIO.BITRATE#: 128000
+16:29:01.907 -> ##AUDIO.INFO#: AAC HeaderFormat: ADTS
+16:29:02.233 -> ##AUDIO.INFO#: Stream URL; StreamUrl='https://somafm.com/logos/512/spacestation512.png'
+16:29:02.233 -> ##CLI.META#: General Fuzz - Red Balloon
+16:29:05.250 -> ##CLI.META#: [соединение]
+16:29:05.296 -> ##AUDIO.INFO#: Closing web file "https://somafm.com/spacestation130.pls" (ssl=1)
+16:29:05.296 -> ##AUDIO.INFO#: buffers freed, free Heap: 174232 bytes
+16:29:05.296 -> ##AUDIO.INFO#: connect to: "somafm.com" on port 443 path "/spacestation.pls"
+16:29:06.129 -> ##AUDIO.INFO#: SSL has been established in 849 ms
+16:29:06.361 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_PLAYLISTINIT, streamType: WEBSTREAM
+16:29:06.361 -> ##CLI.META#: 
+16:29:06.361 -> ##AUDIO.INFO#: next URL: "https://ice2.somafm.com/spacestation-128-mp3"
+16:29:07.152 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:29:07.152 -> ##CLI.INFO#
+16:29:07.152 -> ##SYS.DATE#: 2026-08-12T16:29:05+03:00
+16:29:07.152 -> ##CLI.NAMESET#: 299 Space Station Soma (mp3-128)
+16:29:07.198 -> ##CLI.META#: 
+16:29:07.198 -> ##CLI.VOL#: 24
+16:29:07.198 -> ##CLI.PLAYING#
+16:29:07.476 -> ##AUDIO.INFO#: format is mp3
+16:29:07.476 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:29:07.476 -> ##AUDIO.INFO#: icy-genre:  Space Electronica
+16:29:07.476 -> ##AUDIO.INFO#: icy-name: Space Station Soma: Tune in, turn on, space out. Ambient and mid-tempo electronica. [SomaFM]
+16:29:07.476 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+16:29:07.476 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:07.522 -> ##CLI.META#: Space Station Soma: Tune in, turn on, space out. Ambient and mid-tempo electronica. [SomaFM]
+16:29:07.522 -> ##AUDIO.INFO#: stream ready
+16:29:07.522 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:07.522 -> ##AUDIO.INFO#: MPEG-1 Layer III
+16:29:07.522 -> ##AUDIO.INFO#: Channels: 2
+16:29:07.522 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:07.522 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:07.522 -> ##AUDIO.INFO#: BitRate: 128000
+16:29:07.522 -> ##AUDIO.BITRATE#: 128000
+16:29:07.848 -> ##AUDIO.INFO#: Stream URL; StreamUrl='https://somafm.com/logos/512/spacestation512.png'
+16:29:07.848 -> ##CLI.META#: General Fuzz - Red Balloon
+16:29:11.142 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+16:29:15.274 -> ##CLI.META#: [соединение]
+16:29:15.320 -> ##AUDIO.INFO#: Closing web file "https://somafm.com/spacestation.pls" (ssl=1)
+16:29:15.320 -> ##AUDIO.INFO#: buffers freed, free Heap: 173804 bytes
+16:29:15.320 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+16:29:15.553 -> ##AUDIO.INFO#: Connection has been established in 248 ms
+16:29:15.645 -> ##AUDIO.INFO#: format is ogg
+16:29:15.645 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+16:29:15.645 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:15.645 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+16:29:15.645 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:15.692 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:15.692 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:15.692 -> ##AUDIO.INFO#: format is flac
+16:29:15.692 -> ##AUDIO.INFO#: stream ready
+16:29:15.692 -> ##CLI.INFO#
+16:29:15.692 -> ##SYS.DATE#: 2026-08-12T16:29:14+03:00
+16:29:15.692 -> ##CLI.NAMESET#: 314 (flc) Paradise Mellow
+16:29:15.692 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:15.692 -> ##CLI.VOL#: 24
+16:29:15.692 -> ##CLI.PLAYING#
+16:29:15.692 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:15.784 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:15.831 -> ##AUDIO.INFO#: Channels: 2
+16:29:15.831 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:15.877 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:15.877 -> ##AUDIO.INFO#: BitRate: 1441000
+16:29:15.877 -> ##AUDIO.BITRATE#: 1441000
+16:29:16.713 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:18.522 -> ##CLI.META#: [соединение]
+16:29:18.616 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+16:29:18.616 -> ##AUDIO.INFO#: buffers freed, free Heap: 174084 bytes
+16:29:18.616 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+16:29:19.035 -> ##AUDIO.INFO#: SSL has been established in 419 ms
+16:29:19.220 -> ##AUDIO.INFO#: format is ogg
+16:29:19.220 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+16:29:19.220 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:19.220 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:19.220 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+16:29:19.220 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:19.265 -> ##CLI.INFO#
+16:29:19.265 -> ##SYS.DATE#: 2026-08-12T16:29:18+03:00
+16:29:19.265 -> ##CLI.NAMESET#: 315 (flc) Paradise Mellow
+16:29:19.265 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:19.265 -> ##CLI.VOL#: 24
+16:29:19.265 -> ##CLI.PLAYING#
+16:29:19.265 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:19.265 -> ##AUDIO.INFO#: format is flac
+16:29:19.265 -> ##AUDIO.INFO#: stream ready
+16:29:19.265 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+16:29:19.448 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:19.495 -> ##AUDIO.INFO#: Channels: 2
+16:29:19.495 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:19.495 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:19.495 -> ##AUDIO.INFO#: BitRate: 1441000
+16:29:19.495 -> ##AUDIO.BITRATE#: 1441000
+16:29:20.285 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:24.004 -> ##CLI.META#: [соединение]
+16:29:24.096 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+16:29:24.096 -> ##AUDIO.INFO#: buffers freed, free Heap: 173784 bytes
+16:29:24.142 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/flac"
+16:29:24.188 -> ##AUDIO.INFO#: Connection has been established in 75 ms
+16:29:24.280 -> ##AUDIO.INFO#: format is ogg
+16:29:24.280 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+16:29:24.280 -> ##AUDIO.INFO#: icy-name: Radio Paradise (flac) - playlist: radioparadise.com
+16:29:24.280 -> ##CLI.META#: Radio Paradise (flac) - playlist: radioparadise.com
+16:29:24.327 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+16:29:24.327 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:24.327 -> ##CLI.INFO#
+16:29:24.327 -> ##SYS.DATE#: 2026-08-12T16:29:23+03:00
+16:29:24.327 -> ##CLI.NAMESET#: 312 (flc) Paradise Main
+16:29:24.327 -> ##CLI.META#: Radio Paradise (flac) - playlist: radioparadise.com
+16:29:24.327 -> ##CLI.VOL#: 24
+16:29:24.327 -> ##CLI.PLAYING#
+16:29:24.327 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:24.327 -> ##AUDIO.INFO#: format is flac
+16:29:24.373 -> ##AUDIO.INFO#: stream ready
+16:29:24.373 -> ##CLI.META#: Radio Paradise (flac) - playlist: radioparadise.com
+16:29:24.466 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:24.513 -> ##AUDIO.INFO#: Channels: 2
+16:29:24.513 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:24.513 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:24.513 -> ##AUDIO.INFO#: BitRate: 1441000
+16:29:24.513 -> ##AUDIO.BITRATE#: 1441000
+16:29:25.348 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:26.878 -> ##CLI.META#: [соединение]
+16:29:27.016 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/flac" (ssl=0)
+16:29:27.016 -> ##AUDIO.INFO#: buffers freed, free Heap: 173772 bytes
+16:29:27.016 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/flacm"
+16:29:27.063 -> ##AUDIO.INFO#: Connection has been established in 75 ms
+16:29:27.156 -> ##AUDIO.INFO#: format is ogg
+16:29:27.156 -> ##AUDIO.INFO#: icy-bitrate : 1442000 (b/s)
+16:29:27.156 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+16:29:27.156 -> ##AUDIO.INFO#: icy-name: Radio Paradise (flac)
+16:29:27.156 -> ##CLI.META#: Radio Paradise (flac)
+16:29:27.202 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:27.202 -> ##CLI.INFO#
+16:29:27.202 -> ##SYS.DATE#: 2026-08-12T16:29:25+03:00
+16:29:27.202 -> ##CLI.NAMESET#: 313 (flcm) Paradise Main
+16:29:27.202 -> ##CLI.META#: Radio Paradise (flac)
+16:29:27.202 -> ##CLI.VOL#: 24
+16:29:27.202 -> ##CLI.PLAYING#
+16:29:27.202 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:27.202 -> ##AUDIO.INFO#: format is flac
+16:29:27.202 -> ##AUDIO.INFO#: stream ready
+16:29:27.202 -> ##CLI.META#: Radio Paradise (flac)
+16:29:27.340 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:27.618 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:27.664 -> ##AUDIO.INFO#: Channels: 2
+16:29:27.664 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:27.664 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:27.664 -> ##AUDIO.INFO#: BitRate: 1442000
+16:29:27.664 -> ##AUDIO.BITRATE#: 1442000
+16:29:28.360 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:29.381 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:30.588 -> ##CLI.META#: [соединение]
+16:29:30.680 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/flacm" (ssl=0)
+16:29:30.680 -> ##AUDIO.INFO#: buffers freed, free Heap: 173764 bytes
+16:29:30.680 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/global-flacm"
+16:29:30.773 -> ##AUDIO.INFO#: Connection has been established in 74 ms
+16:29:30.819 -> ##AUDIO.INFO#: format is ogg
+16:29:30.819 -> ##AUDIO.INFO#: icy-bitrate : 1442000 (b/s)
+16:29:30.819 -> ##AUDIO.INFO#: icy-genre:  World
+16:29:30.819 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Global Mix (flac)
+16:29:30.866 -> ##CLI.META#: Radio Paradise: Global Mix (flac)
+16:29:30.866 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:30.866 -> ##CLI.INFO#
+16:29:30.866 -> ##SYS.DATE#: 2026-08-12T16:29:29+03:00
+16:29:30.866 -> ##CLI.NAMESET#: 318 (flcm) Paradise Global
+16:29:30.866 -> ##CLI.META#: Radio Paradise: Global Mix (flac)
+16:29:30.866 -> ##CLI.VOL#: 24
+16:29:30.866 -> ##CLI.PLAYING#
+16:29:30.866 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:30.866 -> ##AUDIO.INFO#: format is flac
+16:29:30.866 -> ##AUDIO.INFO#: stream ready
+16:29:30.866 -> ##CLI.META#: Radio Paradise: Global Mix (flac)
+16:29:31.004 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:31.050 -> ##AUDIO.INFO#: Channels: 2
+16:29:31.050 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:31.050 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:31.050 -> ##AUDIO.INFO#: BitRate: 1442000
+16:29:31.050 -> ##AUDIO.BITRATE#: 1442000
+16:29:31.375 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:32.304 -> ##CLI.META#: Bruut - Diga
+16:29:32.350 -> ##CLI.META#: [соединение]
+16:29:32.442 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/global-flacm" (ssl=0)
+16:29:32.442 -> ##AUDIO.INFO#: buffers freed, free Heap: 173752 bytes
+16:29:32.442 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/eclectic-flac"
+16:29:32.536 -> ##AUDIO.INFO#: Connection has been established in 69 ms
+16:29:32.629 -> ##AUDIO.INFO#: format is ogg
+16:29:32.629 -> ##AUDIO.INFO#: icy-genre:  World
+16:29:32.629 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+16:29:32.629 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+16:29:32.629 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+16:29:32.629 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:32.629 -> ##CLI.INFO#
+16:29:32.629 -> ##SYS.DATE#: 2026-08-12T16:29:31+03:00
+16:29:32.675 -> ##CLI.NAMESET#: 319 (flc) Paradise World/Eclectic
+16:29:32.675 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+16:29:32.675 -> ##CLI.VOL#: 24
+16:29:32.675 -> ##CLI.PLAYING#
+16:29:32.675 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:32.675 -> ##AUDIO.INFO#: format is flac
+16:29:32.675 -> ##AUDIO.INFO#: stream ready
+16:29:32.675 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+16:29:32.813 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:32.859 -> ##AUDIO.INFO#: Channels: 2
+16:29:32.859 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:32.859 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:32.859 -> ##AUDIO.INFO#: BitRate: 1441000
+16:29:32.859 -> ##AUDIO.BITRATE#: 1441000
+16:29:33.693 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:34.852 -> ##CLI.META#: [соединение]
+16:29:35.038 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/eclectic-flac" (ssl=0)
+16:29:35.038 -> ##AUDIO.INFO#: buffers freed, free Heap: 173936 bytes
+16:29:35.038 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/radio2050-flacm"
+16:29:35.456 -> ##AUDIO.INFO#: SSL has been established in 418 ms
+16:29:35.597 -> ##AUDIO.INFO#: format is ogg
+16:29:35.597 -> ##AUDIO.INFO#: icy-bitrate : 1442000 (b/s)
+16:29:35.597 -> ##AUDIO.INFO#: icy-genre:  Talk/Music
+16:29:35.597 -> ##AUDIO.INFO#: icy-name: Radio2050 (flac)
+16:29:35.597 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:35.597 -> ##CLI.META#: Radio2050 (flac)
+16:29:35.597 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:35.597 -> ##AUDIO.INFO#: format is flac
+16:29:35.597 -> ##AUDIO.INFO#: stream ready
+16:29:35.597 -> ##CLI.INFO#
+16:29:35.597 -> ##SYS.DATE#: 2026-08-12T16:29:34+03:00
+16:29:35.597 -> ##CLI.NAMESET#: 320 (flcm) Paradise Radio2050
+16:29:35.644 -> ##CLI.META#: Radio2050 (flac)
+16:29:35.644 -> ##CLI.VOL#: 24
+16:29:35.644 -> ##CLI.PLAYING#
+16:29:35.644 -> ##CLI.META#: Radio2050 (flac)
+16:29:35.690 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:35.784 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:35.830 -> ##AUDIO.INFO#: Channels: 2
+16:29:35.830 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:35.830 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:35.830 -> ##AUDIO.INFO#: BitRate: 1442000
+16:29:35.830 -> ##AUDIO.BITRATE#: 1442000
+16:29:36.715 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:37.086 -> ##CLI.META#: Radio 2050
+16:29:38.294 -> ##CLI.META#: [соединение]
+16:29:38.385 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/radio2050-flacm" (ssl=1)
+16:29:38.431 -> ##AUDIO.INFO#: buffers freed, free Heap: 173908 bytes
+16:29:38.431 -> ##AUDIO.INFO#: connect to: "maxxima.mine.nu" on port 8000 path "/maxx.ogg"
+16:29:38.572 -> ##AUDIO.INFO#: Connection has been established in 138 ms
+16:29:43.077 -> ##CLI.META#: timeout
+16:29:43.077 -> ##ERROR#:	timeout
+16:29:43.077 -> ##ERROR#:	timeout
+16:29:43.077 -> ##AUDIO.INFO#: buffers freed, free Heap: 173736 bytes
+16:29:43.077 -> ##AUDIO.INFO#: connect to: "maxxima.mine.nu" on port 8000 path "/maxx.ogg"
+16:29:43.122 -> ##AUDIO.INFO#: Connection has been established in 61 ms
+16:29:43.122 -> ##CLI.INFO#
+16:29:43.122 -> ##SYS.DATE#: 2026-08-12T16:29:41+03:00
+16:29:43.122 -> ##CLI.NAMESET#: 321 (flc) Maxxima
+16:29:43.168 -> ##CLI.VOL#: 24
+16:29:43.168 -> ##CLI.STOPPED#
+16:29:47.667 -> ##ERROR#:	timeout
+16:29:47.667 -> ##ERROR#:	timeout
+16:29:47.667 -> ##AUDIO.INFO#: buffers freed, free Heap: 173584 bytes
+16:29:47.667 -> ##AUDIO.INFO#: connect to: "maxxima.mine.nu" on port 8000 path "/maxx.ogg"
+16:29:47.713 -> ##AUDIO.INFO#: Connection has been established in 62 ms
+16:29:52.209 -> ##CLI.META#: timeout
+16:29:52.209 -> ##ERROR#:	timeout
+16:29:52.209 -> ##ERROR#:	timeout
+16:29:52.255 -> ##AUDIO.INFO#: buffers freed, free Heap: 171992 bytes
+16:29:52.255 -> ##AUDIO.INFO#: connect to: "maxxima.mine.nu" on port 8000 path "/maxx.ogg"
+16:29:52.301 -> ##AUDIO.INFO#: Connection has been established in 60 ms
+16:29:56.808 -> ##ERROR#:	timeout
+16:29:56.808 -> ##ERROR#:	timeout
+16:29:56.808 -> ##CLI.META#: timeout
+16:29:56.808 -> ##CLI.META#: timeout
+16:29:56.808 -> ##CLI.META#: timeout
+16:29:56.808 -> [WEBSOCKET] client #1 disconnected
+16:29:56.854 -> ##CLI.META#: [соединение]
+16:29:56.854 -> [WEBSOCKET] client #2 disconnected
+16:29:56.946 -> ##AUDIO.INFO#: buffers freed, free Heap: 174636 bytes
+16:29:56.946 -> ##AUDIO.INFO#: connect to: "streams.norbert.de" on port 443 path "/zappa.flac"
+16:29:57.456 -> ##AUDIO.INFO#: SSL has been established in 551 ms
+16:29:57.781 -> ##AUDIO.INFO#: format is ogg
+16:29:57.781 -> ##AUDIO.INFO#: icy-genre:  Zappa
+16:29:57.781 -> ##AUDIO.INFO#: icy-name: Zappa Stream Radio
+16:29:57.781 -> ##CLI.META#: Zappa Stream Radio
+16:29:57.827 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:29:57.827 -> ##CLI.INFO#
+16:29:57.827 -> ##SYS.DATE#: 2026-08-12T16:29:48+03:00
+16:29:57.827 -> ##CLI.NAMESET#: 322 (flc) Norbert - https
+16:29:57.827 -> ##CLI.META#: Zappa Stream Radio
+16:29:57.827 -> ##CLI.VOL#: 24
+16:29:57.827 -> ##CLI.PLAYING#
+16:29:57.827 -> ##CLI.META#: Zappa Stream Radio
+16:29:58.059 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:29:58.059 -> ##AUDIO.INFO#: format is flac
+16:29:58.059 -> ##AUDIO.INFO#: stream ready
+16:29:58.199 -> ##AUDIO.INFO#: syncword found at pos 0
+16:29:58.245 -> ##CLI.META#: Frank Zappa - The Black Page #2
+16:29:58.245 -> ##AUDIO.INFO#: Channels: 2
+16:29:58.245 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:29:58.245 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:29:58.245 -> ##AUDIO.INFO#: BitRate: 1155127
+16:29:58.245 -> ##AUDIO.BITRATE#: 1155127
+16:29:58.893 -> [WEBSOCKET] client #3 connected from 192.168.1.96
+16:29:59.079 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:29:59.171 -> [WEBSOCKET] client #4 connected from 192.168.1.96
+16:30:00.053 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:30:00.615 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.662 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.662 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.708 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.708 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.755 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.755 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.801 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.801 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.848 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.848 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.895 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.895 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.941 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.941 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.989 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:00.989 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.035 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.035 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.082 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.082 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.129 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.129 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.176 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.176 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.222 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.222 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.268 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.268 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.315 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.315 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.361 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.361 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.408 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.408 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.456 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.502 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.502 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.502 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.629 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.629 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.629 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.629 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.629 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.644 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.691 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.691 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.738 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.738 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.784 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.784 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.832 -> ##CLI.META#: Decode stalled -> reconnect #1 (webstream)
+16:30:01.832 -> ##ERROR#:	Decode stalled -> reconnect #1 (webstream)
+16:30:01.832 -> ##ERROR#:	Decode stalled -> reconnect #1 (webstream)
+16:30:01.832 -> ##AUDIO.INFO#: syncword found at pos 54995
+16:30:01.832 -> ##AUDIO.INFO#: Closing web file "https://streams.norbert.de/zappa.flac" (ssl=1)
+16:30:01.832 -> ##AUDIO.INFO#: buffers freed, free Heap: 173464 bytes
+16:30:01.832 -> ##AUDIO.INFO#: connect to: "streams.norbert.de" on port 443 path "/zappa.flac"
+16:30:02.253 -> ##AUDIO.INFO#: SSL has been established in 405 ms
+16:30:02.630 -> ##AUDIO.INFO#: format is ogg
+16:30:02.630 -> ##AUDIO.INFO#: icy-genre:  Zappa
+16:30:02.630 -> ##AUDIO.INFO#: icy-name: Zappa Stream Radio
+16:30:02.630 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:30:02.907 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:30:02.907 -> ##AUDIO.INFO#: format is flac
+16:30:02.907 -> ##AUDIO.INFO#: stream ready
+16:30:03.046 -> ##AUDIO.INFO#: syncword found at pos 0
+16:30:03.092 -> ##CLI.META#: Frank Zappa - The Black Page #2
+16:30:03.092 -> ##AUDIO.INFO#: Channels: 2
+16:30:03.092 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:30:03.092 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:30:03.138 -> ##AUDIO.INFO#: BitRate: 1120415
+16:30:03.138 -> ##AUDIO.BITRATE#: 1120415
+16:30:03.878 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:30:05.366 -> ##CLI.META#: [соединение]
+16:30:05.551 -> ##AUDIO.INFO#: Closing web file "https://streams.norbert.de/zappa.flac" (ssl=1)
+16:30:05.551 -> ##AUDIO.INFO#: buffers freed, free Heap: 173932 bytes
+16:30:05.551 -> ##AUDIO.INFO#: connect to: "streams.norbert.de" on port 8000 path "/zappa.flac"
+16:30:05.598 -> ##AUDIO.INFO#: Connection has been established in 58 ms
+16:30:05.969 -> ##AUDIO.INFO#: format is ogg
+16:30:05.969 -> ##AUDIO.INFO#: icy-genre: Zappa
+16:30:05.969 -> ##AUDIO.INFO#: icy-name: Zappa Stream Radio
+16:30:05.969 -> ##CLI.META#: Zappa Stream Radio
+16:30:05.969 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:30:05.969 -> ##CLI.INFO#
+16:30:05.969 -> ##SYS.DATE#: 2026-08-12T16:29:56+03:00
+16:30:05.969 -> ##CLI.NAMESET#: 323 (flc) Norbert - shoutcast
+16:30:05.969 -> ##CLI.META#: Zappa Stream Radio
+16:30:06.015 -> ##CLI.VOL#: 24
+16:30:06.015 -> ##CLI.PLAYING#
+16:30:06.015 -> ##CLI.META#: Zappa Stream Radio
+16:30:06.200 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:30:06.200 -> ##AUDIO.INFO#: format is flac
+16:30:06.247 -> ##AUDIO.INFO#: stream ready
+16:30:06.711 -> ##AUDIO.INFO#: syncword found at pos 0
+16:30:06.758 -> ##CLI.META#: Frank Zappa - The Black Page #2
+16:30:06.758 -> ##AUDIO.INFO#: Channels: 2
+16:30:06.758 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:30:06.758 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:30:06.758 -> ##AUDIO.INFO#: BitRate: 1134283
+16:30:06.758 -> ##AUDIO.BITRATE#: 1134283
+16:30:07.222 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:30:08.242 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:30:09.217 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:30:09.775 -> ##CLI.META#: [соединение]
+16:30:09.868 -> ##AUDIO.INFO#: Closing web file "http://streams.norbert.de:8000/zappa.flac" (ssl=0)
+16:30:09.868 -> ##AUDIO.INFO#: buffers freed, free Heap: 173952 bytes
+16:30:09.868 -> ##AUDIO.INFO#: connect to: "dancewave.online" on port 443 path "/dance.flac.ogg.m3u"
+16:30:10.611 -> ##AUDIO.INFO#: SSL has been established in 771 ms
+16:30:10.704 -> ##AUDIO.INFO#: Content-Range: bytes 0-447/448
+16:30:10.704 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+16:30:10.704 -> ##CLI.META#: 
+16:30:10.704 -> ##AUDIO.ID3#: http://dancewave.online/dance.flac.ogg
+16:30:10.704 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/dance.flac.ogg"
+16:30:10.750 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:30:10.750 -> ##CLI.INFO#
+16:30:10.750 -> ##SYS.DATE#: 2026-08-12T16:30:00+03:00
+16:30:10.750 -> ##CLI.NAMESET#: 324 (flc) Dance Wave
+16:30:10.750 -> ##CLI.META#: 
+16:30:10.750 -> ##CLI.VOL#: 24
+16:30:10.750 -> ##CLI.PLAYING#
+16:30:10.795 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/dance.flac.ogg"
+16:30:10.795 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/dance.flac.ogg"
+16:30:11.029 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:30:11.262 -> ##AUDIO.INFO#: format is ogg
+16:30:11.262 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dw_logo.png
+16:30:11.262 -> ##AUDIO.INFO#: icy-genre: Club Dance Electronic House Trance
+16:30:11.262 -> ##AUDIO.INFO#: icy-name: Dance Wave!
+16:30:11.262 -> ##CLI.META#: Dance Wave!
+16:30:11.262 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:30:11.495 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:30:11.495 -> ##AUDIO.INFO#: format is flac
+16:30:11.495 -> ##AUDIO.INFO#: stream ready
+16:30:11.635 -> ##AUDIO.INFO#: syncword found at pos 0
+16:30:11.681 -> ##CLI.META#: Dance Wave!
+16:30:11.727 -> ##AUDIO.INFO#: Channels: 2
+16:30:11.727 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:30:11.774 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:30:11.774 -> ##AUDIO.INFO#: BitRate: 999485
+16:30:11.774 -> ##AUDIO.BITRATE#: 999485
+16:30:12.517 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:30:18.962 -> ##CLI.META#: [соединение]
+16:30:19.053 -> ##AUDIO.INFO#: Closing web file "https://dancewave.online/dance.flac.ogg.m3u" (ssl=0)
+16:30:19.053 -> ##AUDIO.INFO#: buffers freed, free Heap: 173764 bytes
+16:30:19.053 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+16:30:19.796 -> ##AUDIO.INFO#: SSL has been established in 730 ms
+16:30:19.842 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+16:30:19.842 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+16:30:20.399 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:30:20.399 -> ##CLI.META#: 
+16:30:20.491 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+16:30:20.491 -> ##CLI.INFO#
+16:30:20.491 -> ##SYS.DATE#: 2026-08-12T16:30:10+03:00
+16:30:20.491 -> ##CLI.NAMESET#: 325 (flc) Dance Wave Retro!
+16:30:20.491 -> ##CLI.META#: 
+16:30:20.491 -> ##CLI.VOL#: 24
+16:30:20.491 -> ##CLI.PLAYING#
+16:30:20.491 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+16:30:20.491 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+16:30:20.491 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:30:20.538 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+16:30:20.538 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+16:30:20.629 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:30:20.907 -> ##AUDIO.INFO#: format is ogg
+16:30:20.954 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+16:30:20.954 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+16:30:20.954 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+16:30:20.954 -> ##CLI.META#: Dance Wave Retro!
+16:30:20.954 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:30:21.185 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:30:21.185 -> ##AUDIO.INFO#: format is flac
+16:30:21.185 -> ##AUDIO.INFO#: stream ready
+16:30:21.371 -> ##AUDIO.INFO#: syncword found at pos 0
+16:30:21.371 -> ##CLI.META#: Dance Wave Retro!
+16:30:21.417 -> ##AUDIO.INFO#: Channels: 2
+16:30:21.417 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:30:21.463 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:30:21.463 -> ##AUDIO.INFO#: BitRate: 966582
+16:30:21.463 -> ##AUDIO.BITRATE#: 966582
+16:30:22.205 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:30:24.660 -> ##CLI.META#: [соединение]
+16:30:24.752 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+16:30:24.752 -> ##AUDIO.INFO#: buffers freed, free Heap: 173772 bytes
+16:30:24.752 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:30:24.985 -> ##AUDIO.INFO#: Connection has been established in 209 ms
+16:30:29.531 -> ##CLI.META#: timeout
+16:30:29.531 -> ##ERROR#:	timeout
+16:30:29.531 -> ##ERROR#:	timeout
+16:30:29.531 -> ##AUDIO.INFO#: buffers freed, free Heap: 173732 bytes
+16:30:29.531 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:30:29.578 -> ##AUDIO.INFO#: Connection has been established in 63 ms
+16:30:29.578 -> ##CLI.INFO#
+16:30:29.624 -> ##SYS.DATE#: 2026-08-12T16:30:19+03:00
+16:30:29.624 -> ##CLI.NAMESET#: 326 (flc) DHECTAR Dance
+16:30:29.624 -> ##CLI.VOL#: 24
+16:30:29.624 -> ##CLI.STOPPED#
+16:30:34.118 -> ##ERROR#:	timeout
+16:30:34.118 -> ##ERROR#:	timeout
+16:30:34.118 -> ##AUDIO.INFO#: buffers freed, free Heap: 173372 bytes
+16:30:34.118 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:30:34.211 -> ##AUDIO.INFO#: Connection has been established in 70 ms
+16:30:38.709 -> ##CLI.META#: timeout
+16:30:38.709 -> ##ERROR#:	timeout
+16:30:38.709 -> ##ERROR#:	timeout
+16:30:38.709 -> ##AUDIO.INFO#: buffers freed, free Heap: 171772 bytes
+16:30:38.709 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:30:38.756 -> ##AUDIO.INFO#: Connection has been established in 68 ms
+16:30:43.306 -> ##ERROR#:	timeout
+16:30:43.306 -> ##ERROR#:	timeout
+16:30:43.306 -> ##CLI.META#: timeout
+16:30:43.306 -> ##CLI.META#: timeout
+16:30:43.306 -> ##CLI.META#: timeout
+16:30:43.306 -> [WEBSOCKET] client #3 disconnected
+16:30:43.306 -> ##CLI.META#: [соединение]
+16:30:43.306 -> [WEBSOCKET] client #4 disconnected
+16:30:43.352 -> ##AUDIO.INFO#: buffers freed, free Heap: 174780 bytes
+16:30:43.352 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1110 path "/stream"
+16:30:43.445 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:30:43.445 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:30:43.445 -> # WEB connect retry 2/3 for http://manager.dhectar.fr:1110/stream after 300ms
+16:30:43.771 -> ##AUDIO.INFO#: buffers freed, free Heap: 174996 bytes
+16:30:43.771 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1110 path "/stream"
+16:30:43.817 -> ##CLI.META#: Request http://manager.dhectar.fr:1110/stream failed!
+16:30:43.817 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:30:43.863 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:30:43.863 -> # WEB connect retry 3/3 for http://manager.dhectar.fr:1110/stream after 1000ms
+16:30:44.840 -> ##AUDIO.INFO#: buffers freed, free Heap: 174996 bytes
+16:30:44.840 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1110 path "/stream"
+16:30:44.933 -> ##CLI.META#: Request http://manager.dhectar.fr:1110/stream failed!
+16:30:44.933 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:30:44.933 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:30:44.933 -> ##ERROR#:	Error connecting to http://manager.dhectar.fr:1110/stream
+16:30:44.933 -> ##ERROR#:	Error connecting to http://manager.dhectar.fr:1110/stream
+16:30:44.933 -> ##AUDIO.INFO#: buffers freed, free Heap: 174996 bytes
+16:30:44.933 -> ##CLI.META#: Error connecting to http://manager.dhectar.fr:1110/stream
+16:30:44.980 -> ##CLI.META#: Error connecting to http://manager.dhectar.fr:1110/stream
+16:30:44.980 -> ##CLI.INFO#
+16:30:44.980 -> ##SYS.DATE#: 2026-08-12T16:30:26+03:00
+16:30:44.980 -> ##CLI.NAMESET#: 327 (flc) DHECTAR Hits
+16:30:44.980 -> ##CLI.VOL#: 24
+16:30:44.980 -> ##CLI.STOPPED#
+16:30:45.351 -> [WEBSOCKET] client #5 connected from 192.168.1.96
+16:30:46.142 -> [WEBSOCKET] client #6 connected from 192.168.1.96
+16:31:19.622 -> ##CLI.META#: [соединение]
+16:31:19.669 -> ##AUDIO.INFO#: buffers freed, free Heap: 173896 bytes
+16:31:19.669 -> ##AUDIO.INFO#: connect to: "stream10.xdevel.com" on port 443 path "/audio15s976748-2280/stream/icecast.audio"
+16:31:20.550 -> ##AUDIO.INFO#: SSL has been established in 892 ms
+16:31:20.643 -> ##AUDIO.INFO#: format is ogg
+16:31:20.643 -> ##AUDIO.INFO#: icy-name: stream
+16:31:20.643 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:31:20.643 -> ##CLI.META#: stream
+16:31:20.643 -> ##CLI.INFO#
+16:31:20.643 -> ##SYS.DATE#: 2026-08-12T16:31:02+03:00
+16:31:20.643 -> ##CLI.NAMESET#: 328 (flc) Djam Radio - Eclectic popular music
+16:31:20.689 -> ##CLI.META#: stream
+16:31:20.689 -> ##CLI.VOL#: 24
+16:31:20.689 -> ##CLI.PLAYING#
+16:31:20.689 -> ##CLI.META#: stream
+16:31:20.735 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:31:20.735 -> ##AUDIO.INFO#: format is flac
+16:31:20.735 -> ##AUDIO.INFO#: stream ready
+16:31:20.827 -> ##AUDIO.INFO#: syncword found at pos 0
+16:31:20.966 -> ##AUDIO.INFO#: Channels: 2
+16:31:20.966 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:31:20.966 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:31:20.966 -> ##AUDIO.INFO#: BitRate: 881913
+16:31:20.966 -> ##AUDIO.BITRATE#: 881913
+16:31:21.754 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:31:23.842 -> ##CLI.META#: [соединение]
+16:31:23.981 -> ##AUDIO.INFO#: Closing web file "https://stream10.xdevel.com/audio15s976748-2280/stream/icecast.audio" (ssl=1)
+16:31:23.981 -> ##AUDIO.INFO#: buffers freed, free Heap: 173776 bytes
+16:31:23.981 -> ##AUDIO.INFO#: connect to: "frequence3.net-radio.fr" on port 443 path "/frequence3dance.flac"
+16:31:25.141 -> ##AUDIO.INFO#: SSL has been established in 1153 ms
+16:31:25.234 -> ##AUDIO.INFO#: format is ogg
+16:31:25.234 -> ##AUDIO.INFO#: icy-bitrate : 1536000 (b/s)
+16:31:25.234 -> ##AUDIO.INFO#: icy-genre:  House & Dance
+16:31:25.234 -> ##AUDIO.INFO#: icy-name: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:31:25.234 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:31:25.234 -> ##CLI.META#: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:31:25.234 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:31:25.234 -> ##AUDIO.INFO#: format is flac
+16:31:25.280 -> ##AUDIO.INFO#: stream ready
+16:31:25.280 -> ##CLI.INFO#
+16:31:25.280 -> ##SYS.DATE#: 2026-08-12T16:31:06+03:00
+16:31:25.280 -> ##CLI.NAMESET#: 329 (flc) Frequence3 - Dance
+16:31:25.280 -> ##CLI.META#: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:31:25.280 -> ##CLI.VOL#: 24
+16:31:25.280 -> ##CLI.PLAYING#
+16:31:25.280 -> ##CLI.META#: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:31:25.465 -> ##AUDIO.INFO#: syncword found at pos 0
+16:31:25.603 -> ##AUDIO.INFO#: Closing web file "https://frequence3.net-radio.fr/frequence3dance.flac" (ssl=1)
+16:31:25.603 -> ##CLI.META#: [остановлено]
+16:31:25.603 -> ##AUDIO.INFO#: buffers freed, free Heap: 173620 bytes
+16:31:25.649 -> ##CLI.INFO#
+16:31:25.649 -> ##SYS.DATE#: 2026-08-12T16:31:07+03:00
+16:31:25.649 -> ##CLI.NAMESET#: 329 (flc) Frequence3 - Dance
+16:31:25.649 -> ##CLI.VOL#: 24
+16:31:25.649 -> ##CLI.STOPPED#
+16:31:28.664 -> ##CLI.META#: [соединение]
+16:31:28.756 -> ##AUDIO.INFO#: buffers freed, free Heap: 173580 bytes
+16:31:28.756 -> ##AUDIO.INFO#: connect to: "hd.stream.frequence3.net" on port 80 path "/frequence3.flac"
+16:31:29.128 -> ##AUDIO.INFO#: Connection has been established in 408 ms
+16:31:29.220 -> ##AUDIO.INFO#: redirect to new host "https://hd.stream.frequence3.net/frequence3.flac"
+16:31:29.220 -> ##AUDIO.INFO#: next URL: "https://hd.stream.frequence3.net/frequence3.flac"
+16:31:29.220 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:31:29.266 -> ##CLI.META#: 
+16:31:29.313 -> ##CLI.INFO#
+16:31:29.313 -> ##SYS.DATE#: 2026-08-12T16:31:11+03:00
+16:31:29.313 -> ##CLI.NAMESET#: 330 (flc) Frequence3 - French Webradio live from Paris
+16:31:29.313 -> ##CLI.VOL#: 24
+16:31:29.313 -> ##CLI.STOPPED#
+16:31:29.313 -> ##ERROR#:	unknown content found at: https://hd.stream.frequence3.net/frequence3.flac
+16:31:29.313 -> ##ERROR#:	unknown content found at: https://hd.stream.frequence3.net/frequence3.flac
+16:31:29.359 -> ##AUDIO.INFO#: Closing web file "http://hd.stream.frequence3.net/frequence3.flac" (ssl=1)
+16:31:29.359 -> ##CLI.META#: unknown content found at: https://hd.stream.frequence3.net/freq
+16:31:46.841 -> ##CLI.META#: [соединение]
+16:31:46.887 -> ##AUDIO.INFO#: buffers freed, free Heap: 173516 bytes
+16:31:46.887 -> ##AUDIO.INFO#: connect to: "stream.cor.insanityradio.com" on port 443 path "/insanity.flac"
+16:31:47.442 -> ##AUDIO.INFO#: SSL has been established in 546 ms
+16:31:47.627 -> ##AUDIO.INFO#: format is ogg
+16:31:47.627 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:31:47.674 -> ##CLI.META#: 
+16:31:47.674 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:31:47.674 -> ##AUDIO.INFO#: format is flac
+16:31:47.674 -> ##AUDIO.INFO#: stream ready
+16:31:47.674 -> ##CLI.INFO#
+16:31:47.674 -> ##SYS.DATE#: 2026-08-12T16:31:29+03:00
+16:31:47.674 -> ##CLI.NAMESET#: 331 (flc) Insanityradio - Community Radio on FM and Internet
+16:31:47.674 -> ##CLI.META#: 
+16:31:47.674 -> ##CLI.VOL#: 24
+16:31:47.674 -> ##CLI.PLAYING#
+16:31:47.674 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:31:47.814 -> ##AUDIO.INFO#: syncword found at pos 0
+16:31:47.861 -> ##AUDIO.INFO#: Channels: 2
+16:31:47.861 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:31:47.907 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:31:47.907 -> ##AUDIO.INFO#: BitRate: 1210941
+16:31:47.907 -> ##AUDIO.BITRATE#: 1210941
+16:31:48.699 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:31:51.404 -> ##CLI.META#: [соединение]
+16:31:51.499 -> ##AUDIO.INFO#: Closing web file "https://stream.cor.insanityradio.com/insanity.flac" (ssl=1)
+16:31:51.545 -> ##AUDIO.INFO#: buffers freed, free Heap: 173580 bytes
+16:31:51.545 -> ##AUDIO.INFO#: connect to: "secure.live-streams.nl" on port 443 path "/flac.flac"
+16:31:53.076 -> ##AUDIO.INFO#: SSL has been established in 1550 ms
+16:31:53.448 -> ##AUDIO.INFO#: format is ogg
+16:31:53.448 -> ##AUDIO.INFO#: icy-logo: https://www.intenseradio.net/wp-content/uploads/2023/09/intense-radio-vierkant-4d-2026.jpg
+16:31:53.448 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+16:31:53.448 -> ##AUDIO.INFO#: icy-genre:  Dance, House, Club classics, Trance, 90s, Melodic, Techno
+16:31:53.448 -> ##AUDIO.INFO#: icy-name: Intense Radio - We love Dance #HQ# FLAC
+16:31:53.448 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:31:53.448 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+16:31:53.448 -> ##CLI.INFO#
+16:31:53.448 -> ##SYS.DATE#: 2026-08-12T16:31:35+03:00
+16:31:53.448 -> ##CLI.NAMESET#: 332 (flc) Intenseradio - We Love Dance!
+16:31:53.494 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+16:31:53.494 -> ##CLI.VOL#: 24
+16:31:53.494 -> ##CLI.PLAYING#
+16:31:53.494 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+16:31:53.679 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:31:53.679 -> ##AUDIO.INFO#: format is flac
+16:31:53.679 -> ##AUDIO.INFO#: stream ready
+16:31:53.865 -> ##AUDIO.INFO#: syncword found at pos 0
+16:31:53.911 -> ##CLI.META#: Intense Radio - We love Dance
+16:31:53.911 -> ##AUDIO.INFO#: Channels: 2
+16:31:53.911 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:31:53.911 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:31:53.911 -> ##AUDIO.INFO#: BitRate: 1411000
+16:31:53.911 -> ##AUDIO.BITRATE#: 1411000
+16:31:54.326 -> ##CLI.META#: Tungevaag & Raaban feat. Jeffrey James - Cold Blood
+16:31:57.159 -> ##CLI.META#: [соединение]
+16:31:57.345 -> ##AUDIO.INFO#: Closing web file "https://secure.live-streams.nl/flac.flac" (ssl=1)
+16:31:57.345 -> ##AUDIO.INFO#: buffers freed, free Heap: 173748 bytes
+16:31:57.345 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:31:57.531 -> ##AUDIO.INFO#: Connection has been established in 197 ms
+16:31:57.716 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:31:57.716 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:31:57.716 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:31:57.763 -> ##CLI.META#: 
+16:31:57.901 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:31:57.901 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:31:58.134 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:31:58.181 -> ##CLI.INFO#
+16:31:58.181 -> ##SYS.DATE#: 2026-08-12T16:31:39+03:00
+16:31:58.181 -> ##CLI.NAMESET#: 333 (flc) Joy Hits - Fresh Music Only!
+16:31:58.181 -> ##CLI.META#: 
+16:31:58.181 -> ##CLI.VOL#: 24
+16:31:58.181 -> ##CLI.PLAYING#
+16:32:02.682 -> ##ERROR#:	timeout
+16:32:02.682 -> ##ERROR#:	timeout
+16:32:02.682 -> ##AUDIO.INFO#: buffers freed, free Heap: 173572 bytes
+16:32:02.682 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:02.728 -> ##AUDIO.INFO#: Connection has been established in 58 ms
+16:32:02.915 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:02.915 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:02.915 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:03.008 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:03.008 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:03.100 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:03.100 -> ##CLI.META#: timeout
+16:32:07.601 -> ##ERROR#:	timeout
+16:32:07.601 -> ##ERROR#:	timeout
+16:32:07.601 -> ##AUDIO.INFO#: buffers freed, free Heap: 173580 bytes
+16:32:07.601 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:07.647 -> ##AUDIO.INFO#: Connection has been established in 54 ms
+16:32:07.740 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:07.740 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:07.740 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:07.786 -> ##CLI.META#: timeout
+16:32:07.878 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:07.878 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:07.924 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:12.420 -> ##ERROR#:	timeout
+16:32:12.420 -> ##ERROR#:	timeout
+16:32:12.467 -> ##AUDIO.INFO#: buffers freed, free Heap: 173556 bytes
+16:32:12.467 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:12.513 -> ##AUDIO.INFO#: Connection has been established in 53 ms
+16:32:12.513 -> ##CLI.META#: timeout
+16:32:12.605 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:12.605 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:12.605 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:12.698 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:12.698 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:12.791 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:17.288 -> ##ERROR#:	timeout
+16:32:17.288 -> ##ERROR#:	timeout
+16:32:17.288 -> ##AUDIO.INFO#: buffers freed, free Heap: 173568 bytes
+16:32:17.288 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:17.380 -> ##AUDIO.INFO#: Connection has been established in 54 ms
+16:32:17.473 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:17.473 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:17.473 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:17.473 -> ##CLI.META#: timeout
+16:32:17.566 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:17.612 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:17.658 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:22.163 -> ##CLI.META#: timeout
+16:32:22.163 -> ##ERROR#:	timeout
+16:32:22.163 -> ##ERROR#:	timeout
+16:32:22.163 -> ##AUDIO.INFO#: buffers freed, free Heap: 173564 bytes
+16:32:22.163 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:22.256 -> ##AUDIO.INFO#: Connection has been established in 60 ms
+16:32:22.349 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:22.349 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:22.349 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:22.487 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:22.487 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:22.534 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:27.036 -> ##ERROR#:	timeout
+16:32:27.036 -> ##ERROR#:	timeout
+16:32:27.036 -> ##AUDIO.INFO#: buffers freed, free Heap: 173568 bytes
+16:32:27.036 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:27.128 -> ##AUDIO.INFO#: Connection has been established in 55 ms
+16:32:27.221 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:27.221 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:27.221 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:27.221 -> ##CLI.META#: timeout
+16:32:27.361 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:27.361 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:27.408 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:31.913 -> ##CLI.META#: timeout
+16:32:31.913 -> ##ERROR#:	timeout
+16:32:31.913 -> ##ERROR#:	timeout
+16:32:31.913 -> ##AUDIO.INFO#: buffers freed, free Heap: 173568 bytes
+16:32:31.913 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:31.960 -> ##AUDIO.INFO#: Connection has been established in 53 ms
+16:32:32.099 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:32.099 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:32.099 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:32.193 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:32.193 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:32.285 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:36.787 -> ##ERROR#:	timeout
+16:32:36.787 -> ##ERROR#:	timeout
+16:32:36.787 -> ##AUDIO.INFO#: buffers freed, free Heap: 173564 bytes
+16:32:36.787 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:36.834 -> ##AUDIO.INFO#: Connection has been established in 51 ms
+16:32:36.926 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:36.926 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:36.973 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:36.973 -> ##CLI.META#: timeout
+16:32:37.065 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:37.065 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:37.158 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:41.654 -> ##CLI.META#: timeout
+16:32:41.654 -> ##ERROR#:	timeout
+16:32:41.654 -> ##ERROR#:	timeout
+16:32:41.654 -> ##AUDIO.INFO#: buffers freed, free Heap: 173556 bytes
+16:32:41.654 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:41.700 -> ##AUDIO.INFO#: Connection has been established in 53 ms
+16:32:41.792 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:41.792 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:41.792 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:41.886 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:41.886 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:32:41.979 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:46.487 -> ##ERROR#:	timeout
+16:32:46.487 -> ##ERROR#:	timeout
+16:32:46.487 -> ##AUDIO.INFO#: buffers freed, free Heap: 172776 bytes
+16:32:46.487 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:32:46.533 -> ##AUDIO.INFO#: Connection has been established in 38 ms
+16:32:46.626 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:32:46.626 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:32:46.626 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:32:46.626 -> ##CLI.META#: timeout
+16:32:46.721 -> ##CLI.META#: HTTP/1.1 521 <none>
+16:32:46.721 -> ##ERROR#:	HTTP/1.1 521 <none>
+16:32:46.721 -> ##ERROR#:	HTTP/1.1 521 <none>
+16:32:46.767 -> ##CLI.META#: [соединение]
+16:32:46.767 -> ##AUDIO.INFO#: buffers freed, free Heap: 172492 bytes
+16:32:46.767 -> ##AUDIO.INFO#: connect to: "stream10.xdevel.com" on port 443 path "/audio17s976748-2218/stream/icecast.audio"
+16:32:47.371 -> ##AUDIO.INFO#: SSL has been established in 564 ms
+16:32:47.418 -> ##AUDIO.INFO#: format is ogg
+16:32:47.418 -> ##AUDIO.INFO#: icy-name: stream
+16:32:47.418 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:32:47.418 -> ##CLI.META#: stream
+16:32:47.418 -> ##CLI.INFO#
+16:32:47.418 -> ##SYS.DATE#: 2026-08-12T16:32:14+03:00
+16:32:47.463 -> ##CLI.NAMESET#: 334 (flc) Le Bon Mix
+16:32:47.463 -> ##CLI.META#: stream
+16:32:47.463 -> ##CLI.VOL#: 24
+16:32:47.463 -> ##CLI.PLAYING#
+16:32:47.463 -> ##CLI.META#: stream
+16:32:47.509 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:32:47.509 -> ##AUDIO.INFO#: format is flac
+16:32:47.509 -> ##AUDIO.INFO#: stream ready
+16:32:47.601 -> ##AUDIO.INFO#: syncword found at pos 0
+16:32:47.740 -> ##AUDIO.INFO#: Channels: 2
+16:32:47.740 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:32:47.740 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:32:47.740 -> ##AUDIO.INFO#: BitRate: 934454
+16:32:47.740 -> ##AUDIO.BITRATE#: 934454
+16:32:48.530 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:32:54.837 -> ##CLI.META#: [соединение]
+16:32:54.974 -> ##AUDIO.INFO#: Closing web file "https://stream10.xdevel.com/audio17s976748-2218/stream/icecast.audio" (ssl=1)
+16:32:54.974 -> ##AUDIO.INFO#: buffers freed, free Heap: 173560 bytes
+16:32:54.974 -> ##AUDIO.INFO#: connect to: "stream.lesonparisien.com" on port 80 path "/live.flac"
+16:32:55.068 -> ##AUDIO.INFO#: Connection has been established in 90 ms
+16:32:55.346 -> ##AUDIO.INFO#: format is ogg
+16:32:55.346 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:32:55.346 -> ##AUDIO.INFO#: icy-genre: Indie Alternative Electronic Lounge
+16:32:55.346 -> ##AUDIO.INFO#: icy-name: Le Son Parisien [Paris, France]
+16:32:55.346 -> ##CLI.META#: Le Son Parisien [Paris, France]
+16:32:55.346 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:32:55.346 -> ##CLI.INFO#
+16:32:55.346 -> ##SYS.DATE#: 2026-08-12T16:32:22+03:00
+16:32:55.346 -> ##CLI.NAMESET#: 335 (flc) Le Son Parisien - Electronic, Indie, Alternative and Lounge
+16:32:55.393 -> ##CLI.META#: Le Son Parisien [Paris, France]
+16:32:55.393 -> ##CLI.VOL#: 24
+16:32:55.393 -> ##CLI.PLAYING#
+16:32:55.393 -> ##CLI.META#: Le Son Parisien [Paris, France]
+16:32:55.578 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:32:55.578 -> ##AUDIO.INFO#: format is flac
+16:32:55.578 -> ##AUDIO.INFO#: stream ready
+16:32:56.042 -> ##AUDIO.INFO#: syncword found at pos 0
+16:32:56.089 -> ##AUDIO.INFO#: Channels: 2
+16:32:56.089 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:32:56.089 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:32:56.089 -> ##AUDIO.INFO#: BitRate: 128000
+16:32:56.089 -> ##AUDIO.BITRATE#: 128000
+16:32:56.599 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:32:58.550 -> ##CLI.META#: [соединение]
+16:32:58.644 -> ##AUDIO.INFO#: Closing web file "http://stream.lesonparisien.com/live.flac" (ssl=0)
+16:32:58.690 -> ##AUDIO.INFO#: buffers freed, free Heap: 173604 bytes
+16:32:58.690 -> ##AUDIO.INFO#: connect to: "stream.p-node.org" on port 443 path "/piano"
+16:32:59.573 -> ##AUDIO.INFO#: SSL has been established in 891 ms
+16:32:59.805 -> ##AUDIO.INFO#: format is ogg
+16:32:59.805 -> ##AUDIO.INFO#: icy-genre: Archive
+16:32:59.805 -> ##AUDIO.INFO#: icy-name: ∏ANO
+16:32:59.805 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:32:59.805 -> ##CLI.META#: ∏ANO
+16:32:59.805 -> ##CLI.INFO#
+16:32:59.805 -> ##SYS.DATE#: 2026-08-12T16:32:27+03:00
+16:32:59.805 -> ##CLI.NAMESET#: 336 (flc) Pi ano - Piano music
+16:32:59.805 -> ##CLI.META#: ∏ANO
+16:32:59.805 -> ##CLI.VOL#: 24
+16:32:59.805 -> ##CLI.PLAYING#
+16:32:59.805 -> ##CLI.META#: ∏ANO
+16:33:00.128 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:33:00.128 -> ##AUDIO.INFO#: format is flac
+16:33:00.128 -> ##AUDIO.INFO#: stream ready
+16:33:00.128 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:33:00.267 -> ##AUDIO.INFO#: syncword found at pos 0
+16:33:00.313 -> ##CLI.META#: Alva Noto & Ryuichi Sakamoto - Iano
+16:33:00.313 -> ##AUDIO.INFO#: Channels: 2
+16:33:00.313 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:33:00.313 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:33:00.359 -> ##AUDIO.INFO#: BitRate: 601551
+16:33:00.359 -> ##AUDIO.BITRATE#: 601551
+16:33:01.150 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:33:02.866 -> ##CLI.META#: [соединение]
+16:33:03.004 -> ##AUDIO.INFO#: Closing web file "https://stream.p-node.org/piano" (ssl=1)
+16:33:03.004 -> ##AUDIO.INFO#: buffers freed, free Heap: 173716 bytes
+16:33:03.004 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 443 path "/roxy_FLAC"
+16:33:03.653 -> ##AUDIO.INFO#: SSL has been established in 663 ms
+16:33:03.838 -> ##AUDIO.INFO#: format is ogg
+16:33:03.838 -> ##AUDIO.INFO#: icy-genre:  Pop, dance, house
+16:33:03.838 -> ##AUDIO.INFO#: icy-name: Roxy Rádió
+16:33:03.885 -> ##CLI.META#: Roxy Rádió
+16:33:03.885 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:33:03.885 -> ##CLI.INFO#
+16:33:03.885 -> ##SYS.DATE#: 2026-08-12T16:32:31+03:00
+16:33:03.885 -> ##CLI.NAMESET#: 337 (flc) Roxy Radio - Rock, Pop and Chillout Pop
+16:33:03.885 -> ##CLI.META#: Roxy Rádió
+16:33:03.885 -> ##CLI.VOL#: 24
+16:33:03.885 -> ##CLI.PLAYING#
+16:33:03.885 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:33:03.885 -> ##AUDIO.INFO#: format is flac
+16:33:03.885 -> ##AUDIO.INFO#: stream ready
+16:33:03.885 -> ##CLI.META#: Roxy Rádió
+16:33:04.068 -> ##AUDIO.INFO#: syncword found at pos 0
+16:33:04.115 -> ##CLI.META#: Armin van Buuren - This Is What It Feels Like feat. Trevor Guthrie
+16:33:04.115 -> ##AUDIO.INFO#: Channels: 2
+16:33:04.115 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:33:04.115 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:33:04.115 -> ##AUDIO.INFO#: BitRate: 1197418
+16:33:04.115 -> ##AUDIO.BITRATE#: 1197418
+16:33:04.904 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:33:09.447 -> ##CLI.META#: [соединение]
+16:33:09.540 -> ##AUDIO.INFO#: Closing web file "https://s2.audiostream.hu/roxy_FLAC" (ssl=1)
+16:33:09.587 -> ##AUDIO.INFO#: buffers freed, free Heap: 173580 bytes
+16:33:09.587 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+16:33:09.680 -> ##AUDIO.INFO#: Connection has been established in 91 ms
+16:33:09.771 -> ##AUDIO.INFO#: format is ogg
+16:33:09.771 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:33:09.771 -> ##AUDIO.INFO#: icy-name: singsingFlac
+16:33:09.771 -> ##CLI.META#: singsingFlac
+16:33:09.771 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:33:09.771 -> ##CLI.INFO#
+16:33:09.771 -> ##SYS.DATE#: 2026-08-12T16:32:37+03:00
+16:33:09.771 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+16:33:09.771 -> ##CLI.META#: singsingFlac
+16:33:09.771 -> ##CLI.VOL#: 24
+16:33:09.771 -> ##CLI.PLAYING#
+16:33:09.771 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:33:09.771 -> ##AUDIO.INFO#: format is flac
+16:33:09.771 -> ##AUDIO.INFO#: stream ready
+16:33:09.771 -> ##CLI.META#: singsingFlac
+16:33:09.910 -> ##AUDIO.INFO#: syncword found at pos 0
+16:33:09.957 -> ##CLI.META#: JOE LOUIS WALKER - do you wanna be with me
+16:33:09.957 -> ##AUDIO.INFO#: Channels: 2
+16:33:10.004 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:33:10.004 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:33:10.004 -> ##AUDIO.INFO#: BitRate: 128000
+16:33:10.004 -> ##AUDIO.BITRATE#: 128000
+16:33:12.786 -> ##CLI.META#: [соединение]
+16:33:12.877 -> ##AUDIO.INFO#: Closing web file "http://stream.sing-sing-bis.org:8000/singsingFlac" (ssl=0)
+16:33:12.877 -> ##AUDIO.INFO#: buffers freed, free Heap: 173612 bytes
+16:33:12.877 -> ##AUDIO.INFO#: connect to: "streams.radiomast.io" on port 443 path "/radioblues-flac"
+16:33:22.253 -> ##ERROR#:	Request https://streams.radiomast.io/radioblues-flac failed!
+16:33:22.253 -> ##ERROR#:	Request https://streams.radiomast.io/radioblues-flac failed!
+16:33:22.253 -> # WEB connect retry 2/3 for https://streams.radiomast.io/radioblues-flac after 300ms
+16:33:22.578 -> ##AUDIO.INFO#: buffers freed, free Heap: 173808 bytes
+16:33:22.578 -> ##AUDIO.INFO#: connect to: "streams.radiomast.io" on port 443 path "/radioblues-flac"
+16:33:33.770 -> ##ERROR#:	Request https://streams.radiomast.io/radioblues-flac failed!
+16:33:33.770 -> ##ERROR#:	Request https://streams.radiomast.io/radioblues-flac failed!
+16:33:33.816 -> # WEB connect retry 3/3 for https://streams.radiomast.io/radioblues-flac after 1000ms
+16:33:34.790 -> ##AUDIO.INFO#: buffers freed, free Heap: 173784 bytes
+16:33:34.790 -> ##AUDIO.INFO#: connect to: "streams.radiomast.io" on port 443 path "/radioblues-flac"
+16:33:38.509 -> ##ERROR#:	Request https://streams.radiomast.io/radioblues-flac failed!
+16:33:38.509 -> ##ERROR#:	Request https://streams.radiomast.io/radioblues-flac failed!
+16:33:38.509 -> ##ERROR#:	Error connecting to https://streams.radiomast.io/radioblues-flac
+16:33:38.556 -> ##ERROR#:	Error connecting to https://streams.radiomast.io/radioblues-flac
+16:33:38.556 -> ##AUDIO.INFO#: buffers freed, free Heap: 173348 bytes
+16:33:38.556 -> ##CLI.META#: Error connecting to https://streams.radiomast.io/radioblues-fla
+16:33:38.556 -> ##CLI.META#: Error connecting to https://streams.radiomast.io/radioblues-fla
+16:33:38.556 -> ##CLI.META#: Error connecting to https://streams.radiomast.io/radioblues-fla
+16:33:38.556 -> ##CLI.META#: Error connecting to https://streams.radiomast.io/radioblues-fla
+16:33:38.556 -> ##CLI.INFO#
+16:33:38.556 -> ##SYS.DATE#: 2026-08-12T16:32:47+03:00
+16:33:38.556 -> ##CLI.NAMESET#: 339 (flc) RadioBlues Flac
+16:33:38.602 -> ##CLI.VOL#: 24
+16:33:38.602 -> ##CLI.STOPPED#
+16:33:42.540 -> ##CLI.META#: [соединение]
+16:33:42.586 -> ##AUDIO.INFO#: buffers freed, free Heap: 173604 bytes
+16:33:42.586 -> ##AUDIO.INFO#: connect to: "streams.radiomast.io" on port 443 path "/ref-lossless-ogg-flac-stereo"
+16:33:44.070 -> ##AUDIO.INFO#: SSL has been established in 1461 ms
+16:33:44.256 -> ##AUDIO.INFO#: redirect to new host "https://audio-edge-5bkfj.fra.h.radiomast.io/ref-lossless-ogg-flac-stereo"
+16:33:44.256 -> ##AUDIO.INFO#: next URL: "https://audio-edge-5bkfj.fra.h.radiomast.io/ref-lossless-ogg-flac-stereo"
+16:33:44.814 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:33:44.860 -> ##AUDIO.INFO#: format is ogg
+16:33:44.860 -> ##AUDIO.INFO#: icy-bitrate : 1500000 (b/s)
+16:33:44.906 -> ##AUDIO.INFO#: icy-genre:  
+16:33:44.906 -> ##AUDIO.INFO#: icy-name: Raw FLAC Stereo
+16:33:44.906 -> ##CLI.META#: Raw FLAC Stereo
+16:33:44.906 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:33:44.906 -> ##CLI.INFO#
+16:33:44.906 -> ##SYS.DATE#: 2026-08-12T16:32:53+03:00
+16:33:44.906 -> ##CLI.NAMESET#: 340 (flc) Royalty Free Music 24/7
+16:33:44.906 -> ##CLI.META#: Raw FLAC Stereo
+16:33:44.906 -> ##CLI.VOL#: 24
+16:33:44.906 -> ##CLI.PLAYING#
+16:33:44.906 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:33:44.906 -> ##AUDIO.INFO#: format is flac
+16:33:44.906 -> ##AUDIO.INFO#: stream ready
+16:33:44.906 -> ##CLI.META#: Raw FLAC Stereo
+16:33:45.184 -> ##AUDIO.INFO#: syncword found at pos 0
+16:33:45.277 -> ##AUDIO.INFO#: Channels: 2
+16:33:45.277 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:33:45.277 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:33:45.277 -> ##AUDIO.INFO#: BitRate: 1500000
+16:33:45.277 -> ##AUDIO.BITRATE#: 1500000
+16:33:46.717 -> ##CLI.META#: Radio Mast - My Future Is In My Hands
+16:33:52.981 -> ##CLI.META#: [соединение]
+16:33:53.119 -> ##AUDIO.INFO#: Closing web file "https://streams.radiomast.io/ref-lossless-ogg-flac-stereo" (ssl=1)
+16:33:53.119 -> ##AUDIO.INFO#: buffers freed, free Heap: 173756 bytes
+16:33:53.119 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+16:33:53.211 -> ##AUDIO.INFO#: Connection has been established in 88 ms
+16:33:53.303 -> ##AUDIO.INFO#: format is ogg
+16:33:53.303 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:33:53.303 -> ##AUDIO.INFO#: icy-name: singsingFlac
+16:33:53.303 -> ##CLI.META#: singsingFlac
+16:33:53.303 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:33:53.303 -> ##CLI.INFO#
+16:33:53.303 -> ##SYS.DATE#: 2026-08-12T16:33:01+03:00
+16:33:53.303 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+16:33:53.303 -> ##CLI.META#: singsingFlac
+16:33:53.303 -> ##CLI.VOL#: 24
+16:33:53.303 -> ##CLI.PLAYING#
+16:33:53.349 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:33:53.349 -> ##AUDIO.INFO#: format is flac
+16:33:53.349 -> ##AUDIO.INFO#: stream ready
+16:33:53.349 -> ##CLI.META#: singsingFlac
+16:33:53.580 -> ##AUDIO.INFO#: syncword found at pos 0
+16:33:53.626 -> ##CLI.META#: JOE LOUIS WALKER - do you wanna be with me
+16:33:53.626 -> ##AUDIO.INFO#: Channels: 2
+16:33:53.672 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:33:53.672 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:33:53.672 -> ##AUDIO.INFO#: BitRate: 128000
+16:33:53.672 -> ##AUDIO.BITRATE#: 128000
+16:33:57.987 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:33:59.011 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:33:59.986 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:34:00.125 -> ##CLI.META#: [соединение]
+16:34:00.309 -> ##AUDIO.INFO#: Closing web file "http://stream.sing-sing-bis.org:8000/singsingFlac" (ssl=0)
+16:34:00.309 -> ##AUDIO.INFO#: buffers freed, free Heap: 173752 bytes
+16:34:00.309 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:34:00.355 -> ##AUDIO.INFO#: Connection has been established in 68 ms
+16:34:00.448 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:34:00.448 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:34:00.448 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:00.494 -> ##CLI.META#: 
+16:34:00.587 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:00.587 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:00.679 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:00.679 -> ##CLI.INFO#
+16:34:00.679 -> ##SYS.DATE#: 2026-08-12T16:33:09+03:00
+16:34:00.679 -> ##CLI.NAMESET#: 333 (flc) Joy Hits - Fresh Music Only!
+16:34:00.679 -> ##CLI.META#: 
+16:34:00.679 -> ##CLI.VOL#: 24
+16:34:00.679 -> ##CLI.PLAYING#
+16:34:05.180 -> ##ERROR#:	timeout
+16:34:05.180 -> ##ERROR#:	timeout
+16:34:05.180 -> ##AUDIO.INFO#: buffers freed, free Heap: 173416 bytes
+16:34:05.180 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:34:05.273 -> ##AUDIO.INFO#: Connection has been established in 58 ms
+16:34:05.320 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:34:05.320 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:34:05.320 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:05.366 -> ##CLI.META#: timeout
+16:34:05.459 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:05.459 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:05.506 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:10.053 -> ##ERROR#:	timeout
+16:34:10.053 -> ##ERROR#:	timeout
+16:34:10.053 -> ##AUDIO.INFO#: buffers freed, free Heap: 173424 bytes
+16:34:10.053 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:34:10.100 -> ##AUDIO.INFO#: Connection has been established in 55 ms
+16:34:10.146 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:34:10.193 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:34:10.193 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:10.285 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:10.285 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:10.378 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:10.378 -> ##CLI.META#: timeout
+16:34:14.839 -> ##ERROR#:	timeout
+16:34:14.839 -> ##ERROR#:	timeout
+16:34:14.886 -> ##AUDIO.INFO#: buffers freed, free Heap: 172736 bytes
+16:34:14.886 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:34:14.932 -> ##AUDIO.INFO#: Connection has been established in 53 ms
+16:34:14.932 -> ##CLI.META#: timeout
+16:34:14.978 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:34:14.978 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:34:15.024 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:15.116 -> ##AUDIO.INFO#: redirect to new host "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:15.116 -> ##AUDIO.INFO#: next URL: "http://stream.joyhits.online:8070/joyhits.flac.ogg"
+16:34:15.209 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:19.707 -> ##ERROR#:	timeout
+16:34:19.707 -> ##ERROR#:	timeout
+16:34:19.707 -> ##AUDIO.INFO#: buffers freed, free Heap: 173416 bytes
+16:34:19.707 -> ##AUDIO.INFO#: connect to: "joyhits.online" on port 80 path "/joyhits.flac.ogg"
+16:34:19.753 -> ##AUDIO.INFO#: Connection has been established in 38 ms
+16:34:19.753 -> ##CLI.META#: timeout
+16:34:19.800 -> ##AUDIO.INFO#: redirect to new extension at existing host "http://joyhits.online/joyhits.flac.ogg/"
+16:34:19.800 -> ##AUDIO.INFO#: next URL: "http://joyhits.online/joyhits.flac.ogg/"
+16:34:19.800 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:19.893 -> ##CLI.META#: HTTP/1.1 521 <none>
+16:34:19.893 -> ##ERROR#:	HTTP/1.1 521 <none>
+16:34:19.893 -> ##ERROR#:	HTTP/1.1 521 <none>
+16:34:19.939 -> ##CLI.META#: [соединение]
+16:34:20.031 -> ##AUDIO.INFO#: buffers freed, free Heap: 173232 bytes
+16:34:20.031 -> ##AUDIO.INFO#: connect to: "hd.stream.frequence3.net" on port 80 path "/frequence3.flac"
+16:34:20.123 -> ##AUDIO.INFO#: Connection has been established in 86 ms
+16:34:20.214 -> ##AUDIO.INFO#: redirect to new host "https://hd.stream.frequence3.net/frequence3.flac"
+16:34:20.214 -> ##AUDIO.INFO#: next URL: "https://hd.stream.frequence3.net/frequence3.flac"
+16:34:20.214 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:20.214 -> ##CLI.META#: 
+16:34:20.307 -> ##CLI.INFO#
+16:34:20.307 -> ##SYS.DATE#: 2026-08-12T16:33:23+03:00
+16:34:20.307 -> ##CLI.NAMESET#: 330 (flc) Frequence3 - French Webradio live from Paris
+16:34:20.307 -> ##CLI.VOL#: 24
+16:34:20.307 -> ##CLI.STOPPED#
+16:34:20.307 -> ##ERROR#:	unknown content found at: https://hd.stream.frequence3.net/frequence3.flac
+16:34:20.307 -> ##ERROR#:	unknown content found at: https://hd.stream.frequence3.net/frequence3.flac
+16:34:20.307 -> ##AUDIO.INFO#: Closing web file "http://hd.stream.frequence3.net/frequence3.flac" (ssl=1)
+16:34:20.307 -> ##CLI.META#: unknown content found at: https://hd.stream.frequence3.net/freq
+16:34:37.898 -> ##CLI.META#: [соединение]
+16:34:37.991 -> ##AUDIO.INFO#: buffers freed, free Heap: 173512 bytes
+16:34:37.991 -> ##AUDIO.INFO#: connect to: "hd.stream.frequence3.net" on port 80 path "/frequence3.flac"
+16:34:38.038 -> ##AUDIO.INFO#: Connection has been established in 75 ms
+16:34:38.131 -> ##AUDIO.INFO#: redirect to new host "https://hd.stream.frequence3.net/frequence3.flac"
+16:34:38.131 -> ##AUDIO.INFO#: next URL: "https://hd.stream.frequence3.net/frequence3.flac"
+16:34:38.131 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:38.131 -> ##CLI.META#: 
+16:34:38.224 -> ##CLI.INFO#
+16:34:38.224 -> ##SYS.DATE#: 2026-08-12T16:33:41+03:00
+16:34:38.224 -> ##CLI.NAMESET#: 330 (flc) Frequence3 - French Webradio live from Paris
+16:34:38.224 -> ##CLI.VOL#: 24
+16:34:38.224 -> ##CLI.STOPPED#
+16:34:38.224 -> ##ERROR#:	unknown content found at: https://hd.stream.frequence3.net/frequence3.flac
+16:34:38.224 -> ##ERROR#:	unknown content found at: https://hd.stream.frequence3.net/frequence3.flac
+16:34:38.224 -> ##AUDIO.INFO#: Closing web file "http://hd.stream.frequence3.net/frequence3.flac" (ssl=1)
+16:34:38.224 -> ##CLI.META#: unknown content found at: https://hd.stream.frequence3.net/freq
+16:34:41.471 -> ##CLI.META#: [соединение]
+16:34:41.609 -> ##AUDIO.INFO#: buffers freed, free Heap: 173472 bytes
+16:34:41.609 -> ##AUDIO.INFO#: connect to: "frequence3.net-radio.fr" on port 443 path "/frequence3dance.flac"
+16:34:42.025 -> ##AUDIO.INFO#: SSL has been established in 449 ms
+16:34:42.117 -> ##AUDIO.INFO#: format is ogg
+16:34:42.117 -> ##AUDIO.INFO#: icy-bitrate : 1536000 (b/s)
+16:34:42.117 -> ##AUDIO.INFO#: icy-genre:  House & Dance
+16:34:42.117 -> ##AUDIO.INFO#: icy-name: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:34:42.117 -> ##CLI.META#: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:34:42.164 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:34:42.164 -> ##CLI.INFO#
+16:34:42.164 -> ##SYS.DATE#: 2026-08-12T16:33:45+03:00
+16:34:42.164 -> ##CLI.NAMESET#: 329 (flc) Frequence3 - Dance
+16:34:42.164 -> ##CLI.META#: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:34:42.164 -> ##CLI.VOL#: 24
+16:34:42.164 -> ##CLI.PLAYING#
+16:34:42.164 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:34:42.164 -> ##AUDIO.INFO#: format is flac
+16:34:42.164 -> ##AUDIO.INFO#: stream ready
+16:34:42.164 -> ##CLI.META#: FREQUENCE 3 DANCE - Le meilleur son House et Dance sans pub !
+16:34:42.348 -> ##AUDIO.INFO#: syncword found at pos 0
+16:34:42.488 -> ##AUDIO.INFO#: Closing web file "https://frequence3.net-radio.fr/frequence3dance.flac" (ssl=1)
+16:34:42.488 -> ##CLI.META#: [остановлено]
+16:34:42.488 -> ##AUDIO.INFO#: buffers freed, free Heap: 173620 bytes
+16:34:42.533 -> ##CLI.INFO#
+16:34:42.533 -> ##SYS.DATE#: 2026-08-12T16:33:45+03:00
+16:34:42.533 -> ##CLI.NAMESET#: 329 (flc) Frequence3 - Dance
+16:34:42.533 -> ##CLI.VOL#: 24
+16:34:42.533 -> ##CLI.STOPPED#
+16:34:46.107 -> ##CLI.META#: [соединение]
+16:34:46.199 -> ##AUDIO.INFO#: buffers freed, free Heap: 173620 bytes
+16:34:46.199 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+16:34:46.710 -> ##AUDIO.INFO#: SSL has been established in 542 ms
+16:34:46.756 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+16:34:46.802 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+16:34:47.358 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:47.358 -> ##CLI.META#: 
+16:34:47.451 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+16:34:47.451 -> ##CLI.INFO#
+16:34:47.451 -> ##SYS.DATE#: 2026-08-12T16:33:50+03:00
+16:34:47.451 -> ##CLI.NAMESET#: 325 (flc) Dance Wave Retro!
+16:34:47.451 -> ##CLI.META#: 
+16:34:47.451 -> ##CLI.VOL#: 24
+16:34:47.451 -> ##CLI.PLAYING#
+16:34:47.451 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+16:34:47.451 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+16:34:47.497 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:47.544 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+16:34:47.544 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+16:34:47.636 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:34:48.101 -> ##AUDIO.INFO#: format is ogg
+16:34:48.101 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+16:34:48.101 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+16:34:48.101 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+16:34:48.101 -> ##CLI.META#: Dance Wave Retro!
+16:34:48.101 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:34:48.333 -> ##AUDIO.INFO#: FLACDecoder has been initialized
+16:34:48.333 -> ##AUDIO.INFO#: format is flac
+16:34:48.333 -> ##AUDIO.INFO#: stream ready
+16:34:48.333 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:34:48.473 -> ##AUDIO.INFO#: syncword found at pos 0
+16:34:48.473 -> ##CLI.META#: Dance Wave Retro!
+16:34:48.565 -> ##AUDIO.INFO#: Channels: 2
+16:34:48.565 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:34:48.565 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:34:48.565 -> ##AUDIO.INFO#: BitRate: 904911
+16:34:48.565 -> ##AUDIO.BITRATE#: 904911
+16:34:49.354 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:34:51.261 -> ##CLI.META#: [соединение]
+16:34:51.354 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+16:34:51.354 -> ##AUDIO.INFO#: buffers freed, free Heap: 173344 bytes
+16:34:51.354 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:34:51.447 -> ##AUDIO.INFO#: Connection has been established in 86 ms
+16:34:55.995 -> ##CLI.META#: timeout
+16:34:55.995 -> ##ERROR#:	timeout
+16:34:55.995 -> ##ERROR#:	timeout
+16:34:55.995 -> ##AUDIO.INFO#: buffers freed, free Heap: 173560 bytes
+16:34:55.995 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:34:56.041 -> ##AUDIO.INFO#: Connection has been established in 65 ms
+16:34:56.041 -> ##CLI.INFO#
+16:34:56.041 -> ##SYS.DATE#: 2026-08-12T16:33:59+03:00
+16:34:56.041 -> ##CLI.NAMESET#: 326 (flc) DHECTAR Dance
+16:34:56.041 -> ##CLI.VOL#: 24
+16:34:56.041 -> ##CLI.STOPPED#
+16:35:00.546 -> ##ERROR#:	timeout
+16:35:00.546 -> ##ERROR#:	timeout
+16:35:00.593 -> ##AUDIO.INFO#: buffers freed, free Heap: 173312 bytes
+16:35:00.593 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:35:00.639 -> ##AUDIO.INFO#: Connection has been established in 70 ms
+16:35:05.134 -> ##CLI.META#: timeout
+16:35:05.134 -> ##ERROR#:	timeout
+16:35:05.134 -> ##ERROR#:	timeout
+16:35:05.134 -> ##AUDIO.INFO#: buffers freed, free Heap: 171616 bytes
+16:35:05.134 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1080 path "/stream"
+16:35:05.227 -> ##AUDIO.INFO#: Connection has been established in 70 ms
+16:35:09.731 -> ##ERROR#:	timeout
+16:35:09.731 -> ##ERROR#:	timeout
+16:35:09.731 -> ##CLI.META#: timeout
+16:35:09.731 -> ##CLI.META#: timeout
+16:35:09.731 -> ##CLI.META#: timeout
+16:35:09.731 -> [WEBSOCKET] client #5 disconnected
+16:35:09.731 -> ##CLI.META#: [соединение]
+16:35:09.731 -> [WEBSOCKET] client #6 disconnected
+16:35:09.871 -> ##AUDIO.INFO#: buffers freed, free Heap: 174484 bytes
+16:35:09.871 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1110 path "/stream"
+16:35:09.917 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:35:09.917 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:35:09.917 -> # WEB connect retry 2/3 for http://manager.dhectar.fr:1110/stream after 300ms
+16:35:10.244 -> ##AUDIO.INFO#: buffers freed, free Heap: 174692 bytes
+16:35:10.244 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1110 path "/stream"
+16:35:10.290 -> ##CLI.META#: Request http://manager.dhectar.fr:1110/stream failed!
+16:35:10.290 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:35:10.336 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:35:10.336 -> # WEB connect retry 3/3 for http://manager.dhectar.fr:1110/stream after 1000ms
+16:35:11.315 -> ##AUDIO.INFO#: buffers freed, free Heap: 174692 bytes
+16:35:11.315 -> ##AUDIO.INFO#: connect to: "manager.dhectar.fr" on port 1110 path "/stream"
+16:35:11.408 -> ##CLI.META#: Request http://manager.dhectar.fr:1110/stream failed!
+16:35:11.408 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:35:11.408 -> ##ERROR#:	Request http://manager.dhectar.fr:1110/stream failed!
+16:35:11.408 -> ##ERROR#:	Error connecting to http://manager.dhectar.fr:1110/stream
+16:35:11.408 -> ##ERROR#:	Error connecting to http://manager.dhectar.fr:1110/stream
+16:35:11.454 -> ##AUDIO.INFO#: buffers freed, free Heap: 174692 bytes
+16:35:11.454 -> ##CLI.META#: Error connecting to http://manager.dhectar.fr:1110/stream
+16:35:11.454 -> ##CLI.META#: Error connecting to http://manager.dhectar.fr:1110/stream
+16:35:11.454 -> ##CLI.INFO#
+16:35:11.454 -> ##SYS.DATE#: 2026-08-12T16:34:06+03:00
+16:35:11.454 -> ##CLI.NAMESET#: 327 (flc) DHECTAR Hits
+16:35:11.454 -> ##CLI.VOL#: 24
+16:35:11.454 -> ##CLI.STOPPED#
+16:35:11.826 -> [WEBSOCKET] client #7 connected from 192.168.1.96
+16:35:12.151 -> [WEBSOCKET] client #8 connected from 192.168.1.96
+16:35:16.001 -> ##CLI.META#: [соединение]
+16:35:16.094 -> ##AUDIO.INFO#: buffers freed, free Heap: 173020 bytes
+16:35:16.094 -> ##AUDIO.INFO#: connect to: "maxxima.mine.nu" on port 8000 path "/maxx.ogg"
+16:35:16.188 -> ##AUDIO.INFO#: Connection has been established in 127 ms
+16:35:20.737 -> ##CLI.META#: timeout
+16:35:20.737 -> ##ERROR#:	timeout
+16:35:20.737 -> ##ERROR#:	timeout
+16:35:20.737 -> ##CLI.INFO#
+16:35:20.737 -> ##SYS.DATE#: 2026-08-12T16:34:15+03:00
+16:35:20.737 -> ##CLI.NAMESET#: 321 (flc) Maxxima
+16:35:20.737 -> ##CLI.VOL#: 24
+16:35:20.737 -> ##CLI.STOPPED#
+16:35:20.737 -> ##CLI.META#: timeout
