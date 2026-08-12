@@ -1,0 +1,134 @@
+По твоему логу проблема “обязательно где‑то ловим ребут” — **это не stall watchdog и не таймауты**, это снова **краш в момент переключения/остановки HTTPS Ogg‑FLAC**.
+
+В `Log34` видно: станция Frequence3 Dance запускается, затем сразу `Closing web file ... (ssl=1)` и **Guru Meditation (InstrFetchProhibited, PC=0)**.   
+Причём это происходит **именно после “Closing web file …”**, т.е. в цепочке остановки/сброса соединения.
+
+### Ключевой баг в коде сейчас
+У тебя `setDefaults()` начинает с `stopSong()`, а затем **всё равно безусловно делает**:
+
+```cpp
+client.stop();
+clientsecure.stop();
+``` 
+
+
+
+То есть при переключении станции получается “stop в stopSong” + “stop в setDefaults” (второй раз), причём `clientsecure.stop()` вызывается даже когда secure уже остановлен. На некоторых потоках/состояниях это даёт тот самый редкий PC=0.
+
+---
+
+# Что делать дальше (для агента): 3 правки “флагманской стабильности” + ускорение reconnect
+
+Ниже — точная инструкция для ИИ‑агента (копипаст). Она одновременно:
+1) убирает ребуты при переключении (double-stop),
+2) сокращает “долгие зависания на connect” (connect timeout),
+3) сокращает паузу “syncword found …” до reconnect.
+
+---
+
+## Инструкция агенту (Rec41): Fix reboots + faster reconnect + shorter timeouts
+
+### Fix 1 (ОБЯЗАТЕЛЬНО): убрать безусловный stop обоих клиентов из `setDefaults()`
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `void Audio::setDefaults()`
+
+Найти блок:
+
+```cpp
+client.stop();
+clientsecure.stop();
+m_client = static_cast<NetworkClient*>(&client);
+```
+
+Заменить на безопасный вариант (не делаем второй stop, если уже остановлено):
+
+```cpp
+// stopSong() already tried to stop active client; here only stop leftovers if still connected
+if(client.connected()) client.stop();
+if(clientsecure.connected()) clientsecure.stop();
+m_client = static_cast<NetworkClient*>(&client);
+```
+
+**Самопроверка (grep):**
+```bash
+git grep -n "clientsecure.stop();" yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем: в `setDefaults()` `clientsecure.stop()` должен быть только под `if(clientsecure.connected())`.
+
+---
+
+### Fix 2 (ОБЯЗАТЕЛЬНО): ограничить время `connect()` (иначе зависания на 443 могут быть очень долгими)
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `connecttohost(...)`
+
+Сейчас:
+```cpp
+res = m_client->connect(hwoe.get(), port);
+```
+
+Заменить на вариант с таймаутом:
+
+```cpp
+res = m_client->connect(hwoe.get(), port, m_f_ssl ? m_timeout_ms_ssl : m_timeout_ms);
+```
+
+(Функция с timeout у тебя уже используется в `openai_speech()`, значит в core она есть.)
+
+**Самопроверка (grep):**
+```bash
+git grep -n "connect(hwoe.get(), port" yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем: вызов `connect(..., timeout)`.
+
+---
+
+### Fix 3 (УСКОРЕНИЕ паузы syncword→reconnect): сделать watchdog ещё быстрее и “менее терпеливым” при resync storm
+Сейчас watchdog у тебя: `>2000ms` и `m_resyncSkipCnt > 20` (это уже лучше, но хочется быстрее).
+
+Сделай:
+- timeout **1200 ms**
+- resync threshold **> 10**
+- throttle reconnect оставить 1000ms (ок), либо 800ms
+
+**Файл:** `Audio.cpp`  
+**Функции:** `processWebStream()` и `processWebFile()` watchdog-блок
+
+Заменить условия на:
+
+```cpp
+uint32_t ref = m_lastGoodDecodeMs ? m_lastGoodDecodeMs : m_lastConnectOkMs;
+
+if(m_f_stream &&
+   InBuff.bufferFilled() > InBuff.getMaxBlockSize() * 2 &&
+   ref && (millis() - ref > 1200) &&
+   m_resyncSkipCnt > 10) {
+  stallReconnect("webstream");
+  return;
+}
+```
+
+(Аналогично для webfile.)
+
+И в `stallReconnect()` throttle:
+
+```cpp
+if(m_lastStallReconnectMs && (millis() - m_lastStallReconnectMs) < 800) return false;
+```
+
+**Самопроверка (grep):**
+```bash
+git grep -n "millis() - ref > 1200" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_resyncSkipCnt > 10" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "< 800" yoRadio/src/audioI2S/Audio.cpp
+```
+
+---
+
+## Рантайм критерии “принято”
+1) Переключение с `Frequence3 Dance (flac)` больше **не даёт Guru Meditation** (самое важное). В `Log34` ребут был сразу после `Closing web file ... (ssl=1)`.   
+2) “Залипшие” станции с `syncword found at pos ...` должны уходить в reconnect **примерно через 1–1.5 секунды**, а не долго.
+3) Зависания на `connect to: ... port 443` должны стать короче (за счёт connect timeout).
+
+---
+
+Если агент это внесёт, вероятность “хоть один ребут за сессию” должна резко упасть, потому что мы убираем самый опасный паттерн: **двойной stop secure‑клиента подряд** (в `stopSong()` и сразу после него в `setDefaults()`).
