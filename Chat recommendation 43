@@ -1,0 +1,161 @@
+Ниже — единое ТЗ для агента **Rec43** (копипаст), с конкретными заменами и grep‑проверками. Оно включает фиксы **1–3**, без отката `OPUS/VORBIS frameSize` (фикс №4 пока не делаем).
+
+---
+
+# Rec43 — Flagship stability: fix false “slow stream”, unify reconnect, harden stopSong (Log36)
+
+## Цели (Definition of Done)
+1) “`slow stream, dropouts are possible`” должен появляться **только при реальном падении буфера**, а не из‑за огромного `maxBlockSize`.  
+2) При “stream lost” НЕ использовать `httpPrint()` (опасный полу‑reconnect), а использовать единый безопасный путь `stallReconnect()` (stop+reconnect).  
+3) На “неработающих FLAC” станциях не должно быть ребутов: `stopSong()` должен быть максимально безопасным (не дергать stop() на не-connected и не освобождать буферы во время decode).
+
+Работа только в `main`. Один коммит или два.
+
+---
+
+## Изменение 1: переписать пороги в `streamDetection()` (убрать зависимость от `getMaxBlockSize()`)
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `boolean Audio::streamDetection(uint32_t bytesAvail)`
+
+### 1.1 Добавить “водяные уровни” в начале функции
+В начале `streamDetection()` (после первых guard’ов) добавить:
+
+```cpp
+const uint32_t LOW_WATER = 12000;  // below -> possible dropouts
+const uint32_t OK_WATER  = 60000;  // above -> stream is healthy (matches existing “stream ready >60000”)
+```
+
+### 1.2 Заменить “slow” критерий
+Найти строку/условие вида:
+
+```cpp
+if(InBuff.bufferFilled() < InBuff.getMaxBlockSize()) m_sdet.cnt_slow++;
+```
+
+Заменить на:
+
+```cpp
+if(InBuff.bufferFilled() < LOW_WATER) m_sdet.cnt_slow++;
+```
+
+### 1.3 Заменить критерий “stream healthy”
+Найти условие вида:
+
+```cpp
+if(InBuff.bufferFilled() > InBuff.getMaxBlockSize() * 2) return false;
+```
+
+Заменить на:
+
+```cpp
+if(InBuff.bufferFilled() > OK_WATER) return false;
+```
+
+---
+
+## Изменение 2: в `streamDetection()` заменить `httpPrint()` на `stallReconnect()`
+
+В `streamDetection()` есть ветка “Stream lost, trying to reconnect” (в Log36 видно, что она срабатывает).  
+Там сейчас используется:
+
+```cpp
+httpPrint(m_lastHost.get());
+return true;
+```
+
+Заменить на:
+
+```cpp
+stallReconnect("streamLost");
+return true;
+```
+
+> Требование: reconnect везде должен быть одинаковый и безопасный: stopSong + resetBuffer + connecttohost, иначе ловятся overflow/гонки.
+
+---
+
+## Изменение 3: укрепить `stopSong()` от ребутов (не stop() если не connected + больше защиты от гонок)
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `uint32_t Audio::stopSong()`
+
+### 3.1 Стопать только если connected()
+Найти текущую логику остановки клиента (примерно):
+
+```cpp
+if(m_f_ssl){
+    clientsecure.stop();
+} else {
+    client.stop();
+}
+```
+
+Заменить на:
+
+```cpp
+if(m_f_ssl){
+    if(clientsecure.connected()) clientsecure.stop();
+} else {
+    if(client.connected()) client.stop();
+}
+```
+
+### 3.2 Увеличить ожидание “audioTaskIsDecoding”
+Найти цикл ожидания (где сейчас ~100 ms максимум).  
+Увеличить максимум хотя бы до 300 ms, например:
+
+- было: `while(m_f_audioTaskIsDecoding && (++i < 100)) delay(1);`
+- станет: `while(m_f_audioTaskIsDecoding && (++i < 300)) delay(1);`
+
+Цель: не освобождать структуры, пока аудио‑таск ещё в декоде.
+
+(Если агент хочет сделать “совсем правильно”: взять `mutex_audioTask` вокруг освобождения — можно, но минимум достаточно увеличить wait.)
+
+---
+
+# Самопроверка агента (обязательная)
+
+## A) grep-проверки (приложить вывод)
+1) Убедиться, что `streamDetection` больше не использует `getMaxBlockSize()` для slow/healthy:
+```bash
+git grep -n "streamDetection" -n yoRadio/src/audioI2S/Audio.cpp
+git grep -n "cnt_slow" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "getMaxBlockSize" yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем:
+- `LOW_WATER` и `OK_WATER` присутствуют
+- строк `cnt_slow` использует `LOW_WATER`
+- в `streamDetection()` нет `getMaxBlockSize()` (может встречаться в других местах файла — это ок)
+
+2) Убедиться, что `httpPrint(m_lastHost.get())` не используется в `streamDetection()`:
+```bash
+git grep -n "httpPrint(m_lastHost.get())" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "stallReconnect(\"streamLost\")" yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем:
+- `stallReconnect("streamLost")` найден
+- `httpPrint(m_lastHost.get())` может оставаться в других местах (normal path), но не в streamDetection (агент должен указать где осталось)
+
+3) stopSong connected-check:
+```bash
+git grep -n "clientsecure.connected" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "client.connected" yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем: stopSong использует `.connected()` перед `.stop()`.
+
+## B) Сборка
+Собрать прошивку без ошибок.
+
+---
+
+# Рантайм критерии (после прошивки)
+1) Opus/Vorbis станции: “slow stream…” не спамится постоянно, появляется только если реально проседает буфер.
+2) На сломанных flac станциях: нет ребута; максимум reconnect/stop.
+3) При “Stream lost” в логе должен быть `Decode stalled -> reconnect` (или аналогичный лог stallReconnect), а не “тихий” httpPrint-retry.
+
+---
+
+# Git-процесс
+- Только `main`
+- Коммит: `Rec43: stabilize streamDetection + safe reconnect + harden stopSong`
