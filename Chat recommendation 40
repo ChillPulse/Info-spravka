@@ -1,0 +1,199 @@
+Ниже — единое, подробное ТЗ для ИИ‑агента (копипаст), которое внедряет **все 3 фикса** из моего анализа (`A+B+C`) и включает **проверки на точность**. Делать лучше 3 коммита (по одному на фикс), но можно и одним — как агенту удобнее.
+
+---
+
+# ТЗ агенту: Fix SSL flag loss on 443 + faster stall reconnect + TLS handshake timeout (Log33)
+
+## Контекст (что ломается)
+В `Log33` видно:
+- подключаемся на `:443`, но получаем `Connection has been established` (не SSL) → `HTTP/1.0 400 Bad Request`
+- бывают зависания на `connect to: ... port 443` без прогресса
+- бывают длинные паузы из-за бесконечного `syncword found ...` до watchdog reconnect
+
+Причина №1: в `connecttohost()` SSL/port вычисляются ДО `setDefaults()`, но `setDefaults()`/`stopSong()` может сбросить `m_f_ssl` → в итоге иногда делается HTTP на 443.
+
+---
+
+# Fix A (обязательный): Не терять SSL/port из dismantle_host из-за setDefaults()
+
+## Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+## Функция
+`bool Audio::connecttohost(const char* host, const char* user, const char* pwd)`
+
+## Что сделать (точно)
+1) Сразу после:
+```cpp
+auto dismantledHost = dismantle_host(c_host.get());
+```
+добавить:
+```cpp
+const bool new_ssl = dismantledHost.ssl;
+const uint16_t new_port = dismantledHost.port;
+```
+
+2) Убедиться, что **до `setDefaults()`** нет присваивания:
+```cpp
+m_f_ssl = dismantledHost.ssl;
+port = dismantledHost.port;
+```
+(если есть — удалить/перенести)
+
+3) Сразу **после** вызова `setDefaults();` вставить:
+```cpp
+m_f_ssl = new_ssl;
+port = new_port;
+```
+
+Смысл: `setDefaults()` может сбросить `m_f_ssl`, поэтому мы восстанавливаем его перед `m_client->connect()`.
+
+### Самопроверка (обязательно приложить)
+```bash
+git grep -n "const bool new_ssl" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_f_ssl = new_ssl" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_f_ssl = dismantledHost.ssl" yoRadio/src/audioI2S/Audio.cpp
+```
+Ожидаем:
+- `new_ssl` и `m_f_ssl = new_ssl` найдены
+- `m_f_ssl = dismantledHost.ssl` **не встречается** в `connecttohost()` (или только в dismantle_host, если там есть поле)
+
+### Рантайм критерий (после прошивки)
+На URL с `:443` (Paradise, streams.radiomast.io и т.п.) в логе при первом старте должно быть:
+- `SSL has been established ...`
+и **не должно** быть `Connection has been established` на 443 + `400 Bad Request`.
+
+---
+
+# Fix B (обязательный): Ускорить stall watchdog и сделать его работающим даже когда “good decode” ещё ни разу не случился
+
+## B1) Добавить “время успешного connect” как fallback reference
+### Файл
+`yoRadio/src/audioI2S/AudioEx.h`
+
+### В class Audio (private) добавить:
+```cpp
+uint32_t m_lastConnectOkMs = 0;
+```
+
+### В `setDefaults()` сбросить:
+```cpp
+m_lastConnectOkMs = 0;
+```
+
+## B2) В connect/print выставлять m_lastConnectOkMs при успешном connect
+### Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+В `connecttohost()` после успешного `m_client->connect(...)` (там где `res==true`) добавить:
+```cpp
+m_lastConnectOkMs = millis();
+```
+
+Аналогично в том месте, где реально отправляется запрос/получен коннект (если у тебя есть отдельный `httpPrint()` путь для уже подключенного клиента — там не надо).
+
+## B3) Ускорить срабатывание watchdog в processWebStream/processWebFile
+### Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+В watchdog-условиях (где сейчас что-то вроде `millis()-m_lastGoodDecodeMs > 5000` и `m_resyncSkipCnt > 50`) заменить логику на:
+
+- таймаут **2000ms** (можно 1500ms, но 2000 мягче)
+- `ref = m_lastGoodDecodeMs ? m_lastGoodDecodeMs : m_lastConnectOkMs`
+- порог ресинка **>20**
+- убрать требование `m_lastGoodDecodeMs != 0` (иначе “никогда не декоднулось” не лечится)
+
+Пример шаблона:
+
+```cpp
+uint32_t ref = m_lastGoodDecodeMs ? m_lastGoodDecodeMs : m_lastConnectOkMs;
+
+if(m_f_stream &&
+   InBuff.bufferFilled() > InBuff.getMaxBlockSize() * 2 &&
+   ref && (millis() - ref > 2000) &&
+   m_resyncSkipCnt > 20) {
+  stallReconnect("webstream");
+  return;
+}
+```
+
+То же самое для `webfile`.
+
+## B4) Уменьшить throttle в stallReconnect()
+В `stallReconnect()` сейчас throttle 2000ms. Поменять на 1000ms:
+
+```cpp
+if(m_lastStallReconnectMs && (millis() - m_lastStallReconnectMs) < 1000) return false;
+```
+
+## B5) Сбрасывать `m_stallReconnectTries` при “good decode”
+Там где ты ставишь:
+```cpp
+m_lastGoodDecodeMs = millis();
+m_resyncSkipCnt = 0;
+```
+добавить:
+```cpp
+m_stallReconnectTries = 0;
+```
+
+### Самопроверка (обязательно приложить)
+```bash
+git grep -n "m_lastConnectOkMs" yoRadio/src/audioI2S/AudioEx.h yoRadio/src/audioI2S/Audio.cpp
+git grep -n "millis() - ref > 2000" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_resyncSkipCnt > 20" yoRadio/src/audioI2S/Audio.cpp
+git grep -n " < 1000" yoRadio/src/audioI2S/Audio.cpp
+```
+
+### Рантайм критерий
+На станции, где раньше было “вечное syncword…”:
+- `Decode stalled -> reconnect #1` должен появляться примерно через ~2 секунды от момента “залипания”, а не через 5+ секунд/бесконечно.
+- Не должно быть `responseHeaderline overflow` (мы уже это лечили через stopSong+connecttohost).
+
+---
+
+# Fix C (желательно): Ограничить TLS handshake timeout (убрать 20+ секунд ожидания)
+
+## Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+## Место
+В `connecttohost()` перед `m_client->connect(...)`, но только если `m_f_ssl == true`.
+
+### Попробовать добавить:
+```cpp
+if(m_f_ssl){
+  // limit TLS handshake time (seconds). If method not available in this core, compilation will fail -> then remove.
+  clientsecure.setHandshakeTimeout(8);
+}
+```
+
+Если в твоей версии Arduino core метода нет (компиляция ругнётся) — агент обязан:
+- либо заменить на доступный аналог (если есть),
+- либо убрать этот вызов и оставить Fix A+B (они важнее).
+
+### Самопроверка
+- Сборка проходит.
+- В логах по HTTPS станциям исчезают “SSL has been established in 19xxx ms” (должно стать заметно меньше или хотя бы reconnect начнёт быстрее выходить из зависаний).
+
+---
+
+# Git-процесс
+- Работать прямо в `main`
+- Перед push: сборка без ошибок
+- Приложить grep-выводы из самопроверок
+- Коммит-месседжи (вариант):
+  1) `Fix: preserve SSL/port across setDefaults in connecttohost`
+  2) `Improve: faster stall watchdog reconnect using connect timestamp`
+  3) `Tweak: limit TLS handshake timeout (if supported)`
+
+---
+
+# Мини-набор тестов (после прошивки)
+1) Любая станция на `:443` (Paradise Mellow / radiomast lossless): **с первого раза** должно быть `SSL has been established`, без `400 Bad Request`.
+2) Станция с “syncword spam”: время до reconnect заметно уменьшается.
+3) Несколько переключений станций подряд: не должно быть ребутов/паник.
+
+---
+
+С этим набором у тебя уйдёт главная “нефлагманская” вещь: случайный HTTP на 443 и длинные провалы до reconnect.
