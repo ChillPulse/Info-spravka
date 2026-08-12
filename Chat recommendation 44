@@ -1,0 +1,75 @@
+Да, давай сделаем **чистый A/B‑эксперимент** для Opus/Vorbis, не трогая FLAC и не ломая “OGG‑FLAC большие страницы”.
+
+Сейчас у тебя в `Audio.cpp` стоят:
+
+- `m_frameSizeOPUS = UINT16_MAX`
+- `m_frameSizeVORBIS = UINT16_MAX` 
+
+Из‑за этого `playAudioData()` может пытаться обрабатывать очень большие “куски” за один проход (до 64 КБ), и на Opus/Vorbis это иногда реально даёт слышимые “затыки” (нагрузка/латентность), даже если сеть норм.
+
+А ребут из твоего `Log37` был не про Opus/Vorbis: там **LoadProhibited EXCVADDR=0x14** случился прямо после `Closing web file ".../progressive-flac"` . В текущем коде `stopSong()` уже сильно укреплён и закрывает только активный клиент с `.connected()`‑проверкой , так что если ребут повторится на свежей прошивке — его уже нужно будет разбирать по backtrace (ниже дам короткую инструкцию).
+
+---
+
+## Rec44 для агента: сделать “переключатель” размеров блока для OPUS/VORBIS (A/B тест без git-откатов)
+
+### Идея
+Добавляем compile‑time опцию в `myoptions.h` (самый удобный для Arduino IDE способ), чтобы ты мог сравнить:
+
+- режим **BIG** (как сейчас): `UINT16_MAX`
+- режим **SMALL** (как раньше): OPUS=2048, VORBIS=8192
+
+FLAC остаётся `UINT16_MAX` всегда.
+
+### 1) Что добавить (в код)
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp` (вверху, где константы `m_frameSize...`)
+
+Заменить текущие строки:
+
+```cpp
+constexpr size_t m_frameSizeOPUS   = UINT16_MAX;
+constexpr size_t m_frameSizeVORBIS = UINT16_MAX;
+```
+
+на:
+
+```cpp
+#ifndef OMNIA_SMALL_OGG_OPUS_VORBIS
+  // current “big ogg page” mode
+  constexpr size_t m_frameSizeOPUS   = UINT16_MAX;
+  constexpr size_t m_frameSizeVORBIS = UINT16_MAX;
+#else
+  // comparison mode (historically stable for most stations)
+  constexpr size_t m_frameSizeOPUS   = 2048;
+  constexpr size_t m_frameSizeVORBIS = 4096 * 2; // 8192
+#endif
+```
+
+> FLAC не трогаем: он остаётся `UINT16_MAX` как сейчас.
+
+### 2) Как включать/выключать режим тебе (Arduino IDE)
+В корневом `myoptions.h` (который у тебя рядом с проектом, и который не перезатирается обновлениями) добавить:
+
+- для “SMALL” режима:
+```cpp
+#define OMNIA_SMALL_OGG_OPUS_VORBIS 1
+```
+
+- чтобы вернуться обратно в “BIG” — просто удалить/закомментировать эту строку.
+
+### 3) Самопроверка агентом (grep)
+Пусть агент приложит вывод:
+
+```bash
+git grep -n "OMNIA_SMALL_OGG_OPUS_VORBIS" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_frameSizeOPUS" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_frameSizeVORBIS" yoRadio/src/audioI2S/Audio.cpp
+```
+
+---
+
+## Как оценивать “стало лучше/хуже”
+1) Выбираешь 2–3 Opus станции и 2–3 Vorbis станции.
+2) Слушаешь в режиме BIG (как сейчас), запоминаешь субъективно “есть ли щелчки/затыки”.
+3) Включаешь `OMNIA_SMALL_OGG_OPUS_VORBIS` и повторяешь.
+4) Если SMALL не улучшит — просто убираешь define и возвращаешься в текущий режим (без отката коммитов).
