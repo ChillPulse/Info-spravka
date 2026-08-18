@@ -1,0 +1,60 @@
+## Чёткое ТЗ агенту (Rec49c) — минимальный набор, который реально лечит проблему
+
+**Файлы:**
+- `yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`
+
+### 1) Убрать стоп на bitsPerSample > 16
+Заменить:
+
+```cpp
+if(FLACMetadataBlock->bitsPerSample > 16) { ... return FLAC_STOP; }
+```
+
+на:
+
+```cpp
+if(FLACMetadataBlock->bitsPerSample > 32) { ... return FLAC_STOP; }
+```
+
+и оставить проверку `<8` как есть.
+
+### 2) Добавить корректный downshift+clamp в OUT_SAMPLES
+Сейчас у вас:
+```cpp
+int32_t val = s_samplesBuffer[j][i + s_offset];
+if (FLACMetadataBlock->bitsPerSample == 8) val += 128;
+outbuf[2*i+j] = val;
+``` 
+
+Нужно заменить на:
+- вычислить `shift = bitsPerSample - 16` (если >0 — сдвиг вправо)
+- clamp в [-32768..32767]
+- special-case для 8-bit unsigned (как у вас)
+
+### 3) Исправить “need more data” порог в `FLACDecodeNative`
+Заменить:
+
+```cpp
+if(*bytesLeft < FLAC_MAX_BLOCKSIZE) return FLAC_DECODE_FRAMES_LOOP;
+``` 
+
+на:
+
+```cpp
+if(*bytesLeft < 512) return FLAC_DECODE_FRAMES_LOOP;
+```
+
+(512 можно сделать 256/1024 — но 512 обычно норм.)
+
+---
+
+## Самопроверка (агент обязан приложить вывод)
+```bash
+git grep -n "bits per sample > 16" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "bytesLeft < 512" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "clamp" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+```
+Ожидаем:
+- `bits per sample > 16` больше не встречается
+- `bytesLeft < 512` найдено
+- есть явный clamp/shift перед записью в `outbuf[]`
