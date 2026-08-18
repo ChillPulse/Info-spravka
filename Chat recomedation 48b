@@ -1,0 +1,70 @@
+Ниже — чёткая инструкция (копипаст) для агента, чтобы безошибочно убрать “хвост” 24‑bit FLAC в `read_FLAC_Header()` и сделать самопроверку.
+
+---
+
+# Rec48b — Allow 24‑bit in FLAC header (remove remaining 8/16-only check)
+
+## Контекст
+Мы уже добавили поддержку 24-bit через `setBitsPerSample(24)` (source=24, output=16).  
+Но в `read_FLAC_Header()` (FLAC_SINFO) всё ещё есть жёсткая проверка `bps != 8 && bps != 16`, которая делает `stopSong()` **раньше**, чем начинает работать новая логика.
+
+## Цель
+Разрешить `bps == 24` в `read_FLAC_Header()`.
+
+---
+
+## Изменение (одно место)
+
+### Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+### Функция
+`Audio::read_FLAC_Header(uint8_t* data, uint16_t len)`  
+(блок `if(m_controlCounter == FLAC_SINFO)`)
+
+### Найти текущий код
+Он выглядит примерно так:
+
+```cpp
+if((bps != 8) && (bps != 16)) {
+  AUDIO_ERROR("bits per sample must be 8 or 16, is %i", bps);
+  stopSong();
+  return -1;
+}
+```
+
+### Заменить на
+```cpp
+if((bps != 8) && (bps != 16) && (bps != 24)) {
+  AUDIO_ERROR("bits per sample must be 8, 16 or 24, is %i", bps);
+  stopSong();
+  return -1;
+}
+```
+
+---
+
+## Самопроверка агента (обязательная)
+
+Агент должен приложить вывод команд:
+
+```bash
+git grep -n "FLAC_SINFO" -n yoRadio/src/audioI2S/Audio.cpp
+git grep -n "bits per sample must be" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "bps != 24" yoRadio/src/audioI2S/Audio.cpp
+```
+
+Ожидаем:
+- в сообщении об ошибке упоминается **8, 16 or 24**
+- в условии присутствует `(bps != 24)`
+
+---
+
+## Git-процесс
+- Работать только в `main`
+- Один коммит: `Rec48b: allow 24-bit FLAC in header`
+- Push в `origin/main`
+
+---
+
+После этого 24‑bit FLAC перестанет отваливаться на этапе чтения заголовка, и будет работать по вашей схеме “source 24 → output 16”.
