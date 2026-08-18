@@ -1,0 +1,76 @@
+Проверил `main` — **Rec49e выполнен НЕ полностью**. В `flac_decoder.cpp` по‑прежнему отсутствуют те самые bounds‑checks для Ogg page header/segment table, и по‑прежнему остался `val += 128` в `OUT_SAMPLES`. Это значит: ребуты/ресинки на “больших” Ogg‑страницах всё ещё возможны, потому что парсер Ogg страницы читает `inbuf[26]` и `inbuf[27+i]` без проверки, что этих байтов достаточно. 
+
+### Что именно сейчас не соответствует Rec49e (доказательство по коду)
+1) В `FLACparseOGG()` **нет** проверок вида “`*bytesLeft < 27` / `*bytesLeft < headerSize` / `*bytesLeft < headerSize + pageBodyBytes`”. Код сразу читает `pageSegments = inbuf[26]`, затем лезет в `inbuf[27+i]`, и потом **безусловно** делает `*bytesLeft -= headerSize;` и `s_flacCurrentFilePos += headerSize;`.   
+2) В `OUT_SAMPLES` всё ещё присутствует строка `if(bitsPerSample == 8) val += 128;` — Rec49e просил её удалить.   
+3) В `flac_decoder.cpp` **не используется** `FLAC_MAX_OGG_SEGMENT` вообще (поиск “FLAC_MAX_OGG_SEGMENT” по файлу ничего не находит). 
+
+---
+
+## Что нужно сделать агенту (переформулировал Rec49e максимально “что на что менять”)
+
+### 1) В `FLACparseOGG()` добавить проверки ДО чтения `inbuf[26]` и segment table
+Файл: `yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`  
+Функция: `int32_t FLACparseOGG(uint8_t *inbuf, int32_t *bytesLeft)`
+
+Сразу после проверки `OggS` (после строки с `idx = FLAC_specialIndexOf...`) вставить:
+
+```cpp
+// Need at least fixed Ogg page header (27 bytes) to read pageSegments
+if(*bytesLeft < 27) return FLAC_PARSE_OGG_DONE;
+
+uint8_t pageSegments = *(inbuf + 26);
+uint32_t headerSize = 27U + (uint32_t)pageSegments;
+
+// Need full segment table
+if(*bytesLeft < (int32_t)headerSize) return FLAC_PARSE_OGG_DONE;
+
+// Sum body size and require full page payload present
+uint32_t pageBodyBytes = 0;
+for(uint32_t i = 0; i < pageSegments; i++){
+  pageBodyBytes += *(inbuf + 27 + i);
+}
+
+if(pageBodyBytes > FLAC_MAX_OGG_SEGMENT){
+  FLAC_LOG_ERROR("OGG page body too large: %u", (unsigned)pageBodyBytes);
+  return FLAC_STOP;
+}
+
+if(*bytesLeft < (int32_t)(headerSize + pageBodyBytes)) return FLAC_PARSE_OGG_DONE;
+```
+
+**Важно:** после этого удалите/не используйте повторное объявление `uint8_t pageSegments = *(inbuf + 26);` ниже по функции (оно у вас уже есть на строке ~251) — иначе будет shadow/дублирование. 
+
+И перенесите `*bytesLeft -= headerSize; s_flacCurrentFilePos += headerSize;` так, чтобы оно выполнялось **только после** этих проверок (сейчас оно безусловно). 
+
+### 2) Удалить `val += 128` из OUT_SAMPLES
+Файл: `yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`  
+Блок: `if(s_flacStatus == OUT_SAMPLES)` (строка ~651 сейчас)
+
+Удалить строку:
+
+```cpp
+if(FLACMetadataBlock->bitsPerSample == 8) val += 128;
+```
+
+(для FLAC signed PCM это не нужно). 
+
+---
+
+## Проверки (пусть агент приложит вывод)
+После правок агент обязан приложить:
+
+```bash
+git grep -n "if\\(\\*bytesLeft < 27\\)" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "pageBodyBytes" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "FLAC_MAX_OGG_SEGMENT" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "val \\+= 128" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+```
+
+Ожидаем:
+- первые 3 находятся
+- `val += 128` **не находится**
+
+---
+
+Если агент внесёт именно эти изменения, это реально закроет класс “случайно вызвали FLACparseOGG на неполном буфере → OOB/read → ребут” и должно уменьшить “syncword found at pos ~64k” на больших Ogg‑страницах.
