@@ -1,0 +1,127 @@
+Ниже — единое чёткое ТЗ для агента **Rec49e** (копипаст), с grep‑проверками и критериями “принято/не принято”. Это как раз тот тип фикса, который убирает **ребуты/ресинки на больших Ogg‑страницах**, потому что сейчас `FLACparseOGG()` может читать segment table, когда в буфере ещё не хватает байтов.
+
+---
+
+# Rec49e — Ogg-FLAC parser hardening (avoid OOB + resync storms) + remove wrong 8-bit bias
+
+## Контекст
+После Rec49d:
+- segmLenTmp удалён, downshift/clamp добавлен — это хорошо.
+Но остаются симптомы (Log41): частые длинные ресинки, иногда ребуты, “syncword found at pos ~64k”.
+
+Причина: `FLACparseOGG()` читает `inbuf[26]` и `inbuf[27+i]` и вычитает `headerSize` из `bytesLeft` **без проверок**, что segment table целиком присутствует в буфере. Это может дать:
+- чтение за границы (ребуты)
+- битые длины страниц (ресинки/потеря синхры)
+
+Также в OUT_SAMPLES осталось `val += 128` для 8-bit — для FLAC это не нужно и может давать неверный DC-offset.
+
+---
+
+## Цели (Definition of Done)
+1) `FLACparseOGG()` никогда не читает segment table/packet length, если данных недостаточно: вместо этого возвращает `FLAC_PARSE_OGG_DONE` (ожидание данных).  
+2) Для слишком больших страниц/сегментов применяется лимит `FLAC_MAX_OGG_SEGMENT` (65535) и корректный stop (без ребута).  
+3) Удалён неверный `+128` для 8-bit в FLAC output.
+
+---
+
+# Изменения (обязательные)
+
+## A) Укрепить `FLACparseOGG()` проверками границ
+
+**Файл:** `yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`  
+**Функция:** `static FLAC_DECODER_INFO_t FLACparseOGG(uint8_t* inbuf, int32_t* bytesLeft)` (или аналогичная сигнатура)
+
+### A1) Добавить проверки ДО доступа к `inbuf[26]` и segment table
+Сразу после проверки `"OggS"` (или в начале функции, если проверка `"OggS"` тоже там) вставить:
+
+```cpp
+// Need at least fixed Ogg page header (27 bytes) to read pageSegments
+if(*bytesLeft < 27) return FLAC_PARSE_OGG_DONE;
+
+uint8_t pageSegments = inbuf[26];
+uint32_t headerSize = 27U + (uint32_t)pageSegments;
+
+// Need full segment table
+if(*bytesLeft < (int32_t)headerSize) return FLAC_PARSE_OGG_DONE;
+```
+
+### A2) Посчитать размер тела страницы и проверить, что оно целиком в буфере
+Сразу после блока выше добавить:
+
+```cpp
+uint32_t pageBodyBytes = 0;
+for(uint32_t i = 0; i < pageSegments; i++){
+    pageBodyBytes += inbuf[27 + i];
+}
+
+// Safety cap (should be <= 65025 normally)
+if(pageBodyBytes > FLAC_MAX_OGG_SEGMENT){
+    log_e("OGG page body too large: %u", (unsigned)pageBodyBytes);
+    return FLAC_STOP;
+}
+
+// Need full page payload available before consuming header
+if(*bytesLeft < (int32_t)(headerSize + pageBodyBytes)) return FLAC_PARSE_OGG_DONE;
+```
+
+### A3) Только после этого разрешено:
+- создавать/перезаполнять `s_flacSegmTableVec`
+- делать `*bytesLeft -= headerSize;` и `s_flacCurrentFilePos += headerSize;`
+
+**Важно:** Убедиться, что где-то ниже по функции нет “раннего” `*bytesLeft -= headerSize` до этих проверок.
+
+---
+
+## B) Удалить неверный bias для 8-bit в OUT_SAMPLES
+
+**Файл:** `yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`  
+**Блок:** `case OUT_SAMPLES:` (там где вы пишете в `int16_t outbuf[]`)
+
+Найти строку:
+
+```cpp
+if(FLACMetadataBlock->bitsPerSample == 8) val += 128;
+```
+
+Удалить её полностью.
+
+> Для FLAC PCM значения считаются signed. Смещение +128 здесь не нужно.
+
+---
+
+# Самопроверка агента (обязательная)
+
+Агент обязан приложить вывод следующих команд:
+
+```bash
+git grep -n "Need at least fixed Ogg page header" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "pageSegments = inbuf\\[26\\]" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "headerSize = 27U" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "pageBodyBytes" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "FLAC_MAX_OGG_SEGMENT" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "val \\+= 128" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+```
+
+Ожидаем:
+- строки про минимальный header/segment table checks присутствуют
+- `FLAC_MAX_OGG_SEGMENT` реально используется
+- `val += 128` **не находится** (0 совпадений)
+
+---
+
+# Сборка / тест (обязательные)
+1) Проект собирается без ошибок.
+2) На проблемных OGG‑FLAC станциях:
+   - исчезают ребуты “случайно”
+   - вместо бесконечных ресинков/ребута — либо стабильная игра, либо корректный stop/reconnect без падения
+
+---
+
+# Git-процесс
+- Только `main`
+- Коммит: `Rec49e: harden Ogg-FLAC page parsing (bounds checks) + remove 8-bit bias`
+- Push в `origin/main`
+
+---
+
+Когда агент сделает Rec49e и ты прошьёшь, по логам будет видно главное: станет меньше “syncword found at pos 64xxx” и (самое важное) пропадут ребуты от чтения за границы в Ogg‑парсере.
