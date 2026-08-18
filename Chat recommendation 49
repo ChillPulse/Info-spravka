@@ -1,0 +1,155 @@
+## Rec49 — единое ТЗ агенту: “сделать OGG‑FLAC стабильным и убрать ограничения 16‑bit”
+
+Ниже даю чёткое ТЗ для агента, которое именно лечит причину (64KB Ogg‑страницы и 24‑bit). Это не смертельно по железу (прибавка памяти умеренная, у тебя PSRAM).
+
+### Цель
+1) OGG‑FLAC с большими страницами (~64KB) **не должен уходить в ресинк‑шторм**.  
+2) 24‑bit FLAC должен **не стопать**, а корректно дауншифтиться в 16‑bit output.  
+3) Никаких ребутов/переподключений каждую секунду на валидных FLAC.
+
+---
+
+# 1) flac_decoder: отделить “лимит blocksize (samples)” от “лимита OGG segment/page bytes”
+
+### Файл
+`yoRadio/src/audioI2S/flac_decoder/flac_decoder.h`
+
+### Изменения
+1) Изменить ограничения в комментарии (чтобы соответствовали коду после фикса).
+2) Добавить новый лимит для Ogg-страниц:
+
+```cpp
+#define FLAC_MAX_OGG_SEGMENT   65535
+```
+
+3) Увеличить `FLAC_MAX_BLOCKSIZE` до 32768 (это maxblocksize в STREAMINFO в *samples*, для “тяжёлых” FLAC):
+```cpp
+#define FLAC_MAX_BLOCKSIZE 32768
+```
+
+> Память: 32768 samples * 4 bytes * 2ch ≈ 256KB в PSRAM — нормально для S3.
+
+---
+
+# 2) flac_decoder: убрать “skip больших сегментов” (который ломает OGG‑FLAC)
+
+### Файл
+`yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`
+
+Найти два места:
+
+## (A) segmLenTmp блок (сейчас он реально пропускает данные)
+Сейчас:
+
+```cpp
+if(segmLenTmp){ // can't skip more than 16K
+  if(segmLenTmp > FLAC_MAX_BLOCKSIZE){ ... subtract ... return FLAC_PARSE_OGG_DONE; }
+  ...
+}
+```
+
+**Заменить логику** так, чтобы она работала по `FLAC_MAX_OGG_SEGMENT`, а не по `FLAC_MAX_BLOCKSIZE`, и главное — **не уничтожала данные**.
+
+Самый безопасный вариант: вообще убрать segmLenTmp “дробление пропуском” и считать, что segmLen может быть большим и должен быть обработан как обычный пакет (т.е. пусть идёт через `s_nBytes = segmLen` и `FLACDecodeNative`).
+
+То есть:
+- удалить `static uint32_t segmLenTmp`
+- удалить весь `if(segmLenTmp){...}` блок
+
+## (B) финальная проверка
+Сейчас:
+
+```cpp
+if(segmLen > FLAC_MAX_BLOCKSIZE){
+    segmLenTmp = segmLen;
+    return FLAC_PARSE_OGG_DONE;
+}
+```
+
+Это тоже триггерит “пропуск”.  
+**Удалить этот блок полностью.**
+
+---
+
+# 3) flac_decoder: разрешить 24-bit (и корректно скейлить в int16 output)
+
+### Файл
+`flac_decoder.cpp`
+
+Найти место, где сейчас:
+
+```cpp
+if(FLACMetadataBlock->bitsPerSample > 16) { ... return FLAC_STOP; }
+```
+
+Заменить на допуск 24/32:
+
+```cpp
+if(FLACMetadataBlock->bitsPerSample < 8)  { ... return FLAC_STOP; }
+if(FLACMetadataBlock->bitsPerSample > 32) { ... return FLAC_STOP; }
+```
+
+Дальше в output-цикле (где сейчас `outbuf[2*i+j] = val;`), добавить скейлинг к 16-bit:
+
+```cpp
+int32_t val = s_samplesBuffer[j][i + s_offset];
+
+// scale to 16-bit output
+int shift = 16 - (int)FLACMetadataBlock->bitsPerSample;
+if(shift > 0) val <<= shift;
+else if(shift < 0) val >>= (-shift);
+
+// clamp
+if(val > 32767) val = 32767;
+if(val < -32768) val = -32768;
+
+// special case for 8-bit unsigned
+if(FLACMetadataBlock->bitsPerSample == 8) val += 128;
+
+outbuf[2*i+j] = (int16_t)val;
+```
+
+---
+
+# 4) flac_decoder: убрать “need more data” порог в 24576 байт (он слишком грубый)
+Сейчас в `FLACDecodeNative` есть:
+
+```cpp
+if(*bytesLeft < FLAC_MAX_BLOCKSIZE) return FLAC_DECODE_FRAMES_LOOP;
+```
+
+После увеличения `FLAC_MAX_BLOCKSIZE` это станет ещё хуже (будет “вечно need more data”).  
+Заменить на адекватный минимум, например 512:
+
+```cpp
+if(*bytesLeft < 512) return FLAC_DECODE_FRAMES_LOOP;
+```
+
+---
+
+## Самопроверка (агент обязан приложить вывод)
+```bash
+git grep -n "FLAC_MAX_OGG_SEGMENT" yoRadio/src/audioI2S/flac_decoder/flac_decoder.h
+git grep -n "FLAC_MAX_BLOCKSIZE" yoRadio/src/audioI2S/flac_decoder/flac_decoder.h
+git grep -n "segmLenTmp" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "bitsPerSample > 16" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "if\\(\\*bytesLeft < 512\\)" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+```
+
+Ожидаем:
+- `FLAC_MAX_OGG_SEGMENT` есть
+- `FLAC_MAX_BLOCKSIZE` = 32768
+- `segmLenTmp` **не встречается** (удалён)
+- `bitsPerSample > 16` **не встречается**
+- порог `bytesLeft < 512` присутствует
+
+---
+
+## Почему это “лекарство”, а не костыль
+Проблемные станции у тебя прямо демонстрируют Ogg‑страницы около 64KB (64484) и/или высокие параметры потока.   
+Текущий декодер ограничивает размер и начинает “пропускать” большие сегменты, плюс стопает всё, что >16‑bit.   
+После Rec49 он перестанет “терять” данные и сможет дауншифтить 24‑bit в 16‑bit без стопов.
+
+---
+
+Если после Rec49 эти же станции всё ещё будут падать/стопать — тогда следующий “флагманский” шаг будет уже не тюнинг, а замена FLAC‑декодера на более надёжный (например micro-flac, который заявляет streaming decode и Ogg‑FLAC + все bit depths). 
