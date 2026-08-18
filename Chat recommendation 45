@@ -1,0 +1,175 @@
+Ок — сделаем **Rec46 (A+B + опциональный C с “не долгим” предбуфером)** так, чтобы:
+
+- не было лишних reconnect’ов в первые секунды Opus/Vorbis,
+- watchdog не мешал “поймать” поток,
+- и при этом старт **не уезжал на 3–5 секунд**, а был вменяемым (обычно ~1–2 сек на Opus).
+
+Ниже — подробное ТЗ для агента + проверки.
+
+---
+
+# Rec46 — стабилизация Opus/Vorbis без “дерготни” watchdog (A+B) + мягкий prebuffer (C, регулируемый)
+
+## Важно про “не слишком долго”
+Мы сделаем prebuffer **регулируемым** через `myoptions.h` и поставим дефолт **24 KB** для Opus/Vorbis.  
+Для типичного Opus 128 kbps это ~1.5 сек буфера:  
+`24KB * 8 / 128kbps ≈ 1.5s` — обычно норм для “флагмана” (лучше 1.5s старта без треска, чем “мгновенный старт со щелчками”).
+
+---
+
+# A) Не считать начальный sync-search “stall” (не наращивать resyncSkipCnt до первого good decode)
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функция:** `int Audio::sendBytes(uint8_t* data, size_t len)`
+
+Найти блок (он у тебя в ветке `if(!m_f_playing)`):
+
+```cpp
+if(m_sbyt.nextSync > 0) {
+    m_resyncSkipCnt++;
+    return m_sbyt.nextSync;
+}
+```
+
+Заменить на:
+
+```cpp
+if(m_sbyt.nextSync > 0) {
+    // Do not treat initial OGG lock-on as “stall”
+    if(m_lastGoodDecodeMs) m_resyncSkipCnt++;
+    return m_sbyt.nextSync;
+}
+```
+
+**Смысл:** пока ещё не было ни одного успешного декода, “поиск синхры” — нормальная стадия старта, а не проблема.
+
+---
+
+# B) Watchdog не должен “рубить” поток до первого good decode (нужен grace-period)
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Функции:** `Audio::processWebStream()` и `Audio::processWebFile()` (там где stall watchdog)
+
+Сейчас у тебя watchdog может срабатывать слишком рано, даже если поток просто “раскачивается”.
+
+## B1) Добавить grace window
+В начале watchdog-блока завести:
+
+```cpp
+const uint32_t GRACE_MS = 4000; // allow decoder to lock on stream after connect
+```
+
+## B2) Изменить условие watchdog примерно так
+Заменить текущую логику `ref = lastGoodDecode ? lastGoodDecode : lastConnectOk` на “если good decode ещё не было — не реконнектить, пока не прошёл grace”.
+
+Пример (шаблон, агент должен вставить в оба места: webstream и webfile):
+
+```cpp
+uint32_t now = millis();
+
+if(m_f_stream){
+  // 1) if never had a good decode, give grace time after connect
+  if(m_lastGoodDecodeMs == 0 && m_lastConnectOkMs && (now - m_lastConnectOkMs) < GRACE_MS){
+    // do nothing
+  } else {
+    // 2) normal stall watchdog (use good decode time if exists, else connect time)
+    uint32_t ref = m_lastGoodDecodeMs ? m_lastGoodDecodeMs : m_lastConnectOkMs;
+
+    if(InBuff.bufferFilled() > 60000 && ref && (now - ref > 900) && m_resyncSkipCnt > 6){
+      stallReconnect("webstream"); // or "webfile"
+      return;
+    }
+  }
+}
+```
+
+> Тут важное: условие всё равно требует **буфер > 60000** (или другой OK_WATER), чтобы не дергать reconnect на пустом месте.
+
+---
+
+# C) (Опционально, но я рекомендую) Мягкий prebuffer только для OGG/Opus/Vorbis
+
+**Цель:** запускать декод не “на 2–8 KB”, а после небольшого предбуфера (24 KB по дефолту), чтобы убрать “затыки в начале”.
+
+## C1) В `myoptions.h` сделать настройку
+Пусть агент добавит поддержку макроса, а ты при желании включишь/изменишь.
+
+В `yoRadio/myoptions.h` (это твой локальный файл) потом можно будет задать, например:
+
+```cpp
+#pragma once
+#define OMNIA_OGG_PREBUFFER 24000
+```
+
+Если макроса нет — будет дефолт 24000.
+
+## C2) Код в `processWebStream()`: старт воспроизведения только после prebuffer (для OGG)
+В `Audio::processWebStream()` в месте, где сейчас:
+
+```cpp
+if(InBuff.bufferFilled() > m_pwst.maxFrameSize && !m_f_stream) {
+   ... init decoder ...
+   m_f_stream = true;
+}
+```
+
+Нужно разделить на две стадии:
+
+1) **Рано**: можно определить OGG codec / init decoder (когда bufferFilled > maxFrameSize)
+2) **Позже**: `m_f_stream=true` только когда bufferFilled > PREBUFFER
+
+Шаблон:
+
+```cpp
+#ifndef OMNIA_OGG_PREBUFFER
+  const uint32_t PREBUFFER = 24000;
+#else
+  const uint32_t PREBUFFER = OMNIA_OGG_PREBUFFER;
+#endif
+
+// early init decoder as soon as we have enough to detect codec
+if(!m_f_stream && InBuff.bufferFilled() > m_pwst.maxFrameSize) {
+  if(m_codec == CODEC_OGG) {
+    // existing determineOggCodec + initializeDecoder logic
+  }
+}
+
+// start decoding only after prebuffer
+if(!m_f_stream && InBuff.bufferFilled() > PREBUFFER) {
+  AUDIO_INFO("stream ready (ogg prebuffer=%lu)", (unsigned long)PREBUFFER);
+  m_f_stream = true;
+}
+```
+
+> Если хочешь совсем “флагмански”: можно делать prebuffer только для `CODEC_OPUS`/`CODEC_VORBIS`, а для FLAC оставить как сейчас. Но начать можно общим OGG.
+
+---
+
+# grep-проверки (обязательные, агент прикладывает вывод)
+
+```bash
+git grep -n "if(m_lastGoodDecodeMs) m_resyncSkipCnt" yoRadio/src/audioI2S/Audio.cpp
+
+git grep -n "GRACE_MS" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "now - m_lastConnectOkMs" yoRadio/src/audioI2S/Audio.cpp
+
+git grep -n "OMNIA_OGG_PREBUFFER" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "stream ready (ogg prebuffer" yoRadio/src/audioI2S/Audio.cpp
+```
+
+---
+
+# Как тебе тестировать после прошивки (коротко)
+1) Возьми 2 Opus станции, где слышны затыки.
+2) Замерь “время до старта” субъективно (должно стать чуть больше, но без треска).
+3) В логах проверь, что:
+   - в первые ~4 секунды после connect **watchdog не реконнектит**
+   - после появления звука `m_lastGoodDecodeMs` начинает обновляться и stall‑watchdog работает как раньше.
+
+---
+
+Если после Rec46 затыки останутся, тогда уже имеет смысл:
+- либо откатить размеры OGG страниц **только** для Opus/Vorbis (SMALL), но чтобы это работало — убедиться, что `myoptions.h` реально существует,
+- либо точечно перенести стартовую логику из `Audio_old_maleksm.cpp` (там иногда есть детали по order init/flags).
+
+Но Rec46 (A+B+C) — самый “малокровный” и обычно даёт максимальный эффект именно на “в начале Opus”.
