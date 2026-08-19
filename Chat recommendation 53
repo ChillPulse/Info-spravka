@@ -1,0 +1,291 @@
+Переход на **micro-flac для WEB (радио) FLAC** **не сломает SD‑индекс/шкалу** по двум причинам:
+
+- SD‑индексация/seek у вас завязаны на **SD диапазоны (`sd_min/sd_max`) и вашу логику SD‑плеера**, а не на внутренности FLAC‑декодера. Мы **не трогаем SD‑FLAC ветку** — только WEB‑FLAC.  
+- Для WEB‑радио “шкала” у вас и так не является настоящим seek (там нет стабильного duration и байтового соответствия), поэтому micro-flac ничего критичного не ломает; он просто должен дать **стабильный декод**.
+
+Дальше — **одно строгое ТЗ (без вариантов) для агента**, чтобы он внедрил micro-flac **только для радио (WEB)** как отдельный backend и не запутался.
+
+---
+
+# Rec53 — Micro‑FLAC backend только для WEB FLAC (radio first), SD FLAC оставить как есть
+
+## Источник/почему micro-flac
+micro-flac — Apache-2.0 библиотека, поддерживает **native FLAC и Ogg-FLAC**, потоковый API `decode()`, все bit depths 8–32, PSRAM, и измеренную производительность на ESP32‑S3. 
+
+---
+
+## 0) Правило внедрения (важно)
+- **SD FLAC**: не трогаем, остаётся ваш текущий `flac_decoder/*`.
+- **WEB FLAC**: при `m_codec == CODEC_FLAC` и источник WEB — **декодим через micro-flac**, игнорируя ваш `FLACDecoder_Decode` (старый).
+
+---
+
+## 1) Вендорим micro-flac в репозиторий (Arduino-friendly layout)
+
+### 1.1 Создать папку в проекте
+Создать директорию:
+`yoRadio/src/audioI2S/micro_flac/`
+
+### 1.2 Скопировать файлы из esphome-libs/micro-flac
+Из репозитория micro-flac скопировать:
+
+**A) Public header**
+- `include/micro_flac/flac_decoder.h`  
+→ положить в ваш проект как:  
+`yoRadio/src/audioI2S/micro_flac/micro_flac/flac_decoder.h`
+
+(то есть внутри папки `micro_flac/` должна быть подпапка `micro_flac/` для include-пути `#include "micro_flac/flac_decoder.h"`)
+
+**B) Весь внутренний src (в одну папку)**
+Скопировать в:
+`yoRadio/src/audioI2S/micro_flac/`
+
+файлы (из `micro-flac/src/`):   
+- `alloc.h`
+- `bit_reader.h`
+- `compiler.h`
+- `crc.cpp`, `crc.h`
+- `decorrelation.cpp`, `decorrelation.h`
+- `flac_decoder.cpp`
+- `frame_header.cpp`, `frame_header.h`
+- `lpc.cpp`, `lpc.h`
+- `pcm_packing.cpp`, `pcm_packing.h`
+- `wrapping_arithmetic.h`
+- и папку `xtensa/` целиком (из `src/xtensa/`)
+
+**C) Лицензия (обязательно)**
+Скопировать `LICENSE` micro-flac в ваш репо, например:
+`third_party/micro-flac/LICENSE` 
+
+---
+
+## 2) Включить PSRAM preference и отключить тяжёлые метаданные (радио не нужно)
+Файл: `yoRadio/myoptions.h`
+
+Добавить (в конец, одной строкой):
+```cpp
+#define MICRO_FLAC_MEMORY_PREFER_PSRAM 1
+```
+
+(OGG support оставляем включённым по умолчанию; CRC можно отключить программно — см. ниже.)
+
+---
+
+## 3) Добавить micro-flac состояние в Audio (только для WEB)
+
+### 3.1 В `AudioEx.h` добавить поля (private)
+Файл: `yoRadio/src/audioI2S/AudioEx.h` (в `class Audio`, private)
+
+Добавить:
+
+```cpp
+// --- micro-flac WEB backend (radio only) ---
+bool     m_mf_active = false;        // используем micro-flac для текущего потока
+bool     m_mf_header_ready = false;
+
+uint32_t m_mf_sample_rate = 0;
+uint8_t  m_mf_channels = 0;
+uint8_t  m_mf_bits = 0;
+
+int32_t* m_mf_out32 = nullptr;        // PSRAM output buffer (int32 left-justified)
+size_t   m_mf_out32_cap = 0;          // capacity in samples (not bytes)
+```
+
+> Сам `micro_flac::FLACDecoder` лучше держать в `.cpp` как `static` внутри Audio.cpp (чтобы не тянуть огромный header в AudioEx.h).
+
+---
+
+## 4) Реализация: micro-flac decode path в Audio.cpp
+
+### 4.1 В `Audio.cpp` подключить micro-flac header
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+Добавить include:
+```cpp
+#include "micro_flac/flac_decoder.h"
+```
+
+И создать декодер (один на весь Audio):
+
+```cpp
+static micro_flac::FLACDecoder g_mf;
+```
+
+### 4.2 Добавить функции reset/init (в Audio.cpp)
+Добавить методы (внутри `Audio`):
+
+```cpp
+void Audio::microflac_reset_(){
+  m_mf_active = false;
+  m_mf_header_ready = false;
+  m_mf_sample_rate = 0;
+  m_mf_channels = 0;
+  m_mf_bits = 0;
+  if(m_mf_out32){
+    free(m_mf_out32);
+    m_mf_out32 = nullptr;
+  }
+  m_mf_out32_cap = 0;
+  g_mf.reset();
+}
+```
+
+Вызвать `microflac_reset_()`:
+- в `setDefaults()` (в самом начале или после `stopSong()`)
+- и/или в `stopSong()` перед освобождением буферов (безопаснее в `setDefaults`, чтобы reset гарантированно происходил на новый поток).
+
+### 4.3 Включать micro-flac только для WEB FLAC
+Где лучше всего включать: в `connecttohost()` / после определения формата.
+
+Критерий “это WEB”:  
+`m_dataMode == AUDIO_DATA` **или** `m_streamType == ST_WEBFILE`.
+
+Критерий “это FLAC”:  
+`m_codec == CODEC_FLAC`.
+
+Как только это истинно — активируем:
+
+```cpp
+if((m_dataMode == AUDIO_DATA || m_streamType == ST_WEBFILE) && m_codec == CODEC_FLAC){
+  microflac_reset_();
+  m_mf_active = true;
+
+  // ради UX/стабильности отключаем CRC на стриме
+  g_mf.set_crc_check_enabled(false);
+
+  // и ограничим метаданные (радио обычно не нужно)
+  g_mf.set_max_metadata_size(micro_flac::FLAC_METADATA_TYPE_PICTURE, 0);
+  g_mf.set_max_metadata_size(micro_flac::FLAC_METADATA_TYPE_VORBIS_COMMENT, 0);
+}
+```
+
+---
+
+## 5) Главная интеграция: заменить декод FLAC в `sendBytes()` для WEB
+
+### 5.1 В `sendBytes()` найти ветку CODEC_FLAC
+Файл: `Audio.cpp` → `int Audio::sendBytes(uint8_t* data, size_t len)`
+
+Там где сейчас вызывается ваш `FLACDecoder_Decode(...)`, сделать:
+
+- **Если `m_mf_active == true`** → выполнять micro-flac decode и возвращать `bytes_consumed`.
+- **Если `m_mf_active == false`** → оставить старый путь (SD FLAC как есть).
+
+### 5.2 Реализация micro-flac decode внутри sendBytes
+Псевдокод (агент вставляет как реальный код):
+
+```cpp
+if(m_codec == CODEC_FLAC && m_mf_active){
+
+  size_t bytes_consumed = 0;
+  size_t samples_decoded = 0;
+
+  auto res = g_mf.decode(
+      data, len,
+      m_mf_out32, m_mf_out32_cap,
+      bytes_consumed, samples_decoded
+  );
+
+  if(res == micro_flac::FLAC_DECODER_HEADER_READY){
+    const auto& info = g_mf.get_stream_info();
+    if(!info.is_valid()){
+      return (int)bytes_consumed; // пусть продолжает
+    }
+
+    m_mf_sample_rate = info.sample_rate();
+    m_mf_channels = info.num_channels();
+    m_mf_bits = info.bits_per_sample();
+
+    // allocate output buffer (int32 path), prefer PSRAM
+    m_mf_out32_cap = g_mf.get_output_buffer_size_samples();
+    m_mf_out32 = (int32_t*) ps_malloc(m_mf_out32_cap * sizeof(int32_t));
+    if(!m_mf_out32){
+      AUDIO_ERROR("microflac: out32 alloc failed");
+      stopSong();
+      return -1;
+    }
+
+    // apply decoder items to Audio (use your existing setters)
+    setSampleRate(m_mf_sample_rate);
+    setChannels(m_mf_channels);
+    setBitsPerSample(m_mf_bits); // у вас уже есть downconvert 24->16 на выход
+
+    m_mf_header_ready = true;
+    return (int)bytes_consumed;
+  }
+
+  if(res == micro_flac::FLAC_DECODER_SUCCESS){
+    // samples_decoded = number of frames per channel, output is interleaved
+    // Convert from int32 left-justified to int16 output buffer used by your playChunk()
+    // Most robust: use bits from info, scale to 16-bit.
+    int bps = (int)m_mf_bits;
+    size_t out_samples_total = samples_decoded * m_mf_channels;
+    for(size_t i = 0; i < out_samples_total; i++){
+      int32_t v = m_mf_out32[i];
+
+      // micro-flac int32 is left-justified: bring to signed 'bps'
+      if(bps < 32) v >>= (32 - bps);
+
+      // scale to 16
+      if(bps > 16) v >>= (bps - 16);
+      else if(bps < 16) v <<= (16 - bps);
+
+      if(v > 32767) v = 32767;
+      if(v < -32768) v = -32768;
+      m_outBuff[i] = (int16_t)v;
+    }
+
+    m_validSamples = samples_decoded; // как у вас принято (frames per channel)
+    return (int)bytes_consumed;
+  }
+
+  if(res == micro_flac::FLAC_DECODER_NEED_MORE_DATA){
+    return (int)bytes_consumed; // обычно 0
+  }
+
+  if(res == micro_flac::FLAC_DECODER_END_OF_STREAM){
+    m_f_eof = true;
+    return (int)bytes_consumed;
+  }
+
+  // error (negative)
+  AUDIO_ERROR("microflac: decode error %d", (int)res);
+  stopSong();
+  return -1;
+}
+```
+
+**Важно:** micro-flac сам определяет native/ogg по первым байтам и поддерживает Ogg‑FLAC, т.е. это как раз то, что должно “сделать как на ПК”. 
+
+---
+
+## 6) Самопроверка агента (обязательная)
+
+Агент обязан приложить вывод:
+
+```bash
+git grep -n "micro_flac::FLACDecoder" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "m_mf_active" yoRadio/src/audioI2S/Audio.cpp yoRadio/src/audioI2S/AudioEx.h
+git grep -n "FLAC_DECODER_HEADER_READY" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "MICRO_FLAC_MEMORY_PREFER_PSRAM" yoRadio/myoptions.h
+```
+
+И подтвердить, что:
+- SD FLAC путь (`FLACDecoder_Decode`) остался, но используется только когда `m_mf_active == false`.
+- WEB FLAC путь теперь идёт через micro-flac.
+
+---
+
+## 7) Критерий успеха (что ты проверяешь после прошивки)
+На 2 “тяжёлых” FLAC (SECTOR Progressive/Next/Indigo) + 2 “128k” FLAC:
+- нет бесконечных `syncword found ...`
+- нет циклов “старт → стоп → старт” без звука
+- звук стабильный как на ПК (или хотя бы не деградирует в ресинк‑шторм)
+
+---
+
+### Почему это лучший шаг сейчас
+micro-flac специально сделан как потоковый декодер, который “профессионально” закрывает corner-cases Ogg‑FLAC (spanning, большие страницы, bit depths) и имеет единый `decode()` API.   
+Вы уже потратили много итераций на ручной Ogg‑FLAC демультиплексор; дальше выигрыш будет гораздо быстрее, если опереться на библиотеку, которая именно этим и занимается.
+
+Если после внедрения WEB‑microflac все проблемные станции станут стабильными — тогда следующим шагом можно будет спокойно переключить и SD‑FLAC на micro-flac (там ещё проще, потому что нет сетевого “джиттера” и reconnection).
