@@ -1,0 +1,171 @@
+Проверил **текущий `main`**: micro‑flac backend уже реально встроен правильно по “pending PCM” и `NEED_MORE_DATA` (это видно по `m_mf_pending_total/m_mf_pending_off`, `res = FLAC_DECODE_FRAMES_LOOP`, конфигу CRC/metadata в `microflac_reset_()`). 
+
+Но есть 2 места, из‑за которых WEB‑FLAC всё ещё может стопаться/дергаться:
+
+1) **До `HEADER_READY` вы всё равно аллоцируете маленький `m_mf_out32_cap = 8192*2` и вызываете `decode()` с этим буфером.**   
+   А micro‑flac прямо говорит: **output может быть `nullptr` до `HEADER_READY`**.   
+   Значит “флагмански правильно” — не городить временные маленькие буферы вообще.
+
+2) У вас всё ещё есть **FLAC fail‑fast в `stallReconnect()`**, который стопает поток после 2 stall за 30 секунд, независимо от того, что теперь декодер micro‑flac (и часто на нестабильной сети нужно больше попыток). 
+
+Ниже — одно чёткое ТЗ **Rec53d** для агента, как ты просил (как всегда, с grep‑проверками).
+
+---
+
+## Rec53d — Micro‑FLAC WEB: decode() with nullptr before HEADER_READY + relax/disable FLAC fail-fast for micro‑flac
+
+### Цели (Definition of Done)
+1) До `FLAC_DECODER_HEADER_READY` micro‑flac вызывается **только** с `output=nullptr, output_size=0` (никаких временных 8192*2).  
+2) После `HEADER_READY` выделяем `m_mf_out32` **один раз** строго через `get_output_buffer_size_samples()` и используем его дальше.  
+3) WEB‑FLAC на micro‑flac не стопается “слишком рано” из‑за fail‑fast (2 stall/30s).
+
+---
+
+# A) Убрать “маленькую аллокацию 8192*2” и вызывать decode(nullptr) до HEADER_READY
+
+### Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+### Функция
+`int Audio::sendBytes(uint8_t* data, size_t len)`
+
+### Место
+Ветка `case CODEC_FLAC:` → `if(isWeb) { // WEB FLAC -> micro-flac backend }`
+
+#### A1) Удалить/запретить этот кусок (он сейчас есть у вас)
+У вас сейчас есть блоки вида:
+
+- при `!m_mf_active`:
+```cpp
+if(!m_mf_out32){
+  m_mf_out32_cap = 8192 * 2;
+  m_mf_out32 = (int32_t*) ps_malloc(...);
+  ...
+}
+```
+
+- и ещё раз ниже:
+```cpp
+if(!m_mf_out32){
+  m_mf_out32_cap = 8192 * 2;
+  m_mf_out32 = (int32_t*) ps_malloc(...);
+}
+```
+
+**Удалить оба.** (Это и есть то, что мешает “как на ПК”.)
+
+#### A2) Вызов `decode()` сделать “двухрежимным”
+Вместо:
+```cpp
+auto mf_res = g_mf.decode(data, len, m_mf_out32, m_mf_out32_cap, bytes_consumed, samples_decoded);
+```
+
+Сделать так:
+
+```cpp
+int32_t* out = nullptr;
+size_t out_cap = 0;
+if(m_mf_header_ready && m_mf_out32 && m_mf_out32_cap){
+  out = m_mf_out32;
+  out_cap = m_mf_out32_cap;
+}
+
+// до HEADER_READY out может быть nullptr — это нормально по micro-flac API
+auto mf_res = g_mf.decode(data, len, out, out_cap, bytes_consumed, samples_decoded);
+```
+
+> Это соответствует документации micro‑flac: output “may be nullptr before HEADER_READY”. 
+
+#### A3) В `HEADER_READY` — выделить буфер строго по `get_output_buffer_size_samples()` и больше не realloc’ать “туда‑сюда”
+В `if(mf_res == FLAC_DECODER_HEADER_READY)`:
+
+- оставить установку `m_mf_sample_rate/m_mf_channels/m_mf_bits`, `setChannels/setSampleRate/setBitsPerSample` (у вас уже есть).   
+- выделить буфер:
+
+```cpp
+size_t needed = g_mf.get_output_buffer_size_samples();
+free(m_mf_out32);
+m_mf_out32_cap = needed;
+m_mf_out32 = (int32_t*) ps_malloc(m_mf_out32_cap * sizeof(int32_t));
+if(!m_mf_out32){
+  AUDIO_ERROR("microflac: out32 alloc failed (%u samples)", (unsigned)needed);
+  stopSong();
+  return -1;
+}
+m_mf_header_ready = true;
+```
+
+**Важно:** убрать fallback на `malloc()` (для флагмана лучше “или PSRAM/heap_caps, или стоп с понятной ошибкой”, чем тихо падать по памяти).
+
+---
+
+# B) Ослабить/отключить FLAC fail-fast для micro‑flac
+
+### Файл
+`yoRadio/src/audioI2S/Audio.cpp`
+
+### Функция
+`bool Audio::stallReconnect(const char* reason)`
+
+Сейчас у вас:
+
+```cpp
+if(m_codec == CODEC_FLAC){
+  ... m_flacStallWindowCnt++;
+  if(m_flacStallWindowCnt >= 2){
+    AUDIO_ERROR("Unstable OGG-FLAC stream -> stop ...");
+    stopSong();
+    return true;
+  }
+}
+```
+
+
+#### B1) Сделать условие “fail-fast” не для micro‑flac WEB
+Заменить начало блока на:
+
+```cpp
+if(m_codec == CODEC_FLAC){
+  // If micro-flac is active, do not fail-fast so aggressively: allow recovery
+  if(m_mf_active){
+    // do nothing here (skip fail-fast)
+  } else {
+    uint32_t now = millis();
+    ...
+    if(m_flacStallWindowCnt >= 2){ ... stopSong(); return true; }
+  }
+}
+```
+
+(То есть **старый fail‑fast оставить только для legacy FLAC decoder**, а micro‑flac пусть пытается восстановиться.)
+
+---
+
+# C) Самопроверка агента (обязательная)
+
+Агент обязан приложить вывод:
+
+```bash
+git grep -n "m_mf_out32_cap = 8192 \\* 2" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "out may be nullptr" -n yoRadio/src/audioI2S/Audio.cpp
+git grep -n "g_mf.decode\\(data, len, out, out_cap" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "if\\(m_mf_active\\)\\{" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "Unstable OGG-FLAC stream -> stop" yoRadio/src/audioI2S/Audio.cpp
+```
+
+Ожидаем:
+- `m_mf_out32_cap = 8192 * 2` **не найдено** (0 совпадений)
+- вызов decode идёт через `out/out_cap`
+- в `stallReconnect` есть ветка `if(m_mf_active){ /* skip fail-fast */ }`
+- сообщение “Unstable OGG-FLAC stream -> stop” остаётся (но будет применяться только для legacy)
+
+---
+
+# D) Поведенческий критерий
+После прошивки:
+- WEB‑FLAC тяжёлые станции должны перестать “рандомно стопаться” при старте/на первых секундах из‑за маленького буфера до HEADER_READY.  
+- Если сеть плохая, micro‑flac будет пытаться восстановиться (reconnect), а не стопаться на 2‑м stall за 30 секунд.
+
+---
+
+Если агент сделает Rec53d и ты прошьёшь, следующий лог по одной “тяжёлой” FLAC станции (SECTOR Progressive) должен стать существенно чище: меньше ранних stop, меньше бессмысленных reconnect‑петель, и появится стабильное декодирование после `HEADER_READY`.
