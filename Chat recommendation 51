@@ -1,0 +1,191 @@
+`Log43` (и то, что ты описываешь про `Log42`) очень похоже на **один конкретный класс проблем Ogg‑FLAC**, который вы сейчас реально не закрыли: **FLAC кадр/пакет может быть больше, чем один Ogg page**, и тогда декодер должен уметь “перепрыгнуть” через следующий `OggS` прямо *внутри bitreader*, продолжив чтение FLAC‑кадра дальше. Это ровно то, что upstream `schreibfaul1` отдельно чинил (“даже если FLAC frame больше OGG frame”). 
+
+Ваши текущие правки (lacing + ожидание segmLen) снизили ребуты, но **не решают** “frame spans page boundary” так, как это решает upstream. А Xiph прямо пишет, что **FLAC packets могут span page boundaries**. 
+
+Ниже — решение уровня “флагман”: **Backport ровно этого upstream‑фикса в ваш `flac_decoder.cpp`** + одновременно убрать вторую реальную причину “тяжёлые flac сразу стопятся”: ограничение `FLAC_MAX_BLOCKSIZE=32768` (на практике у стримов часто maxblocksize стоит 65535, даже если реально используют меньше).
+
+---
+
+## Rec51 — единое ТЗ агенту: “Upstream Ogg‑FLAC fix (frame > ogg page) + FLAC_MAX_BLOCKSIZE 65535”
+
+### Цель
+1) Ogg‑FLAC станции типа SECTOR Progressive/Next/Indigo перестают мгновенно стопаться после `syncword found at pos 0`.  
+2) “128k flac” перестают уходить в вечный ресинк/stop при больших страницах/кадрах.  
+3) Без ребутов.
+
+---
+
+# Часть A — увеличить допустимый maxBlocksize до 65535 (PSRAM у вас есть)
+
+## Файл
+`yoRadio/src/audioI2S/flac_decoder/flac_decoder.h`
+
+### Что поменять
+1) Сейчас:
+```cpp
+#define FLAC_MAX_BLOCKSIZE 32768
+```
+
+Заменить на:
+```cpp
+#define FLAC_MAX_BLOCKSIZE 65535
+```
+
+> Это увеличит буферы примерно до ~0.5 МБ в PSRAM на 2 канала (int32), что для ESP32‑S3 + 8MB PSRAM нормально.
+
+## Самопроверка (обязательная)
+```bash
+git grep -n "FLAC_MAX_BLOCKSIZE" yoRadio/src/audioI2S/flac_decoder/flac_decoder.h
+```
+Ожидаем: `65535`.
+
+---
+
+# Часть B — backport upstream‑фикса: “если FLAC frame больше OGG page — parse next OggS прямо в bitreader”
+
+Это ключевой фикс, который у вас сейчас отсутствует, и который именно upstream добавил. 
+
+## Файл
+`yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`
+
+## 1) Добавить глобальную переменную “текущая длина сегмента/пакета”
+Вверху рядом с `s_nBytes` добавить:
+```cpp
+static uint32_t s_segmLength = 0;
+static bool     s_continued_page = false;
+static bool     s_first_flac_frame = false;
+```
+
+И в `FLACDecoder_setDefaults()` сбросить:
+```cpp
+s_segmLength = 0;
+s_continued_page = false;
+s_first_flac_frame = false;
+```
+
+## 2) В `FLACparseOGG()` сохранить `continuedPage`
+У вас уже есть:
+```cpp
+uint8_t headerType = inbuf[5];
+```
+Добавить:
+```cpp
+s_continued_page = (headerType & 0x01);
+```
+
+## 3) В `FLACDecode()` после выбора `segmLen` присваивать `s_segmLength`
+Сейчас:
+```cpp
+segmLen = s_flacSegmTableVec.back();
+...
+```
+Добавить:
+```cpp
+s_segmLength = segmLen;
+```
+
+И когда вы переходите в аудио (`case 2:` где `s_nBytes = segmLen; return FLAC_PARSE_OGG_DONE;`) — добавить:
+```cpp
+s_first_flac_frame = true;
+```
+
+## 4) Главный backport: `readUint()` должен уметь “перепрыгнуть” через новый `OggS` при underflow
+Функция: `uint32_t readUint(uint8_t nBits, int32_t *bytesLeft)`
+
+Сейчас у вас при `*bytesLeft < 0` сразу error.
+
+Нужно вставить логику как в upstream (смысл: если bytesLeft стал -1 и мы в OGG wrapper, то это может означать, что мы упёрлись в конец текущего OGG‑payload и дальше сразу начинается новый `OggS` — надо распарсить его и продолжить чтение). 
+
+Заменить участок:
+
+```cpp
+(*bytesLeft)--;
+if(*bytesLeft < 0) { FLAC_LOG_ERROR("error in bitreader"); s_f_bitReaderError = true; break;}
+```
+
+на (в точности):
+
+```cpp
+(*bytesLeft)--;
+if(*bytesLeft == -1){
+    if(s_f_oggWrapper){
+        // step back: we hit boundary, check for next Ogg page
+        s_rIndex--;
+        (*bytesLeft)++;
+
+        if(FLAC_specialIndexOf(s_flacInptr + s_rIndex, "OggS", 4) == 0){
+            // parse next ogg page header+segment table; bytesLeft will become negative by headerSize
+            int32_t pret = FLACparseOGG(s_flacInptr + s_rIndex, bytesLeft);
+            if(pret < 0){ s_f_bitReaderError = true; break; }
+
+            // take first seg length from new page
+            if(s_flacSegmTableVec.size()){
+                s_segmLength = s_flacSegmTableVec.back();
+                s_flacSegmTableVec.pop_back();
+                s_f_flacParseOgg = false;
+            }
+
+            // skip over Ogg header bytes (bytesLeft is negative now)
+            s_rIndex += abs(*bytesLeft);
+            continue;
+        } else {
+            FLAC_LOG_ERROR("error in bitreader");
+            s_f_bitReaderError = true;
+            break;
+        }
+    }
+}
+if(*bytesLeft < 0){
+    FLAC_LOG_ERROR("error in bitreader");
+    s_f_bitReaderError = true;
+    break;
+}
+```
+
+## 5) Второй upstream‑фикс: если sync 0xFFF8 не найден сразу после перехода страницы, это могут быть “остатки предыдущего кадра”
+В `flacDecodeFrame()` найдите:
+
+```cpp
+if (inbuf[0] != 0xFF || inbuf[1] != 0xF8) {
+   FLAC_LOG_ERROR("Sync 0xFFF8 not found");
+   return FLAC_ERR;
+}
+```
+
+Заменить на:
+
+```cpp
+if (inbuf[0] != 0xFF || inbuf[1] != 0xF8) {
+    if(s_first_flac_frame && s_continued_page){
+        // remains of previous frame interrupted by OGG boundary; skip this segment and continue
+        s_first_flac_frame = false;
+        *bytesLeft -= (int32_t)s_segmLength;
+        return FLAC_NONE;
+    }
+    FLAC_LOG_ERROR("Sync 0xFFF8 not found");
+    return FLAC_ERR;
+}
+```
+
+---
+
+# Самопроверка агента (обязательная)
+Агент обязан приложить вывод:
+
+```bash
+git grep -n "s_segmLength" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "s_continued_page" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "Sync 0xFFF8 not found" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "If\\(\\*bytesLeft == -1\\)" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "FLAC_MAX_BLOCKSIZE 65535" yoRadio/src/audioI2S/flac_decoder/flac_decoder.h
+```
+
+Ожидаем:
+- всё найдено, кроме того, что `FLAC_MAX_BLOCKSIZE` теперь 65535.
+
+---
+
+# Почему это должно сработать
+- Xiph mapping явно допускает, что FLAC packets/frames **могут span page boundaries**.   
+- Upstream `schreibfaul1` именно эту ситуацию уже чинил: при underflow битридер проверяет “следующий `OggS`”, парсит следующую страницу и продолжает чтение кадра.   
+- Ваши текущие правки (lacing + ожидание) уменьшают ребуты, но не обеспечивают корректное продолжение FLAC‑кадра через страницу.
