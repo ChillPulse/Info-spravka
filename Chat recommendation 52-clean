@@ -1,0 +1,69 @@
+Ниже — короткое и чёткое ТЗ для агента **Rec52-clean**. Это **косметика/гигиена кода** (не должна менять поведение звука), но сделает проект “флагмански аккуратнее” и уменьшит риск путаницы/ложных ограничений в будущем.
+
+---
+
+# Rec52-clean — cleanup comments + remove no-op statements (no behavior change)
+
+## Цели (Definition of Done)
+1) В `flac_decoder.h` комментарии/ограничения соответствуют реальности (blocksize 65535).  
+2) Убрать бессмысленные no-op выражения (типа `s_flacSegmTableVec;`) из reset/clear функций.  
+3) Никаких изменений логики декодинга/таймингов/буферов.
+
+---
+
+## Изменение 1 — обновить комментарии в `flac_decoder.h`
+**Файл:** `yoRadio/src/audioI2S/flac_decoder/flac_decoder.h`
+
+Найти в комментариях “Restrictions” (или похожий блок), где говорится про blocksize (раньше было 32768).  
+Обновить текст так, чтобы отражало текущее:
+
+- `FLAC_MAX_BLOCKSIZE 65535`
+- Ogg page/segment до ~65025/65535 (как у вас `FLAC_MAX_OGG_SEGMENT`)
+
+**Важно:** меняем только комментарии, не макросы (они уже правильные).
+
+---
+
+## Изменение 2 — удалить no-op выражения `s_flacSegmTableVec;` и подобные
+**Файл:** `yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`
+
+Найти в функциях reset/clear (обычно `FLACDecoder_ClearBuffer`, `FLACDecoder_FreeBuffers`, `FLACDecoder_setDefaults` или аналоги) строки вида:
+
+```cpp
+s_flacSegmTableVec;
+```
+
+или любые другие “пустые” выражения без эффекта.
+
+Удалить их.
+
+Оставить нормальные действия вроде:
+```cpp
+s_flacSegmTableVec.clear();
+```
+
+---
+
+## Самопроверка агента (обязательная)
+
+Приложить вывод:
+
+```bash
+git grep -n "Restrictions" yoRadio/src/audioI2S/flac_decoder/flac_decoder.h
+git grep -n "32768" yoRadio/src/audioI2S/flac_decoder/flac_decoder.h
+git grep -n "s_flacSegmTableVec;" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+```
+
+Ожидаем:
+- В `.h` больше нет старого “32768” в описании ограничений (если было).
+- В `.cpp` `s_flacSegmTableVec;` больше не встречается (0 совпадений).
+
+---
+
+## Git-процесс
+- Только `main`
+- Коммит: `Rec52-clean: update FLAC decoder comments + remove no-op statements`
+
+---
+
+Если агент сделает это, проект будет чуть “чище”, а мы дальше будем ловить исключительно реальные проблемы по логам/поведению, без “почему в комменте 32768, а в коде 65535”.
