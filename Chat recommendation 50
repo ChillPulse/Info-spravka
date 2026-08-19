@@ -1,0 +1,190 @@
+`Log42/41/40` и то, что ты видишь сейчас (“128‑ые чуть лучше, но тяжёлые — ребут/стоп/без звука, бесконечный syncword 63xxx/64xxx”) — это уже **не сетевые таймауты и не prebuffer**. Это почти наверняка **поломанный Ogg‑FLAC demux внутри `flac_decoder.cpp`**.
+
+Ключевые факты:
+
+- По спецификации Ogg‑FLAC **пакеты (в т.ч. аудио‑фреймы) могут пересекать границы страниц** (“FLAC packets may span page boundaries”).   
+- Твой текущий `FLACparseOGG()` **игнорирует `continuedPage`** и собирает длины пакетов “локально внутри страницы”, а также раньше делал `shrink_to_fit()` каждый раз (это убийца стабильности — постоянные realloc/free в горячем цикле → фрагментация/краши).
+- Симптом “syncword found at pos 63144/64484” выглядит как **страницы почти максимального размера**, и как раз на таких потоках продолжение пакета через страницы встречается часто.
+
+### Прорывное “флагманское” решение
+Сделать **правильную lacing‑логику Ogg** (учёт `continuedPage` + накопление незаконченного пакета между страницами), плюс убрать `shrink_to_fit()` из горячего пути, плюс не “попать” длину сегмента пока данных реально не хватает.
+
+Ниже — единое чёткое ТЗ агенту (Rec50). Это то, что реально “чинит причину”, а не лечит симптом.
+
+---
+
+## Rec50 — Flagship Ogg‑FLAC: proper lacing/continued packets + no shrink_to_fit + don’t consume segmLen until available
+
+### Цель (Definition of Done)
+1) FLAC OGG‑потоки (включая “128k flac” и “SECTOR Progressive”) **не уходят в бесконечный resync** и **не ребутят** устройство из-за Ogg парсера.  
+2) Не происходит постоянных heap realloc’ов на каждой странице Ogg (убираем `shrink_to_fit` в горячем цикле).  
+3) Если пакета целиком нет в буфере — декодер **ждёт данные**, но не “ломает состояние” (не pop/consume преждевременно).
+
+---
+
+### Файл
+`yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp`
+
+---
+
+## 1) Убрать `shrink_to_fit()` из горячего пути Ogg
+В `FLACparseOGG()` сейчас есть:
+
+```cpp
+s_flacSegmTableVec.clear();
+s_flacSegmTableVec.shrink_to_fit();
+```
+
+**Заменить на:**
+```cpp
+s_flacSegmTableVec.clear();
+// DO NOT shrink_to_fit() here — causes realloc/free on every page and heap fragmentation
+```
+
+(Если хочешь “красиво”: один раз сделать `s_flacSegmTableVec.reserve(256);` где-нибудь в reset/init, но это опционально.)
+
+---
+
+## 2) Реализовать правильный Ogg lacing с учётом continuedPage
+В `FLACparseOGG()` ты уже вычисляешь:
+```cpp
+uint8_t headerType = inbuf[5];
+bool continuedPage = headerType & 0x01;
+```
+
+Нужно заменить текущий цикл построения `s_flacSegmTableVec` на стандартный алгоритм:
+
+### 2.1 Добавить статическое состояние для “незавершенного пакета”
+Вверху файла (рядом с другими `static`/глобальными):
+```cpp
+static uint32_t s_oggPendingPacketLen = 0;
+```
+
+Сбрасывать его в `FLACDecoderReset()` (или в вашем reset-эквиваленте):
+```cpp
+s_oggPendingPacketLen = 0;
+```
+
+### 2.2 Новый код построения пакетов по lacing values
+Заменить блок:
+
+```cpp
+for(int32_t i = 0; i < pageSegments; i++){
+    int32_t n = *(inbuf + 27 + i);
+    while(*(inbuf + 27 + i) == 255){
+        i++;
+        if(i == pageSegments) break;
+        n+= *(inbuf + 27 + i);
+    }
+    s_flacSegmTableVec.insert(s_flacSegmTableVec.begin(), n);
+}
+```
+
+на:
+
+```cpp
+uint32_t cur = continuedPage ? s_oggPendingPacketLen : 0;
+s_oggPendingPacketLen = 0;
+
+for(uint32_t i = 0; i < pageSegments; i++){
+    uint8_t l = *(inbuf + 27 + i);
+    cur += l;
+
+    if(l < 255){
+        // packet ended on this segment
+        s_flacSegmTableVec.insert(s_flacSegmTableVec.begin(), cur);
+        cur = 0;
+    }
+}
+
+// if packet did not end (last lacing value 255), carry it to next page
+if(cur > 0){
+    s_oggPendingPacketLen = cur;
+}
+```
+
+Это “правильный” Ogg demux: пакеты могут продолжаться между страницами. 
+
+---
+
+## 3) В `FLACDecode()` не pop/consume segmLen, если данных недостаточно
+Сейчас у тебя:
+
+```cpp
+segmLen = s_flacSegmTableVec.back();
+s_flacSegmTableVec.pop_back();
+...
+*bytesLeft -= segmLen;
+s_flacCurrentFilePos += segmLen;
+return ret;
+```
+
+Это опасно: если `*bytesLeft` меньше `segmLen`, ты разъедешь указатели и получишь ресинки/краши.
+
+### Исправление
+Сделать так:
+
+```cpp
+segmLen = s_flacSegmTableVec.back();
+
+// If not enough payload bytes yet, wait. Do NOT pop and do NOT consume.
+if(*bytesLeft < (int32_t)segmLen){
+    // keep segmLen in vec, keep parseOgg=false so we continue with same page payload when more arrives
+    return FLAC_PARSE_OGG_DONE;
+}
+
+s_flacSegmTableVec.pop_back();
+if(!s_flacSegmTableVec.size()) s_f_flacParseOgg = true;
+
+// ... далее switch(pageNr) как было ...
+
+*bytesLeft -= segmLen;
+s_flacCurrentFilePos += segmLen;
+return ret;
+```
+
+---
+
+## 4) Ослабить “полная страница целиком в буфере” в `FLACparseOGG()`
+Сейчас ты требуешь:
+```cpp
+if(*bytesLeft < headerSize + pageBodyBytes) return FLAC_PARSE_OGG_DONE;
+```
+
+Это сильно увеличивает “залипания” на больших страницах.
+
+После пункта (3) это уже не нужно. Оставляем только:
+- `*bytesLeft >= headerSize` (чтобы прочитать segment table)
+- `pageBodyBytes` проверяем только на sanity (<= FLAC_MAX_OGG_SEGMENT)
+
+То есть **удалить** строку:
+```cpp
+if(*bytesLeft < (int32_t)(headerSize + pageBodyBytes)) return FLAC_PARSE_OGG_DONE;
+```
+
+(Пакеты/байты тела будут “дожидаться” через пункт 3.)
+
+---
+
+# Самопроверка агента (обязательная)
+Агент обязан приложить вывод:
+
+```bash
+git grep -n "shrink_to_fit" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "s_oggPendingPacketLen" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "continuedPage" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "if\\(\\*bytesLeft < \\(int32_t\\)segmLen\\)" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+git grep -n "headerSize \\+ pageBodyBytes" yoRadio/src/audioI2S/flac_decoder/flac_decoder.cpp
+```
+
+Ожидаем:
+- `shrink_to_fit` **не встречается**
+- `s_oggPendingPacketLen` встречается (объявление + использование)
+- есть проверка `*bytesLeft < segmLen` перед `pop_back()` и перед `*bytesLeft -= segmLen`
+- `headerSize + pageBodyBytes` **не встречается** (строку удалили)
+
+---
+
+# Почему это должно вылечить именно твои станции
+- Большие страницы ~63–64KB + “packets may span page boundaries” — это ровно тот случай, где **без continuedPage** и без накопления длины пакета между страницами демультиплексер будет “ломать границы” и фреймы FLAC не будут декодироваться → ресинки/stop/reboot.   
+- `shrink_to_fit()` в горячем цикле — типовая причина “через какое-то время начинает ребутить” из-за фрагментации heap/PSRAM.
