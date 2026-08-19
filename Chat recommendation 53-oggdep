@@ -1,0 +1,89 @@
+Ниже — **единое, подробное и однозначное ТЗ** для агента, чтобы исправить ошибку `micro_ogg/ogg_demuxer.h: No such file or directory` (как в Log49) и добавить недостающую зависимость micro‑flac для **Ogg‑FLAC**.
+
+micro‑flac поддерживает Ogg FLAC, но для этого ему нужен отдельный демультиплексор Ogg — **micro-ogg-demuxer**, который как раз предоставляет `micro_ogg/ogg_demuxer.h`. 
+
+---
+
+# Rec53-oggdep — Add micro-ogg-demuxer dependency for micro-flac (Ogg-FLAC build fix)
+
+## Цель (Definition of Done)
+1) Проект компилируется (Arduino IDE 1.8.19 / core 3.3.6) без ошибки `micro_ogg/ogg_demuxer.h: No such file or directory`.  
+2) `micro_ogg/ogg_demuxer.h` и `ogg_demuxer.cpp` реально присутствуют в репозитории и попадают в сборку.  
+3) Лицензия третьей стороны добавлена в репозиторий.
+
+---
+
+## 1) Что именно скачать (источник)
+Скачать репозиторий:
+
+- **`esphome-libs/micro-ogg-demuxer`** (Apache-2.0) 
+
+В нём нас интересуют:
+- `include/micro_ogg/ogg_demuxer.h` 
+- `src/ogg_demuxer.cpp` 
+
+(В README micro-ogg-demuxer прямо показано использование `#include <micro_ogg/ogg_demuxer.h>`. )
+
+---
+
+## 2) Куда положить файлы в **наш** проект (структура папок)
+В вашем репо `Youradio_Omnia_ESP32S3` создать папку:
+
+- `yoRadio/src/audioI2S/micro_ogg/`
+
+И положить туда **два файла**:
+
+1) `yoRadio/src/audioI2S/micro_ogg/ogg_demuxer.h`  
+   ← копия из `micro-ogg-demuxer/include/micro_ogg/ogg_demuxer.h` 
+
+2) `yoRadio/src/audioI2S/micro_ogg/ogg_demuxer.cpp`  
+   ← копия из `micro-ogg-demuxer/src/ogg_demuxer.cpp` 
+
+Почему так: micro-flac включает именно `micro_ogg/ogg_demuxer.h`, значит в include-path должен существовать каталог `micro_ogg` с `ogg_demuxer.h` внутри. В Arduino сборке include-path уже содержит `yoRadio/src/audioI2S`, поэтому `yoRadio/src/audioI2S/micro_ogg/ogg_demuxer.h` будет виден как `<micro_ogg/ogg_demuxer.h>`.
+
+---
+
+## 3) Лицензия (обязательно)
+Скопировать файл лицензии micro-ogg-demuxer в ваш репозиторий, например:
+
+- `third_party/micro-ogg-demuxer/LICENSE`
+
+(в оригинальном репо micro-ogg-demuxer файл `LICENSE` есть в корне). 
+
+---
+
+## 4) Самопроверка агентом (обязательная, приложить вывод)
+Агент должен выполнить и приложить вывод:
+
+```bash
+git ls-files | grep -E "yoRadio/src/audioI2S/micro_ogg/ogg_demuxer\.(h|cpp)"
+git ls-files | grep -E "third_party/micro-ogg-demuxer/LICENSE"
+```
+
+И ещё grep (чтобы убедиться, что include реально “закрыт”):
+
+```bash
+git grep -n "micro_ogg/ogg_demuxer.h" -R yoRadio/src/audioI2S
+```
+
+Ожидается: найдено как минимум в micro-flac исходниках (и/или в micro-ogg файлах).
+
+---
+
+## 5) Проверка сборкой (обязательная)
+Собрать в Arduino IDE с verbose compilation.
+
+Критерий:
+- ошибка `micro_ogg/ogg_demuxer.h: No such file or directory` исчезла
+- в verbose логе должен быть виден компилируемый файл `ogg_demuxer.cpp` (строка компилятора с путём к нему).
+
+---
+
+## 6) Git-процесс
+- Только `main`
+- Один коммит: `Add micro-ogg-demuxer (micro_ogg) dependency for micro-flac Ogg-FLAC`
+- Push в `origin/main`
+
+---
+
+Если агент выполнит шаги 1–6, сборка micro-flac для Ogg‑FLAC перестанет падать, потому что зависимость `micro_ogg/ogg_demuxer.h` будет реально в дереве проекта.
