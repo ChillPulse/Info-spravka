@@ -1,0 +1,74 @@
+Готово по Rec53b — исправлен WEB micro-flac backend.
+
+Проблемы до
+В sendBytes() обрезалось samples_decoded до m_outbuffSize → терялась большая часть FLAC блока (heavy FLAC)
+NEED_MORE_DATA выставлял res=100, а decodeContinue() для FLAC это не понимает → вход переставал продвигаться, залипание
+Micro-flac тратил память/CPU на CRC и метаданные картинки/комментов — не нужно для радио
+Что сделано
+1) Pending-поля в AudioEx.h:
+
+C++
+
+size_t m_mf_pending_total = 0; // total interleaved samples
+size_t m_mf_pending_off = 0;   // offset
+2) microflac_reset_() — конфиг и сброс pending:
+
+C++
+
+g_mf.reset();
+g_mf.set_crc_check_enabled(false);
+g_mf.set_max_metadata_size(PICTURE, 0);
+g_mf.set_max_metadata_size(VORBIS_COMMENT, 0);
+m_mf_pending_total = 0;
+m_mf_pending_off = 0;
+3) playAudioData() — выдача хвоста PCM без повторного decode:
+
+C++
+
+if(m_codec==FLAC && m_mf_active && m_mf_pending_off < m_mf_pending_total){
+  remain = total - off;
+  chunk = min(remain, outbuffSize);
+  for(i<chunk){
+    v = out32[off+i];
+    if(bps<32) v>>=(32-bps);
+    if(bps>16) v>>=(bps-16); else if(bps<16) v<<=(16-bps);
+    clamp...
+    outBuff[i]=v;
+  }
+  m_mf_pending_off += chunk;
+  m_validSamples = chunk / channels;
+  playChunk();
+  return;
+}
+4) sendBytes() SUCCESS — не режет и не играет внутри:
+
+C++
+
+// было: total>maxOut ? truncate + convert + playChunk + return
+// стало:
+m_mf_pending_total = samples_decoded;
+m_mf_pending_off = 0;
+bytesLeft = len - consumed;
+bytesDecoded = consumed;
+res=0;
+break; // отдаст первый chunk уже в следующем тике playAudioData()
+5) NEED_MORE_DATA:
+
+C++
+
+// было res=100;
+res = FLAC_DECODE_FRAMES_LOOP;
+Самопроверка
+Bash
+
+git grep -n "m_mf_pending_total" # AudioEx.h + Audio.cpp
+git grep -n "set_crc_check_enabled" # in reset
+git grep -n "set_max_metadata_size" # PICTURE, VORBIS_COMMENT
+git grep -n "FLAC_DECODER_NEED_MORE_DATA" # found
+git grep -n "res = FLAC_DECODE_FRAMES_LOOP" # found
+git grep -n "if(m_codec == CODEC_FLAC && m_mf_active && m_mf_pending_off < m_mf_pending_total)" # found
+Критерий успеха
+Heavy WEB FLAC больше не «рвётся/стопится» из-за потери PCM
+Нет ситуации «играет 1 кусок и потом stop»
+Вход продвигается корректно при NEED_MORE_DATA
+Коммит: f6ea505 Rec53b: fix micro-flac WEB backend - chunked PCM + correct NEED_MORE_DATA + config в main.
