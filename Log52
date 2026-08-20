@@ -1,0 +1,2818 @@
+12:00:34.586 -> Build:Mar 27 2021
+12:00:34.586 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:00:34.586 -> SPIWP:0xee
+12:00:34.586 -> mode:DIO, clock div:1
+12:00:34.586 -> load:0x3fce2820,len:0x116c
+12:00:34.634 -> load:0x403c8700,len:0xc2c
+12:00:34.634 -> load:0x403cb700,len:0x3108
+12:00:34.634 -> entry 0x403c88b8
+12:00:35.008 -> ##[BOOT]#	************************************************
+12:00:35.008 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:00:35.008 -> ##[BOOT]#	************************************************
+12:00:35.008 -> ##[BOOT]#	------------------------------------------------
+12:00:35.008 -> ##[BOOT]#	arduino:	10819
+12:00:35.008 -> ##[BOOT]#	compiler:	14.2.0
+12:00:35.008 -> ##[BOOT]#	esp32core:	3.3.6
+12:00:35.008 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:00:35.008 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:00:35.055 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:00:35.055 -> ##[BOOT]#	audioinfo:	false
+12:00:35.055 -> ##[BOOT]#	smartstart:	0
+12:00:35.055 -> ##[BOOT]#	vumeter:	false
+12:00:35.055 -> ##[BOOT]#	softapdelay:	0
+12:00:35.055 -> ##[BOOT]#	flipscreen:	false
+12:00:35.055 -> ##[BOOT]#	invertdisplay:	false
+12:00:35.055 -> ##[BOOT]#	showweather:	false
+12:00:35.055 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:00:35.055 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:00:35.101 -> ##[BOOT]#	ir:		NONE
+12:00:35.101 -> ##[BOOT]#	SD:		CS-39
+12:00:35.101 -> ##[BOOT]#	battery:	battery ON
+12:00:35.101 -> ##[BOOT]#	------------------------------------------------
+12:00:35.101 -> ##[BOOT]#	CONFIG_VERSION	4
+12:00:35.148 -> ##[BOOT]#	SPIFFS mounted
+12:00:35.379 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:00:35.379 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:00:35.379 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:00:35.425 -> ##[BOOT]#	player.init	done
+12:00:35.471 -> ##[BOOT]#	network.begin
+12:00:35.516 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:00:35.516 -> ##[BOOT]#	....
+12:00:37.047 -> ##[BOOT]#	done
+12:00:37.047 -> ##[BOOT]#	SD search	done
+12:00:37.093 -> ##[BOOT]#	netserver.begin	done
+12:00:37.093 -> ##[BOOT]#	telnet.begin	done
+12:00:37.093 -> ##[BOOT]#
+12:00:37.093 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:00:37.093 -> ##[BOOT]#	------------------------------------------------
+12:00:37.093 -> ##[BOOT]#
+12:00:37.093 -> ##CLI.META#: [готов]
+12:00:37.186 -> ##CLI.META#: [соединение]
+12:00:37.233 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:00:37.233 -> ##AUDIO.INFO#: buffers freed, free Heap: 174948 bytes
+12:00:37.233 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/progressive-56"
+12:00:37.279 -> ##AUDIO.INFO#: Connection has been established in 35 ms
+12:00:37.650 -> ##AUDIO.INFO#: format is ogg
+12:00:37.650 -> ##AUDIO.INFO#: icy-bitrate : 88000 (b/s)
+12:00:37.650 -> ##AUDIO.INFO#: icy-genre: EDM, IDM, Trip-hop, Techno, House, Trance, Noise, Electroacoustic, Berlin school, Ambient
+12:00:37.650 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Progressive channel
+12:00:37.650 -> ##CLI.META#: SECTOR  |  Progressive channel
+12:00:37.697 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:00:37.790 -> ##CLI.INFO#
+12:00:37.790 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:00:37.790 -> ##CLI.NAMESET#: 269 SECTOR Progressive (ogg-opus)
+12:00:37.790 -> ##CLI.META#: SECTOR  |  Progressive channel
+12:00:37.790 -> ##CLI.VOL#: 28
+12:00:37.790 -> ##CLI.PLAYING#
+12:00:37.790 -> ##CLI.META#: SECTOR  |  Progressive channel
+12:00:38.254 -> ##AUDIO.INFO#: OPUSDecoder has been initialized
+12:00:38.254 -> ##AUDIO.INFO#: format is opus
+12:00:38.439 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:00:38.439 -> ##AUDIO.INFO#: syncword found at pos 0
+12:00:38.439 -> ##AUDIO.INFO#: Opus Mode: CELT_ONLY
+12:00:38.439 -> ##AUDIO.INFO#: Channels: 2
+12:00:38.439 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+12:00:38.439 -> ##AUDIO.INFO#: BitsPerSample: 16
+12:00:38.439 -> ##AUDIO.INFO#: BitRate: 88000
+12:00:38.439 -> ##AUDIO.BITRATE#: 88000
+12:00:50.093 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:00:51.347 -> ##CLI.META#: [соединение]
+12:00:51.534 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/progressive-56" (ssl=0)
+12:00:51.534 -> ##AUDIO.INFO#: buffers freed, free Heap: 174204 bytes
+12:00:51.534 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-mp3"
+12:00:51.580 -> ##AUDIO.INFO#: Connection has been established in 42 ms
+12:00:51.673 -> ##AUDIO.INFO#: format is mp3
+12:00:51.673 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+12:00:51.718 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:00:51.718 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:00:51.718 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:51.718 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+12:00:51.718 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:00:51.718 -> ##CLI.INFO#
+12:00:51.718 -> ##SYS.DATE#: 2026-08-20T12:00:49+03:00
+12:00:51.718 -> ##CLI.NAMESET#: 295 SECTOR Zed (mp3)
+12:00:51.718 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:51.718 -> ##CLI.VOL#: 28
+12:00:51.718 -> ##CLI.PLAYING#
+12:00:51.718 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:51.810 -> ##AUDIO.INFO#: stream ready
+12:00:51.810 -> ##AUDIO.INFO#: syncword found at pos 16
+12:00:51.856 -> ##AUDIO.INFO#: syncword found at pos 0
+12:00:51.856 -> ##AUDIO.INFO#: MPEG-1 Layer III
+12:00:51.856 -> ##AUDIO.INFO#: Channels: 2
+12:00:51.856 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+12:00:51.856 -> ##AUDIO.INFO#: BitsPerSample: 16
+12:00:51.856 -> ##AUDIO.INFO#: BitRate: 192000
+12:00:51.856 -> ##AUDIO.BITRATE#: 192000
+12:00:52.041 -> ##CLI.META#: SECTOR Live |  Phil Collins - Loving you is sweeter than ever (live at Roseland ballroom, NYC, 2010), 2010 [ • England]
+12:00:52.831 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:00:53.619 -> ##CLI.META#: [соединение]
+12:00:53.666 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-mp3" (ssl=0)
+12:00:53.666 -> ##AUDIO.INFO#: buffers freed, free Heap: 174108 bytes
+12:00:53.666 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:00:53.713 -> ##AUDIO.INFO#: Connection has been established in 30 ms
+12:00:53.899 -> ##AUDIO.INFO#: format is ogg
+12:00:53.899 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:00:53.945 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:00:53.945 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:00:53.945 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:53.945 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:00:53.945 -> ##CLI.INFO#
+12:00:53.945 -> ##SYS.DATE#: 2026-08-20T12:00:51+03:00
+12:00:53.945 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:00:53.945 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:53.945 -> ##CLI.VOL#: 28
+12:00:53.945 -> ##CLI.PLAYING#
+12:00:53.945 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:54.085 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:00:54.501 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:00:54.501 -> ##AUDIO.INFO#: syncword found at pos 0
+12:00:54.501 -> ##CLI.META#: microflac decode error -14
+12:00:54.501 -> ##ERROR#:	microflac decode error -14
+12:00:54.501 -> ##ERROR#:	microflac decode error -14
+12:00:54.501 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:00:54.547 -> 
+12:00:54.547 -> Core  1 register dump:
+12:00:54.547 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:00:54.594 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:00:54.594 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:00:54.594 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebe1c  
+12:00:54.594 -> A14     : 0x3fcee214  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:00:54.594 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000248  
+12:00:54.594 -> 
+12:00:54.594 -> 
+12:00:54.594 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:00:54.641 -> 
+12:00:54.641 -> 
+12:00:54.641 -> 
+12:00:54.641 -> 
+12:00:54.641 -> ELF file SHA256: a21e6f0dd
+12:00:54.641 -> 
+12:00:54.827 -> Rebooting...
+12:00:54.827 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:00:54.873 -> Build:Mar 27 2021
+12:00:54.873 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:00:54.873 -> Saved PC:0x42136173
+12:00:54.873 -> SPIWP:0xee
+12:00:54.873 -> mode:DIO, clock div:1
+12:00:54.873 -> load:0x3fce2820,len:0x116c
+12:00:54.873 -> load:0x403c8700,len:0xc2c
+12:00:54.873 -> load:0x403cb700,len:0x3108
+12:00:54.873 -> entry 0x403c88b8
+12:00:55.246 -> ##[BOOT]#	************************************************
+12:00:55.246 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:00:55.246 -> ##[BOOT]#	************************************************
+12:00:55.246 -> ##[BOOT]#	------------------------------------------------
+12:00:55.246 -> ##[BOOT]#	arduino:	10819
+12:00:55.293 -> ##[BOOT]#	compiler:	14.2.0
+12:00:55.293 -> ##[BOOT]#	esp32core:	3.3.6
+12:00:55.293 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:00:55.293 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:00:55.293 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:00:55.293 -> ##[BOOT]#	audioinfo:	false
+12:00:55.293 -> ##[BOOT]#	smartstart:	0
+12:00:55.293 -> ##[BOOT]#	vumeter:	false
+12:00:55.293 -> ##[BOOT]#	softapdelay:	0
+12:00:55.293 -> ##[BOOT]#	flipscreen:	false
+12:00:55.293 -> ##[BOOT]#	invertdisplay:	false
+12:00:55.293 -> ##[BOOT]#	showweather:	false
+12:00:55.339 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:00:55.339 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:00:55.339 -> ##[BOOT]#	ir:		NONE
+12:00:55.339 -> ##[BOOT]#	SD:		CS-39
+12:00:55.339 -> ##[BOOT]#	battery:	battery ON
+12:00:55.339 -> ##[BOOT]#	------------------------------------------------
+12:00:55.339 -> ##[BOOT]#	CONFIG_VERSION	4
+12:00:55.386 -> ##[BOOT]#	SPIFFS mounted
+12:00:55.666 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:00:55.666 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:00:55.666 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:00:55.666 -> ##[BOOT]#	player.init	done
+12:00:55.713 -> ##[BOOT]#	network.begin
+12:00:55.806 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:00:55.806 -> ##[BOOT]#	....
+12:00:57.294 -> ##[BOOT]#	done
+12:00:57.294 -> ##[BOOT]#	SD search	done
+12:00:57.340 -> ##[BOOT]#	netserver.begin	done
+12:00:57.340 -> ##[BOOT]#	telnet.begin	done
+12:00:57.340 -> ##[BOOT]#
+12:00:57.340 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:00:57.340 -> ##[BOOT]#	------------------------------------------------
+12:00:57.340 -> ##[BOOT]#
+12:00:57.340 -> ##CLI.META#: [готов]
+12:00:57.433 -> ##CLI.META#: [соединение]
+12:00:57.525 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:00:57.525 -> ##AUDIO.INFO#: buffers freed, free Heap: 174892 bytes
+12:00:57.525 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:00:57.571 -> ##AUDIO.INFO#: Connection has been established in 34 ms
+12:00:57.849 -> ##AUDIO.INFO#: format is ogg
+12:00:57.849 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:00:57.896 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:00:57.896 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:00:57.896 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:57.896 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:00:58.036 -> ##CLI.INFO#
+12:00:58.036 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:00:58.036 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:00:58.036 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:58.036 -> ##CLI.VOL#: 28
+12:00:58.036 -> ##CLI.PLAYING#
+12:00:58.036 -> ##CLI.META#: SECTOR  |  Zed channel
+12:00:58.082 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:00:58.501 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:00:58.501 -> ##AUDIO.INFO#: syncword found at pos 0
+12:00:58.501 -> ##CLI.META#: microflac decode error -14
+12:00:58.501 -> ##ERROR#:	microflac decode error -14
+12:00:58.501 -> ##ERROR#:	microflac decode error -14
+12:00:58.501 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:00:58.547 -> 
+12:00:58.547 -> Core  1 register dump:
+12:00:58.547 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:00:58.594 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:00:58.594 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:00:58.594 -> A10     : 0x00000000  A11     : 0x00000000  A12     : 0x3fcee180  A13     : 0x00000000  
+12:00:58.594 -> A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:00:58.594 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000088  
+12:00:58.594 -> 
+12:00:58.594 -> 
+12:00:58.594 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:00:58.641 -> 
+12:00:58.641 -> 
+12:00:58.641 -> 
+12:00:58.641 -> 
+12:00:58.641 -> ELF file SHA256: a21e6f0dd
+12:00:58.641 -> 
+12:00:58.826 -> Rebooting...
+12:00:58.826 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:00:58.872 -> Build:Mar 27 2021
+12:00:58.872 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:00:58.872 -> Saved PC:0x4037bc4a
+12:00:58.872 -> SPIWP:0xee
+12:00:58.872 -> mode:DIO, clock div:1
+12:00:58.872 -> load:0x3fce2820,len:0x116c
+12:00:58.872 -> load:0x403c8700,len:0xc2c
+12:00:58.872 -> load:0x403cb700,len:0x3108
+12:00:58.872 -> entry 0x403c88b8
+12:00:59.242 -> ##[BOOT]#	************************************************
+12:00:59.242 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:00:59.242 -> ##[BOOT]#	************************************************
+12:00:59.288 -> ##[BOOT]#	------------------------------------------------
+12:00:59.288 -> ##[BOOT]#	arduino:	10819
+12:00:59.288 -> ##[BOOT]#	compiler:	14.2.0
+12:00:59.288 -> ##[BOOT]#	esp32core:	3.3.6
+12:00:59.288 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:00:59.288 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:00:59.288 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:00:59.288 -> ##[BOOT]#	audioinfo:	false
+12:00:59.288 -> ##[BOOT]#	smartstart:	0
+12:00:59.288 -> ##[BOOT]#	vumeter:	false
+12:00:59.288 -> ##[BOOT]#	softapdelay:	0
+12:00:59.288 -> ##[BOOT]#	flipscreen:	false
+12:00:59.333 -> ##[BOOT]#	invertdisplay:	false
+12:00:59.333 -> ##[BOOT]#	showweather:	false
+12:00:59.333 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:00:59.333 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:00:59.333 -> ##[BOOT]#	ir:		NONE
+12:00:59.333 -> ##[BOOT]#	SD:		CS-39
+12:00:59.333 -> ##[BOOT]#	battery:	battery ON
+12:00:59.333 -> ##[BOOT]#	------------------------------------------------
+12:00:59.333 -> ##[BOOT]#	CONFIG_VERSION	4
+12:00:59.426 -> ##[BOOT]#	SPIFFS mounted
+12:00:59.658 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:00:59.658 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:00:59.658 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:00:59.658 -> ##[BOOT]#	player.init	done
+12:00:59.704 -> ##[BOOT]#	network.begin
+12:00:59.797 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:00:59.797 -> ##[BOOT]#	....
+12:01:01.283 -> ##[BOOT]#	done
+12:01:01.283 -> ##[BOOT]#	SD search	done
+12:01:01.329 -> ##[BOOT]#	netserver.begin	done
+12:01:01.329 -> ##[BOOT]#	telnet.begin	done
+12:01:01.329 -> ##[BOOT]#
+12:01:01.329 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:01.329 -> ##[BOOT]#	------------------------------------------------
+12:01:01.329 -> ##[BOOT]#
+12:01:01.329 -> ##CLI.META#: [готов]
+12:01:01.468 -> ##CLI.META#: [соединение]
+12:01:01.468 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:01.515 -> ##AUDIO.INFO#: buffers freed, free Heap: 174900 bytes
+12:01:01.515 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:01.515 -> ##AUDIO.INFO#: Connection has been established in 38 ms
+12:01:02.257 -> ##AUDIO.INFO#: format is ogg
+12:01:02.257 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:02.257 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:02.304 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:02.304 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:02.304 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:02.397 -> ##CLI.INFO#
+12:01:02.397 -> ##SYS.DATE#: 2026-08-20T12:01:00+03:00
+12:01:02.397 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:02.443 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:02.443 -> ##CLI.VOL#: 28
+12:01:02.443 -> ##CLI.PLAYING#
+12:01:02.443 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:02.443 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:02.721 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:02.721 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:02.721 -> ##CLI.META#: microflac decode error -14
+12:01:02.721 -> ##ERROR#:	microflac decode error -14
+12:01:02.721 -> ##ERROR#:	microflac decode error -14
+12:01:02.721 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:02.815 -> 
+12:01:02.815 -> Core  1 register dump:
+12:01:02.815 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:02.815 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:02.815 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:02.815 -> A10     : 0x00000000  A11     : 0x00000000  A12     : 0x00000001  A13     : 0x3fca3a88  
+12:01:02.815 -> A14     : 0x3fcb91c8  A15     : 0x00000001  SAR     : 0x0000001b  EXCCAUSE: 0x0000001c  
+12:01:02.815 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x000002c8  
+12:01:02.861 -> 
+12:01:02.861 -> 
+12:01:02.861 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:02.861 -> 
+12:01:02.861 -> 
+12:01:02.861 -> 
+12:01:02.861 -> 
+12:01:02.861 -> ELF file SHA256: a21e6f0dd
+12:01:02.861 -> 
+12:01:03.094 -> Rebooting...
+12:01:03.094 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:01:03.094 -> Build:Mar 27 2021
+12:01:03.094 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:03.094 -> Saved PC:0x4037bc4a
+12:01:03.094 -> SPIWP:0xee
+12:01:03.094 -> mode:DIO, clock div:1
+12:01:03.094 -> load:0x3fce2820,len:0x116c
+12:01:03.094 -> load:0x403c8700,len:0xc2c
+12:01:03.094 -> load:0x403cb700,len:0x3108
+12:01:03.094 -> entry 0x403c88b8
+12:01:03.467 -> ##[BOOT]#	************************************************
+12:01:03.467 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:03.467 -> ##[BOOT]#	************************************************
+12:01:03.513 -> ##[BOOT]#	------------------------------------------------
+12:01:03.513 -> ##[BOOT]#	arduino:	10819
+12:01:03.513 -> ##[BOOT]#	compiler:	14.2.0
+12:01:03.513 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:03.513 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:03.513 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:03.513 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:03.513 -> ##[BOOT]#	audioinfo:	false
+12:01:03.513 -> ##[BOOT]#	smartstart:	0
+12:01:03.513 -> ##[BOOT]#	vumeter:	false
+12:01:03.513 -> ##[BOOT]#	softapdelay:	0
+12:01:03.513 -> ##[BOOT]#	flipscreen:	false
+12:01:03.559 -> ##[BOOT]#	invertdisplay:	false
+12:01:03.559 -> ##[BOOT]#	showweather:	false
+12:01:03.559 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:03.559 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:03.559 -> ##[BOOT]#	ir:		NONE
+12:01:03.559 -> ##[BOOT]#	SD:		CS-39
+12:01:03.559 -> ##[BOOT]#	battery:	battery ON
+12:01:03.559 -> ##[BOOT]#	------------------------------------------------
+12:01:03.559 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:03.652 -> ##[BOOT]#	SPIFFS mounted
+12:01:03.885 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:03.885 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:03.885 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:03.885 -> ##[BOOT]#	player.init	done
+12:01:03.932 -> ##[BOOT]#	network.begin
+12:01:04.025 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:04.025 -> ##[BOOT]#	....
+12:01:05.511 -> ##[BOOT]#	done
+12:01:05.511 -> ##[BOOT]#	SD search	done
+12:01:05.557 -> ##[BOOT]#	netserver.begin	done
+12:01:05.557 -> ##[BOOT]#	telnet.begin	done
+12:01:05.557 -> ##[BOOT]#
+12:01:05.557 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:05.557 -> ##[BOOT]#	------------------------------------------------
+12:01:05.557 -> ##[BOOT]#
+12:01:05.557 -> ##CLI.META#: [готов]
+12:01:05.696 -> ##CLI.META#: [соединение]
+12:01:05.742 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:05.742 -> ##AUDIO.INFO#: buffers freed, free Heap: 174752 bytes
+12:01:05.742 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:05.790 -> ##AUDIO.INFO#: Connection has been established in 31 ms
+12:01:05.883 -> ##AUDIO.INFO#: format is ogg
+12:01:05.883 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:05.883 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:05.929 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:05.929 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:05.929 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:06.023 -> ##CLI.INFO#
+12:01:06.023 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:01:06.023 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:06.070 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:06.070 -> ##CLI.VOL#: 28
+12:01:06.070 -> ##CLI.PLAYING#
+12:01:06.070 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:06.349 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:06.719 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:06.719 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:06.719 -> ##CLI.META#: microflac decode error -14
+12:01:06.719 -> ##ERROR#:	microflac decode error -14
+12:01:06.719 -> ##ERROR#:	microflac decode error -14
+12:01:06.766 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:06.812 -> 
+12:01:06.812 -> Core  1 register dump:
+12:01:06.812 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:06.812 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:06.812 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:06.812 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebdfc  
+12:01:06.858 -> A14     : 0x3fcee214  A15     : 0x00000000  SAR     : 0x0000000e  EXCCAUSE: 0x0000001c  
+12:01:06.858 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000465  
+12:01:06.858 -> 
+12:01:06.858 -> 
+12:01:06.858 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:06.858 -> 
+12:01:06.858 -> 
+12:01:06.858 -> 
+12:01:06.858 -> 
+12:01:06.858 -> ELF file SHA256: a21e6f0dd
+12:01:06.858 -> 
+12:01:07.090 -> Rebooting...
+12:01:07.090 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:01:07.090 -> Build:Mar 27 2021
+12:01:07.090 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:07.090 -> Saved PC:0x40056f5e
+12:01:07.090 -> SPIWP:0xee
+12:01:07.090 -> mode:DIO, clock div:1
+12:01:07.090 -> load:0x3fce2820,len:0x116c
+12:01:07.137 -> load:0x403c8700,len:0xc2c
+12:01:07.137 -> load:0x403cb700,len:0x3108
+12:01:07.137 -> entry 0x403c88b8
+12:01:07.507 -> ##[BOOT]#	************************************************
+12:01:07.507 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:07.507 -> ##[BOOT]#	************************************************
+12:01:07.507 -> ##[BOOT]#	------------------------------------------------
+12:01:07.507 -> ##[BOOT]#	arduino:	10819
+12:01:07.507 -> ##[BOOT]#	compiler:	14.2.0
+12:01:07.507 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:07.507 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:07.507 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:07.553 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:07.553 -> ##[BOOT]#	audioinfo:	false
+12:01:07.553 -> ##[BOOT]#	smartstart:	0
+12:01:07.553 -> ##[BOOT]#	vumeter:	false
+12:01:07.553 -> ##[BOOT]#	softapdelay:	0
+12:01:07.553 -> ##[BOOT]#	flipscreen:	false
+12:01:07.553 -> ##[BOOT]#	invertdisplay:	false
+12:01:07.553 -> ##[BOOT]#	showweather:	false
+12:01:07.553 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:07.553 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:07.553 -> ##[BOOT]#	ir:		NONE
+12:01:07.553 -> ##[BOOT]#	SD:		CS-39
+12:01:07.553 -> ##[BOOT]#	battery:	battery ON
+12:01:07.599 -> ##[BOOT]#	------------------------------------------------
+12:01:07.599 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:07.646 -> ##[BOOT]#	SPIFFS mounted
+12:01:07.879 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:07.879 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:07.879 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:07.879 -> ##[BOOT]#	player.init	done
+12:01:07.971 -> ##[BOOT]#	network.begin
+12:01:08.019 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:08.019 -> ##[BOOT]#	.....
+12:01:10.014 -> ##[BOOT]#	done
+12:01:10.014 -> ##[BOOT]#	SD search	done
+12:01:10.060 -> ##[BOOT]#	netserver.begin	done
+12:01:10.060 -> ##[BOOT]#	telnet.begin	done
+12:01:10.060 -> ##[BOOT]#
+12:01:10.060 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:10.060 -> ##[BOOT]#	------------------------------------------------
+12:01:10.107 -> ##[BOOT]#
+12:01:10.107 -> ##CLI.META#: [готов]
+12:01:10.201 -> ##CLI.META#: [соединение]
+12:01:10.201 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:10.248 -> ##AUDIO.INFO#: buffers freed, free Heap: 175068 bytes
+12:01:10.248 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:10.248 -> ##AUDIO.INFO#: Connection has been established in 32 ms
+12:01:10.388 -> ##AUDIO.INFO#: format is ogg
+12:01:10.388 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:10.388 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:10.434 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:10.434 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:10.434 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:10.527 -> ##CLI.INFO#
+12:01:10.527 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:01:10.527 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:10.575 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:10.575 -> ##CLI.VOL#: 28
+12:01:10.575 -> ##CLI.PLAYING#
+12:01:10.575 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:10.622 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:11.040 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:11.040 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:11.040 -> ##CLI.META#: microflac decode error -14
+12:01:11.040 -> ##ERROR#:	microflac decode error -14
+12:01:11.040 -> ##ERROR#:	microflac decode error -14
+12:01:11.040 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:11.132 -> 
+12:01:11.132 -> Core  1 register dump:
+12:01:11.132 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:11.132 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:11.132 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:11.132 -> A10     : 0x00000000  A11     : 0x00000000  A12     : 0x00000001  A13     : 0x3fca3a88  
+12:01:11.132 -> A14     : 0x3fcb91c8  A15     : 0x00000001  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:01:11.179 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000177  
+12:01:11.179 -> 
+12:01:11.179 -> 
+12:01:11.179 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:11.179 -> 
+12:01:11.179 -> 
+12:01:11.179 -> 
+12:01:11.179 -> 
+12:01:11.179 -> ELF file SHA256: a21e6f0dd
+12:01:11.179 -> 
+12:01:11.410 -> Rebooting...
+12:01:11.410 -> ESP-ROM:esp32s3-20210327
+12:01:11.410 -> Build:Mar 27 2021
+12:01:11.410 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:11.410 -> Saved PC:0x4037bc4a
+12:01:11.410 -> SPIWP:0xee
+12:01:11.410 -> mode:DIO, clock div:1
+12:01:11.410 -> load:0x3fce2820,len:0x116c
+12:01:11.410 -> load:0x403c8700,len:0xc2c
+12:01:11.410 -> load:0x403cb700,len:0x3108
+12:01:11.410 -> entry 0x403c88b8
+12:01:11.784 -> ##[BOOT]#	************************************************
+12:01:11.784 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:11.830 -> ##[BOOT]#	************************************************
+12:01:11.830 -> ##[BOOT]#	------------------------------------------------
+12:01:11.830 -> ##[BOOT]#	arduino:	10819
+12:01:11.830 -> ##[BOOT]#	compiler:	14.2.0
+12:01:11.830 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:11.830 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:11.830 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:11.830 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:11.830 -> ##[BOOT]#	audioinfo:	false
+12:01:11.877 -> ##[BOOT]#	smartstart:	0
+12:01:11.877 -> ##[BOOT]#	vumeter:	false
+12:01:11.877 -> ##[BOOT]#	softapdelay:	0
+12:01:11.877 -> ##[BOOT]#	flipscreen:	false
+12:01:11.877 -> ##[BOOT]#	invertdisplay:	false
+12:01:11.877 -> ##[BOOT]#	showweather:	false
+12:01:11.877 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:11.877 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:11.877 -> ##[BOOT]#	ir:		NONE
+12:01:11.877 -> ##[BOOT]#	SD:		CS-39
+12:01:11.877 -> ##[BOOT]#	battery:	battery ON
+12:01:11.877 -> ##[BOOT]#	------------------------------------------------
+12:01:11.877 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:11.970 -> ##[BOOT]#	SPIFFS mounted
+12:01:12.203 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:12.203 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:12.203 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:12.203 -> ##[BOOT]#	player.init	done
+12:01:12.249 -> ##[BOOT]#	network.begin
+12:01:12.341 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:12.341 -> ##[BOOT]#	.....
+12:01:14.338 -> ##[BOOT]#	done
+12:01:14.338 -> ##[BOOT]#	SD search	done
+12:01:14.385 -> ##[BOOT]#	netserver.begin	done
+12:01:14.385 -> ##[BOOT]#	telnet.begin	done
+12:01:14.385 -> ##[BOOT]#
+12:01:14.385 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:14.385 -> ##[BOOT]#	------------------------------------------------
+12:01:14.385 -> ##[BOOT]#
+12:01:14.385 -> ##CLI.META#: [готов]
+12:01:14.478 -> ##CLI.META#: [соединение]
+12:01:14.525 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:14.525 -> ##AUDIO.INFO#: buffers freed, free Heap: 175084 bytes
+12:01:14.525 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:14.571 -> ##AUDIO.INFO#: Connection has been established in 37 ms
+12:01:14.663 -> ##AUDIO.INFO#: format is ogg
+12:01:14.663 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:14.663 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:14.663 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:14.709 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:14.709 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:14.802 -> ##CLI.INFO#
+12:01:14.802 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:01:14.802 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:14.849 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:14.849 -> ##CLI.VOL#: 28
+12:01:14.849 -> ##CLI.PLAYING#
+12:01:14.849 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:14.849 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:15.173 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:15.173 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:15.173 -> ##CLI.META#: microflac decode error -14
+12:01:15.173 -> ##ERROR#:	microflac decode error -14
+12:01:15.173 -> ##ERROR#:	microflac decode error -14
+12:01:15.173 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:15.220 -> 
+12:01:15.220 -> Core  1 register dump:
+12:01:15.220 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:15.266 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:15.266 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:15.266 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebd6c  
+12:01:15.266 -> A14     : 0x3fcee180  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:01:15.266 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000208  
+12:01:15.313 -> 
+12:01:15.313 -> 
+12:01:15.313 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:15.313 -> 
+12:01:15.313 -> 
+12:01:15.313 -> 
+12:01:15.313 -> 
+12:01:15.313 -> ELF file SHA256: a21e6f0dd
+12:01:15.313 -> 
+12:01:15.545 -> Rebooting...
+12:01:15.545 -> ESP-ROM:esp32s3-20210327
+12:01:15.545 -> Build:Mar 27 2021
+12:01:15.545 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:15.545 -> Saved PC:0x4037bc4a
+12:01:15.545 -> SPIWP:0xee
+12:01:15.545 -> mode:DIO, clock div:1
+12:01:15.545 -> load:0x3fce2820,len:0x116c
+12:01:15.545 -> load:0x403c8700,len:0xc2c
+12:01:15.545 -> load:0x403cb700,len:0x3108
+12:01:15.545 -> entry 0x403c88b8
+12:01:15.916 -> ##[BOOT]#	************************************************
+12:01:15.916 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:15.916 -> ##[BOOT]#	************************************************
+12:01:15.962 -> ##[BOOT]#	------------------------------------------------
+12:01:15.962 -> ##[BOOT]#	arduino:	10819
+12:01:15.962 -> ##[BOOT]#	compiler:	14.2.0
+12:01:15.962 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:15.962 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:15.962 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:15.962 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:15.962 -> ##[BOOT]#	audioinfo:	false
+12:01:15.962 -> ##[BOOT]#	smartstart:	0
+12:01:15.962 -> ##[BOOT]#	vumeter:	false
+12:01:16.008 -> ##[BOOT]#	softapdelay:	0
+12:01:16.008 -> ##[BOOT]#	flipscreen:	false
+12:01:16.008 -> ##[BOOT]#	invertdisplay:	false
+12:01:16.008 -> ##[BOOT]#	showweather:	false
+12:01:16.008 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:16.008 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:16.008 -> ##[BOOT]#	ir:		NONE
+12:01:16.008 -> ##[BOOT]#	SD:		CS-39
+12:01:16.008 -> ##[BOOT]#	battery:	battery ON
+12:01:16.008 -> ##[BOOT]#	------------------------------------------------
+12:01:16.008 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:16.102 -> ##[BOOT]#	SPIFFS mounted
+12:01:16.335 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:16.335 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:16.335 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:16.335 -> ##[BOOT]#	player.init	done
+12:01:16.381 -> ##[BOOT]#	network.begin
+12:01:16.474 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:16.474 -> ##[BOOT]#	....
+12:01:17.958 -> ##[BOOT]#	done
+12:01:17.958 -> ##[BOOT]#	SD search	done
+12:01:18.004 -> ##[BOOT]#	netserver.begin	done
+12:01:18.004 -> ##[BOOT]#	telnet.begin	done
+12:01:18.004 -> ##[BOOT]#
+12:01:18.004 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:18.004 -> ##[BOOT]#	------------------------------------------------
+12:01:18.049 -> ##[BOOT]#
+12:01:18.049 -> ##CLI.META#: [готов]
+12:01:18.143 -> ##CLI.META#: [соединение]
+12:01:18.189 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:18.189 -> ##AUDIO.INFO#: buffers freed, free Heap: 174900 bytes
+12:01:18.189 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:18.235 -> ##AUDIO.INFO#: Connection has been established in 45 ms
+12:01:18.373 -> ##AUDIO.INFO#: format is ogg
+12:01:18.373 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:18.373 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:18.420 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:18.420 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:18.420 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:18.514 -> ##CLI.INFO#
+12:01:18.514 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:01:18.514 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:18.560 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:18.560 -> ##CLI.VOL#: 28
+12:01:18.560 -> ##CLI.PLAYING#
+12:01:18.560 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:18.560 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:18.886 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:18.886 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:18.886 -> ##CLI.META#: microflac decode error -14
+12:01:18.886 -> ##ERROR#:	microflac decode error -14
+12:01:18.886 -> ##ERROR#:	microflac decode error -14
+12:01:18.886 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:18.932 -> 
+12:01:18.932 -> Core  1 register dump:
+12:01:18.932 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:18.979 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:18.979 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:18.979 -> A10     : 0x00000000  A11     : 0x3fcebe1c  A12     : 0x00000000  A13     : 0x00000000  
+12:01:18.979 -> A14     : 0x3fca2110  A15     : 0x3fca5120  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:01:18.979 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x000005f9  
+12:01:18.979 -> 
+12:01:18.979 -> 
+12:01:18.979 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:19.025 -> 
+12:01:19.025 -> 
+12:01:19.025 -> 
+12:01:19.025 -> 
+12:01:19.025 -> ELF file SHA256: a21e6f0dd
+12:01:19.025 -> 
+12:01:19.211 -> Rebooting...
+12:01:19.211 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:01:19.258 -> Build:Mar 27 2021
+12:01:19.258 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:19.258 -> Saved PC:0x4037bc4a
+12:01:19.258 -> SPIWP:0xee
+12:01:19.258 -> mode:DIO, clock div:1
+12:01:19.258 -> load:0x3fce2820,len:0x116c
+12:01:19.258 -> load:0x403c8700,len:0xc2c
+12:01:19.258 -> load:0x403cb700,len:0x3108
+12:01:19.258 -> entry 0x403c88b8
+12:01:19.630 -> ##[BOOT]#	************************************************
+12:01:19.630 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:19.630 -> ##[BOOT]#	************************************************
+12:01:19.630 -> ##[BOOT]#	------------------------------------------------
+12:01:19.630 -> ##[BOOT]#	arduino:	10819
+12:01:19.675 -> ##[BOOT]#	compiler:	14.2.0
+12:01:19.675 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:19.675 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:19.675 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:19.675 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:19.675 -> ##[BOOT]#	audioinfo:	false
+12:01:19.675 -> ##[BOOT]#	smartstart:	0
+12:01:19.675 -> ##[BOOT]#	vumeter:	false
+12:01:19.675 -> ##[BOOT]#	softapdelay:	0
+12:01:19.675 -> ##[BOOT]#	flipscreen:	false
+12:01:19.675 -> ##[BOOT]#	invertdisplay:	false
+12:01:19.675 -> ##[BOOT]#	showweather:	false
+12:01:19.722 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:19.722 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:19.722 -> ##[BOOT]#	ir:		NONE
+12:01:19.722 -> ##[BOOT]#	SD:		CS-39
+12:01:19.722 -> ##[BOOT]#	battery:	battery ON
+12:01:19.722 -> ##[BOOT]#	------------------------------------------------
+12:01:19.722 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:19.768 -> ##[BOOT]#	SPIFFS mounted
+12:01:20.045 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:20.045 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:20.045 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:20.045 -> ##[BOOT]#	player.init	done
+12:01:20.091 -> ##[BOOT]#	network.begin
+12:01:20.184 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:20.184 -> ##[BOOT]#	....
+12:01:21.669 -> ##[BOOT]#	done
+12:01:21.669 -> ##[BOOT]#	SD search	done
+12:01:21.715 -> ##[BOOT]#	netserver.begin	done
+12:01:21.715 -> ##[BOOT]#	telnet.begin	done
+12:01:21.715 -> ##[BOOT]#
+12:01:21.715 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:21.715 -> ##[BOOT]#	------------------------------------------------
+12:01:21.715 -> ##[BOOT]#
+12:01:21.715 -> ##CLI.META#: [готов]
+12:01:21.808 -> ##CLI.META#: [соединение]
+12:01:21.854 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:21.854 -> ##AUDIO.INFO#: buffers freed, free Heap: 174864 bytes
+12:01:21.854 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:21.948 -> ##AUDIO.INFO#: Connection has been established in 59 ms
+12:01:22.134 -> ##AUDIO.INFO#: format is ogg
+12:01:22.134 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:22.134 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:22.134 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:22.134 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:22.134 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:22.272 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:01:22.272 -> ##CLI.INFO#
+12:01:22.272 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:01:22.272 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:22.272 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:22.272 -> ##CLI.VOL#: 28
+12:01:22.272 -> ##CLI.PLAYING#
+12:01:22.272 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:22.318 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:22.688 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:22.688 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:22.688 -> ##CLI.META#: microflac decode error -14
+12:01:22.688 -> ##ERROR#:	microflac decode error -14
+12:01:22.688 -> ##ERROR#:	microflac decode error -14
+12:01:22.734 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:22.782 -> 
+12:01:22.782 -> Core  1 register dump:
+12:01:22.782 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:22.782 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:22.782 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:22.782 -> A10     : 0x00000000  A11     : 0x3fcebfe8  A12     : 0x00000000  A13     : 0x3fcc270c  
+12:01:22.782 -> A14     : 0x3fcebf5c  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:01:22.827 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000481  
+12:01:22.827 -> 
+12:01:22.827 -> 
+12:01:22.827 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:22.827 -> 
+12:01:22.827 -> 
+12:01:22.827 -> 
+12:01:22.827 -> 
+12:01:22.827 -> ELF file SHA256: a21e6f0dd
+12:01:22.827 -> 
+12:01:23.059 -> Rebooting...
+12:01:23.059 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:01:23.059 -> Build:Mar 27 2021
+12:01:23.059 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:23.059 -> Saved PC:0x4037bc4a
+12:01:23.059 -> SPIWP:0xee
+12:01:23.059 -> mode:DIO, clock div:1
+12:01:23.059 -> load:0x3fce2820,len:0x116c
+12:01:23.059 -> load:0x403c8700,len:0xc2c
+12:01:23.059 -> load:0x403cb700,len:0x3108
+12:01:23.059 -> entry 0x403c88b8
+12:01:23.477 -> ##[BOOT]#	************************************************
+12:01:23.477 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:23.477 -> ##[BOOT]#	************************************************
+12:01:23.477 -> ##[BOOT]#	------------------------------------------------
+12:01:23.477 -> ##[BOOT]#	arduino:	10819
+12:01:23.477 -> ##[BOOT]#	compiler:	14.2.0
+12:01:23.477 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:23.477 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:23.477 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:23.477 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:23.477 -> ##[BOOT]#	audioinfo:	false
+12:01:23.524 -> ##[BOOT]#	smartstart:	0
+12:01:23.524 -> ##[BOOT]#	vumeter:	false
+12:01:23.524 -> ##[BOOT]#	softapdelay:	0
+12:01:23.524 -> ##[BOOT]#	flipscreen:	false
+12:01:23.524 -> ##[BOOT]#	invertdisplay:	false
+12:01:23.524 -> ##[BOOT]#	showweather:	false
+12:01:23.524 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:23.524 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:23.524 -> ##[BOOT]#	ir:		NONE
+12:01:23.524 -> ##[BOOT]#	SD:		CS-39
+12:01:23.524 -> ##[BOOT]#	battery:	battery ON
+12:01:23.524 -> ##[BOOT]#	------------------------------------------------
+12:01:23.524 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:23.618 -> ##[BOOT]#	SPIFFS mounted
+12:01:23.850 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:23.850 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:23.850 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:23.850 -> ##[BOOT]#	player.init	done
+12:01:23.898 -> ##[BOOT]#	network.begin
+12:01:23.990 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:23.990 -> ##[BOOT]#	....
+12:01:25.473 -> ##[BOOT]#	done
+12:01:25.473 -> ##[BOOT]#	SD search	done
+12:01:25.520 -> ##[BOOT]#	netserver.begin	done
+12:01:25.520 -> ##[BOOT]#	telnet.begin	done
+12:01:25.520 -> ##[BOOT]#
+12:01:25.520 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:25.520 -> ##[BOOT]#	------------------------------------------------
+12:01:25.566 -> ##[BOOT]#
+12:01:25.566 -> ##CLI.META#: [готов]
+12:01:25.659 -> ##CLI.META#: [соединение]
+12:01:25.705 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:25.705 -> ##AUDIO.INFO#: buffers freed, free Heap: 175080 bytes
+12:01:25.705 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:25.752 -> ##AUDIO.INFO#: Connection has been established in 48 ms
+12:01:26.076 -> ##AUDIO.INFO#: format is ogg
+12:01:26.076 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:26.076 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:26.076 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:26.076 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:26.076 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:26.216 -> ##CLI.INFO#
+12:01:26.216 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:01:26.216 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:26.216 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:26.216 -> ##CLI.VOL#: 28
+12:01:26.216 -> ##CLI.PLAYING#
+12:01:26.216 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:26.355 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:26.820 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:26.820 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:26.820 -> ##CLI.META#: microflac decode error -14
+12:01:26.820 -> ##ERROR#:	microflac decode error -14
+12:01:26.820 -> ##ERROR#:	microflac decode error -14
+12:01:26.820 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:26.867 -> 
+12:01:26.867 -> Core  1 register dump:
+12:01:26.867 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:26.867 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:26.914 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:26.914 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebe8c  
+12:01:26.914 -> A14     : 0x3fcec530  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:01:26.914 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000314  
+12:01:26.914 -> 
+12:01:26.914 -> 
+12:01:26.914 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:26.960 -> 
+12:01:26.960 -> 
+12:01:26.960 -> 
+12:01:26.960 -> 
+12:01:26.960 -> ELF file SHA256: a21e6f0dd
+12:01:26.960 -> 
+12:01:27.146 -> Rebooting...
+12:01:27.146 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:01:27.146 -> Build:Mar 27 2021
+12:01:27.146 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:27.193 -> Saved PC:0x4037bc4a
+12:01:27.193 -> SPIWP:0xee
+12:01:27.193 -> mode:DIO, clock div:1
+12:01:27.193 -> load:0x3fce2820,len:0x116c
+12:01:27.193 -> load:0x403c8700,len:0xc2c
+12:01:27.193 -> load:0x403cb700,len:0x3108
+12:01:27.193 -> entry 0x403c88b8
+12:01:27.564 -> ##[BOOT]#	************************************************
+12:01:27.564 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:27.564 -> ##[BOOT]#	************************************************
+12:01:27.564 -> ##[BOOT]#	------------------------------------------------
+12:01:27.564 -> ##[BOOT]#	arduino:	10819
+12:01:27.564 -> ##[BOOT]#	compiler:	14.2.0
+12:01:27.564 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:27.610 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:27.610 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:27.610 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:27.610 -> ##[BOOT]#	audioinfo:	false
+12:01:27.610 -> ##[BOOT]#	smartstart:	0
+12:01:27.610 -> ##[BOOT]#	vumeter:	false
+12:01:27.610 -> ##[BOOT]#	softapdelay:	0
+12:01:27.610 -> ##[BOOT]#	flipscreen:	false
+12:01:27.610 -> ##[BOOT]#	invertdisplay:	false
+12:01:27.610 -> ##[BOOT]#	showweather:	false
+12:01:27.610 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:27.610 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:27.657 -> ##[BOOT]#	ir:		NONE
+12:01:27.657 -> ##[BOOT]#	SD:		CS-39
+12:01:27.657 -> ##[BOOT]#	battery:	battery ON
+12:01:27.657 -> ##[BOOT]#	------------------------------------------------
+12:01:27.657 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:27.705 -> ##[BOOT]#	SPIFFS mounted
+12:01:27.982 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:27.982 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:27.982 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:27.982 -> ##[BOOT]#	player.init	done
+12:01:28.029 -> ##[BOOT]#	network.begin
+12:01:28.122 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:28.122 -> ##[BOOT]#	.....
+12:01:30.119 -> ##[BOOT]#	done
+12:01:30.119 -> ##[BOOT]#	SD search	done
+12:01:30.165 -> ##[BOOT]#	netserver.begin	done
+12:01:30.165 -> ##[BOOT]#	telnet.begin	done
+12:01:30.165 -> ##[BOOT]#
+12:01:30.165 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:01:30.165 -> ##[BOOT]#	------------------------------------------------
+12:01:30.165 -> ##[BOOT]#
+12:01:30.165 -> ##CLI.META#: [готов]
+12:01:30.257 -> ##CLI.META#: [соединение]
+12:01:30.303 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:01:30.303 -> ##AUDIO.INFO#: buffers freed, free Heap: 175068 bytes
+12:01:30.303 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+12:01:30.349 -> ##AUDIO.INFO#: Connection has been established in 35 ms
+12:01:30.534 -> ##AUDIO.INFO#: format is ogg
+12:01:30.534 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:30.581 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:30.581 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:30.581 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:30.581 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:30.720 -> ##CLI.INFO#
+12:01:30.720 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:01:30.720 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:30.720 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:30.720 -> ##CLI.VOL#: 28
+12:01:30.720 -> ##CLI.PLAYING#
+12:01:30.720 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:30.952 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:31.138 -> ##CLI.META#: [остановлено]
+12:01:31.138 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+12:01:31.138 -> ##AUDIO.INFO#: buffers freed, free Heap: 174744 bytes
+12:01:31.184 -> ##CLI.INFO#
+12:01:31.184 -> ##SYS.DATE#: 2026-08-20T12:01:29+03:00
+12:01:31.184 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:31.184 -> ##CLI.VOL#: 28
+12:01:31.184 -> ##CLI.STOPPED#
+12:01:35.599 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:01:35.646 -> ##CLI.META#: [остановлено]
+12:01:35.646 -> ##CLI.VOL#: 28
+12:01:35.739 -> ##CLI.INFO#
+12:01:35.739 -> ##SYS.DATE#: 2026-08-20T12:01:33+03:00
+12:01:35.739 -> ##CLI.NAMESET#: 294 SECTOR Zed (flac)
+12:01:35.739 -> ##CLI.VOL#: 28
+12:01:35.739 -> ##CLI.STOPPED#
+12:01:47.217 -> ##CLI.META#: [соединение]
+12:01:47.263 -> ##AUDIO.INFO#: buffers freed, free Heap: 173856 bytes
+12:01:47.263 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-160"
+12:01:47.263 -> ##AUDIO.INFO#: Connection has been established in 27 ms
+12:01:47.589 -> ##AUDIO.INFO#: format is ogg
+12:01:47.589 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+12:01:47.589 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:47.589 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:47.589 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:47.589 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:47.589 -> ##CLI.INFO#
+12:01:47.589 -> ##SYS.DATE#: 2026-08-20T12:01:45+03:00
+12:01:47.589 -> ##CLI.NAMESET#: 293 SECTOR Zed 192 (ogg-vorbis)
+12:01:47.589 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:47.589 -> ##CLI.VOL#: 28
+12:01:47.589 -> ##CLI.PLAYING#
+12:01:47.589 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:48.100 -> ##AUDIO.INFO#: VORBISDecoder has been initialized
+12:01:48.100 -> ##AUDIO.INFO#: format is vorbis
+12:01:48.565 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:48.565 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:48.611 -> ##CLI.META#: SECTOR Live |  Phil Collins - Loving you is sweeter than ever (live at Roseland ballroom, NYC, 2010), 2010 [ • England]
+12:01:48.611 -> ##AUDIO.INFO#: Channels: 2
+12:01:48.611 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+12:01:48.611 -> ##AUDIO.INFO#: BitsPerSample: 16
+12:01:48.611 -> ##AUDIO.INFO#: BitRate: 192000
+12:01:48.611 -> ##AUDIO.BITRATE#: 192000
+12:01:50.712 -> ##CLI.META#: [соединение]
+12:01:50.804 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-160" (ssl=0)
+12:01:50.804 -> ##AUDIO.INFO#: buffers freed, free Heap: 174176 bytes
+12:01:50.804 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-56"
+12:01:50.850 -> ##AUDIO.INFO#: Connection has been established in 30 ms
+12:01:51.452 -> ##AUDIO.INFO#: format is ogg
+12:01:51.452 -> ##AUDIO.INFO#: icy-bitrate : 88000 (b/s)
+12:01:51.452 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+12:01:51.499 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+12:01:51.499 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:51.499 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:51.499 -> ##CLI.INFO#
+12:01:51.499 -> ##SYS.DATE#: 2026-08-20T12:01:49+03:00
+12:01:51.499 -> ##CLI.NAMESET#: 292 SECTOR Zed 56 (ogg-opus)
+12:01:51.499 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:51.499 -> ##CLI.VOL#: 28
+12:01:51.499 -> ##CLI.PLAYING#
+12:01:51.499 -> ##CLI.META#: SECTOR  |  Zed channel
+12:01:51.916 -> ##AUDIO.INFO#: OPUSDecoder has been initialized
+12:01:51.916 -> ##AUDIO.INFO#: format is opus
+12:01:52.148 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:52.148 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:52.148 -> ##AUDIO.INFO#: Opus Mode: CELT_ONLY
+12:01:52.148 -> ##AUDIO.INFO#: Channels: 2
+12:01:52.194 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+12:01:52.194 -> ##AUDIO.INFO#: BitsPerSample: 16
+12:01:52.194 -> ##AUDIO.INFO#: BitRate: 88000
+12:01:52.194 -> ##AUDIO.BITRATE#: 88000
+12:01:56.185 -> ##CLI.META#: [соединение]
+12:01:56.278 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-56" (ssl=0)
+12:01:56.278 -> ##AUDIO.INFO#: buffers freed, free Heap: 173764 bytes
+12:01:56.278 -> ##AUDIO.INFO#: connect to: "secure.live-streams.nl" on port 80 path "/flac.flac"
+12:01:57.391 -> ##AUDIO.INFO#: Connection has been established in 1128 ms
+12:01:57.623 -> ##AUDIO.INFO#: format is ogg
+12:01:57.669 -> ##AUDIO.INFO#: icy-logo: https://www.intenseradio.net/wp-content/uploads/2023/09/intense-radio-vierkant-4d-2026.jpg
+12:01:57.669 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:01:57.669 -> ##AUDIO.INFO#: icy-genre:  Dance, House, Club classics, Trance, 90s, Melodic, Techno
+12:01:57.669 -> ##AUDIO.INFO#: icy-name: Intense Radio - We love Dance #HQ# FLAC
+12:01:57.669 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:01:57.669 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:01:57.669 -> ##CLI.INFO#
+12:01:57.669 -> ##SYS.DATE#: 2026-08-20T12:01:55+03:00
+12:01:57.669 -> ##CLI.NAMESET#: 311 (flc) Intence Radio
+12:01:57.715 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:01:57.715 -> ##CLI.VOL#: 28
+12:01:57.715 -> ##CLI.PLAYING#
+12:01:57.715 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:01:57.901 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:01:58.133 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:01:58.133 -> ##AUDIO.INFO#: syncword found at pos 0
+12:01:58.133 -> ##CLI.META#: microflac decode error -14
+12:01:58.133 -> ##ERROR#:	microflac decode error -14
+12:01:58.133 -> ##ERROR#:	microflac decode error -14
+12:01:58.133 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:01:58.226 -> 
+12:01:58.226 -> Core  1 register dump:
+12:01:58.226 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:01:58.226 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:01:58.226 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:01:58.226 -> A10     : 0x00000000  A11     : 0x3fca1d80  A12     : 0x3fca1e10  A13     : 0x00000001  
+12:01:58.226 -> A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x0000001c  EXCCAUSE: 0x0000001c  
+12:01:58.272 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000561  
+12:01:58.272 -> 
+12:01:58.272 -> 
+12:01:58.272 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:01:58.272 -> 
+12:01:58.272 -> 
+12:01:58.272 -> 
+12:01:58.272 -> 
+12:01:58.272 -> ELF file SHA256: a21e6f0dd
+12:01:58.272 -> 
+12:01:58.505 -> Rebooting...
+12:01:58.505 -> ESP-ROM:esp32s3-20210327
+12:01:58.505 -> Build:Mar 27 2021
+12:01:58.505 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:01:58.505 -> Saved PC:0x4037bc4a
+12:01:58.505 -> SPIWP:0xee
+12:01:58.505 -> mode:DIO, clock div:1
+12:01:58.505 -> load:0x3fce2820,len:0x116c
+12:01:58.505 -> load:0x403c8700,len:0xc2c
+12:01:58.505 -> load:0x403cb700,len:0x3108
+12:01:58.505 -> entry 0x403c88b8
+12:01:58.877 -> ##[BOOT]#	************************************************
+12:01:58.877 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:01:58.877 -> ##[BOOT]#	************************************************
+12:01:58.923 -> ##[BOOT]#	------------------------------------------------
+12:01:58.923 -> ##[BOOT]#	arduino:	10819
+12:01:58.923 -> ##[BOOT]#	compiler:	14.2.0
+12:01:58.923 -> ##[BOOT]#	esp32core:	3.3.6
+12:01:58.923 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:01:58.923 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:01:58.923 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:01:58.923 -> ##[BOOT]#	audioinfo:	false
+12:01:58.923 -> ##[BOOT]#	smartstart:	0
+12:01:58.923 -> ##[BOOT]#	vumeter:	false
+12:01:58.970 -> ##[BOOT]#	softapdelay:	0
+12:01:58.970 -> ##[BOOT]#	flipscreen:	false
+12:01:58.970 -> ##[BOOT]#	invertdisplay:	false
+12:01:58.970 -> ##[BOOT]#	showweather:	false
+12:01:58.970 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:01:58.970 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:01:58.970 -> ##[BOOT]#	ir:		NONE
+12:01:58.970 -> ##[BOOT]#	SD:		CS-39
+12:01:58.970 -> ##[BOOT]#	battery:	battery ON
+12:01:58.970 -> ##[BOOT]#	------------------------------------------------
+12:01:58.970 -> ##[BOOT]#	CONFIG_VERSION	4
+12:01:59.063 -> ##[BOOT]#	SPIFFS mounted
+12:01:59.296 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:01:59.296 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:01:59.296 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:01:59.296 -> ##[BOOT]#	player.init	done
+12:01:59.344 -> ##[BOOT]#	network.begin
+12:01:59.437 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:01:59.437 -> ##[BOOT]#	.....
+12:02:01.435 -> ##[BOOT]#	done
+12:02:01.435 -> ##[BOOT]#	SD search	done
+12:02:01.482 -> ##[BOOT]#	netserver.begin	done
+12:02:01.482 -> ##[BOOT]#	telnet.begin	done
+12:02:01.482 -> ##[BOOT]#
+12:02:01.482 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:02:01.482 -> ##[BOOT]#	------------------------------------------------
+12:02:01.482 -> ##[BOOT]#
+12:02:01.482 -> ##CLI.META#: [готов]
+12:02:01.576 -> ##CLI.META#: [соединение]
+12:02:01.668 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:02:01.668 -> ##AUDIO.INFO#: buffers freed, free Heap: 174920 bytes
+12:02:01.668 -> ##AUDIO.INFO#: connect to: "secure.live-streams.nl" on port 80 path "/flac.flac"
+12:02:01.759 -> ##AUDIO.INFO#: Connection has been established in 109 ms
+12:02:02.085 -> ##AUDIO.INFO#: format is ogg
+12:02:02.085 -> ##AUDIO.INFO#: icy-logo: https://www.intenseradio.net/wp-content/uploads/2023/09/intense-radio-vierkant-4d-2026.jpg
+12:02:02.085 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:02:02.085 -> ##AUDIO.INFO#: icy-genre:  Dance, House, Club classics, Trance, 90s, Melodic, Techno
+12:02:02.085 -> ##AUDIO.INFO#: icy-name: Intense Radio - We love Dance #HQ# FLAC
+12:02:02.131 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:02:02.131 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:02:02.224 -> ##CLI.INFO#
+12:02:02.224 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:02:02.224 -> ##CLI.NAMESET#: 311 (flc) Intence Radio
+12:02:02.270 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:02:02.270 -> ##CLI.VOL#: 28
+12:02:02.270 -> ##CLI.PLAYING#
+12:02:02.270 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:02:02.362 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:02:02.500 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:02:02.500 -> ##AUDIO.INFO#: syncword found at pos 0
+12:02:02.500 -> ##CLI.META#: microflac decode error -14
+12:02:02.500 -> ##ERROR#:	microflac decode error -14
+12:02:02.500 -> ##ERROR#:	microflac decode error -14
+12:02:02.500 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:02:02.547 -> 
+12:02:02.547 -> Core  1 register dump:
+12:02:02.547 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:02:02.594 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:02:02.594 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:02:02.594 -> A10     : 0x00000000  A11     : 0x00000000  A12     : 0x00000001  A13     : 0x3fca3a88  
+12:02:02.594 -> A14     : 0x3fcec36c  A15     : 0x3fca5120  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:02:02.594 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x0000055e  
+12:02:02.594 -> 
+12:02:02.594 -> 
+12:02:02.594 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:02:02.641 -> 
+12:02:02.641 -> 
+12:02:02.641 -> 
+12:02:02.641 -> 
+12:02:02.641 -> ELF file SHA256: a21e6f0dd
+12:02:02.641 -> 
+12:02:02.826 -> Rebooting...
+12:02:02.872 -> ESP-ROM:esp32s3-20210327
+12:02:02.872 -> Build:Mar 27 2021
+12:02:02.872 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:02:02.872 -> Saved PC:0x4037bc4a
+12:02:02.872 -> SPIWP:0xee
+12:02:02.872 -> mode:DIO, clock div:1
+12:02:02.872 -> load:0x3fce2820,len:0x116c
+12:02:02.872 -> load:0x403c8700,len:0xc2c
+12:02:02.872 -> load:0x403cb700,len:0x3108
+12:02:02.872 -> entry 0x403c88b8
+12:02:03.243 -> ##[BOOT]#	************************************************
+12:02:03.243 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:02:03.243 -> ##[BOOT]#	************************************************
+12:02:03.243 -> ##[BOOT]#	------------------------------------------------
+12:02:03.290 -> ##[BOOT]#	arduino:	10819
+12:02:03.290 -> ##[BOOT]#	compiler:	14.2.0
+12:02:03.290 -> ##[BOOT]#	esp32core:	3.3.6
+12:02:03.290 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:02:03.290 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:02:03.290 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:02:03.290 -> ##[BOOT]#	audioinfo:	false
+12:02:03.290 -> ##[BOOT]#	smartstart:	0
+12:02:03.290 -> ##[BOOT]#	vumeter:	false
+12:02:03.290 -> ##[BOOT]#	softapdelay:	0
+12:02:03.290 -> ##[BOOT]#	flipscreen:	false
+12:02:03.290 -> ##[BOOT]#	invertdisplay:	false
+12:02:03.290 -> ##[BOOT]#	showweather:	false
+12:02:03.336 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:02:03.336 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:02:03.336 -> ##[BOOT]#	ir:		NONE
+12:02:03.336 -> ##[BOOT]#	SD:		CS-39
+12:02:03.336 -> ##[BOOT]#	battery:	battery ON
+12:02:03.336 -> ##[BOOT]#	------------------------------------------------
+12:02:03.336 -> ##[BOOT]#	CONFIG_VERSION	4
+12:02:03.382 -> ##[BOOT]#	SPIFFS mounted
+12:02:03.660 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:02:03.660 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:02:03.660 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:02:03.660 -> ##[BOOT]#	player.init	done
+12:02:03.706 -> ##[BOOT]#	network.begin
+12:02:03.800 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:02:03.800 -> ##[BOOT]#	....
+12:02:05.283 -> ##[BOOT]#	done
+12:02:05.283 -> ##[BOOT]#	SD search	done
+12:02:05.329 -> ##[BOOT]#	netserver.begin	done
+12:02:05.329 -> ##[BOOT]#	telnet.begin	done
+12:02:05.329 -> ##[BOOT]#
+12:02:05.329 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:02:05.329 -> ##[BOOT]#	------------------------------------------------
+12:02:05.329 -> ##[BOOT]#
+12:02:05.329 -> ##CLI.META#: [готов]
+12:02:05.421 -> ##CLI.META#: [соединение]
+12:02:05.468 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:02:05.468 -> ##AUDIO.INFO#: buffers freed, free Heap: 174884 bytes
+12:02:05.468 -> ##AUDIO.INFO#: connect to: "secure.live-streams.nl" on port 80 path "/flac.flac"
+12:02:06.118 -> ##AUDIO.INFO#: Connection has been established in 620 ms
+12:02:06.628 -> ##AUDIO.INFO#: format is ogg
+12:02:06.628 -> ##AUDIO.INFO#: icy-logo: https://www.intenseradio.net/wp-content/uploads/2023/09/intense-radio-vierkant-4d-2026.jpg
+12:02:06.628 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+12:02:06.628 -> ##AUDIO.INFO#: icy-genre:  Dance, House, Club classics, Trance, 90s, Melodic, Techno
+12:02:06.628 -> ##AUDIO.INFO#: icy-name: Intense Radio - We love Dance #HQ# FLAC
+12:02:06.675 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:02:06.675 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:02:06.768 -> ##CLI.INFO#
+12:02:06.768 -> ##SYS.DATE#: 2026-08-20T12:02:04+03:00
+12:02:06.768 -> ##CLI.NAMESET#: 311 (flc) Intence Radio
+12:02:06.814 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:02:06.814 -> ##CLI.VOL#: 28
+12:02:06.814 -> ##CLI.PLAYING#
+12:02:06.814 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+12:02:06.814 -> ##CLI.META#: [остановлено]
+12:02:06.814 -> ##AUDIO.INFO#: Closing web file "http://secure.live-streams.nl/flac.flac" (ssl=0)
+12:02:06.814 -> ##AUDIO.INFO#: buffers freed, free Heap: 174756 bytes
+12:02:06.860 -> ##CLI.INFO#
+12:02:06.860 -> ##SYS.DATE#: 2026-08-20T12:02:04+03:00
+12:02:06.860 -> ##CLI.NAMESET#: 311 (flc) Intence Radio
+12:02:06.907 -> ##CLI.VOL#: 28
+12:02:06.907 -> ##CLI.STOPPED#
+12:02:22.271 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:02:22.271 -> ##CLI.META#: [остановлено]
+12:02:22.319 -> ##CLI.VOL#: 28
+12:02:22.364 -> ##CLI.INFO#
+12:02:22.364 -> ##SYS.DATE#: 2026-08-20T12:02:20+03:00
+12:02:22.364 -> ##CLI.NAMESET#: 311 (flc) Intence Radio
+12:02:22.364 -> ##CLI.VOL#: 28
+12:02:22.364 -> ##CLI.STOPPED#
+12:02:31.505 -> ##CLI.META#: [соединение]
+12:02:31.551 -> ##AUDIO.INFO#: buffers freed, free Heap: 174092 bytes
+12:02:31.551 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+12:02:32.524 -> ##AUDIO.INFO#: Connection has been established in 949 ms
+12:02:32.617 -> ##AUDIO.INFO#: format is ogg
+12:02:32.617 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:02:32.617 -> ##AUDIO.INFO#: icy-name: singsingFlac
+12:02:32.617 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:02:32.617 -> ##CLI.META#: singsingFlac
+12:02:32.617 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:02:32.617 -> ##CLI.INFO#
+12:02:32.617 -> ##SYS.DATE#: 2026-08-20T12:02:30+03:00
+12:02:32.617 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:02:32.617 -> ##CLI.META#: singsingFlac
+12:02:32.664 -> ##CLI.VOL#: 28
+12:02:32.664 -> ##CLI.PLAYING#
+12:02:32.664 -> ##CLI.META#: singsingFlac
+12:02:33.127 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:02:33.127 -> ##AUDIO.INFO#: syncword found at pos 0
+12:02:33.127 -> ##CLI.META#: microflac decode error -14
+12:02:33.127 -> ##ERROR#:	microflac decode error -14
+12:02:33.127 -> ##ERROR#:	microflac decode error -14
+12:02:33.173 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:02:33.219 -> 
+12:02:33.219 -> Core  1 register dump:
+12:02:33.219 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:02:33.219 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:02:33.219 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:02:33.219 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x3fcebf5c  A13     : 0x00060623  
+12:02:33.219 -> A14     : 0x3fca2110  A15     : 0x0000abab  SAR     : 0x0000001b  EXCCAUSE: 0x0000001c  
+12:02:33.265 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x0000052f  
+12:02:33.265 -> 
+12:02:33.265 -> 
+12:02:33.265 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:02:33.265 -> 
+12:02:33.265 -> 
+12:02:33.265 -> 
+12:02:33.265 -> 
+12:02:33.265 -> ELF file SHA256: a21e6f0dd
+12:02:33.265 -> 
+12:02:33.495 -> Rebooting...
+12:02:33.495 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:02:33.495 -> Build:Mar 27 2021
+12:02:33.495 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:02:33.495 -> Saved PC:0x4037bc4a
+12:02:33.495 -> SPIWP:0xee
+12:02:33.495 -> mode:DIO, clock div:1
+12:02:33.495 -> load:0x3fce2820,len:0x116c
+12:02:33.495 -> load:0x403c8700,len:0xc2c
+12:02:33.495 -> load:0x403cb700,len:0x3108
+12:02:33.495 -> entry 0x403c88b8
+12:02:33.913 -> ##[BOOT]#	************************************************
+12:02:33.913 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:02:33.913 -> ##[BOOT]#	************************************************
+12:02:33.913 -> ##[BOOT]#	------------------------------------------------
+12:02:33.913 -> ##[BOOT]#	arduino:	10819
+12:02:33.913 -> ##[BOOT]#	compiler:	14.2.0
+12:02:33.913 -> ##[BOOT]#	esp32core:	3.3.6
+12:02:33.913 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:02:33.913 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:02:33.913 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:02:33.959 -> ##[BOOT]#	audioinfo:	false
+12:02:33.959 -> ##[BOOT]#	smartstart:	0
+12:02:33.959 -> ##[BOOT]#	vumeter:	false
+12:02:33.959 -> ##[BOOT]#	softapdelay:	0
+12:02:33.959 -> ##[BOOT]#	flipscreen:	false
+12:02:33.959 -> ##[BOOT]#	invertdisplay:	false
+12:02:33.959 -> ##[BOOT]#	showweather:	false
+12:02:33.959 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:02:33.959 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:02:33.959 -> ##[BOOT]#	ir:		NONE
+12:02:33.959 -> ##[BOOT]#	SD:		CS-39
+12:02:33.959 -> ##[BOOT]#	battery:	battery ON
+12:02:33.959 -> ##[BOOT]#	------------------------------------------------
+12:02:34.006 -> ##[BOOT]#	CONFIG_VERSION	4
+12:02:34.052 -> ##[BOOT]#	SPIFFS mounted
+12:02:34.284 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:02:34.284 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:02:34.284 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:02:34.284 -> ##[BOOT]#	player.init	done
+12:02:34.377 -> ##[BOOT]#	network.begin
+12:02:34.423 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:02:34.423 -> ##[BOOT]#	....
+12:02:35.950 -> ##[BOOT]#	done
+12:02:35.950 -> ##[BOOT]#	SD search	done
+12:02:35.997 -> ##[BOOT]#	netserver.begin	done
+12:02:35.997 -> ##[BOOT]#	telnet.begin	done
+12:02:35.997 -> ##[BOOT]#
+12:02:35.997 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:02:35.997 -> ##[BOOT]#	------------------------------------------------
+12:02:35.997 -> ##[BOOT]#
+12:02:35.997 -> ##CLI.META#: [готов]
+12:02:36.137 -> ##CLI.META#: [соединение]
+12:02:36.184 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:02:36.184 -> ##AUDIO.INFO#: buffers freed, free Heap: 175088 bytes
+12:02:36.184 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+12:02:36.323 -> ##AUDIO.INFO#: Connection has been established in 132 ms
+12:02:36.416 -> ##AUDIO.INFO#: format is ogg
+12:02:36.416 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:02:36.416 -> ##AUDIO.INFO#: icy-name: singsingFlac
+12:02:36.416 -> ##CLI.META#: singsingFlac
+12:02:36.462 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:02:36.555 -> ##CLI.INFO#
+12:02:36.555 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:02:36.555 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:02:36.555 -> ##CLI.META#: singsingFlac
+12:02:36.555 -> ##CLI.VOL#: 28
+12:02:36.555 -> ##CLI.PLAYING#
+12:02:36.601 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:02:36.601 -> ##CLI.META#: singsingFlac
+12:02:36.742 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:02:36.742 -> ##AUDIO.INFO#: syncword found at pos 0
+12:02:39.757 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:42.724 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:43.744 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:44.765 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:46.761 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:47.733 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:49.775 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:51.774 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:52.756 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:54.056 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:02:54.056 -> ##CLI.META#: singsingFlac
+12:02:54.056 -> ##CLI.VOL#: 28
+12:02:54.056 -> ##CLI.INFO#
+12:02:54.056 -> ##SYS.DATE#: 2026-08-20T12:02:52+03:00
+12:02:54.056 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:02:54.056 -> ##CLI.META#: singsingFlac
+12:02:54.056 -> ##CLI.VOL#: 28
+12:02:54.056 -> ##CLI.PLAYING#
+12:02:56.742 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:57.763 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:58.783 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:02:59.760 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:03:01.801 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:03:04.776 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+12:03:05.146 -> ##CLI.META#: microflac decode error -14
+12:03:05.146 -> ##ERROR#:	microflac decode error -14
+12:03:05.146 -> ##ERROR#:	microflac decode error -14
+12:03:05.331 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:03:05.424 -> 
+12:03:05.424 -> Core  1 register dump:
+12:03:05.424 -> PC      : 0x4203afc2  PS      : 0x00060830  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:03:05.424 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:03:05.424 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:03:05.424 -> A10     : 0x00000000  A11     : 0x00007b09  A12     : 0xab000000  A13     : 0x78270000  
+12:03:05.424 -> A14     : 0x00000000  A15     : 0x3fca5120  SAR     : 0x00000016  EXCCAUSE: 0x0000001c  
+12:03:05.424 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000109  
+12:03:05.470 -> 
+12:03:05.470 -> 
+12:03:05.470 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:03:05.470 -> 
+12:03:05.470 -> 
+12:03:05.470 -> 
+12:03:05.470 -> 
+12:03:05.470 -> ELF file SHA256: a21e6f0dd
+12:03:05.470 -> 
+12:03:05.702 -> Rebooting...
+12:03:05.702 -> ESP-ROM:esp32s3-20210327
+12:03:05.702 -> Build:Mar 27 2021
+12:03:05.702 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:03:05.702 -> Saved PC:0x4037bc4a
+12:03:05.702 -> SPIWP:0xee
+12:03:05.702 -> mode:DIO, clock div:1
+12:03:05.702 -> load:0x3fce2820,len:0x116c
+12:03:05.702 -> load:0x403c8700,len:0xc2c
+12:03:05.702 -> load:0x403cb700,len:0x3108
+12:03:05.702 -> entry 0x403c88b8
+12:03:06.073 -> ##[BOOT]#	************************************************
+12:03:06.073 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:03:06.120 -> ##[BOOT]#	************************************************
+12:03:06.120 -> ##[BOOT]#	------------------------------------------------
+12:03:06.120 -> ##[BOOT]#	arduino:	10819
+12:03:06.120 -> ##[BOOT]#	compiler:	14.2.0
+12:03:06.120 -> ##[BOOT]#	esp32core:	3.3.6
+12:03:06.120 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:03:06.120 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:03:06.120 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:03:06.120 -> ##[BOOT]#	audioinfo:	false
+12:03:06.120 -> ##[BOOT]#	smartstart:	0
+12:03:06.120 -> ##[BOOT]#	vumeter:	false
+12:03:06.167 -> ##[BOOT]#	softapdelay:	0
+12:03:06.167 -> ##[BOOT]#	flipscreen:	false
+12:03:06.167 -> ##[BOOT]#	invertdisplay:	false
+12:03:06.167 -> ##[BOOT]#	showweather:	false
+12:03:06.167 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:03:06.167 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:03:06.167 -> ##[BOOT]#	ir:		NONE
+12:03:06.167 -> ##[BOOT]#	SD:		CS-39
+12:03:06.167 -> ##[BOOT]#	battery:	battery ON
+12:03:06.167 -> ##[BOOT]#	------------------------------------------------
+12:03:06.167 -> ##[BOOT]#	CONFIG_VERSION	4
+12:03:06.259 -> ##[BOOT]#	SPIFFS mounted
+12:03:06.490 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:03:06.490 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:03:06.490 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:03:06.490 -> ##[BOOT]#	player.init	done
+12:03:06.537 -> ##[BOOT]#	network.begin
+12:03:06.630 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:03:06.630 -> ##[BOOT]#	.....
+12:03:08.629 -> ##[BOOT]#	done
+12:03:08.629 -> ##[BOOT]#	SD search	done
+12:03:08.721 -> ##[BOOT]#	netserver.begin	done
+12:03:08.721 -> ##[BOOT]#	telnet.begin	done
+12:03:08.721 -> ##[BOOT]#
+12:03:08.721 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:03:08.721 -> ##[BOOT]#	------------------------------------------------
+12:03:08.721 -> ##[BOOT]#
+12:03:08.721 -> ##CLI.META#: [готов]
+12:03:08.815 -> ##CLI.META#: [соединение]
+12:03:08.907 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:03:08.907 -> ##AUDIO.INFO#: buffers freed, free Heap: 174892 bytes
+12:03:08.907 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+12:03:09.001 -> ##AUDIO.INFO#: Connection has been established in 91 ms
+12:03:09.232 -> ##AUDIO.INFO#: format is ogg
+12:03:09.232 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:09.232 -> ##AUDIO.INFO#: icy-name: singsingFlac
+12:03:09.232 -> ##CLI.META#: singsingFlac
+12:03:09.232 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:03:09.372 -> ##CLI.INFO#
+12:03:09.372 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:03:09.372 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:09.372 -> ##CLI.META#: singsingFlac
+12:03:09.372 -> ##CLI.VOL#: 28
+12:03:09.372 -> ##CLI.PLAYING#
+12:03:09.372 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:03:09.372 -> ##CLI.META#: singsingFlac
+12:03:10.022 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:03:10.022 -> ##AUDIO.INFO#: syncword found at pos 0
+12:03:10.022 -> ##CLI.META#: microflac decode error -14
+12:03:10.022 -> ##ERROR#:	microflac decode error -14
+12:03:10.022 -> ##ERROR#:	microflac decode error -14
+12:03:10.022 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:03:10.068 -> 
+12:03:10.068 -> Core  1 register dump:
+12:03:10.068 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:03:10.068 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:03:10.068 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:03:10.115 -> A10     : 0x00000000  A11     : 0x3fcebf58  A12     : 0x00000000  A13     : 0x3fcc2714  
+12:03:10.115 -> A14     : 0x3fcebecc  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:03:10.115 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000534  
+12:03:10.115 -> 
+12:03:10.115 -> 
+12:03:10.115 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:03:10.115 -> 
+12:03:10.115 -> 
+12:03:10.115 -> 
+12:03:10.115 -> 
+12:03:10.115 -> ELF file SHA256: a21e6f0dd
+12:03:10.115 -> 
+12:03:10.350 -> Rebooting...
+12:03:10.350 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:03:10.350 -> Build:Mar 27 2021
+12:03:10.350 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:03:10.350 -> Saved PC:0x4037bc4a
+12:03:10.350 -> SPIWP:0xee
+12:03:10.397 -> mode:DIO, clock div:1
+12:03:10.397 -> load:0x3fce2820,len:0x116c
+12:03:10.397 -> load:0x403c8700,len:0xc2c
+12:03:10.397 -> load:0x403cb700,len:0x3108
+12:03:10.397 -> entry 0x403c88b8
+12:03:10.769 -> ##[BOOT]#	************************************************
+12:03:10.769 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:03:10.769 -> ##[BOOT]#	************************************************
+12:03:10.769 -> ##[BOOT]#	------------------------------------------------
+12:03:10.769 -> ##[BOOT]#	arduino:	10819
+12:03:10.769 -> ##[BOOT]#	compiler:	14.2.0
+12:03:10.769 -> ##[BOOT]#	esp32core:	3.3.6
+12:03:10.769 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:03:10.815 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:03:10.815 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:03:10.815 -> ##[BOOT]#	audioinfo:	false
+12:03:10.815 -> ##[BOOT]#	smartstart:	0
+12:03:10.815 -> ##[BOOT]#	vumeter:	false
+12:03:10.815 -> ##[BOOT]#	softapdelay:	0
+12:03:10.815 -> ##[BOOT]#	flipscreen:	false
+12:03:10.815 -> ##[BOOT]#	invertdisplay:	false
+12:03:10.815 -> ##[BOOT]#	showweather:	false
+12:03:10.815 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:03:10.815 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:03:10.862 -> ##[BOOT]#	ir:		NONE
+12:03:10.862 -> ##[BOOT]#	SD:		CS-39
+12:03:10.862 -> ##[BOOT]#	battery:	battery ON
+12:03:10.862 -> ##[BOOT]#	------------------------------------------------
+12:03:10.862 -> ##[BOOT]#	CONFIG_VERSION	4
+12:03:10.908 -> ##[BOOT]#	SPIFFS mounted
+12:03:11.140 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:03:11.140 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:03:11.187 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:03:11.187 -> ##[BOOT]#	player.init	done
+12:03:11.233 -> ##[BOOT]#	network.begin
+12:03:11.279 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:03:11.279 -> ##[BOOT]#	....
+12:03:12.810 -> ##[BOOT]#	done
+12:03:12.810 -> ##[BOOT]#	SD search	done
+12:03:12.855 -> ##[BOOT]#	netserver.begin	done
+12:03:12.855 -> ##[BOOT]#	telnet.begin	done
+12:03:12.855 -> ##[BOOT]#
+12:03:12.855 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:03:12.855 -> ##[BOOT]#	------------------------------------------------
+12:03:12.902 -> ##[BOOT]#
+12:03:12.902 -> ##CLI.META#: [готов]
+12:03:12.995 -> ##CLI.META#: [соединение]
+12:03:13.041 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:03:13.041 -> ##AUDIO.INFO#: buffers freed, free Heap: 174948 bytes
+12:03:13.041 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+12:03:13.318 -> ##AUDIO.INFO#: Connection has been established in 267 ms
+12:03:13.410 -> ##AUDIO.INFO#: format is ogg
+12:03:13.410 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:13.410 -> ##AUDIO.INFO#: icy-name: singsingFlac
+12:03:13.410 -> ##CLI.META#: singsingFlac
+12:03:13.410 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:03:13.548 -> ##CLI.INFO#
+12:03:13.548 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:03:13.548 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:13.548 -> ##CLI.META#: singsingFlac
+12:03:13.548 -> ##CLI.VOL#: 28
+12:03:13.548 -> ##CLI.PLAYING#
+12:03:13.548 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:03:13.548 -> ##CLI.META#: singsingFlac
+12:03:14.154 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:03:14.154 -> ##AUDIO.INFO#: syncword found at pos 0
+12:03:14.154 -> ##CLI.META#: microflac decode error -14
+12:03:14.154 -> ##ERROR#:	microflac decode error -14
+12:03:14.154 -> ##ERROR#:	microflac decode error -14
+12:03:14.154 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:03:14.247 -> 
+12:03:14.247 -> Core  1 register dump:
+12:03:14.247 -> PC      : 0x4203afc2  PS      : 0x00060a30  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:03:14.247 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:03:14.247 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:03:14.247 -> A10     : 0x00000000  A11     : 0x00000000  A12     : 0x00000001  A13     : 0x3fca3a88  
+12:03:14.247 -> A14     : 0x3fcb91c8  A15     : 0x00000001  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:03:14.247 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x0000053b  
+12:03:14.293 -> 
+12:03:14.293 -> 
+12:03:14.293 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:03:14.293 -> 
+12:03:14.293 -> 
+12:03:14.293 -> 
+12:03:14.293 -> 
+12:03:14.293 -> ELF file SHA256: a21e6f0dd
+12:03:14.293 -> 
+12:03:14.524 -> Rebooting...
+12:03:14.524 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:03:14.524 -> Build:Mar 27 2021
+12:03:14.524 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:03:14.524 -> Saved PC:0x4037bc4a
+12:03:14.524 -> SPIWP:0xee
+12:03:14.524 -> mode:DIO, clock div:1
+12:03:14.524 -> load:0x3fce2820,len:0x116c
+12:03:14.524 -> load:0x403c8700,len:0xc2c
+12:03:14.524 -> load:0x403cb700,len:0x3108
+12:03:14.524 -> entry 0x403c88b8
+12:03:14.893 -> ##[BOOT]#	************************************************
+12:03:14.893 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:03:14.940 -> ##[BOOT]#	************************************************
+12:03:14.940 -> ##[BOOT]#	------------------------------------------------
+12:03:14.940 -> ##[BOOT]#	arduino:	10819
+12:03:14.940 -> ##[BOOT]#	compiler:	14.2.0
+12:03:14.940 -> ##[BOOT]#	esp32core:	3.3.6
+12:03:14.940 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:03:14.940 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:03:14.940 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:03:14.940 -> ##[BOOT]#	audioinfo:	false
+12:03:14.940 -> ##[BOOT]#	smartstart:	0
+12:03:14.940 -> ##[BOOT]#	vumeter:	false
+12:03:14.987 -> ##[BOOT]#	softapdelay:	0
+12:03:14.987 -> ##[BOOT]#	flipscreen:	false
+12:03:14.987 -> ##[BOOT]#	invertdisplay:	false
+12:03:14.987 -> ##[BOOT]#	showweather:	false
+12:03:14.987 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:03:14.987 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:03:14.987 -> ##[BOOT]#	ir:		NONE
+12:03:14.987 -> ##[BOOT]#	SD:		CS-39
+12:03:14.987 -> ##[BOOT]#	battery:	battery ON
+12:03:14.987 -> ##[BOOT]#	------------------------------------------------
+12:03:14.987 -> ##[BOOT]#	CONFIG_VERSION	4
+12:03:15.081 -> ##[BOOT]#	SPIFFS mounted
+12:03:15.312 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:03:15.312 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:03:15.312 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:03:15.312 -> ##[BOOT]#	player.init	done
+12:03:15.359 -> ##[BOOT]#	network.begin
+12:03:15.452 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:03:15.452 -> ##[BOOT]#	....
+12:03:16.939 -> ##[BOOT]#	done
+12:03:16.939 -> ##[BOOT]#	SD search	done
+12:03:17.031 -> ##[BOOT]#	netserver.begin	done
+12:03:17.031 -> ##[BOOT]#	telnet.begin	done
+12:03:17.031 -> ##[BOOT]#
+12:03:17.031 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:03:17.031 -> ##[BOOT]#	------------------------------------------------
+12:03:17.031 -> ##[BOOT]#
+12:03:17.031 -> ##CLI.META#: [готов]
+12:03:17.125 -> ##CLI.META#: [соединение]
+12:03:17.218 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:03:17.218 -> ##AUDIO.INFO#: buffers freed, free Heap: 174948 bytes
+12:03:17.218 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+12:03:17.310 -> ##AUDIO.INFO#: Connection has been established in 94 ms
+12:03:17.403 -> ##AUDIO.INFO#: format is ogg
+12:03:17.403 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:17.403 -> ##AUDIO.INFO#: icy-name: singsingFlac
+12:03:17.403 -> ##CLI.META#: singsingFlac
+12:03:17.403 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:03:17.543 -> ##CLI.INFO#
+12:03:17.543 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:03:17.543 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:17.543 -> ##CLI.META#: singsingFlac
+12:03:17.543 -> ##CLI.VOL#: 28
+12:03:17.543 -> ##CLI.PLAYING#
+12:03:17.543 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:03:17.543 -> ##CLI.META#: singsingFlac
+12:03:18.008 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:03:18.008 -> ##AUDIO.INFO#: syncword found at pos 0
+12:03:18.008 -> ##CLI.META#: microflac decode error -14
+12:03:18.008 -> ##ERROR#:	microflac decode error -14
+12:03:18.008 -> ##ERROR#:	microflac decode error -14
+12:03:18.008 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:03:18.054 -> 
+12:03:18.054 -> Core  1 register dump:
+12:03:18.054 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:03:18.101 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:03:18.101 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:03:18.101 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebd9c  
+12:03:18.101 -> A14     : 0x3fcee214  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:03:18.101 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000452  
+12:03:18.101 -> 
+12:03:18.101 -> 
+12:03:18.101 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:03:18.147 -> 
+12:03:18.147 -> 
+12:03:18.147 -> 
+12:03:18.147 -> 
+12:03:18.147 -> ELF file SHA256: a21e6f0dd
+12:03:18.147 -> 
+12:03:18.333 -> Rebooting...
+12:03:18.379 -> ESP-ROM:esp32s3-20210327
+12:03:18.379 -> Build:Mar 27 2021
+12:03:18.379 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:03:18.379 -> Saved PC:0x4037bc4a
+12:03:18.379 -> SPIWP:0xee
+12:03:18.379 -> mode:DIO, clock div:1
+12:03:18.379 -> load:0x3fce2820,len:0x116c
+12:03:18.379 -> load:0x403c8700,len:0xc2c
+12:03:18.379 -> load:0x403cb700,len:0x3108
+12:03:18.379 -> entry 0x403c88b8
+12:03:18.751 -> ##[BOOT]#	************************************************
+12:03:18.751 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:03:18.751 -> ##[BOOT]#	************************************************
+12:03:18.751 -> ##[BOOT]#	------------------------------------------------
+12:03:18.798 -> ##[BOOT]#	arduino:	10819
+12:03:18.798 -> ##[BOOT]#	compiler:	14.2.0
+12:03:18.798 -> ##[BOOT]#	esp32core:	3.3.6
+12:03:18.798 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:03:18.798 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:03:18.798 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:03:18.798 -> ##[BOOT]#	audioinfo:	false
+12:03:18.798 -> ##[BOOT]#	smartstart:	0
+12:03:18.798 -> ##[BOOT]#	vumeter:	false
+12:03:18.798 -> ##[BOOT]#	softapdelay:	0
+12:03:18.798 -> ##[BOOT]#	flipscreen:	false
+12:03:18.798 -> ##[BOOT]#	invertdisplay:	false
+12:03:18.798 -> ##[BOOT]#	showweather:	false
+12:03:18.844 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:03:18.844 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:03:18.844 -> ##[BOOT]#	ir:		NONE
+12:03:18.844 -> ##[BOOT]#	SD:		CS-39
+12:03:18.844 -> ##[BOOT]#	battery:	battery ON
+12:03:18.844 -> ##[BOOT]#	------------------------------------------------
+12:03:18.844 -> ##[BOOT]#	CONFIG_VERSION	4
+12:03:18.937 -> ##[BOOT]#	SPIFFS mounted
+12:03:19.169 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:03:19.169 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:03:19.169 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:03:19.169 -> ##[BOOT]#	player.init	done
+12:03:19.215 -> ##[BOOT]#	network.begin
+12:03:19.309 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:03:19.309 -> ##[BOOT]#	.....
+12:03:21.310 -> ##[BOOT]#	done
+12:03:21.310 -> ##[BOOT]#	SD search	done
+12:03:21.356 -> ##[BOOT]#	netserver.begin	done
+12:03:21.356 -> ##[BOOT]#	telnet.begin	done
+12:03:21.356 -> ##[BOOT]#
+12:03:21.356 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:03:21.356 -> ##[BOOT]#	------------------------------------------------
+12:03:21.402 -> ##[BOOT]#
+12:03:21.402 -> ##CLI.META#: [готов]
+12:03:21.494 -> ##CLI.META#: [соединение]
+12:03:21.541 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:03:21.541 -> ##AUDIO.INFO#: buffers freed, free Heap: 175068 bytes
+12:03:21.541 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+12:03:21.680 -> ##AUDIO.INFO#: Connection has been established in 125 ms
+12:03:21.773 -> ##AUDIO.INFO#: format is ogg
+12:03:21.773 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:21.773 -> ##AUDIO.INFO#: icy-name: singsingFlac
+12:03:21.773 -> ##CLI.META#: singsingFlac
+12:03:21.773 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:03:21.913 -> ##CLI.INFO#
+12:03:21.913 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:03:21.913 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:21.913 -> ##CLI.META#: singsingFlac
+12:03:21.913 -> ##CLI.VOL#: 28
+12:03:21.913 -> ##CLI.PLAYING#
+12:03:21.913 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:03:21.913 -> ##CLI.META#: singsingFlac
+12:03:22.333 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:03:22.333 -> ##AUDIO.INFO#: syncword found at pos 0
+12:03:22.333 -> ##CLI.META#: microflac decode error -14
+12:03:22.333 -> ##ERROR#:	microflac decode error -14
+12:03:22.333 -> ##ERROR#:	microflac decode error -14
+12:03:22.333 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:03:22.379 -> 
+12:03:22.379 -> Core  1 register dump:
+12:03:22.379 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:03:22.379 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:03:22.379 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:03:22.426 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebdbc  
+12:03:22.426 -> A14     : 0x3fcee180  A15     : 0x00000000  SAR     : 0x0000001a  EXCCAUSE: 0x0000001c  
+12:03:22.426 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000539  
+12:03:22.426 -> 
+12:03:22.426 -> 
+12:03:22.426 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:03:22.426 -> 
+12:03:22.426 -> 
+12:03:22.426 -> 
+12:03:22.426 -> 
+12:03:22.426 -> ELF file SHA256: a21e6f0dd
+12:03:22.426 -> 
+12:03:22.658 -> Rebooting...
+12:03:22.658 -> ESP-ROM:esp32s3-20210327
+12:03:22.658 -> Build:Mar 27 2021
+12:03:22.658 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:03:22.658 -> Saved PC:0x4037bc4a
+12:03:22.658 -> SPIWP:0xee
+12:03:22.658 -> mode:DIO, clock div:1
+12:03:22.658 -> load:0x3fce2820,len:0x116c
+12:03:22.705 -> load:0x403c8700,len:0xc2c
+12:03:22.705 -> load:0x403cb700,len:0x3108
+12:03:22.705 -> entry 0x403c88b8
+12:03:23.078 -> ##[BOOT]#	************************************************
+12:03:23.078 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:03:23.078 -> ##[BOOT]#	************************************************
+12:03:23.078 -> ##[BOOT]#	------------------------------------------------
+12:03:23.078 -> ##[BOOT]#	arduino:	10819
+12:03:23.078 -> ##[BOOT]#	compiler:	14.2.0
+12:03:23.078 -> ##[BOOT]#	esp32core:	3.3.6
+12:03:23.078 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:03:23.078 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:03:23.124 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:03:23.124 -> ##[BOOT]#	audioinfo:	false
+12:03:23.124 -> ##[BOOT]#	smartstart:	0
+12:03:23.124 -> ##[BOOT]#	vumeter:	false
+12:03:23.124 -> ##[BOOT]#	softapdelay:	0
+12:03:23.124 -> ##[BOOT]#	flipscreen:	false
+12:03:23.124 -> ##[BOOT]#	invertdisplay:	false
+12:03:23.124 -> ##[BOOT]#	showweather:	false
+12:03:23.124 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:03:23.124 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:03:23.124 -> ##[BOOT]#	ir:		NONE
+12:03:23.124 -> ##[BOOT]#	SD:		CS-39
+12:03:23.124 -> ##[BOOT]#	battery:	battery ON
+12:03:23.170 -> ##[BOOT]#	------------------------------------------------
+12:03:23.170 -> ##[BOOT]#	CONFIG_VERSION	4
+12:03:23.217 -> ##[BOOT]#	SPIFFS mounted
+12:03:23.449 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:03:23.449 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:03:23.449 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:03:23.449 -> ##[BOOT]#	player.init	done
+12:03:23.541 -> ##[BOOT]#	network.begin
+12:03:23.587 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:03:23.587 -> ##[BOOT]#	.....
+12:03:25.582 -> ##[BOOT]#	done
+12:03:25.582 -> ##[BOOT]#	SD search	done
+12:03:25.675 -> ##[BOOT]#	netserver.begin	done
+12:03:25.675 -> ##[BOOT]#	telnet.begin	done
+12:03:25.675 -> ##[BOOT]#
+12:03:25.675 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:03:25.675 -> ##[BOOT]#	------------------------------------------------
+12:03:25.675 -> ##[BOOT]#
+12:03:25.675 -> ##CLI.META#: [готов]
+12:03:25.768 -> ##CLI.META#: [соединение]
+12:03:25.861 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:03:25.861 -> ##AUDIO.INFO#: buffers freed, free Heap: 175068 bytes
+12:03:25.861 -> ##AUDIO.INFO#: connect to: "stream.sing-sing-bis.org" on port 8000 path "/singsingFlac"
+12:03:26.000 -> ##AUDIO.INFO#: Connection has been established in 129 ms
+12:03:26.091 -> ##AUDIO.INFO#: format is ogg
+12:03:26.091 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:26.091 -> ##AUDIO.INFO#: icy-name: singsingFlac
+12:03:26.091 -> ##CLI.META#: singsingFlac
+12:03:26.091 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:03:26.231 -> ##CLI.INFO#
+12:03:26.231 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:03:26.231 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:26.231 -> ##CLI.META#: singsingFlac
+12:03:26.231 -> ##CLI.VOL#: 28
+12:03:26.231 -> ##CLI.PLAYING#
+12:03:26.231 -> ##CLI.META#: [остановлено]
+12:03:26.231 -> ##AUDIO.INFO#: Closing web file "http://stream.sing-sing-bis.org:8000/singsingFlac" (ssl=0)
+12:03:26.278 -> ##AUDIO.INFO#: buffers freed, free Heap: 174876 bytes
+12:03:26.278 -> ##CLI.META#: [остановлено]
+12:03:26.278 -> ##CLI.INFO#
+12:03:26.278 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:03:26.278 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:26.278 -> ##CLI.VOL#: 28
+12:03:26.278 -> ##CLI.STOPPED#
+12:03:27.112 -> ##CLI.META#: [остановлено]
+12:03:27.158 -> ##AUDIO.INFO#: buffers freed, free Heap: 174756 bytes
+12:03:27.158 -> ##CLI.INFO#
+12:03:27.158 -> ##SYS.DATE#: 2026-08-20T12:03:24+03:00
+12:03:27.158 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:27.158 -> ##CLI.VOL#: 28
+12:03:27.158 -> ##CLI.STOPPED#
+12:03:42.656 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:03:42.702 -> ##CLI.META#: [остановлено]
+12:03:42.702 -> ##CLI.VOL#: 28
+12:03:42.796 -> ##CLI.INFO#
+12:03:42.796 -> ##SYS.DATE#: 2026-08-20T12:03:40+03:00
+12:03:42.796 -> ##CLI.NAMESET#: 338 (flc) Sing Sing Eclectic
+12:03:42.796 -> ##CLI.VOL#: 28
+12:03:42.796 -> ##CLI.STOPPED#
+12:03:49.618 -> ##CLI.META#: [соединение]
+12:03:49.710 -> ##AUDIO.INFO#: buffers freed, free Heap: 173884 bytes
+12:03:49.710 -> ##AUDIO.INFO#: connect to: "stream.lesonparisien.com" on port 80 path "/live.flac"
+12:03:50.362 -> ##AUDIO.INFO#: Connection has been established in 642 ms
+12:03:50.501 -> ##AUDIO.INFO#: format is ogg
+12:03:50.501 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:50.501 -> ##AUDIO.INFO#: icy-genre: Indie Alternative Electronic Lounge
+12:03:50.501 -> ##AUDIO.INFO#: icy-name: Le Son Parisien [Paris, France]
+12:03:50.501 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:03:50.501 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:03:50.501 -> ##CLI.INFO#
+12:03:50.501 -> ##SYS.DATE#: 2026-08-20T12:03:47+03:00
+12:03:50.501 -> ##CLI.NAMESET#: 335 (flc) Le Son Parisien - Electronic, Indie, Alternative and Lounge
+12:03:50.547 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:03:50.547 -> ##CLI.VOL#: 28
+12:03:50.547 -> ##CLI.PLAYING#
+12:03:50.547 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:03:50.963 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:03:51.196 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:03:51.196 -> ##AUDIO.INFO#: syncword found at pos 0
+12:03:51.196 -> ##CLI.META#: microflac decode error -14
+12:03:51.196 -> ##ERROR#:	microflac decode error -14
+12:03:51.196 -> ##ERROR#:	microflac decode error -14
+12:03:51.196 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:03:51.242 -> 
+12:03:51.242 -> Core  1 register dump:
+12:03:51.242 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:03:51.242 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:03:51.242 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:03:51.288 -> A10     : 0x00000000  A11     : 0x3c2ad6fc  A12     : 0x3c171074  A13     : 0x3fca0690  
+12:03:51.288 -> A14     : 0x3fca0530  A15     : 0x00000008  SAR     : 0x0000000d  EXCCAUSE: 0x0000001c  
+12:03:51.288 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x0000054f  
+12:03:51.288 -> 
+12:03:51.288 -> 
+12:03:51.288 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:03:51.335 -> 
+12:03:51.335 -> 
+12:03:51.335 -> 
+12:03:51.335 -> 
+12:03:51.335 -> ELF file SHA256: a21e6f0dd
+12:03:51.335 -> 
+12:03:51.521 -> Rebooting...
+12:03:51.521 -> ESP-ROM:esp32s3-20210327
+12:03:51.521 -> Build:Mar 27 2021
+12:03:51.521 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:03:51.567 -> Saved PC:0x4037bc4a
+12:03:51.567 -> SPIWP:0xee
+12:03:51.567 -> mode:DIO, clock div:1
+12:03:51.567 -> load:0x3fce2820,len:0x116c
+12:03:51.567 -> load:0x403c8700,len:0xc2c
+12:03:51.567 -> load:0x403cb700,len:0x3108
+12:03:51.567 -> entry 0x403c88b8
+12:03:51.940 -> ##[BOOT]#	************************************************
+12:03:51.940 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:03:51.940 -> ##[BOOT]#	************************************************
+12:03:51.940 -> ##[BOOT]#	------------------------------------------------
+12:03:51.940 -> ##[BOOT]#	arduino:	10819
+12:03:51.940 -> ##[BOOT]#	compiler:	14.2.0
+12:03:51.940 -> ##[BOOT]#	esp32core:	3.3.6
+12:03:51.940 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:03:51.986 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:03:51.986 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:03:51.986 -> ##[BOOT]#	audioinfo:	false
+12:03:51.986 -> ##[BOOT]#	smartstart:	0
+12:03:51.986 -> ##[BOOT]#	vumeter:	false
+12:03:51.986 -> ##[BOOT]#	softapdelay:	0
+12:03:51.986 -> ##[BOOT]#	flipscreen:	false
+12:03:51.986 -> ##[BOOT]#	invertdisplay:	false
+12:03:51.986 -> ##[BOOT]#	showweather:	false
+12:03:51.986 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:03:51.986 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:03:52.032 -> ##[BOOT]#	ir:		NONE
+12:03:52.032 -> ##[BOOT]#	SD:		CS-39
+12:03:52.032 -> ##[BOOT]#	battery:	battery ON
+12:03:52.032 -> ##[BOOT]#	------------------------------------------------
+12:03:52.032 -> ##[BOOT]#	CONFIG_VERSION	4
+12:03:52.078 -> ##[BOOT]#	SPIFFS mounted
+12:03:52.308 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:03:52.308 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:03:52.354 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:03:52.354 -> ##[BOOT]#	player.init	done
+12:03:52.401 -> ##[BOOT]#	network.begin
+12:03:52.448 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:03:52.448 -> ##[BOOT]#	.....
+12:03:54.499 -> ##[BOOT]#	done
+12:03:54.499 -> ##[BOOT]#	SD search	done
+12:03:54.542 -> ##[BOOT]#	netserver.begin	done
+12:03:54.542 -> ##[BOOT]#	telnet.begin	done
+12:03:54.542 -> ##[BOOT]#
+12:03:54.542 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:03:54.542 -> ##[BOOT]#	------------------------------------------------
+12:03:54.542 -> ##[BOOT]#
+12:03:54.542 -> ##CLI.META#: [готов]
+12:03:54.634 -> ##CLI.META#: [соединение]
+12:03:54.726 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:03:54.726 -> ##AUDIO.INFO#: buffers freed, free Heap: 174932 bytes
+12:03:54.726 -> ##AUDIO.INFO#: connect to: "stream.lesonparisien.com" on port 80 path "/live.flac"
+12:03:54.865 -> ##AUDIO.INFO#: Connection has been established in 131 ms
+12:03:55.374 -> ##AUDIO.INFO#: format is ogg
+12:03:55.374 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:55.374 -> ##AUDIO.INFO#: icy-genre: Indie Alternative Electronic Lounge
+12:03:55.374 -> ##AUDIO.INFO#: icy-name: Le Son Parisien [Paris, France]
+12:03:55.374 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:03:55.374 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:03:55.514 -> ##CLI.INFO#
+12:03:55.514 -> ##SYS.DATE#: 2026-08-20T12:03:53+03:00
+12:03:55.514 -> ##CLI.NAMESET#: 335 (flc) Le Son Parisien - Electronic, Indie, Alternative and Lounge
+12:03:55.514 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:03:55.514 -> ##CLI.VOL#: 28
+12:03:55.514 -> ##CLI.PLAYING#
+12:03:55.514 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:03:55.699 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:03:55.977 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:03:55.977 -> ##AUDIO.INFO#: syncword found at pos 0
+12:03:55.977 -> ##CLI.META#: microflac decode error -14
+12:03:56.024 -> ##ERROR#:	microflac decode error -14
+12:03:56.024 -> ##ERROR#:	microflac decode error -14
+12:03:56.024 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:03:56.070 -> 
+12:03:56.070 -> Core  1 register dump:
+12:03:56.070 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:03:56.070 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:03:56.070 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:03:56.070 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebe4c  
+12:03:56.117 -> A14     : 0x3fcee214  A15     : 0x00000000  SAR     : 0x0000001b  EXCCAUSE: 0x0000001c  
+12:03:56.117 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000544  
+12:03:56.117 -> 
+12:03:56.117 -> 
+12:03:56.117 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:03:56.117 -> 
+12:03:56.117 -> 
+12:03:56.117 -> 
+12:03:56.117 -> 
+12:03:56.117 -> ELF file SHA256: a21e6f0dd
+12:03:56.117 -> 
+12:03:56.348 -> Rebooting...
+12:03:56.348 -> ESP-ROM:esp32s3-20210327
+12:03:56.348 -> Build:Mar 27 2021
+12:03:56.348 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:03:56.348 -> Saved PC:0x4037bc4a
+12:03:56.348 -> SPIWP:0xee
+12:03:56.348 -> mode:DIO, clock div:1
+12:03:56.348 -> load:0x3fce2820,len:0x116c
+12:03:56.394 -> load:0x403c8700,len:0xc2c
+12:03:56.394 -> load:0x403cb700,len:0x3108
+12:03:56.394 -> entry 0x403c88b8
+12:03:56.766 -> ##[BOOT]#	************************************************
+12:03:56.766 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:03:56.766 -> ##[BOOT]#	************************************************
+12:03:56.766 -> ##[BOOT]#	------------------------------------------------
+12:03:56.766 -> ##[BOOT]#	arduino:	10819
+12:03:56.766 -> ##[BOOT]#	compiler:	14.2.0
+12:03:56.766 -> ##[BOOT]#	esp32core:	3.3.6
+12:03:56.766 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:03:56.766 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:03:56.766 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:03:56.812 -> ##[BOOT]#	audioinfo:	false
+12:03:56.812 -> ##[BOOT]#	smartstart:	0
+12:03:56.812 -> ##[BOOT]#	vumeter:	false
+12:03:56.812 -> ##[BOOT]#	softapdelay:	0
+12:03:56.812 -> ##[BOOT]#	flipscreen:	false
+12:03:56.812 -> ##[BOOT]#	invertdisplay:	false
+12:03:56.812 -> ##[BOOT]#	showweather:	false
+12:03:56.812 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:03:56.812 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:03:56.812 -> ##[BOOT]#	ir:		NONE
+12:03:56.812 -> ##[BOOT]#	SD:		CS-39
+12:03:56.812 -> ##[BOOT]#	battery:	battery ON
+12:03:56.859 -> ##[BOOT]#	------------------------------------------------
+12:03:56.859 -> ##[BOOT]#	CONFIG_VERSION	4
+12:03:56.905 -> ##[BOOT]#	SPIFFS mounted
+12:03:57.137 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:03:57.137 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:03:57.137 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:03:57.137 -> ##[BOOT]#	player.init	done
+12:03:57.231 -> ##[BOOT]#	network.begin
+12:03:57.276 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:03:57.276 -> ##[BOOT]#	....
+12:03:58.809 -> ##[BOOT]#	done
+12:03:58.809 -> ##[BOOT]#	SD search	done
+12:03:58.854 -> ##[BOOT]#	netserver.begin	done
+12:03:58.854 -> ##[BOOT]#	telnet.begin	done
+12:03:58.854 -> ##[BOOT]#
+12:03:58.854 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:03:58.854 -> ##[BOOT]#	------------------------------------------------
+12:03:58.854 -> ##[BOOT]#
+12:03:58.854 -> ##CLI.META#: [готов]
+12:03:58.994 -> ##CLI.META#: [соединение]
+12:03:59.040 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:03:59.040 -> ##AUDIO.INFO#: buffers freed, free Heap: 175048 bytes
+12:03:59.040 -> ##AUDIO.INFO#: connect to: "stream.lesonparisien.com" on port 80 path "/live.flac"
+12:03:59.367 -> ##AUDIO.INFO#: Connection has been established in 328 ms
+12:03:59.877 -> ##AUDIO.INFO#: format is ogg
+12:03:59.877 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:03:59.877 -> ##AUDIO.INFO#: icy-genre: Indie Alternative Electronic Lounge
+12:03:59.877 -> ##AUDIO.INFO#: icy-name: Le Son Parisien [Paris, France]
+12:03:59.877 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:03:59.877 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:04:00.017 -> ##CLI.INFO#
+12:04:00.017 -> ##SYS.DATE#: 2026-08-20T12:03:58+03:00
+12:04:00.017 -> ##CLI.NAMESET#: 335 (flc) Le Son Parisien - Electronic, Indie, Alternative and Lounge
+12:04:00.017 -> ##CLI.META#: Le Son Parisien [Paris, France]
+12:04:00.017 -> ##CLI.VOL#: 28
+12:04:00.017 -> ##CLI.PLAYING#
+12:04:00.017 -> ##AUDIO.INFO#: Closing web file "http://stream.lesonparisien.com/live.flac" (ssl=0)
+12:04:00.017 -> ##AUDIO.INFO#: buffers freed, free Heap: 174936 bytes
+12:04:00.063 -> ##CLI.META#: [остановлено]
+12:04:00.063 -> ##CLI.META#: [остановлено]
+12:04:00.063 -> ##CLI.INFO#
+12:04:00.063 -> ##SYS.DATE#: 2026-08-20T12:03:58+03:00
+12:04:00.063 -> ##CLI.NAMESET#: 335 (flc) Le Son Parisien - Electronic, Indie, Alternative and Lounge
+12:04:00.063 -> ##CLI.VOL#: 28
+12:04:00.063 -> ##CLI.STOPPED#
+12:04:13.490 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:04:13.537 -> ##CLI.META#: [остановлено]
+12:04:13.537 -> ##CLI.VOL#: 28
+12:04:13.583 -> ##CLI.INFO#
+12:04:13.583 -> ##SYS.DATE#: 2026-08-20T12:04:11+03:00
+12:04:13.583 -> ##CLI.NAMESET#: 335 (flc) Le Son Parisien - Electronic, Indie, Alternative and Lounge
+12:04:13.583 -> ##CLI.VOL#: 28
+12:04:13.583 -> ##CLI.STOPPED#
+12:04:35.872 -> ##CLI.META#: [соединение]
+12:04:35.919 -> ##AUDIO.INFO#: buffers freed, free Heap: 174132 bytes
+12:04:35.919 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+12:04:37.035 -> ##AUDIO.INFO#: SSL has been established in 1125 ms
+12:04:37.128 -> ##AUDIO.INFO#: format is ogg
+12:04:37.128 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:04:37.128 -> ##AUDIO.INFO#: icy-genre:  3
+12:04:37.128 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+12:04:37.128 -> ##CLI.META#: radio.audiomastering.lt
+12:04:37.128 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:04:37.174 -> ##CLI.INFO#
+12:04:37.174 -> ##SYS.DATE#: 2026-08-20T12:04:35+03:00
+12:04:37.174 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+12:04:37.174 -> ##CLI.META#: radio.audiomastering.lt
+12:04:37.174 -> ##CLI.VOL#: 28
+12:04:37.174 -> ##CLI.PLAYING#
+12:04:37.174 -> ##CLI.META#: radio.audiomastering.lt
+12:04:37.174 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:04:37.358 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:04:37.358 -> ##AUDIO.INFO#: syncword found at pos 0
+12:04:37.358 -> ##CLI.META#: microflac decode error -14
+12:04:37.358 -> ##ERROR#:	microflac decode error -14
+12:04:37.358 -> ##ERROR#:	microflac decode error -14
+12:04:37.358 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:04:37.404 -> 
+12:04:37.404 -> Core  1 register dump:
+12:04:37.404 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:04:37.404 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:04:37.404 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:04:37.451 -> A10     : 0x00000000  A11     : 0x0000abab  A12     : 0x3fca3c98  A13     : 0x00000001  
+12:04:37.451 -> A14     : 0x00000004  A15     : 0x00000000  SAR     : 0x0000001c  EXCCAUSE: 0x0000001c  
+12:04:37.451 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000539  
+12:04:37.451 -> 
+12:04:37.451 -> 
+12:04:37.451 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:04:37.451 -> 
+12:04:37.451 -> 
+12:04:37.451 -> 
+12:04:37.451 -> 
+12:04:37.451 -> ELF file SHA256: a21e6f0dd
+12:04:37.451 -> 
+12:04:37.682 -> Rebooting...
+12:04:37.682 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:04:37.682 -> Build:Mar 27 2021
+12:04:37.682 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:04:37.682 -> Saved PC:0x4037bc4a
+12:04:37.682 -> SPIWP:0xee
+12:04:37.729 -> mode:DIO, clock div:1
+12:04:37.729 -> load:0x3fce2820,len:0x116c
+12:04:37.729 -> load:0x403c8700,len:0xc2c
+12:04:37.729 -> load:0x403cb700,len:0x3108
+12:04:37.729 -> entry 0x403c88b8
+12:04:38.100 -> ##[BOOT]#	************************************************
+12:04:38.100 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:04:38.100 -> ##[BOOT]#	************************************************
+12:04:38.100 -> ##[BOOT]#	------------------------------------------------
+12:04:38.100 -> ##[BOOT]#	arduino:	10819
+12:04:38.100 -> ##[BOOT]#	compiler:	14.2.0
+12:04:38.100 -> ##[BOOT]#	esp32core:	3.3.6
+12:04:38.100 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:04:38.147 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:04:38.147 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:04:38.147 -> ##[BOOT]#	audioinfo:	false
+12:04:38.147 -> ##[BOOT]#	smartstart:	0
+12:04:38.147 -> ##[BOOT]#	vumeter:	false
+12:04:38.147 -> ##[BOOT]#	softapdelay:	0
+12:04:38.147 -> ##[BOOT]#	flipscreen:	false
+12:04:38.147 -> ##[BOOT]#	invertdisplay:	false
+12:04:38.147 -> ##[BOOT]#	showweather:	false
+12:04:38.147 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:04:38.147 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:04:38.193 -> ##[BOOT]#	ir:		NONE
+12:04:38.193 -> ##[BOOT]#	SD:		CS-39
+12:04:38.193 -> ##[BOOT]#	battery:	battery ON
+12:04:38.193 -> ##[BOOT]#	------------------------------------------------
+12:04:38.193 -> ##[BOOT]#	CONFIG_VERSION	4
+12:04:38.239 -> ##[BOOT]#	SPIFFS mounted
+12:04:38.471 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:04:38.471 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:04:38.471 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:04:38.518 -> ##[BOOT]#	player.init	done
+12:04:38.564 -> ##[BOOT]#	network.begin
+12:04:38.610 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:04:38.610 -> ##[BOOT]#	....
+12:04:40.140 -> ##[BOOT]#	done
+12:04:40.140 -> ##[BOOT]#	SD search	done
+12:04:40.187 -> ##[BOOT]#	netserver.begin	done
+12:04:40.187 -> ##[BOOT]#	telnet.begin	done
+12:04:40.187 -> ##[BOOT]#
+12:04:40.187 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:04:40.234 -> ##[BOOT]#	------------------------------------------------
+12:04:40.234 -> ##[BOOT]#
+12:04:40.234 -> ##CLI.META#: [готов]
+12:04:40.327 -> ##CLI.META#: [соединение]
+12:04:40.373 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:04:40.373 -> ##AUDIO.INFO#: buffers freed, free Heap: 174948 bytes
+12:04:40.373 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+12:04:41.857 -> ##AUDIO.INFO#: SSL has been established in 1474 ms
+12:04:42.412 -> ##AUDIO.INFO#: format is ogg
+12:04:42.412 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:04:42.412 -> ##AUDIO.INFO#: icy-genre:  3
+12:04:42.412 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+12:04:42.412 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:04:42.551 -> ##CLI.META#: radio.audiomastering.lt
+12:04:42.551 -> ##CLI.INFO#
+12:04:42.551 -> ##SYS.DATE#: 2026-08-20T12:04:40+03:00
+12:04:42.551 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+12:04:42.551 -> ##CLI.META#: radio.audiomastering.lt
+12:04:42.551 -> ##CLI.VOL#: 28
+12:04:42.551 -> ##CLI.PLAYING#
+12:04:42.551 -> ##CLI.META#: radio.audiomastering.lt
+12:04:42.551 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:04:42.876 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:04:42.876 -> ##AUDIO.INFO#: syncword found at pos 0
+12:04:42.876 -> ##CLI.META#: microflac decode error -14
+12:04:42.923 -> ##ERROR#:	microflac decode error -14
+12:04:42.923 -> ##ERROR#:	microflac decode error -14
+12:04:42.923 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:04:42.969 -> 
+12:04:42.969 -> Core  1 register dump:
+12:04:42.969 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:04:42.969 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:04:42.969 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:04:42.969 -> A10     : 0x00000000  A11     : 0xffffffff  A12     : 0x00000000  A13     : 0x3fcebc1c  
+12:04:43.015 -> A14     : 0x3fcee214  A15     : 0x00000000  SAR     : 0x0000001c  EXCCAUSE: 0x0000001c  
+12:04:43.015 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x0000053b  
+12:04:43.015 -> 
+12:04:43.015 -> 
+12:04:43.015 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:04:43.015 -> 
+12:04:43.015 -> 
+12:04:43.015 -> 
+12:04:43.015 -> 
+12:04:43.015 -> ELF file SHA256: a21e6f0dd
+12:04:43.015 -> 
+12:04:43.247 -> Rebooting...
+12:04:43.247 -> ESP-ROM:esp32s3-20210327
+12:04:43.247 -> Build:Mar 27 2021
+12:04:43.247 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:04:43.247 -> Saved PC:0x4037bc4a
+12:04:43.247 -> SPIWP:0xee
+12:04:43.293 -> mode:DIO, clock div:1
+12:04:43.293 -> load:0x3fce2820,len:0x116c
+12:04:43.293 -> load:0x403c8700,len:0xc2c
+12:04:43.293 -> load:0x403cb700,len:0x3108
+12:04:43.293 -> entry 0x403c88b8
+12:04:43.664 -> ##[BOOT]#	************************************************
+12:04:43.664 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:04:43.664 -> ##[BOOT]#	************************************************
+12:04:43.664 -> ##[BOOT]#	------------------------------------------------
+12:04:43.664 -> ##[BOOT]#	arduino:	10819
+12:04:43.664 -> ##[BOOT]#	compiler:	14.2.0
+12:04:43.664 -> ##[BOOT]#	esp32core:	3.3.6
+12:04:43.664 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:04:43.710 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:04:43.710 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:04:43.710 -> ##[BOOT]#	audioinfo:	false
+12:04:43.710 -> ##[BOOT]#	smartstart:	0
+12:04:43.710 -> ##[BOOT]#	vumeter:	false
+12:04:43.710 -> ##[BOOT]#	softapdelay:	0
+12:04:43.710 -> ##[BOOT]#	flipscreen:	false
+12:04:43.710 -> ##[BOOT]#	invertdisplay:	false
+12:04:43.710 -> ##[BOOT]#	showweather:	false
+12:04:43.710 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:04:43.710 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:04:43.758 -> ##[BOOT]#	ir:		NONE
+12:04:43.758 -> ##[BOOT]#	SD:		CS-39
+12:04:43.758 -> ##[BOOT]#	battery:	battery ON
+12:04:43.758 -> ##[BOOT]#	------------------------------------------------
+12:04:43.758 -> ##[BOOT]#	CONFIG_VERSION	4
+12:04:43.804 -> ##[BOOT]#	SPIFFS mounted
+12:04:44.038 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:04:44.038 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:04:44.038 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:04:44.084 -> ##[BOOT]#	player.init	done
+12:04:44.131 -> ##[BOOT]#	network.begin
+12:04:44.178 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:04:44.178 -> ##[BOOT]#	.....
+12:04:46.173 -> ##[BOOT]#	done
+12:04:46.173 -> ##[BOOT]#	SD search	done
+12:04:46.266 -> ##[BOOT]#	netserver.begin	done
+12:04:46.266 -> ##[BOOT]#	telnet.begin	done
+12:04:46.266 -> ##[BOOT]#
+12:04:46.266 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:04:46.266 -> ##[BOOT]#	------------------------------------------------
+12:04:46.266 -> ##[BOOT]#
+12:04:46.266 -> ##CLI.META#: [готов]
+12:04:46.360 -> ##CLI.META#: [соединение]
+12:04:46.499 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:04:46.499 -> ##AUDIO.INFO#: buffers freed, free Heap: 174888 bytes
+12:04:46.499 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+12:04:47.471 -> ##AUDIO.INFO#: SSL has been established in 982 ms
+12:04:47.610 -> ##AUDIO.INFO#: format is ogg
+12:04:47.610 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:04:47.610 -> ##AUDIO.INFO#: icy-genre:  3
+12:04:47.610 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+12:04:47.610 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:04:47.750 -> ##CLI.META#: radio.audiomastering.lt
+12:04:47.750 -> ##CLI.INFO#
+12:04:47.750 -> ##SYS.DATE#: 2026-08-20T12:04:45+03:00
+12:04:47.750 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+12:04:47.750 -> ##CLI.VOL#: 28
+12:04:47.750 -> ##CLI.STOPPED#
+12:04:47.750 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+12:04:47.750 -> ##AUDIO.INFO#: buffers freed, free Heap: 174780 bytes
+12:04:47.750 -> ##CLI.META#: [остановлено]
+12:04:47.750 -> ##CLI.META#: [остановлено]
+12:04:47.750 -> ##CLI.INFO#
+12:04:47.750 -> ##SYS.DATE#: 2026-08-20T12:04:45+03:00
+12:04:47.750 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+12:04:47.797 -> ##CLI.VOL#: 28
+12:04:47.797 -> ##CLI.STOPPED#
+12:04:55.639 -> ##CLI.META#: [остановлено]
+12:04:55.639 -> ##AUDIO.INFO#: buffers freed, free Heap: 175000 bytes
+12:04:55.685 -> ##CLI.INFO#
+12:04:55.685 -> ##SYS.DATE#: 2026-08-20T12:04:53+03:00
+12:04:55.685 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+12:04:55.685 -> ##CLI.VOL#: 28
+12:04:55.685 -> ##CLI.STOPPED#
+12:04:59.865 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:04:59.912 -> ##CLI.META#: [остановлено]
+12:04:59.912 -> ##CLI.VOL#: 28
+12:04:59.959 -> ##CLI.INFO#
+12:04:59.959 -> ##SYS.DATE#: 2026-08-20T12:04:57+03:00
+12:04:59.959 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+12:05:00.006 -> ##CLI.VOL#: 28
+12:05:00.006 -> ##CLI.STOPPED#
+12:05:03.768 -> ##CLI.META#: [соединение]
+12:05:03.860 -> ##AUDIO.INFO#: buffers freed, free Heap: 174092 bytes
+12:05:03.860 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/isekoi/radio.flac"
+12:05:04.740 -> ##AUDIO.INFO#: SSL has been established in 878 ms
+12:05:04.787 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+12:05:04.787 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+12:05:06.689 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+12:05:06.689 -> ##CLI.META#: 
+12:05:06.874 -> ##AUDIO.INFO#: format is ogg
+12:05:06.874 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:05:06.874 -> ##AUDIO.INFO#: icy-genre:  Electronic, Eclectic, Dance, Drum & Bass, DnB, House, Hip-Hop, Rap, Techno
+12:05:06.874 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/BQZXKJnh/LOGO-3-2-bg1.png
+12:05:06.920 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio
+12:05:06.920 -> ##CLI.INFO#
+12:05:06.920 -> ##SYS.DATE#: 2026-08-20T12:05:04+03:00
+12:05:06.920 -> ##CLI.NAMESET#: 386 ISEKOI Radio (FLAC) Electronic
+12:05:06.920 -> ##CLI.META#: ISEKOI Radio
+12:05:06.920 -> ##CLI.VOL#: 28
+12:05:06.920 -> ##CLI.PLAYING#
+12:05:06.920 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:05:06.920 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:05:06.920 -> ##CLI.META#: ISEKOI Radio
+12:05:07.058 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:05:07.058 -> ##AUDIO.INFO#: syncword found at pos 0
+12:05:07.058 -> ##CLI.META#: microflac decode error -14
+12:05:07.105 -> ##ERROR#:	microflac decode error -14
+12:05:07.105 -> ##ERROR#:	microflac decode error -14
+12:05:07.105 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:05:07.151 -> 
+12:05:07.151 -> Core  1 register dump:
+12:05:07.151 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:05:07.151 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:05:07.151 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:05:07.151 -> A10     : 0x00000000  A11     : 0x3fcc8dc1  A12     : 0x00001000  A13     : 0x3fcc8dc1  
+12:05:07.198 -> A14     : 0x3fcebbfc  A15     : 0x3fcd29f4  SAR     : 0x0000001b  EXCCAUSE: 0x0000001c  
+12:05:07.198 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x0000053a  
+12:05:07.198 -> 
+12:05:07.198 -> 
+12:05:07.198 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:05:07.198 -> 
+12:05:07.198 -> 
+12:05:07.198 -> 
+12:05:07.198 -> 
+12:05:07.198 -> ELF file SHA256: a21e6f0dd
+12:05:07.198 -> 
+12:05:07.430 -> Rebooting...
+12:05:07.430 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+12:05:07.430 -> Build:Mar 27 2021
+12:05:07.430 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:05:07.430 -> Saved PC:0x4037bc4a
+12:05:07.430 -> SPIWP:0xee
+12:05:07.476 -> mode:DIO, clock div:1
+12:05:07.476 -> load:0x3fce2820,len:0x116c
+12:05:07.476 -> load:0x403c8700,len:0xc2c
+12:05:07.476 -> load:0x403cb700,len:0x3108
+12:05:07.476 -> entry 0x403c88b8
+12:05:07.849 -> ##[BOOT]#	************************************************
+12:05:07.849 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:05:07.849 -> ##[BOOT]#	************************************************
+12:05:07.849 -> ##[BOOT]#	------------------------------------------------
+12:05:07.849 -> ##[BOOT]#	arduino:	10819
+12:05:07.849 -> ##[BOOT]#	compiler:	14.2.0
+12:05:07.849 -> ##[BOOT]#	esp32core:	3.3.6
+12:05:07.849 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:05:07.895 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:05:07.895 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:05:07.895 -> ##[BOOT]#	audioinfo:	false
+12:05:07.895 -> ##[BOOT]#	smartstart:	0
+12:05:07.895 -> ##[BOOT]#	vumeter:	false
+12:05:07.895 -> ##[BOOT]#	softapdelay:	0
+12:05:07.895 -> ##[BOOT]#	flipscreen:	false
+12:05:07.895 -> ##[BOOT]#	invertdisplay:	false
+12:05:07.895 -> ##[BOOT]#	showweather:	false
+12:05:07.895 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:05:07.895 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:05:07.942 -> ##[BOOT]#	ir:		NONE
+12:05:07.942 -> ##[BOOT]#	SD:		CS-39
+12:05:07.942 -> ##[BOOT]#	battery:	battery ON
+12:05:07.942 -> ##[BOOT]#	------------------------------------------------
+12:05:07.942 -> ##[BOOT]#	CONFIG_VERSION	4
+12:05:07.989 -> ##[BOOT]#	SPIFFS mounted
+12:05:08.221 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:05:08.221 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:05:08.221 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:05:08.267 -> ##[BOOT]#	player.init	done
+12:05:08.314 -> ##[BOOT]#	network.begin
+12:05:08.360 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:05:08.360 -> ##[BOOT]#	.....
+12:05:10.401 -> ##[BOOT]#	done
+12:05:10.401 -> ##[BOOT]#	SD search	done
+12:05:10.447 -> ##[BOOT]#	netserver.begin	done
+12:05:10.447 -> ##[BOOT]#	telnet.begin	done
+12:05:10.447 -> ##[BOOT]#
+12:05:10.447 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:05:10.447 -> ##[BOOT]#	------------------------------------------------
+12:05:10.447 -> ##[BOOT]#
+12:05:10.447 -> ##CLI.META#: [готов]
+12:05:10.586 -> ##CLI.META#: [соединение]
+12:05:10.678 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:05:10.678 -> ##AUDIO.INFO#: buffers freed, free Heap: 174892 bytes
+12:05:10.678 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/isekoi/radio.flac"
+12:05:11.282 -> ##AUDIO.INFO#: SSL has been established in 629 ms
+12:05:11.375 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+12:05:11.375 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+12:05:13.093 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+12:05:13.233 -> ##CLI.META#: 
+12:05:13.233 -> ##CLI.INFO#
+12:05:13.233 -> ##SYS.DATE#: 2026-08-20T12:05:10+03:00
+12:05:13.233 -> ##CLI.NAMESET#: 386 ISEKOI Radio (FLAC) Electronic
+12:05:13.233 -> ##CLI.VOL#: 28
+12:05:13.233 -> ##CLI.STOPPED#
+12:05:13.233 -> ##AUDIO.INFO#: buffers freed, free Heap: 174456 bytes
+12:05:13.233 -> ##CLI.META#: [остановлено]
+12:05:13.233 -> ##CLI.INFO#
+12:05:13.233 -> ##SYS.DATE#: 2026-08-20T12:05:10+03:00
+12:05:13.233 -> ##CLI.NAMESET#: 386 ISEKOI Radio (FLAC) Electronic
+12:05:13.233 -> ##CLI.VOL#: 28
+12:05:13.233 -> ##CLI.STOPPED#
+12:05:20.065 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:05:20.111 -> ##CLI.META#: [остановлено]
+12:05:20.111 -> ##CLI.VOL#: 28
+12:05:20.204 -> ##CLI.INFO#
+12:05:20.204 -> ##SYS.DATE#: 2026-08-20T12:05:17+03:00
+12:05:20.204 -> ##CLI.NAMESET#: 386 ISEKOI Radio (FLAC) Electronic
+12:05:20.204 -> ##CLI.VOL#: 28
+12:05:20.204 -> ##CLI.STOPPED#
+12:05:24.334 -> ##CLI.META#: [соединение]
+12:05:24.427 -> ##AUDIO.INFO#: buffers freed, free Heap: 174008 bytes
+12:05:24.427 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/chill/radio.flac"
+12:05:25.123 -> ##ERROR#:	Request https://isekoi-radio.com/listen/chill/radio.flac failed!
+12:05:25.123 -> ##ERROR#:	Request https://isekoi-radio.com/listen/chill/radio.flac failed!
+12:05:25.123 -> # WEB connect retry 2/3 for https://isekoi-radio.com/listen/chill/radio.flac after 300ms
+12:05:25.447 -> ##AUDIO.INFO#: buffers freed, free Heap: 174180 bytes
+12:05:25.447 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/chill/radio.flac"
+12:05:26.005 -> ##AUDIO.INFO#: SSL has been established in 588 ms
+12:05:26.005 -> ##CLI.META#: 
+12:05:26.051 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/chill/radio.flac"
+12:05:26.051 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/chill/radio.flac"
+12:05:27.632 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+12:05:27.724 -> ##AUDIO.INFO#: format is ogg
+12:05:27.724 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:05:27.724 -> ##AUDIO.INFO#: icy-genre:  Electronic, Chill, Chillout, Relax, House, Liquid Funk, Liquid, Liquid Drum and Bas, Intelligent Drum&Bass, Intelligent Drum and Bass, phonk, Lofi
+12:05:27.724 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/ncdMKNsn/LOGO-3-2-bg4.png
+12:05:27.724 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio | Chill Zone
+12:05:27.724 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+12:05:27.724 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:05:27.770 -> ##CLI.INFO#
+12:05:27.770 -> ##SYS.DATE#: 2026-08-20T12:05:25+03:00
+12:05:27.770 -> ##CLI.NAMESET#: 385 ISEKOI Chill Zone (FLAC)
+12:05:27.770 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+12:05:27.770 -> ##CLI.VOL#: 28
+12:05:27.770 -> ##CLI.PLAYING#
+12:05:27.770 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:05:27.770 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+12:05:27.909 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:05:27.909 -> ##AUDIO.INFO#: syncword found at pos 0
+12:05:27.909 -> ##CLI.META#: microflac decode error -14
+12:05:27.909 -> ##ERROR#:	microflac decode error -14
+12:05:27.909 -> ##ERROR#:	microflac decode error -14
+12:05:27.909 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:05:28.003 -> 
+12:05:28.003 -> Core  1 register dump:
+12:05:28.003 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:05:28.003 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:05:28.003 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:05:28.003 -> A10     : 0x00000000  A11     : 0x3fcc8d39  A12     : 0x00001000  A13     : 0x3fcc8d39  
+12:05:28.003 -> A14     : 0x3fcebb6c  A15     : 0x3fcd3f78  SAR     : 0x0000001c  EXCCAUSE: 0x0000001c  
+12:05:28.050 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x0000053d  
+12:05:28.050 -> 
+12:05:28.050 -> 
+12:05:28.050 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:05:28.050 -> 
+12:05:28.050 -> 
+12:05:28.050 -> 
+12:05:28.050 -> 
+12:05:28.050 -> ELF file SHA256: a21e6f0dd
+12:05:28.050 -> 
+12:05:28.282 -> Rebooting...
+12:05:28.282 -> ESP-ROM:esp32s3-20210327
+12:05:28.282 -> Build:Mar 27 2021
+12:05:28.282 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:05:28.282 -> Saved PC:0x42105720
+12:05:28.282 -> SPIWP:0xee
+12:05:28.282 -> mode:DIO, clock div:1
+12:05:28.282 -> load:0x3fce2820,len:0x116c
+12:05:28.282 -> load:0x403c8700,len:0xc2c
+12:05:28.282 -> load:0x403cb700,len:0x3108
+12:05:28.282 -> entry 0x403c88b8
+12:05:28.700 -> ##[BOOT]#	************************************************
+12:05:28.700 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:05:28.700 -> ##[BOOT]#	************************************************
+12:05:28.700 -> ##[BOOT]#	------------------------------------------------
+12:05:28.700 -> ##[BOOT]#	arduino:	10819
+12:05:28.700 -> ##[BOOT]#	compiler:	14.2.0
+12:05:28.700 -> ##[BOOT]#	esp32core:	3.3.6
+12:05:28.700 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:05:28.700 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:05:28.700 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:05:28.700 -> ##[BOOT]#	audioinfo:	false
+12:05:28.746 -> ##[BOOT]#	smartstart:	0
+12:05:28.746 -> ##[BOOT]#	vumeter:	false
+12:05:28.746 -> ##[BOOT]#	softapdelay:	0
+12:05:28.746 -> ##[BOOT]#	flipscreen:	false
+12:05:28.746 -> ##[BOOT]#	invertdisplay:	false
+12:05:28.746 -> ##[BOOT]#	showweather:	false
+12:05:28.746 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:05:28.746 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:05:28.746 -> ##[BOOT]#	ir:		NONE
+12:05:28.746 -> ##[BOOT]#	SD:		CS-39
+12:05:28.746 -> ##[BOOT]#	battery:	battery ON
+12:05:28.746 -> ##[BOOT]#	------------------------------------------------
+12:05:28.746 -> ##[BOOT]#	CONFIG_VERSION	4
+12:05:28.839 -> ##[BOOT]#	SPIFFS mounted
+12:05:29.072 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:05:29.072 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:05:29.072 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:05:29.072 -> ##[BOOT]#	player.init	done
+12:05:29.118 -> ##[BOOT]#	network.begin
+12:05:29.210 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:05:29.210 -> ##[BOOT]#	....
+12:05:30.698 -> ##[BOOT]#	done
+12:05:30.698 -> ##[BOOT]#	SD search	done
+12:05:30.791 -> ##[BOOT]#	netserver.begin	done
+12:05:30.791 -> ##[BOOT]#	telnet.begin	done
+12:05:30.791 -> ##[BOOT]#
+12:05:30.791 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:05:30.791 -> ##[BOOT]#	------------------------------------------------
+12:05:30.791 -> ##[BOOT]#
+12:05:30.791 -> ##CLI.META#: [готов]
+12:05:30.883 -> ##CLI.META#: [соединение]
+12:05:30.977 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:05:31.022 -> ##AUDIO.INFO#: buffers freed, free Heap: 175052 bytes
+12:05:31.022 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/chill/radio.flac"
+12:05:31.717 -> ##AUDIO.INFO#: SSL has been established in 701 ms
+12:05:31.856 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/chill/radio.flac"
+12:05:31.856 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/chill/radio.flac"
+12:05:33.667 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+12:05:33.806 -> ##CLI.META#: 
+12:05:33.806 -> ##AUDIO.INFO#: format is ogg
+12:05:33.806 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+12:05:33.806 -> ##AUDIO.INFO#: icy-genre:  Electronic, Chill, Chillout, Relax, House, Liquid Funk, Liquid, Liquid Drum and Bas, Intelligent Drum&Bass, Intelligent Drum and Bass, phonk, Lofi
+12:05:33.806 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/ncdMKNsn/LOGO-3-2-bg4.png
+12:05:33.852 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio | Chill Zone
+12:05:33.852 -> ##CLI.INFO#
+12:05:33.852 -> ##SYS.DATE#: 2026-08-20T12:05:32+03:00
+12:05:33.852 -> ##CLI.NAMESET#: 385 ISEKOI Chill Zone (FLAC)
+12:05:33.852 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+12:05:33.852 -> ##CLI.VOL#: 28
+12:05:33.852 -> ##CLI.PLAYING#
+12:05:33.852 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:05:33.852 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:05:33.852 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+12:05:33.852 -> ##CLI.META#: [остановлено]
+12:05:33.852 -> ##AUDIO.INFO#: Closing web file "https://isekoi-radio.com/listen/chill/radio.flac" (ssl=1)
+12:05:33.899 -> ##AUDIO.INFO#: buffers freed, free Heap: 174832 bytes
+12:05:33.899 -> ##CLI.INFO#
+12:05:33.899 -> ##SYS.DATE#: 2026-08-20T12:05:32+03:00
+12:05:33.899 -> ##CLI.NAMESET#: 385 ISEKOI Chill Zone (FLAC)
+12:05:33.899 -> ##CLI.VOL#: 28
+12:05:33.899 -> ##CLI.STOPPED#
+12:05:41.232 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+12:05:41.277 -> ##CLI.META#: [остановлено]
+12:05:41.277 -> ##CLI.VOL#: 28
+12:05:41.324 -> ##CLI.INFO#
+12:05:41.324 -> ##SYS.DATE#: 2026-08-20T12:05:39+03:00
+12:05:41.324 -> ##CLI.NAMESET#: 385 ISEKOI Chill Zone (FLAC)
+12:05:41.324 -> ##CLI.VOL#: 28
+12:05:41.324 -> ##CLI.STOPPED#
+12:05:46.383 -> ##CLI.META#: [соединение]
+12:05:46.428 -> ##AUDIO.INFO#: buffers freed, free Heap: 174160 bytes
+12:05:46.428 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+12:05:46.893 -> ##AUDIO.INFO#: Connection has been established in 438 ms
+12:05:46.985 -> ##AUDIO.INFO#: format is ogg
+12:05:46.985 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+12:05:46.985 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+12:05:46.985 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:46.985 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:05:47.031 -> ##CLI.INFO#
+12:05:47.031 -> ##SYS.DATE#: 2026-08-20T12:05:45+03:00
+12:05:47.031 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+12:05:47.031 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:47.031 -> ##CLI.VOL#: 28
+12:05:47.031 -> ##CLI.PLAYING#
+12:05:47.031 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:05:47.031 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:47.124 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:05:47.124 -> ##AUDIO.INFO#: syncword found at pos 0
+12:05:47.124 -> ##CLI.META#: microflac decode error -14
+12:05:47.124 -> ##ERROR#:	microflac decode error -14
+12:05:47.124 -> ##ERROR#:	microflac decode error -14
+12:05:47.171 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:05:47.217 -> 
+12:05:47.217 -> Core  1 register dump:
+12:05:47.217 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:05:47.217 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:05:47.217 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:05:47.217 -> A10     : 0x00000000  A11     : 0x00000000  A12     : 0x3fcee214  A13     : 0x00000000  
+12:05:47.217 -> A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x0000000d  EXCCAUSE: 0x0000001c  
+12:05:47.263 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000556  
+12:05:47.263 -> 
+12:05:47.263 -> 
+12:05:47.263 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:05:47.263 -> 
+12:05:47.263 -> 
+12:05:47.263 -> 
+12:05:47.263 -> 
+12:05:47.263 -> ELF file SHA256: a21e6f0dd
+12:05:47.263 -> 
+12:05:47.494 -> Rebooting...
+12:05:47.494 -> ESP-ROM:esp32s3-20210327
+12:05:47.494 -> Build:Mar 27 2021
+12:05:47.494 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:05:47.494 -> Saved PC:0x4037bc4a
+12:05:47.494 -> SPIWP:0xee
+12:05:47.494 -> mode:DIO, clock div:1
+12:05:47.494 -> load:0x3fce2820,len:0x116c
+12:05:47.494 -> load:0x403c8700,len:0xc2c
+12:05:47.494 -> load:0x403cb700,len:0x3108
+12:05:47.494 -> entry 0x403c88b8
+12:05:47.913 -> ##[BOOT]#	************************************************
+12:05:47.913 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:05:47.913 -> ##[BOOT]#	************************************************
+12:05:47.913 -> ##[BOOT]#	------------------------------------------------
+12:05:47.913 -> ##[BOOT]#	arduino:	10819
+12:05:47.913 -> ##[BOOT]#	compiler:	14.2.0
+12:05:47.913 -> ##[BOOT]#	esp32core:	3.3.6
+12:05:47.913 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:05:47.913 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:05:47.913 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:05:47.960 -> ##[BOOT]#	audioinfo:	false
+12:05:47.960 -> ##[BOOT]#	smartstart:	0
+12:05:47.960 -> ##[BOOT]#	vumeter:	false
+12:05:47.960 -> ##[BOOT]#	softapdelay:	0
+12:05:47.960 -> ##[BOOT]#	flipscreen:	false
+12:05:47.960 -> ##[BOOT]#	invertdisplay:	false
+12:05:47.960 -> ##[BOOT]#	showweather:	false
+12:05:47.960 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:05:47.960 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:05:47.960 -> ##[BOOT]#	ir:		NONE
+12:05:47.960 -> ##[BOOT]#	SD:		CS-39
+12:05:47.960 -> ##[BOOT]#	battery:	battery ON
+12:05:47.960 -> ##[BOOT]#	------------------------------------------------
+12:05:48.007 -> ##[BOOT]#	CONFIG_VERSION	4
+12:05:48.053 -> ##[BOOT]#	SPIFFS mounted
+12:05:48.285 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:05:48.285 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:05:48.285 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:05:48.285 -> ##[BOOT]#	player.init	done
+12:05:48.331 -> ##[BOOT]#	network.begin
+12:05:48.424 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:05:48.424 -> ##[BOOT]#	....
+12:05:49.955 -> ##[BOOT]#	done
+12:05:49.955 -> ##[BOOT]#	SD search	done
+12:05:50.001 -> ##[BOOT]#	netserver.begin	done
+12:05:50.001 -> ##[BOOT]#	telnet.begin	done
+12:05:50.001 -> ##[BOOT]#
+12:05:50.001 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:05:50.001 -> ##[BOOT]#	------------------------------------------------
+12:05:50.001 -> ##[BOOT]#
+12:05:50.001 -> ##CLI.META#: [готов]
+12:05:50.142 -> ##CLI.META#: [соединение]
+12:05:50.188 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:05:50.188 -> ##AUDIO.INFO#: buffers freed, free Heap: 174948 bytes
+12:05:50.188 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+12:05:50.327 -> ##AUDIO.INFO#: Connection has been established in 151 ms
+12:05:50.421 -> ##AUDIO.INFO#: format is ogg
+12:05:50.421 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+12:05:50.421 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+12:05:50.421 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:50.421 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:05:50.560 -> ##CLI.INFO#
+12:05:50.560 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:05:50.560 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+12:05:50.560 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:50.560 -> ##CLI.VOL#: 28
+12:05:50.560 -> ##CLI.PLAYING#
+12:05:50.560 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+12:05:50.560 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:50.699 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+12:05:50.699 -> ##AUDIO.INFO#: syncword found at pos 0
+12:05:50.699 -> ##CLI.META#: microflac decode error -14
+12:05:50.699 -> ##ERROR#:	microflac decode error -14
+12:05:50.699 -> ##ERROR#:	microflac decode error -14
+12:05:50.699 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+12:05:50.746 -> 
+12:05:50.746 -> Core  1 register dump:
+12:05:50.746 -> PC      : 0x4203afc2  PS      : 0x00060230  A0      : 0x8203b702  A1      : 0x3fca06b0  
+12:05:50.746 -> A2      : 0x000000f8  A3      : 0x000000ff  A4      : 0xfffffffc  A5      : 0x000000f8  
+12:05:50.746 -> A6      : 0x0000004f  A7      : 0x3fca0c54  A8      : 0x00000000  A9      : 0x3fca0c44  
+12:05:50.792 -> A10     : 0x00000000  A11     : 0x00000000  A12     : 0x3fcee214  A13     : 0x00000000  
+12:05:50.792 -> A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+12:05:50.792 -> EXCVADDR: 0x00000000  LBEG    : 0x4203b6e0  LEND    : 0x4203b6ea  LCOUNT  : 0x00000558  
+12:05:50.792 -> 
+12:05:50.792 -> 
+12:05:50.792 -> Backtrace: 0x4203afbf:0x3fca06b0 0x4203b6ff:0x3fca06d0 0x42014da0:0x3fca06f0 0x4202334e:0x3fca0720 0x42023a19:0x3fca0780 0x42024011:0x3fca07c0 0x40380cc1:0x3fca07e0
+12:05:50.839 -> 
+12:05:50.839 -> 
+12:05:50.839 -> 
+12:05:50.839 -> 
+12:05:50.839 -> ELF file SHA256: a21e6f0dd
+12:05:50.839 -> 
+12:05:51.026 -> Rebooting...
+12:05:51.026 -> ESP-ROM:esp32s3-20210327
+12:05:51.026 -> Build:Mar 27 2021
+12:05:51.026 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+12:05:51.074 -> Saved PC:0x4037bc4a
+12:05:51.074 -> SPIWP:0xee
+12:05:51.074 -> mode:DIO, clock div:1
+12:05:51.074 -> load:0x3fce2820,len:0x116c
+12:05:51.074 -> load:0x403c8700,len:0xc2c
+12:05:51.074 -> load:0x403cb700,len:0x3108
+12:05:51.074 -> entry 0x403c88b8
+12:05:51.446 -> ##[BOOT]#	************************************************
+12:05:51.446 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+12:05:51.446 -> ##[BOOT]#	************************************************
+12:05:51.446 -> ##[BOOT]#	------------------------------------------------
+12:05:51.446 -> ##[BOOT]#	arduino:	10819
+12:05:51.446 -> ##[BOOT]#	compiler:	14.2.0
+12:05:51.446 -> ##[BOOT]#	esp32core:	3.3.6
+12:05:51.446 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+12:05:51.492 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+12:05:51.492 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+12:05:51.492 -> ##[BOOT]#	audioinfo:	false
+12:05:51.492 -> ##[BOOT]#	smartstart:	0
+12:05:51.492 -> ##[BOOT]#	vumeter:	false
+12:05:51.492 -> ##[BOOT]#	softapdelay:	0
+12:05:51.492 -> ##[BOOT]#	flipscreen:	false
+12:05:51.492 -> ##[BOOT]#	invertdisplay:	false
+12:05:51.492 -> ##[BOOT]#	showweather:	false
+12:05:51.492 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+12:05:51.492 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+12:05:51.538 -> ##[BOOT]#	ir:		NONE
+12:05:51.538 -> ##[BOOT]#	SD:		CS-39
+12:05:51.538 -> ##[BOOT]#	battery:	battery ON
+12:05:51.538 -> ##[BOOT]#	------------------------------------------------
+12:05:51.538 -> ##[BOOT]#	CONFIG_VERSION	4
+12:05:51.586 -> ##[BOOT]#	SPIFFS mounted
+12:05:51.816 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+12:05:51.816 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+12:05:51.862 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+12:05:51.862 -> ##[BOOT]#	player.init	done
+12:05:51.909 -> ##[BOOT]#	network.begin
+12:05:51.956 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+12:05:51.956 -> ##[BOOT]#	.....
+12:05:53.998 -> ##[BOOT]#	done
+12:05:53.998 -> ##[BOOT]#	SD search	done
+12:05:54.045 -> ##[BOOT]#	netserver.begin	done
+12:05:54.045 -> ##[BOOT]#	telnet.begin	done
+12:05:54.045 -> ##[BOOT]#
+12:05:54.045 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+12:05:54.045 -> ##[BOOT]#	------------------------------------------------
+12:05:54.045 -> ##[BOOT]#
+12:05:54.045 -> ##CLI.META#: [готов]
+12:05:54.138 -> ##CLI.META#: [соединение]
+12:05:54.230 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+12:05:54.230 -> ##AUDIO.INFO#: buffers freed, free Heap: 174932 bytes
+12:05:54.230 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+12:05:54.461 -> ##AUDIO.INFO#: Connection has been established in 225 ms
+12:05:54.554 -> ##AUDIO.INFO#: format is ogg
+12:05:54.554 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+12:05:54.554 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+12:05:54.600 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:54.600 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+12:05:54.693 -> ##CLI.INFO#
+12:05:54.693 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:05:54.693 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+12:05:54.693 -> ##CLI.META#: Youventus Rádió Hi-Fi
+12:05:54.740 -> ##CLI.VOL#: 28
+12:05:54.740 -> ##CLI.PLAYING#
+12:05:54.740 -> ##CLI.META#: [остановлено]
+12:05:54.740 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+12:05:54.740 -> ##AUDIO.INFO#: buffers freed, free Heap: 174888 bytes
+12:05:54.740 -> ##CLI.META#: [остановлено]
+12:05:54.787 -> ##CLI.INFO#
+12:05:54.787 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+12:05:54.787 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+12:05:54.787 -> ##CLI.VOL#: 28
+12:05:54.787 -> ##CLI.STOPPED#
+12:06:34.326 -> [WEBSOCKET] client #1 connected from 192.168.1.96
