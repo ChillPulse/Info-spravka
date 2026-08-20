@@ -1,0 +1,161 @@
+По `Log55`/`Log53` “тишина в наушниках” при FLAC сейчас почти наверняка вызвана **не сетью**, а **логической ошибкой в нашем budget/no‑progress guard внутри `micro_flac::decode_ogg()`**:
+
+- Мы добавили guard:  
+  `if(state.bytes_consumed == 0 && state.result != OGG_NEED_MORE_DATA) return NEED_MORE_DATA;`  
+  Но `micro_ogg` **может вернуть готовый packet (OGG_OK) из внутреннего буфера**, при этом **bytes_consumed==0**.  
+  В таком случае мы **выходим раньше, чем обработаем packet**, и micro‑flac никогда не дойдёт до `HEADER_READY/SUCCESS` → в итоге **PCM не появляется**, слышим тишину, а код может “ждать бесконечно”.
+
+Ниже — **единое ТЗ для агента Rec54e** (в вашем стиле: чётко, без вариантов, с grep‑проверками). Оно чинит именно “тишину/зависание”, не трогая SD/seek/прочие форматы.
+
+---
+
+## Rec54e — Fix silent WEB FLAC: correct decode_ogg no‑progress guard + add HEADER_READY watchdog + avoid legacy FLACGetOutputSamps override
+
+### Цели (Definition of Done)
+1) WEB FLAC (micro‑flac) **не зависает** и не “молчит”: должен доходить до `HEADER_READY` и выдавать PCM, либо корректно остановиться/переподключиться.  
+2) Никаких регрессий SD‑режима/других кодеков.  
+3) Минимальные изменения: только micro‑flac `decode_ogg()` + micro‑flac WEB ветка в `Audio.cpp`.
+
+---
+
+# A) Исправить “no forward progress” guard в micro‑flac decode_ogg()
+
+**Файл:** `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+**Функция:** `FLACDecoder::decode_ogg(...)`
+
+### A1) Найти текущий guard (он сейчас примерно такой)
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(...);
+if(state.bytes_consumed == 0 && state.result != micro_ogg::OGG_NEED_MORE_DATA){
+  // No forward progress -> yield to next call
+  return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+### A2) Заменить на корректный (не блокировать готовый packet)
+Заменить на:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+
+// "No progress" is only a problem if we also have no packet to process.
+// micro_ogg may legally return OGG_OK with packet ready and bytes_consumed==0 (from internal buffer).
+if(state.bytes_consumed == 0 &&
+   state.result == micro_ogg::OGG_OK &&
+   state.packet.length == 0) {
+  return FLAC_DECODER_NEED_MORE_DATA;
+}
+
+// If packet was skipped but no bytes were consumed, don't spin.
+if(state.bytes_consumed == 0 && state.result == micro_ogg::OGG_PACKET_SKIPPED){
+  return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+> Важно: мы **оставляем time‑budget guard**, он достаточен для защиты от “длинных циклов”.
+
+---
+
+# B) Добавить watchdog “не получили HEADER_READY слишком долго” (иначе возможна вечная тишина)
+
+**Файл:** `yoRadio/src/audioI2S/AudioEx.h`  
+Добавить в `class Audio` (private):
+
+```cpp
+uint32_t m_mf_waitHeaderSinceMs = 0;
+```
+
+Сбросить в `microflac_reset_()`:
+```cpp
+m_mf_waitHeaderSinceMs = 0;
+```
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+**Место:** micro‑flac WEB ветка `sendBytes()` сразу после `if(!m_mf_active){...}`
+
+Добавить:
+
+```cpp
+if(!m_mf_header_ready && m_mf_waitHeaderSinceMs == 0){
+  m_mf_waitHeaderSinceMs = millis();
+}
+```
+
+И в ветке `NEED_MORE_DATA` (после `bytesDecoded = bytes_consumed; res = FLAC_DECODE_FRAMES_LOOP;`) добавить:
+
+```cpp
+// If we can't reach HEADER_READY for too long -> reconnect (avoid infinite silence)
+if(!m_mf_header_ready && m_mf_waitHeaderSinceMs &&
+   (millis() - m_mf_waitHeaderSinceMs) > 6000 &&
+   InBuff.bufferFilled() > 60000) {
+  AUDIO_ERROR("microflac: HEADER_READY timeout -> reconnect");
+  stallReconnect("mf_header_timeout");
+}
+```
+
+> 6 секунд — безопасно. Можно 4–8s.
+
+---
+
+# C) Не затирать `m_validSamples` legacy FLACGetOutputSamps() в micro‑flac режиме
+
+Сейчас в конце `sendBytes()` есть:
+
+```cpp
+case CODEC_FLAC:
+  m_validSamples = FLACGetOutputSamps() / getChannels();
+  ...
+  break;
+```
+
+Для micro‑flac это всегда 0 и может мешать логике (в частности, `f_setDecodeParamsOnce && m_validSamples`). Мы и так его отключаем, но лучше сделать правильно.
+
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+В switch “установки m_validSamples” заменить FLAC case на:
+
+```cpp
+case CODEC_FLAC:
+  if(m_mf_active){
+    // micro-flac: PCM is output via pending chunks in playAudioData()
+    m_validSamples = 0;
+  } else {
+    m_validSamples = FLACGetOutputSamps() / getChannels();
+  }
+  break;
+```
+
+---
+
+# Самопроверка агента (обязательная)
+
+Агент обязан приложить вывод:
+
+```bash
+# decode_ogg guard fixed
+git grep -n "state\\.packet\\.length" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git grep -n "OGG_PACKET_SKIPPED" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+
+# HEADER_READY watchdog exists
+git grep -n "m_mf_waitHeaderSinceMs" yoRadio/src/audioI2S/AudioEx.h yoRadio/src/audioI2S/Audio.cpp
+git grep -n "HEADER_READY timeout" yoRadio/src/audioI2S/Audio.cpp
+
+# FLACGetOutputSamps bypass for micro-flac
+git grep -n "if\\(m_mf_active\\)" yoRadio/src/audioI2S/Audio.cpp | head -n 20
+git grep -n "FLACGetOutputSamps" yoRadio/src/audioI2S/Audio.cpp
+```
+
+Ожидаем:
+- В micro‑flac `decode_ogg()` встречается `state.packet.length`
+- В Audio.cpp есть `HEADER_READY timeout -> reconnect`
+- `FLACGetOutputSamps` остаётся только для legacy пути (или guarded)
+
+---
+
+## Почему это должно вылечить “тишину”
+Если demuxer может отдавать packet без потребления новых байтов (bytes_consumed=0), старый guard блокировал обработку packet → micro‑flac не мог продвинуться к `HEADER_READY/SUCCESS`. Исправленный guard разрешает обрабатывать packet и убирает “вечную NEED_MORE_DATA”. Плюс watchdog гарантирует, что даже при реальной несовместимости поток не будет “молчать” бесконечно — будет clean reconnect.
+
+---
+
+Если агент применит Rec54e и ты прошьёшь, следующий лог по любой flac станции должен показать либо:
+- достижение `HEADER_READY` (можно дополнительно временно залогировать это), либо
+- `microflac: HEADER_READY timeout -> reconnect` вместо вечной тишины.
