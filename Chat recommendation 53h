@@ -1,0 +1,128 @@
+По `Log51/Log52` видно, что проблема сейчас **не в PCM5102, не в таймаутах и не в буфере**, а в том, что **micro‑flac фаталит Ogg‑демультиплексор слишком жёстко**:
+
+- micro‑flac внутри `decode_ogg()` вызывает `micro_ogg::OggDemuxer::get_next_data()` и **если `state.result` не ровно `OGG_OK` или `OGG_NEED_MORE_DATA` — сразу ставит `FLAC_DECODER_ERROR_OGG_DEMUX (-14)`**. Это прямо в вашем `micro_flac/flac_decoder.cpp`.   
+- При этом `micro_ogg` имеет **несколько “не смертельных” кодов результата**, например `OGG_PACKET_SKIPPED = 2` (информативный, не ошибка), а также ошибки типа `OGG_STREAM_SERIAL_MISMATCH`, `OGG_STREAM_SEQUENCE_ERROR` и т.д. (в радио-стримах это бывает при chained/перезапуске потока).   
+- micro‑flac сейчас воспринимает всё это как “fatal” → ты получаешь `microflac decode error -14` и дальше либо стоп/ребут.   
+
+### Что нужно сделать “по-флагмански”
+Сделать micro‑flac **толерантным к радио‑стримам**:  
+1) не фаталить на `OGG_PACKET_SKIPPED` (просто пропускать и идти дальше)  
+2) на отрицательных кодах `micro_ogg` **не падать**, а делать resync: `ogg_demuxer_->reset()` + поиск следующего `"OggS"` во входе (как вы раньше делали с `syncword`), и продолжать.
+
+Это даст шанс “подхватывать” поток после мелких нарушений и перезапусков, как это делают взрослые плееры.
+
+---
+
+## Rec53h — единое чёткое ТЗ агенту (с grep‑проверками)
+
+### Цель (DoD)
+- Исчезают “мгновенные” `microflac decode error -14` на валидных Ogg‑FLAC радио.
+- Даже если в потоке есть цепочки/перезапуски, декодер **не фаталит**, а пытается ресинхронизироваться.
+- Никаких ребутов.
+
+---
+
+### 1) Правим micro‑flac: `decode_ogg()` — НЕ фаталить всё подряд
+
+**Файл:** `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+**Функция:** `FLACDecoder::decode_ogg(...)`
+
+#### 1.1) В первом месте (feed detect_buffer) заменить проверку
+Сейчас у вас:
+
+```cpp
+if (state.result != micro_ogg::OGG_NEED_MORE_DATA && state.result != micro_ogg::OGG_OK) {
+  return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+}
+```
+
+Заменить на:
+
+```cpp
+if (state.result == micro_ogg::OGG_PACKET_SKIPPED) {
+  // ok, skip and continue
+} else if (state.result < 0) {
+  // reset demuxer and wait for more data
+  this->ogg_demuxer_->reset();
+  return FLAC_DECODER_NEED_MORE_DATA;
+} else if (state.result != micro_ogg::OGG_NEED_MORE_DATA && state.result != micro_ogg::OGG_OK) {
+  return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+}
+```
+
+#### 1.2) Во втором месте (в основном while loop) заменить блок:
+Сейчас:
+
+```cpp
+if (state.result != micro_ogg::OGG_OK) {
+  return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+}
+```
+
+Заменить на “radio‑resync”:
+
+```cpp
+if (state.result == micro_ogg::OGG_PACKET_SKIPPED) {
+  // packet too large / skipped -> just continue scanning
+  continue;
+}
+
+if (state.result < 0) {
+  // Radio streams may chain/restart; try to resync
+  this->ogg_demuxer_->reset();
+
+  // Try to find next "OggS" inside remaining input to resync quickly
+  if (bytes_consumed < input_len) {
+    const uint8_t* p = input + bytes_consumed;
+    size_t r = input_len - bytes_consumed;
+
+    // naive search for 'O''g''g''S'
+    size_t k = 0;
+    for (; k + 3 < r; k++) {
+      if (p[k] == 'O' && p[k+1] == 'g' && p[k+2] == 'g' && p[k+3] == 'S') break;
+    }
+
+    if (k + 3 < r) {
+      bytes_consumed += k;   // jump to next page
+      continue;
+    }
+  }
+
+  return FLAC_DECODER_NEED_MORE_DATA;
+}
+
+if (state.result != micro_ogg::OGG_OK) {
+  return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+}
+```
+
+> Да, это “поиск OggS” внутри micro‑flac. Зато это ровно то, что делает флагманский плеер: не умирает на одном “битом” куске.
+
+---
+
+### 2) (Важно) В Audio.cpp на `microflac decode error` больше не ребутимся
+Раз сейчас micro‑flac будет реже фаталить, ребуты должны уйти. Но на всякий случай: в `Audio.cpp` в обработчике micro‑flac ошибок убедиться, что нет “dangerous stop” прямо в аудио‑таске без mutex. (Если нужно — я дам отдельный патч, но сначала сделаем толерантность decode_ogg.)
+
+---
+
+## Самопроверка агента (обязательная)
+Агент обязан приложить вывод:
+
+```bash
+git grep -n "OGG_PACKET_SKIPPED" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git grep -n "ogg_demuxer_->reset" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git grep -n "find next \"OggS\"" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+```
+
+Ожидаем: все 3 находятся.
+
+---
+
+## Критерий успеха после прошивки
+На тех же станциях, где сейчас сразу `microflac decode error -14`:
+- либо начинается нормальный `HEADER_READY` и дальше звук,
+- либо хотя бы нет мгновенного фатала — будет попытка “resync”/reconnect, но без ребутов.
+
+---
+
+Если сделаете Rec53h и скинете новый лог на одной проблемной FLAC станции (30–80 строк вокруг старта), по нему будет видно: демультиплексор начал пропускать “плохие” места или всё ещё умирает на конкретном коде `micro_ogg` (и тогда уже добавим точечный вывод `state.result` в лог, чтобы добить 100%).
