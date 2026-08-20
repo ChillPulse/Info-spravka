@@ -1,0 +1,170 @@
+## Rec54c-final — micro-flac WEB: build fix + perf + streaming correctness (по рекомендациям 0.0)
+
+### Цель (DoD)
+1) Проект компилируется (убрать `millis()` из micro-flac).  
+2) WEB FLAC через micro-flac больше не “виснет” и не стопится из‑за слишком больших чанков/метаданных.  
+3) Не ломаем SD/MP3/AAC/M4A/Opus/Vorbis: изменения **только** для micro-flac WEB пути и micro-flac исходников.
+
+---
+
+# 1) Убрать `millis()` из `micro_flac/flac_decoder.cpp` (заменить на esp_timer)
+
+**Файл:** `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+
+### 1.1 Добавить include
+Вверху файла добавить:
+
+```cpp
+#ifdef ESP_PLATFORM
+  #include <esp_timer.h>
+#endif
+```
+
+### 1.2 Добавить helper
+Добавить (один раз, рядом со статическими helper-функциями):
+
+```cpp
+static inline uint32_t mf_millis() {
+#ifdef ESP_PLATFORM
+  return (uint32_t)(esp_timer_get_time() / 1000ULL);
+#else
+  return 0;
+#endif
+}
+```
+
+### 1.3 Заменить budget guard
+В `decode_ogg()` заменить `millis()` на `mf_millis()`:
+
+```cpp
+const uint32_t t0 = mf_millis();
+...
+if((mf_millis() - t0) > 12) return FLAC_DECODER_NEED_MORE_DATA;
+```
+
+### 1.4 Удалить “лишний” include (если есть)
+В этом же файле удалить строку:
+```cpp
+#include <micro_ogg/ogg_demuxer.h>
+```
+Оставить только:
+```cpp
+#include "micro_ogg/ogg_demuxer.h"
+```
+
+---
+
+# 2) micro-flac memory placement: prefer INTERNAL (fallback to PSRAM)
+
+В документе верно подмечено: PSRAM может замедлять heavy FLAC, а micro-flac как раз предоставляет флаги memory placement.   
+Самый безопасный “флагманский” вариант: **prefer internal, fallback psram**.
+
+**Файл:** `yoRadio/myoptions.h`
+
+Сделать так:
+- если есть `#define MICRO_FLAC_MEMORY_PREFER_PSRAM 1` → убрать или закомментировать
+- добавить:
+
+```cpp
+#define MICRO_FLAC_MEMORY_PREFER_INTERNAL 1
+```
+
+(Важно: должен быть только один из `...PREFER_PSRAM` или `...PREFER_INTERNAL`.)
+
+---
+
+# 3) Входной чанк для micro-flac WEB: уменьшить не только FEED_MAX, но и maxBlockSize (чтобы не было memcpy на 65535)
+
+Документ №5 прав: для радио достаточно 8–16KB входных порций.   
+У нас уже есть `FEED_MAX=8192`, но `AudioBuffer::getReadPtr()` всё равно может копировать до `m_maxBlockSize`, если он 65535. Поэтому надо уменьшить именно `maxBlockSize` **только когда micro-flac активен**.
+
+## 3.1 Добавить поле “предыдущее значение maxBlockSize”
+**Файл:** `yoRadio/src/audioI2S/AudioEx.h` (private поля Audio, рядом с `m_mf_active`)
+
+Добавить:
+```cpp
+size_t m_mf_prevMaxBlockSize = 0;
+```
+
+Сбросить в `setDefaults()` или `microflac_reset_()`:
+```cpp
+m_mf_prevMaxBlockSize = 0;
+```
+
+## 3.2 При активации micro-flac (там, где `m_mf_active=true`) сделать:
+**Файл:** `yoRadio/src/audioI2S/Audio.cpp`  
+Место: где вы включаете micro-flac режим для WEB FLAC (processWebStream/processWebFile).
+
+Добавить:
+
+```cpp
+m_mf_prevMaxBlockSize = InBuff.getMaxBlockSize();
+InBuff.changeMaxBlockSize(8192);
+```
+
+## 3.3 В `microflac_reset_()` восстановить maxBlockSize (если было)
+В конце `microflac_reset_()`:
+
+```cpp
+if(m_mf_prevMaxBlockSize){
+  InBuff.changeMaxBlockSize(m_mf_prevMaxBlockSize);
+  m_mf_prevMaxBlockSize = 0;
+}
+```
+
+---
+
+# 4) Проверить (и если нужно — привести к эталону) пункты из 0.0: HEADER_READY alloc / metadata limits / NEED_MORE_DATA
+
+Эти вещи у вас уже должны быть, но агент обязан подтвердить:
+
+1) **Выходной буфер** выделяется **только после** `FLAC_DECODER_HEADER_READY` через `get_output_buffer_size_samples()` (это соответствует пункту “аллокация после HEADER_READY” из документа).   
+2) В `microflac_reset_()` стоят:
+   - `g_mf.set_crc_check_enabled(false);`
+   - `set_max_metadata_size(PICTURE, 0)` и `set_max_metadata_size(VORBIS_COMMENT, 0)` (пункт про album art).   
+3) `NEED_MORE_DATA` не трактуется как ошибка и продвигает вход:
+   - `res = FLAC_DECODE_FRAMES_LOOP` (пункт NEED_MORE_DATA).   
+
+---
+
+## Самопроверка агента (обязательная, приложить вывод)
+```bash
+# 1) millis removed, esp_timer used
+git grep -n "millis()" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git grep -n "mf_millis" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git grep -n "esp_timer_get_time" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git grep -n "#include <micro_ogg/ogg_demuxer.h>" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+
+# 2) memory prefer internal
+git grep -n "MICRO_FLAC_MEMORY_PREFER_" yoRadio/myoptions.h
+
+# 3) maxBlockSize shrink for micro-flac
+git grep -n "m_mf_prevMaxBlockSize" yoRadio/src/audioI2S/AudioEx.h yoRadio/src/audioI2S/Audio.cpp
+git grep -n "changeMaxBlockSize(8192)" yoRadio/src/audioI2S/Audio.cpp
+
+# 4) radio config + NEED_MORE_DATA handling
+git grep -n "set_crc_check_enabled" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "set_max_metadata_size" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "FLAC_DECODE_FRAMES_LOOP" yoRadio/src/audioI2S/Audio.cpp
+git grep -n "get_output_buffer_size_samples" yoRadio/src/audioI2S/Audio.cpp
+```
+
+**Ожидаемые результаты:**
+- `millis()` в micro-flac **не найден**
+- `mf_millis/esp_timer_get_time` найдены
+- `#include <micro_ogg/...>` **не найден**
+- В `myoptions.h` есть ровно один `MICRO_FLAC_MEMORY_PREFER_*`
+- Включение/восстановление `changeMaxBlockSize(8192)` присутствует
+- CRC/metadata limits + NEED_MORE_DATA (`FLAC_DECODE_FRAMES_LOOP`) присутствуют
+
+---
+
+## Рантайм-критерий (после прошивки)
+На проблемных WEB FLAC станциях из `Log53`:
+- больше нет “завис навсегда после stream ready”
+- либо начинается реальный декод и звук, либо честный stop/reconnect без ручного ребута
+- при этом SD‑режим и другие форматы не деградируют
+
+---
+
+Если агент сделает это одним коммитом в `main`, ты перепрошьёшь, и по следующему логу будет видно: исчезло ли именно “вечное зависание” и стал ли micro-flac стабильно “пережёвывать” Ogg‑FLAC без стопов.
