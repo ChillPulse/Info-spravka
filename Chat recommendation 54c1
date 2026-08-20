@@ -1,0 +1,102 @@
+# Новое единое ТЗ агенту: Rec54c1 (починить обе несостыковки)
+
+## Rec54c1 — Make myoptions macros visible to micro-flac + make ESP guards Arduino-safe
+
+### Цель (DoD)
+1) `MICRO_FLAC_MEMORY_PREFER_INTERNAL` реально применяется к micro‑flac аллокациям.  
+2) `mf_millis()` и alloc‑ESP ветки работают на Arduino всегда (не зависят только от `ESP_PLATFORM`).  
+3) Никаких изменений в SD/других кодеках.
+
+---
+
+## A) Подключить `myoptions.h` внутри micro‑flac (чтобы макросы работали)
+**Файл:** `yoRadio/src/audioI2S/micro_flac/alloc.h`
+
+Сразу после `#pragma once` добавить:
+
+```cpp
+// Pull user build options (Arduino include path contains yoRadio/)
+#if __has_include("myoptions.h")
+  #include "myoptions.h"
+#endif
+```
+
+Так макрос `MICRO_FLAC_MEMORY_PREFER_INTERNAL` из `yoRadio/myoptions.h` станет виден в `alloc.h` и реально изменит выбор `FLAC_MALLOC`.   
+
+---
+
+## B) Сделать guards устойчивыми: `ESP_PLATFORM || ARDUINO_ARCH_ESP32`
+### B1) `alloc.h`
+Заменить:
+
+```cpp
+#ifdef ESP_PLATFORM
+#include <esp_heap_caps.h>
+...
+#ifdef ESP_PLATFORM
+  ... heap_caps_malloc_prefer ...
+#endif
+```
+
+на:
+
+```cpp
+#if defined(ESP_PLATFORM) || defined(ARDUINO_ARCH_ESP32)
+  #include <esp_heap_caps.h>
+#endif
+
+#if defined(ESP_PLATFORM) || defined(ARDUINO_ARCH_ESP32)
+  ... heap_caps_malloc_prefer ...
+#else
+  ... malloc/free ...
+#endif
+```
+
+### B2) `micro_flac/flac_decoder.cpp`
+Сейчас:
+
+```cpp
+#ifdef ESP_PLATFORM
+#include <esp_timer.h>
+#endif
+static inline uint32_t mf_millis() {
+#ifdef ESP_PLATFORM
+  return esp_timer_get_time()/1000;
+#else
+  return 0;
+#endif
+}
+```
+
+Заменить на:
+
+```cpp
+#if defined(ESP_PLATFORM) || defined(ARDUINO_ARCH_ESP32)
+  #include <esp_timer.h>
+#endif
+
+static inline uint32_t mf_millis() {
+#if defined(ESP_PLATFORM) || defined(ARDUINO_ARCH_ESP32)
+  return (uint32_t)(esp_timer_get_time() / 1000ULL);
+#else
+  return 0;
+#endif
+}
+```
+
+---
+
+## C) Самопроверка (агент обязан приложить вывод)
+```bash
+git grep -n "__has_include\\(\"myoptions.h\"\\)" yoRadio/src/audioI2S/micro_flac/alloc.h
+git grep -n "MICRO_FLAC_MEMORY_PREFER_INTERNAL" yoRadio/src/audioI2S/micro_flac/alloc.h
+git grep -n "defined\\(ESP_PLATFORM\\) \\|\\| defined\\(ARDUINO_ARCH_ESP32\\)" yoRadio/src/audioI2S/micro_flac/alloc.h yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git grep -n "esp_timer_get_time" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+```
+
+---
+
+Если агент сделает Rec54c1, то:
+- стратегия памяти micro‑flac реально станет “prefer internal” (как вы хотели),
+- time‑budget guard останется гарантированно рабочим в Arduino сборке,
+- и вы получите больше шансов на стабильный “флагманский” FLAC без зависаний и без случайных регрессий из-за условий компиляции.
