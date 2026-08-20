@@ -1,0 +1,57 @@
+Ошибка из `Log50` всё та же и очень конкретная:
+
+- компилятор собирает `.../src/audioI2S/micro_flac/flac_decoder.cpp`
+- и падает на строке `#include "micro_ogg/ogg_demuxer.h"` → **файл не находится** 
+
+Причина: в Arduino IDE в командной строке для этого файла **нет include-пути на `yoRadio/src/audioI2S`**, там есть только `-IC:\Youradio_Omnia_ESP32S3\yoRadio` .  
+То есть папка `yoRadio/src/audioI2S/micro_ogg` *существует*, но компилятор её **не видит** как include-root.
+
+---
+
+## Самый надёжный фикс (без ковыряния сторонних исходников): добавить “обёртку” заголовка в `yoRadio/`
+
+Нужно сделать так, чтобы `micro_ogg/ogg_demuxer.h` находился **относительно `yoRadio/`**, потому что именно `yoRadio/` добавлен в include path при сборке.
+
+### Rec53-oggdep2 — ТЗ агенту (чётко)
+
+#### 1) Создать папку:
+`yoRadio/micro_ogg/`
+
+#### 2) Создать файл:
+`yoRadio/micro_ogg/ogg_demuxer.h`
+
+С содержимым:
+
+```cpp
+#pragma once
+// Arduino build includes only -I<sketch>/yoRadio, so provide a wrapper header here.
+#include "../src/audioI2S/micro_ogg/ogg_demuxer.h"
+```
+
+> Мы **не дублируем** демультиплексор, просто даём “входную точку” для include.
+
+#### 3) Ничего больше менять не нужно
+- `yoRadio/src/audioI2S/micro_ogg/ogg_demuxer.cpp` пусть остаётся как есть (он включает `<micro_ogg/ogg_demuxer.h>` и теперь найдёт wrapper).
+- micro-flac тоже найдёт этот wrapper (потому что include path содержит `yoRadio/`).
+
+---
+
+## Самопроверка агента (обязательная)
+Пусть агент приложит вывод:
+
+```bash
+git ls-files | grep -E "^yoRadio/micro_ogg/ogg_demuxer.h$"
+git grep -n "../src/audioI2S/micro_ogg/ogg_demuxer.h" yoRadio/micro_ogg/ogg_demuxer.h
+```
+
+И проверка, что файл на месте в дереве репо:
+- `yoRadio/micro_ogg/ogg_demuxer.h` существует.
+
+---
+
+## Что тебе сделать на ПК после пуша
+1) `git pull` (или переклонировать, как ты делал раньше — это самый “нубо-надёжный” способ).
+2) Перезапусти Arduino IDE (она иногда кеширует список файлов).
+3) Compile/Upload.
+
+После этого ошибка `micro_ogg/ogg_demuxer.h: No such file or directory` должна исчезнуть.
