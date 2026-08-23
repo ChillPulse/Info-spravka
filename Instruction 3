@@ -1,0 +1,329 @@
+# ТЗ ДЛЯ АГЕНТА (КОПИПАСТ) — flagship WEB‑FLAC fix + no reboot
+
+```text
+ТЗ: Починить WEB-FLAC (micro-flac) по Log57: убрать тишину после HEADER_READY и убрать ребуты LoadProhibited.
+Работать ТОЛЬКО в main. Без side-branch. Пуш в origin/main. Без токена в URL.
+
+Репозиторий: https://github.com/ChillPulse/Youradio_Omnia_ESP32S3
+Лог-симптом: Log57 — HEADER_READY/post-config есть → zero consume → reconnect → Guru Meditation.
+
+========================================================
+0) РЕГЛАМЕНТ
+========================================================
+0.1) Только main:
+  git fetch origin --prune
+  git checkout main
+  git reset --hard origin/main
+
+0.2) Remote чистый (без token@):
+  git remote -v
+  # если грязно:
+  git remote set-url origin git@github.com:ChillPulse/Youradio_Omnia_ESP32S3.git
+
+0.3) Разрешённые файлы:
+  - yoRadio/src/audioI2S/Audio.cpp
+  - yoRadio/src/audioI2S/AudioEx.h          (только если нужны 1-2 поля)
+  - yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp   (budget fix)
+Запрещено: SD pipeline, flac_decoder legacy, MP3/AAC/OPUS/VORBIS ветки, любые другие файлы.
+
+========================================================
+1) FIX CRASH (ОБЯЗАТЕЛЬНО, ПЕРВЫМ)
+========================================================
+Файл: Audio.cpp
+
+1.1) Найди ВСЕ вызовы stallReconnect( внутри micro-flac ветки sendBytes().
+Сейчас после stallReconnect код продолжается — ЭТО КРАШ.
+
+ПРАВИЛО: после любого stallReconnect(...) в sendBytes() немедленно:
+  return 0;
+
+Точные места минимум:
+  - mf_out32_missing
+  - mf_bad_streaminfo
+  - mf_header_timeout
+  - mf_zero_consume
+
+Пример:
+  if(m_mf_zeroConsumeCnt >= MF_WEB_ZERO_CONSUME_LIMIT){
+      AUDIO_ERROR("microflac zero consume limit -> reconnect");
+      stallReconnect("mf_zero_consume");
+      return 0; // CRITICAL: never continue after reconnect
+  }
+
+1.2) В stallReconnect() добавь защиту:
+  - если !m_lastHost.valid() → return false
+  - перед stopSong() скопируй URL (уже есть)
+  - после stopSong() НЕ трогай m_client
+  - connecttohost только если url.valid()
+
+1.3) В stopSong()/close path: любые разыменования m_client только if(m_client).
+
+========================================================
+2) FIX ZERO-CONSUME POLICY (НЕ УБИВАТЬ ПОТОК СРАЗУ)
+========================================================
+Файл: Audio.cpp, константы сверху:
+
+ЗАМЕНИТЬ:
+  MF_WEB_BLOCK_DEFAULT = 65535;   // сразу max для Ogg-FLAC radio (не 32768)
+  MF_WEB_BLOCK_MAX     = 65535;
+  MF_WEB_MIN_DECODE    = 4096;    // раньше начинать decode
+  MF_WEB_ZERO_CONSUME_LIMIT = 80; // было 12 — слишком рано reconnect
+  MF_WEB_ZERO_CONSUME_ESCALATE_AT = 20;
+  // NEW:
+  constexpr uint32_t MF_WEB_GRACE_AFTER_HEADER_MS = 2500; // после HEADER_READY 2.5с не reconnect из-за zero-consume
+  constexpr uint32_t MF_WEB_STALL_MS = 4000;              // общий time-based stall
+
+В AudioEx.h добавь:
+  uint32_t m_mf_headerReadyAtMs = 0;
+  uint32_t m_mf_lastProgressMs = 0; // last time bytes_consumed>0 or SUCCESS
+
+В microflac_reset_():
+  m_mf_headerReadyAtMs = 0;
+  m_mf_lastProgressMs = 0;
+
+========================================================
+3) ПЕРЕПИСАТЬ micro-flac WEB ВЕТКУ sendBytes() (ЯДРО)
+========================================================
+Цель: после HEADER_READY сразу крутить decode loop и выдавать PCM; zero-consume не должен мгновенно делать reconnect.
+
+3.1) УДАЛИ отдельный «вечный» feedCap-лимит как главную логику.
+Вместо этого на каждый вход в ветку:
+
+  // feed all we can in one contiguous window
+  size_t avail = len; // len already = min(bufferFilled, maxBlockSize) from playAudioData
+  if(avail > InBuff.getMaxBlockSize()) avail = InBuff.getMaxBlockSize();
+  if(avail > 65535) avail = 65535;
+  len = avail;
+
+  // ensure block is max for ogg-flac
+  if(InBuff.getMaxBlockSize() < MF_WEB_BLOCK_DEFAULT){
+      InBuff.changeMaxBlockSize(MF_WEB_BLOCK_DEFAULT);
+      m_mf_webBlock = MF_WEB_BLOCK_DEFAULT;
+  }
+
+3.2) Сделай ЛОКАЛЬНЫЙ decode-loop (до 8 итераций) в одном sendBytes:
+
+  size_t total_consumed = 0;
+  const uint8_t* p = data;
+  size_t left = len;
+  int loops = 0;
+  const int MAX_LOOPS = 8;
+
+  while(loops++ < MAX_LOOPS && left > 0){
+      size_t bytes_consumed = 0, samples_decoded = 0;
+      int32_t* out = (m_mf_header_ready && m_mf_out32) ? m_mf_out32 : nullptr;
+      size_t out_cap = out ? m_mf_out32_cap : 0;
+
+      auto mf_res = g_mf.decode(p, left, out, out_cap, bytes_consumed, samples_decoded);
+
+      // progress bookkeeping
+      if(bytes_consumed > 0){
+          p += bytes_consumed;
+          left -= bytes_consumed;
+          total_consumed += bytes_consumed;
+          m_mf_zeroConsumeCnt = 0;
+          m_mf_lastProgressMs = millis();
+      }
+
+      if(mf_res == HEADER_READY){
+          // validate info, setChannels/SR/BPS, IIR post-config (оставить как есть)
+          // alloc out32
+          // set m_mf_header_ready=true
+          m_mf_headerReadyAtMs = millis();
+          m_mf_lastProgressMs = millis();
+          AUDIO_INFO("microflac HEADER_READY sr=%lu ch=%u bps=%u consumed=%u left=%u",
+                     (unsigned long)m_mf_sample_rate, m_mf_channels, m_mf_bits,
+                     (unsigned)bytes_consumed, (unsigned)left);
+          // IMPORTANT: continue loop immediately to decode first audio frames
+          continue;
+      }
+
+      if(mf_res == SUCCESS){
+          if(samples_decoded && m_mf_out32){
+              m_mf_pending_total = samples_decoded;
+              m_mf_pending_off = 0;
+              m_lastGoodDecodeMs = millis();
+              m_mf_lastProgressMs = millis();
+              AUDIO_INFO("microflac SUCCESS samples=%u consumed=%u total_cons=%u",
+                         (unsigned)samples_decoded, (unsigned)bytes_consumed, (unsigned)total_consumed);
+          }
+          // stop loop; PCM will be drained in playAudioData pending path
+          break;
+      }
+
+      if(mf_res == NEED_MORE_DATA){
+          if(bytes_consumed == 0){
+              m_mf_zeroConsumeCnt++;
+              // soft log first few
+              if(m_mf_zeroConsumeCnt <= 3 || (m_mf_zeroConsumeCnt % 20)==0){
+                  AUDIO_INFO("microflac NEED_MORE zero_cons=%u filled=%u header=%u left=%u",
+                             (unsigned)m_mf_zeroConsumeCnt,
+                             (unsigned)InBuff.bufferFilled(),
+                             (unsigned)m_mf_header_ready,
+                             (unsigned)left);
+              }
+          }
+          // no more progress possible in this call
+          break;
+      }
+
+      if(mf_res == END_OF_STREAM){ m_f_eof=true; break; }
+
+      // errors
+      AUDIO_ERROR("microflac decode error %d consumed=%u header=%u",
+                  (int)mf_res, (unsigned)bytes_consumed, (unsigned)m_mf_header_ready);
+      if(!m_mf_header_ready){
+          // fatal before header
+          microflac_reset_();
+          m_mf_active = true;
+          m_sbyt.bytesLeft = len - total_consumed;
+          // force bytesDecoded via bytesLeft:
+          // fallthrough after loop
+          res = -100;
+          break;
+      } else {
+          // after header: skip 1 byte to resync rather than reconnect immediately
+          if(left > 0){ p += 1; left -= 1; total_consumed += 1; }
+          // soft reset frame path is inside microflac on errors after header
+          continue;
+      }
+  }
+
+  // set leftovers for common epilogue
+  m_sbyt.bytesLeft = len - total_consumed;  // IMPORTANT: common code does bytesDecoded = len - bytesLeft
+  // BUT len may have been reduced; that's OK as long as consistent.
+
+  // Decide res:
+  if(res == -100){
+      // already set
+  } else if(m_mf_pending_total > m_mf_pending_off){
+      res = 0; // have PCM
+  } else {
+      res = FLAC_DECODE_FRAMES_LOOP; // need more / no pcm yet
+  }
+
+3.3) ZERO-CONSUME reconnect policy (заменить старую):
+
+  bool grace = m_mf_header_ready && m_mf_headerReadyAtMs &&
+               (millis() - m_mf_headerReadyAtMs) < MF_WEB_GRACE_AFTER_HEADER_MS;
+
+  bool timed_stall = m_mf_lastProgressMs &&
+                     (millis() - m_mf_lastProgressMs) > MF_WEB_STALL_MS &&
+                     InBuff.bufferFilled() > 60000;
+
+  if(!grace && timed_stall && m_mf_zeroConsumeCnt >= MF_WEB_ZERO_CONSUME_LIMIT){
+      AUDIO_ERROR("microflac hard stall -> reconnect");
+      stallReconnect("mf_hard_stall");
+      return 0; // CRITICAL
+  }
+
+  // NEVER reconnect solely because zero_consume hit 12 quickly after header.
+
+3.4) УДАЛИ старую escalate-логику как trigger reconnect.
+Можно оставить только ensure maxBlock=65535 at activation (шаг 2).
+
+========================================================
+4) playAudioData() — drain pending СРАЗУ после sendBytes
+========================================================
+Сейчас pending drain только в НАЧАЛЕ playAudioData.
+После sendBytes, если m_mf_pending_total>off и m_validSamples==0 — нужно один раз слить chunk.
+
+В конце playAudioData (перед exit), добавь:
+
+  if(m_codec==CODEC_FLAC && m_mf_active && m_validSamples==0 &&
+     m_mf_pending_off < m_mf_pending_total){
+      // copy same pending→outBuff→playChunk block as at top
+      ...
+  }
+
+Это убирает «SUCCESS был, а PCM ушёл только на следующем тике».
+
+Также для micro-flac:
+  m_pad.bytesToDecode = min(InBuff.bufferFilled(), (size_t)InBuff.getMaxBlockSize());
+и вызов sendBytes если bufferFilled() >= MF_WEB_MIN_DECODE (уже есть — сохранить).
+
+========================================================
+5) FIX 12ms BUDGET в micro_flac (flac_decoder.cpp)
+========================================================
+Файл: yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+В decode_ogg while-loop:
+
+БЫЛО:
+  if((mf_millis() - t0) > 12){
+      return FLAC_DECODER_NEED_MORE_DATA;
+  }
+
+СТАЛО:
+  if((mf_millis() - t0) > 40){  // FLAC frames can exceed 12ms on ESP32-S3
+      // Only yield if we already made input progress OR no input left to chew.
+      // Returning with 0 consume while input remains causes outer "zero-consume stall".
+      if(bytes_consumed > 0 || remaining == 0){
+          return FLAC_DECODER_NEED_MORE_DATA;
+      }
+      // else: allow a bit more time this call
+      if((mf_millis() - t0) > 80){
+          return FLAC_DECODER_NEED_MORE_DATA;
+      }
+  }
+
+Важно: переменная remaining должна быть актуальной (input_len - bytes_consumed).
+
+========================================================
+6) АКТИВАЦИЯ micro-flac — сразу block=65535
+========================================================
+Все места activation (ogg detect / late / sendBytes):
+  InBuff.changeMaxBlockSize(MF_WEB_BLOCK_DEFAULT); // теперь 65535
+  m_mf_webBlock = MF_WEB_BLOCK_DEFAULT;
+  m_mf_feedCap = MF_WEB_BLOCK_DEFAULT; // если поле остаётся — держать равным block
+  m_mf_zeroConsumeCnt = 0;
+  m_mf_headerReadyAtMs = 0;
+  m_mf_lastProgressMs = millis();
+
+========================================================
+7) ЛОГИ (обязательные маркеры для приёмки)
+========================================================
+Должны появляться:
+  - microflac WEB activated: block=65535 ...
+  - microflac HEADER_READY sr=... ch=... bps=...
+  - microflac SUCCESS samples=...   (хотя бы периодически)
+НЕ должны спамить:
+  - zero consume limit -> reconnect в первые 2 секунды после header
+НЕ должно быть:
+  - Guru Meditation при FLAC
+
+========================================================
+8) САМОПРОВЕРКА КОДА (до commit)
+========================================================
+8.1) git diff --name-only
+  только разрешённые файлы
+
+8.2) rg -n "stallReconnect\\(" yoRadio/src/audioI2S/Audio.cpp
+  В КАЖДОМ месте внутри sendBytes micro-flac после stallReconnect должен быть return 0;
+
+8.3) rg -n "MF_WEB_ZERO_CONSUME_LIMIT = 12" Audio.cpp
+  => 0 совпадений (лимит увеличен)
+
+8.4) rg -n "mf_millis\\(\\) - t0\\) > 12" micro_flac/flac_decoder.cpp
+  => 0 совпадений
+
+8.5) rg -n "microflac SUCCESS" Audio.cpp
+  => есть лог
+
+8.6) SD path не тронут:
+  rg -n "SD FLAC stays on old decoder" Audio.cpp
+  rg -n "res = FLACDecode\\(" Audio.cpp
+
+========================================================
+9) COMMIT + PUSH main
+========================================================
+git add yoRadio/src/audioI2S/Audio.cpp yoRadio/src/audioI2S/AudioEx.h yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git commit -m "WEB-FLAC: fix zero-consume stall + prevent reconnect UAF crash; flagship decode loop"
+git push origin main
+
+ДОКАЗАТЕЛЬСТВО:
+  git ls-remote origin refs/heads/main
+  git rev-parse HEAD
+  # SHA совпадают
+  # raw main Audio.cpp содержит "microflac SUCCESS" и "hard stall" (не старый zero consume limit spam)
+
+Сказать "готово" ТОЛЬКО после совпадения origin/main SHA.
