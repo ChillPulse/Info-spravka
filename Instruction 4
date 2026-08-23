@@ -1,0 +1,380 @@
+# ТЗ ДЛЯ АГЕНТА (КОПИПАСТ) — flagship WEB‑FLAC: SUCCESS after HEADER_READY (Log58 silence)
+
+ТЗ: По Log58 убрать тишину WEB-FLAC (micro-flac).
+Симптом: HEADER_READY есть → SUCCESS никогда → zero_consume 1..80 → hard stall reconnect.
+Другие кодеки (AAC/OPUS/VORBIS/MP3) работают. SD-FLAC не трогать.
+Работать ТОЛЬКО в main. Без side-branch. Пуш в origin/main. Без токена в URL.
+
+Репозиторий: https://github.com/ChillPulse/Youradio_Omnia_ESP32S3
+Лог: https://github.com/ChillPulse/Info-spravka/blob/main/Log58
+Тест-поток: https://streams.radiomast.io/ref-lossless-ogg-flac-stereo
+  (redirect → audio-edge-*.radiomast.io/ref-lossless-ogg-flac-stereo, Ogg-FLAC 44.1k/16/2)
+
+========================================================
+0) РЕГЛАМЕНТ
+========================================================
+0.1) Только main:
+  git fetch origin --prune
+  git checkout main
+  git reset --hard origin/main
+
+0.2) Remote чистый (без token@):
+  git remote -v
+  # если грязно:
+  git remote set-url origin git@github.com:ChillPulse/Youradio_Omnia_ESP32S3.git
+
+0.3) Разрешённые файлы:
+  - yoRadio/src/audioI2S/Audio.cpp
+  - yoRadio/src/audioI2S/AudioEx.h          (только 1-3 поля если нужно)
+  - yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+Запрещено: SD pipeline, flac_decoder legacy, MP3/AAC/OPUS/VORBIS ветки,
+           micro_ogg/* (кроме случая если без этого нельзя — тогда ТОЛЬКО
+           минимальный bugfix + коммент почему), любые другие файлы.
+
+0.4) Цель приёмки (железо проверяет владелец):
+  - В логе: HEADER_READY → в течение <1с несколько microflac SUCCESS samples=...
+  - Есть звук на ref-lossless-ogg-flac-stereo
+  - Нет вечного zero_cons / hard stall spam
+  - Нет Guru Meditation / LoadProhibited
+  - AAC/OPUS/VORBIS/MP3 не сломаны
+
+========================================================
+1) ДИАГНОЗ ПО Log58 (не спорить, чинить)
+========================================================
+Факты:
+  microflac WEB activated: block=65535 feedCap=65535
+  microflac HEADER_READY sr=44100 ch=2 bps=16 consumed=8407 left=57128
+  сразу: NEED_MORE zero_cons=1 left=57128  (0 consume на 57KB!)
+  далее zero_cons=2..80, filled→655350, left=65535
+  microflac hard stall -> reconnect → цикл
+  SUCCESS в логе НЕТ НИ РАЗУ
+
+Вывод: проблема НЕ в «мало буфера» и НЕ в «рано reconnect».
+Декодер после HEADER_READY не ест вход и не отдаёт PCM.
+Instr.3 (grace/hard-stall/loop) недостаточен — нужен root-fix в decode_ogg + sendBytes.
+
+========================================================
+2) ROOT-FIX #1 — decode_ogg: запретить 0-consume spin (ОБЯЗАТЕЛЬНО)
+========================================================
+Файл: yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+Функция: FLACDecoder::decode_ogg
+
+2.1) СЕЙЧАС (баг):
+  while(true){
+    if((mf_millis()-t0) > 12) return NEED_MORE_DATA; // ← может вернуть consumed=0
+    state = ogg_demuxer_->get_next_data(...)
+    if(state.result == OGG_NEED_MORE_DATA){
+      if(bytes_consumed < input_len) continue; // ← SPIN при consumed+=0
+      return NEED_MORE_DATA;
+    }
+    ...
+  }
+
+Это ровно Log58: после HEADER_READY demuxer/path крутится без progress →
+budget → NEED_MORE consumed=0 → outer zero_cons++ → stall.
+
+2.2) ЗАМЕНИТЬ budget+spin логику на upstream-совместимую + safe yield:
+
+  const uint32_t t0 = mf_millis();
+  uint32_t idle_iters = 0;
+  while (true) {
+      size_t remaining = input_len - bytes_consumed;
+      auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+
+      // A) прогресс по входу
+      if (state.bytes_consumed > 0) {
+          bytes_consumed += state.bytes_consumed;
+          idle_iters = 0;
+      } else {
+          idle_iters++;
+      }
+
+      // B) OGG_NEED_MORE_DATA
+      if (state.result == micro_ogg::OGG_NEED_MORE_DATA) {
+          if (this->ogg_eos_seen_) return FLAC_DECODER_END_OF_STREAM;
+
+          // Если input ещё есть, но demuxer не ест — ЭТО НЕ "need more".
+          // Нельзя spin'ить до budget с return consumed=0.
+          if (state.bytes_consumed == 0 && remaining > 0) {
+              // Soft-resync once: найти следующий OggS в remaining
+              const uint8_t* p = input + bytes_consumed;
+              size_t r = remaining;
+              size_t k = 1; // skip at least 1 byte to avoid infinite same pos
+              for (; k + 3 < r; k++) {
+                  if (p[k]=='O' && p[k+1]=='g' && p[k+2]=='g' && p[k+3]=='S') break;
+              }
+              if (k + 3 < r) {
+                  this->ogg_demuxer_->reset();
+                  bytes_consumed += k;
+                  idle_iters = 0;
+                  continue;
+              }
+              // OggS не нашли в этом chunk — съесть 0 нельзя: вернуть NEED_MORE
+              // ТОЛЬКО если уже был progress в этом вызове; иначе съесть 1 байт
+              // чтобы outer layer сдвинул окно (anti-stuck).
+              if (bytes_consumed == 0) {
+                  bytes_consumed = 1; // CRITICAL anti-zero-consume
+              }
+              return FLAC_DECODER_NEED_MORE_DATA;
+          }
+
+          // Нормальный need-more: либо progress был, либо input кончился
+          return FLAC_DECODER_NEED_MORE_DATA;
+      }
+
+      // C) пустой OK / SKIPPED без consume — не spin
+      if (state.bytes_consumed == 0 &&
+          (state.result == micro_ogg::OGG_OK && state.packet.length == 0)) {
+          if (bytes_consumed == 0 && remaining > 0) bytes_consumed = 1;
+          return FLAC_DECODER_NEED_MORE_DATA;
+      }
+      if (state.bytes_consumed == 0 && state.result == micro_ogg::OGG_PACKET_SKIPPED) {
+          if (bytes_consumed == 0 && remaining > 0) bytes_consumed = 1;
+          return FLAC_DECODER_NEED_MORE_DATA;
+      }
+
+      // D) time budget — ТОЛЬКО если уже есть progress ИЛИ input исчерпан
+      if ((mf_millis() - t0) > 40) {
+          if (bytes_consumed > 0 || remaining == 0) {
+              return FLAC_DECODER_NEED_MORE_DATA;
+          }
+          // no progress + input remains: дать ещё немного, потом anti-stuck
+          if ((mf_millis() - t0) > 80) {
+              if (bytes_consumed == 0 && remaining > 0) bytes_consumed = 1;
+              return FLAC_DECODER_NEED_MORE_DATA;
+          }
+      }
+
+      // E) errors: radio-tolerant resync (сохранить идею Rec53h), но
+      //    обязательно увеличивать bytes_consumed при skip-to-OggS
+      if (state.result < 0) {
+          this->ogg_demuxer_->reset();
+          if (bytes_consumed < input_len) {
+              const uint8_t* p = input + bytes_consumed;
+              size_t r = input_len - bytes_consumed;
+              size_t k = 0;
+              for (; k + 3 < r; k++) {
+                  if (p[k]=='O' && p[k+1]=='g' && p[k+2]=='g' && p[k+3]=='S') break;
+              }
+              if (k + 3 < r) {
+                  bytes_consumed += (k == 0 ? 1 : k); // always move
+                  continue;
+              }
+          }
+          if (bytes_consumed == 0 && input_len > 0) bytes_consumed = 1;
+          return FLAC_DECODER_NEED_MORE_DATA;
+      }
+
+      if (state.result == micro_ogg::OGG_PACKET_SKIPPED) {
+          continue; // bytes already accounted if any
+      }
+      if (state.result != micro_ogg::OGG_OK) {
+          return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+      }
+
+      // F) packet body → decode_native (как сейчас)
+      //    ВАЖНО: пустой body — continue/need more БЕЗ zero-return если input остался
+      ... existing BOS strip + decode_native ...
+
+      // native_consumed == body_len check — оставить
+      // HEADER_READY / SUCCESS / NEED_MORE(continue) / errors — оставить
+  }
+
+2.3) ИНВАРИАНТ decode_ogg (добавь комментарий в код):
+  // NEVER return NEED_MORE_DATA with bytes_consumed==0 while input_len>0
+  // after HEADER/AUDIO phase, except when input is truly insufficient for one
+  // demux step AND demuxer made no legal progress opportunity.
+  // Prefer bytes_consumed>=1 anti-stuck over outer zero-consume storm.
+
+2.4) Самопроверка:
+  rg -n "mf_millis\\(\\) - t0\\) > 12" yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+  => 0 совпадений
+
+========================================================
+3) ROOT-FIX #2 — sendBytes micro-flac: decode loop до SUCCESS
+========================================================
+Файл: Audio.cpp, ветка CODEC_FLAC + m_mf_active (WEB)
+
+3.1) Константы (верх файла) — выставить flagship:
+
+  constexpr uint16_t MF_WEB_BLOCK_DEFAULT = 65535; // Ogg pages up to 64K-1
+  constexpr uint16_t MF_WEB_BLOCK_MAX     = 65535;
+  constexpr uint16_t MF_WEB_MIN_DECODE    = 4096;
+  constexpr uint8_t  MF_WEB_ZERO_CONSUME_LIMIT = 120; // не убить поток рано
+  constexpr uint8_t  MF_WEB_ZERO_CONSUME_ESCALATE_AT = 20;
+  constexpr uint32_t MF_WEB_GRACE_AFTER_HEADER_MS = 3000;
+  constexpr uint32_t MF_WEB_STALL_MS = 5000;
+  constexpr int      MF_WEB_MAX_LOOPS = 12; // local decode iterations / sendBytes
+
+В AudioEx.h (если нет):
+  uint32_t m_mf_headerReadyAtMs = 0;
+  uint32_t m_mf_lastProgressMs = 0;
+  // optional diag:
+  int8_t   m_mf_lastRes = 0;
+
+В microflac_reset_():
+  m_mf_headerReadyAtMs = 0;
+  m_mf_lastProgressMs = 0;
+  m_mf_lastRes = 0;
+  // + существующий reset g_mf / out32 / flags
+
+3.2) Activation (все места WEB activate):
+  InBuff.changeMaxBlockSize(MF_WEB_BLOCK_DEFAULT);
+  m_mf_webBlock = MF_WEB_BLOCK_DEFAULT;
+  m_mf_feedCap  = MF_WEB_BLOCK_DEFAULT;
+  m_mf_zeroConsumeCnt = 0;
+  m_mf_headerReadyAtMs = 0;
+  m_mf_lastProgressMs = millis();
+  AUDIO_INFO("microflac WEB activated: block=%u feedCap=%u", ...);
+
+3.3) ПЕРЕПИСАТЬ ядро sendBytes micro-flac:
+
+ПРАВИЛА:
+  - после ЛЮБОГО stallReconnect(...) немедленно return 0;
+  - feed: len = min(len, InBuff.getMaxBlockSize(), 65535); убрать «вечный» узкий feedCap как главную логику
+  - локальный while(loops < MF_WEB_MAX_LOOPS && left > 0)
+  - out/out_cap пересчитывать КАЖДУЮ итерацию:
+      out = (m_mf_header_ready && m_mf_out32 && m_mf_out32_cap) ? m_mf_out32 : nullptr;
+      out_cap = out ? m_mf_out32_cap : 0;
+  - g_mf.decode(p, left, out, out_cap, bytes_consumed, samples_decoded)
+
+HEADER_READY:
+  - validate info.is_valid()
+  - setChannels/SR/BPS, IIR clear+recalc, showCodecParams (как сейчас flagship post-config)
+  - alloc out32 = get_output_buffer_size_samples(); ps_malloc; cap=needed
+  - m_mf_header_ready=true; m_mf_headerReadyAtMs=millis(); m_mf_lastProgressMs=millis()
+  - log: "microflac HEADER_READY sr=.. ch=.. bps=.. out_cap=.. consumed=.. left=.."
+  - если bytes_consumed>0: p+=, left-=, total_consumed+=, zeroCnt=0
+  - continue; // СРАЗУ пробовать первый audio frame с out32
+
+SUCCESS:
+  - m_mf_pending_total = samples_decoded; m_mf_pending_off=0
+  - m_lastGoodDecodeMs = m_mf_lastProgressMs = millis(); zeroCnt=0
+  - log: "microflac SUCCESS samples=%u consumed=%u total_cons=%u filled=%u"
+  - break; // PCM drain в playAudioData
+
+NEED_MORE_DATA:
+  - если bytes_consumed>0: advance, zeroCnt=0, lastProgress=now
+  - else zeroCnt++
+  - soft log: первые 3 и каждые 20:
+      "microflac NEED_MORE zero_cons=%u filled=%u header=%u left=%u out=%u lastRes=%d"
+  - break; // нужен новый input window
+
+END_OF_STREAM: m_f_eof=true; break;
+
+ERRORS (<0):
+  - log "microflac decode error %d consumed=%u header=%u out_cap=%u"
+  - if !header_ready: reset+res=-100; break
+  - else: soft skip 1 byte (p+=1; total_consumed+=1) и continue (resync), НЕ reconnect сразу
+
+После loop:
+  m_sbyt.bytesLeft = len - total_consumed;
+  // common epilogue делает bytesDecoded = len - bytesLeft
+
+  // stall policy (НЕ по одному zero_cons):
+  bool grace = m_mf_header_ready && m_mf_headerReadyAtMs &&
+               (millis()-m_mf_headerReadyAtMs) < MF_WEB_GRACE_AFTER_HEADER_MS;
+  bool timed_stall = m_mf_lastProgressMs &&
+                     (millis()-m_mf_lastProgressMs) > MF_WEB_STALL_MS &&
+                     InBuff.bufferFilled() > 60000;
+  if (!grace && timed_stall && m_mf_zeroConsumeCnt >= MF_WEB_ZERO_CONSUME_LIMIT) {
+      AUDIO_ERROR("microflac hard stall -> reconnect");
+      stallReconnect("mf_hard_stall");
+      return 0; // CRITICAL
+  }
+
+  if (m_mf_pending_total > m_mf_pending_off) res = 0;
+  else if (fatal) res = -100;
+  else res = FLAC_DECODE_FRAMES_LOOP;
+
+3.4) УДАЛИТЬ/не использовать как reconnect-trigger:
+  - MF_WEB_ZERO_CONSUME_LIMIT=12 early kill
+  - reconnect только из-за zero_cons без timed_stall+grace
+
+========================================================
+4) playAudioData — drain pending сразу после sendBytes
+========================================================
+Файл: Audio.cpp
+
+4.1) В начале (уже есть) pending→outBuff→playChunk — сохранить.
+
+4.2) В конце playAudioData (перед exit), ДОБАВИТЬ second drain:
+  if (m_codec==CODEC_FLAC && m_mf_active && m_validSamples==0 &&
+      m_mf_pending_off < m_mf_pending_total) {
+      // тот же chunk copy/scale/playChunk что в начале
+  }
+
+4.3) Для micro-flac WEB:
+  bytesToDecode = min(bufferFilled, maxBlockSize)
+  вызывать sendBytes если bufferFilled >= MF_WEB_MIN_DECODE
+
+========================================================
+5) stallReconnect safety (если ещё дыряво)
+========================================================
+- if(!m_lastHost.valid()) return false;
+- url copy BEFORE stopSong()
+- после stopSong() не трогать m_client
+- connecttohost только при url.valid()
+- В sendBytes micro-flac: ПОСЛЕ каждого stallReconnect → return 0;
+
+Самопроверка:
+  rg -n "stallReconnect\\(" yoRadio/src/audioI2S/Audio.cpp
+  В каждом mf_* месте внутри sendBytes после вызова есть return 0;
+
+========================================================
+6) ДИАГНОСТИКА (обязательные маркеры)
+========================================================
+Должны быть:
+  microflac WEB activated: block=65535 ...
+  microflac HEADER_READY sr=44100 ch=2 bps=16 out_cap=... 
+  microflac SUCCESS samples=...   (регулярно, не разово)
+НЕ должно:
+  zero_cons растущий до 80 без единого SUCCESS
+  hard stall spam каждые ~8с
+  Guru Meditation / LoadProhibited
+Полезно (раз на N):
+  microflac NEED_MORE zero_cons=.. filled=.. header=1 left=.. out=1
+
+========================================================
+7) САМОПРОВЕРКА КОДА (до commit)
+========================================================
+7.1) git diff --name-only
+  только разрешённые файлы
+
+7.2) rg -n "mf_millis\\(\\) - t0\\) > 12" micro_flac/flac_decoder.cpp  => 0
+
+7.3) rg -n "microflac SUCCESS" Audio.cpp  => есть
+
+7.4) rg -n "MF_WEB_BLOCK_DEFAULT = 65535" Audio.cpp => есть
+
+7.5) rg -n "return 0; // CRITICAL|stallReconnect\\(\"mf_" Audio.cpp
+  после stallReconnect в mf-ветке — return 0
+
+7.6) SD path не тронут:
+  rg -n "SD FLAC stays on old decoder" Audio.cpp
+  rg -n "res = FLACDecode\\(" Audio.cpp
+
+7.7) Логический assert в голове:
+  После HEADER_READY следующий decode НЕ должен стабильно возвращать
+  NEED_MORE+consumed=0 при left>=4K и out32!=null.
+  Если всё ещё так — баг в decode_ogg anti-spin (п.2), не в reconnect policy.
+
+========================================================
+8) COMMIT + PUSH main
+========================================================
+git add yoRadio/src/audioI2S/Audio.cpp \
+        yoRadio/src/audioI2S/AudioEx.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git commit -m "WEB-FLAC: fix post-HEADER zero-consume (decode_ogg anti-spin) + SUCCESS loop; Log58 silence"
+git push origin main
+
+ДОКАЗАТЕЛЬСТВО:
+  git ls-remote origin refs/heads/main
+  git rev-parse HEAD
+  # SHA совпадают
+  # raw main:
+  #  - flac_decoder.cpp: нет "> 12)" budget bare return
+  #  - Audio.cpp: есть "microflac SUCCESS" и MF_WEB_BLOCK_DEFAULT = 65535
+
+Сказать "готово" ТОЛЬКО после совпадения origin/main SHA.
+Кратко в ответе: что было root-cause, какие 2-3 ключевых диффа, SHA.
