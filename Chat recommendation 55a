@@ -1,0 +1,163 @@
+
+ТЗ ДЛЯ ИИ-АГЕНТА (КОПИПАСТ). ЦЕЛЬ: “ФЛАГМАН” — ПОСЛЕ micro-flac HEADER_READY ДОЛЖНЫ ПРАВИЛЬНО СБРАСЫВАТЬСЯ/ПЕРЕСЧИТЫВАТЬСЯ IIR/EQ ФИЛЬТРЫ И КОРРЕКТНО СТАРТОВАТЬ PLAYING TIMER, НЕ ВЫЗЫВАЯ legacy setDecoderItems().
+
+Контекст:
+- Сейчас в commit fc47b1d WEB-FLAC (micro-flac) уже НЕ молчит: поток доходит до HEADER_READY/PCM или делает честный reconnect.
+- Но в micro-flac ветке на HEADER_READY вы делаете:
+    setChannels(); setSampleRate(); setBitsPerSample();
+  и затем ПРЯМО отключаете legacy setDecoderItems():
+    m_sbyt.f_setDecodeParamsOnce = false;
+- Из-за этого НЕ выполняется хвост setDecoderItems(), который ВАЖЕН ДЛЯ “флагманского” звучания при смене sample rate:
+    memset(m_filterBuff,0,...);
+    IIR_calculateCoefficients(...);   // “must be recalculated after each samplerate change”
+    showCodecParams();
+  и также не ставится m_PlayingStartTime (в обычных кодеках ставится после setDecoderItems()).
+
+Задача: НЕ трогая SD/другие кодеки, добавить в micro-flac HEADER_READY “post-config” блок, который повторяет нужные действия setDecoderItems(), но НЕ вызывает setDecoderItems() и НЕ трогает legacy FLACGet*.
+
+========================================================
+0) ЖЁСТКИЕ ПРАВИЛА
+========================================================
+0.1 Менять ТОЛЬКО:
+  - yoRadio/src/audioI2S/Audio.cpp
+(НЕ обязательно трогать AudioEx.h — новые поля уже есть)
+
+0.2 НЕЛЬЗЯ:
+  - звать setDecoderItems() внутри micro-flac ветки
+  - менять SD-ветку (res = FLACDecode(...))
+  - менять MP3/AAC/OPUS/VORBIS/WAV ветки
+
+========================================================
+1) ПОДГОТОВКА (команды)
+========================================================
+1.1) Обновить локально main и создать ветку:
+  git checkout main
+  git pull
+  git checkout -b fix/microflac-iir-postconfig
+
+1.2) Убедиться, что правим актуальный код (в нём есть micro-flac WEB ветка):
+  rg -n "WEB FLAC -> micro-flac backend" yoRadio/src/audioI2S/Audio.cpp
+  rg -n "micro-flac already set params from stream info" yoRadio/src/audioI2S/Audio.cpp
+  rg -n "m_sbyt\\.f_setDecodeParamsOnce = false" yoRadio/src/audioI2S/Audio.cpp
+
+ДОЛЖНО найти места около FLAC_DECODER_HEADER_READY.
+
+========================================================
+2) ОСНОВНОЙ ФИКС: IIR/EQ post-config на micro-flac HEADER_READY
+========================================================
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+2.1) Найти блок внутри sendBytes() -> case CODEC_FLAC -> if(isWeb) -> после:
+    if(mf_res == micro_flac::FLAC_DECODER_HEADER_READY){
+
+Там сейчас (ориентир по строкам, важные куски подряд):
+  m_mf_sample_rate = info.sample_rate();
+  m_mf_channels = info.num_channels();
+  m_mf_bits = info.bits_per_sample();
+  m_mf_header_ready = true;
+  setChannels(m_mf_channels);
+  setSampleRate(m_mf_sample_rate);
+  setBitsPerSample(m_mf_bits);
+
+  size_t needed = g_mf.get_output_buffer_size_samples();
+  free(m_mf_out32);
+  m_mf_out32_cap = needed;
+  m_mf_out32 = (int32_t*) ps_malloc(...)
+
+  ...
+  // micro-flac already set params from stream info, do not use legacy setDecoderItems()
+  m_sbyt.f_setDecodeParamsOnce = false;
+  break;
+
+2.2) ВСТАВИТЬ “POST-CONFIG FLAGSHIP” СРАЗУ ПОСЛЕ setBitsPerSample(m_mf_bits);
+     и ДО выделения out32 (до size_t needed = ...), чтобы если поток невалидный — мы не аллоцировали память зря.
+
+Вставляем РОВНО этот блок (можно копипастом):
+
+  // --- FLAGSHIP: replicate the important tail of setDecoderItems() without calling legacy FLACGet* ---
+  if(m_sourceBitsPerSample != 8 && m_sourceBitsPerSample != 16 && m_sourceBitsPerSample != 24) {
+      AUDIO_ERROR("microflac: Bits per sample must be 8/16/24, found %i", m_sourceBitsPerSample);
+      stopSong();
+      return -1;
+  }
+  if(getBitsPerSample() != 8 && getBitsPerSample() != 16) {
+      AUDIO_ERROR("microflac: Bits per sample output must be 8/16, found %i", getBitsPerSample());
+      stopSong();
+      return -1;
+  }
+  if(getChannels() != 1 && getChannels() != 2) {
+      AUDIO_ERROR("microflac: Num of channels must be 1/2, found %i", getChannels());
+      stopSong();
+      return -1;
+  }
+
+  // Clear IIR filter state + recompute coefficients after sample rate change (flagship sound stability)
+  memset(m_filterBuff, 0, sizeof(m_filterBuff));
+  IIR_calculateCoefficients(m_gain0, m_gain1, m_gain2);
+  showCodecParams();
+
+  // Ensure playing time starts for micro-flac too (legacy path sets this after setDecoderItems())
+  m_PlayingStartTime = millis();
+
+  AUDIO_INFO("microflac post-config: IIR recalculated, filters cleared");
+
+ВАЖНО:
+- Мы НЕ вызываем setDecoderItems().
+- Мы НЕ трогаем FLACGet*.
+- Мы делаем ровно то, что setDecoderItems() делает в хвосте: фильтры/коэфф/параметры/таймер.
+
+2.3) Оставить строку:
+  m_sbyt.f_setDecodeParamsOnce = false;
+как есть — она нужна, чтобы legacy setDecoderItems() не вызывался позже.
+
+========================================================
+3) ОБЯЗАТЕЛЬНАЯ САМОПРОВЕРКА ПО КОДУ (перед коммитом)
+========================================================
+3.1) Проверить, что изменения ТОЛЬКО в Audio.cpp:
+  git diff --name-only
+ДОЛЖНО показать только:
+  yoRadio/src/audioI2S/Audio.cpp
+
+3.2) Проверить, что в micro-flac ветке НЕ появился вызов setDecoderItems():
+  rg -n "setDecoderItems\\(" yoRadio/src/audioI2S/Audio.cpp
+
+ОЖИДАНИЕ:
+- Должен остаться ОДИН легаси-вызов setDecoderItems() в общем коде (как раньше, возле строки:
+    if(m_sbyt.f_setDecodeParamsOnce && m_validSamples) { ... setDecoderItems(); ... }
+- Внутри micro-flac HEADER_READY блока НЕ должно быть setDecoderItems().
+
+3.3) Проверить, что новый блок действительно в правильном месте (внутри HEADER_READY):
+  rg -n "microflac post-config: IIR recalculated" yoRadio/src/audioI2S/Audio.cpp
+  rg -n "FLAGSHIP: replicate the important tail of setDecoderItems" yoRadio/src/audioI2S/Audio.cpp
+
+3.4) Проверить, что именно эти 4 действия присутствуют в micro-flac HEADER_READY:
+  - memset(m_filterBuff, 0, sizeof(m_filterBuff));
+  - IIR_calculateCoefficients(m_gain0, m_gain1, m_gain2);
+  - showCodecParams();
+  - m_PlayingStartTime = millis();
+
+(И что они НЕ размазаны по другим кодекам.)
+
+========================================================
+4) СБОРКА (если возможно)
+========================================================
+Если в проекте используется PlatformIO и есть platformio.ini:
+  pio run
+
+Иначе НЕ выдумывай новые build-скрипты и файлы.
+
+========================================================
+5) КОММИТ/ПУШ — ТОЛЬКО ПОСЛЕ САМОПРОВЕРКИ
+========================================================
+Если всё зелёное:
+  git status
+  git diff
+  git add yoRadio/src/audioI2S/Audio.cpp
+  git commit -m "WEB-FLAC micro-flac: apply flagship IIR/EQ post-config on HEADER_READY (no legacy setDecoderItems)"
+  git push -u origin fix/microflac-iir-postconfig
+
+СТОП-ПРАВИЛО:
+- Если затронуты другие файлы или случайно вызван setDecoderItems() в micro-flac ветке — НЕ коммитить, откатить и переделать.
+```
+
+Небольшая ремарка “почему именно так”: хвост `setDecoderItems()` у вас явно помечен как критичный для корректности (“**must be recalculated after each samplerate change**”) и он же чистит `m_filterBuff` и печатает параметры. В micro‑flac вы правильно избегаете legacy `FLACGet*`, но из‑за этого выпадал именно этот хвост — мы возвращаем его точечно на `HEADER_READY`, не вмешиваясь в SD и прочие форматы. 
