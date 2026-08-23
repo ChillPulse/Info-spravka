@@ -1,0 +1,35 @@
+## Задание агенту (копипаст): влить `15f1109` прямо в `main` и проверить
+
+```bash
+# 0) Никаких токенов в URL
+git remote -v
+# если нужно (SSH):
+git remote set-url origin git@github.com:ChillPulse/Youradio_Omnia_ESP32S3.git
+git remote -v
+
+# 1) Обновить ссылки на удалённый репо
+git fetch origin --prune
+
+# 2) Перейти на main и привести к origin/main
+git checkout main
+git reset --hard origin/main
+
+# 3) Fast-forward main до нужного коммита (он прямой потомок fc47b1d)
+git merge --ff-only 15f1109
+
+# 4) Пуш в main
+git push origin main
+
+# 5) Самопроверка ДОКАЗАТЕЛЬСТВОМ (обязательно)
+# 5.1 показать, что remote main указывает на 15f1109 (полный SHA выведется)
+git ls-remote origin refs/heads/main
+
+# 5.2 проверить, что в main реально появился маркер в Audio.cpp локально
+rg -n "microflac post-config: IIR recalculated, filters cleared" yoRadio/src/audioI2S/Audio.cpp
+
+# 5.3 и проверить на GitHub через raw (в браузере):
+# https://raw.githubusercontent.com/ChillPulse/Youradio_Omnia_ESP32S3/main/yoRadio/src/audioI2S/Audio.cpp
+# там должно находиться: "microflac post-config: IIR recalculated, filters cleared"
+```
+
+**Стоп‑правило:** если `git merge --ff-only 15f1109` не проходит или `git push origin main` отклонён — агент обязан показать полный вывод команд (значит нет прав или `main` уже поменялся).
