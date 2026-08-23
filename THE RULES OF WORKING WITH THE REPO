@@ -1,0 +1,92 @@
+РЕГЛАМЕНТ РАБОТЫ С РЕПО Youradio_Omnia_ESP32S3
+Правило №1: ВСЁ ДЕЛАЕМ ТОЛЬКО В main. Side-branch создавать ЗАПРЕЩЕНО, если пользователь явно не попросил.
+
+========================================================
+A) ПОДГОТОВКА (каждый раз перед правками)
+========================================================
+git remote -v
+# remote ДОЛЖЕН быть чистым:
+#   git@github.com:ChillPulse/Youradio_Omnia_ESP32S3.git
+# или
+#   https://github.com/ChillPulse/Youradio_Omnia_ESP32S3.git
+# ЗАПРЕЩЕНО: token@github.com / user:token@github.com
+# если грязно:
+git remote set-url origin git@github.com:ChillPulse/Youradio_Omnia_ESP32S3.git
+
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+git status
+# working tree must be clean
+
+git log -1 --oneline
+# запомнить SHA до правок
+
+========================================================
+B) ПРАВКИ
+========================================================
+- Править только нужные файлы
+- Не создавать fix/* ветки
+- Не делать git checkout -b ...
+
+========================================================
+C) КОММИТ ПРЯМО В main
+========================================================
+git add <нужные файлы>
+git diff --cached --stat
+git commit -m "<чёткое сообщение>"
+
+# локально main должен уехать вперёд:
+git log -1 --oneline
+
+========================================================
+D) ПУШ ТОЛЬКО main
+========================================================
+git push origin main
+
+# если rejected non-fast-forward:
+git fetch origin
+git reset --hard origin/main
+# ПОВТОРИТЬ правки/коммит заново (не force, если пользователь не просил)
+
+========================================================
+E) ДОКАЗАТЕЛЬСТВО, ЧТО GITHUB ОБНОВИЛСЯ (обязательно)
+========================================================
+# 1) remote tip
+git ls-remote origin refs/heads/main
+# SHA должен совпасть с локальным:
+git rev-parse HEAD
+
+# 2) проверка содержимого на GitHub (не “мне кажется”)
+# Открыть/запросить:
+# https://api.github.com/repos/ChillPulse/Youradio_Omnia_ESP32S3/commits/main
+# поле sha == твой новый коммит
+
+# 3) если менял Audio.cpp micro-flac:
+# в raw main должна быть нужная строка/патч
+
+========================================================
+F) ЧИСТКА
+========================================================
+# удалить локальные мусорные ветки, если вдруг появились
+git branch | rg -v "^\*|main" | xargs -r git branch -D
+
+# remote branches кроме main — удалить
+git ls-remote --heads origin
+# если есть лишние:
+# git push origin --delete <branch>
+
+========================================================
+G) ЧТО ГОВОРИТЬ ПОЛЬЗОВАТЕЛЮ
+========================================================
+Можно сказать "готово" ТОЛЬКО если одновременно истинно:
+1) git rev-parse HEAD == git ls-remote origin refs/heads/main
+2) в API commits/main сверху нужный SHA
+3) нужный код реально виден в main
+Иначе — НЕ готово, чинить дальше.
+
+ЗАПРЕЩЕНО:
+- force push в main без явной команды пользователя
+- token в remote URL
+- удалять ветку с коммитом до того, как main на него указывает
+- создавать PR/ветки "на всякий случай"
