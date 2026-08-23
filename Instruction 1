@@ -1,0 +1,87 @@
+Сейчас ситуация такая:
+
+- `main` на GitHub заканчивается на коммите **`fc47b1d`** (на странице `commits/main` видно, что сверху именно он).   
+- Коммит **`15f1109`** существует и является **прямым потомком `fc47b1d`** (1 parent = `fc47b1d`, 1 файл изменён).   
+- Коммит `15f1109` сейчас находится на ветке **`fix/microflac-iir-postconfig`**, которая есть в репо.   
+
+Значит, нужно просто **fast-forward’нуть `main` до `15f1109`** (без конфликтов/мердж-коммитов) и запушить.
+
+Ниже — копипаст‑задание агенту “сделай всё сам до конца”.
+
+---
+
+## ТЗ ДЛЯ АГЕНТА (КОПИПАСТ): “перенести 15f1109 в main, удалить лишние ветки, запушить”
+
+```bash
+# =========================
+# 0) СТОП: никаких токенов в URL remote
+# =========================
+git remote -v
+# Если видишь https://TOKEN@github.com/... или user:TOKEN@github.com/... — НЕМЕДЛЕННО исправь:
+git remote set-url origin git@github.com:ChillPulse/Youradio_Omnia_ESP32S3.git
+git remote -v
+
+# Доп.проверка: токенов не должно быть в .git/config
+cat .git/config | rg "ghp_|github_pat_|token@github\\.com|://[^/]+@github\\.com" || true
+
+# =========================
+# 1) Обновить refs и убедиться, что коммит доступен
+# =========================
+git fetch origin --prune
+
+git show -s --oneline 15f1109
+# Должно показать сообщение: "WEB-FLAC micro-flac: apply flagship IIR/EQ post-config..."
+
+# Проверка: 15f1109 должен быть потомком текущего origin/main (fast-forward возможен)
+git merge-base --is-ancestor origin/main 15f1109 && echo "OK: fast-forward possible" || echo "NOT OK"
+
+# =========================
+# 2) Перевести ЛОКАЛЬНЫЙ main в точное состояние origin/main
+# =========================
+git checkout main
+git reset --hard origin/main
+git status
+# Должно быть: working tree clean
+
+# =========================
+# 3) Fast-forward main до 15f1109 (без merge-коммита)
+# =========================
+git merge --ff-only 15f1109
+
+# Проверка: HEAD должен стать 15f1109
+git log -1 --oneline
+# Должно начинаться с: 15f1109 ...
+
+# =========================
+# 4) Пуш main
+# =========================
+git push origin main
+
+# =========================
+# 5) Железная проверка, что GitHub main теперь на 15f1109 (без "мне кажется")
+# =========================
+git ls-remote origin refs/heads/main
+# Вывод должен содержать SHA 15f1109... (полный)
+
+# (Опционально, но желательно) проверить raw на GitHub:
+# открыть в браузере commits/main и убедиться, что сверху 15f1109.
+
+# =========================
+# 6) Удалить лишние ветки (чтобы остался один main)
+# =========================
+git branch -a
+
+# Удаляем remote ветку, в которой сидел 15f1109 (если она больше не нужна)
+git push origin --delete fix/microflac-iir-postconfig || true
+
+# Локально:
+git branch -D fix/microflac-iir-postconfig || true
+
+# Итог: убедиться что на origin остался только main
+git ls-remote --heads origin
+```
+
+### Стоп-правила агенту
+- **Не использовать `--force`** (не нужно, тут чистый fast-forward).  
+- Если `git merge --ff-only 15f1109` ругается — **остановиться** и не делать “как-нибудь”, а вывести `git log --oneline --decorate -5` и `git graph` (значит, кто-то изменил `main` и надо аккуратно разрулить).  
+- Если `git push origin main` отклонён по правам — значит у агента нет прав пушить в `main`. Тогда единственный корректный путь: PR из `fix/microflac-iir-postconfig` → `main` и мердж через UI (но вы попросили именно push в main — значит права должны быть).
