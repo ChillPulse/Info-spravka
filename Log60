@@ -1,0 +1,1037 @@
+00:29:37.873 -> ESP-ROM:esp32s3-20210327
+00:29:37.919 -> Build:Mar 27 2021
+00:29:37.919 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+00:29:37.919 -> SPIWP:0xee
+00:29:37.919 -> mode:DIO, clock div:1
+00:29:37.919 -> load:0x3fce2820,len:0x116c
+00:29:37.919 -> load:0x403c8700,len:0xc2c
+00:29:37.919 -> load:0x403cb700,len:0x3108
+00:29:37.919 -> entry 0x403c88b8
+00:29:38.291 -> ##[BOOT]#	************************************************
+00:29:38.291 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+00:29:38.291 -> ##[BOOT]#	************************************************
+00:29:38.291 -> ##[BOOT]#	------------------------------------------------
+00:29:38.291 -> ##[BOOT]#	arduino:	10819
+00:29:38.337 -> ##[BOOT]#	compiler:	14.2.0
+00:29:38.337 -> ##[BOOT]#	esp32core:	3.3.6
+00:29:38.337 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+00:29:38.337 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+00:29:38.337 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+00:29:38.337 -> ##[BOOT]#	audioinfo:	false
+00:29:38.337 -> ##[BOOT]#	smartstart:	0
+00:29:38.337 -> ##[BOOT]#	vumeter:	false
+00:29:38.337 -> ##[BOOT]#	softapdelay:	0
+00:29:38.337 -> ##[BOOT]#	flipscreen:	false
+00:29:38.337 -> ##[BOOT]#	invertdisplay:	false
+00:29:38.337 -> ##[BOOT]#	showweather:	false
+00:29:38.337 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+00:29:38.384 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+00:29:38.384 -> ##[BOOT]#	ir:		NONE
+00:29:38.384 -> ##[BOOT]#	SD:		CS-39
+00:29:38.384 -> ##[BOOT]#	battery:	battery ON
+00:29:38.384 -> ##[BOOT]#	------------------------------------------------
+00:29:38.384 -> ##[BOOT]#	CONFIG_VERSION	4
+00:29:38.430 -> ##[BOOT]#	SPIFFS mounted
+00:29:38.708 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+00:29:38.708 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+00:29:38.708 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+00:29:38.708 -> ##[BOOT]#	player.init	done
+00:29:38.754 -> ##[BOOT]#	network.begin
+00:29:38.847 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+00:29:38.847 -> ##[BOOT]#	.....
+00:29:40.844 -> ##[BOOT]#	done
+00:29:40.844 -> ##[BOOT]#	SD search	done
+00:29:40.890 -> ##[BOOT]#	netserver.begin	done
+00:29:40.890 -> ##[BOOT]#	telnet.begin	done
+00:29:40.890 -> ##[BOOT]#
+00:29:40.890 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+00:29:40.890 -> ##[BOOT]#	------------------------------------------------
+00:29:40.890 -> ##[BOOT]#
+00:29:40.890 -> ##CLI.META#: [готов]
+00:29:40.982 -> ##CLI.META#: [соединение]
+00:29:41.029 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+00:29:41.029 -> ##AUDIO.INFO#: buffers freed, free Heap: 174972 bytes
+00:29:41.029 -> ##AUDIO.INFO#: connect to: "stream.bigb21.nl" on port 8002 path "/"
+00:29:41.121 -> ##AUDIO.INFO#: Connection has been established in 91 ms
+00:29:41.308 -> ##AUDIO.INFO#: icy-name: BigB21
+00:29:41.308 -> ##CLI.META#: BigB21
+00:29:41.308 -> ##AUDIO.INFO#: icy-genre: Pop
+00:29:41.308 -> ##AUDIO.INFO#: format is mp3
+00:29:41.308 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+00:29:41.308 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:29:41.447 -> ##CLI.INFO#
+00:29:41.447 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+00:29:41.447 -> ##CLI.NAMESET#: 312 65-Big (asx)
+00:29:41.447 -> ##CLI.META#: BigB21
+00:29:41.447 -> ##CLI.VOL#: 24
+00:29:41.447 -> ##CLI.PLAYING#
+00:29:41.447 -> ##AUDIO.INFO#: stream ready
+00:29:41.447 -> ##CLI.META#: BigB21
+00:29:41.447 -> ##CLI.META#: David Guetta & Usher - Without you
+00:29:41.447 -> ##AUDIO.INFO#: syncword found at pos 0
+00:29:41.447 -> ##AUDIO.INFO#: MPEG-1 Layer III
+00:29:41.447 -> ##AUDIO.INFO#: Channels: 2
+00:29:41.494 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:29:41.494 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:29:41.494 -> ##AUDIO.INFO#: BitRate: 320000
+00:29:41.494 -> ##AUDIO.BITRATE#: 320000
+00:29:47.794 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+00:29:49.367 -> ##CLI.META#: [соединение]
+00:29:49.414 -> ##AUDIO.INFO#: Closing web file "http://stream.bigb21.nl:8002/" (ssl=0)
+00:29:49.414 -> ##AUDIO.INFO#: buffers freed, free Heap: 173936 bytes
+00:29:49.414 -> ##AUDIO.INFO#: connect to: "149.13.0.81" on port 80 path "/radio1rock.ogg"
+00:29:49.553 -> ##AUDIO.INFO#: Connection has been established in 108 ms
+00:29:49.645 -> ##AUDIO.INFO#: format is ogg
+00:29:49.645 -> ##AUDIO.INFO#: icy-genre:  Rock Music
+00:29:49.645 -> ##AUDIO.INFO#: icy-name: RADIO 1 ROCK
+00:29:49.645 -> ##CLI.META#: RADIO 1 ROCK
+00:29:49.645 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:29:49.645 -> ##CLI.INFO#
+00:29:49.645 -> ##SYS.DATE#: 2026-08-24T00:29:49+03:00
+00:29:49.691 -> ##CLI.NAMESET#: 308 Radio1 Rock (ogg)
+00:29:49.691 -> ##CLI.META#: RADIO 1 ROCK
+00:29:49.691 -> ##CLI.VOL#: 24
+00:29:49.691 -> ##CLI.PLAYING#
+00:29:49.691 -> ##AUDIO.INFO#: VORBISDecoder has been initialized
+00:29:49.691 -> ##AUDIO.INFO#: format is vorbis
+00:29:49.691 -> ##CLI.META#: RADIO 1 ROCK
+00:29:49.831 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:29:49.831 -> ##AUDIO.INFO#: syncword found at pos 0
+00:29:49.876 -> ##CLI.META#: FOREIGNER - BLUE MORNING, BLUE DAY
+00:29:49.922 -> ##AUDIO.INFO#: Channels: 2
+00:29:49.922 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:29:49.922 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:29:49.922 -> ##AUDIO.INFO#: BitRate: 96000
+00:29:49.922 -> ##AUDIO.BITRATE#: 96000
+00:29:52.102 -> ##CLI.META#: [соединение]
+00:29:52.194 -> ##AUDIO.INFO#: Closing web file "http://149.13.0.81/radio1rock.ogg" (ssl=0)
+00:29:52.194 -> ##AUDIO.INFO#: buffers freed, free Heap: 174192 bytes
+00:29:52.194 -> ##AUDIO.INFO#: connect to: "stream.metacast.eu" on port 80 path "/radio1.opus"
+00:29:52.889 -> ##AUDIO.INFO#: Connection has been established in 685 ms
+00:29:53.074 -> ##AUDIO.INFO#: format is ogg
+00:29:53.074 -> ##AUDIO.INFO#: icy-genre:  Pop Music
+00:29:53.074 -> ##AUDIO.INFO#: icy-name: RADIO 1
+00:29:53.074 -> ##CLI.META#: RADIO 1
+00:29:53.074 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:29:53.120 -> ##CLI.INFO#
+00:29:53.120 -> ##SYS.DATE#: 2026-08-24T00:29:53+03:00
+00:29:53.120 -> ##CLI.NAMESET#: 307 Радио Плевен (opus)
+00:29:53.120 -> ##CLI.META#: RADIO 1
+00:29:53.120 -> ##CLI.VOL#: 24
+00:29:53.120 -> ##CLI.PLAYING#
+00:29:53.120 -> ##AUDIO.INFO#: OPUSDecoder has been initialized
+00:29:53.120 -> ##AUDIO.INFO#: format is opus
+00:29:53.120 -> ##CLI.META#: RADIO 1
+00:29:53.306 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:29:53.306 -> ##AUDIO.INFO#: syncword found at pos 0
+00:29:53.306 -> ##CLI.META#: NA
+00:29:53.306 -> ##AUDIO.INFO#: Opus Mode: CELT_ONLY
+00:29:53.306 -> ##AUDIO.INFO#: Channels: 2
+00:29:53.306 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+00:29:53.306 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:29:53.306 -> ##AUDIO.INFO#: BitRate: 128592
+00:29:53.306 -> ##AUDIO.BITRATE#: 128592
+00:30:10.665 -> ##CLI.META#: [соединение]
+00:30:10.758 -> ##AUDIO.INFO#: Closing web file "http://stream.metacast.eu/radio1.opus" (ssl=0)
+00:30:10.758 -> ##AUDIO.INFO#: buffers freed, free Heap: 174076 bytes
+00:30:10.758 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+00:30:10.990 -> ##AUDIO.INFO#: Connection has been established in 235 ms
+00:30:11.129 -> ##AUDIO.INFO#: format is ogg
+00:30:11.129 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+00:30:11.129 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:11.175 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:11.175 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+00:30:11.175 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:11.175 -> ##CLI.INFO#
+00:30:11.175 -> ##SYS.DATE#: 2026-08-24T00:30:11+03:00
+00:30:11.175 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+00:30:11.175 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:11.175 -> ##CLI.VOL#: 24
+00:30:11.175 -> ##CLI.PLAYING#
+00:30:11.175 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:11.223 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:11.223 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:11.316 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:11.316 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:11.316 -> ##AUDIO.INFO#: Channels: 2
+00:30:11.316 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:11.362 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:11.362 -> ##AUDIO.INFO#: BitRate: 1441000
+00:30:11.362 -> ##AUDIO.BITRATE#: 1441000
+00:30:11.362 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+00:30:11.362 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=60921
+00:30:11.410 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.410 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.410 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.410 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.410 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.455 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.455 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.455 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.455 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.455 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.501 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.501 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.501 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.501 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.501 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.501 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.547 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.547 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.547 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.547 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.592 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.592 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.592 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.592 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.639 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.639 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.639 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.639 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.639 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.639 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.685 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.685 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.685 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.685 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.685 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.731 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.731 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.731 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.731 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.777 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.777 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.777 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.777 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.823 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.823 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.823 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.823 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.823 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.869 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.869 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.869 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.869 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.869 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.869 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.915 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.915 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.915 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.915 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:11.962 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.962 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:11.962 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:11.962 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:11.962 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.009 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:12.009 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.009 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.055 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:12.055 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.055 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.055 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:12.055 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.055 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.102 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:12.102 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.102 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.102 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:12.102 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.102 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.148 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:12.148 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.148 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.148 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:12.193 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.193 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.193 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:12.193 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.193 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.240 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:12.240 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.240 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:12.286 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:12.286 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.286 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:12.286 -> ##CLI.META#: microflac too many soft errors (31/10s) -> reconnect
+00:30:12.286 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:12.286 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:12.286 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:12.286 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:12.286 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:12.608 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+00:30:12.608 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+00:30:12.654 -> 
+00:30:12.654 -> Core  1 register dump:
+00:30:12.654 -> PC      : 0x4206ae5c  PS      : 0x00060e30  A0      : 0x8200f4aa  A1      : 0x3fcebe80  
+00:30:12.654 -> A2      : 0x0000059c  A3      : 0x3c26ddf0  A4      : 0x00000b38  A5      : 0x00000000  
+00:30:12.701 -> A6      : 0x0000059c  A7      : 0x3fca1ecc  A8      : 0x00000000  A9      : 0x3fcebe60  
+00:30:12.701 -> A10     : 0x0000059c  A11     : 0x3c26e38c  A12     : 0x00000b38  A13     : 0x0000059c  
+00:30:12.701 -> A14     : 0x0000059c  A15     : 0x3fcc2368  SAR     : 0x0000000e  EXCCAUSE: 0x0000001c  
+00:30:12.701 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f5c  LEND    : 0x40056f72  LCOUNT  : 0x00000000  
+00:30:12.701 -> 
+00:30:12.701 -> 
+00:30:12.701 -> Backtrace: 0x4206ae59:0x3fcebe80 0x4200f4a7:0x3fcebeb0 0x4200f545:0x3fcebee0 0x42027eb5:0x3fcebf00 0x42028379:0x3fcebf40 0x420651f6:0x3fcebf90 0x42067ec7:0x3fcebfc0 0x42075a6c:0x3fcebfe0 0x40380cc5:0x3fcec000
+00:30:12.748 -> 
+00:30:12.748 -> 
+00:30:12.748 -> 
+00:30:12.748 -> 
+00:30:12.748 -> ELF file SHA256: 7dc963a1b
+00:30:12.748 -> 
+00:30:12.935 -> Rebooting...
+00:30:12.935 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+00:30:12.981 -> Build:Mar 27 2021
+00:30:12.981 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+00:30:12.981 -> Saved PC:0x42096c64
+00:30:12.981 -> SPIWP:0xee
+00:30:12.981 -> mode:DIO, clock div:1
+00:30:12.981 -> load:0x3fce2820,len:0x116c
+00:30:12.981 -> load:0x403c8700,len:0xc2c
+00:30:12.981 -> load:0x403cb700,len:0x3108
+00:30:12.981 -> entry 0x403c88b8
+00:30:13.350 -> ##[BOOT]#	************************************************
+00:30:13.350 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+00:30:13.350 -> ##[BOOT]#	************************************************
+00:30:13.397 -> ##[BOOT]#	------------------------------------------------
+00:30:13.397 -> ##[BOOT]#	arduino:	10819
+00:30:13.397 -> ##[BOOT]#	compiler:	14.2.0
+00:30:13.397 -> ##[BOOT]#	esp32core:	3.3.6
+00:30:13.397 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+00:30:13.397 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+00:30:13.397 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+00:30:13.397 -> ##[BOOT]#	audioinfo:	false
+00:30:13.397 -> ##[BOOT]#	smartstart:	0
+00:30:13.397 -> ##[BOOT]#	vumeter:	false
+00:30:13.397 -> ##[BOOT]#	softapdelay:	0
+00:30:13.397 -> ##[BOOT]#	flipscreen:	false
+00:30:13.444 -> ##[BOOT]#	invertdisplay:	false
+00:30:13.444 -> ##[BOOT]#	showweather:	false
+00:30:13.444 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+00:30:13.444 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+00:30:13.444 -> ##[BOOT]#	ir:		NONE
+00:30:13.444 -> ##[BOOT]#	SD:		CS-39
+00:30:13.444 -> ##[BOOT]#	battery:	battery ON
+00:30:13.444 -> ##[BOOT]#	------------------------------------------------
+00:30:13.444 -> ##[BOOT]#	CONFIG_VERSION	4
+00:30:13.536 -> ##[BOOT]#	SPIFFS mounted
+00:30:13.769 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+00:30:13.769 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+00:30:13.769 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+00:30:13.769 -> ##[BOOT]#	player.init	done
+00:30:13.815 -> ##[BOOT]#	network.begin
+00:30:13.908 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+00:30:13.908 -> ##[BOOT]#	.....
+00:30:15.903 -> ##[BOOT]#	done
+00:30:15.903 -> ##[BOOT]#	SD search	done
+00:30:15.949 -> ##[BOOT]#	netserver.begin	done
+00:30:15.949 -> ##[BOOT]#	telnet.begin	done
+00:30:15.949 -> ##[BOOT]#
+00:30:15.949 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+00:30:15.949 -> ##[BOOT]#	------------------------------------------------
+00:30:15.949 -> ##[BOOT]#
+00:30:15.949 -> ##CLI.META#: [готов]
+00:30:16.042 -> ##CLI.META#: [соединение]
+00:30:16.089 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+00:30:16.089 -> ##AUDIO.INFO#: buffers freed, free Heap: 174852 bytes
+00:30:16.089 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+00:30:16.275 -> ##AUDIO.INFO#: Connection has been established in 173 ms
+00:30:16.414 -> ##AUDIO.INFO#: format is ogg
+00:30:16.414 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+00:30:16.414 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:16.414 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:16.414 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+00:30:16.414 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:16.554 -> ##CLI.INFO#
+00:30:16.554 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+00:30:16.554 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+00:30:16.554 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:16.554 -> ##CLI.VOL#: 24
+00:30:16.554 -> ##CLI.PLAYING#
+00:30:16.554 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:16.554 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:16.554 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:16.741 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:16.741 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:16.741 -> ##AUDIO.INFO#: Channels: 2
+00:30:16.741 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:16.741 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:16.741 -> ##AUDIO.INFO#: BitRate: 1441000
+00:30:16.741 -> ##AUDIO.BITRATE#: 1441000
+00:30:16.741 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+00:30:16.787 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=60921
+00:30:16.787 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=60993 header=1 out=1
+00:30:16.834 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=60993 header=1 out=1
+00:30:16.834 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=60921 header=1 o
+00:30:16.834 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=60921 header=1 out=1
+00:30:16.834 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=60921 header=1 out=1
+00:30:16.881 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=60993 header=1 o
+00:30:16.881 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=60993 header=1 out=1
+00:30:16.881 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=60993 header=1 out=1
+00:30:16.881 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=60921 header=1 o
+00:30:16.881 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=60921 header=1 out=1
+00:30:16.881 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=60921 header=1 out=1
+00:30:16.881 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=60921 header=1 o
+00:30:16.929 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:16.929 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:16.929 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:16.929 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:16.929 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:16.975 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:16.975 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:16.975 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:16.975 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:16.975 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.021 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.021 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.021 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.021 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.068 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.068 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.068 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.068 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.115 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.115 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.115 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.115 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.115 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.115 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.161 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.161 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.161 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.161 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.161 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.207 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.207 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.207 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.207 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.207 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.254 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.254 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.254 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.254 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.301 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.301 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.301 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.301 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.347 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.347 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.347 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.347 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.347 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.347 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.394 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.394 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.394 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.394 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.394 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.441 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.441 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.441 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.441 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.441 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.487 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.487 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.487 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.487 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.534 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.534 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.534 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.534 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.580 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.580 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.580 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.580 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.580 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.580 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.627 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.627 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.627 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.627 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:17.627 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.673 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:17.673 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:17.673 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.673 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:17.673 -> ##CLI.META#: microflac too many soft errors (31/10s) -> reconnect
+00:30:17.719 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:17.719 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:17.719 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:17.719 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:17.719 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:17.999 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+00:30:18.327 -> ##AUDIO.INFO#: buffers freed, free Heap: 174608 bytes
+00:30:18.327 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+00:30:18.419 -> ##AUDIO.INFO#: Connection has been established in 72 ms
+00:30:18.558 -> ##AUDIO.INFO#: format is ogg
+00:30:18.604 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+00:30:18.604 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:18.604 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+00:30:18.604 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:18.604 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:18.604 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:18.743 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:18.743 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:18.743 -> ##AUDIO.INFO#: Channels: 2
+00:30:18.743 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:18.743 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:18.743 -> ##AUDIO.INFO#: BitRate: 1441000
+00:30:18.743 -> ##AUDIO.BITRATE#: 1441000
+00:30:18.743 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+00:30:18.743 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=63793
+00:30:18.790 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:18.790 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.836 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.836 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:18.836 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:18.836 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:18.883 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:18.883 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.883 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.883 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:18.883 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:18.883 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:18.931 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:18.931 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.931 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.931 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:18.931 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:18.931 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:18.978 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:18.978 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.978 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:18.978 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.025 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.025 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.025 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.025 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.072 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.072 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.072 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.072 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.119 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.119 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.119 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.119 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.119 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.119 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.165 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.165 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.165 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.165 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.165 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.210 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.210 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.210 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.210 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.210 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.257 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.257 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.257 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.257 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.303 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.303 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.303 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.303 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.349 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.349 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.349 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.349 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.349 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.349 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.396 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.396 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.396 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.396 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.396 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.442 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.442 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.442 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.442 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.488 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.488 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.488 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.488 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.534 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.534 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.534 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.534 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.534 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.581 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.581 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.581 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.581 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.581 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.581 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.627 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.627 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.627 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.627 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:19.673 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.673 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:19.673 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:19.673 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.673 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:19.720 -> ##CLI.META#: microflac too many soft errors (31/10s) -> reconnect
+00:30:19.720 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:19.720 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:19.720 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:19.720 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:19.720 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:20.043 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+00:30:20.182 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+00:30:20.321 -> ##AUDIO.INFO#: buffers freed, free Heap: 174172 bytes
+00:30:20.321 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+00:30:20.505 -> ##AUDIO.INFO#: Connection has been established in 190 ms
+00:30:20.643 -> ##AUDIO.INFO#: format is ogg
+00:30:20.643 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+00:30:20.643 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+00:30:20.643 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+00:30:20.643 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:20.643 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:20.690 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:20.827 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:20.827 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:20.827 -> ##AUDIO.INFO#: Channels: 2
+00:30:20.827 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:20.827 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:20.827 -> ##AUDIO.INFO#: BitRate: 1441000
+00:30:20.827 -> ##AUDIO.BITRATE#: 1441000
+00:30:20.827 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+00:30:20.827 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=60921
+00:30:20.874 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:20.874 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:20.874 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:20.874 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:20.921 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:20.921 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:20.921 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:20.921 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:20.967 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:20.967 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:20.967 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:20.967 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.014 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:21.014 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.014 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.014 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:21.014 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.014 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.061 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:21.061 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.061 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.061 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:21.061 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.108 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.108 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:21.108 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.108 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.108 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:21.153 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.153 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.153 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:21.153 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.199 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.199 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:21.199 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.199 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.245 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:21.245 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.245 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.245 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:21.245 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.245 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.291 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:21.291 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.291 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.291 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:21.336 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.336 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.336 -> ##CLI.META#: [соединение]
+00:30:21.336 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:21.336 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.336 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:21.381 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 o
+00:30:21.381 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.381 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=72 left=65384 header=1 out=1
+00:30:21.381 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+00:30:21.427 -> ##AUDIO.INFO#: buffers freed, free Heap: 171172 bytes
+00:30:21.427 -> ##AUDIO.INFO#: connect to: "stream.bigb21.nl" on port 8002 path "/"
+00:30:21.520 -> ##AUDIO.INFO#: Connection has been established in 107 ms
+00:30:21.613 -> ##AUDIO.INFO#: icy-name: BigB21
+00:30:21.613 -> ##CLI.META#: BigB21
+00:30:21.613 -> ##AUDIO.INFO#: icy-genre: Pop
+00:30:21.613 -> ##AUDIO.INFO#: format is mp3
+00:30:21.613 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+00:30:21.613 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:21.613 -> ##CLI.INFO#
+00:30:21.613 -> ##SYS.DATE#: 2026-08-24T00:30:20+03:00
+00:30:21.613 -> ##CLI.NAMESET#: 312 65-Big (asx)
+00:30:21.613 -> ##CLI.META#: BigB21
+00:30:21.613 -> ##CLI.VOL#: 24
+00:30:21.613 -> ##CLI.PLAYING#
+00:30:21.613 -> ##AUDIO.INFO#: stream ready
+00:30:21.613 -> ##CLI.META#: BigB21
+00:30:21.613 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:21.659 -> ##AUDIO.INFO#: MPEG-1 Layer III
+00:30:21.659 -> ##AUDIO.INFO#: Channels: 2
+00:30:21.659 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:21.659 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:21.659 -> ##AUDIO.INFO#: BitRate: 320000
+00:30:21.659 -> ##AUDIO.BITRATE#: 320000
+00:30:21.705 -> ##CLI.META#: David Guetta & Usher - Without you
+00:30:26.466 -> ##CLI.META#: [соединение]
+00:30:26.559 -> ##AUDIO.INFO#: Closing web file "http://stream.bigb21.nl:8002/" (ssl=0)
+00:30:26.559 -> ##AUDIO.INFO#: buffers freed, free Heap: 173756 bytes
+00:30:26.559 -> ##AUDIO.INFO#: connect to: "somafm.com" on port 443 path "/spacestation130.pls"
+00:30:27.711 -> ##AUDIO.INFO#: SSL has been established in 1140 ms
+00:30:27.989 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_PLAYLISTINIT, streamType: WEBSTREAM
+00:30:27.989 -> ##CLI.META#: 
+00:30:27.989 -> ##AUDIO.INFO#: next URL: "https://ice2.somafm.com/spacestation-128-aac"
+00:30:29.141 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+00:30:29.141 -> ##CLI.INFO#
+00:30:29.141 -> ##SYS.DATE#: 2026-08-24T00:30:28+03:00
+00:30:29.141 -> ##CLI.NAMESET#: 302 Space Station Soma (aac-128)
+00:30:29.141 -> ##CLI.META#: 
+00:30:29.141 -> ##CLI.VOL#: 24
+00:30:29.141 -> ##CLI.PLAYING#
+00:30:29.467 -> ##AUDIO.INFO#: format is aac
+00:30:29.467 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+00:30:29.467 -> ##AUDIO.INFO#: icy-genre:  Ambient Space
+00:30:29.467 -> ##AUDIO.INFO#: icy-name: Space Station Soma from SomaFM.com [SomaFM]
+00:30:29.467 -> ##AUDIO.INFO#: AACDecoder has been initialized
+00:30:29.514 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:29.514 -> ##CLI.META#: Space Station Soma from SomaFM.com [SomaFM]
+00:30:29.514 -> ##AUDIO.INFO#: stream ready
+00:30:29.514 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:29.514 -> ##AUDIO.INFO#: Channels: 2
+00:30:29.514 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:29.514 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:29.514 -> ##AUDIO.INFO#: BitRate: 128000
+00:30:29.514 -> ##AUDIO.BITRATE#: 128000
+00:30:29.514 -> ##AUDIO.INFO#: AAC HeaderFormat: ADTS
+00:30:29.884 -> ##AUDIO.INFO#: Stream URL; StreamUrl='https://somafm.com/logos/512/spacestation512.png'
+00:30:29.884 -> ##CLI.META#: Sanjiva - You Are That
+00:30:30.536 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+00:30:33.230 -> ##CLI.META#: [соединение]
+00:30:33.415 -> ##AUDIO.INFO#: Closing web file "https://somafm.com/spacestation130.pls" (ssl=1)
+00:30:33.415 -> ##AUDIO.INFO#: buffers freed, free Heap: 173824 bytes
+00:30:33.415 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+00:30:33.509 -> ##AUDIO.INFO#: Connection has been established in 126 ms
+00:30:33.926 -> ##AUDIO.INFO#: format is ogg
+00:30:33.926 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+00:30:33.926 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+00:30:33.926 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+00:30:33.973 -> ##CLI.META#: SECTOR | Indigo channel
+00:30:33.973 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:33.973 -> ##CLI.INFO#
+00:30:33.973 -> ##SYS.DATE#: 2026-08-24T00:30:33+03:00
+00:30:33.973 -> ##CLI.NAMESET#: 292 SECTOR Indigo (flac)
+00:30:33.973 -> ##CLI.META#: SECTOR | Indigo channel
+00:30:33.973 -> ##CLI.VOL#: 24
+00:30:33.973 -> ##CLI.PLAYING#
+00:30:33.973 -> ##CLI.META#: SECTOR | Indigo channel
+00:30:34.065 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:34.065 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:34.342 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:34.342 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:34.389 -> ##AUDIO.INFO#: Channels: 2
+00:30:34.389 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:34.389 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:34.389 -> ##AUDIO.INFO#: BitRate: 1411000
+00:30:34.389 -> ##AUDIO.BITRATE#: 1411000
+00:30:34.389 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+00:30:34.389 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=60775
+00:30:48.266 -> ##CLI.META#: [соединение]
+00:30:48.359 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+00:30:48.359 -> ##AUDIO.INFO#: buffers freed, free Heap: 173892 bytes
+00:30:48.359 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/isekoi/radio.flac"
+00:30:49.287 -> ##AUDIO.INFO#: SSL has been established in 922 ms
+00:30:49.518 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+00:30:49.518 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+00:30:51.330 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+00:30:51.423 -> ##AUDIO.INFO#: format is ogg
+00:30:51.423 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+00:30:51.423 -> ##AUDIO.INFO#: icy-genre:  Electronic, Eclectic, Dance, Drum & Bass, DnB, House, Hip-Hop, Rap, Techno
+00:30:51.423 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/BQZXKJnh/LOGO-3-2-bg1.png
+00:30:51.423 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio
+00:30:51.470 -> ##CLI.META#: ISEKOI Radio
+00:30:51.470 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:51.470 -> ##CLI.INFO#
+00:30:51.470 -> ##SYS.DATE#: 2026-08-24T00:30:50+03:00
+00:30:51.470 -> ##CLI.NAMESET#: 386 ISEKOI Radio (FLAC) Electronic
+00:30:51.470 -> ##CLI.META#: ISEKOI Radio
+00:30:51.470 -> ##CLI.VOL#: 24
+00:30:51.470 -> ##CLI.PLAYING#
+00:30:51.470 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:51.470 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:51.470 -> ##CLI.META#: ISEKOI Radio
+00:30:51.933 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:51.933 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:51.979 -> ##AUDIO.INFO#: Channels: 2
+00:30:51.979 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+00:30:51.979 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:51.979 -> ##AUDIO.INFO#: BitRate: 128000
+00:30:51.979 -> ##AUDIO.BITRATE#: 128000
+00:30:51.979 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+00:30:51.979 -> ##AUDIO.INFO#: microflac HEADER_READY sr=48000 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=155 left=63187
+00:30:52.026 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.026 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.026 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.026 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.026 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.026 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.073 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.073 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.073 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.073 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.120 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.120 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.120 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.120 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.166 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.166 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.166 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.166 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.212 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.212 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.212 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.212 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.212 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.212 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.258 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.258 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.258 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.258 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.258 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.258 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.304 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.304 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.304 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.304 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.350 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.350 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.350 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.350 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.396 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.396 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.396 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.396 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.443 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.443 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.443 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.443 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.443 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.443 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.489 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.489 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.489 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.489 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.489 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.535 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.535 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.535 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.535 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.535 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.582 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.582 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.582 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.582 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.628 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.628 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.628 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.628 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.674 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.674 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.674 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.674 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.674 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.674 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.722 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.722 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.722 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.722 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.722 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.769 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.769 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.769 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.769 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.769 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.814 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.814 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.814 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.861 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.861 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.861 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 o
+00:30:52.861 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.861 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=76 left=65380 header=1 out=1
+00:30:52.907 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:52.907 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.907 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:52.907 -> ##CLI.META#: microflac too many soft errors (31/10s) -> reconnect
+00:30:52.907 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:52.907 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:52.907 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:52.907 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:52.953 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:53.232 -> ##AUDIO.INFO#: Closing web file "https://isekoi-radio.com/listen/isekoi/radio.flac" (ssl=1)
+00:30:53.556 -> ##AUDIO.INFO#: buffers freed, free Heap: 173108 bytes
+00:30:53.556 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/isekoi/radio.flac"
+00:30:53.650 -> ##CLI.META#: Request https://isekoi-radio.com/listen/isekoi/radio.flac faile
+00:30:53.650 -> ##ERROR#:	Request https://isekoi-radio.com/listen/isekoi/radio.flac failed!
+00:30:53.650 -> ##ERROR#:	Request https://isekoi-radio.com/listen/isekoi/radio.flac failed!
+00:30:54.532 -> ##CLI.META#: [соединение]
+00:30:54.624 -> ##AUDIO.INFO#: buffers freed, free Heap: 173740 bytes
+00:30:54.624 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+00:30:54.672 -> ##AUDIO.INFO#: Connection has been established in 87 ms
+00:30:54.765 -> ##AUDIO.INFO#: format is ogg
+00:30:54.765 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+00:30:54.765 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+00:30:54.765 -> ##CLI.META#: Youventus Rádió Hi-Fi
+00:30:54.765 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:54.811 -> ##CLI.INFO#
+00:30:54.811 -> ##SYS.DATE#: 2026-08-24T00:30:53+03:00
+00:30:54.811 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+00:30:54.811 -> ##CLI.META#: Youventus Rádió Hi-Fi
+00:30:54.811 -> ##CLI.VOL#: 24
+00:30:54.811 -> ##CLI.PLAYING#
+00:30:54.811 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:54.811 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:54.811 -> ##CLI.META#: Youventus Rádió Hi-Fi
+00:30:54.949 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:54.949 -> ##AUDIO.INFO#: syncword found at pos 0
+00:30:54.949 -> ##AUDIO.INFO#: Channels: 2
+00:30:54.949 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+00:30:54.949 -> ##AUDIO.INFO#: BitsPerSample: 16
+00:30:54.995 -> ##AUDIO.INFO#: BitRate: N/A
+00:30:54.995 -> ##AUDIO.BITRATE#: N/A
+00:30:54.995 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+00:30:54.995 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=191 left=62287
+00:30:55.043 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.043 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.043 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.043 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.043 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.090 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.090 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.090 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.090 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.090 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.090 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.136 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.136 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.136 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.136 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.136 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.181 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.181 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.181 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.181 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.229 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.229 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.229 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.229 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.275 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.275 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.275 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.275 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.275 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.275 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.322 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.322 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.322 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.322 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.322 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.322 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.369 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.369 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.369 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.369 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.416 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.416 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.416 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.416 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.462 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.462 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.462 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.462 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.509 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.509 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.509 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.509 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.509 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.509 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.555 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.555 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.555 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.555 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.555 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.603 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.603 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.603 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.603 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.603 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.648 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.648 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.648 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.648 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.695 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.695 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.695 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.695 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.742 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.742 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.742 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.742 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.742 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.742 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.788 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.788 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.788 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.788 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.788 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.834 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.834 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.834 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.834 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.834 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 
+00:30:55.880 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.880 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=112 left=65344 header=1 out=1
+00:30:55.880 -> ##CLI.META#: [соединение]
+00:30:55.880 -> ##CLI.META#: microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 o
+00:30:55.926 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.926 -> ##ERROR#:	microflac err -2 (SYNC_NOT_FOUND) cons=79 left=65456 header=1 out=1
+00:30:55.926 -> ##CLI.META#: microflac too many soft errors (31/10s) -> reconnect
+00:30:55.926 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:55.926 -> ##ERROR#:	microflac too many soft errors (31/10s) -> reconnect
+00:30:55.926 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:55.926 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:55.926 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_err_storm)
+00:30:56.296 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+00:30:56.343 -> ##AUDIO.INFO#: buffers freed, free Heap: 170824 bytes
+00:30:56.343 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+00:30:56.390 -> ##AUDIO.INFO#: Connection has been established in 79 ms
+00:30:56.482 -> ##AUDIO.INFO#: format is ogg
+00:30:56.482 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+00:30:56.482 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+00:30:56.482 -> ##CLI.META#: Youventus Rádió Hi-Fi
+00:30:56.482 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+00:30:56.482 -> ##CLI.INFO#
+00:30:56.482 -> ##SYS.DATE#: 2026-08-24T00:30:55+03:00
+00:30:56.528 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+00:30:56.528 -> ##CLI.META#: Youventus Rádió Hi-Fi
+00:30:56.528 -> ##CLI.VOL#: 24
+00:30:56.528 -> ##CLI.PLAYING#
+00:30:56.528 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+00:30:56.528 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+00:30:56.528 -> ##CLI.META#: Youventus Rádió Hi-Fi
+00:30:56.622 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+00:30:56.714 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+00:30:56.714 -> ##AUDIO.INFO#: buffers freed, free Heap: 172168 bytes
+00:30:56.714 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+00:30:56.807 -> ##AUDIO.INFO#: Connection has been established in 77 ms
+00:30:56.807 -> ##AUDIO.INFO#: buffers freed, free Heap: 172412 bytes
+00:30:56.852 -> ##CLI.INFO#
+00:30:56.852 -> ##SYS.DATE#: 2026-08-24T00:30:55+03:00
+00:30:56.852 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+00:30:56.852 -> ##CLI.VOL#: 24
+00:30:56.852 -> ##CLI.STOPPED#
