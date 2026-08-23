@@ -1,0 +1,303 @@
+Ниже — **копипаст‑ТЗ для ИИ‑агента** (прям “делай 1→2→3”, с командами и жёсткими проверками). Оно основано на том, что у вас сейчас micro‑flac в WEB‑ветке **режет подачу до 8192** (`FEED_MAX`) и одновременно ставит `InBuff.changeMaxBlockSize(8192)` при активации — из‑за этого Ogg‑FLAC легко зависает в `NEED_MORE_DATA` с `bytes_consumed==0` и получается “вечная тишина”.   
+Также `playAudioData()` для стрима вызывает `sendBytes()` только если `bufferFilled() >= getMaxBlockSize()`, поэтому если поднять blocksize (что нужно для Ogg‑FLAC), надо **разрешить декодить раньше** (иначе будет “тишина ожидания буфера”).   
+Лог `Log56` подтверждает: “format is flac (micro-flac WEB) → stream ready (ogg prebuffer=60000) → syncword found at pos 0” и дальше нет `HEADER_READY`/PCM. 
+
+```text
+ТЗ ДЛЯ ИИ-АГЕНТА (КОПИПАСТ). ЦЕЛЬ: ФЛАГМАНСКИЙ WEB-FLAC (micro-flac) БЕЗ ТИШИНЫ, НЕ ТРОГАЯ SD И ДРУГИЕ КОДЕКИ.
+
+========================================================
+0) ЖЁСТКИЕ ПРАВИЛА (нарушил = откатываешь и переделываешь)
+========================================================
+0.1. Менять ТОЛЬКО:
+  - yoRadio/src/audioI2S/Audio.cpp
+  - yoRadio/src/audioI2S/AudioEx.h
+  - (опционально) yoRadio/myoptions.h ТОЛЬКО если добавляешь #define констант
+
+0.2. НЕЛЬЗЯ менять:
+  - yoRadio/src/audioI2S/flac_decoder/* (legacy FLAC)
+  - SD/локальный режим (AUDIO_LOCALFILE) и connecttoFS/SD pipeline
+  - MP3/AAC/OPUS/VORBIS обработку
+
+0.3. Правим ТОЛЬКО WEB FLAC режим:
+  условие web в коде сейчас: (m_dataMode == AUDIO_DATA || m_streamType == ST_WEBFILE)
+  => micro-flac активируем/используем только при этом условии.
+
+========================================================
+1) ПОДГОТОВКА ВЕТКИ (команды)
+========================================================
+1.1) Клонирование и ветка:
+  git clone https://github.com/ChillPulse/Youradio_Omnia_ESP32S3.git
+  cd Youradio_Omnia_ESP32S3
+  git checkout -b fix/microflac-web-flagship
+
+1.2) Перед правками — зафиксировать базовые “проблемные места”:
+  rg -n "FEED_MAX = 8192" yoRadio/src/audioI2S/Audio.cpp
+  rg -n "changeMaxBlockSize\\(8192\\)" yoRadio/src/audioI2S/Audio.cpp
+  rg -n "if\\(InBuff\\.bufferFilled\\(\\) >= InBuff\\.getMaxBlockSize\\(\\)\\)" yoRadio/src/audioI2S/Audio.cpp
+
+ОЖИДАНИЕ: все 3 команды должны найти совпадения (это текущая проблема).
+
+========================================================
+2) ВНЕСТИ КОНСТАНТЫ “FLAGSHIP micro-flac WEB”
+========================================================
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+2.1) Рядом с текущими constexpr (где m_frameSizeFLAC = UINT16_MAX) добавь:
+
+  // --- Omnia flagship: micro-flac WEB tuning ---
+  constexpr uint16_t MF_WEB_BLOCK_DEFAULT = 32768;   // нормальный режим (меньше копирования в AudioBuffer::getReadPtr)
+  constexpr uint16_t MF_WEB_BLOCK_MAX     = UINT16_MAX; // аварийный режим для очень больших Ogg страниц
+  constexpr uint16_t MF_WEB_MIN_DECODE    = 8192;    // можно начинать decode раньше, чем maxBlockSize
+  constexpr uint8_t  MF_WEB_ZERO_CONSUME_LIMIT = 12; // сколько циклов подряд bytes_consumed==0 допускаем до reconnect
+  constexpr uint8_t  MF_WEB_ZERO_CONSUME_ESCALATE_AT = 3; // когда расширяем block/feed до 64K
+
+ПРИМЕЧАНИЕ: MF_WEB_BLOCK_DEFAULT можно потом тюнить, но стартуем с 32768.
+
+========================================================
+3) ДОБАВИТЬ ПОЛЯ САМОКОНТРОЛЯ micro-flac В КЛАСС Audio
+========================================================
+Файл: yoRadio/src/audioI2S/AudioEx.h
+
+3.1) Найди блок:
+  // --- micro-flac WEB backend (radio only) ---
+
+3.2) СРАЗУ ПОСЛЕ существующих micro-flac полей (после m_mf_waitHeaderSinceMs) добавь:
+
+  uint8_t         m_mf_zeroConsumeCnt = 0;     // подряд NEED_MORE_DATA с bytes_consumed==0
+  uint16_t        m_mf_feedCap = 0;            // сколько максимум байт за раз даём g_mf.decode()
+  uint16_t        m_mf_webBlock = 0;           // текущий maxBlockSize, который выставили для WEB micro-flac (для инвариантов/логов)
+
+========================================================
+4) ОБНОВИТЬ microflac_reset_() (сбрасывать новые поля)
+========================================================
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+4.1) Найди функцию:
+  void Audio::microflac_reset_(){
+
+4.2) Внутри, после m_mf_waitHeaderSinceMs = 0; добавь:
+
+  m_mf_zeroConsumeCnt = 0;
+  m_mf_feedCap = 0;
+  m_mf_webBlock = 0;
+
+(Остальную логику reset НЕ МЕНЯТЬ.)
+
+========================================================
+5) ИСПРАВИТЬ ВСЕ МЕСТА АКТИВАЦИИ micro-flac: убрать changeMaxBlockSize(8192)
+========================================================
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+5.1) Командой найди все места:
+  rg -n "InBuff\\.changeMaxBlockSize\\(8192\\)" yoRadio/src/audioI2S/Audio.cpp
+
+ОЖИДАНИЕ: несколько мест (late activation + ogg determine + sendBytes).
+
+5.2) В КАЖДОМ месте, где стоит именно micro-flac активация вида:
+  microflac_reset_();
+  m_mf_active = true;
+  m_mf_prevMaxBlockSize = InBuff.getMaxBlockSize();
+  InBuff.changeMaxBlockSize(8192);
+
+ЗАМЕНИ ПОСЛЕДНЮЮ СТРОКУ на:
+
+  InBuff.changeMaxBlockSize(MF_WEB_BLOCK_DEFAULT);
+  m_mf_webBlock = MF_WEB_BLOCK_DEFAULT;
+  m_mf_feedCap = MF_WEB_BLOCK_DEFAULT;
+  m_mf_zeroConsumeCnt = 0;
+
+И СРАЗУ ПОСЛЕ добавь лог (один раз на активацию, можно прямо тут):
+  AUDIO_INFO("microflac WEB activated: block=%u feedCap=%u", (unsigned)InBuff.getMaxBlockSize(), (unsigned)m_mf_feedCap);
+
+ВАЖНО: не трогай initializeDecoder(CODEC_FLAC) для SD/legacy.
+
+========================================================
+6) ГЛАВНЫЙ ФИКС: sendBytes() / CODEC_FLAC / isWeb — убрать FEED_MAX=8192 и сделать self-healing
+========================================================
+Файл: yoRadio/src/audioI2S/Audio.cpp
+Нужный блок начинается примерно так (ориентир):
+  case CODEC_FLAC: {
+    bool isWeb = (m_dataMode == AUDIO_DATA || m_streamType == ST_WEBFILE);
+    if(isWeb){
+      // Feed micro-flac in small chunks...
+      const size_t FEED_MAX = 8192;
+      if(len > FEED_MAX) len = FEED_MAX;
+      ...
+
+6.1) УДАЛИТЬ полностью строки:
+  const size_t FEED_MAX = 8192;
+  if(len > FEED_MAX) len = FEED_MAX;
+
+6.2) СРАЗУ ПОСЛЕ if(isWeb){ вставить/обеспечить:
+  - если (!m_mf_active) => активация уже исправлена в шаге 5, но на всякий случай убедись, что здесь тоже ставится block default + feedCap.
+  - затем перед g_mf.decode() добавь защиту feed:
+
+  // --- microflac feed limiting (adaptive) ---
+  if(m_mf_feedCap == 0) m_mf_feedCap = MF_WEB_BLOCK_DEFAULT;
+  if(m_mf_feedCap > InBuff.getMaxBlockSize()) m_mf_feedCap = InBuff.getMaxBlockSize();
+  if(len > m_mf_feedCap) len = m_mf_feedCap;
+
+6.3) В ветке mf_res == micro_flac::FLAC_DECODER_HEADER_READY:
+  - ДО setChannels/setSampleRate/setBitsPerSample добавь проверку:
+      const auto& info = g_mf.get_stream_info();
+      if(!info.is_valid()){
+        AUDIO_ERROR("microflac HEADER_READY but stream_info invalid -> reconnect");
+        stallReconnect("mf_bad_streaminfo");
+        m_sbyt.bytesLeft = len; // не съели ничего
+        bytesDecoded = 0;
+        res = FLAC_DECODE_FRAMES_LOOP;
+        break;
+      }
+
+  - ПОСЛЕ успешной установки sample rate/ch/bps и успешного alloc out32 добавь лог:
+      AUDIO_INFO("microflac HEADER_READY sr=%lu ch=%u bps=%u outCap=%u consumed=%u",
+                 (unsigned long)m_mf_sample_rate, (unsigned)m_mf_channels, (unsigned)m_mf_bits,
+                 (unsigned)m_mf_out32_cap, (unsigned)bytes_consumed);
+
+  - Сбросить stall-счётчики и вернуть режим по умолчанию (чтобы не держать 64K без нужды):
+      m_mf_zeroConsumeCnt = 0;
+      m_mf_feedCap = MF_WEB_BLOCK_DEFAULT;
+      if(InBuff.getMaxBlockSize() != MF_WEB_BLOCK_DEFAULT){
+        InBuff.changeMaxBlockSize(MF_WEB_BLOCK_DEFAULT);
+        m_mf_webBlock = MF_WEB_BLOCK_DEFAULT;
+      }
+
+6.4) В ветке mf_res == micro_flac::FLAC_DECODER_SUCCESS:
+  - добавить лог (можно INFO, можно раз в N, но сначала просто INFO):
+      AUDIO_INFO("microflac SUCCESS consumed=%u samples=%u left=%u",
+                 (unsigned)bytes_consumed, (unsigned)samples_decoded, (unsigned)(len - bytes_consumed));
+  - сбросить stall-счётчики:
+      m_mf_zeroConsumeCnt = 0;
+      // feedCap оставить MF_WEB_BLOCK_DEFAULT (или не трогать)
+
+6.5) В ветке mf_res == micro_flac::FLAC_DECODER_NEED_MORE_DATA:
+  СЕЙЧАС там есть только таймаут HEADER_READY и res=FLAC_DECODE_FRAMES_LOOP.
+
+  ДО существующего HEADER_READY timeout добавь обработку bytes_consumed==0:
+
+  if(bytes_consumed == 0){
+    m_mf_zeroConsumeCnt++;
+
+    // escalation: расширяем окно и подачу до 64K
+    if(m_mf_zeroConsumeCnt == MF_WEB_ZERO_CONSUME_ESCALATE_AT){
+      InBuff.changeMaxBlockSize(MF_WEB_BLOCK_MAX);
+      m_mf_webBlock = MF_WEB_BLOCK_MAX;
+      m_mf_feedCap = MF_WEB_BLOCK_MAX;
+      AUDIO_ERROR("microflac stall: consumed=0 -> escalate block/feed to %u", (unsigned)MF_WEB_BLOCK_MAX);
+    }
+
+    // hard fail: слишком долго не двигаемся
+    if(m_mf_zeroConsumeCnt >= MF_WEB_ZERO_CONSUME_LIMIT){
+      AUDIO_ERROR("microflac stall: consumed=0 x%u -> reconnect", (unsigned)m_mf_zeroConsumeCnt);
+      stallReconnect("mf_zero_consume");
+      // не обязательно break: stallReconnect сам переподключит, но логика пусть остаётся как у вас
+    }
+  } else {
+    m_mf_zeroConsumeCnt = 0;
+  }
+
+  И ОСТАВЬ существующий:
+    res = FLAC_DECODE_FRAMES_LOOP;
+
+6.6) В ветке decode error (else { AUDIO_ERROR("microflac decode error...") ... }):
+  - оставить как есть, НО добавить в лог больше данных (чтобы потом видеть реальную причину):
+      AUDIO_ERROR("microflac decode error %d consumed=%u header=%u len=%u feedCap=%u block=%u",
+                  (int)mf_res, (unsigned)bytes_consumed, (unsigned)m_mf_header_ready,
+                  (unsigned)len, (unsigned)m_mf_feedCap, (unsigned)InBuff.getMaxBlockSize());
+
+========================================================
+7) FIX playAudioData(): micro-flac нельзя ждать bufferFilled >= maxBlockSize
+========================================================
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+7.1) Найди блок (он прямо в playAudioData, ориентир по текущему коду):
+  if(m_pad.lastFrames){
+      m_pad.bytesDecoded = sendBytes(InBuff.getReadPtr(), m_pad.bytesToDecode);
+  }
+  else{
+      if(InBuff.bufferFilled() >= InBuff.getMaxBlockSize()) m_pad.bytesDecoded = sendBytes(InBuff.getReadPtr(), m_pad.bytesToDecode);
+      else m_pad.bytesDecoded = 0; // Inbuff not filled enough
+  }
+
+7.2) Замени else-часть на:
+  else{
+      const bool mfWeb = (m_codec == CODEC_FLAC && m_mf_active && (m_dataMode == AUDIO_DATA || m_streamType == ST_WEBFILE));
+      const size_t need = mfWeb ? (size_t)MF_WEB_MIN_DECODE : (size_t)InBuff.getMaxBlockSize();
+      if(InBuff.bufferFilled() >= need) m_pad.bytesDecoded = sendBytes(InBuff.getReadPtr(), m_pad.bytesToDecode);
+      else m_pad.bytesDecoded = 0;
+  }
+
+ВАЖНО: это изменение влияет только на micro-flac WEB, остальные кодеки остаются как раньше.
+
+========================================================
+8) ИНВАРИАНТЫ / САМОПРОВЕРКИ В РАНТАЙМЕ (обязательные)
+========================================================
+Файл: yoRadio/src/audioI2S/Audio.cpp
+В micro-flac WEB ветке (в sendBytes, внутри if(isWeb){...}) добавь 2 “охранных” проверки:
+
+8.1) Инвариант blocksize:
+  if(m_mf_active && InBuff.getMaxBlockSize() < MF_WEB_MIN_DECODE){
+    AUDIO_ERROR("microflac invariant: maxBlockSize too small (%u) -> fix", (unsigned)InBuff.getMaxBlockSize());
+    InBuff.changeMaxBlockSize(MF_WEB_BLOCK_DEFAULT);
+    m_mf_webBlock = MF_WEB_BLOCK_DEFAULT;
+    if(m_mf_feedCap < MF_WEB_BLOCK_DEFAULT) m_mf_feedCap = MF_WEB_BLOCK_DEFAULT;
+  }
+
+8.2) Инвариант output buffer после HEADER_READY:
+  if(m_mf_header_ready && (!m_mf_out32 || m_mf_out32_cap == 0)){
+    AUDIO_ERROR("microflac invariant: header_ready but out32 missing -> reconnect");
+    stallReconnect("mf_out32_missing");
+  }
+
+========================================================
+9) ОБЯЗАТЕЛЬНЫЕ ПОСТ-ПРОВЕРКИ (перед коммитом/пушем)
+========================================================
+9.1) Ограничение файлов:
+  git diff --name-only
+
+ДОЛЖНО БЫТЬ ТОЛЬКО:
+  yoRadio/src/audioI2S/Audio.cpp
+  yoRadio/src/audioI2S/AudioEx.h
+(+ myoptions.h только если добавлял #define)
+
+9.2) Проверка, что “ловушка 8192” устранена:
+  rg -n "FEED_MAX = 8192" yoRadio/src/audioI2S/Audio.cpp
+    => ДОЛЖНО БЫТЬ 0 совпадений
+
+  rg -n "InBuff\\.changeMaxBlockSize\\(8192\\)" yoRadio/src/audioI2S/Audio.cpp
+    => ДОЛЖНО БЫТЬ 0 совпадений
+
+9.3) Проверка, что SD FLAC не тронут:
+  rg -n "SD FLAC stays on old decoder" -n yoRadio/src/audioI2S/Audio.cpp
+  rg -n "res = FLACDecode\\(" yoRadio/src/audioI2S/Audio.cpp
+
+ДОЛЖНО БЫТЬ: legacy FLACDecode() остался в ветке else (не isWeb).
+
+9.4) Проверка сборки (делай то, что реально используется в репо):
+  - Если есть platformio.ini:
+      pio run
+  - ИНАЧЕ (Arduino):
+      arduino-cli compile --fqbn esp32:esp32:esp32s3 yoRadio/yoRadio.ino
+    (если fqbn в вашем проекте другой — НЕ ИЗОБРЕТАЙ; просто пропусти компиляцию и НЕ добавляй новые build-файлы)
+
+9.5) Самопроверка “код-логика совпадает с целью” (ручной чеклист):
+  [ ] micro-flac активируется ТОЛЬКО при (m_dataMode==AUDIO_DATA || m_streamType==ST_WEBFILE)
+  [ ] В SD/LOCALFILE ветку micro-flac не попадает
+  [ ] FEED_MAX=8192 удалён
+  [ ] playAudioData() вызывает sendBytes() для micro-flac уже при bufferFilled >= 8192
+  [ ] В NEED_MORE_DATA добавлен счётчик consumed==0 + escalation до 64K + reconnect limit
+  [ ] Добавлены логи HEADER_READY / SUCCESS / расширенные decode error
+  [ ] microflac_reset_() сбрасывает новые поля
+
+========================================================
+10) КОММИТ/ПУШ — ТОЛЬКО ПОСЛЕ ПРОВЕРОК
+========================================================
+10.1) Только если шаг 9 полностью зелёный:
+  git status
+  git diff
+  git add yoRadio/src/audioI2S/Audio.cpp yoRadio/src/audioI2S/AudioEx.h
+  git commit -m "Fix: flagship micro-flac WEB (remove 8K feed/block stall, add adaptive feed & guards)"
+  git push -u origin fix/microflac-web-flagship
+
+СТОП-ПРАВИЛО:
+  Если хоть один пункт из 9 не выполнен — НЕ коммитить и НЕ пушить. Исправить, затем повторить 9.
