@@ -1,0 +1,634 @@
+21:26:53.401 -> ESP-ROM:esp32s3-20210327
+21:26:53.447 -> Build:Mar 27 2021
+21:26:53.447 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+21:26:53.447 -> SPIWP:0xee
+21:26:53.447 -> mode:DIO, clock div:1
+21:26:53.447 -> load:0x3fce2820,len:0x116c
+21:26:53.447 -> load:0x403c8700,len:0xc2c
+21:26:53.447 -> load:0x403cb700,len:0x3108
+21:26:53.447 -> entry 0x403c88b8
+21:26:53.817 -> ##[BOOT]#	************************************************
+21:26:53.817 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+21:26:53.817 -> ##[BOOT]#	************************************************
+21:26:53.817 -> ##[BOOT]#	------------------------------------------------
+21:26:53.817 -> ##[BOOT]#	arduino:	10819
+21:26:53.864 -> ##[BOOT]#	compiler:	14.2.0
+21:26:53.864 -> ##[BOOT]#	esp32core:	3.3.6
+21:26:53.864 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+21:26:53.864 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+21:26:53.864 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+21:26:53.864 -> ##[BOOT]#	audioinfo:	false
+21:26:53.864 -> ##[BOOT]#	smartstart:	0
+21:26:53.864 -> ##[BOOT]#	vumeter:	false
+21:26:53.864 -> ##[BOOT]#	softapdelay:	0
+21:26:53.864 -> ##[BOOT]#	flipscreen:	false
+21:26:53.864 -> ##[BOOT]#	invertdisplay:	false
+21:26:53.864 -> ##[BOOT]#	showweather:	false
+21:26:53.864 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+21:26:53.911 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+21:26:53.911 -> ##[BOOT]#	ir:		NONE
+21:26:53.911 -> ##[BOOT]#	SD:		CS-39
+21:26:53.911 -> ##[BOOT]#	battery:	battery ON
+21:26:53.911 -> ##[BOOT]#	------------------------------------------------
+21:26:53.911 -> ##[BOOT]#	CONFIG_VERSION	4
+21:26:53.958 -> ##[BOOT]#	SPIFFS mounted
+21:26:54.237 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+21:26:54.237 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+21:26:54.237 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+21:26:54.237 -> ##[BOOT]#	player.init	done
+21:26:54.283 -> ##[BOOT]#	network.begin
+21:26:54.375 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+21:26:54.375 -> ##[BOOT]#	.....
+21:26:56.364 -> ##[BOOT]#	done
+21:26:56.364 -> ##[BOOT]#	SD search	done
+21:26:56.411 -> ##[BOOT]#	netserver.begin	done
+21:26:56.411 -> ##[BOOT]#	telnet.begin	done
+21:26:56.411 -> ##[BOOT]#
+21:26:56.411 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+21:26:56.458 -> ##[BOOT]#	------------------------------------------------
+21:26:56.458 -> ##[BOOT]#
+21:26:56.458 -> ##CLI.META#: [готов]
+21:26:56.875 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+21:26:56.922 -> ##CLI.META#: [готов]
+21:26:56.922 -> ##CLI.VOL#: 24
+21:26:56.969 -> ##CLI.INFO#
+21:26:56.969 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+21:26:56.969 -> ##CLI.NAMESET#: 346 Radio Caprice - Vocal Trance
+21:26:56.969 -> ##CLI.VOL#: 24
+21:26:56.969 -> ##CLI.STOPPED#
+21:27:10.617 -> ##CLI.META#: [соединение]
+21:27:10.662 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+21:27:10.662 -> ##AUDIO.INFO#: buffers freed, free Heap: 174040 bytes
+21:27:10.662 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:11.590 -> ##AUDIO.INFO#: SSL has been established in 924 ms
+21:27:12.007 -> ##AUDIO.INFO#: format is ogg
+21:27:12.007 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:12.007 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:12.007 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:12.007 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:12.007 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:12.054 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:12.054 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:12.054 -> ##CLI.INFO#
+21:27:12.054 -> ##SYS.DATE#: 2026-08-23T21:27:08+03:00
+21:27:12.054 -> ##CLI.NAMESET#: 317 (flc) Paradise Mellow
+21:27:12.054 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:12.054 -> ##CLI.VOL#: 24
+21:27:12.054 -> ##CLI.PLAYING#
+21:27:12.054 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:12.194 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:12.194 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:12.286 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:12.611 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:12.611 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:12.611 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:12.611 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:12.611 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:12.611 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:12.890 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:13.215 -> ##AUDIO.INFO#: buffers freed, free Heap: 174012 bytes
+21:27:13.215 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:13.958 -> ##AUDIO.INFO#: SSL has been established in 721 ms
+21:27:14.379 -> ##AUDIO.INFO#: format is ogg
+21:27:14.379 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:14.379 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:14.379 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:14.379 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:14.379 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:14.379 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:14.564 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:14.564 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:14.657 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:14.980 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:14.980 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:14.980 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:14.980 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:14.980 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:14.980 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:15.304 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:15.304 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+21:27:15.351 -> 
+21:27:15.351 -> Core  1 register dump:
+21:27:15.351 -> PC      : 0x420cb606  PS      : 0x00060e30  A0      : 0x820cbd31  A1      : 0x3fcebe60  
+21:27:15.351 -> A2      : 0x3fcab37c  A3      : 0x00000001  A4      : 0x00000000  A5      : 0x3fcab37c  
+21:27:15.351 -> A6      : 0x3fca36a8  A7      : 0x3fca2110  A8      : 0x00000000  A9      : 0x00000000  
+21:27:15.351 -> A10     : 0x4b0fa34e  A11     : 0x00000005  A12     : 0x00000000  A13     : 0x3fcedab0  
+21:27:15.351 -> A14     : 0x3fcebfec  A15     : 0x00000000  SAR     : 0x0000000a  EXCCAUSE: 0x0000001c  
+21:27:15.398 -> EXCVADDR: 0x00000009  LBEG    : 0x40056f5c  LEND    : 0x40056f72  LCOUNT  : 0xffffffff  
+21:27:15.398 -> 
+21:27:15.398 -> 
+21:27:15.398 -> Backtrace: 0x420cb603:0x3fcebe60 0x420cbd2e:0x3fcebed0 0x4206e4c3:0x3fcebef0 0x4206d919:0x3fcebf10 0x4206d86a:0x3fcebf30 0x4212eaf1:0x3fcebf60 0x42026b26:0x3fcebf90 0x420270c5:0x3fcebfd0 0x42063dd2:0x3fcec020 0x42066aa3:0x3fcec050 0x4207464c:0x3fcec070 0x40380cc5:0x3fcec090
+21:27:15.398 -> 
+21:27:15.398 -> 
+21:27:15.398 -> 
+21:27:15.398 -> 
+21:27:15.398 -> ELF file SHA256: 21a57397e
+21:27:15.398 -> 
+21:27:15.631 -> Rebooting...
+21:27:15.631 -> ESP-ROM:esp32s3-20210327
+21:27:15.631 -> Build:Mar 27 2021
+21:27:15.631 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+21:27:15.631 -> Saved PC:0x403855fb
+21:27:15.631 -> SPIWP:0xee
+21:27:15.677 -> mode:DIO, clock div:1
+21:27:15.677 -> load:0x3fce2820,len:0x116c
+21:27:15.677 -> load:0x403c8700,len:0xc2c
+21:27:15.677 -> load:0x403cb700,len:0x3108
+21:27:15.677 -> entry 0x403c88b8
+21:27:16.049 -> ##[BOOT]#	************************************************
+21:27:16.049 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+21:27:16.049 -> ##[BOOT]#	************************************************
+21:27:16.049 -> ##[BOOT]#	------------------------------------------------
+21:27:16.049 -> ##[BOOT]#	arduino:	10819
+21:27:16.049 -> ##[BOOT]#	compiler:	14.2.0
+21:27:16.049 -> ##[BOOT]#	esp32core:	3.3.6
+21:27:16.049 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+21:27:16.096 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+21:27:16.096 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+21:27:16.096 -> ##[BOOT]#	audioinfo:	false
+21:27:16.096 -> ##[BOOT]#	smartstart:	0
+21:27:16.096 -> ##[BOOT]#	vumeter:	false
+21:27:16.096 -> ##[BOOT]#	softapdelay:	0
+21:27:16.096 -> ##[BOOT]#	flipscreen:	false
+21:27:16.096 -> ##[BOOT]#	invertdisplay:	false
+21:27:16.096 -> ##[BOOT]#	showweather:	false
+21:27:16.096 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+21:27:16.096 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+21:27:16.144 -> ##[BOOT]#	ir:		NONE
+21:27:16.144 -> ##[BOOT]#	SD:		CS-39
+21:27:16.144 -> ##[BOOT]#	battery:	battery ON
+21:27:16.144 -> ##[BOOT]#	------------------------------------------------
+21:27:16.144 -> ##[BOOT]#	CONFIG_VERSION	4
+21:27:16.190 -> ##[BOOT]#	SPIFFS mounted
+21:27:16.424 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+21:27:16.424 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+21:27:16.424 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+21:27:16.424 -> ##[BOOT]#	player.init	done
+21:27:16.518 -> ##[BOOT]#	network.begin
+21:27:16.566 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+21:27:16.566 -> ##[BOOT]#	.....
+21:27:18.565 -> ##[BOOT]#	done
+21:27:18.565 -> ##[BOOT]#	SD search	done
+21:27:18.612 -> ##[BOOT]#	netserver.begin	done
+21:27:18.612 -> ##[BOOT]#	telnet.begin	done
+21:27:18.612 -> ##[BOOT]#
+21:27:18.612 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+21:27:18.612 -> ##[BOOT]#	------------------------------------------------
+21:27:18.658 -> ##[BOOT]#
+21:27:18.658 -> ##CLI.META#: [готов]
+21:27:18.751 -> ##CLI.META#: [соединение]
+21:27:18.751 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+21:27:18.798 -> ##AUDIO.INFO#: buffers freed, free Heap: 175004 bytes
+21:27:18.798 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:19.495 -> ##AUDIO.INFO#: SSL has been established in 697 ms
+21:27:20.003 -> ##AUDIO.INFO#: format is ogg
+21:27:20.003 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:20.003 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:20.003 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:20.003 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:20.003 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:20.141 -> ##CLI.INFO#
+21:27:20.141 -> ##SYS.DATE#: 2026-08-23T21:27:16+03:00
+21:27:20.141 -> ##CLI.NAMESET#: 317 (flc) Paradise Mellow
+21:27:20.141 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:20.141 -> ##CLI.VOL#: 24
+21:27:20.141 -> ##CLI.PLAYING#
+21:27:20.141 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:20.141 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:20.141 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:20.559 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:20.559 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:20.652 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:20.930 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:20.930 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:20.930 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:20.930 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:20.930 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:20.977 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:21.256 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:21.582 -> ##AUDIO.INFO#: buffers freed, free Heap: 174440 bytes
+21:27:21.582 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:22.418 -> ##AUDIO.INFO#: SSL has been established in 878 ms
+21:27:22.834 -> ##AUDIO.INFO#: format is ogg
+21:27:22.834 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:22.880 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:22.880 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:22.880 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:22.880 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:22.880 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:23.067 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:23.067 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:23.160 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:23.485 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:23.485 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:23.485 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:23.485 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:23.485 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:23.485 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:23.762 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:24.086 -> ##AUDIO.INFO#: buffers freed, free Heap: 174664 bytes
+21:27:24.086 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:24.877 -> ##AUDIO.INFO#: SSL has been established in 808 ms
+21:27:25.295 -> ##AUDIO.INFO#: format is ogg
+21:27:25.295 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:25.342 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:25.342 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:25.342 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:25.342 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:25.342 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:25.528 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:25.528 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:25.621 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:25.899 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:25.899 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:25.946 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:25.946 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:25.946 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:25.946 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:26.233 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:26.550 -> ##AUDIO.INFO#: buffers freed, free Heap: 174664 bytes
+21:27:26.550 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:27.385 -> ##AUDIO.INFO#: SSL has been established in 817 ms
+21:27:27.756 -> ##AUDIO.INFO#: format is ogg
+21:27:27.756 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:27.803 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:27.803 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:27.803 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:27.803 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:27.803 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:27.989 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:27.989 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:28.082 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:28.362 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:28.362 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:28.362 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:28.408 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:28.408 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:28.408 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:28.688 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:29.011 -> ##AUDIO.INFO#: buffers freed, free Heap: 174616 bytes
+21:27:29.011 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:29.798 -> ##AUDIO.INFO#: SSL has been established in 808 ms
+21:27:30.216 -> ##AUDIO.INFO#: format is ogg
+21:27:30.216 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:30.216 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:30.263 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:30.263 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:30.263 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:30.263 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:30.449 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:30.449 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:30.541 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:30.817 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:30.817 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:30.864 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:30.864 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:30.864 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:30.864 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:31.143 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:31.470 -> ##AUDIO.INFO#: buffers freed, free Heap: 174664 bytes
+21:27:31.470 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:32.266 -> ##AUDIO.INFO#: SSL has been established in 812 ms
+21:27:32.676 -> ##AUDIO.INFO#: format is ogg
+21:27:32.676 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:32.676 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:32.676 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:32.723 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:32.723 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:32.723 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:32.908 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:32.908 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:33.001 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:33.279 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:33.279 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:33.279 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:33.279 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:33.325 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:33.325 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:33.603 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:33.928 -> ##AUDIO.INFO#: buffers freed, free Heap: 174664 bytes
+21:27:33.928 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:34.807 -> ##AUDIO.INFO#: SSL has been established in 912 ms
+21:27:35.278 -> ##AUDIO.INFO#: format is ogg
+21:27:35.278 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:35.278 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:35.278 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:35.278 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:35.278 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:35.278 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:35.457 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:35.457 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:35.549 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:35.829 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:35.829 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:35.829 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:35.829 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:35.829 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:35.875 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:36.154 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:36.478 -> ##AUDIO.INFO#: buffers freed, free Heap: 174616 bytes
+21:27:36.478 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:37.265 -> ##AUDIO.INFO#: SSL has been established in 829 ms
+21:27:37.914 -> ##AUDIO.INFO#: format is ogg
+21:27:37.914 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:37.914 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:37.914 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:37.914 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:37.914 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:37.961 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:38.238 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:38.238 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:38.330 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:38.608 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:38.608 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:38.608 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:38.608 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:38.654 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:38.654 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:38.930 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:39.255 -> ##AUDIO.INFO#: buffers freed, free Heap: 174664 bytes
+21:27:39.255 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:40.040 -> ##AUDIO.INFO#: SSL has been established in 807 ms
+21:27:40.458 -> ##AUDIO.INFO#: format is ogg
+21:27:40.458 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:40.458 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:40.504 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:40.504 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:40.504 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:40.504 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:40.690 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:40.690 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:40.782 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:41.104 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:41.104 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:41.104 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:41.104 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:41.104 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:41.104 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:41.429 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:41.708 -> ##AUDIO.INFO#: buffers freed, free Heap: 174664 bytes
+21:27:41.708 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:42.727 -> ##AUDIO.INFO#: SSL has been established in 997 ms
+21:27:43.234 -> ##AUDIO.INFO#: format is ogg
+21:27:43.234 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:43.234 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:43.234 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:43.234 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:43.280 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:43.280 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:43.652 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:43.652 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:43.744 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:44.022 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:44.022 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:44.022 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:44.069 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:44.069 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:44.069 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:44.348 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:44.673 -> ##AUDIO.INFO#: buffers freed, free Heap: 174616 bytes
+21:27:44.673 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:45.458 -> ##AUDIO.INFO#: SSL has been established in 818 ms
+21:27:46.017 -> ##AUDIO.INFO#: format is ogg
+21:27:46.017 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:46.017 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:46.017 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:46.017 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:46.017 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:46.017 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:46.341 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:46.341 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:46.386 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:46.709 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:46.709 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:46.709 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:46.709 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:46.709 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:46.709 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:47.035 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:47.324 -> ##AUDIO.INFO#: buffers freed, free Heap: 174616 bytes
+21:27:47.324 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:48.150 -> ##AUDIO.INFO#: SSL has been established in 808 ms
+21:27:48.566 -> ##AUDIO.INFO#: format is ogg
+21:27:48.566 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:48.566 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:48.566 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:48.566 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:48.566 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:48.566 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:48.797 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:48.797 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:48.844 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:49.167 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:49.167 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:49.167 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:49.167 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:49.167 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:49.167 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:49.491 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:49.814 -> ##AUDIO.INFO#: buffers freed, free Heap: 174664 bytes
+21:27:49.814 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:50.600 -> ##AUDIO.INFO#: SSL has been established in 807 ms
+21:27:51.016 -> ##AUDIO.INFO#: format is ogg
+21:27:51.016 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:51.016 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:51.016 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:51.016 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:51.062 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:51.062 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:51.248 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:51.248 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:51.341 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:51.618 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:51.618 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:51.618 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:51.618 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:51.618 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:51.665 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+21:27:51.665 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:51.942 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:52.266 -> ##AUDIO.INFO#: buffers freed, free Heap: 174064 bytes
+21:27:52.266 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+21:27:53.144 -> ##AUDIO.INFO#: SSL has been established in 900 ms
+21:27:53.561 -> ##AUDIO.INFO#: format is ogg
+21:27:53.561 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+21:27:53.561 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+21:27:53.607 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+21:27:53.607 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:53.607 -> ##CLI.META#: [соединение]
+21:27:53.652 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/mellow-flac" (ssl=1)
+21:27:53.652 -> ##AUDIO.INFO#: buffers freed, free Heap: 173464 bytes
+21:27:53.652 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+21:27:53.652 -> ##AUDIO.INFO#: Connection has been established in 31 ms
+21:27:53.885 -> ##AUDIO.INFO#: format is ogg
+21:27:53.885 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:27:53.885 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+21:27:53.885 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+21:27:53.885 -> ##CLI.META#: SECTOR  |  Zed channel
+21:27:53.885 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:53.885 -> ##CLI.INFO#
+21:27:53.885 -> ##SYS.DATE#: 2026-08-23T21:27:50+03:00
+21:27:53.932 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+21:27:53.932 -> ##CLI.META#: SECTOR  |  Zed channel
+21:27:53.932 -> ##CLI.VOL#: 24
+21:27:53.932 -> ##CLI.PLAYING#
+21:27:53.932 -> ##CLI.META#: SECTOR  |  Zed channel
+21:27:54.025 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:54.072 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:54.396 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:54.396 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:54.487 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:54.814 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:54.814 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:54.814 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:54.814 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:54.814 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:54.814 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:55.091 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+21:27:55.417 -> ##AUDIO.INFO#: buffers freed, free Heap: 173896 bytes
+21:27:55.417 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+21:27:55.602 -> ##AUDIO.INFO#: Connection has been established in 170 ms
+21:27:56.019 -> ##AUDIO.INFO#: format is ogg
+21:27:56.019 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:27:56.019 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+21:27:56.019 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+21:27:56.065 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:56.250 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:56.250 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:56.574 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:56.574 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:56.666 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:56.989 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:27:56.989 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:56.989 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:56.989 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:56.989 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:56.989 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:57.314 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+21:27:57.592 -> ##AUDIO.INFO#: buffers freed, free Heap: 173808 bytes
+21:27:57.592 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+21:27:57.638 -> ##AUDIO.INFO#: Connection has been established in 28 ms
+21:27:58.056 -> ##AUDIO.INFO#: format is ogg
+21:27:58.056 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:27:58.103 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+21:27:58.103 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+21:27:58.103 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:58.333 -> ##CLI.META#: [соединение]
+21:27:58.379 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+21:27:58.379 -> ##AUDIO.INFO#: buffers freed, free Heap: 173716 bytes
+21:27:58.426 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+21:27:58.473 -> ##AUDIO.INFO#: Connection has been established in 63 ms
+21:27:58.566 -> ##AUDIO.INFO#: format is ogg
+21:27:58.566 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:27:58.566 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+21:27:58.566 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+21:27:58.566 -> ##CLI.META#: SECTOR | Indigo channel
+21:27:58.566 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:27:58.611 -> ##CLI.INFO#
+21:27:58.611 -> ##SYS.DATE#: 2026-08-23T21:27:55+03:00
+21:27:58.611 -> ##CLI.NAMESET#: 292 SECTOR Indigo (flac)
+21:27:58.611 -> ##CLI.META#: SECTOR | Indigo channel
+21:27:58.611 -> ##CLI.VOL#: 24
+21:27:58.611 -> ##CLI.PLAYING#
+21:27:58.611 -> ##CLI.META#: SECTOR | Indigo channel
+21:27:58.891 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:27:58.891 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:27:59.215 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:27:59.215 -> ##AUDIO.INFO#: syncword found at pos 0
+21:27:59.308 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:27:59.586 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:59.586 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:27:59.586 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:59.586 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:59.632 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:59.632 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:27:59.908 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+21:28:00.233 -> ##AUDIO.INFO#: buffers freed, free Heap: 174004 bytes
+21:28:00.233 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+21:28:00.233 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+21:28:00.466 -> ##AUDIO.INFO#: format is ogg
+21:28:00.466 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:28:00.466 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+21:28:00.512 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+21:28:00.512 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:28:00.837 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:28:00.837 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:28:01.348 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:28:01.348 -> ##AUDIO.INFO#: syncword found at pos 0
+21:28:01.438 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:28:01.763 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:28:01.763 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:01.763 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:01.763 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:01.763 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:01.763 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:02.088 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+21:28:02.372 -> ##AUDIO.INFO#: buffers freed, free Heap: 173996 bytes
+21:28:02.372 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+21:28:02.412 -> ##AUDIO.INFO#: Connection has been established in 50 ms
+21:28:02.505 -> ##AUDIO.INFO#: format is ogg
+21:28:02.505 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:28:02.505 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+21:28:02.505 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+21:28:02.552 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:28:02.877 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:28:02.877 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:28:03.342 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:28:03.342 -> ##AUDIO.INFO#: syncword found at pos 0
+21:28:03.435 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:28:03.713 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:28:03.713 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:03.713 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:03.759 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:03.759 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:03.759 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:04.036 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+21:28:04.363 -> ##AUDIO.INFO#: buffers freed, free Heap: 174052 bytes
+21:28:04.363 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+21:28:04.363 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+21:28:04.642 -> ##AUDIO.INFO#: format is ogg
+21:28:04.642 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:28:04.642 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+21:28:04.642 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+21:28:04.642 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:28:04.874 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:28:04.874 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:28:05.293 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:28:05.293 -> ##AUDIO.INFO#: syncword found at pos 0
+21:28:05.393 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:28:05.665 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:28:05.665 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:05.665 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:05.665 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:05.665 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:05.711 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:05.991 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+21:28:06.315 -> ##AUDIO.INFO#: buffers freed, free Heap: 174044 bytes
+21:28:06.315 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+21:28:06.363 -> ##AUDIO.INFO#: Connection has been established in 47 ms
+21:28:06.410 -> ##AUDIO.INFO#: format is ogg
+21:28:06.410 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+21:28:06.410 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+21:28:06.410 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+21:28:06.410 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+21:28:06.782 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 feedCap=32768
+21:28:06.782 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+21:28:07.106 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+21:28:07.106 -> ##AUDIO.INFO#: syncword found at pos 0
+21:28:07.199 -> ##AUDIO.INFO#: microflac escalate to max block 65535 after zero consume
+21:28:07.478 -> ##CLI.META#: microflac zero consume limit -> reconnect
+21:28:07.478 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:07.478 -> ##ERROR#:	microflac zero consume limit -> reconnect
+21:28:07.478 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:07.524 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:07.524 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_zero_consume)
+21:28:07.801 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+21:28:08.080 -> ##AUDIO.INFO#: buffers freed, free Heap: 174092 bytes
+21:28:08.126 -> ##AUDIO.INFO#: buffers freed, free Heap: 174092 bytes
+21:28:08.126 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+21:28:08.126 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+21:28:08.219 -> ##CLI.INFO#
+21:28:08.219 -> ##SYS.DATE#: 2026-08-23T21:28:04+03:00
+21:28:08.219 -> ##CLI.NAMESET#: 292 SECTOR Indigo (flac)
+21:28:08.219 -> ##CLI.VOL#: 24
+21:28:08.219 -> ##CLI.STOPPED#
