@@ -1,0 +1,2430 @@
+23:48:50.396 -> ESP-ROM:esp32s3-20210327
+23:48:50.396 -> Build:Mar 27 2021
+23:48:50.396 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+23:48:50.396 -> SPIWP:0xee
+23:48:50.396 -> mode:DIO, clock div:1
+23:48:50.396 -> load:0x3fce2820,len:0x116c
+23:48:50.396 -> load:0x403c8700,len:0xc2c
+23:48:50.396 -> load:0x403cb700,len:0x3108
+23:48:50.442 -> entry 0x403c88b8
+23:48:50.813 -> ##[BOOT]#	************************************************
+23:48:50.813 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+23:48:50.813 -> ##[BOOT]#	************************************************
+23:48:50.813 -> ##[BOOT]#	------------------------------------------------
+23:48:50.813 -> ##[BOOT]#	arduino:	10819
+23:48:50.813 -> ##[BOOT]#	compiler:	14.2.0
+23:48:50.813 -> ##[BOOT]#	esp32core:	3.3.6
+23:48:50.813 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+23:48:50.813 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+23:48:50.813 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+23:48:50.860 -> ##[BOOT]#	audioinfo:	false
+23:48:50.860 -> ##[BOOT]#	smartstart:	0
+23:48:50.860 -> ##[BOOT]#	vumeter:	false
+23:48:50.860 -> ##[BOOT]#	softapdelay:	0
+23:48:50.860 -> ##[BOOT]#	flipscreen:	false
+23:48:50.860 -> ##[BOOT]#	invertdisplay:	false
+23:48:50.860 -> ##[BOOT]#	showweather:	false
+23:48:50.860 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+23:48:50.860 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+23:48:50.860 -> ##[BOOT]#	ir:		NONE
+23:48:50.860 -> ##[BOOT]#	SD:		CS-39
+23:48:50.860 -> ##[BOOT]#	battery:	battery ON
+23:48:50.906 -> ##[BOOT]#	------------------------------------------------
+23:48:50.906 -> ##[BOOT]#	CONFIG_VERSION	4
+23:48:50.952 -> ##[BOOT]#	SPIFFS mounted
+23:48:51.185 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+23:48:51.185 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+23:48:51.185 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+23:48:51.185 -> ##[BOOT]#	player.init	done
+23:48:51.278 -> ##[BOOT]#	network.begin
+23:48:51.324 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+23:48:51.324 -> ##[BOOT]#	.....
+23:48:53.325 -> ##[BOOT]#	done
+23:48:53.325 -> ##[BOOT]#	SD search	done
+23:48:53.371 -> ##[BOOT]#	netserver.begin	done
+23:48:53.371 -> ##[BOOT]#	telnet.begin	done
+23:48:53.371 -> ##[BOOT]#
+23:48:53.371 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+23:48:53.371 -> ##[BOOT]#	------------------------------------------------
+23:48:53.371 -> ##[BOOT]#
+23:48:53.371 -> ##CLI.META#: [готов]
+23:48:53.511 -> ##CLI.META#: [соединение]
+23:48:53.557 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+23:48:53.557 -> ##AUDIO.INFO#: buffers freed, free Heap: 174892 bytes
+23:48:53.557 -> ##AUDIO.INFO#: connect to: "somafm.com" on port 443 path "/spacestation130.pls"
+23:48:55.041 -> ##AUDIO.INFO#: SSL has been established in 1471 ms
+23:48:55.322 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_PLAYLISTINIT, streamType: WEBSTREAM
+23:48:55.414 -> ##CLI.META#: 
+23:48:55.460 -> ##AUDIO.INFO#: next URL: "https://ice2.somafm.com/spacestation-128-aac"
+23:48:55.506 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+23:48:56.575 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:48:56.575 -> ##CLI.INFO#
+23:48:56.575 -> ##SYS.DATE#: 1970-01-01T03:00:05+03:00
+23:48:56.575 -> ##CLI.NAMESET#: 302 Space Station Soma (aac-128)
+23:48:56.575 -> ##CLI.META#: 
+23:48:56.575 -> ##CLI.VOL#: 24
+23:48:56.575 -> ##CLI.PLAYING#
+23:48:56.943 -> ##AUDIO.INFO#: format is aac
+23:48:56.943 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+23:48:56.943 -> ##AUDIO.INFO#: icy-genre:  Ambient Space
+23:48:56.943 -> ##AUDIO.INFO#: icy-name: Space Station Soma from SomaFM.com [SomaFM]
+23:48:56.943 -> ##AUDIO.INFO#: AACDecoder has been initialized
+23:48:56.943 -> ##AUDIO.INFO#: playlistFormat PLS, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:48:56.990 -> ##CLI.META#: Space Station Soma from SomaFM.com [SomaFM]
+23:48:56.990 -> ##AUDIO.INFO#: stream ready
+23:48:56.990 -> ##AUDIO.INFO#: syncword found at pos 0
+23:48:56.990 -> ##CLI.META#: Space Station Soma from SomaFM.com [SomaFM]
+23:48:56.990 -> ##AUDIO.INFO#: Channels: 2
+23:48:56.990 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:48:56.990 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:48:56.990 -> ##AUDIO.INFO#: BitRate: 128000
+23:48:56.990 -> ##AUDIO.BITRATE#: 128000
+23:48:56.990 -> ##AUDIO.INFO#: AAC HeaderFormat: ADTS
+23:48:56.990 -> ##CLI.VOL#: 24
+23:48:57.035 -> ##CLI.INFO#
+23:48:57.035 -> ##SYS.DATE#: 1970-01-01T03:00:06+03:00
+23:48:57.035 -> ##CLI.NAMESET#: 302 Space Station Soma (aac-128)
+23:48:57.035 -> ##CLI.META#: Space Station Soma from SomaFM.com [SomaFM]
+23:48:57.035 -> ##CLI.VOL#: 24
+23:48:57.035 -> ##CLI.PLAYING#
+23:48:57.777 -> ##AUDIO.INFO#: Stream URL; StreamUrl='https://somafm.com/logos/512/spacestation512.png'
+23:48:57.777 -> ##CLI.META#: CELL - Elevation (live edit)
+23:48:58.010 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+23:49:02.236 -> ##CLI.META#: [соединение]
+23:49:02.328 -> ##AUDIO.INFO#: Closing web file "https://somafm.com/spacestation130.pls" (ssl=1)
+23:49:02.328 -> ##AUDIO.INFO#: buffers freed, free Heap: 173908 bytes
+23:49:02.328 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+23:49:02.328 -> ##AUDIO.INFO#: Connection has been established in 30 ms
+23:49:02.606 -> ##AUDIO.INFO#: format is ogg
+23:49:02.606 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+23:49:02.606 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+23:49:02.606 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+23:49:02.653 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:49:02.653 -> ##CLI.META#: SECTOR | Indigo channel
+23:49:02.653 -> ##CLI.INFO#
+23:49:02.653 -> ##SYS.DATE#: 2026-08-23T23:48:59+03:00
+23:49:02.653 -> ##CLI.NAMESET#: 292 SECTOR Indigo (flac)
+23:49:02.653 -> ##CLI.META#: SECTOR | Indigo channel
+23:49:02.653 -> ##CLI.VOL#: 24
+23:49:02.653 -> ##CLI.PLAYING#
+23:49:02.653 -> ##CLI.META#: SECTOR | Indigo channel
+23:49:02.653 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 feedCap=65535
+23:49:02.653 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:49:03.115 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:49:03.115 -> ##AUDIO.INFO#: syncword found at pos 0
+23:49:03.115 -> ##AUDIO.INFO#: Channels: 2
+23:49:03.115 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:49:03.161 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:49:03.161 -> ##AUDIO.INFO#: BitRate: 1411000
+23:49:03.161 -> ##AUDIO.BITRATE#: 1411000
+23:49:03.161 -> ##AUDIO.INFO#: microflac post-config: IIR recalculated, filters cleared
+23:49:03.161 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 out_cap=8192 consumed=151 left=63151
+23:49:26.690 -> ##CLI.META#: [соединение]
+23:49:26.735 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+23:49:26.781 -> ##AUDIO.INFO#: buffers freed, free Heap: 173912 bytes
+23:49:26.781 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+23:49:27.105 -> ##AUDIO.INFO#: Connection has been established in 337 ms
+23:49:27.292 -> ##AUDIO.INFO#: format is ogg
+23:49:27.292 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+23:49:27.292 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:27.338 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:27.338 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+23:49:27.338 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:49:27.338 -> ##CLI.INFO#
+23:49:27.338 -> ##SYS.DATE#: 2026-08-23T23:49:24+03:00
+23:49:27.338 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+23:49:27.338 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:27.338 -> ##CLI.VOL#: 24
+23:49:27.338 -> ##CLI.PLAYING#
+23:49:27.338 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 feedCap=65535
+23:49:27.385 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:49:27.385 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:27.431 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:49:27.431 -> ##AUDIO.INFO#: syncword found at pos 0
+23:49:27.431 -> ##AUDIO.INFO#: Channels: 2
+23:49:27.431 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:49:27.431 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:49:27.477 -> ##AUDIO.INFO#: BitRate: 1441000
+23:49:27.477 -> ##AUDIO.BITRATE#: 1441000
+23:49:27.477 -> ##AUDIO.INFO#: microflac post-config: IIR recalculated, filters cleared
+23:49:27.477 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 out_cap=8192 consumed=151 left=62357
+23:49:27.477 -> ##CLI.META#: microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:27.523 -> ##ERROR#:	microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:27.523 -> ##ERROR#:	microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:27.523 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.523 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.523 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.523 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.523 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.569 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.615 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.615 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.615 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.615 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.615 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.615 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.615 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.662 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.708 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.755 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.755 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.755 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.755 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.755 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.755 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.755 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.801 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.847 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.847 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.847 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.940 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.940 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.940 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.940 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.940 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.940 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.940 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.987 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.987 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.987 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.987 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.987 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.987 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:27.987 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.033 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.079 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.125 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.125 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.125 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.125 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.125 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.125 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.125 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.172 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.219 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.266 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.266 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.266 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.266 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.266 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.266 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.266 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.312 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.359 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.405 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.405 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.405 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.405 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.405 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.405 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.405 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.452 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.452 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.452 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.452 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.452 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.452 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.452 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.499 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.546 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.546 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.546 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.546 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.546 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.546 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.546 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.593 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.640 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.687 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.687 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.687 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.687 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.687 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.687 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.687 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.733 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.778 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.825 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.825 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.825 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.825 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.825 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.825 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.825 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.871 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.871 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.871 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.871 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.871 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.871 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.871 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.917 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.917 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.917 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.917 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.917 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.917 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.917 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:28.964 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.010 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.056 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.056 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.056 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.056 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.056 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.056 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.056 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.103 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.149 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.149 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.149 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.149 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.149 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.149 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.149 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.195 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.241 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.288 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.288 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.288 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.288 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.288 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.288 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.288 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.334 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.380 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.380 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.380 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.380 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.380 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.380 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.380 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.426 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.426 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.426 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.426 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.426 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.426 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.426 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.472 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.472 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.564 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.564 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.564 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.564 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.564 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.564 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.564 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.610 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.656 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.702 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.702 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.702 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.702 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.702 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.702 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.702 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.748 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.794 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.794 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.839 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.886 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.886 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.886 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.886 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.886 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.886 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.886 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.932 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.978 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.978 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.978 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.978 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.978 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.978 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:29.978 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.025 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.025 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.025 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.025 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.025 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.025 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.025 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.071 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.117 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.117 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.117 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.117 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.117 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.117 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.117 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.164 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.209 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.209 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.209 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.209 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.209 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.209 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.209 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.256 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.301 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.301 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.301 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.301 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.301 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.301 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.301 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.347 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.394 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.440 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.440 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.440 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.440 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.440 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.440 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.440 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.486 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.486 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.486 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.486 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.486 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.486 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.486 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.533 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.533 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.533 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.533 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.533 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.533 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.533 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.579 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.625 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.671 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.671 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.671 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.671 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.671 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.671 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.671 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.717 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.763 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.763 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.763 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.763 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.763 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.763 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.763 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.810 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.856 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.903 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.903 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.903 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.903 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.903 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.903 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.903 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.949 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.949 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.949 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.949 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.949 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.949 -> ERROR: Too many messages queued
+23:49:30.949 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.949 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.995 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.995 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.995 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.995 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.995 -> ERROR: Too many messages queued
+23:49:30.995 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.995 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:30.995 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.041 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.041 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.041 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.041 -> ERROR: Too many messages queued
+23:49:31.041 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.041 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.041 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.041 -> ERROR: Too many messages queued
+23:49:31.041 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.087 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.087 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.087 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.087 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.087 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.087 -> ERROR: Too many messages queued
+23:49:31.087 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.087 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.133 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.133 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.133 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.133 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.133 -> ERROR: Too many messages queued
+23:49:31.133 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.133 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ERROR: Too many messages queued
+23:49:31.180 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.180 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.226 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.226 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.226 -> ERROR: Too many messages queued
+23:49:31.226 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.226 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.226 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.226 -> ERROR: Too many messages queued
+23:49:31.226 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.273 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.273 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.273 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.273 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.273 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.273 -> ERROR: Too many messages queued
+23:49:31.273 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.273 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.318 -> ##CLI.META#: [соединение]
+23:49:31.318 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.318 -> ##ERROR#:	microERROR: Too many messages queued
+23:49:31.318 -> flac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.318 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.318 -> ERROR: Too many messages queued
+23:49:31.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.364 -> ERROR: Too many messages queued
+23:49:31.364 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.364 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.364 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.410 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.410 -> ERROR: Too many messages queued
+23:49:31.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.410 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.410 -> ERROR: Too many messages queued
+23:49:31.456 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.456 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.456 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.456 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.456 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.456 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.456 -> ERROR: Too many messages queued
+23:49:31.456 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.502 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.502 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.502 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.502 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.502 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.502 -> ERROR: Too many messages queued
+23:49:31.502 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.502 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.548 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.548 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.548 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.548 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.548 -> ERROR: Too many messages queued
+23:49:31.548 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.548 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:31.548 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+23:49:31.594 -> ##AUDIO.INFO#: buffers freed, free Heap: 142368 bytes
+23:49:31.594 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+23:49:31.640 -> ##AUDIO.INFO#: Connection has been established in 69 ms
+23:49:31.640 -> ##CLI.META#: 
+23:49:31.732 -> ##AUDIO.INFO#: format is ogg
+23:49:31.732 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+23:49:31.732 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:31.778 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:31.778 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+23:49:31.778 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:49:31.778 -> ##CLI.INFO#
+23:49:31.778 -> ##SYS.DATE#: 2026-08-23T23:49:28+03:00
+23:49:31.778 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+23:49:31.778 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:31.778 -> ##CLI.VOL#: 24
+23:49:31.778 -> ##CLI.PLAYING#
+23:49:31.778 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 feedCap=65535
+23:49:31.778 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:49:31.823 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:31.916 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:49:31.916 -> ##AUDIO.INFO#: syncword found at pos 0
+23:49:31.916 -> ##AUDIO.INFO#: Channels: 2
+23:49:31.916 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:49:31.916 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:49:31.916 -> ##AUDIO.INFO#: BitRate: 1441000
+23:49:31.916 -> ##AUDIO.BITRATE#: 1441000
+23:49:31.916 -> ##AUDIO.INFO#: microflac post-config: IIR recalculated, filters cleared
+23:49:31.962 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 out_cap=8192 consumed=151 left=60921
+23:49:31.962 -> ##CLI.META#: microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:31.962 -> ##ERROR#:	microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:32.008 -> ##ERROR#:	microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:32.008 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.008 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.008 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.008 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.008 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.008 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.008 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.055 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.101 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.101 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.101 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.101 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.101 -> ERROR: Too many messages queued
+23:49:32.101 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.101 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ERROR: Too many messages queued
+23:49:32.147 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.147 -> ERROR: Too many messages queued
+23:49:32.194 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.194 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.194 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.194 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.194 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.194 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.194 -> ERROR: Too many messages queued
+23:49:32.194 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.194 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.239 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.239 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.239 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.239 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.239 -> ERROR: Too many messages queued
+23:49:32.239 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.239 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ERROR: Too many messages queued
+23:49:32.286 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.286 -> ERROR: Too many messages queued
+23:49:32.332 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.332 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.332 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.332 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.332 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.332 -> ERROR: Too many messages queued
+23:49:32.332 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.332 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.378 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.378 -> ERROR: Too many messages queued
+23:49:32.378 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.378 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.378 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.378 -> ERROR: Too many messages queued
+23:49:32.378 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.378 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.378 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.425 -> ERROR: Too many messages queued
+23:49:32.425 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.425 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.425 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.425 -> ERROR: Too many messages queued
+23:49:32.425 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.425 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.425 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.472 -> ERROR: Too many messages queued
+23:49:32.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.472 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.472 -> ERROR: Too many messages queued
+23:49:32.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.472 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.472 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.518 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.518 -> ERROR: Too many messages queued
+23:49:32.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.518 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.518 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.563 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.563 -> ERROR: Too many messages queued
+23:49:32.563 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.563 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.563 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.563 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.563 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.563 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.609 -> ERROR: Too many messages queued
+23:49:32.609 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.609 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.609 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.609 -> ERROR: Too many messages queued
+23:49:32.609 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.609 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.609 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.655 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.655 -> ERROR: Too many messages queued
+23:49:32.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.655 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.701 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.701 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.701 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.701 -> ERROR: Too many messages queued
+23:49:32.701 -> #ERROR: Too many messages queued
+23:49:32.701 -> #ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.701 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.701 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.701 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.747 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.747 -> ERROR: Too many messages queued
+23:49:32.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.747 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ERROR: Too many messages queued
+23:49:32.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.794 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.840 -> ERROR: Too many messages queued
+23:49:32.840 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.840 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.840 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.840 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.840 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.840 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.840 -> ERROR: Too many messages queued
+23:49:32.840 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.887 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.887 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.887 -> ERROR: Too many messages queued
+23:49:32.887 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.887 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.887 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.887 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ERROR: Too many messages queued
+23:49:32.933 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.933 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.980 -> ERROR: Too many messages queued
+23:49:32.980 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.980 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.980 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.980 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.980 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:32.980 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.027 -> ERROR: Too many messages queued
+23:49:33.027 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.027 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.027 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.027 -> ERROR: Too many messages queued
+23:49:33.027 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.027 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.027 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.027 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ERROR: Too many messages queued
+23:49:33.074 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.074 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.120 -> ERROR: Too many messages queued
+23:49:33.120 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.120 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.120 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.120 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.120 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.120 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.120 -> ERROR: Too many messages queued
+23:49:33.166 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.166 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.166 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.166 -> ERROR: Too many messages queued
+23:49:33.166 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.166 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.166 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.166 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.212 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.212 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.212 -> ERROR: Too many messages queued
+23:49:33.212 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.212 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.212 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.212 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.212 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.259 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.259 -> ERROR: Too many messages queued
+23:49:33.259 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.259 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.259 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.259 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.259 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.259 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.306 -> ERROR: Too many messages queued
+23:49:33.306 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.306 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.306 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.306 -> ERROR: Too many messages queued
+23:49:33.306 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.306 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.306 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.306 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.352 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.352 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.352 -> ERROR: Too many messages queued
+23:49:33.352 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.352 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.352 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.352 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.352 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.398 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.398 -> ERROR: Too many messages queued
+23:49:33.398 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.398 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.398 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.398 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.398 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.398 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.445 -> ERROR: Too many messages queued
+23:49:33.445 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.445 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.445 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.445 -> ERROR: Too many messages queued
+23:49:33.445 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.445 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.445 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.445 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.490 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.490 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.490 -> ERROR: Too many messages queued
+23:49:33.490 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.490 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.490 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.490 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ERROR: Too many messages queued
+23:49:33.538 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.538 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.584 -> ERROR: Too many messages queued
+23:49:33.584 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.584 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.584 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.584 -> ERROR: Too many messages queued
+23:49:33.584 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.584 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.584 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.584 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.632 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.632 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.632 -> ERROR: Too many messages queued
+23:49:33.632 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.632 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.632 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.632 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.632 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.678 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.678 -> ERROR: Too many messages queued
+23:49:33.678 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.678 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.678 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.678 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.678 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.725 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.725 -> ERROR: Too many messages queued
+23:49:33.725 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.725 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.725 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.725 -> ERROR: Too many messages queued
+23:49:33.725 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.725 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.725 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.771 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.771 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.771 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.771 -> ERROR: Too many messages queued
+23:49:33.771 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.771 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.771 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.771 -> ERROR: Too many messages queued
+23:49:33.771 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.817 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.817 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.817 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.817 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.817 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.817 -> ERROR: Too many messages queued
+23:49:33.817 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.817 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.862 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.862 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.862 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.862 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.862 -> ERROR: Too many messages queued
+23:49:33.862 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.862 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.862 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.908 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.908 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.908 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.908 -> ERROR: Too many messages queued
+23:49:33.908 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.908 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.908 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.908 -> ERROR: Too many messages queued
+23:49:33.954 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.954 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.954 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.954 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.954 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.954 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.954 -> ERROR: Too many messages queued
+23:49:33.954 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:33.954 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.001 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.001 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.001 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.001 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.001 -> ERROR: Too many messages queued
+23:49:34.001 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.001 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ERROR: Too many messages queued
+23:49:34.048 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.048 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.095 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.095 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.095 -> ERROR: Too many messages queued
+23:49:34.095 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.095 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.095 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.095 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.095 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.141 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.141 -> ERROR: Too many messages queued
+23:49:34.141 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.141 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.141 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.141 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.141 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.141 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.188 -> ERROR: Too many messages queued
+23:49:34.188 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.188 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.188 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.188 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.188 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.188 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.188 -> ERROR: Too many messages queued
+23:49:34.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.235 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.235 -> ERROR: Too many messages queued
+23:49:34.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.235 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.282 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.282 -> ERROR: Too many messages queued
+23:49:34.282 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.282 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.282 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.282 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.282 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.328 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.328 -> ERROR: Too many messages queued
+23:49:34.328 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.328 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.328 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.328 -> ERROR: Too many messages queued
+23:49:34.328 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.328 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.328 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.375 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.375 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.375 -> ERROR: Too many messages queued
+23:49:34.375 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.375 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.375 -> ##CLI.META#: [соединение]
+23:49:34.375 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.375 -> ERROR: Too many messages queued
+23:49:34.375 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.375 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.422 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.422 -> ERROR: Too many messages queued
+23:49:34.422 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.422 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.422 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.422 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.422 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ERROR: Too many messages queued
+23:49:34.468 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.468 -> ERROR: Too many messages queued
+23:49:34.515 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.515 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.515 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.515 -> ERROR: Too many messages queued
+23:49:34.515 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.515 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.515 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.515 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.515 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.561 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.561 -> ERROR: Too many messages queued
+23:49:34.561 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.561 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.561 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.561 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.561 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.607 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.607 -> ERROR: Too many messages queued
+23:49:34.607 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.607 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.607 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.607 -> ERROR: Too many messages queued
+23:49:34.607 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.607 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.607 -> ERROR: Too many messages queued
+23:49:34.607 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.655 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.655 -> ERROR: Too many messages queued
+23:49:34.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.655 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.655 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.701 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.701 -> ERROR: Too many messages queued
+23:49:34.701 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.701 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.701 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.701 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.701 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.701 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.747 -> ERROR: Too many messages queued
+23:49:34.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.747 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.747 -> ERROR: Too many messages queued
+23:49:34.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.747 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.747 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.792 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.792 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.792 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.792 -> ERROR: Too many messages queued
+23:49:34.792 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.792 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.792 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.792 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.838 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.838 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.838 -> ERROR: Too many messages queued
+23:49:34.838 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.838 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.838 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.838 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.838 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:34.885 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+23:49:34.885 -> ##AUDIO.INFO#: buffers freed, free Heap: 142472 bytes
+23:49:34.885 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+23:49:34.976 -> ##AUDIO.INFO#: Connection has been established in 110 ms
+23:49:34.976 -> ##CLI.META#: 
+23:49:35.162 -> ##AUDIO.INFO#: format is ogg
+23:49:35.162 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+23:49:35.162 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:35.162 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:35.162 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+23:49:35.162 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:49:35.162 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:35.162 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 feedCap=65535
+23:49:35.208 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:49:35.208 -> ##CLI.INFO#
+23:49:35.208 -> ##SYS.DATE#: 2026-08-23T23:49:31+03:00
+23:49:35.208 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+23:49:35.208 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:35.208 -> ##CLI.VOL#: 24
+23:49:35.208 -> ##CLI.PLAYING#
+23:49:35.208 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:49:35.301 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:49:35.301 -> ##AUDIO.INFO#: syncword found at pos 0
+23:49:35.301 -> ##AUDIO.INFO#: Channels: 2
+23:49:35.301 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:49:35.301 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:49:35.301 -> ##AUDIO.INFO#: BitRate: 1441000
+23:49:35.301 -> ##AUDIO.BITRATE#: 1441000
+23:49:35.301 -> ##AUDIO.INFO#: microflac post-config: IIR recalculated, filters cleared
+23:49:35.346 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 out_cap=8192 consumed=151 left=60661
+23:49:35.346 -> ##CLI.META#: microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:35.346 -> ##ERROR#:	microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:35.392 -> ##ERROR#:	microflac decode error -14 consumed=79 header=1 out_cap=8192
+23:49:35.392 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.392 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.392 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.392 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.392 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.392 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.392 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.438 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.438 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.485 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.485 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.485 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.485 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.485 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.485 -> ERROR: Too many messages queued
+23:49:35.485 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.485 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.531 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.531 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.531 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.531 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.531 -> ERROR: Too many messages queued
+23:49:35.531 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.531 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.531 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.578 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.578 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.578 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.578 -> ERROR: Too many messages queued
+23:49:35.578 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.578 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.578 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.578 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.624 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.624 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.624 -> ERROR: Too many messages queued
+23:49:35.624 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.624 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.624 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.624 -> ERROR: Too many messages queued
+23:49:35.624 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.624 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.669 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.669 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.669 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.669 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.669 -> ERROR: Too many messages queued
+23:49:35.669 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.669 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.669 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.716 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.716 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.716 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.716 -> ERROR: Too many messages queued
+23:49:35.716 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.716 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.716 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.716 -> ERROR: Too many messages queued
+23:49:35.716 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.762 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.762 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.762 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.762 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.762 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.762 -> ERROR: Too many messages queued
+23:49:35.762 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ERROR: Too many messages queued
+23:49:35.807 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.807 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.854 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.854 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.854 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.854 -> ERROR: Too many messages queued
+23:49:35.854 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.854 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.854 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.899 -> ERROR: Too many messages queued
+23:49:35.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.899 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.899 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.899 -> ERROR: Too many messages queued
+23:49:35.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.945 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.945 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.945 -> ERROR: Too many messages queued
+23:49:35.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.992 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.992 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.992 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.992 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.992 -> ERROR: Too many messages queued
+23:49:35.992 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.992 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:35.992 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.038 -> ERROR: Too many messages queued
+23:49:36.038 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.038 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.038 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.038 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.038 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.038 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.038 -> ERROR: Too many messages queued
+23:49:36.038 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.084 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.084 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.084 -> ERROR: Too many messages queued
+23:49:36.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ERROR: Too many messages queued
+23:49:36.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.131 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.177 -> ERROR: Too many messages queued
+23:49:36.177 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.177 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.177 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.177 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.177 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.177 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.224 -> ERROR: Too many messages queued
+23:49:36.224 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.224 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.224 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.224 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.224 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.224 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.224 -> ERROR: Too many messages queued
+23:49:36.224 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ERROR: Too many messages queued
+23:49:36.271 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.271 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.318 -> ERROR: Too many messages queued
+23:49:36.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.318 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.318 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.318 -> ERROR: Too many messages queued
+23:49:36.318 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.364 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.364 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.364 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.364 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.364 -> ERROR: Too many messages queued
+23:49:36.364 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.364 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ERROR: Too many messages queued
+23:49:36.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.410 -> ERROR: Too many messages queued
+23:49:36.457 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.457 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.457 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.457 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.457 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.457 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.457 -> ERROR: Too many messages queued
+23:49:36.457 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.503 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.503 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.503 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.503 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.503 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.503 -> ERROR: Too many messages queued
+23:49:36.503 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.503 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.550 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.550 -> ERROR: Too many messages queued
+23:49:36.550 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.550 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.550 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.550 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.550 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.550 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.596 -> ERROR: Too many messages queued
+23:49:36.596 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.596 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.596 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.596 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.596 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.596 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.596 -> ERROR: Too many messages queued
+23:49:36.643 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.643 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.643 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.643 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.643 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.643 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.643 -> ERROR: Too many messages queued
+23:49:36.643 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.643 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.690 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.690 -> ERROR: Too many messages queued
+23:49:36.690 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.690 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.690 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.690 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.690 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.690 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.736 -> ERROR: Too many messages queued
+23:49:36.736 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.736 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.736 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.736 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.736 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.736 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.736 -> ERROR: Too many messages queued
+23:49:36.782 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.782 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.782 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.782 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.782 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.782 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.782 -> ERROR: Too man##Cy messages queued
+23:49:36.782 -> LI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.782 -> ERROR: Too many messages queued
+23:49:36.829 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.829 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.829 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.829 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.829 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.829 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.829 -> ERROR: Too many messages queued
+23:49:36.829 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.829 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.875 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.875 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.875 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.875 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.875 -> ERROR: Too many messages queued
+23:49:36.875 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.875 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ERROR: Too many messages queued
+23:49:36.920 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.920 -> ERROR: Too many messages queued
+23:49:36.967 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.967 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.967 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.967 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.967 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.967 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:36.967 -> ERROR: Too many messages queued
+23:49:36.967 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.013 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.013 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.013 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.013 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.013 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.013 -> ERROR: Too many messages queued
+23:49:37.013 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.013 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.059 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.059 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.059 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.059 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.059 -> ERROR: Too many messages queued
+23:49:37.059 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.059 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.059 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.105 -> ERROR: Too many messages queued
+23:49:37.105 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.105 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.105 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.105 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.105 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.105 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.105 -> ERROR: Too many messages queued
+23:49:37.150 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.150 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.150 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.150 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.150 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.150 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.150 -> ERROR: Too many messages queued
+23:49:37.150 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.197 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.197 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.197 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.197 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.197 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.197 -> ERROR: Too many messages queued
+23:49:37.197 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.197 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ERROR: Too many messages queued
+23:49:37.244 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.244 -> ERROR: Too many messages queued
+23:49:37.291 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.291 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.291 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.291 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.291 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.291 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.291 -> ERROR: Too many messages queued
+23:49:37.291 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.336 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.336 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.336 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.336 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.336 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.336 -> ERROR: Too many messages queued
+23:49:37.336 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.336 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.383 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.383 -> ERROR: Too many messages queued
+23:49:37.383 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.383 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.383 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.383 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.383 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.383 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.430 -> ERROR: Too many messages queued
+23:49:37.430 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.430 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.430 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.430 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.430 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.430 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.430 -> ERROR: Too many messages queued
+23:49:37.430 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.476 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.476 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.476 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.476 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.476 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.476 -> ERROR: Too many messages queued
+23:49:37.476 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.476 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.522 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.522 -> ERROR: Too many messages queued
+23:49:37.522 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.522 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.522 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.522 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.522 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.522 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.568 -> ERROR: Too many messages queued
+23:49:37.568 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.568 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.568 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.568 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.568 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.568 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.568 -> ERROR: Too many messages queued
+23:49:37.613 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.613 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.613 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.613 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.613 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.613 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.613 -> ERROR: Too many messages queued
+23:49:37.613 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.661 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.661 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.661 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.661 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.661 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.661 -> ERROR: Too many messages queued
+23:49:37.661 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.661 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ERROR: Too many messages queued
+23:49:37.706 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.706 -> ERROR: Too many messages queued
+23:49:37.753 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.753 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.753 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.753 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.753 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.753 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.753 -> ERROR: Too many messages queued
+23:49:37.753 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.800 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.800 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.800 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.800 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.800 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.800 -> ERROR: Too many messages queued
+23:49:37.800 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.800 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ERROR: Too many messages queued
+23:49:37.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.847 -> ERROR: Too many messages queued
+23:49:37.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.893 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.893 -> ERROR: Too many messages queued
+23:49:37.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.893 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.893 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.939 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.939 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.939 -> ERROR: Too many messages queued
+23:49:37.939 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.939 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.939 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.939 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.939 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.986 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.986 -> ERROR: Too many messages queued
+23:49:37.986 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.986 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.986 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.986 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.986 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:37.986 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.033 -> ERROR: Too many messages queued
+23:49:38.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.033 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.033 -> ERROR: Too many messages queued
+23:49:38.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.033 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.033 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.078 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.078 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.078 -> ERROR: Too many messages queued
+23:49:38.078 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.078 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.078 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.078 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.078 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.124 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.124 -> ERROR: Too many messages queued
+23:49:38.124 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.124 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.124 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.124 -> ERROR: Too many messages queued
+23:49:38.124 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.124 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.170 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.170 -> ERROR: Too many messages queued
+23:49:38.170 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.170 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.170 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.170 -> ERROR: Too many messages queued
+23:49:38.170 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.170 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.170 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.216 -> ERROR: Too many messages queued
+23:49:38.216 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.216 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.216 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.216 -> ERROR: Too many messages queued
+23:49:38.216 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.216 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.216 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.263 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.263 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.263 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.263 -> ERROR: Too many messages queued
+23:49:38.263 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.263 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.263 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.263 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.309 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.309 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.309 -> ERROR: Too many messages queued
+23:49:38.309 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.309 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.309 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.309 -> ERROR: Too many messages queued
+23:49:38.309 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.309 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.356 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.356 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.356 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.356 -> ERROR: Too many messages queued
+23:49:38.356 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.356 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.356 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.356 -> ERROR: Too many messages queued
+23:49:38.402 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.402 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.402 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.402 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.402 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.402 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.402 -> ERROR: Too many messages queued
+23:49:38.402 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.402 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.448 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.448 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.448 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.448 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.448 -> ERROR: Too many messages queued
+23:49:38.448 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.448 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ERROR: Too many messages queued
+23:49:38.495 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.495 -> ERROR: Too many messages queued
+23:49:38.542 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.542 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.542 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.542 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.542 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.542 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.542 -> ERROR: Too many messages queued
+23:49:38.542 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.542 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.588 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.588 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.588 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.588 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.588 -> ERROR: Too many messages queued
+23:49:38.588 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.588 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ERROR: Too many messages queued
+23:49:38.635 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.635 -> ERROR: Too many messages queued
+23:49:38.680 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.680 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.680 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.680 -> ERROR: Too many messages queued
+23:49:38.680 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.680 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.680 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.680 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.726 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.726 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.726 -> ERROR: Too many messages queued
+23:49:38.726 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.726 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.726 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.726 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8ERROR: Too many messages queued
+23:49:38.726 -> 192
+23:49:38.772 -> ERROR: Too many messages queued
+23:49:38.772 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.772 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.772 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.772 -> ERROR: Too many messages queued
+23:49:38.772 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.772 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.772 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.772 -> ERROR: Too many messages queued
+23:49:38.772 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.818 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.818 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.818 -> ERROR: Too many messages queued
+23:49:38.818 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.818 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.818 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.818 -> ERROR: Too many messages queued
+23:49:38.818 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.864 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.864 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.864 -> ERROR: Too many messages queued
+23:49:38.864 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.864 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.864 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.864 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.864 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.911 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.911 -> ERROR: Too many messages queued
+23:49:38.911 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.911 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.911 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.911 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.911 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.911 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.958 -> ERROR: Too many messages queued
+23:49:38.958 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.958 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.958 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.958 -> ERROR: Too many messages queued
+23:49:38.958 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.958 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.958 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:38.958 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.004 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.004 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.004 -> ERROR: Too many messages queued
+23:49:39.004 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.004 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.004 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.004 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.004 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.050 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.050 -> ERROR: Too many messages queued
+23:49:39.050 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.050 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.050 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.050 -> ERROR: Too many messages queued
+23:49:39.050 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.050 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ERROR: Too many messages queued
+23:49:39.096 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.096 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.143 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.143 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.143 -> ERROR: Too many messages queued
+23:49:39.143 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.143 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.143 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.143 -> ERROR: Too many messages queued
+23:49:39.143 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.143 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.189 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.189 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.189 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.189 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.189 -> ERROR: Too many messages queued
+23:49:39.189 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.189 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ERROR: Too many messages queued
+23:49:39.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.235 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.280 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.280 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.280 -> ERROR: Too many messages queued
+23:49:39.280 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.280 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.280 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.280 -> ERROR: Too many messages queued
+23:49:39.280 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.326 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.326 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.326 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.326 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.326 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.326 -> ERROR: Too many messages queued
+23:49:39.326 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.326 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.372 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.372 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.372 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.372 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.372 -> ERROR: Too many messages queued
+23:49:39.372 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.372 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.372 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.418 -> ERROR: Too many messages queued
+23:49:39.418 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.418 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.418 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.418 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.418 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.418 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.418 -> ERROR: Too many messages queued
+23:49:39.464 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.464 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.464 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.464 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.464 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.464 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.464 -> ERROR: Too many messages queued
+23:49:39.464 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.511 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.511 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.511 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.511 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.511 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.511 -> ERROR: Too many messages queued
+23:49:39.511 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.511 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.557 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.557 -> ERROR: Too many messages queued
+23:49:39.557 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.557 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.557 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.557 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.557 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.557 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.603 -> ERROR: Too many messages queued
+23:49:39.603 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.603 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.603 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.603 -> ERROR: Too many messages queued
+23:49:39.603 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.603 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.603 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.603 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.649 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.649 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.649 -> ERROR: Too many messages queued
+23:49:39.649 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.649 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.649 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.649 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.649 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.696 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.696 -> ERROR: Too many messages queued
+23:49:39.696 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.696 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.696 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.696 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.696 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.696 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.742 -> ERROR: Too many messages queued
+23:49:39.742 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.742 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.742 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.742 -> ERROR: Too many messages queued
+23:49:39.742 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.742 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.742 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.742 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.789 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.789 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.789 -> ERROR: Too many messages queued
+23:49:39.789 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.789 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.789 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.789 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.789 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.835 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.835 -> ERROR: Too many messages queued
+23:49:39.835 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.835 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.835 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.835 -> ERROR: Too many messages queued
+23:49:39.835 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.835 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.881 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.881 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.881 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.881 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.881 -> ERROR: Too many messages queued
+23:49:39.881 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.881 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.881 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.927 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.927 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.927 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.927 -> ERROR: Too many messages queued
+23:49:39.927 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.927 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.927 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.927 -> ERROR: Too many messages queued
+23:49:39.927 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.974 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.974 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.974 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.974 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.974 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.974 -> ERROR: Too many messages queued
+23:49:39.974 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:39.974 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.019 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.019 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.019 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.019 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.019 -> ERROR: Too many messages queued
+23:49:40.019 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.019 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ERROR: Too many messages queued
+23:49:40.065 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.065 -> ERROR: Too many messages queued
+23:49:40.112 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.112 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.112 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.112 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.112 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.112 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.112 -> ERROR: Too many messages queued
+23:49:40.112 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.112 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.158 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.158 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.158 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.158 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.158 -> ERROR: Too many messages queued
+23:49:40.158 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.158 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ERROR: Too many messages queued
+23:49:40.204 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.204 -> ERROR: Too many messages queued
+23:49:40.252 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.252 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.252 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.252 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.252 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.252 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.252 -> ERROR: Too many messages queued
+23:49:40.252 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.252 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.298 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.298 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.298 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.298 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.298 -> ERROR: Too many messages queued
+23:49:40.298 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.298 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.344 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.344 -> ERROR: Too many messages queued
+23:49:40.344 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.344 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.344 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.344 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.344 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.344 -> ERROR: Too many messages queued
+23:49:40.344 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.391 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.391 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.391 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.391 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.391 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.391 -> ERROR: Too many messages queued
+23:49:40.391 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.391 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.438 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.438 -> ERROR: Too many messages queued
+23:49:40.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.438 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.438 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.438 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.483 -> ERROR: Too many messages queued
+23:49:40.483 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.483 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.483 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.483 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.483 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.483 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.483 -> ERROR: Too many messages queued
+23:49:40.483 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.530 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.530 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.530 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.530 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.530 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.530 -> ERROR: Too many messages queued
+23:49:40.530 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ERROR: Too many messages queued
+23:49:40.575 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.575 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.620 -> ERROR: Too many messages queued
+23:49:40.620 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.620 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.620 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.620 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.620 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.620 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.666 -> ERROR: Too many messages queued
+23:49:40.666 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.666 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.666 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.666 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.666 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.666 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.666 -> ERROR: Too many me##CLssages queued
+23:49:40.666 -> I.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.712 -> ERROR: Too many messages queued
+23:49:40.712 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.712 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.712 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.712 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.712 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.712 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.712 -> ERROR: Too many messages queued
+23:49:40.759 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.759 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.759 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.759 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.759 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.759 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.759 -> ERROR: Too many messages queued
+23:49:40.759 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.759 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.806 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.806 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.806 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.806 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.806 -> ERROR: Too many messages queued
+23:49:40.806 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.806 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.806 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.852 -> ERROR: Too many messages queued
+23:49:40.852 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.852 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.852 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.852 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.852 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.852 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.852 -> ERROR: Too many messages queued
+23:49:40.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.899 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.899 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.899 -> ERROR: Too many messages queued
+23:49:40.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.899 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.945 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.945 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.945 -> ERROR: Too many messages queued
+23:49:40.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.945 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ERROR: Too many messages queued
+23:49:40.991 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:40.991 -> ERROR: Too many messages queued
+23:49:41.037 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.037 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.037 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.037 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.037 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.037 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.037 -> ERROR: Too many messages queued
+23:49:41.037 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.084 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.084 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.084 -> ERROR: Too many messages queued
+23:49:41.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.084 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.131 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.131 -> ERROR: Too many messages queued
+23:49:41.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.131 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.131 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.131 -> ##CLI.META#: microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.177 -> ERROR: Too many messages queued
+23:49:41.177 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.177 -> ##ERROR#:	microflac decode error -14 consumed=0 header=1 out_cap=8192
+23:49:41.177 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+23:49:41.177 -> ##AUDIO.INFO#: buffers freed, free Heap: 142128 bytes
+23:49:41.269 -> ##CLI.INFO#
+23:49:41.269 -> ##SYS.DATE#: 2026-08-23T23:49:37+03:00
+23:49:41.269 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+23:49:41.269 -> ##CLI.VOL#: 24
+23:49:41.269 -> ##CLI.STOPPED#
