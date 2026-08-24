@@ -1,0 +1,162 @@
+# Instruction 14 (v3) — ЖЕЛЕЗНОЕ ТЗ: починить компиляцию навсегда (убрать хвост) + добавить автопроверку, чтобы такое больше не пролезало
+
+Репо: `ChillPulse/Youradio_Omnia_ESP32S3`  
+Основание: `Log69` (ошибка компиляции)  
+Цель: **сборка проходит всегда**, и больше никогда не появляются хвосты “Chat/ack …” вне функций.
+
+## 0) Регламент
+Строго `main`, без веток:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+## 1) Scope / запреты
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) добавить новый файл: `tools/omnia_sanity_audio_cpp.py`
+3) добавить новый файл: `.github/workflows/sanity-audio-cpp.yml`
+
+### Запрещено:
+- любые изменения SD режима, декодеров и фич
+- любые “рефакторы”, форматирование всего файла
+- любые изменения micro-flac/micro-ogg в этой инструкции
+
+---
+
+## 2) P0: Удалить мусорный хвост, который ломает компиляцию (строго по якорю)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+### 2.1 Найти якорь
+Найти **точное** вхождение строки (без `//`):
+
+`ack proportional if no index`
+
+(оно сейчас реально есть в конце файла). 
+
+### 2.2 Удалить хвост
+Удалить **всё** начиная с этой строки `ack proportional if no index` **и до конца файла** (включая повторяющиеся строки `uint32_t offset...` и лишнюю закрывающую `}`).
+
+После удаления файл должен заканчиваться **ровно** на закрывающей скобке `}` функции `omnia_aacSeekMs()` и затем (опционально) на 1 строке-комментарии EOF (см. 2.3).
+
+### 2.3 Добавить EOF-сентинел (обязательно)
+Сразу после финального `}` добавить последней строкой файла:
+
+```cpp
+// === AUDIO.CPP EOF (DO NOT ADD CODE BELOW) ===
+```
+
+---
+
+## 3) P0: Добавить скрипт-проверку, который ловит такой хвост до компиляции (обязательно)
+
+Создать файл: `tools/omnia_sanity_audio_cpp.py`
+
+Содержимое **вставить 1:1**:
+
+```python
+import sys
+from pathlib import Path
+
+p = Path("yoRadio/src/audioI2S/Audio.cpp")
+txt = p.read_text(encoding="utf-8", errors="replace")
+
+# 1) EOF sentinel must exist and be the last non-empty line
+lines = [l.rstrip("\n") for l in txt.splitlines()]
+nonempty = [l.strip() for l in lines if l.strip() != ""]
+if not nonempty:
+    print("FAIL: Audio.cpp is empty")
+    sys.exit(2)
+
+if nonempty[-1] != "// === AUDIO.CPP EOF (DO NOT ADD CODE BELOW) ===":
+    print("FAIL: Missing/incorrect EOF sentinel line")
+    sys.exit(2)
+
+# 2) No raw AI garbage tokens outside comments (hard fail)
+# This string previously broke builds (Log69)
+if "ack proportional if no index" in txt:
+    print("FAIL: Found raw 'ack proportional if no index' in Audio.cpp")
+    sys.exit(2)
+
+# 3) Ensure function exists exactly once
+needle = "bool Audio::omnia_aacSeekMs(uint32_t ms)"
+cnt = txt.count(needle)
+if cnt != 1:
+    print(f"FAIL: Expected exactly 1 occurrence of '{needle}', got {cnt}")
+    sys.exit(2)
+
+# 4) Ensure there is no code after the final closing brace of the file
+last_brace = txt.rfind("}")
+tail = txt[last_brace + 1 :]
+# allow whitespace and the EOF sentinel comment only
+tail_stripped = "\n".join([l.strip() for l in tail.splitlines() if l.strip() != ""])
+if tail_stripped not in ["// === AUDIO.CPP EOF (DO NOT ADD CODE BELOW) ==="]:
+    print("FAIL: There is unexpected content after last '}' in Audio.cpp")
+    sys.exit(2)
+
+print("OK: Audio.cpp sanity checks passed")
+sys.exit(0)
+```
+
+---
+
+## 4) P0: Добавить GitHub Action, чтобы такие коммиты не пролезали незаметно (обязательно)
+
+Создать файл: `.github/workflows/sanity-audio-cpp.yml`
+
+Содержимое **вставить 1:1**:
+
+```yaml
+name: sanity-audio-cpp
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python sanity check for Audio.cpp
+        run: |
+          python3 tools/omnia_sanity_audio_cpp.py
+```
+
+Это не компилирует весь проект (чтобы не тащить Arduino toolchain), но **железно ловит** ваш текущий класс косяков: “мусорные хвосты вне функций”.
+
+---
+
+## 5) Обязательные проверки агентом перед коммитом (чтобы больше не повторялось)
+
+Выполнить и приложить в отчёт вывод команд:
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+```
+
+и
+
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 3 файла:
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `tools/omnia_sanity_audio_cpp.py`
+- `.github/workflows/sanity-audio-cpp.yml`
+
+---
+
+## 6) Коммит / push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp tools/omnia_sanity_audio_cpp.py .github/workflows/sanity-audio-cpp.yml
+git commit -m "build: remove stray tail after omnia_aacSeekMs + add Audio.cpp sanity guard"
+git push origin main
