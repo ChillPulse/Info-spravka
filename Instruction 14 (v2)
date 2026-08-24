@@ -1,0 +1,193 @@
+# Instruction 14 (v2) — FIX BUILD (Log68) + подготовка диагностики для WEB-FLAC (ICY/OGG_DEMUX)
+
+Репо: `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3`  
+Лог ошибки компиляции: `https://github.com/ChillPulse/Info-spravka/blob/main/Log68`
+
+## 0) РЕГЛАМЕНТ (как обычно)
+Работа строго в `main`, пуш в `origin/main`.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ (обязательно)
+
+### Разрешено менять только файлы:
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) (опционально, если в этом коммите делаете диагностику OGG_DEMUX)  
+   `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`  
+   `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+   `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h`  
+   `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp`
+
+### Запрещено:
+- трогать SD-режим/SD-FLAC legacy (`audioI2S/flac_decoder/*`)
+- трогать web MP3/AAC/OPUS/VORBIS декодеры/ветки
+- рефакторить файл целиком, форматировать, переносить функции
+
+---
+
+# ЧАСТЬ A — P0: СНАЧАЛА ПОЧИНИТЬ КОМПИЛЯЦИЮ (Log68)
+
+## A1) Удалить мусорный хвост после `omnia_aacSeekMs()` (это прямой источник Log68)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+### Что сделать (строго):
+1) Найти функцию:
+```cpp
+bool Audio::omnia_aacSeekMs(uint32_t ms){
+```
+2) Дойти до её нормального конца, который должен выглядеть так (последние строки функции):
+```cpp
+  AUDIO_INFO("aacSeekMs fallback proportional ms=%lu -> pos %lu", ...);
+  return setFilePos(pos);
+}
+```
+3) **Сразу после этого `}` в текущем файле сейчас начинается мусор**:
+строка вида:
+```
+ Chat20
+```
+и далее дублированный кусок кода AAC seek. 
+
+4) **Удалить полностью всё, что начинается со строки `Chat20` (НЕ комментарий) и до конца файла.**  
+В итоге файл должен заканчиваться **ровно** на закрывающей `}` функции `omnia_aacSeekMs()` и затем EOF.
+
+### Жёсткая проверка (обязательная):
+После правки в конце `Audio.cpp` не должно быть ничего кроме `}` и пустых строк.
+
+---
+
+## A2) Защитная проверка “чтобы больше не повторилось” (обязательная)
+
+Выполнить (или вручную через поиск в IDE):
+
+- Поиск по `Chat20`:
+  - допустимы только вхождения вида `// ... per Chat20` (в комментариях)
+  - **недопустимо** отдельное слово `Chat20` без `//` в начале строки
+
+- Поиск по `aacSeekMs FAST`:
+  - должен быть **только внутри** функции `omnia_aacSeekMs()` (один блок)
+  - не должно быть повторов после конца функции
+
+(В Log68 типичная картина — как раз “второй дубль” кода оказался вне функции и посыпал ошибками. )
+
+---
+
+## A3) Build-check №1 (обязательный, до любых других задач)
+Собрать проект (Arduino IDE 1.8.19 / core 3.3.0).  
+Если сборка не проходит — **ничего больше не делать**, сначала довести сборку до OK.
+
+---
+
+# ЧАСТЬ B — P0: ICY-метадата и WEB-FLAC (минимально-инвазивно)
+
+Основание: в `httpPrint()` сейчас отправляются **оба** заголовка `Icy-MetaData:1` и `Icy-MetaData:2`.   
+`Icy-MetaData:2` — лишний/подозрительный; для Ogg-контейнеров любые вставки метаданных в аудиопоток могут приводить к демультиплексорным ошибкам.
+
+## B1) Удалить `Icy-MetaData:2` (строго в двух местах)
+Файл: `Audio.cpp`, функция `httpPrint()`.
+
+Найти оба места, где формируется `rqh` и есть подряд:
+
+```cpp
+rqh.append("Icy-MetaData:1\r\n");
+rqh.append("Icy-MetaData:2\r\n");
+```
+
+Сделать:
+- **удалить только** строку с `Icy-MetaData:2\r\n` (оба вхождения) 
+- `Icy-MetaData:1` пока оставить (это важно для MP3/AAC станций)
+
+---
+
+## B2) Отключить `Icy-MetaData:1` ТОЛЬКО для FLAC URL (без влияния на другие форматы)
+
+В `httpPrint()` перед добавлением `Icy-MetaData:1` добавить локальный флаг:
+
+**Вставить ровно так:**
+```cpp
+auto url_has_flac_hint = [](const char* s)->bool{
+    if(!s) return false;
+    // минимально и максимально совместимо: без strcasestr
+    return (strstr(s, "flac") != nullptr) || (strstr(s, "FLAC") != nullptr);
+};
+
+bool want_icy = true;
+if(url_has_flac_hint(host) || url_has_flac_hint(rqh_host.get()) || url_has_flac_hint(path.get())) {
+    want_icy = false;
+}
+```
+
+И заменить:
+```cpp
+rqh.append("Icy-MetaData:1\r\n");
+```
+на:
+```cpp
+if(want_icy) rqh.append("Icy-MetaData:1\r\n");
+```
+
+Сделать это **в обоих местах**, где формируется `rqh` (первый запрос и “next URL” запрос), чтобы поведение было одинаковое. 
+
+---
+
+## B3) Логировать `icy-metaint` (чтобы понимать, вставляет ли сервер метаданные)
+Файл: `Audio.cpp`, функция `parseHttpResponseHeader()`.
+
+В ветке:
+```cpp
+else if(rhl.starts_with_icase("icy-metaint:")) {
+    ...
+    m_metaint = i_metaint;
+    if(m_metaint) m_f_metadata = true;
+}
+```
+
+Добавить:
+```cpp
+AUDIO_INFO("icy-metaint: %ld (metadata %s)", (long)m_metaint, m_metaint ? "ON" : "OFF");
+```
+(1 строка, без доп. логики)
+
+---
+
+# ЧАСТЬ C — P0: Build-check №2 и ограничение diff
+После правок:
+
+```bash
+git diff --name-only
+```
+
+Должно быть:
+- минимум: `yoRadio/src/audioI2S/Audio.cpp`
+- и **никаких** других файлов, если вы делаете только фикс компиляции + ICY.
+
+Сборка — без ошибок.
+
+---
+
+# ЧАСТЬ D (опционально в этом же Instruction 14, если хотите сразу): OGG_DEMUX диагностика
+
+Если вы хотите *в этом же коммите* добавить диагностику `OGG_DEMUX`, то делайте строго как ниже (без изменения поведения демультиплексора, только сохранение “last_result/header”).
+
+> Примечание: в вашем `ogg_demuxer.h` уже есть enum `OggDemuxResult` со значениями `OGG_INVALID_CAPTURE`, `OGG_CRC_FAILED`, `OGG_STREAM_SERIAL_MISMATCH` и т.д. — это именно то, что нужно вывести, иначе `-14` слишком общий. 
+
+**Если эти геттеры/поля уже есть (в вашем main они частично уже присутствуют) — не дублировать.** 
+
+(Если надо — я сделаю отдельный Instruction 15 “только диагностика OGG_DEMUX” после того, как у вас гарантированно собирается проект. Сейчас ключевое — убрать Log68.)
+
+---
+
+# 6) COMMIT / PUSH
+
+## Вариант 1 (рекомендуется): один коммит “только build+icy”
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp
+git commit -m "build: remove stray Chat20 tail after omnia_aacSeekMs + disable ICY headers for flac urls"
+git push origin main
