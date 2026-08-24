@@ -1,0 +1,187 @@
+# ТЗ для агента: WEB micro-flac — Log61 “HEADER_READY есть, но звука нет” (только Web-FLAC, без регрессий)
+
+Репо (main): `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3`   
+Лог проблемы: `https://github.com/ChillPulse/Info-spravka/blob/main/Log61`   
+Кодек: `esphome-libs/micro-flac` (используем vendored в репо)   
+Прошлое ТЗ-референс по стилю: `Instruction 6`   
+
+---
+
+## 0) Суть бага (фиксить, а не спорить)
+
+### Факты из Log61
+1) В WEB-FLAC micro-flac реально активируется: `microflac WEB activated: block=32768 ...`   
+2) Заголовок потока разбирается: `microflac HEADER_READY sr=44100/48000 ch=2 bps=16 ... consumed=... left=...`   
+3) **После HEADER_READY нет ни одного `microflac SUCCESS`**, и в наушниках тишина (при этом MP3/AAC/и т.д. играют). Это совпадает с тем, что в `Audio.cpp` PCM из micro-flac появляется только после `FLAC_DECODER_SUCCESS` (pending → drain).   
+
+### Главная гипотеза root-cause (по коду)
+Сейчас web-FLAC кормится кусками ограниченными `MF_WEB_BLOCK_DEFAULT = 32768`, а Ogg-FLAC может требовать более крупного “атомарного” окна на границе страниц/пакетов, иначе декодер может долго возвращать `NEED_MORE_DATA` без выхода на реальный frame decode. `playAudioData()` берёт `bytesToDecode = min(bufferFilled, maxBlockSize)` и чаще всего отдаёт в `sendBytes()` только 32KB.   
+
+micro-flac по API честно работает как streaming decoder и управляется через `decode(... bytes_consumed, samples_decoded)` + коды `HEADER_READY / SUCCESS / NEED_MORE_DATA`.   
+
+---
+
+## 1) Жёсткий scope / запреты (чтобы не сломать проект)
+
+### Разрешено менять
+Только то, что нужно для WEB-FLAC (micro-flac путь):
+
+- `yoRadio/src/audioI2S/Audio.cpp` (точечно)
+- `yoRadio/src/audioI2S/AudioEx.h` **только если реально нужно** (желательно не трогать)
+- `yoRadio/src/audioI2S/micro_flac/**` — **НЕ трогать**, если не требуется для фикса (в этом ТЗ фикс делается в glue-слое, не в кодеке).   
+
+### Запрещено менять
+- Любая логика MP3/AAC/OPUS/VORBIS web-режима (никаких “улучшений по пути”).
+- SD-режим целиком, включая legacy `flac_decoder/*` и парсер `read_FLAC_Header()` для SD/локальных файлов.
+- Плейлисты, UI, CLI, фичи (seek/мета/и т.п.) — не ломать.
+- “Костыли” типа бесконечного skip-1/reconnect без устранения причины.
+
+---
+
+## 2) Регламент работы (как в Instruction 6)
+
+Всё делаем прямо в `main`, push в `origin/main`.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+git remote -v   # без токенов в URL
+```
+
+---
+
+## 3) Acceptance-тесты (обязательны, без этого не коммитить)
+
+Тест-станции (как минимум те, что в Log61):
+
+- A) `https://stream.radioparadise.com/mellow-flac` (Ogg-FLAC)
+- B) `https://isekoi-radio.com/listen/chill/radio.flac` (FLAC)
+- C) `http://s2.audiostream.hu:8090/juventus_FLAC` (FLAC)
+
+Критерий PASS для каждой:
+- в Serial появляется `microflac HEADER_READY ...`, затем **в течение 1–3 секунд** появляется `microflac SUCCESS ...` и **есть звук ≥ 15 секунд** без reconnect.   
+
+Регрессия (обязательно):
+- любой MP3 stream
+- любой AAC stream
+- любой OPUS/VORBIS stream  
+Они должны играть как раньше (никаких новых “stream not ready”, stallReconnect и т.п.).
+
+SD regression:
+- воспроизведение SD-файлов (любых форматов, включая FLAC legacy) как было.
+
+---
+
+## 4) Основная задача №1: “Ogg page aware feed” (исправить тишину без трогания кодека)
+
+### Почему это нужно
+Сейчас `playAudioData()` для micro-flac допускает ранний decode при `bufferFilled >= MF_WEB_MIN_DECODE`, но при этом `bytesToDecode` всё равно ограничен `InBuff.getMaxBlockSize()` (обычно 32768).   
+Это может приводить к ситуации “HEADER_READY уже есть, но до первого frame decode не доходим”.
+
+### Что сделать (точно)
+В `Audio.cpp`, внутри `Audio::playAudioData()` в ветке, где `m_codec == CODEC_FLAC && m_mf_active` (примерно рядом с блоком на строках 4458–4467)  — добавить **пред-логику**:
+
+#### 4.1 Добавить helper-функцию (static) для вычисления полного размера Ogg-страницы
+Где-нибудь в `Audio.cpp` (рядом с microflac helper’ами/константами) добавить:
+
+- Проверка `"OggS"`
+- Если хватает байт для чтения `page_segments` и lacing table — считаем:
+  - `total = 27 + page_segments + sum(lacing[0..page_segments-1])`
+- Возвращаем `true/false` + `total`
+
+Эта функция должна **НИКОГДА** не читать за пределами `input_len`.
+
+#### 4.2 Перед вызовом `sendBytes()` для microflac: если на входе OggS — обеспечить окно не меньше page_total
+Внутри ветки:
+
+```cpp
+if(m_codec == CODEC_FLAC && m_mf_active) {
+    ...
+}
+```
+
+Сделать так:
+
+1) взять `filled = InBuff.bufferFilled()`  
+2) взять `rp = InBuff.getReadPtr()`  
+3) если `filled >= 27` и `rp[0..3] == "OggS"`:
+   - посчитать `page_total`
+   - если `page_total > InBuff.getMaxBlockSize()`:
+     - увеличить `InBuff.changeMaxBlockSize(min(page_total, MF_WEB_BLOCK_MAX))`
+     - синхронизировать поля microflac (если у тебя есть `m_mf_webBlock/m_mf_feedCap` — обновить так же, но **только в microflac режиме**)
+   - **важно:** если `filled < page_total`, то **не вызывать** `sendBytes()` вообще в этом тике (пусть буфер нарастёт). То есть вернуть `bytesDecoded = 0` и уйти в стандартный `vTaskDelay(20)` путь без reconnect и без стопа.
+
+Цель: не крутить decode на заведомо неполной Ogg-странице.
+
+#### 4.3 (Опционально, но желательно) Авто-возврат maxBlockSize назад к 32768 после старта звука
+Чтобы не держать огромный maxBlock постоянно:
+
+- После первых N `SUCCESS` (например N=10) или если текущая страница `page_total <= MF_WEB_BLOCK_DEFAULT` устойчиво, вернуть `InBuff.changeMaxBlockSize(MF_WEB_BLOCK_DEFAULT)`.
+- Делать это **только** когда мы уверены, что декодирование уже пошло (есть `m_lastGoodDecodeMs` обновления / SUCCESS).   
+
+---
+
+## 5) Основная задача №2: 32-bit FLAC в WEB (не ломая SD)
+
+Сейчас:
+- `Audio::setBitsPerSample()` принимает только 8/16/24 (24→вывод 16), 32 возвращает false.   
+- Есть проверки `m_sourceBitsPerSample != 8 && != 16 && != 24` которые стопают воспроизведение.   
+
+### Что сделать
+#### 5.1 Расширить `setBitsPerSample()` до 32
+В `Audio::setBitsPerSample(int bits)`:
+
+- добавить `bits == 32` как валидный source
+- output оставить 16 (как для 24): `m_bitsPerSample = 16; m_sourceBitsPerSample = 32; return true;`
+
+#### 5.2 Исправить два “kill-switch” чека на 8/16/24 → 8/16/24/32
+В `Audio.cpp` заменить проверки:
+
+- в `setDecoderItems()` (глобальная)   
+- в microflac HEADER_READY ветке (там отдельная проверка)   
+
+на допустимые: `8 || 16 || 24 || 32`.
+
+**Важно:** SD-FLAC при этом не “починится” (и это нормально по scope), потому что SD путь всё равно режется legacy парсером/декодером (он сам не принимает 32), и мы SD не трогаем.
+
+---
+
+## 6) Логи/диагностика (чтобы ты и я могли быстро проверить на железе)
+
+Добавить (временно, без спама):
+
+1) Когда `page_total > maxBlockSize` и ты увеличил окно — один INFO лог:
+`microflac: ogg_page_total=%u grow block %u->%u (filled=%u)`
+
+2) Когда `filled < page_total` и ты решил “ждать” — лог только первый раз и потом раз в ~1 сек:
+`microflac: wait ogg page (%u/%u)`
+
+3) SUCCESS лог уже есть в коде — не убирать.   
+
+После того как я подтвержу на железе “звук есть и стабильно” — можно оставить эти логи rate-limited или убрать “wait page”.
+
+---
+
+## 7) Коммит (один, чистый)
+
+Сообщение (пример):
+
+```
+fix(audio): make web micro-flac ogg page aware + allow 32-bit sources
+
+- For web FLAC (micro-flac path) detect Ogg page total size and wait/grow block to avoid silent NEED_MORE loops
+- Allow 32-bit source FLAC in web mode (downconvert to 16-bit output)
+- No changes to SD mode or other web codecs
+```
+
+---
+
+## 8) Ожидаемый результат
+
+После фикса на тех же станциях из Log61:
+- `HEADER_READY` появляется как раньше, **но затем появляется `microflac SUCCESS`** и звук идёт сразу.   
+- MP3/AAC/OPUS/VORBIS web не изменяются (без регрессий).
+- SD-режим без изменений.
+
+Если агент всё сделает по этому ТЗ, это будет именно “флагманский” фикс: не костыль, не “reconnect пока не повезёт”, а корректная стратегия докорма Ogg-FLAC в streaming режиме, согласованная с моделью `micro-flac decode()` (`NEED_MORE_DATA` + `bytes_consumed`). 
