@@ -1,0 +1,92 @@
+# ТЗ (Instruction 10): FIX компиляции после Instruction 9 (Log62)
+
+Репо: `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3`  
+Лог компиляции: `https://github.com/ChillPulse/Info-spravka/blob/main/Log62`   
+Последний коммит с багом: `aafad51` (WEB-FLAC… Log61)   
+
+## 0) РЕЖИМ РАБОТЫ (как обычно)
+Работа **только в main**, без побочных задач.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+git remote -v
+```
+
+## 1) SCOPE / ЗАПРЕТЫ
+Разрешено менять **только**:
+- `yoRadio/src/audioI2S/Audio.cpp`
+
+Запрещено:
+- трогать SD режим
+- трогать любые web-кодеки кроме целевого фикса компиляции
+- делать “рефакторинг”, форматирование всего файла, переносы функций и т.п.
+
+Цель этого задания: **только починить компиляцию** (Log62). Функционал WEB-FLAC из Instruction 9 не откатывать.
+
+## 2) ROOT CAUSE (уже подтверждено)
+В `Audio.cpp` после завершения функции `bool Audio::omnia_aacSeekMs(uint32_t ms)` случайно оказался пришитый хвост кода, начинающийся строкой:
+
+```
+ize : m_audioFileSize);
+```
+
+(именно эта строка фигурирует в диффе коммита и в первой ошибке компиляции). 
+
+Эта строка и последующий блок находятся **вне функции**, поэтому:
+- `sec`, `ms`, `start`, `endPos` “не объявлены”
+- `if/while` в глобальной области дают `expected unqualified-id`
+- начинается лавина ошибок (Log62).
+
+## 3) FIX (точно что сделать)
+
+### 3.1 Найти место вставки
+В `yoRadio/src/audioI2S/Audio.cpp` выполнить поиск по строке:
+
+- `ize : m_audioFileSize);`
+
+или по началу ломаного блока:
+
+- `uint32_t basePos = m_aacSecOff[sec];`
+
+### 3.2 Удалить весь “пришитый хвост”
+Удалить **полностью** блок, который начинается с:
+
+- `ize : m_audioFileSize);`
+
+и продолжается строками вида:
+
+- `uint32_t basePos = ...`
+- `File *f = m_aacIdxFileSeek ? ...`
+- `while(curSamples < targetSamples) { ... }`
+- `return setFilePos(curPos);`
+- и заканчивается лишними `}`
+
+Важно:
+- В файле должна остаться **ровно одна** реализация `bool Audio::omnia_aacSeekMs(uint32_t ms)` — та, которая **корректно начинается** с `bool Audio::omnia_aacSeekMs(uint32_t ms){` и **корректно завершается** своим `}`.
+- После удаления хвоста **не должно быть** никаких “кусочков” кода AAC seek, которые не внутри функции.
+
+Это не функциональная правка AAC — это устранение мусора, который ломает сборку.
+
+## 4) CHECK перед коммитом
+
+### 4.1 Локальная проверка (обязательная)
+- Arduino IDE 1.8.19 / esp32 core 3.3.0: проект должен **собираться без ошибок**.
+
+### 4.2 Git check
+```bash
+git diff --name-only
+```
+Должен показывать **только** `yoRadio/src/audioI2S/Audio.cpp`.
+
+## 5) COMMIT / PUSH
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp
+git commit -m "build: fix stray AAC seek fragment after omnia_aacSeekMs (Log62)"
+git push origin main
+```
+
+В отчёте приложить:
+- `git rev-parse HEAD`
+- коротко: “удалён случайный хвост начиная с `ize : m_audioFileSize);`, сборка проходит”.
