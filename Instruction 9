@@ -1,0 +1,247 @@
+# ТЗ: WEB micro-flac flagship — FINAL FIX по Log61
+
+Репо:
+https://github.com/ChillPulse/Youradio_Omnia_ESP32S3
+
+Лог:
+https://github.com/ChillPulse/Info-spravka/blob/main/Log61
+
+Предыдущее ТЗ:
+https://github.com/ChillPulse/Info-spravka/blob/main/Instruction%208
+
+Upstream codec:
+https://github.com/esphome-libs/micro-flac
+
+========================================================
+0) РЕЖИМ РАБОТЫ
+========================================================
+
+Работа только в main, без побочных задач.
+
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+git remote -v
+
+Разрешенные пути:
+- yoRadio/src/audioI2S/Audio.cpp
+- yoRadio/src/audioI2S/AudioEx.h (только если необходимо)
+- yoRadio/src/audioI2S/micro_flac/** (если нужен точечный фикс)
+
+Запрещено:
+- ломать SD FLAC legacy путь
+- менять MP3/AAC/Opus/Vorbis логику
+- чинить reconnect-штормами вместо root-fix
+
+========================================================
+1) ПОДТВЕРЖДЕННЫЙ СИМПТОМ (Log61)
+========================================================
+
+- microflac WEB activated: есть
+- microflac HEADER_READY: есть
+- microflac SUCCESS: нет или почти нет
+- в динамике тишина, остальные кодеки играют
+
+Значит проблема в glue-пайплайне WEB FLAC после header, а не в детекте формата.
+
+========================================================
+2) ROOT-CAUSES (ЗАКРЫТЬ ВСЕ)
+========================================================
+
+R1. Feed окна в web режиме часто недостаточно, чтобы дойти до первого frame SUCCESS.
+R2. decode вызывается на обрезках Ogg страницы/пакета и зацикливается на NEED_MORE.
+R3. 32-bit source FLAC в web режиме режется guard-ами 8/16/24.
+R4. Неполная дисциплина progress/reset после серии soft-ошибок.
+
+========================================================
+3) ОСНОВНОЙ FIX A: OGG PAGE-AWARE FEED В Audio.cpp
+========================================================
+
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+Сделать helper (static):
+- проверить сигнатуру OggS
+- если доступно >= 27 байт, прочитать page_segments
+- если доступно >= 27 + seg_count, посчитать page_total:
+  27 + seg_count + sum(lacing values)
+- вернуть true + page_total только если все безопасно по границам
+
+В ветке playAudioData()/sendBytes для m_codec==CODEC_FLAC && m_mf_active:
+
+1) filled = InBuff.bufferFilled(), rp = InBuff.getReadPtr()
+2) если rp начинается с OggS и page_total вычислен:
+   - если page_total > текущего maxBlockSize:
+     grow block до min(page_total, MF_WEB_BLOCK_MAX)
+     и синхронно обновить m_mf_webBlock / m_mf_feedCap
+   - если filled < page_total:
+     не вызывать sendBytes в этом тике (ждать докачки)
+     без reconnect и без skip-костылей
+
+Цель: декодер получает полноценные страницы и выходит в SUCCESS.
+
+Важно:
+- Любая индексация только с проверкой размеров.
+- Не читать за пределом read window.
+
+========================================================
+4) ОСНОВНОЙ FIX B: ДОПУСТИТЬ 32-bit WEB FLAC SOURCE
+========================================================
+
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+4.1 setBitsPerSample(int bits)
+- добавить bits==32 как валидный source
+- output оставить 16-bit (как для 24-bit):
+  m_sourceBitsPerSample=32, m_bitsPerSample=16
+
+4.2 заменить guard-ы вида:
+source bits must be 8/16/24
+на:
+8/16/24/32
+
+Проверить минимум в двух местах:
+- setDecoderItems()/общая инициализация
+- microflac HEADER_READY ветка
+
+========================================================
+5) ОСНОВНОЙ FIX C: PROGRESS И SOFT-ERROR DISCIPLINE
+========================================================
+
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+- Когда bytes_consumed>0 или SUCCESS: обновлять m_mf_lastProgressMs
+- На SUCCESS: сбрасывать zero-consume и softErr counters
+- На серии soft errors в окне 10s выше лимита:
+  stallReconnect("mfSoftErrBurst")
+- При latched/повторной ошибке обязательно делать g_mf.reset() перед новым циклом
+
+Запрещено:
+- бесконечный loop одинаковых ошибок без reset
+- perpetual skip 1 byte без смены состояния
+
+========================================================
+6) ЛОГИ ДЛЯ ВЕРИФИКАЦИИ
+========================================================
+
+Оставить (rate-limited):
+- microflac WEB activated: block=... resBuff=... feedCap=...
+- microflac HEADER_READY sr=... ch=... bps=... max_blk=...
+- microflac SUCCESS samples=... bps=...
+
+Добавить новые диагностические:
+- microflac ogg page total=%u grow block %u->%u filled=%u
+- microflac wait full ogg page %u/%u
+
+PASS признак:
+- после HEADER_READY в 1-3 сек появляется SUCCESS и слышен звук
+
+========================================================
+7) ТЕСТ-МАТРИЦА НА ЖЕЛЕЗЕ
+========================================================
+
+WEB FLAC:
+1) https://stream.radioparadise.com/mellow-flac
+2) http://89.223.45.5:8000/indigo-flac
+3) https://streams.radiomast.io/ref-lossless-ogg-flac-stereo
+
+Регрессия:
+1) MP3 stream
+2) AAC stream
+3) Opus/Vorbis stream
+
+Сценарии:
+- cold start сразу на FLAC
+- MP3 -> FLAC -> Opus -> FLAC
+- 10+ минут непрерывного FLAC
+
+Критерии PASS:
+- звук есть на легком и тяжелом FLAC
+- SUCCESS идет регулярно
+- нет ребутов/гуру/WDT
+- другие форматы без деградации
+
+========================================================
+8) PRE-COMMIT CHECK
+========================================================
+
+1) git diff --name-only: только разрешенные пути
+2) нет правок SD FLAC legacy
+3) Ogg page helper безопасен по границам
+4) guards 8/16/24/32 реально обновлены
+5) есть лог SUCCESS в процессе проигрывания
+
+========================================================
+9) COMMIT
+========================================================
+
+git add -A
+git commit -m "WEB-FLAC: ogg page-aware feed + 32-bit source support + progress stability (Log61)"
+git push origin main
+
+В отчете приложить:
+- git remote -v
+- git rev-parse HEAD
+- git ls-remote origin refs/heads/main
+- коротко по пунктам R1-R4: чем закрыто
+
+========================================================
+10) МИКРО-DIFF ЧЕКЛИСТ (БЕЗ ИМПРОВИЗАЦИИ)
+========================================================
+
+Файл: yoRadio/src/audioI2S/Audio.cpp
+
+10.1 Добавить helper рядом с microflac утилитами:
+
+static bool mf_parse_ogg_page_total(const uint8_t* p, size_t n, size_t* out_total) {
+    if (!p || !out_total || n < 27) return false;
+    if (!(p[0]=='O' && p[1]=='g' && p[2]=='g' && p[3]=='S')) return false;
+    const uint8_t segs = p[26];
+    const size_t hdr = 27 + (size_t)segs;
+    if (n < hdr) return false;
+    size_t body = 0;
+    for (size_t i = 0; i < segs; ++i) body += p[27 + i];
+    const size_t total = hdr + body;
+    if (total > n) return false;
+    *out_total = total;
+    return true;
+}
+
+10.2 В playAudioData() в ветке (m_codec == CODEC_FLAC && m_mf_active):
+- До sendBytes() получить:
+  filled = InBuff.bufferFilled();
+  rp = InBuff.getReadPtr();
+  curBlock = InBuff.getMaxBlockSize();
+- Если mf_parse_ogg_page_total(rp, filled, &pageTotal):
+  1) если pageTotal > curBlock:
+     newBlock = min(pageTotal, (size_t)MF_WEB_BLOCK_MAX);
+     InBuff.changeMaxBlockSize((uint16_t)newBlock);
+     m_mf_webBlock = (uint16_t)newBlock;
+     m_mf_feedCap = (uint16_t)newBlock;
+     AUDIO_INFO("microflac ogg page total=%u grow block %u->%u filled=%u", ...);
+  2) если filled < pageTotal:
+     rate-limited AUDIO_INFO("microflac wait full ogg page %u/%u", ...);
+     return; // ждать докачки, sendBytes НЕ звать
+
+10.3 В setBitsPerSample(int bits):
+- Добавить ветку bits == 32:
+  m_sourceBitsPerSample = 32;
+  m_bitsPerSample = 16;
+  return true;
+
+10.4 Валидации source bits (найти все сравнения):
+- Было: 8/16/24
+- Стало: 8/16/24/32
+- Обязательно в microflac HEADER_READY path и в общей инициализации декодера.
+
+10.5 Soft-error discipline:
+- В error path после HEADER_READY:
+  при повторяемых ошибках вызывать g_mf.reset() до следующего decode цикла.
+- Если soft errors > MF_WEB_ERR_SOFT_LIMIT в MF_WEB_SOFT_WINDOW_MS:
+  stallReconnect("mfSoftErrBurst");
+  return;
+
+10.6 Ничего не менять в:
+- flac_decoder/flac_decoder.* (legacy SD)
+- mp3/aac/opus/vorbis decode ветках
+
+Статус "готово" говорить только после совпадения local HEAD и origin/main.
