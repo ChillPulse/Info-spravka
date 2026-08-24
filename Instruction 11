@@ -1,0 +1,228 @@
+# Instruction 10 — ЖЕЛЕЗНОЕ ТЗ агенту (без импровизаций): WEB-FLAC (micro-flac) должен дать `SUCCESS` и звук / Log63
+
+Репо: `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3`  
+Лог (проблема “HEADER_READY есть, SUCCESS нет, тишина”): `https://github.com/ChillPulse/Info-spravka/blob/main/Log63`   
+Критический факт из Log63: **активация microflac идёт с `block=32768` и дальше есть `HEADER_READY`, но нет ни одной строки `microflac SUCCESS`**. 
+
+---
+
+## 0) РЕГЛАМЕНТ (как в Instruction 6)
+
+Работа **строго в `main`**, пуш в `origin/main`.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+git remote -v   # URL без token@
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ (обязательно)
+
+### РАЗРЕШЕНО менять ТОЛЬКО
+- `yoRadio/src/audioI2S/Audio.cpp`
+
+### ЗАПРЕЩЕНО менять
+- Любые декодеры/логика MP3/AAC/OPUS/VORBIS web-режима
+- SD режим целиком (в т.ч. legacy `flac_decoder/*`)
+- `micro_flac/**` и `micro_ogg/**` (в этом задании кодек НЕ трогаем)
+- Рефакторинг/форматирование всего файла/перенос функций/«наведение красоты»
+
+Цель этой инструкции: **только добиться, чтобы WEB-FLAC реально начал возвращать `microflac SUCCESS` и появился звук.**
+
+---
+
+## 2) Acceptance-тесты (обязательны; без них не коммитить)
+
+Тест-станции (минимум, повторяем Log63):
+
+- A) `https://transliacija.audiomastering.lt/pure` (Ogg-FLAC) — в Log63 есть `HEADER_READY`, но нет `SUCCESS`.   
+- B) `https://isekoi-radio.com/listen/chill/radio.flac` (фактически тоже Ogg/FLAC по логу)   
+- C) `https://retro.dancewave.online/retrodance.flac.ogg.m3u` (Ogg-FLAC)   
+
+Критерий PASS для каждой станции:
+1) В Serial есть `microflac HEADER_READY ...`
+2) **В течение 1–3 секунд после HEADER_READY появляется `microflac SUCCESS samples=...`**
+3) В наушниках **есть звук ≥15 секунд**, без ручного переключения станции и без авто-reconnect
+
+Регрессия (обязательно):
+- Любой MP3 webstream
+- Любой AAC webstream
+- Любой OPUS/VORBIS webstream  
+Должны играть как до изменений.
+
+SD regression:
+- SD FLAC (legacy) / SD MP3 — как раньше.
+
+---
+
+## 3) Диагноз (фиксируем конкретную причину из Log63)
+
+Сейчас в `Audio.cpp` константа:
+
+```cpp
+constexpr uint16_t  MF_WEB_BLOCK_DEFAULT = 32768;
+```
+
+
+
+И это подтверждено логом:
+`microflac WEB activated: block=32768 resBuff=65535 feedCap=32768` 
+
+**Решение этого задания:** для WEB-FLAC в microflac-пути давать декодеру максимально возможное окно **до residual 65535**, потому что `AudioBuffer` в проекте имеет residual по умолчанию `UINT16_MAX` (65535) и clamp уже предусмотрен. 
+
+---
+
+## 4) ШАГ A (P0): поднять окно feed для WEB micro-flac до 65535 (строго 1 правка)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+### A1) Найти блок “Omnia flagship: micro-flac WEB tuning”
+В самом начале файла, рядом с:
+
+```cpp
+// --- Omnia flagship: micro-flac WEB tuning ---
+constexpr uint16_t  MF_WEB_BLOCK_DEFAULT = 32768;
+constexpr uint16_t  MF_WEB_BLOCK_MAX = 65535;
+```
+
+
+
+### A2) Заменить ТОЛЬКО MF_WEB_BLOCK_DEFAULT
+Сделать ровно так:
+
+```cpp
+// --- Omnia flagship: micro-flac WEB tuning ---
+// Log63: HEADER_READY есть, но нет SUCCESS при block=32768 → кормим micro-flac всем доступным residual окном
+constexpr uint16_t  MF_WEB_BLOCK_DEFAULT = 65535; // <= InBuff residual (AudioBuffer m_resBuffSize = UINT16_MAX)
+constexpr uint16_t  MF_WEB_BLOCK_MAX = 65535;
+```
+
+Никаких других “улучшений” рядом не делать.
+
+### A3) Ожидаемое изменение в логах (после прошивки)
+Должно стать:
+`microflac WEB activated: block=65535 resBuff=65535 feedCap=65535`  
+(вместо block=32768) 
+
+---
+
+## 5) ШАГ B (P0): убрать legacy `findNextSync()` ТОЛЬКО для WEB-FLAC (чтобы не ломать native FLAC и не зависеть от syncword)
+
+Сейчас `sendBytes()` при `!m_f_playing` делает `findNextSync()` для всех кодеков.   
+Для WEB-FLAC это **не нужно**: micro-flac сам определяет контейнер по первым 4 байтам (`"OggS"` или `"fLaC"`). Это прямо в описании API micro-flac. 
+
+### B1) В `Audio::sendBytes()` добавить спец-ветку ДО `findNextSync()`
+Файл: `Audio.cpp`, функция:
+
+```cpp
+int Audio::sendBytes(uint8_t* data, size_t len)
+```
+
+Найти блок:
+
+```cpp
+if(!m_f_playing) {
+    ...
+    m_sbyt.nextSync = findNextSync(data, len);
+    ...
+}
+```
+
+
+
+Вставить **строго перед** строкой `m_sbyt.nextSync = findNextSync(...)` следующий код:
+
+```cpp
+// OMNIA-PATCH Log63: WEB-FLAC (micro-flac) не должен проходить через legacy syncword scan.
+// micro-flac сам детектит "OggS"/"fLaC"; legacy findNextSync может выкинуть fLaC metadata.
+if (m_codec == CODEC_FLAC && (m_dataMode == AUDIO_DATA || m_streamType == ST_WEBFILE)) {
+    m_sbyt.nextSync = 0;
+    m_f_playing = true;
+    // не возвращаем; продолжаем в micro-flac decode path
+} else {
+    m_sbyt.nextSync = findNextSync(data, len);
+    if(m_sbyt.nextSync <  0) return len;
+    if(m_sbyt.nextSync == 0) { m_f_playing = true; }
+    if(m_sbyt.nextSync >  0) {
+        if(m_lastGoodDecodeMs) m_resyncSkipCnt++;
+        return m_sbyt.nextSync;
+    }
+}
+```
+
+Важно:
+- Логику для остальных кодеков оставить 1:1 как была (внутри `else`).
+
+---
+
+## 6) ШАГ C (P0): добавить ОДИН лог, чтобы увидеть “NEED_MORE с прогрессом” (иначе Log63 слепой)
+
+В Log63 **нет** строк `microflac NEED_MORE...`, потому что текущий лог печатается только при `bytes_consumed==0`.   
+Но micro-flac может возвращать `NEED_MORE_DATA` **с bytes_consumed > 0** — это нормальный режим стриминга. 
+
+### C1) В microflac decode loop залогировать NEED_MORE при `bytes_consumed > 0` (rate-limited)
+Файл: `Audio.cpp`, внутри `sendBytes()` в microflac ветке, где уже есть:
+
+```cpp
+if(mf_res == micro_flac::FLAC_DECODER_NEED_MORE_DATA){
+    if(bytes_consumed == 0){
+        ... existing log ...
+    }
+}
+```
+
+
+
+Добавить сразу после существующего `if(bytes_consumed == 0){...}` ещё один блок:
+
+```cpp
+// OMNIA-PATCH Log63: NEED_MORE может быть с прогрессом (bytes_consumed>0), но без PCM.
+// Логируем редко, чтобы видеть что декодер реально движется.
+if(bytes_consumed > 0 && samples_decoded == 0){
+    static uint32_t s_needMoreProgMs = 0;
+    if(millis() - s_needMoreProgMs > 700){
+        s_needMoreProgMs = millis();
+        AUDIO_INFO("microflac NEED_MORE(progress) cons=%u total_cons=%u left=%u filled=%u header=%u",
+                   (unsigned)bytes_consumed, (unsigned)total_consumed, (unsigned)left,
+                   (unsigned)InBuff.bufferFilled(), (unsigned)m_mf_header_ready);
+    }
+}
+```
+
+Это НЕ “дебаг ради дебага”: это нужно, чтобы после увеличения окна до 65535 было видно, что декод реально идёт и не стоит на месте.
+
+---
+
+## 7) Сборка: обязательная проверка “что изменился только Audio.cpp”
+
+```bash
+git diff --name-only
+```
+
+Должно показать **только**:
+- `yoRadio/src/audioI2S/Audio.cpp`
+
+Далее компиляция в Arduino IDE 1.8.19 (core 3.3.0) без ошибок.
+
+---
+
+## 8) Коммит / Push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp
+git commit -m "fix(flac): web micro-flac feed window 64K + bypass legacy sync scan (Log63 silence)"
+git push origin main
+```
+
+---
+
+## 9) Что я ожидаю увидеть в НОВОМ логе после прошивки
+
+1) `microflac WEB activated: block=65535 resBuff=65535 feedCap=65535` (а не 32768)   
+2) `microflac HEADER_READY ...` как и раньше   
+3) Затем либо:
+   - `microflac SUCCESS samples=...` (идеально),   
+   - либо хотя бы `microflac NEED_MORE(progress) ...` (значит декодер реально ест поток и двигается к первому фрейму).
