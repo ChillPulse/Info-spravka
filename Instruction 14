@@ -1,0 +1,302 @@
+Ниже — **Instruction 14** в стиле Instruction 6: максимально жёсткое, без “улучшайзинга”, с конкретными файлами/вставками и понятными acceptance-критериями.
+
+Основание: в Log66 снова видно **`microflac err -14 (OGG_DEMUX)`**, затем попытки “re-lock/reconnect”, а местами — **Guru Meditation (LoadProhibited)**.   
+Также по текущему `Audio.cpp` в main видно, что **`AudioBuffer::getReadPtr()` всё ещё делает memcpy в residual “с головы буфера” без проверки wrap-around**, что может подмешивать невалидные байты в поток (для Ogg это смертельно).   
+Плюс в web microflac-хедере всё ещё стоит запрет на source bps кроме 8/16/24 (32-bit всё ещё будет стопаться). 
+
+---
+
+## Instruction 14 — WEB-FLAC: диагностируем причину OGG_DEMUX + устраняем источник порчи входных данных (ring/residual) + разрешаем 32-bit source
+
+Репо: `ChillPulse/Youradio_Omnia_ESP32S3`  
+Лог проблемы: `Info-spravka/Log66`  
+Цель:  
+1) Убрать подмешивание мусора в поток на границе кольца (чтобы Ogg demux перестал рушиться).  
+2) Добавить **железные диагностические поля**: какой именно `micro_ogg::OggDemuxResult` скрывается за `FLAC_DECODER_ERROR_OGG_DEMUX (-14)`.  
+3) Не ломать: web MP3/AAC/OPUS/VORBIS и SD-режим.
+
+---
+
+# 0) РЕГЛАМЕНТ (строго)
+
+Работа строго в `main`, push в `origin/main`.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+# 1) SCOPE / ЗАПРЕТЫ
+
+## Разрешено менять ТОЛЬКО эти файлы
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+3) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+4) `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h`
+5) `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp`
+
+## Запрещено
+- Любые изменения SD-логики/SD-FLAC legacy (`audioI2S/flac_decoder/*` и SD ветки в `sendBytes()`).
+- Любые изменения декодеров MP3/AAC/OPUS/VORBIS.
+- Любые “рефакторы”, форматирование всего файла, переименования, переносы функций.
+
+---
+
+# 2) P0 FIX (обязательный): исправить `AudioBuffer::getReadPtr()` — копировать в residual только при wrap-around и только реально записанные байты
+
+**Почему:** сейчас `getReadPtr()` копирует `copy = maxBlockSize - tail_len` байт из `m_buffer.get()` даже когда **wrap-around отсутствует**, то есть копирует “мусор”/невалидные байты. Для Ogg это приводит к `OGG_DEMUX` и всем вашим симптомам. 
+
+## Что сделать
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Найти функцию:
+
+```cpp
+uint8_t* AudioBuffer::getReadPtr() {
+    int32_t len = m_endPtr - m_readPtr;
+    if(len < m_maxBlockSize) {
+        size_t copy = m_maxBlockSize - len;
+        if(copy > m_resBuffSize) copy = m_resBuffSize;
+        memcpy(m_endPtr, m_buffer.get(), copy);
+    }
+    return m_readPtr;
+}
+```
+
+**Заменить полностью на этот код (вставить 1:1, без изменений):**
+
+```cpp
+uint8_t* AudioBuffer::getReadPtr() {
+    int32_t tail_len = m_endPtr - m_readPtr;
+
+    // Copy into residual tail ONLY if:
+    //  1) we need it (tail < maxBlockSize)
+    //  2) ring buffer is wrapped (readPtr > writePtr), i.e. valid data continues at buffer start
+    if (tail_len < (int32_t)m_maxBlockSize && m_readPtr > m_writePtr) {
+
+        size_t need = (size_t)m_maxBlockSize - (size_t)tail_len;
+
+        // Only copy bytes that are actually written at the start of the ring buffer
+        size_t avail_start = (size_t)(m_writePtr - m_buffer.get());
+
+        size_t copy = need;
+        if (copy > avail_start) copy = avail_start;
+        if (copy > m_resBuffSize) copy = m_resBuffSize;
+
+        if (copy > 0) {
+            memcpy(m_endPtr, m_buffer.get(), copy);
+        }
+    }
+    return m_readPtr;
+}
+```
+
+---
+
+# 3) P0 DIAG: добавить «развёртку» причины `OGG_DEMUX` (какой именно OggDemuxResult/serial/seq)
+
+Сейчас в логе вы видите только `microflac err -14 (OGG_DEMUX)`  — этого недостаточно. Нам нужно вывести **внутренний `micro_ogg::OggDemuxResult`** (например `OGG_STREAM_SEQUENCE_ERROR`, `OGG_STREAM_SERIAL_MISMATCH`, `OGG_INVALID_CAPTURE`, `OGG_ALLOCATION_FAILED`, и т.д.). Эти коды определены в `ogg_demuxer.h`. 
+
+## 3.1) micro_ogg: хранить last_result + last_header и дать геттеры
+
+### Файл: `.../micro_ogg/ogg_demuxer.h`
+1) В классе `OggDemuxer` (public) **добавить**:
+
+```cpp
+// Diagnostics: last demux result and last parsed page header
+OggDemuxResult get_last_result() const { return last_result_; }
+bool has_last_header() const { return last_header_valid_; }
+OggPageHeader get_last_header() const { return last_header_; }
+```
+
+2) В private секции **добавить поля**:
+
+```cpp
+OggDemuxResult last_result_ = OGG_OK;
+OggPageHeader  last_header_{};
+bool           last_header_valid_ = false;
+```
+
+### Файл: `.../micro_ogg/ogg_demuxer.cpp`
+Внутри `OggDemuxer::parse_page_header(...)`:
+- когда заголовок успешно распарсен (перед `return OGG_OK;`) **добавить**:
+
+```cpp
+this->last_header_ = header;
+this->last_header_valid_ = true;
+```
+
+Внутри `OggDemuxer::get_next_data(...)`:
+- перед каждым `return state;` (или в одном общем месте перед возвратом) **обновлять**:
+
+```cpp
+this->last_result_ = state.result;
+```
+
+(Сделать так, чтобы `last_result_` отражал то, что реально вернулось наружу.)
+
+---
+
+## 3.2) micro_flac: пробросить last_ogg_result/serial/seq наружу (чтобы Audio.cpp мог логировать)
+
+### Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+В класс `micro_flac::FLACDecoder` добавить public геттеры:
+
+```cpp
+int8_t   get_last_ogg_result() const { return last_ogg_result_; }
+uint32_t get_last_ogg_serial() const { return last_ogg_serial_; }
+uint32_t get_last_ogg_sequence() const { return last_ogg_sequence_; }
+uint8_t  get_last_ogg_header_type() const { return last_ogg_header_type_; }
+uint8_t  get_last_ogg_segment_count() const { return last_ogg_segment_count_; }
+```
+
+И добавить private поля:
+
+```cpp
+int8_t   last_ogg_result_ = 0;
+uint32_t last_ogg_serial_ = 0;
+uint32_t last_ogg_sequence_ = 0;
+uint8_t  last_ogg_header_type_ = 0;
+uint8_t  last_ogg_segment_count_ = 0;
+```
+
+### Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+Внутри `decode_ogg(...)` **после** получения `state`:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(...);
+```
+
+Сразу после этого добавить обновление диагностических полей (если header валиден):
+
+```cpp
+this->last_ogg_result_ = (int8_t)state.result;
+if (this->ogg_demuxer_->has_last_header()) {
+    auto h = this->ogg_demuxer_->get_last_header();
+    this->last_ogg_serial_ = h.stream_serial;
+    this->last_ogg_sequence_ = h.page_sequence;
+    this->last_ogg_header_type_ = h.header_type;
+    this->last_ogg_segment_count_ = h.segment_count;
+}
+```
+
+---
+
+## 3.3) Audio.cpp: печатать расширенную диагностику при `mf_res == -14`
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Внутри web microflac decode loop (в `sendBytes()`, в error path где уже есть лог):
+
+```cpp
+AUDIO_ERROR("microflac err %d (%s) cons=%u left=%u header=%u out=%u", ...)
+```
+
+Сразу после него добавить **дополнительный лог только для `mf_res == -14`** (rate-limited тем же окном, можно под тем же `if(s_errLogCnt < 5)`):
+
+```cpp
+if ((int)mf_res == -14) {
+    uint32_t rp = InBuff.getReadPos();
+    uint32_t wp = InBuff.getWritePos();
+    uint32_t filled = (uint32_t)InBuff.bufferFilled();
+    uint32_t maxAvail = (uint32_t)InBuff.getMaxAvailableBytes();
+    uint32_t maxBlk = (uint32_t)InBuff.getMaxBlockSize();
+
+    // first 8 bytes at current pointer (safe even if short)
+    uint8_t b0 = (left > 0) ? p[0] : 0;
+    uint8_t b1 = (left > 1) ? p[1] : 0;
+    uint8_t b2 = (left > 2) ? p[2] : 0;
+    uint8_t b3 = (left > 3) ? p[3] : 0;
+
+    AUDIO_ERROR("microflac OGG_DIAG ogg_res=%d serial=%lu seq=%lu htype=%u segs=%u rp=%lu wp=%lu filled=%lu maxAvail=%lu maxBlk=%lu head=%02X %02X %02X %02X",
+        (int)g_mf.get_last_ogg_result(),
+        (unsigned long)g_mf.get_last_ogg_serial(),
+        (unsigned long)g_mf.get_last_ogg_sequence(),
+        (unsigned)g_mf.get_last_ogg_header_type(),
+        (unsigned)g_mf.get_last_ogg_segment_count(),
+        (unsigned long)rp, (unsigned long)wp, (unsigned long)filled,
+        (unsigned long)maxAvail, (unsigned long)maxBlk,
+        b0, b1, b2, b3
+    );
+}
+```
+
+---
+
+# 4) P0 FIX: разрешить 32-bit source в WEB microflac header-ветке (сейчас всё ещё запрещено)
+
+Сейчас в `Audio.cpp` после `HEADER_READY` стоит:
+
+`Bits per sample must be 8/16/24` и делается `stopSong()`. 
+
+## Что сделать
+В том блоке заменить проверку:
+
+```cpp
+if(m_sourceBitsPerSample != 8 && m_sourceBitsPerSample != 16 && m_sourceBitsPerSample != 24) {
+```
+
+на:
+
+```cpp
+if(m_sourceBitsPerSample != 8 && m_sourceBitsPerSample != 16 && m_sourceBitsPerSample != 24 && m_sourceBitsPerSample != 32) {
+```
+
+И текст ошибки обновить на `8/16/24/32`.
+
+(Никаких других изменений в DSP/I2S/плейлисте.)
+
+---
+
+# 5) Защита от крашей при reconnect (минимальная, без переписывания)
+
+В Log66 есть `Guru Meditation (LoadProhibited)` при закрытии web file после stallReconnect.   
+Сейчас наша задача — **не чинить всю систему reconnect**, а исключить “самострел” при диагностике.
+
+## Что сделать
+Файл `Audio.cpp`, функция `stallReconnect(const char* reason)`:
+
+В самое начало функции добавить guard:
+
+```cpp
+if (m_mf_reconnecting) return false;
+m_mf_reconnecting = true;
+```
+
+А перед `return connecttohost(url.get());` оставить `m_mf_reconnecting = false;` **только если connect не стартует**.  
+(Смысл: не допустить повторного входа в reconnect из параллельных условий.)
+
+Если уже есть похожий guard — **не усложнять**, просто убедиться, что повторный вход невозможен.
+
+---
+
+# 6) BUILD + ограничение diff
+
+## Обязательная проверка
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 5 файлов:
+
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h`
+- `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp`
+
+Компиляция Arduino IDE 1.8.19 + esp32 core 3.3.0 — без ошибок.
+
+---
+
+# 7) COMMIT / PUSH (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h \
+        yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp
+git commit -m "diag+fix(flac): fix AudioBuffer residual wrap copy + expose micro_ogg error details (Log66)"
+git push origin main
