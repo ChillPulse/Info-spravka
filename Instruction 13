@@ -1,0 +1,104 @@
+## ЖЕЛЕЗНОЕ ТЗ агенту (Instruction 12): FIX AudioBuffer residual-copy (иначе Ogg-FLAC никогда не будет стабильным)
+
+Репо: `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3`  
+Лог: `https://github.com/ChillPulse/Info-spravka/blob/main/Log65`  
+Цель: **убрать порчу данных на границе кольцевого буфера**, чтобы micro-ogg перестал падать в `OGG_DEMUX` и чтобы WEB-FLAC наконец дошёл до `microflac SUCCESS` (PCM).
+
+### 0) РЕГЛАМЕНТ
+Только `main`, без веток:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+### 1) SCOPE / ЗАПРЕТЫ
+Разрешено менять **только**:
+- `yoRadio/src/audioI2S/Audio.cpp`
+
+Запрещено:
+- любые изменения в micro-flac / micro-ogg исходниках
+- любые изменения SD режима
+- любые изменения других WEB кодеков/веток
+- рефакторинг/форматирование файла целиком
+
+### 2) ЗАДАЧА (P0): исправить `AudioBuffer::getReadPtr()` — копировать в residual ТОЛЬКО валидные байты
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `uint8_t* AudioBuffer::getReadPtr()`
+
+#### 2.1 Ввести понятие “wrap-around реально есть”
+Wrap есть только когда `m_readPtr > m_writePtr`.
+- Если `m_readPtr < m_writePtr` — данные **не** продолжаются с начала буфера, копировать с начала нельзя.
+
+#### 2.2 Ограничить `copy` доступным количеством байт в начале буфера
+Доступно в начале буфера (когда wrap есть):  
+`avail_start = m_writePtr - m_buffer.get()`
+
+Нужно:
+- `need = m_maxBlockSize - tail_len`
+- `copy = min(need, avail_start)`
+- и как раньше `copy = min(copy, m_resBuffSize)` (на всякий)
+
+#### 2.3 Готовый “вставить как есть” патч функции
+
+Заменить тело `getReadPtr()` на **строго** этот код (без отсебятины):
+
+```cpp
+uint8_t* AudioBuffer::getReadPtr() {
+    int32_t tail_len = m_endPtr - m_readPtr;
+
+    // Copy into residual tail ONLY if:
+    //  1) we need it (tail < maxBlockSize)
+    //  2) ring buffer is wrapped (readPtr > writePtr), i.e. valid data continues at buffer start
+    if (tail_len < (int32_t)m_maxBlockSize && m_readPtr > m_writePtr) {
+
+        size_t need = (size_t)m_maxBlockSize - (size_t)tail_len;
+
+        // Only copy bytes that are actually written at the start of the ring buffer
+        size_t avail_start = (size_t)(m_writePtr - m_buffer.get());
+
+        size_t copy = need;
+        if (copy > avail_start) copy = avail_start;
+        if (copy > m_resBuffSize) copy = m_resBuffSize;
+
+        if (copy > 0) {
+            memcpy(m_endPtr, m_buffer.get(), copy);
+        }
+    }
+    return m_readPtr;
+}
+```
+
+**Важно:**  
+- Никаких логов, никаких дополнительных условий, никаких “давай ещё вот тут поправим” — только это.
+- Смысл: residual-склейка должна копировать **только реальный хвост**, иначе вы кормите декодеры мусором.
+
+### 3) BUILD CHECK (обязательный)
+- Проект должен компилироваться (Arduino IDE 1.8.19 + esp32 core 3.3.0).
+
+Проверка diff:
+
+```bash
+git diff --name-only
+```
+
+Должно быть **только**:
+- `yoRadio/src/audioI2S/Audio.cpp`
+
+### 4) COMMIT / PUSH
+1 коммит:
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp
+git commit -m "fix(buffer): residual copy in getReadPtr only when wrapped and only written bytes"
+git push origin main
+```
+
+### 5) Acceptance (что я проверю на железе после прошивки)
+На тех же FLAC-станциях:
+
+- В логах **не должно** появляться `microflac err -14 (OGG_DEMUX)` сразу после `HEADER_READY` как в Log65   
+- Не должно быть Guru Meditation / ребутов
+- Должен появиться `microflac SUCCESS samples=...` и пойти звук
