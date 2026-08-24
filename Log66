@@ -1,0 +1,1659 @@
+19:02:53.531 -> Build:Mar 27 2021
+19:02:53.531 -> rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+19:02:53.531 -> SPIWP:0xee
+19:02:53.531 -> mode:DIO, clock div:1
+19:02:53.531 -> load:0x3fce2820,len:0x116c
+19:02:53.531 -> load:0x403c8700,len:0xc2c
+19:02:53.531 -> load:0x403cb700,len:0x3108
+19:02:53.531 -> entry 0x403c88b8
+19:02:53.945 -> ##[BOOT]#	************************************************
+19:02:53.945 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+19:02:53.945 -> ##[BOOT]#	************************************************
+19:02:53.945 -> ##[BOOT]#	------------------------------------------------
+19:02:53.945 -> ##[BOOT]#	arduino:	10819
+19:02:53.945 -> ##[BOOT]#	compiler:	14.2.0
+19:02:53.945 -> ##[BOOT]#	esp32core:	3.3.6
+19:02:53.945 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+19:02:53.991 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+19:02:53.991 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+19:02:53.991 -> ##[BOOT]#	audioinfo:	false
+19:02:53.991 -> ##[BOOT]#	smartstart:	0
+19:02:53.991 -> ##[BOOT]#	vumeter:	false
+19:02:53.991 -> ##[BOOT]#	softapdelay:	0
+19:02:53.991 -> ##[BOOT]#	flipscreen:	false
+19:02:53.991 -> ##[BOOT]#	invertdisplay:	false
+19:02:53.991 -> ##[BOOT]#	showweather:	false
+19:02:53.991 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+19:02:53.991 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+19:02:54.038 -> ##[BOOT]#	ir:		NONE
+19:02:54.038 -> ##[BOOT]#	SD:		CS-39
+19:02:54.038 -> ##[BOOT]#	battery:	battery ON
+19:02:54.038 -> ##[BOOT]#	------------------------------------------------
+19:02:54.038 -> ##[BOOT]#	CONFIG_VERSION	4
+19:02:54.084 -> ##[BOOT]#	SPIFFS mounted
+19:02:54.316 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+19:02:54.316 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+19:02:54.363 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+19:02:54.363 -> ##[BOOT]#	player.init	done
+19:02:54.409 -> ##[BOOT]#	network.begin
+19:02:54.456 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+19:02:54.456 -> ##[BOOT]#	.....
+19:02:56.501 -> ##[BOOT]#	done
+19:02:56.501 -> ##[BOOT]#	SD search	done
+19:02:56.501 -> ##[BOOT]#	netserver.begin	done
+19:02:56.501 -> ##[BOOT]#	telnet.begin	done
+19:02:56.501 -> ##[BOOT]#
+19:02:56.547 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+19:02:56.547 -> ##[BOOT]#	------------------------------------------------
+19:02:56.547 -> ##[BOOT]#
+19:02:56.547 -> ##CLI.META#: [готов]
+19:03:03.741 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+19:03:03.788 -> ##CLI.META#: [готов]
+19:03:03.788 -> ##CLI.VOL#: 24
+19:03:03.835 -> ##CLI.INFO#
+19:03:03.835 -> ##SYS.DATE#: 1970-01-01T03:00:09+03:00
+19:03:03.835 -> ##CLI.NAMESET#: 288 SECTOR Next (flac)
+19:03:03.882 -> ##CLI.VOL#: 24
+19:03:03.882 -> ##CLI.STOPPED#
+19:03:07.192 -> ##CLI.META#: [соединение]
+19:03:07.238 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+19:03:07.238 -> ##AUDIO.INFO#: buffers freed, free Heap: 169372 bytes
+19:03:07.238 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-mp3"
+19:03:07.284 -> ##AUDIO.INFO#: Connection has been established in 28 ms
+19:03:07.376 -> ##AUDIO.INFO#: format is mp3
+19:03:07.376 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+19:03:07.376 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+19:03:07.376 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+19:03:07.376 -> ##CLI.META#: SECTOR | Next channel
+19:03:07.376 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+19:03:07.376 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:07.376 -> ##CLI.INFO#
+19:03:07.376 -> ##SYS.DATE#: 1970-01-01T03:00:13+03:00
+19:03:07.376 -> ##CLI.NAMESET#: 289 SECTOR Next (mp3)
+19:03:07.423 -> ##CLI.META#: SECTOR | Next channel
+19:03:07.423 -> ##CLI.VOL#: 24
+19:03:07.423 -> ##CLI.PLAYING#
+19:03:07.423 -> ##CLI.META#: SECTOR | Next channel
+19:03:07.563 -> ##AUDIO.INFO#: stream ready
+19:03:07.563 -> ##AUDIO.INFO#: syncword found at pos 390
+19:03:07.563 -> ##AUDIO.INFO#: syncword found at pos 0
+19:03:07.563 -> ##AUDIO.INFO#: MPEG-1 Layer III
+19:03:07.563 -> ##AUDIO.INFO#: Channels: 2
+19:03:07.563 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:07.610 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:07.610 -> ##AUDIO.INFO#: BitRate: 192000
+19:03:07.610 -> ##AUDIO.BITRATE#: 192000
+19:03:07.702 -> ##CLI.META#: SECTOR Hit | MC Hammer - U can't touch this, 1990 [Auckland • USA]
+19:03:13.770 -> ##CLI.META#: [соединение]
+19:03:13.816 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-mp3" (ssl=0)
+19:03:13.816 -> ##AUDIO.INFO#: buffers freed, free Heap: 173624 bytes
+19:03:13.816 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-mp3"
+19:03:13.863 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+19:03:13.910 -> ##AUDIO.INFO#: format is mp3
+19:03:13.910 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+19:03:13.956 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+19:03:13.956 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+19:03:13.956 -> ##CLI.META#: SECTOR | Next channel
+19:03:13.956 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+19:03:13.956 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:13.956 -> ##CLI.INFO#
+19:03:13.956 -> ##SYS.DATE#: 2026-08-24T19:03:13+03:00
+19:03:13.956 -> ##CLI.NAMESET#: 289 SECTOR Next (mp3)
+19:03:13.956 -> ##CLI.META#: SECTOR | Next channel
+19:03:13.956 -> ##CLI.VOL#: 24
+19:03:13.956 -> ##CLI.PLAYING#
+19:03:13.956 -> ##CLI.META#: SECTOR | Next channel
+19:03:14.096 -> ##AUDIO.INFO#: stream ready
+19:03:14.096 -> ##AUDIO.INFO#: syncword found at pos 324
+19:03:14.096 -> ##AUDIO.INFO#: syncword found at pos 0
+19:03:14.096 -> ##AUDIO.INFO#: MPEG-1 Layer III
+19:03:14.096 -> ##AUDIO.INFO#: Channels: 2
+19:03:14.096 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:14.096 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:14.096 -> ##AUDIO.INFO#: BitRate: 192000
+19:03:14.096 -> ##AUDIO.BITRATE#: 192000
+19:03:14.143 -> ##CLI.META#: SECTOR Hit | MC Hammer - U can't touch this, 1990 [Auckland • USA]
+19:03:23.974 -> ##CLI.META#: [соединение]
+19:03:24.112 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-mp3" (ssl=0)
+19:03:24.112 -> ##AUDIO.INFO#: buffers freed, free Heap: 174040 bytes
+19:03:24.112 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-160"
+19:03:24.159 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+19:03:24.621 -> ##AUDIO.INFO#: format is ogg
+19:03:24.621 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+19:03:24.621 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+19:03:24.621 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+19:03:24.621 -> ##CLI.META#: SECTOR | Next channel
+19:03:24.621 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:24.621 -> ##CLI.INFO#
+19:03:24.621 -> ##SYS.DATE#: 2026-08-24T19:03:24+03:00
+19:03:24.668 -> ##CLI.NAMESET#: 287 SECTOR Next 192 (ogg-vorbis)
+19:03:24.668 -> ##CLI.META#: SECTOR | Next channel
+19:03:24.668 -> ##CLI.VOL#: 24
+19:03:24.668 -> ##CLI.PLAYING#
+19:03:24.668 -> ##CLI.META#: SECTOR | Next channel
+19:03:24.807 -> ##AUDIO.INFO#: VORBISDecoder has been initialized
+19:03:24.807 -> ##AUDIO.INFO#: format is vorbis
+19:03:25.178 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:25.178 -> ##AUDIO.INFO#: syncword found at pos 0
+19:03:25.269 -> ##CLI.META#: SECTOR Hit | MC Hammer - U can't touch this, 1990 [Auckland • USA]
+19:03:25.269 -> ##AUDIO.INFO#: Channels: 2
+19:03:25.269 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:25.269 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:25.269 -> ##AUDIO.INFO#: BitRate: 192000
+19:03:25.269 -> ##AUDIO.BITRATE#: 192000
+19:03:26.384 -> ##CLI.META#: [соединение]
+19:03:26.431 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-160" (ssl=0)
+19:03:26.477 -> ##AUDIO.INFO#: buffers freed, free Heap: 174200 bytes
+19:03:26.477 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/geny-mp3"
+19:03:26.477 -> ##AUDIO.INFO#: Connection has been established in 32 ms
+19:03:26.570 -> ##AUDIO.INFO#: format is mp3
+19:03:26.570 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+19:03:26.616 -> ##AUDIO.INFO#: icy-genre: 80s, Pop, Ballade, Eurodance, Rock, Disco, R&B, Rap
+19:03:26.616 -> ##AUDIO.INFO#: icy-name: SECTOR | Geny channel
+19:03:26.616 -> ##CLI.META#: SECTOR | Geny channel
+19:03:26.616 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+19:03:26.616 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:26.616 -> ##CLI.INFO#
+19:03:26.616 -> ##SYS.DATE#: 2026-08-24T19:03:26+03:00
+19:03:26.616 -> ##CLI.NAMESET#: 285 SECTOR Geny (mp3)
+19:03:26.616 -> ##CLI.META#: SECTOR | Geny channel
+19:03:26.616 -> ##CLI.VOL#: 24
+19:03:26.616 -> ##CLI.PLAYING#
+19:03:26.616 -> ##CLI.META#: SECTOR | Geny channel
+19:03:26.847 -> ##AUDIO.INFO#: stream ready
+19:03:26.847 -> ##AUDIO.INFO#: syncword found at pos 588
+19:03:26.847 -> ##AUDIO.INFO#: syncword found at pos 0
+19:03:26.847 -> ##AUDIO.INFO#: MPEG-1 Layer III
+19:03:26.847 -> ##AUDIO.INFO#: Channels: 2
+19:03:26.847 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:26.847 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:26.847 -> ##AUDIO.INFO#: BitRate: 192000
+19:03:26.847 -> ##AUDIO.BITRATE#: 192000
+19:03:26.939 -> ##CLI.META#: SECTOR Hit | Van Halen - Jump, 1984 [ • USA]
+19:03:27.820 -> ##CLI.META#: [соединение]
+19:03:27.866 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/geny-mp3" (ssl=0)
+19:03:27.866 -> ##AUDIO.INFO#: buffers freed, free Heap: 173828 bytes
+19:03:27.913 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-56"
+19:03:27.959 -> ##AUDIO.INFO#: Connection has been established in 50 ms
+19:03:28.421 -> ##AUDIO.INFO#: format is ogg
+19:03:28.421 -> ##AUDIO.INFO#: icy-bitrate : 56000 (b/s)
+19:03:28.421 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+19:03:28.421 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+19:03:28.421 -> ##CLI.META#: SECTOR | Next channel
+19:03:28.421 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:28.421 -> ##CLI.INFO#
+19:03:28.421 -> ##SYS.DATE#: 2026-08-24T19:03:27+03:00
+19:03:28.421 -> ##CLI.NAMESET#: 286 SECTOR Next 56 (ogg-opus)
+19:03:28.421 -> ##CLI.META#: SECTOR | Next channel
+19:03:28.421 -> ##CLI.VOL#: 24
+19:03:28.421 -> ##CLI.PLAYING#
+19:03:28.421 -> ##CLI.META#: SECTOR | Next channel
+19:03:28.651 -> ##AUDIO.INFO#: OPUSDecoder has been initialized
+19:03:28.651 -> ##AUDIO.INFO#: format is opus
+19:03:29.209 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:29.209 -> ##AUDIO.INFO#: syncword found at pos 0
+19:03:29.209 -> ##AUDIO.INFO#: Opus Mode: CELT_ONLY
+19:03:29.209 -> ##AUDIO.INFO#: Channels: 2
+19:03:29.209 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+19:03:29.209 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:29.209 -> ##AUDIO.INFO#: BitRate: 56000
+19:03:29.209 -> ##AUDIO.BITRATE#: 56000
+19:03:30.459 -> ##CLI.META#: [соединение]
+19:03:30.642 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-56" (ssl=0)
+19:03:30.642 -> ##AUDIO.INFO#: buffers freed, free Heap: 174108 bytes
+19:03:30.642 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/geny-flac"
+19:03:30.642 -> ##AUDIO.INFO#: Connection has been established in 27 ms
+19:03:30.967 -> ##AUDIO.INFO#: format is ogg
+19:03:30.967 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+19:03:30.967 -> ##AUDIO.INFO#: icy-genre: 80s, Pop, Ballade, Eurodance, Rock, Disco, R&B, Rap
+19:03:30.967 -> ##AUDIO.INFO#: icy-name: SECTOR | Geny channel
+19:03:30.967 -> ##CLI.META#: SECTOR | Geny channel
+19:03:30.967 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:30.967 -> ##CLI.INFO#
+19:03:30.967 -> ##SYS.DATE#: 2026-08-24T19:03:30+03:00
+19:03:30.967 -> ##CLI.NAMESET#: 284 SECTOR Geny (flac)
+19:03:31.013 -> ##CLI.META#: SECTOR | Geny channel
+19:03:31.013 -> ##CLI.VOL#: 24
+19:03:31.013 -> ##CLI.PLAYING#
+19:03:31.013 -> ##CLI.META#: SECTOR | Geny channel
+19:03:31.152 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:31.152 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:31.522 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:31.522 -> ##AUDIO.INFO#: Channels: 2
+19:03:31.522 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:31.522 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:31.522 -> ##AUDIO.INFO#: BitRate: 1411000
+19:03:31.522 -> ##AUDIO.BITRATE#: 1411000
+19:03:31.522 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:31.522 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=64684
+19:03:31.569 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=152 left=64683 filled=64835 header=1
+19:03:32.265 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=107299 header=1
+19:03:32.958 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=118787 header=1
+19:03:33.698 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=250051 header=1
+19:03:34.392 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=373711 header=1
+19:03:35.086 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=456151 header=1
+19:03:35.782 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=497371 header=1
+19:03:36.479 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=497371 header=1
+19:03:37.219 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=497371 header=1
+19:03:37.916 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=497371 header=1
+19:03:38.608 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=497371 header=1
+19:03:39.302 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64644 total_cons=64644 left=891 filled=497371 header=1
+19:03:39.488 -> ##CLI.META#: [соединение]
+19:03:39.581 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/geny-flac" (ssl=0)
+19:03:39.581 -> ##AUDIO.INFO#: buffers freed, free Heap: 172292 bytes
+19:03:39.581 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:39.953 -> ##AUDIO.INFO#: Connection has been established in 380 ms
+19:03:40.139 -> ##AUDIO.INFO#: format is ogg
+19:03:40.139 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:40.139 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:40.139 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:40.139 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:40.139 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:40.185 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:40.185 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:40.185 -> ##CLI.INFO#
+19:03:40.185 -> ##SYS.DATE#: 2026-08-24T19:03:39+03:00
+19:03:40.185 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+19:03:40.185 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:40.185 -> ##CLI.VOL#: 24
+19:03:40.185 -> ##CLI.PLAYING#
+19:03:40.185 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:40.418 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:40.418 -> ##AUDIO.INFO#: Channels: 2
+19:03:40.418 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:40.418 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:40.418 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:40.418 -> ##AUDIO.BITRATE#: 1441000
+19:03:40.418 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:40.418 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=63793
+19:03:40.464 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=38434 total_cons=38585 left=25359 filled=63944 header=1
+19:03:40.464 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:40.464 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:40.464 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:40.510 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:40.510 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:40.510 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:40.510 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:40.510 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:40.510 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:40.510 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:40.556 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:40.556 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:40.556 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:40.556 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:40.556 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:40.556 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:40.556 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:40.556 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:40.879 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:41.157 -> ##AUDIO.INFO#: buffers freed, free Heap: 174136 bytes
+19:03:41.157 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:41.389 -> ##AUDIO.INFO#: Connection has been established in 228 ms
+19:03:41.621 -> ##AUDIO.INFO#: format is ogg
+19:03:41.621 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:41.621 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:41.621 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:41.621 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:41.621 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:41.667 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:41.946 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:41.946 -> ##AUDIO.INFO#: Channels: 2
+19:03:41.946 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:41.946 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:41.946 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:41.946 -> ##AUDIO.BITRATE#: 1441000
+19:03:41.946 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:41.946 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:03:41.946 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62590 total_cons=62741 left=2794 filled=70604 header=1
+19:03:41.993 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:41.993 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:41.993 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:41.993 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:41.993 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:42.040 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:42.040 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:42.040 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:42.040 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:42.040 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:42.040 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:42.040 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:42.040 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:42.086 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:42.086 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:42.086 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:42.086 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:42.086 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:42.364 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:42.689 -> ##AUDIO.INFO#: buffers freed, free Heap: 173396 bytes
+19:03:42.689 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:42.967 -> ##AUDIO.INFO#: Connection has been established in 258 ms
+19:03:43.153 -> ##AUDIO.INFO#: format is ogg
+19:03:43.153 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:43.153 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:43.153 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:43.153 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:43.199 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:43.199 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:43.477 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:43.477 -> ##AUDIO.INFO#: Channels: 2
+19:03:43.523 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:43.523 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:43.523 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:43.523 -> ##AUDIO.BITRATE#: 1441000
+19:03:43.523 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:43.523 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:03:43.523 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=35378 total_cons=35529 left=30006 filled=69273 header=1
+19:03:43.568 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:43.568 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:43.568 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:43.568 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:43.568 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:43.568 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:43.615 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:43.615 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:43.615 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:43.615 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:43.615 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:43.615 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:43.615 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:43.615 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:43.615 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:43.662 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:43.662 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:43.662 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:43.940 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:43.940 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+19:03:44.032 -> 
+19:03:44.032 -> Core  1 register dump:
+19:03:44.032 -> PC      : 0x4206b012  PS      : 0x00060a30  A0      : 0x820282cf  A1      : 0x3fcebee0  
+19:03:44.032 -> A2      : 0x00000000  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+19:03:44.032 -> A6      : 0x00000000  A7      : 0x3fca1edc  A8      : 0x00000000  A9      : 0x3fcebeb0  
+19:03:44.032 -> A10     : 0x00000000  A11     : 0x3fcebedf  A12     : 0x00000001  A13     : 0x00000009  
+19:03:44.032 -> A14     : 0x00000001  A15     : 0x3fcebebc  SAR     : 0x0000000a  EXCCAUSE: 0x0000001c  
+19:03:44.032 -> EXCVADDR: 0x00000014  LBEG    : 0x40056fc5  LEND    : 0x40056fe7  LCOUNT  : 0x00000000  
+19:03:44.079 -> 
+19:03:44.079 -> 
+19:03:44.079 -> Backtrace: 0x4206b00f:0x3fcebee0 0x420282cc:0x3fcebf00 0x4202884d:0x3fcebf40 0x4206578e:0x3fcebf90 0x4206845f:0x3fcebfc0 0x42076004:0x3fcebfe0 0x40380cc5:0x3fcec000
+19:03:44.079 -> 
+19:03:44.079 -> 
+19:03:44.079 -> 
+19:03:44.079 -> 
+19:03:44.079 -> ELF file SHA256: c6a57130a
+19:03:44.079 -> 
+19:03:44.310 -> Rebooting...
+19:03:44.310 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+19:03:44.310 -> Build:Mar 27 2021
+19:03:44.310 -> rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+19:03:44.310 -> Saved PC:0x421361d4
+19:03:44.310 -> SPIWP:0xee
+19:03:44.310 -> mode:DIO, clock div:1
+19:03:44.310 -> load:0x3fce2820,len:0x116c
+19:03:44.310 -> load:0x403c8700,len:0xc2c
+19:03:44.310 -> load:0x403cb700,len:0x3108
+19:03:44.310 -> entry 0x403c88b8
+19:03:44.727 -> ##[BOOT]#	************************************************
+19:03:44.727 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+19:03:44.727 -> ##[BOOT]#	************************************************
+19:03:44.727 -> ##[BOOT]#	------------------------------------------------
+19:03:44.727 -> ##[BOOT]#	arduino:	10819
+19:03:44.727 -> ##[BOOT]#	compiler:	14.2.0
+19:03:44.727 -> ##[BOOT]#	esp32core:	3.3.6
+19:03:44.727 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+19:03:44.727 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+19:03:44.727 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+19:03:44.727 -> ##[BOOT]#	audioinfo:	false
+19:03:44.774 -> ##[BOOT]#	smartstart:	0
+19:03:44.774 -> ##[BOOT]#	vumeter:	false
+19:03:44.774 -> ##[BOOT]#	softapdelay:	0
+19:03:44.774 -> ##[BOOT]#	flipscreen:	false
+19:03:44.774 -> ##[BOOT]#	invertdisplay:	false
+19:03:44.774 -> ##[BOOT]#	showweather:	false
+19:03:44.774 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+19:03:44.774 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+19:03:44.774 -> ##[BOOT]#	ir:		NONE
+19:03:44.774 -> ##[BOOT]#	SD:		CS-39
+19:03:44.774 -> ##[BOOT]#	battery:	battery ON
+19:03:44.774 -> ##[BOOT]#	------------------------------------------------
+19:03:44.774 -> ##[BOOT]#	CONFIG_VERSION	4
+19:03:44.866 -> ##[BOOT]#	SPIFFS mounted
+19:03:45.098 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+19:03:45.098 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+19:03:45.098 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+19:03:45.098 -> ##[BOOT]#	player.init	done
+19:03:45.145 -> ##[BOOT]#	network.begin
+19:03:45.238 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+19:03:45.238 -> ##[BOOT]#	....
+19:03:46.767 -> ##[BOOT]#	done
+19:03:46.767 -> ##[BOOT]#	SD search	done
+19:03:46.813 -> ##[BOOT]#	netserver.begin	done
+19:03:46.813 -> ##[BOOT]#	telnet.begin	done
+19:03:46.813 -> ##[BOOT]#
+19:03:46.813 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+19:03:46.813 -> ##[BOOT]#	------------------------------------------------
+19:03:46.813 -> ##[BOOT]#
+19:03:46.813 -> ##CLI.META#: [готов]
+19:03:46.905 -> ##CLI.META#: [соединение]
+19:03:46.998 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+19:03:46.998 -> ##AUDIO.INFO#: buffers freed, free Heap: 174828 bytes
+19:03:46.998 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:47.181 -> ##AUDIO.INFO#: Connection has been established in 208 ms
+19:03:47.367 -> ##AUDIO.INFO#: format is ogg
+19:03:47.367 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:47.367 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:47.367 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:47.413 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:47.413 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:47.506 -> ##CLI.INFO#
+19:03:47.506 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+19:03:47.506 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+19:03:47.506 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:47.506 -> ##CLI.VOL#: 24
+19:03:47.506 -> ##CLI.PLAYING#
+19:03:47.506 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:47.552 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:47.552 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:47.784 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:47.784 -> ##AUDIO.INFO#: Channels: 2
+19:03:47.784 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:47.784 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:47.784 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:47.784 -> ##AUDIO.BITRATE#: 1441000
+19:03:47.784 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:47.784 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=63793
+19:03:47.831 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=46984 total_cons=47135 left=16809 filled=63944 header=1
+19:03:47.831 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=63865 header=1 out=1
+19:03:47.831 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=63865 header=1 out=1
+19:03:47.877 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=63865 header=1 out=1
+19:03:47.877 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=63865 header=1 out=1
+19:03:47.877 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=63865 header=1 out=1
+19:03:47.877 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=63865 header=1 out=1
+19:03:47.877 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:47.877 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:47.877 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:47.877 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=63789 header=0 out=1
+19:03:47.924 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=63789 header=0 out=1
+19:03:47.924 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=63789 header=0 out=1
+19:03:47.924 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:47.924 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:47.924 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:47.924 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:47.924 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:47.924 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:48.248 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:48.526 -> ##AUDIO.INFO#: buffers freed, free Heap: 174592 bytes
+19:03:48.526 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:48.805 -> ##AUDIO.INFO#: Connection has been established in 256 ms
+19:03:49.037 -> ##AUDIO.INFO#: format is ogg
+19:03:49.037 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:49.037 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:49.037 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:49.037 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:49.037 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:49.037 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:49.175 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+19:03:49.405 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:49.405 -> ##AUDIO.INFO#: Channels: 2
+19:03:49.405 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:49.405 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:49.405 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:49.405 -> ##AUDIO.BITRATE#: 1441000
+19:03:49.453 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:49.453 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:03:49.453 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=48997 total_cons=49148 left=16387 filled=72560 header=1
+19:03:49.453 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:49.499 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:49.499 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:49.499 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:49.499 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:49.499 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:49.499 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:49.499 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:49.499 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:49.545 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:49.545 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:49.545 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:49.545 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:49.545 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:49.545 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:49.545 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:49.545 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:49.591 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:49.867 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:50.192 -> ##AUDIO.INFO#: buffers freed, free Heap: 174052 bytes
+19:03:50.192 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:50.424 -> ##AUDIO.INFO#: Connection has been established in 243 ms
+19:03:50.609 -> ##AUDIO.INFO#: format is ogg
+19:03:50.655 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:50.655 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:50.655 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:50.655 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:50.655 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:50.655 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:51.026 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:51.026 -> ##AUDIO.INFO#: Channels: 2
+19:03:51.072 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:51.072 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:51.072 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:51.072 -> ##AUDIO.BITRATE#: 1441000
+19:03:51.072 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:51.072 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:03:51.072 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=48514 total_cons=48665 left=16870 filled=75172 header=1
+19:03:51.118 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:51.118 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:51.118 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:51.118 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:51.118 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:51.118 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:51.165 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:51.165 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:51.165 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:51.165 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:51.165 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:51.165 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:51.165 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:51.165 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:51.165 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:51.211 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:51.211 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:51.211 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:51.488 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:51.488 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+19:03:51.534 -> 
+19:03:51.534 -> Core  1 register dump:
+19:03:51.534 -> PC      : 0x4206b012  PS      : 0x00060a30  A0      : 0x820282cf  A1      : 0x3fcebee0  
+19:03:51.581 -> A2      : 0x00000000  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+19:03:51.581 -> A6      : 0x00000000  A7      : 0x3fca1edc  A8      : 0x00000000  A9      : 0x3fcebeb0  
+19:03:51.581 -> A10     : 0x00000000  A11     : 0x3fcebedf  A12     : 0x00000001  A13     : 0x00000009  
+19:03:51.581 -> A14     : 0x00000001  A15     : 0x3fcebebc  SAR     : 0x0000000c  EXCCAUSE: 0x0000001c  
+19:03:51.581 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f5c  LEND    : 0x40056f72  LCOUNT  : 0x00000000  
+19:03:51.628 -> 
+19:03:51.628 -> 
+19:03:51.628 -> Backtrace: 0x4206b00f:0x3fcebee0 0x420282cc:0x3fcebf00 0x4202884d:0x3fcebf40 0x4206578e:0x3fcebf90 0x4206845f:0x3fcebfc0 0x42076004:0x3fcebfe0 0x40380cc5:0x3fcec000
+19:03:51.628 -> 
+19:03:51.628 -> 
+19:03:51.628 -> 
+19:03:51.628 -> 
+19:03:51.628 -> ELF file SHA256: c6a57130a
+19:03:51.628 -> 
+19:03:51.858 -> Rebooting...
+19:03:51.858 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+19:03:51.858 -> Build:Mar 27 2021
+19:03:51.858 -> rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+19:03:51.858 -> Saved PC:0x40056f6a
+19:03:51.858 -> SPIWP:0xee
+19:03:51.858 -> mode:DIO, clock div:1
+19:03:51.858 -> load:0x3fce2820,len:0x116c
+19:03:51.858 -> load:0x403c8700,len:0xc2c
+19:03:51.858 -> load:0x403cb700,len:0x3108
+19:03:51.858 -> entry 0x403c88b8
+19:03:52.278 -> ##[BOOT]#	************************************************
+19:03:52.278 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+19:03:52.278 -> ##[BOOT]#	************************************************
+19:03:52.278 -> ##[BOOT]#	------------------------------------------------
+19:03:52.278 -> ##[BOOT]#	arduino:	10819
+19:03:52.278 -> ##[BOOT]#	compiler:	14.2.0
+19:03:52.278 -> ##[BOOT]#	esp32core:	3.3.6
+19:03:52.278 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+19:03:52.278 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+19:03:52.278 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+19:03:52.324 -> ##[BOOT]#	audioinfo:	false
+19:03:52.324 -> ##[BOOT]#	smartstart:	0
+19:03:52.324 -> ##[BOOT]#	vumeter:	false
+19:03:52.324 -> ##[BOOT]#	softapdelay:	0
+19:03:52.324 -> ##[BOOT]#	flipscreen:	false
+19:03:52.324 -> ##[BOOT]#	invertdisplay:	false
+19:03:52.324 -> ##[BOOT]#	showweather:	false
+19:03:52.324 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+19:03:52.324 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+19:03:52.324 -> ##[BOOT]#	ir:		NONE
+19:03:52.324 -> ##[BOOT]#	SD:		CS-39
+19:03:52.324 -> ##[BOOT]#	battery:	battery ON
+19:03:52.324 -> ##[BOOT]#	------------------------------------------------
+19:03:52.370 -> ##[BOOT]#	CONFIG_VERSION	4
+19:03:52.417 -> ##[BOOT]#	SPIFFS mounted
+19:03:52.649 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+19:03:52.649 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+19:03:52.649 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+19:03:52.649 -> ##[BOOT]#	player.init	done
+19:03:52.695 -> ##[BOOT]#	network.begin
+19:03:52.788 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+19:03:52.788 -> ##[BOOT]#	....
+19:03:54.315 -> ##[BOOT]#	done
+19:03:54.315 -> ##[BOOT]#	SD search	done
+19:03:54.362 -> ##[BOOT]#	netserver.begin	done
+19:03:54.362 -> ##[BOOT]#	telnet.begin	done
+19:03:54.362 -> ##[BOOT]#
+19:03:54.362 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+19:03:54.362 -> ##[BOOT]#	------------------------------------------------
+19:03:54.362 -> ##[BOOT]#
+19:03:54.362 -> ##CLI.META#: [готов]
+19:03:54.455 -> ##CLI.META#: [соединение]
+19:03:54.501 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+19:03:54.501 -> ##AUDIO.INFO#: buffers freed, free Heap: 174820 bytes
+19:03:54.501 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:54.780 -> ##AUDIO.INFO#: Connection has been established in 262 ms
+19:03:54.920 -> ##AUDIO.INFO#: format is ogg
+19:03:54.920 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:54.920 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:54.966 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:54.966 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:54.966 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:55.059 -> ##CLI.INFO#
+19:03:55.059 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+19:03:55.059 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+19:03:55.106 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:55.106 -> ##CLI.VOL#: 24
+19:03:55.106 -> ##CLI.PLAYING#
+19:03:55.106 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:55.106 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:55.106 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:55.338 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:55.338 -> ##AUDIO.INFO#: Channels: 2
+19:03:55.384 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:55.384 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:55.384 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:55.384 -> ##AUDIO.BITRATE#: 1441000
+19:03:55.384 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:55.384 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=62357
+19:03:55.384 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=46758 total_cons=46909 left=15599 filled=62508 header=1
+19:03:55.430 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=62429 header=1 out=1
+19:03:55.430 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=62429 header=1 out=1
+19:03:55.430 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=62429 header=1 out=1
+19:03:55.430 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=62429 header=1 out=1
+19:03:55.430 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=62429 header=1 out=1
+19:03:55.430 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=62429 header=1 out=1
+19:03:55.477 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:55.477 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:55.477 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:55.477 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=62353 header=0 out=1
+19:03:55.477 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=62353 header=0 out=1
+19:03:55.477 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=62353 header=0 out=1
+19:03:55.477 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:55.477 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:55.477 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:55.523 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:55.523 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:55.523 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:55.802 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:56.127 -> ##AUDIO.INFO#: buffers freed, free Heap: 174540 bytes
+19:03:56.127 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:56.360 -> ##AUDIO.INFO#: Connection has been established in 244 ms
+19:03:56.546 -> ##AUDIO.INFO#: format is ogg
+19:03:56.546 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:56.546 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:56.592 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:56.592 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:56.592 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:56.592 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:57.010 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:57.010 -> ##AUDIO.INFO#: Channels: 2
+19:03:57.010 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:57.010 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:57.010 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:57.010 -> ##AUDIO.BITRATE#: 1441000
+19:03:57.010 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:57.010 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:03:57.010 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=48403 total_cons=48554 left=16981 filled=75172 header=1
+19:03:57.056 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:57.056 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:57.056 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:57.056 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:57.056 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:57.056 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:57.103 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:57.103 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:57.103 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:57.103 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:57.103 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:57.103 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:57.103 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:57.103 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:57.150 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:57.150 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:57.150 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:57.150 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:57.428 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:57.752 -> ##AUDIO.INFO#: buffers freed, free Heap: 174772 bytes
+19:03:57.752 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:03:57.982 -> ##AUDIO.INFO#: Connection has been established in 248 ms
+19:03:58.213 -> ##AUDIO.INFO#: format is ogg
+19:03:58.213 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:03:58.213 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:03:58.213 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:03:58.213 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:03:58.213 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:03:58.259 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:03:58.629 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:03:58.629 -> ##AUDIO.INFO#: Channels: 2
+19:03:58.629 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:03:58.629 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:03:58.629 -> ##AUDIO.INFO#: BitRate: 1441000
+19:03:58.629 -> ##AUDIO.BITRATE#: 1441000
+19:03:58.629 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:03:58.629 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:03:58.675 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=44039 total_cons=44190 left=21345 filled=71124 header=1
+19:03:58.675 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:58.675 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:58.675 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:03:58.721 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:58.721 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:58.721 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:03:58.721 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:58.721 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:58.721 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:03:58.721 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:58.721 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:58.767 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:03:58.767 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:03:58.767 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:58.767 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:03:58.767 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:03:58.767 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:58.767 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:03:59.090 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:03:59.090 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+19:03:59.137 -> 
+19:03:59.137 -> Core  1 register dump:
+19:03:59.137 -> PC      : 0x4206b012  PS      : 0x00060a30  A0      : 0x820282cf  A1      : 0x3fcebf70  
+19:03:59.137 -> A2      : 0x00000000  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+19:03:59.137 -> A6      : 0x00000000  A7      : 0x3fca1edc  A8      : 0x00000000  A9      : 0x3fcebf40  
+19:03:59.184 -> A10     : 0x00000000  A11     : 0x3fcebf6f  A12     : 0x00000001  A13     : 0x00000009  
+19:03:59.184 -> A14     : 0x00000001  A15     : 0x3fcebf4c  SAR     : 0x0000000a  EXCCAUSE: 0x0000001c  
+19:03:59.184 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f5c  LEND    : 0x40056f72  LCOUNT  : 0x00000000  
+19:03:59.184 -> 
+19:03:59.184 -> 
+19:03:59.184 -> Backtrace: 0x4206b00f:0x3fcebf70 0x420282cc:0x3fcebf90 0x4202884d:0x3fcebfd0 0x4206578e:0x3fcec020 0x4206845f:0x3fcec050 0x42076004:0x3fcec070 0x40380cc5:0x3fcec090
+19:03:59.184 -> 
+19:03:59.184 -> 
+19:03:59.184 -> 
+19:03:59.184 -> 
+19:03:59.184 -> ELF file SHA256: c6a57130a
+19:03:59.184 -> 
+19:03:59.416 -> Rebooting...
+19:03:59.416 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+19:03:59.416 -> Build:Mar 27 2021
+19:03:59.416 -> rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+19:03:59.416 -> Saved PC:0x421363f2
+19:03:59.416 -> SPIWP:0xee
+19:03:59.462 -> mode:DIO, clock div:1
+19:03:59.462 -> load:0x3fce2820,len:0x116c
+19:03:59.462 -> load:0x403c8700,len:0xc2c
+19:03:59.462 -> load:0x403cb700,len:0x3108
+19:03:59.462 -> entry 0x403c88b8
+19:03:59.833 -> ##[BOOT]#	************************************************
+19:03:59.833 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+19:03:59.833 -> ##[BOOT]#	************************************************
+19:03:59.833 -> ##[BOOT]#	------------------------------------------------
+19:03:59.833 -> ##[BOOT]#	arduino:	10819
+19:03:59.833 -> ##[BOOT]#	compiler:	14.2.0
+19:03:59.833 -> ##[BOOT]#	esp32core:	3.3.6
+19:03:59.880 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+19:03:59.880 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+19:03:59.880 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+19:03:59.880 -> ##[BOOT]#	audioinfo:	false
+19:03:59.880 -> ##[BOOT]#	smartstart:	0
+19:03:59.880 -> ##[BOOT]#	vumeter:	false
+19:03:59.880 -> ##[BOOT]#	softapdelay:	0
+19:03:59.880 -> ##[BOOT]#	flipscreen:	false
+19:03:59.880 -> ##[BOOT]#	invertdisplay:	false
+19:03:59.880 -> ##[BOOT]#	showweather:	false
+19:03:59.880 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+19:03:59.880 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+19:03:59.927 -> ##[BOOT]#	ir:		NONE
+19:03:59.927 -> ##[BOOT]#	SD:		CS-39
+19:03:59.927 -> ##[BOOT]#	battery:	battery ON
+19:03:59.927 -> ##[BOOT]#	------------------------------------------------
+19:03:59.927 -> ##[BOOT]#	CONFIG_VERSION	4
+19:03:59.974 -> ##[BOOT]#	SPIFFS mounted
+19:04:00.205 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+19:04:00.205 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+19:04:00.252 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+19:04:00.252 -> ##[BOOT]#	player.init	done
+19:04:00.298 -> ##[BOOT]#	network.begin
+19:04:00.389 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+19:04:00.389 -> ##[BOOT]#	....
+19:04:01.872 -> ##[BOOT]#	done
+19:04:01.872 -> ##[BOOT]#	SD search	done
+19:04:01.918 -> ##[BOOT]#	netserver.begin	done
+19:04:01.918 -> ##[BOOT]#	telnet.begin	done
+19:04:01.918 -> ##[BOOT]#
+19:04:01.918 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+19:04:01.918 -> ##[BOOT]#	------------------------------------------------
+19:04:01.918 -> ##[BOOT]#
+19:04:01.918 -> ##CLI.META#: [готов]
+19:04:02.013 -> ##CLI.META#: [соединение]
+19:04:02.105 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+19:04:02.105 -> ##AUDIO.INFO#: buffers freed, free Heap: 174840 bytes
+19:04:02.105 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:04:02.291 -> ##AUDIO.INFO#: Connection has been established in 184 ms
+19:04:02.709 -> ##AUDIO.INFO#: format is ogg
+19:04:02.709 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:04:02.709 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:04:02.756 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:04:02.756 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:04:02.756 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:02.849 -> ##CLI.INFO#
+19:04:02.849 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+19:04:02.849 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+19:04:02.895 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:04:02.895 -> ##CLI.VOL#: 24
+19:04:02.895 -> ##CLI.PLAYING#
+19:04:02.895 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:02.895 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:02.895 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:04:03.128 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:03.128 -> ##AUDIO.INFO#: Channels: 2
+19:04:03.128 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:03.128 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:03.128 -> ##AUDIO.INFO#: BitRate: 1441000
+19:04:03.128 -> ##AUDIO.BITRATE#: 1441000
+19:04:03.128 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:03.128 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=61942
+19:04:03.175 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36978 total_cons=37129 left=24964 filled=62093 header=1
+19:04:03.175 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=62014 header=1 out=1
+19:04:03.175 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=62014 header=1 out=1
+19:04:03.175 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=62014 header=1 out=1
+19:04:03.221 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=62014 header=1 out=1
+19:04:03.221 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=62014 header=1 out=1
+19:04:03.221 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=62014 header=1 out=1
+19:04:03.221 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:03.221 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:03.221 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:03.221 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=61938 header=0 out=1
+19:04:03.267 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=61938 header=0 out=1
+19:04:03.267 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=61938 header=0 out=1
+19:04:03.267 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:04:03.267 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:03.267 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:03.267 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:03.267 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:03.267 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:03.589 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:04:03.868 -> ##AUDIO.INFO#: buffers freed, free Heap: 174748 bytes
+19:04:03.868 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:04:04.100 -> ##AUDIO.INFO#: Connection has been established in 234 ms
+19:04:04.332 -> ##AUDIO.INFO#: format is ogg
+19:04:04.332 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:04:04.332 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:04:04.332 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:04:04.332 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:04.332 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:04.379 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:04.657 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:04.657 -> ##AUDIO.INFO#: Channels: 2
+19:04:04.703 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:04.703 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:04.703 -> ##AUDIO.INFO#: BitRate: 1441000
+19:04:04.703 -> ##AUDIO.BITRATE#: 1441000
+19:04:04.703 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:04.703 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=61942
+19:04:04.703 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=39045 total_cons=39196 left=22897 filled=62093 header=1
+19:04:04.750 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:04.750 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:04.750 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:04.750 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:04.750 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:04.750 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:04.796 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:04.796 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:04.796 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:04.796 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:04:04.796 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:04:04.796 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:04:04.796 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:04:04.796 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:04.796 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:04.843 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:04.843 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:04.843 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:05.122 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:04:05.448 -> ##AUDIO.INFO#: buffers freed, free Heap: 174920 bytes
+19:04:05.448 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:04:05.681 -> ##AUDIO.INFO#: Connection has been established in 245 ms
+19:04:05.868 -> ##AUDIO.INFO#: format is ogg
+19:04:05.868 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:04:05.915 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:04:05.915 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:04:05.915 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:05.915 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:05.915 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:06.288 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:06.288 -> ##AUDIO.INFO#: Channels: 2
+19:04:06.288 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:06.288 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:06.335 -> ##AUDIO.INFO#: BitRate: 1441000
+19:04:06.335 -> ##AUDIO.BITRATE#: 1441000
+19:04:06.335 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:06.335 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:04:06.335 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=49169 total_cons=49320 left=16215 filled=71124 header=1
+19:04:06.335 -> ##CMD_ERROR#	unknown command <top>
+19:04:06.335 -> > ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:06.381 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:06.381 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:06.381 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:06.381 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:06.381 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:06.381 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:06.428 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:06.428 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:06.428 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:04:06.428 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:04:06.428 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65380 header=0 out=1
+19:04:06.428 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:04:06.428 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:06.428 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:06.428 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:06.475 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:06.475 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:06.753 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:04:07.077 -> ##AUDIO.INFO#: buffers freed, free Heap: 174920 bytes
+19:04:07.077 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+19:04:07.307 -> ##AUDIO.INFO#: Connection has been established in 255 ms
+19:04:07.539 -> ##AUDIO.INFO#: format is ogg
+19:04:07.539 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+19:04:07.539 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+19:04:07.539 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+19:04:07.539 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:07.539 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:07.539 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:07.957 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:07.957 -> ##AUDIO.INFO#: Channels: 2
+19:04:07.957 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:07.957 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:07.957 -> ##AUDIO.INFO#: BitRate: 1441000
+19:04:07.957 -> ##AUDIO.BITRATE#: 1441000
+19:04:07.957 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:07.957 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=65384
+19:04:08.003 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65384 total_cons=65535 left=0 filled=70709 header=1
+19:04:08.699 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=166921 header=1
+19:04:09.393 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=248773 header=1
+19:04:10.090 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=372269 header=1
+19:04:10.832 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=467045 header=1
+19:04:11.528 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=556077 header=1
+19:04:12.227 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=647981 header=1
+19:04:12.923 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:13.620 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:14.316 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:15.056 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:15.473 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+19:04:15.751 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:16.445 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:17.142 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:17.836 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:18.532 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:19.276 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:19.972 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:20.435 -> [WEBSOCKET] client #1 disconnected
+19:04:20.667 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:20.714 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+19:04:20.714 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:20.714 -> ##CLI.VOL#: 24
+19:04:20.714 -> ##CLI.INFO#
+19:04:20.714 -> ##SYS.DATE#: 2026-08-24T19:04:20+03:00
+19:04:20.714 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+19:04:20.714 -> ##CLI.VOL#: 24
+19:04:20.714 -> ##CLI.STOPPED#
+19:04:21.407 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:22.103 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:22.796 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:23.491 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:24.187 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:24.882 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:25.625 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:26.319 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:27.015 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:27.711 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:28.408 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:29.103 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:29.799 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:30.495 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:31.236 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:31.931 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:32.629 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:33.326 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:34.022 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:34.719 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:35.417 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:36.113 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=65535 total_cons=65535 left=0 filled=655350 header=1
+19:04:36.206 -> ##CLI.META#: [соединение]
+19:04:36.298 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+19:04:36.298 -> ##AUDIO.INFO#: buffers freed, free Heap: 174032 bytes
+19:04:36.298 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+19:04:37.087 -> ##AUDIO.INFO#: SSL has been established in 795 ms
+19:04:37.133 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:37.133 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:38.152 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:38.198 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+19:04:38.198 -> ##CLI.META#: 
+19:04:38.198 -> ##CLI.INFO#
+19:04:38.198 -> ##SYS.DATE#: 2026-08-24T19:04:38+03:00
+19:04:38.244 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+19:04:38.244 -> ##CLI.META#: 
+19:04:38.244 -> ##CLI.VOL#: 24
+19:04:38.244 -> ##CLI.PLAYING#
+19:04:38.244 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+19:04:38.244 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+19:04:38.244 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:38.291 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:38.291 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:38.662 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:39.171 -> ##AUDIO.INFO#: format is ogg
+19:04:39.171 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+19:04:39.171 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+19:04:39.171 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+19:04:39.171 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:39.171 -> ##CLI.META#: Dance Wave Retro!
+19:04:39.355 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:39.355 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:39.540 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:39.540 -> ##AUDIO.INFO#: Channels: 2
+19:04:39.540 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:39.540 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:39.540 -> ##AUDIO.INFO#: BitRate: N/A
+19:04:39.540 -> ##AUDIO.BITRATE#: N/A
+19:04:39.540 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:39.540 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=56104
+19:04:39.540 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=41477 total_cons=49930 left=14627 filled=64557 header=1
+19:04:39.587 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:39.587 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:39.587 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:39.633 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:39.633 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:39.633 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:39.633 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:39.633 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:39.633 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:39.633 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:39.633 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:39.678 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:39.678 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:04:39.678 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:39.678 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:39.678 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:39.678 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:39.678 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:40.000 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+19:04:40.000 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+19:04:40.047 -> 
+19:04:40.047 -> Core  1 register dump:
+19:04:40.047 -> PC      : 0x4206b3f4  PS      : 0x00060e30  A0      : 0x8200f666  A1      : 0x3fcebf10  
+19:04:40.047 -> A2      : 0x0000059c  A3      : 0x3c22266b  A4      : 0x0000059c  A5      : 0x00000000  
+19:04:40.047 -> A6      : 0x00000000  A7      : 0x3fca1edc  A8      : 0x00000000  A9      : 0x3fcebef0  
+19:04:40.093 -> A10     : 0x0000059c  A11     : 0x3c22266b  A12     : 0x0000059c  A13     : 0x0000059c  
+19:04:40.093 -> A14     : 0x00000000  A15     : 0x3fcea114  SAR     : 0x00000008  EXCCAUSE: 0x0000001c  
+19:04:40.093 -> EXCVADDR: 0x00000014  LBEG    : 0x40056fc5  LEND    : 0x40056fe7  LCOUNT  : 0x00000000  
+19:04:40.093 -> 
+19:04:40.093 -> 
+19:04:40.093 -> Backtrace: 0x4206b3f1:0x3fcebf10 0x4200f663:0x3fcebf40 0x4200f701:0x3fcebf70 0x42028389:0x3fcebf90 0x4202884d:0x3fcebfd0 0x4206578e:0x3fcec020 0x4206845f:0x3fcec050 0x42076004:0x3fcec070 0x40380cc5:0x3fcec090
+19:04:40.093 -> 
+19:04:40.093 -> 
+19:04:40.093 -> 
+19:04:40.093 -> 
+19:04:40.093 -> ELF file SHA256: c6a57130a
+19:04:40.093 -> 
+19:04:40.325 -> Rebooting...
+19:04:40.325 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+19:04:40.371 -> Build:Mar 27 2021
+19:04:40.371 -> rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+19:04:40.371 -> Saved PC:0x4037bc4e
+19:04:40.371 -> SPIWP:0xee
+19:04:40.371 -> mode:DIO, clock div:1
+19:04:40.371 -> load:0x3fce2820,len:0x116c
+19:04:40.371 -> load:0x403c8700,len:0xc2c
+19:04:40.371 -> load:0x403cb700,len:0x3108
+19:04:40.371 -> entry 0x403c88b8
+19:04:40.745 -> ##[BOOT]#	************************************************
+19:04:40.745 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+19:04:40.745 -> ##[BOOT]#	************************************************
+19:04:40.745 -> ##[BOOT]#	------------------------------------------------
+19:04:40.745 -> ##[BOOT]#	arduino:	10819
+19:04:40.745 -> ##[BOOT]#	compiler:	14.2.0
+19:04:40.745 -> ##[BOOT]#	esp32core:	3.3.6
+19:04:40.791 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+19:04:40.791 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+19:04:40.791 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+19:04:40.791 -> ##[BOOT]#	audioinfo:	false
+19:04:40.791 -> ##[BOOT]#	smartstart:	0
+19:04:40.791 -> ##[BOOT]#	vumeter:	false
+19:04:40.791 -> ##[BOOT]#	softapdelay:	0
+19:04:40.791 -> ##[BOOT]#	flipscreen:	false
+19:04:40.791 -> ##[BOOT]#	invertdisplay:	false
+19:04:40.791 -> ##[BOOT]#	showweather:	false
+19:04:40.791 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+19:04:40.838 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+19:04:40.838 -> ##[BOOT]#	ir:		NONE
+19:04:40.838 -> ##[BOOT]#	SD:		CS-39
+19:04:40.838 -> ##[BOOT]#	battery:	battery ON
+19:04:40.838 -> ##[BOOT]#	------------------------------------------------
+19:04:40.838 -> ##[BOOT]#	CONFIG_VERSION	4
+19:04:40.885 -> ##[BOOT]#	SPIFFS mounted
+19:04:41.163 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+19:04:41.163 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+19:04:41.163 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+19:04:41.163 -> ##[BOOT]#	player.init	done
+19:04:41.210 -> ##[BOOT]#	network.begin
+19:04:41.303 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+19:04:41.303 -> ##[BOOT]#	.....
+19:04:43.300 -> ##[BOOT]#	done
+19:04:43.300 -> ##[BOOT]#	SD search	done
+19:04:43.346 -> ##[BOOT]#	netserver.begin	done
+19:04:43.346 -> ##[BOOT]#	telnet.begin	done
+19:04:43.346 -> ##[BOOT]#
+19:04:43.346 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+19:04:43.346 -> ##[BOOT]#	------------------------------------------------
+19:04:43.346 -> ##[BOOT]#
+19:04:43.346 -> ##CLI.META#: [готов]
+19:04:43.486 -> ##CLI.META#: [соединение]
+19:04:43.579 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+19:04:43.579 -> ##AUDIO.INFO#: buffers freed, free Heap: 174812 bytes
+19:04:43.579 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+19:04:44.459 -> ##AUDIO.INFO#: SSL has been established in 891 ms
+19:04:44.506 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:44.552 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:45.154 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:45.292 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+19:04:45.292 -> ##CLI.META#: 
+19:04:45.292 -> ##CLI.INFO#
+19:04:45.292 -> ##SYS.DATE#: 2026-08-24T19:04:44+03:00
+19:04:45.292 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+19:04:45.292 -> ##CLI.META#: 
+19:04:45.292 -> ##CLI.VOL#: 24
+19:04:45.292 -> ##CLI.PLAYING#
+19:04:45.292 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+19:04:45.292 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+19:04:45.292 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:45.385 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:45.385 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:45.432 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:45.849 -> ##AUDIO.INFO#: format is ogg
+19:04:45.849 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+19:04:45.849 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+19:04:45.849 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+19:04:45.849 -> ##CLI.META#: Dance Wave Retro!
+19:04:45.849 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:46.220 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:46.220 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:46.360 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:46.360 -> ##AUDIO.INFO#: Channels: 2
+19:04:46.360 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:46.360 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:46.406 -> ##AUDIO.INFO#: BitRate: N/A
+19:04:46.406 -> ##AUDIO.BITRATE#: N/A
+19:04:46.406 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:46.406 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=57082
+19:04:46.406 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=43292 total_cons=51745 left=13790 filled=71737 header=1
+19:04:46.453 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:46.453 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:46.453 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:46.453 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:46.453 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:46.453 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:46.453 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:46.499 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:46.499 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:46.499 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:46.499 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:46.499 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:46.499 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:04:46.499 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:46.499 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:46.499 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:46.545 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:46.545 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:46.821 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+19:04:47.146 -> ##AUDIO.INFO#: buffers freed, free Heap: 174644 bytes
+19:04:47.146 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+19:04:47.888 -> ##AUDIO.INFO#: SSL has been established in 750 ms
+19:04:47.981 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:48.028 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:48.632 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:48.725 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+19:04:48.725 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+19:04:48.725 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+19:04:48.725 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:48.818 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:48.818 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:49.052 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:49.190 -> ##AUDIO.INFO#: format is ogg
+19:04:49.237 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+19:04:49.237 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+19:04:49.237 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+19:04:49.237 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:49.608 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:49.608 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:49.838 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:49.838 -> ##AUDIO.INFO#: Channels: 2
+19:04:49.838 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:49.838 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:49.838 -> ##AUDIO.INFO#: BitRate: N/A
+19:04:49.838 -> ##AUDIO.BITRATE#: N/A
+19:04:49.838 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:49.838 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=52056
+19:04:49.838 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=43007 total_cons=51460 left=9049 filled=60509 header=1
+19:04:49.885 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:49.885 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:49.885 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:49.885 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:49.885 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:49.931 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:49.931 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:49.931 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:49.931 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:49.931 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:49.931 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:49.931 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:49.977 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:04:49.977 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:49.977 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:49.977 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:49.977 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:49.977 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:50.301 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+19:04:50.580 -> ##AUDIO.INFO#: buffers freed, free Heap: 174644 bytes
+19:04:50.580 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+19:04:51.368 -> ##AUDIO.INFO#: SSL has been established in 796 ms
+19:04:51.553 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:51.553 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+19:04:52.388 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:52.574 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+19:04:52.574 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+19:04:52.574 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+19:04:52.574 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:52.759 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:52.806 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+19:04:52.852 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:04:53.410 -> ##AUDIO.INFO#: format is ogg
+19:04:53.410 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+19:04:53.410 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+19:04:53.410 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+19:04:53.410 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:04:53.595 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:04:53.595 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:04:54.014 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:04:54.014 -> ##AUDIO.INFO#: Channels: 2
+19:04:54.014 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:04:54.014 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:04:54.014 -> ##AUDIO.INFO#: BitRate: N/A
+19:04:54.014 -> ##AUDIO.BITRATE#: N/A
+19:04:54.014 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+19:04:54.061 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=52056
+19:04:54.061 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=38561 total_cons=47014 left=13495 filled=67689 header=1
+19:04:54.061 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:54.061 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:54.108 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:04:54.108 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:54.108 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:54.108 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:04:54.108 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:54.108 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:54.108 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:04:54.108 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:54.154 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:54.154 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65334 header=0 out=1
+19:04:54.154 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:04:54.154 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:54.154 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:04:54.154 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:04:54.154 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:54.154 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:04:54.479 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+19:04:54.757 -> ##AUDIO.INFO#: buffers freed, free Heap: 174644 bytes
+19:04:54.757 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+19:04:55.638 -> ##AUDIO.INFO#: SSL has been established in 884 ms
+19:04:55.685 -> ##AUDIO.INFO#: buffers freed, free Heap: 174388 bytes
+19:04:55.685 -> ##CLI.INFO#
+19:04:55.685 -> ##SYS.DATE#: 2026-08-24T19:04:55+03:00
+19:04:55.685 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+19:04:55.731 -> ##CLI.VOL#: 24
+19:04:55.731 -> ##CLI.STOPPED#
+19:05:04.177 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+19:05:04.223 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:04.223 -> ##CLI.VOL#: 24
+19:05:04.270 -> ##CLI.INFO#
+19:05:04.270 -> ##SYS.DATE#: 2026-08-24T19:05:03+03:00
+19:05:04.270 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+19:05:04.270 -> ##CLI.VOL#: 24
+19:05:04.270 -> ##CLI.STOPPED#
+19:05:09.275 -> ##CLI.META#: [соединение]
+19:05:09.321 -> ##AUDIO.INFO#: buffers freed, free Heap: 173772 bytes
+19:05:09.321 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+19:05:10.385 -> ##AUDIO.INFO#: SSL has been established in 1057 ms
+19:05:10.523 -> ##AUDIO.INFO#: format is ogg
+19:05:10.523 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:10.523 -> ##AUDIO.INFO#: icy-genre:  3
+19:05:10.523 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+19:05:10.523 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:10.523 -> ##CLI.META#: radio.audiomastering.lt
+19:05:10.523 -> ##CLI.INFO#
+19:05:10.523 -> ##SYS.DATE#: 2026-08-24T19:05:10+03:00
+19:05:10.523 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+19:05:10.523 -> ##CLI.META#: radio.audiomastering.lt
+19:05:10.570 -> ##CLI.VOL#: 24
+19:05:10.570 -> ##CLI.PLAYING#
+19:05:10.570 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:10.570 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:10.570 -> ##CLI.META#: radio.audiomastering.lt
+19:05:11.264 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:11.264 -> ##AUDIO.INFO#: Channels: 2
+19:05:11.264 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:05:11.264 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:11.264 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:11.264 -> ##AUDIO.BITRATE#: 128000
+19:05:11.264 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:11.264 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=352 left=65183
+19:05:11.264 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64239 total_cons=64591 left=944 filled=65890 header=1
+19:05:11.310 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:11.310 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:11.310 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:11.310 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:11.310 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:11.356 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:11.356 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:11.356 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:11.356 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:11.356 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:11.356 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:11.356 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:11.356 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:05:11.402 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:11.402 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:11.402 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:11.402 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:11.402 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:11.679 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+19:05:12.006 -> ##AUDIO.INFO#: buffers freed, free Heap: 171292 bytes
+19:05:12.006 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+19:05:12.746 -> ##AUDIO.INFO#: SSL has been established in 750 ms
+19:05:12.977 -> ##AUDIO.INFO#: format is ogg
+19:05:12.977 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:12.977 -> ##AUDIO.INFO#: icy-genre:  3
+19:05:12.977 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+19:05:12.977 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:12.977 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:12.977 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:13.162 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:13.162 -> ##AUDIO.INFO#: Channels: 2
+19:05:13.162 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:05:13.162 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:13.162 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:13.162 -> ##AUDIO.BITRATE#: 128000
+19:05:13.162 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:13.162 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=352 left=65183
+19:05:13.162 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64256 total_cons=64608 left=927 filled=65888 header=1
+19:05:13.208 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:13.208 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:13.208 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:13.208 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:13.254 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:13.254 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:13.254 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:13.254 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:13.254 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:13.254 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:13.254 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:13.254 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:13.301 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:05:13.301 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:13.301 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:13.301 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:13.301 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:13.301 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:13.625 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+19:05:13.903 -> ##AUDIO.INFO#: buffers freed, free Heap: 169376 bytes
+19:05:13.903 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+19:05:15.710 -> [WEBSOCKET] client #1 disconnected
+19:05:15.710 -> ##AUDIO.INFO#: SSL has been established in 1784 ms
+19:05:15.848 -> ##AUDIO.INFO#: format is ogg
+19:05:15.848 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:15.848 -> ##AUDIO.INFO#: icy-genre:  3
+19:05:15.848 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+19:05:15.848 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:15.893 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:15.893 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:16.588 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:16.588 -> ##AUDIO.INFO#: Channels: 2
+19:05:16.588 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:05:16.588 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:16.588 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:16.588 -> ##AUDIO.BITRATE#: 128000
+19:05:16.588 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:16.588 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=352 left=65183
+19:05:16.588 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64060 total_cons=64412 left=1123 filled=65890 header=1
+19:05:16.633 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:16.633 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:16.633 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:16.633 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:16.678 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:16.678 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:16.678 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:16.678 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:16.678 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:16.678 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:16.678 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:16.724 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:16.724 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:05:16.724 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:16.724 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:16.724 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:16.724 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:16.724 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:17.046 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+19:05:17.324 -> ##AUDIO.INFO#: buffers freed, free Heap: 174400 bytes
+19:05:17.324 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+19:05:17.742 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+19:05:19.638 -> ##AUDIO.INFO#: SSL has been established in 2282 ms
+19:05:20.101 -> ##AUDIO.INFO#: format is ogg
+19:05:20.101 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:20.147 -> ##AUDIO.INFO#: icy-genre:  3
+19:05:20.147 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+19:05:20.147 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:20.285 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:20.285 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:21.574 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:21.574 -> ##AUDIO.INFO#: Channels: 2
+19:05:21.574 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:05:21.574 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:21.574 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:21.574 -> ##AUDIO.BITRATE#: 128000
+19:05:21.574 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:21.574 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=352 left=65183
+19:05:21.574 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=60912 total_cons=61264 left=4271 filled=65888 header=1
+19:05:21.620 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:21.620 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:21.620 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:21.620 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:21.620 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:21.666 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:21.666 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:21.666 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:21.666 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:21.666 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:21.666 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:21.666 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:21.712 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:05:21.712 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:21.712 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:21.712 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:21.712 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:21.712 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:22.037 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+19:05:22.316 -> ##AUDIO.INFO#: buffers freed, free Heap: 173768 bytes
+19:05:22.316 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+19:05:23.100 -> ##AUDIO.INFO#: SSL has been established in 769 ms
+19:05:23.377 -> ##AUDIO.INFO#: format is ogg
+19:05:23.377 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:23.377 -> ##AUDIO.INFO#: icy-genre:  3
+19:05:23.377 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+19:05:23.377 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:23.424 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:23.424 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:23.701 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:23.701 -> ##AUDIO.INFO#: Channels: 2
+19:05:23.701 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:05:23.701 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:23.747 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:23.747 -> ##AUDIO.BITRATE#: 128000
+19:05:23.747 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:23.747 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=352 left=65183
+19:05:23.747 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=61015 total_cons=61367 left=4168 filled=65888 header=1
+19:05:23.793 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:23.793 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:23.793 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:23.793 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:23.793 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:23.793 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:23.793 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:23.839 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:23.839 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:23.839 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:23.839 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:23.839 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:23.839 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:05:23.839 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:23.839 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:23.884 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:23.884 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:23.884 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:24.161 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+19:05:24.484 -> ##AUDIO.INFO#: buffers freed, free Heap: 173900 bytes
+19:05:24.484 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+19:05:25.225 -> ##AUDIO.INFO#: SSL has been established in 762 ms
+19:05:25.457 -> ##AUDIO.INFO#: format is ogg
+19:05:25.457 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:25.457 -> ##AUDIO.INFO#: icy-genre:  3
+19:05:25.457 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+19:05:25.457 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:25.457 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:25.457 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:26.569 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:26.569 -> ##AUDIO.INFO#: Channels: 2
+19:05:26.569 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+19:05:26.569 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:26.615 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:26.615 -> ##AUDIO.BITRATE#: 128000
+19:05:26.615 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:26.615 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=352 left=65183
+19:05:26.615 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=56826 total_cons=57178 left=8357 filled=65890 header=1
+19:05:26.661 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:26.661 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:26.661 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:26.661 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:26.661 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:26.661 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:26.661 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:26.661 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:26.708 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:26.708 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:26.708 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:26.708 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65179 header=0 out=1
+19:05:26.708 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:05:26.708 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:26.708 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:26.708 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:26.753 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:26.753 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:27.032 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+19:05:27.355 -> ##AUDIO.INFO#: buffers freed, free Heap: 173860 bytes
+19:05:27.355 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+19:05:27.862 -> ##AUDIO.INFO#: buffers freed, free Heap: 137804 bytes
+19:05:28.326 -> ##AUDIO.INFO#: SSL has been established in 971 ms
+19:05:28.326 -> ##CLI.INFO#
+19:05:28.326 -> ##SYS.DATE#: 2026-08-24T19:05:28+03:00
+19:05:28.326 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+19:05:28.326 -> ##CLI.VOL#: 24
+19:05:28.326 -> ##CLI.STOPPED#
+19:05:31.196 -> ##CLI.META#: [соединение]
+19:05:31.244 -> ##AUDIO.INFO#: buffers freed, free Heap: 173672 bytes
+19:05:31.244 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/chill/radio.flac"
+19:05:32.402 -> ##AUDIO.INFO#: SSL has been established in 1162 ms
+19:05:32.495 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/chill/radio.flac"
+19:05:32.495 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/chill/radio.flac"
+19:05:34.256 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:05:34.348 -> ##AUDIO.INFO#: format is ogg
+19:05:34.348 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:34.395 -> ##AUDIO.INFO#: icy-genre:  Electronic, Chill, Chillout, Relax, House, Liquid Funk, Liquid, Liquid Drum and Bas, Intelligent Drum&Bass, Intelligent Drum and Bass, phonk, Lofi
+19:05:34.395 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/ncdMKNsn/LOGO-3-2-bg4.png
+19:05:34.395 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio | Chill Zone
+19:05:34.395 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+19:05:34.395 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:34.395 -> ##CLI.INFO#
+19:05:34.395 -> ##SYS.DATE#: 2026-08-24T19:05:34+03:00
+19:05:34.395 -> ##CLI.NAMESET#: 385 ISEKOI Chill Zone (FLAC)
+19:05:34.395 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+19:05:34.441 -> ##CLI.VOL#: 24
+19:05:34.441 -> ##CLI.PLAYING#
+19:05:34.441 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:34.441 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:34.441 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+19:05:35.088 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:35.088 -> ##AUDIO.INFO#: Channels: 2
+19:05:35.088 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+19:05:35.088 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:35.088 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:35.088 -> ##AUDIO.BITRATE#: 128000
+19:05:35.088 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:35.088 -> ##AUDIO.INFO#: microflac HEADER_READY sr=48000 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=155 left=61688
+19:05:35.134 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=57593 total_cons=57748 left=4095 filled=61845 header=1
+19:05:35.134 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:35.134 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=79 left=65456 header=1 out=1
+19:05:35.181 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:35.181 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:35.181 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=0 left=65456 header=1 out=1
+19:05:35.181 -> ##CLI.META#: microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:35.181 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:35.181 -> ##ERROR#:	microflac latched err -14 -> soft re-lock (g_mf.reset)
+19:05:35.181 -> ##CLI.META#: microflac err -14 (OGG_DEMUX) cons=4 left=65376 header=0 out=1
+19:05:35.181 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65376 header=0 out=1
+19:05:35.227 -> ##ERROR#:	microflac err -14 (OGG_DEMUX) cons=4 left=65376 header=0 out=1
+19:05:35.227 -> ##CLI.META#: microflac re-lock failed -> reconnect
+19:05:35.227 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:35.227 -> ##ERROR#:	microflac re-lock failed -> reconnect
+19:05:35.227 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:35.227 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:35.227 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_relock)
+19:05:35.227 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_relock)
+19:05:35.550 -> ##AUDIO.INFO#: Closing web file "https://isekoi-radio.com/listen/chill/radio.flac" (ssl=1)
+19:05:35.827 -> ##AUDIO.INFO#: buffers freed, free Heap: 174000 bytes
+19:05:35.827 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/chill/radio.flac"
+19:05:36.611 -> ##AUDIO.INFO#: SSL has been established in 779 ms
+19:05:36.798 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/chill/radio.flac"
+19:05:36.844 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/chill/radio.flac"
+19:05:38.462 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+19:05:38.554 -> ##AUDIO.INFO#: format is ogg
+19:05:38.554 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+19:05:38.554 -> ##AUDIO.INFO#: icy-genre:  Electronic, Chill, Chillout, Relax, House, Liquid Funk, Liquid, Liquid Drum and Bas, Intelligent Drum&Bass, Intelligent Drum and Bass, phonk, Lofi
+19:05:38.554 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/ncdMKNsn/LOGO-3-2-bg4.png
+19:05:38.600 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio | Chill Zone
+19:05:38.600 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+19:05:38.600 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+19:05:38.600 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+19:05:38.970 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+19:05:38.970 -> ##AUDIO.INFO#: Channels: 2
+19:05:38.970 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+19:05:38.970 -> ##AUDIO.INFO#: BitsPerSample: 16
+19:05:38.970 -> ##AUDIO.INFO#: BitRate: 128000
+19:05:38.970 -> ##AUDIO.BITRATE#: 128000
+19:05:38.970 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+19:05:39.016 -> ##AUDIO.INFO#: microflac HEADER_READY sr=48000 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=155 left=59876
+19:05:39.016 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=156 left=59875 filled=60031 header=1
+19:05:39.711 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=117250 header=1
+19:05:40.406 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=176893 header=1
+19:05:41.146 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=296481 header=1
+19:05:41.841 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=304673 header=1
+19:05:42.540 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=410266 header=1
+19:05:43.234 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=476942 header=1
+19:05:43.976 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=589945 header=1
+19:05:44.672 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=618617 header=1
+19:05:45.367 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=655350 header=1
+19:05:46.061 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=655350 header=1
+19:05:46.755 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=655350 header=1
+19:05:47.454 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=655350 header=1
+19:05:48.148 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=655350 header=1
+19:05:48.890 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=59868 total_cons=59868 left=5667 filled=655350 header=1
+19:05:48.984 -> ##AUDIO.INFO#: Closing web file "https://isekoi-radio.com/listen/chill/radio.flac" (ssl=1)
+19:05:48.984 -> ##AUDIO.INFO#: buffers freed, free Heap: 173996 bytes
+19:05:49.031 -> ##CLI.INFO#
+19:05:49.031 -> ##SYS.DATE#: 2026-08-24T19:05:48+03:00
+19:05:49.031 -> ##CLI.NAMESET#: 385 ISEKOI Chill Zone (FLAC)
+19:05:49.031 -> ##CLI.VOL#: 24
+19:05:49.031 -> ##CLI.STOPPED#
