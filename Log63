@@ -1,0 +1,306 @@
+16:14:48.099 -> Build:Mar 27 2021
+16:14:48.099 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+16:14:48.099 -> SPIWP:0xee
+16:14:48.099 -> mode:DIO, clock div:1
+16:14:48.099 -> load:0x3fce2820,len:0x116c
+16:14:48.099 -> load:0x403c8700,len:0xc2c
+16:14:48.099 -> load:0x403cb700,len:0x3108
+16:14:48.144 -> entry 0x403c88b8
+16:14:48.516 -> ##[BOOT]#	************************************************
+16:14:48.516 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+16:14:48.516 -> ##[BOOT]#	************************************************
+16:14:48.516 -> ##[BOOT]#	------------------------------------------------
+16:14:48.516 -> ##[BOOT]#	arduino:	10819
+16:14:48.516 -> ##[BOOT]#	compiler:	14.2.0
+16:14:48.516 -> ##[BOOT]#	esp32core:	3.3.6
+16:14:48.516 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+16:14:48.516 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+16:14:48.516 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+16:14:48.562 -> ##[BOOT]#	audioinfo:	false
+16:14:48.562 -> ##[BOOT]#	smartstart:	0
+16:14:48.562 -> ##[BOOT]#	vumeter:	false
+16:14:48.562 -> ##[BOOT]#	softapdelay:	0
+16:14:48.562 -> ##[BOOT]#	flipscreen:	false
+16:14:48.562 -> ##[BOOT]#	invertdisplay:	false
+16:14:48.562 -> ##[BOOT]#	showweather:	false
+16:14:48.562 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+16:14:48.562 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+16:14:48.562 -> ##[BOOT]#	ir:		NONE
+16:14:48.562 -> ##[BOOT]#	SD:		CS-39
+16:14:48.562 -> ##[BOOT]#	battery:	battery ON
+16:14:48.609 -> ##[BOOT]#	------------------------------------------------
+16:14:48.609 -> ##[BOOT]#	CONFIG_VERSION	4
+16:14:48.656 -> ##[BOOT]#	SPIFFS mounted
+16:14:48.888 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+16:14:48.888 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+16:14:48.888 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+16:14:48.888 -> ##[BOOT]#	player.init	done
+16:14:48.980 -> ##[BOOT]#	network.begin
+16:14:49.072 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+16:14:49.072 -> ##[BOOT]#	.....
+16:14:51.061 -> ##[BOOT]#	done
+16:14:51.061 -> ##[BOOT]#	SD search	done
+16:14:51.107 -> ##[BOOT]#	netserver.begin	done
+16:14:51.107 -> ##[BOOT]#	telnet.begin	done
+16:14:51.107 -> ##[BOOT]#
+16:14:51.107 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+16:14:51.154 -> ##[BOOT]#	------------------------------------------------
+16:14:51.154 -> ##[BOOT]#
+16:14:51.154 -> ##CLI.META#: [готов]
+16:14:54.446 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+16:14:54.493 -> ##CLI.META#: [готов]
+16:14:54.493 -> ##CLI.VOL#: 24
+16:14:54.586 -> ##CLI.INFO#
+16:14:54.586 -> ##SYS.DATE#: 1970-01-01T03:00:06+03:00
+16:14:54.586 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+16:14:54.586 -> ##CLI.VOL#: 24
+16:14:54.586 -> ##CLI.STOPPED#
+16:15:02.095 -> ##CLI.META#: [соединение]
+16:15:02.189 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+16:15:02.189 -> ##AUDIO.INFO#: buffers freed, free Heap: 169476 bytes
+16:15:02.189 -> ##AUDIO.INFO#: connect to: "ice4.somafm.com" on port 443 path "/poptron-128-mp3"
+16:15:03.812 -> ##AUDIO.INFO#: SSL has been established in 1641 ms
+16:15:04.228 -> ##AUDIO.INFO#: format is mp3
+16:15:04.228 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:15:04.228 -> ##AUDIO.INFO#: icy-genre:  Electro Pop
+16:15:04.228 -> ##AUDIO.INFO#: icy-name: PopTron: Electro-Pop and Indie Dance Rock [SomaFM]
+16:15:04.228 -> ##CLI.META#: PopTron: Electro-Pop and Indie Dance Rock [SomaFM]
+16:15:04.274 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+16:15:04.274 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:04.274 -> ##CLI.INFO#
+16:15:04.274 -> ##SYS.DATE#: 1970-01-01T03:00:15+03:00
+16:15:04.274 -> ##CLI.NAMESET#: 379 SomaFM PopTron
+16:15:04.274 -> ##CLI.META#: PopTron: Electro-Pop and Indie Dance Rock [SomaFM]
+16:15:04.274 -> ##CLI.VOL#: 24
+16:15:04.274 -> ##CLI.PLAYING#
+16:15:04.274 -> ##CLI.META#: PopTron: Electro-Pop and Indie Dance Rock [SomaFM]
+16:15:04.274 -> ##AUDIO.INFO#: stream ready
+16:15:04.274 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:04.274 -> ##AUDIO.INFO#: MPEG-1 Layer III
+16:15:04.274 -> ##AUDIO.INFO#: Channels: 2
+16:15:04.274 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:15:04.274 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:04.320 -> ##AUDIO.INFO#: BitRate: 128000
+16:15:04.320 -> ##AUDIO.BITRATE#: 128000
+16:15:04.782 -> ##AUDIO.INFO#: Stream URL; StreamUrl='https://somafm.com/logos/512/poptron512.png'
+16:15:04.782 -> ##CLI.META#: Sound Of Arrows - M.A.G.I.C.
+16:15:08.813 -> ##CLI.META#: [соединение]
+16:15:08.906 -> ##AUDIO.INFO#: Closing web file "https://ice4.somafm.com/poptron-128-mp3" (ssl=1)
+16:15:08.906 -> ##AUDIO.INFO#: buffers freed, free Heap: 173928 bytes
+16:15:08.906 -> ##AUDIO.INFO#: connect to: "ice2.somafm.com" on port 443 path "/illstreet-128-mp3"
+16:15:10.064 -> ##AUDIO.INFO#: SSL has been established in 1156 ms
+16:15:10.388 -> ##AUDIO.INFO#: format is mp3
+16:15:10.388 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:15:10.388 -> ##AUDIO.INFO#: icy-genre:  Exotica Lounge
+16:15:10.388 -> ##AUDIO.INFO#: icy-name: Ill Street Lounge: Classic bachelor pad, playful exotica and vintage music of tomorrow. [SomaFM]
+16:15:10.388 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+16:15:10.388 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:10.433 -> ##CLI.META#: Ill Street Lounge: Classic bachelor pad, playful exotica and vintage music of tomorrow. [SomaFM]
+16:15:10.433 -> ##CLI.INFO#
+16:15:10.433 -> ##SYS.DATE#: 2026-08-24T16:15:11+03:00
+16:15:10.433 -> ##CLI.NAMESET#: 381 SomaFM Illinois Street Lounge
+16:15:10.433 -> ##CLI.META#: Ill Street Lounge: Classic bachelor pad, playful exotica and vintage music of tomorrow. [SomaFM]
+16:15:10.433 -> ##CLI.VOL#: 24
+16:15:10.433 -> ##CLI.PLAYING#
+16:15:10.433 -> ##CLI.META#: Ill Street Lounge: Classic bachelor pad, playful exotica and vintage music of tomorrow. [SomaFM]
+16:15:10.433 -> ##AUDIO.INFO#: stream ready
+16:15:10.433 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:10.479 -> ##AUDIO.INFO#: MPEG-1 Layer III
+16:15:10.479 -> ##AUDIO.INFO#: Channels: 2
+16:15:10.479 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:15:10.479 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:10.479 -> ##AUDIO.INFO#: BitRate: 128000
+16:15:10.479 -> ##AUDIO.BITRATE#: 128000
+16:15:11.220 -> ##AUDIO.INFO#: Stream URL; StreamUrl='https://somafm.com/logos/512/illstreet512.jpg'
+16:15:11.220 -> ##CLI.META#: Alan Hawkshaw - Dave Allen At Large
+16:15:11.451 -> ##AUDIO.INFO#: slow stream, dropouts are possible
+16:15:13.028 -> ##CLI.META#: [соединение]
+16:15:13.121 -> ##AUDIO.INFO#: Closing web file "https://ice2.somafm.com/illstreet-128-mp3" (ssl=1)
+16:15:13.121 -> ##AUDIO.INFO#: buffers freed, free Heap: 173920 bytes
+16:15:13.121 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+16:15:14.372 -> ##AUDIO.INFO#: SSL has been established in 1273 ms
+16:15:14.558 -> ##AUDIO.INFO#: format is ogg
+16:15:14.558 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:15:14.604 -> ##AUDIO.INFO#: icy-genre:  3
+16:15:14.604 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+16:15:14.604 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:14.604 -> ##CLI.META#: radio.audiomastering.lt
+16:15:14.604 -> ##CLI.INFO#
+16:15:14.604 -> ##SYS.DATE#: 2026-08-24T16:15:15+03:00
+16:15:14.604 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+16:15:14.604 -> ##CLI.META#: radio.audiomastering.lt
+16:15:14.604 -> ##CLI.VOL#: 24
+16:15:14.604 -> ##CLI.PLAYING#
+16:15:14.604 -> ##CLI.META#: radio.audiomastering.lt
+16:15:14.604 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 resBuff=65535 feedCap=32768
+16:15:14.604 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+16:15:15.301 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+16:15:15.301 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:15.346 -> ##AUDIO.INFO#: Channels: 2
+16:15:15.346 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:15:15.346 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:15.346 -> ##AUDIO.INFO#: BitRate: 128000
+16:15:15.346 -> ##AUDIO.BITRATE#: 128000
+16:15:15.346 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+16:15:15.346 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=385 left=32383
+16:15:20.908 -> ##CLI.META#: [соединение]
+16:15:21.139 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+16:15:21.139 -> ##AUDIO.INFO#: buffers freed, free Heap: 173724 bytes
+16:15:21.139 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/chill/radio.flac"
+16:15:22.760 -> ##AUDIO.INFO#: SSL has been established in 1633 ms
+16:15:22.852 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/chill/radio.flac"
+16:15:22.852 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/chill/radio.flac"
+16:15:24.752 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:15:24.937 -> ##AUDIO.INFO#: format is ogg
+16:15:24.937 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+16:15:24.937 -> ##AUDIO.INFO#: icy-genre:  Electronic, Chill, Chillout, Relax, House, Liquid Funk, Liquid, Liquid Drum and Bas, Intelligent Drum&Bass, Intelligent Drum and Bass, phonk, Lofi
+16:15:24.937 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/ncdMKNsn/LOGO-3-2-bg4.png
+16:15:24.937 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio | Chill Zone
+16:15:24.937 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+16:15:24.937 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:24.983 -> ##CLI.INFO#
+16:15:24.983 -> ##SYS.DATE#: 2026-08-24T16:15:25+03:00
+16:15:24.983 -> ##CLI.NAMESET#: 385 ISEKOI Chill Zone (FLAC)
+16:15:24.983 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+16:15:24.983 -> ##CLI.VOL#: 24
+16:15:24.983 -> ##CLI.PLAYING#
+16:15:24.983 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 resBuff=65535 feedCap=32768
+16:15:24.983 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+16:15:24.983 -> ##CLI.META#: ISEKOI Radio | Chill Zone
+16:15:25.167 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+16:15:25.167 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:25.167 -> ##AUDIO.INFO#: Channels: 2
+16:15:25.167 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+16:15:25.167 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:25.214 -> ##AUDIO.INFO#: BitRate: 128000
+16:15:25.214 -> ##AUDIO.BITRATE#: 128000
+16:15:25.214 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+16:15:25.214 -> ##AUDIO.INFO#: microflac HEADER_READY sr=48000 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=155 left=32613
+16:15:32.347 -> ##CLI.META#: [соединение]
+16:15:32.671 -> ##AUDIO.INFO#: Closing web file "https://isekoi-radio.com/listen/chill/radio.flac" (ssl=1)
+16:15:32.671 -> ##AUDIO.INFO#: buffers freed, free Heap: 173944 bytes
+16:15:32.671 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+16:15:34.152 -> ##AUDIO.INFO#: SSL has been established in 1472 ms
+16:15:34.198 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+16:15:34.198 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+16:15:35.125 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:15:35.312 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+16:15:35.312 -> ##CLI.META#: 
+16:15:35.312 -> ##CLI.INFO#
+16:15:35.312 -> ##SYS.DATE#: 2026-08-24T16:15:36+03:00
+16:15:35.312 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+16:15:35.312 -> ##CLI.META#: 
+16:15:35.312 -> ##CLI.VOL#: 24
+16:15:35.312 -> ##CLI.PLAYING#
+16:15:35.312 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+16:15:35.312 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+16:15:35.312 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:15:35.404 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+16:15:35.404 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+16:15:35.869 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+16:15:36.288 -> ##AUDIO.INFO#: format is ogg
+16:15:36.288 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+16:15:36.288 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+16:15:36.288 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+16:15:36.288 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:36.288 -> ##CLI.META#: Dance Wave Retro!
+16:15:36.567 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 resBuff=65535 feedCap=32768
+16:15:36.613 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+16:15:36.984 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+16:15:36.984 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:37.030 -> ##AUDIO.INFO#: Channels: 2
+16:15:37.030 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:15:37.030 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:37.030 -> ##AUDIO.INFO#: BitRate: N/A
+16:15:37.030 -> ##AUDIO.BITRATE#: N/A
+16:15:37.030 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+16:15:37.030 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=24315
+16:15:43.049 -> ##CLI.META#: [соединение]
+16:15:43.186 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+16:15:43.186 -> ##AUDIO.INFO#: buffers freed, free Heap: 173796 bytes
+16:15:43.186 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-160"
+16:15:43.280 -> ##AUDIO.INFO#: Connection has been established in 82 ms
+16:15:43.742 -> ##AUDIO.INFO#: format is ogg
+16:15:43.742 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+16:15:43.742 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+16:15:43.787 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+16:15:43.787 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:43.787 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:43.787 -> ##CLI.INFO#
+16:15:43.787 -> ##SYS.DATE#: 2026-08-24T16:15:44+03:00
+16:15:43.787 -> ##CLI.NAMESET#: 295 SECTOR Zed 192 (ogg-vorbis)
+16:15:43.787 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:43.787 -> ##CLI.VOL#: 24
+16:15:43.787 -> ##CLI.PLAYING#
+16:15:43.787 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:44.158 -> ##AUDIO.INFO#: VORBISDecoder has been initialized
+16:15:44.158 -> ##AUDIO.INFO#: format is vorbis
+16:15:44.577 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+16:15:44.577 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:44.623 -> ##CLI.META#: Анжела Лондон - Голубь, 2015 [Moscow • Russia]
+16:15:44.623 -> ##AUDIO.INFO#: Channels: 2
+16:15:44.623 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:15:44.623 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:44.623 -> ##AUDIO.INFO#: BitRate: 192000
+16:15:44.669 -> ##AUDIO.BITRATE#: 192000
+16:15:48.320 -> [WEBSOCKET] client #1 disconnected
+16:15:50.130 -> ##CLI.META#: Chloe x Halle - Wolf at your door, 2019 (, USA)
+16:15:50.408 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+16:15:52.398 -> ##CLI.META#: [соединение]
+16:15:52.444 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-160" (ssl=0)
+16:15:52.444 -> ##AUDIO.INFO#: buffers freed, free Heap: 173940 bytes
+16:15:52.444 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-56"
+16:15:52.489 -> ##AUDIO.INFO#: Connection has been established in 35 ms
+16:15:53.000 -> ##AUDIO.INFO#: format is ogg
+16:15:53.000 -> ##AUDIO.INFO#: icy-bitrate : 88000 (b/s)
+16:15:53.000 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+16:15:53.000 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+16:15:53.000 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:53.000 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:53.000 -> ##CLI.INFO#
+16:15:53.000 -> ##SYS.DATE#: 2026-08-24T16:15:53+03:00
+16:15:53.000 -> ##CLI.NAMESET#: 294 SECTOR Zed 56 (ogg-opus)
+16:15:53.000 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:53.000 -> ##CLI.VOL#: 24
+16:15:53.000 -> ##CLI.PLAYING#
+16:15:53.000 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:53.321 -> ##AUDIO.INFO#: OPUSDecoder has been initialized
+16:15:53.321 -> ##AUDIO.INFO#: format is opus
+16:15:54.017 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+16:15:54.017 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:54.017 -> ##AUDIO.INFO#: Opus Mode: CELT_ONLY
+16:15:54.017 -> ##AUDIO.INFO#: Channels: 2
+16:15:54.017 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+16:15:54.017 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:54.017 -> ##AUDIO.INFO#: BitRate: 88000
+16:15:54.017 -> ##AUDIO.BITRATE#: 88000
+16:15:56.847 -> ##CLI.META#: [соединение]
+16:15:56.940 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-56" (ssl=0)
+16:15:56.940 -> ##AUDIO.INFO#: buffers freed, free Heap: 173948 bytes
+16:15:56.940 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+16:15:56.987 -> ##AUDIO.INFO#: Connection has been established in 46 ms
+16:15:57.267 -> ##AUDIO.INFO#: format is ogg
+16:15:57.267 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+16:15:57.267 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+16:15:57.267 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+16:15:57.267 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:57.267 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+16:15:57.312 -> ##CLI.INFO#
+16:15:57.312 -> ##SYS.DATE#: 2026-08-24T16:15:58+03:00
+16:15:57.312 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+16:15:57.312 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:57.312 -> ##CLI.VOL#: 24
+16:15:57.312 -> ##CLI.PLAYING#
+16:15:57.312 -> ##CLI.META#: SECTOR  |  Zed channel
+16:15:57.404 -> ##AUDIO.INFO#: microflac WEB activated: block=32768 resBuff=65535 feedCap=32768
+16:15:57.404 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+16:15:57.865 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+16:15:57.865 -> ##AUDIO.INFO#: syncword found at pos 0
+16:15:57.865 -> ##AUDIO.INFO#: Channels: 2
+16:15:57.865 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+16:15:57.865 -> ##AUDIO.INFO#: BitsPerSample: 16
+16:15:57.865 -> ##AUDIO.INFO#: BitRate: 1411000
+16:15:57.865 -> ##AUDIO.BITRATE#: 1411000
+16:15:57.865 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+16:15:57.865 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=32617
+16:17:27.401 -> [WEBSOCKET] client #2 disconnected
