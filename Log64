@@ -1,0 +1,405 @@
+17:02:55.989 -> Build:Mar 27 2021
+17:02:55.989 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+17:02:55.989 -> SPIWP:0xee
+17:02:55.989 -> mode:DIO, clock div:1
+17:02:55.989 -> load:0x3fce2820,len:0x116c
+17:02:55.989 -> load:0x403c8700,len:0xc2c
+17:02:55.989 -> load:0x403cb700,len:0x3108
+17:02:55.989 -> entry 0x403c88b8
+17:02:56.399 -> ##[BOOT]#	************************************************
+17:02:56.399 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+17:02:56.399 -> ##[BOOT]#	************************************************
+17:02:56.399 -> ##[BOOT]#	------------------------------------------------
+17:02:56.399 -> ##[BOOT]#	arduino:	10819
+17:02:56.399 -> ##[BOOT]#	compiler:	14.2.0
+17:02:56.399 -> ##[BOOT]#	esp32core:	3.3.6
+17:02:56.399 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+17:02:56.399 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+17:02:56.446 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+17:02:56.446 -> ##[BOOT]#	audioinfo:	false
+17:02:56.446 -> ##[BOOT]#	smartstart:	0
+17:02:56.446 -> ##[BOOT]#	vumeter:	false
+17:02:56.446 -> ##[BOOT]#	softapdelay:	0
+17:02:56.446 -> ##[BOOT]#	flipscreen:	false
+17:02:56.446 -> ##[BOOT]#	invertdisplay:	false
+17:02:56.446 -> ##[BOOT]#	showweather:	false
+17:02:56.446 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+17:02:56.446 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+17:02:56.446 -> ##[BOOT]#	ir:		NONE
+17:02:56.446 -> ##[BOOT]#	SD:		CS-39
+17:02:56.446 -> ##[BOOT]#	battery:	battery ON
+17:02:56.493 -> ##[BOOT]#	------------------------------------------------
+17:02:56.493 -> ##[BOOT]#	CONFIG_VERSION	4
+17:02:56.540 -> ##[BOOT]#	SPIFFS mounted
+17:02:56.775 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+17:02:56.775 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+17:02:56.775 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+17:02:56.775 -> ##[BOOT]#	player.init	done
+17:02:56.822 -> ##[BOOT]#	network.begin
+17:02:56.916 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+17:02:56.916 -> ##[BOOT]#	....
+17:02:58.409 -> ##[BOOT]#	done
+17:02:58.409 -> ##[BOOT]#	SD search	done
+17:02:58.456 -> ##[BOOT]#	netserver.begin	done
+17:02:58.456 -> ##[BOOT]#	telnet.begin	done
+17:02:58.456 -> ##[BOOT]#
+17:02:58.456 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+17:02:58.456 -> ##[BOOT]#	------------------------------------------------
+17:02:58.503 -> ##[BOOT]#
+17:02:58.503 -> ##CLI.META#: [готов]
+17:02:58.597 -> ##CLI.META#: [соединение]
+17:02:58.689 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+17:02:58.689 -> ##AUDIO.INFO#: buffers freed, free Heap: 174840 bytes
+17:02:58.689 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+17:02:58.736 -> ##AUDIO.INFO#: Connection has been established in 79 ms
+17:02:58.873 -> ##AUDIO.INFO#: format is ogg
+17:02:58.873 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+17:02:58.873 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+17:02:58.873 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+17:02:58.919 -> ##CLI.META#: SECTOR  |  Zed channel
+17:02:58.919 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:02:59.013 -> ##CLI.INFO#
+17:02:59.013 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+17:02:59.013 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+17:02:59.059 -> ##CLI.META#: SECTOR  |  Zed channel
+17:02:59.059 -> ##CLI.VOL#: 24
+17:02:59.059 -> ##CLI.PLAYING#
+17:02:59.059 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:02:59.059 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:02:59.059 -> ##CLI.META#: SECTOR  |  Zed channel
+17:02:59.291 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:02:59.291 -> ##AUDIO.INFO#: Channels: 2
+17:02:59.291 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:02:59.291 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:02:59.291 -> ##AUDIO.INFO#: BitRate: 1411000
+17:02:59.291 -> ##AUDIO.BITRATE#: 1411000
+17:02:59.291 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:02:59.337 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=64097
+17:02:59.337 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=152 left=64096 filled=64248 header=1
+17:03:00.034 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=101369 header=1
+17:03:00.728 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=210738 header=1
+17:03:01.470 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=292764 header=1
+17:03:02.168 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=416424 header=1
+17:03:02.870 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=540084 header=1
+17:03:03.575 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:04.266 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:04.963 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:05.659 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:06.355 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:07.096 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:07.776 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:08.481 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:09.186 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:09.885 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:10.582 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:11.279 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:12.013 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:12.718 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:13.377 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:14.120 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:14.812 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:15.509 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:16.208 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:16.903 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:17.600 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:18.296 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:19.037 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:19.734 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:20.431 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:21.126 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:21.825 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:22.524 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:23.222 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:23.918 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:24.614 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:25.355 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:26.050 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:26.745 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:27.441 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:28.136 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:28.831 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:29.529 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:30.227 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:30.968 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:31.662 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:32.358 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:33.052 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:33.746 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:34.439 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:35.182 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:35.878 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:36.574 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:37.268 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:37.640 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+17:03:37.640 -> ##CLI.META#: SECTOR  |  Zed channel
+17:03:37.640 -> ##CLI.VOL#: 24
+17:03:37.640 -> ##CLI.INFO#
+17:03:37.640 -> ##SYS.DATE#: 2026-08-24T17:03:38+03:00
+17:03:37.640 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+17:03:37.640 -> ##CLI.META#: SECTOR  |  Zed channel
+17:03:37.640 -> ##CLI.VOL#: 24
+17:03:37.640 -> ##CLI.PLAYING#
+17:03:37.965 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:38.709 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:39.403 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:40.099 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:40.794 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:41.491 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:42.187 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:42.929 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:43.621 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:44.319 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:45.016 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:45.710 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:46.406 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:47.100 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:47.843 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64846 total_cons=64846 left=689 filled=655350 header=1
+17:03:48.399 -> ##CLI.META#: [соединение]
+17:03:48.445 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+17:03:48.492 -> ##AUDIO.INFO#: buffers freed, free Heap: 174048 bytes
+17:03:48.492 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+17:03:49.419 -> ##AUDIO.INFO#: SSL has been established in 927 ms
+17:03:49.465 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+17:03:49.465 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+17:03:50.350 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+17:03:50.350 -> ##CLI.META#: 
+17:03:50.442 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+17:03:50.442 -> ##CLI.INFO#
+17:03:50.442 -> ##SYS.DATE#: 2026-08-24T17:03:51+03:00
+17:03:50.442 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+17:03:50.442 -> ##CLI.META#: 
+17:03:50.442 -> ##CLI.VOL#: 24
+17:03:50.442 -> ##CLI.PLAYING#
+17:03:50.442 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+17:03:50.487 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+17:03:50.487 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+17:03:50.533 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+17:03:50.533 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+17:03:50.950 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+17:03:51.366 -> ##AUDIO.INFO#: format is ogg
+17:03:51.366 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+17:03:51.366 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+17:03:51.366 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+17:03:51.366 -> ##CLI.META#: Dance Wave Retro!
+17:03:51.366 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:03:51.551 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:03:51.598 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:03:52.153 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:03:52.153 -> ##AUDIO.INFO#: Channels: 2
+17:03:52.199 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:03:52.199 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:03:52.199 -> ##AUDIO.INFO#: BitRate: N/A
+17:03:52.199 -> ##AUDIO.BITRATE#: N/A
+17:03:52.199 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:03:52.199 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=57082
+17:03:52.199 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=43686 total_cons=52139 left=13396 filled=71737 header=1
+17:03:52.897 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=157897 header=1
+17:03:53.641 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=277741 header=1
+17:03:54.336 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=369125 header=1
+17:03:55.033 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=462205 header=1
+17:03:55.726 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=536617 header=1
+17:03:56.467 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=619645 header=1
+17:03:57.162 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:03:57.858 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:03:58.555 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:03:59.249 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:03:59.945 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:00.688 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:01.384 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:02.081 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:02.778 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:03.476 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:04.170 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:04.866 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:05.562 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:06.306 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:07.003 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:07.698 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:08.395 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:09.091 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:09.787 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:10.485 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:11.179 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=52139 total_cons=52139 left=13396 filled=655350 header=1
+17:04:11.411 -> ##CLI.META#: [соединение]
+17:04:11.504 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+17:04:11.504 -> ##AUDIO.INFO#: buffers freed, free Heap: 173844 bytes
+17:04:11.504 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+17:04:11.735 -> ##AUDIO.INFO#: Connection has been established in 227 ms
+17:04:11.875 -> ##AUDIO.INFO#: format is ogg
+17:04:11.875 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+17:04:11.875 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:04:11.875 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+17:04:11.875 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:04:11.875 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:04:11.875 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:04:11.875 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:04:11.875 -> ##CLI.INFO#
+17:04:11.875 -> ##SYS.DATE#: 2026-08-24T17:04:12+03:00
+17:04:11.921 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+17:04:11.921 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:04:11.921 -> ##CLI.VOL#: 24
+17:04:11.921 -> ##CLI.PLAYING#
+17:04:11.921 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:04:12.014 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:04:12.014 -> ##AUDIO.INFO#: Channels: 2
+17:04:12.014 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:04:12.014 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:04:12.014 -> ##AUDIO.INFO#: BitRate: 1441000
+17:04:12.014 -> ##AUDIO.BITRATE#: 1441000
+17:04:12.060 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:04:12.060 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=60921
+17:04:12.060 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36538 total_cons=36689 left=24383 filled=61072 header=1
+17:04:12.755 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=313808 header=1
+17:04:13.495 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=464588 header=1
+17:04:14.192 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=524900 header=1
+17:04:14.888 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=585212 header=1
+17:04:15.583 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:16.325 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:17.019 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:17.716 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:18.413 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:19.107 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:19.804 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:20.504 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:21.201 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:21.896 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:22.639 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:23.335 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:24.028 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:24.725 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:25.421 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:26.112 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:26.853 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:27.551 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:28.246 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:28.941 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:29.637 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:30.331 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:31.028 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:31.770 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:32.468 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=36689 total_cons=36689 left=28846 filled=655350 header=1
+17:04:32.561 -> ##CLI.META#: [соединение]
+17:04:32.653 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+17:04:32.700 -> ##AUDIO.INFO#: buffers freed, free Heap: 173800 bytes
+17:04:32.700 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+17:04:33.720 -> ##AUDIO.INFO#: SSL has been established in 1060 ms
+17:04:33.859 -> ##AUDIO.INFO#: format is ogg
+17:04:33.859 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+17:04:33.859 -> ##AUDIO.INFO#: icy-genre:  3
+17:04:33.859 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+17:04:33.859 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:04:33.859 -> ##CLI.META#: radio.audiomastering.lt
+17:04:33.859 -> ##CLI.INFO#
+17:04:33.859 -> ##SYS.DATE#: 2026-08-24T17:04:34+03:00
+17:04:33.859 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+17:04:33.859 -> ##CLI.META#: radio.audiomastering.lt
+17:04:33.859 -> ##CLI.VOL#: 24
+17:04:33.859 -> ##CLI.PLAYING#
+17:04:33.859 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:04:33.906 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:04:33.906 -> ##CLI.META#: radio.audiomastering.lt
+17:04:34.043 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:04:34.043 -> ##AUDIO.INFO#: Channels: 2
+17:04:34.043 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:04:34.043 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:04:34.043 -> ##AUDIO.INFO#: BitRate: 128000
+17:04:34.043 -> ##AUDIO.BITRATE#: 128000
+17:04:34.043 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+17:04:34.043 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=170 left=65365
+17:04:34.089 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62813 total_cons=62983 left=2552 filled=65706 header=1
+17:04:34.783 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=212075 header=1
+17:04:35.478 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=276112 header=1
+17:04:36.173 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=373297 header=1
+17:04:36.915 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=397873 header=1
+17:04:37.610 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=435310 header=1
+17:04:38.306 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=522034 header=1
+17:04:39.004 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=607774 header=1
+17:04:39.699 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:40.440 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:41.135 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:41.831 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:42.525 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:43.221 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:43.915 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:44.654 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:45.347 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:46.041 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:46.738 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:47.437 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:48.134 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:48.461 -> [WEBSOCKET] client #1 disconnected
+17:04:48.832 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:49.573 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:50.268 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:50.684 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+17:04:50.963 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:51.655 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:52.350 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:53.047 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:53.790 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:54.483 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62983 total_cons=62983 left=2552 filled=655350 header=1
+17:04:54.483 -> ##CLI.META#: [соединение]
+17:04:54.575 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+17:04:54.575 -> ##AUDIO.INFO#: buffers freed, free Heap: 173912 bytes
+17:04:54.575 -> ##AUDIO.INFO#: connect to: "isekoi-radio.com" on port 443 path "/listen/isekoi/radio.flac"
+17:04:55.686 -> ##AUDIO.INFO#: SSL has been established in 1095 ms
+17:04:55.733 -> ##AUDIO.INFO#: redirect to new host "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+17:04:55.733 -> ##AUDIO.INFO#: next URL: "https://public.isekoi-radio.com/listen/isekoi/radio.flac"
+17:04:57.684 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+17:04:57.916 -> ##AUDIO.INFO#: format is ogg
+17:04:57.916 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+17:04:57.916 -> ##AUDIO.INFO#: icy-genre:  Electronic, Eclectic, Dance, Drum & Bass, DnB, House, Hip-Hop, Rap, Techno
+17:04:57.916 -> ##AUDIO.INFO#: icy-logo: https://i.postimg.cc/BQZXKJnh/LOGO-3-2-bg1.png
+17:04:57.916 -> ##AUDIO.INFO#: icy-name: ISEKOI Radio
+17:04:57.916 -> ##CLI.META#: ISEKOI Radio
+17:04:57.916 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:04:57.962 -> ##CLI.INFO#
+17:04:57.962 -> ##SYS.DATE#: 2026-08-24T17:04:58+03:00
+17:04:57.962 -> ##CLI.NAMESET#: 386 ISEKOI Radio (FLAC) Electronic
+17:04:57.962 -> ##CLI.META#: ISEKOI Radio
+17:04:57.962 -> ##CLI.VOL#: 24
+17:04:57.962 -> ##CLI.PLAYING#
+17:04:57.962 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:04:57.962 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:04:57.962 -> ##CLI.META#: ISEKOI Radio
+17:04:58.147 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:04:58.147 -> ##AUDIO.INFO#: Channels: 2
+17:04:58.147 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+17:04:58.147 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:04:58.147 -> ##AUDIO.INFO#: BitRate: 128000
+17:04:58.147 -> ##AUDIO.BITRATE#: 128000
+17:04:58.147 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+17:04:58.147 -> ##AUDIO.INFO#: microflac HEADER_READY sr=48000 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=155 left=60274
+17:04:58.194 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=156 left=60273 filled=60429 header=1
+17:04:58.890 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=148617 header=1
+17:04:59.586 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=186856 header=1
+17:05:00.283 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=215528 header=1
+17:05:01.026 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=315246 header=1
+17:05:01.721 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=389576 header=1
+17:05:02.412 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=418248 header=1
+17:05:03.110 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=483675 header=1
+17:05:03.807 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=546947 header=1
+17:05:04.547 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=622013 header=1
+17:05:05.242 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:05.940 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:06.635 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:07.331 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:08.026 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:08.769 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:09.462 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:10.158 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:10.851 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:11.545 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:12.238 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:12.978 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:13.673 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:14.367 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:15.062 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=62602 total_cons=62602 left=2933 filled=655350 header=1
+17:05:15.433 -> ##CLI.META#: [остановлено]
+17:05:15.433 -> ##AUDIO.INFO#: Closing web file "https://isekoi-radio.com/listen/isekoi/radio.flac" (ssl=1)
+17:05:15.433 -> ##AUDIO.INFO#: buffers freed, free Heap: 173712 bytes
+17:05:15.479 -> ##CLI.INFO#
+17:05:15.479 -> ##SYS.DATE#: 2026-08-24T17:05:16+03:00
+17:05:15.479 -> ##CLI.NAMESET#: 386 ISEKOI Radio (FLAC) Electronic
+17:05:15.479 -> ##CLI.VOL#: 24
+17:05:15.479 -> ##CLI.STOPPED#
