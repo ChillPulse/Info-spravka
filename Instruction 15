@@ -1,0 +1,242 @@
+# Instruction 15 — ЖЕЛЕЗНОЕ ТЗ агенту: OGG_DEMUX диагностика + stash (чтобы FLAC наконец заиграл)
+
+Цель: добиться, что WEB Ogg-FLAC (Radio Paradise и подобные) начинает выдавать `microflac SUCCESS` и идёт звук.  
+При этом: **не ломаем web MP3/AAC/OPUS/VORBIS и SD-режим**.
+
+---
+
+## 0) РЕГЛАМЕНТ
+Только `main`, без веток.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ (строго)
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+3) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+
+### Запрещено:
+- SD режим (включая legacy `audioI2S/flac_decoder/*`)
+- любые другие web кодеки (MP3/AAC/OPUS/VORBIS)
+- любые изменения в `httpPrint`/ICY в этой инструкции (уже сделано, не трогаем)
+- любые правки в конце `Audio.cpp` (EOF-сентинел не трогать)
+
+---
+
+## 2) P0: Добавить “железную” диагностику OGG_DEMUX в Audio.cpp (без спама)
+
+### 2.1 Добавить функцию `oggDemuxName()` рядом с `mfErrName()`
+Файл: `Audio.cpp`, рядом с `mfErrName(int e)` добавить:
+
+```cpp
+static const char* oggDemuxName(int e){
+    switch(e){
+        case 0:   return "OGG_OK";
+        case 1:   return "OGG_NEED_MORE_DATA";
+        case 2:   return "OGG_PACKET_SKIPPED";
+        case -1:  return "OGG_INVALID_CAPTURE";
+        case -2:  return "OGG_INVALID_VERSION";
+        case -3:  return "OGG_CRC_FAILED";
+        case -4:  return "OGG_STREAM_SEQUENCE_ERROR";
+        case -5:  return "OGG_STREAM_BOS_ERROR";
+        case -6:  return "OGG_STREAM_EOS_ERROR";
+        case -7:  return "OGG_STREAM_SERIAL_MISMATCH";
+        case -8:  return "OGG_STREAM_CONTINUATION_ERROR";
+        case -9:  return "OGG_ALLOCATION_FAILED";
+        case -10: return "OGG_INVALID_MODE_SWITCH";
+        case -11: return "OGG_INVALID_INPUT";
+        default:  return "OGG_?";
+    }
+}
+```
+
+### 2.2 Вставить диагностический лог ТОЛЬКО при `mf_res == -14`
+Файл: `Audio.cpp`, в `sendBytes()` внутри microflac decode loop, в error-path (там где уже rate-limit `s_errLogCnt < 5`) — сразу после текущего `AUDIO_ERROR("microflac err ...")` добавить:
+
+```cpp
+if((int)mf_res == micro_flac::FLAC_DECODER_ERROR_OGG_DEMUX){
+    int ogg_res = (int)g_mf.get_last_ogg_result();
+
+    uint8_t h0 = (left > 0) ? p[0] : 0;
+    uint8_t h1 = (left > 1) ? p[1] : 0;
+    uint8_t h2 = (left > 2) ? p[2] : 0;
+    uint8_t h3 = (left > 3) ? p[3] : 0;
+
+    size_t pageTotal = 0;
+    bool havePageTotal = mf_parse_ogg_page_total(p, left, &pageTotal);
+
+    AUDIO_ERROR("microflac OGG_DIAG ogg_res=%d(%s) serial=%lu seq=%lu htype=%u segs=%u endpkt=%u body=%lu native=%lu stash=%lu page=%lu head=%02X%02X%02X%02X",
+        ogg_res, oggDemuxName(ogg_res),
+        (unsigned long)g_mf.get_last_ogg_serial(),
+        (unsigned long)g_mf.get_last_ogg_sequence(),
+        (unsigned)g_mf.get_last_ogg_header_type(),
+        (unsigned)g_mf.get_last_ogg_segment_count(),
+        (unsigned)g_mf.get_last_ogg_is_end_of_packet(),
+        (unsigned long)g_mf.get_last_ogg_body_len(),
+        (unsigned long)g_mf.get_last_ogg_native_consumed(),
+        (unsigned long)g_mf.get_ogg_stash_len(),
+        (unsigned long)(havePageTotal ? pageTotal : 0),
+        h0,h1,h2,h3
+    );
+}
+```
+
+**Важно:** этот лог должен быть под тем же rate-limit (т.е. не чаще 5/сек) — иначе зальёт Serial.
+
+---
+
+## 3) P0: micro-flac “stash” (исключаем класс причин, когда packet > 1 frame / decoder early-return)
+
+Суть: если в `decode_ogg()` `decode_native()` вернул `SUCCESS`/`HEADER_READY`, но **`native_consumed < body_len`**, вместо фатального `OGG_DEMUX` нужно:
+- **сохранить остаток `body[native_consumed..]` во внутренний stash (копия)**,
+- считать, что демультиплексорный `body_len` “потреблён” полностью,
+- вернуть `SUCCESS`/`HEADER_READY`, чтобы звук пошёл,
+- на следующем `decode_ogg()` сначала докушать stash (без потребления новых входных байт).
+
+### 3.1 Добавить поля + геттеры в `flac_decoder.h`
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+
+В public секции `FLACDecoder` (рядом с уже существующими `get_last_ogg_*`) добавить:
+
+```cpp
+size_t  get_last_ogg_body_len() const { return last_ogg_body_len_; }
+size_t  get_last_ogg_native_consumed() const { return last_ogg_native_consumed_; }
+uint8_t get_last_ogg_is_end_of_packet() const { return last_ogg_is_end_of_packet_; }
+size_t  get_ogg_stash_len() const { return ogg_stash_.size(); }
+```
+
+В private секции, внутри `#ifndef MICRO_FLAC_DISABLE_OGG` (рядом с `last_ogg_*`) добавить поля:
+
+```cpp
+size_t  last_ogg_body_len_ = 0;
+size_t  last_ogg_native_consumed_ = 0;
+uint8_t last_ogg_is_end_of_packet_ = 0;
+std::vector<uint8_t> ogg_stash_;
+```
+
+### 3.2 Инициализация/сброс в `reset()`
+Файл: `flac_decoder.cpp`, в `FLACDecoder::reset()` добавить сброс:
+
+```cpp
+#ifndef MICRO_FLAC_DISABLE_OGG
+    this->last_ogg_body_len_ = 0;
+    this->last_ogg_native_consumed_ = 0;
+    this->last_ogg_is_end_of_packet_ = 0;
+    this->ogg_stash_.clear();
+    this->ogg_stash_.shrink_to_fit(); // допустимо, но можно просто clear()
+#endif
+```
+
+### 3.3 В `decode_ogg()` сначала пытаться декодировать stash (если есть)
+Файл: `flac_decoder.cpp`, в начале `while(true)` в `decode_ogg` (после `remaining = input_len - bytes_consumed;` и до вызова `get_next_data`) вставить:
+
+```cpp
+// If we have stashed leftover bytes from a previous Ogg packet, decode them first.
+// Stash bytes were already consumed from input in a previous call, so this consumes 0 new input bytes.
+if (!this->ogg_stash_.empty()) {
+    size_t native_consumed = 0;
+    size_t native_samples = 0;
+    auto result = this->decode_native(this->ogg_stash_.data(), this->ogg_stash_.size(),
+                                      output, native_consumed, native_samples, output_32bit);
+    samples_decoded = native_samples;
+    this->last_ogg_body_len_ = this->ogg_stash_.size();
+    this->last_ogg_native_consumed_ = native_consumed;
+
+    if (native_consumed > 0) {
+        // erase consumed prefix
+        this->ogg_stash_.erase(this->ogg_stash_.begin(),
+                               this->ogg_stash_.begin() + (ptrdiff_t)native_consumed);
+    }
+
+    if (result == FLAC_DECODER_NEED_MORE_DATA) {
+        // Need more bytes: fall through to pull more data from ogg demuxer and continue
+    } else {
+        return result;  // SUCCESS / HEADER_READY / error
+    }
+}
+```
+
+### 3.4 В Step 3: при SUCCESS/HEADER_READY и `native_consumed < body_len` — stash remainder, НЕ фаталить
+Файл: `flac_decoder.cpp`, в `decode_ogg` в Step 3 (где сейчас upstream-логика “если native_consumed != body_len -> OGG_DEMUX”), заменить только этот участок на:
+
+```cpp
+this->last_ogg_body_len_ = body_len;
+this->last_ogg_native_consumed_ = native_consumed;
+
+// If decode_native produced a result but didn't consume all offered bytes,
+// stash the remainder and treat the packet bytes as consumed.
+if ((result == FLAC_DECODER_SUCCESS || result == FLAC_DECODER_HEADER_READY) && native_consumed < body_len) {
+    const size_t rem = body_len - native_consumed;
+    // safety cap to avoid runaway memory usage
+    if (rem > 0 && rem <= 65535) {
+        this->ogg_stash_.insert(this->ogg_stash_.end(), body + native_consumed, body + body_len);
+        native_consumed = body_len;
+    } else {
+        return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+    }
+}
+
+// Keep the original invariant check for unexpected cases
+if (native_consumed != body_len) {
+    return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+}
+
+if (result == FLAC_DECODER_NEED_MORE_DATA) {
+    continue;
+}
+if (result == FLAC_DECODER_HEADER_READY) {
+    return FLAC_DECODER_HEADER_READY;
+}
+if (result == FLAC_DECODER_SUCCESS) {
+    return FLAC_DECODER_SUCCESS;
+}
+if (result == FLAC_DECODER_END_OF_STREAM) {
+    return FLAC_DECODER_END_OF_STREAM;
+}
+return result;
+```
+
+### 3.5 Обновлять `last_ogg_is_end_of_packet_`
+Файл: `flac_decoder.cpp`, после `auto state = this->ogg_demuxer_->get_next_data(...)` добавить:
+
+```cpp
+this->last_ogg_is_end_of_packet_ = state.packet.is_end_of_packet ? 1 : 0;
+```
+
+---
+
+## 4) Анти-косяки компиляции (обязательные проверки агентом)
+
+### 4.1 Sanity для Audio.cpp (чтобы снова не появлялись хвосты/мусор)
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+```
+Должно быть: `OK: Audio.cpp sanity checks passed`. 
+
+### 4.2 Ограничение diff
+```bash
+git diff --name-only
+```
+Должно быть ровно 3 файла:
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+
+---
+
+## 5) Коммит / push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp
+git commit -m "diag+fix(flac): add OGG_DEMUX diagnostics + stash leftover ogg body bytes to avoid silent failure (Log70)"
+git push origin main
