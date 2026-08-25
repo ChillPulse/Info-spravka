@@ -1,0 +1,472 @@
+23:25:12.554 -> Build:Mar 27 2021
+23:25:12.554 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+23:25:12.554 -> SPIWP:0xee
+23:25:12.554 -> mode:DIO, clock div:1
+23:25:12.554 -> load:0x3fce2820,len:0x116c
+23:25:12.554 -> load:0x403c8700,len:0xc2c
+23:25:12.554 -> load:0x403cb700,len:0x3108
+23:25:12.601 -> entry 0x403c88b8
+23:25:12.973 -> ##[BOOT]#	************************************************
+23:25:12.973 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+23:25:12.973 -> ##[BOOT]#	************************************************
+23:25:12.973 -> ##[BOOT]#	------------------------------------------------
+23:25:12.973 -> ##[BOOT]#	arduino:	10819
+23:25:12.973 -> ##[BOOT]#	compiler:	14.2.0
+23:25:12.973 -> ##[BOOT]#	esp32core:	3.3.6
+23:25:12.973 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+23:25:12.973 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+23:25:12.973 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+23:25:13.019 -> ##[BOOT]#	audioinfo:	false
+23:25:13.019 -> ##[BOOT]#	smartstart:	0
+23:25:13.019 -> ##[BOOT]#	vumeter:	false
+23:25:13.019 -> ##[BOOT]#	softapdelay:	0
+23:25:13.019 -> ##[BOOT]#	flipscreen:	false
+23:25:13.019 -> ##[BOOT]#	invertdisplay:	false
+23:25:13.019 -> ##[BOOT]#	showweather:	false
+23:25:13.019 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+23:25:13.019 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+23:25:13.019 -> ##[BOOT]#	ir:		NONE
+23:25:13.019 -> ##[BOOT]#	SD:		CS-39
+23:25:13.019 -> ##[BOOT]#	battery:	battery ON
+23:25:13.065 -> ##[BOOT]#	------------------------------------------------
+23:25:13.065 -> ##[BOOT]#	CONFIG_VERSION	4
+23:25:13.112 -> ##[BOOT]#	SPIFFS mounted
+23:25:13.346 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+23:25:13.346 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+23:25:13.346 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+23:25:13.346 -> ##[BOOT]#	player.init	done
+23:25:13.392 -> ##[BOOT]#	network.begin
+23:25:13.484 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+23:25:13.484 -> ##[BOOT]#	.....
+23:25:15.476 -> ##[BOOT]#	done
+23:25:15.476 -> ##[BOOT]#	SD search	done
+23:25:15.523 -> ##[BOOT]#	netserver.begin	done
+23:25:15.523 -> ##[BOOT]#	telnet.begin	done
+23:25:15.523 -> ##[BOOT]#
+23:25:15.523 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+23:25:15.569 -> ##[BOOT]#	------------------------------------------------
+23:25:15.569 -> ##[BOOT]#
+23:25:15.569 -> ##CLI.META#: [готов]
+23:25:18.731 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+23:25:18.778 -> ##CLI.META#: [готов]
+23:25:18.778 -> ##CLI.VOL#: 24
+23:25:18.872 -> ##CLI.INFO#
+23:25:18.872 -> ##SYS.DATE#: 1970-01-01T03:00:05+03:00
+23:25:18.872 -> ##CLI.NAMESET#: 313 (flc) Intence Radio
+23:25:18.872 -> ##CLI.VOL#: 24
+23:25:18.872 -> ##CLI.STOPPED#
+23:25:27.653 -> ##CLI.META#: [соединение]
+23:25:27.653 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+23:25:27.699 -> ##AUDIO.INFO#: buffers freed, free Heap: 173764 bytes
+23:25:27.699 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/indigo-flac"
+23:25:27.699 -> ##AUDIO.INFO#: Connection has been established in 28 ms
+23:25:27.883 -> ##AUDIO.INFO#: format is ogg
+23:25:27.883 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+23:25:27.883 -> ##AUDIO.INFO#: icy-genre: 00s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+23:25:27.883 -> ##AUDIO.INFO#: icy-name: SECTOR | Indigo channel
+23:25:27.883 -> ##CLI.META#: SECTOR | Indigo channel
+23:25:27.883 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:25:27.883 -> ##CLI.INFO#
+23:25:27.883 -> ##SYS.DATE#: 1970-01-01T03:00:14+03:00
+23:25:27.883 -> ##CLI.NAMESET#: 292 SECTOR Indigo (flac)
+23:25:27.883 -> ##CLI.META#: SECTOR | Indigo channel
+23:25:27.883 -> ##CLI.VOL#: 24
+23:25:27.883 -> ##CLI.PLAYING#
+23:25:27.883 -> ##CLI.META#: SECTOR | Indigo channel
+23:25:27.928 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:25:27.928 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:25:28.205 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:25:28.205 -> ##AUDIO.INFO#: Channels: 2
+23:25:28.205 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:25:28.205 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:25:28.205 -> ##AUDIO.INFO#: BitRate: 1411000
+23:25:28.205 -> ##AUDIO.BITRATE#: 1411000
+23:25:28.205 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:25:28.251 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=62187
+23:25:28.251 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=152 left=62186 filled=62338 header=1
+23:25:28.251 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:28.945 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=97817 header=1
+23:25:28.945 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:29.687 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=199049 header=1
+23:25:29.687 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:30.385 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=321316 header=1
+23:25:30.432 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:31.125 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=470824 header=1
+23:25:31.125 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:31.868 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=650556 header=1
+23:25:31.868 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:32.564 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:32.564 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:33.262 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:33.262 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:34.004 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:34.004 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:34.699 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:34.699 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:35.395 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:35.442 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:36.136 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:36.136 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:36.832 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:36.832 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:37.574 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:37.574 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:38.270 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:38.270 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:39.009 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:39.009 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:39.704 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:39.704 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:40.400 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:40.400 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:41.140 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:41.140 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:41.835 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:41.835 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:42.576 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64790 total_cons=64790 left=745 filled=655350 header=1
+23:25:42.576 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:42.808 -> ##CLI.META#: [соединение]
+23:25:42.854 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/indigo-flac" (ssl=0)
+23:25:42.854 -> ##AUDIO.INFO#: buffers freed, free Heap: 173840 bytes
+23:25:42.901 -> ##AUDIO.INFO#: connect to: "secure.live-streams.nl" on port 80 path "/flac.flac"
+23:25:43.597 -> ##AUDIO.INFO#: Connection has been established in 731 ms
+23:25:43.691 -> ##AUDIO.INFO#: format is ogg
+23:25:43.691 -> ##AUDIO.INFO#: icy-logo: https://www.intenseradio.net/wp-content/uploads/2023/09/intense-radio-vierkant-4d-2026.jpg
+23:25:43.691 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+23:25:43.738 -> ##AUDIO.INFO#: icy-genre:  Dance, House, Club classics, Trance, 90s, Melodic, Techno
+23:25:43.738 -> ##AUDIO.INFO#: icy-name: Intense Radio - We love Dance #HQ# FLAC
+23:25:43.738 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+23:25:43.738 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:25:43.738 -> ##CLI.INFO#
+23:25:43.738 -> ##SYS.DATE#: 2026-08-25T23:25:43+03:00
+23:25:43.738 -> ##CLI.NAMESET#: 313 (flc) Intence Radio
+23:25:43.738 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+23:25:43.738 -> ##CLI.VOL#: 24
+23:25:43.738 -> ##CLI.PLAYING#
+23:25:43.738 -> ##CLI.META#: Intense Radio - We love Dance #HQ# FLAC
+23:25:44.108 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:25:44.108 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:25:44.294 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:25:44.294 -> ##AUDIO.INFO#: Channels: 2
+23:25:44.294 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:25:44.294 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:25:44.294 -> ##AUDIO.INFO#: BitRate: 1411000
+23:25:44.294 -> ##AUDIO.BITRATE#: 1411000
+23:25:44.294 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:25:44.340 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=228 left=65307
+23:25:44.340 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47209 total_cons=47437 left=18098 filled=71588 header=1
+23:25:44.340 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=0 in=0 idx=0
+23:25:45.035 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=316624 header=1
+23:25:45.035 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:25:45.730 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=481764 header=1
+23:25:45.730 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:25:46.424 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:46.471 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:25:47.169 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:47.169 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:25:47.912 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:47.912 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:25:48.609 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:48.609 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:25:49.351 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:49.351 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:25:50.091 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:50.091 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:25:50.787 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:50.787 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:25:51.532 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:51.532 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:25:52.228 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:52.275 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:25:52.972 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:52.972 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:25:53.715 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:53.715 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:25:54.411 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:54.411 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:25:55.154 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:55.154 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:25:55.896 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:55.896 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:25:56.592 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=47443 left=18092 filled=655350 header=1
+23:25:56.592 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:25:57.288 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:57.288 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:25:58.031 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:58.031 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:25:58.732 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:58.732 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:25:59.479 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:25:59.479 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:00.178 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:00.224 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:00.921 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:00.921 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:01.666 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:01.666 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:02.362 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=47444 left=18091 filled=655350 header=1
+23:26:02.362 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:03.058 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:03.058 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:03.800 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:03.800 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:04.496 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:04.542 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:05.240 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:05.240 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:05.984 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:05.984 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:06.684 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:06.684 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:07.425 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=47437 total_cons=47437 left=18098 filled=655350 header=1
+23:26:07.425 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:07.843 -> ##CLI.META#: [соединение]
+23:26:07.981 -> ##AUDIO.INFO#: Closing web file "http://secure.live-streams.nl/flac.flac" (ssl=0)
+23:26:07.981 -> ##AUDIO.INFO#: buffers freed, free Heap: 173732 bytes
+23:26:07.981 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+23:26:09.094 -> ##AUDIO.INFO#: SSL has been established in 1134 ms
+23:26:09.187 -> ##AUDIO.INFO#: format is ogg
+23:26:09.187 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+23:26:09.187 -> ##AUDIO.INFO#: icy-genre:  3
+23:26:09.187 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+23:26:09.187 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:26:09.233 -> ##CLI.META#: radio.audiomastering.lt
+23:26:09.233 -> ##CLI.INFO#
+23:26:09.233 -> ##SYS.DATE#: 2026-08-25T23:26:08+03:00
+23:26:09.233 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+23:26:09.233 -> ##CLI.META#: radio.audiomastering.lt
+23:26:09.233 -> ##CLI.VOL#: 24
+23:26:09.233 -> ##CLI.PLAYING#
+23:26:09.233 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:26:09.233 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:26:09.233 -> ##CLI.META#: radio.audiomastering.lt
+23:26:09.373 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:26:09.373 -> ##AUDIO.INFO#: Channels: 2
+23:26:09.373 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:26:09.373 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:26:09.419 -> ##AUDIO.INFO#: BitRate: 128000
+23:26:09.419 -> ##AUDIO.BITRATE#: 128000
+23:26:09.419 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+23:26:09.419 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=322 left=65213
+23:26:09.419 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=63970 total_cons=64292 left=1243 filled=65858 header=1
+23:26:09.419 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:10.114 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=187742 header=1
+23:26:10.161 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:10.855 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=245787 header=1
+23:26:10.855 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:11.552 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=245787 header=1
+23:26:11.552 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:12.294 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=245787 header=1
+23:26:12.294 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:12.988 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=370757 header=1
+23:26:12.988 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:13.686 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=370757 header=1
+23:26:13.732 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:14.429 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=428101 header=1
+23:26:14.429 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:15.125 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=516527 header=1
+23:26:15.125 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:15.866 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=555982 header=1
+23:26:15.866 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:16.563 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=640755 header=1
+23:26:16.563 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:17.258 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=64292 total_cons=64292 left=1243 filled=655350 header=1
+23:26:17.304 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:17.444 -> ##CLI.META#: [соединение]
+23:26:17.537 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+23:26:17.537 -> ##AUDIO.INFO#: buffers freed, free Heap: 173836 bytes
+23:26:17.537 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+23:26:17.910 -> ##AUDIO.INFO#: Connection has been established in 359 ms
+23:26:18.003 -> ##AUDIO.INFO#: format is ogg
+23:26:18.049 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+23:26:18.049 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+23:26:18.049 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:26:18.049 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:26:18.049 -> ##CLI.INFO#
+23:26:18.049 -> ##SYS.DATE#: 2026-08-25T23:26:17+03:00
+23:26:18.049 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+23:26:18.049 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:26:18.049 -> ##CLI.VOL#: 24
+23:26:18.049 -> ##CLI.PLAYING#
+23:26:18.049 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:26:18.049 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:26:18.049 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:26:18.142 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:26:18.142 -> ##AUDIO.INFO#: Channels: 2
+23:26:18.188 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:26:18.188 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:26:18.188 -> ##AUDIO.INFO#: BitRate: N/A
+23:26:18.188 -> ##AUDIO.BITRATE#: N/A
+23:26:18.188 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:26:18.188 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=191 left=60628
+23:26:18.188 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51090 total_cons=51281 left=9538 filled=62462 header=1
+23:26:18.188 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:18.931 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=362552 header=1
+23:26:18.931 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:19.625 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=51283 left=14252 filled=655350 header=1
+23:26:19.625 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:20.360 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:20.360 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:21.058 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:21.058 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:21.756 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:21.756 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:22.496 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:22.496 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:23.190 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:23.190 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:23.933 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:23.933 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:24.625 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:24.625 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:25.366 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:25.366 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:26.064 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:26.064 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:26.806 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:26.806 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:27.503 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51281 total_cons=51281 left=14254 filled=655350 header=1
+23:26:27.503 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:27.735 -> ##CLI.META#: [соединение]
+23:26:27.966 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+23:26:27.966 -> ##AUDIO.INFO#: buffers freed, free Heap: 173692 bytes
+23:26:27.966 -> ##AUDIO.INFO#: connect to: "streams.norbert.de" on port 443 path "/zappa.flac"
+23:26:28.894 -> ##AUDIO.INFO#: SSL has been established in 940 ms
+23:26:29.498 -> ##AUDIO.INFO#: format is ogg
+23:26:29.498 -> ##AUDIO.INFO#: icy-genre:  Zappa
+23:26:29.498 -> ##AUDIO.INFO#: icy-name: Zappa Stream Radio
+23:26:29.498 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:26:29.498 -> ##CLI.META#: Zappa Stream Radio
+23:26:29.498 -> ##CLI.INFO#
+23:26:29.498 -> ##SYS.DATE#: 2026-08-25T23:26:29+03:00
+23:26:29.498 -> ##CLI.NAMESET#: 324 (flc) Norbert - https
+23:26:29.498 -> ##CLI.META#: Zappa Stream Radio
+23:26:29.498 -> ##CLI.VOL#: 24
+23:26:29.498 -> ##CLI.PLAYING#
+23:26:29.498 -> ##CLI.META#: Zappa Stream Radio
+23:26:29.682 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:26:29.729 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:26:29.868 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:26:29.868 -> ##AUDIO.INFO#: Channels: 2
+23:26:29.868 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:26:29.868 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:26:29.868 -> ##AUDIO.INFO#: BitRate: N/A
+23:26:29.868 -> ##AUDIO.BITRATE#: N/A
+23:26:29.868 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+23:26:29.868 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=274 left=63698
+23:26:29.868 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55513 total_cons=55787 left=8185 filled=63972 header=1
+23:26:29.868 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:30.561 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=169286 header=1
+23:26:30.607 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:31.304 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=225934 header=1
+23:26:31.304 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:31.997 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=364849 header=1
+23:26:31.997 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:32.738 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=458163 header=1
+23:26:32.738 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:33.433 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=573764 header=1
+23:26:33.433 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:34.127 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:34.127 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:34.825 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:34.871 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:35.566 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:35.566 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:36.261 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:36.261 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:36.955 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:36.955 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:37.648 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:37.648 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:38.342 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:38.389 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:39.083 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:39.083 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:39.734 -> ##CLI.META#: [соединение]
+23:26:39.780 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=55787 total_cons=55787 left=9748 filled=655350 header=1
+23:26:39.780 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:39.827 -> ##AUDIO.INFO#: Closing web file "https://streams.norbert.de/zappa.flac" (ssl=1)
+23:26:39.827 -> ##AUDIO.INFO#: buffers freed, free Heap: 173828 bytes
+23:26:39.827 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+23:26:40.663 -> ##AUDIO.INFO#: SSL has been established in 807 ms
+23:26:40.709 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+23:26:40.709 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+23:26:41.775 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:26:41.960 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+23:26:42.006 -> ##CLI.META#: 
+23:26:42.006 -> ##CLI.INFO#
+23:26:42.006 -> ##SYS.DATE#: 2026-08-25T23:26:41+03:00
+23:26:42.006 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+23:26:42.006 -> ##CLI.META#: 
+23:26:42.006 -> ##CLI.VOL#: 24
+23:26:42.006 -> ##CLI.PLAYING#
+23:26:42.006 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+23:26:42.006 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+23:26:42.006 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:26:42.099 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+23:26:42.099 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+23:26:42.473 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:26:42.705 -> ##AUDIO.INFO#: format is ogg
+23:26:42.705 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+23:26:42.705 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+23:26:42.705 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+23:26:42.705 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:26:42.705 -> ##CLI.META#: Dance Wave Retro!
+23:26:42.750 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:26:42.750 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:26:43.028 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:26:43.028 -> ##AUDIO.INFO#: Channels: 2
+23:26:43.028 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:26:43.028 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:26:43.028 -> ##AUDIO.INFO#: BitRate: N/A
+23:26:43.028 -> ##AUDIO.BITRATE#: N/A
+23:26:43.028 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:26:43.028 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=57082
+23:26:43.028 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=43010 total_cons=51463 left=14072 filled=69125 header=1
+23:26:43.075 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:43.770 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=279437 header=1
+23:26:43.770 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:44.466 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=536141 header=1
+23:26:44.466 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:45.159 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=51467 left=14068 filled=624534 header=1
+23:26:45.159 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:45.856 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=51466 left=14069 filled=655350 header=1
+23:26:45.856 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:46.599 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:46.599 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:47.293 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:47.293 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:48.030 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:48.030 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:48.772 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:48.772 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:49.464 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:49.510 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:50.206 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:50.206 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:50.947 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:50.947 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:51.644 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:51.690 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:52.388 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:52.388 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:53.129 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:53.129 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=-2 in=5 idx=5
+23:26:53.824 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:53.824 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=2 idx=2
+23:26:54.565 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:54.565 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=4 idx=4
+23:26:55.310 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:55.310 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=1 idx=1
+23:26:56.005 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=51463 total_cons=51463 left=14072 filled=655350 header=1
+23:26:56.051 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:56.745 -> ##AUDIO.INFO#: microflac NEED_MORE(progress) cons=1 total_cons=51466 left=14069 filled=655350 header=1
+23:26:56.745 -> ##AUDIO.INFO#: microflac NATIVE_DIAG last_native_res=3 in=3 idx=3
+23:26:57.024 -> ##CLI.META#: [остановлено]
+23:26:57.070 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+23:26:57.070 -> ##AUDIO.INFO#: buffers freed, free Heap: 173812 bytes
+23:26:57.117 -> ##CLI.INFO#
+23:26:57.117 -> ##SYS.DATE#: 2026-08-25T23:26:56+03:00
+23:26:57.117 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+23:26:57.117 -> ##CLI.VOL#: 24
+23:26:57.117 -> ##CLI.STOPPED#
