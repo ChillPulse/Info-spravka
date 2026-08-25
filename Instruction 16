@@ -1,0 +1,242 @@
+# Instruction 16 — micro-flac Ogg-FLAC: реализовать DRAIN для `ogg_stash_` + обновлять `end_of_packet` + добавить sanity-check (чтобы не повторялись полупатчи)
+
+Репо: `ChillPulse/Youradio_Omnia_ESP32S3`  
+Цель: убрать вечную тишину на Ogg-FLAC, доведя stash-механику до рабочей (stash **не должен** просто копиться).  
+Критично: **не трогать SD**, **не трогать другие web-кодеки**.
+
+---
+
+## 0) РЕГЛАМЕНТ
+Только `main`, без веток:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `tools/omnia_sanity_microflac_ogg.py`  (НОВЫЙ файл)
+3) `.github/workflows/sanity-audio-cpp.yml` (добавить 1 шаг запуска нового скрипта)
+
+### Запрещено:
+- любые изменения `Audio.cpp` (вообще не трогаем)
+- любые изменения SD-режима и legacy FLAC
+- любые изменения MP3/AAC/OPUS/VORBIS
+
+---
+
+## 2) P0 FIX: DRAIN `ogg_stash_` (реально декодировать stash до demux)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoderResult FLACDecoder::decode_ogg(...)`
+
+### 2.1 Найти точное место вставки
+Найти в `decode_ogg` вот этот участок (он у вас есть 1:1):
+
+```cpp
+while (true) {
+
+    size_t remaining = input_len - bytes_consumed;
+
+    // OMNIA-PATCH Log59 (3.5): time budget ...
+    if (bytes_consumed > 0 && (mf_millis() - t0) > 40) {
+        return FLAC_DECODER_NEED_MORE_DATA;
+    }
+
+    auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+```
+
+Вставка будет **между** `if (bytes_consumed > 0 ... )` и `auto state = ...`.
+
+### 2.2 Вставить DRAIN-блок (вставить 1:1)
+Сразу **после** `if (bytes_consumed > 0 && ... ) { ... }` вставить:
+
+```cpp
+// --- OMNIA-PATCH Log70/71: drain stashed leftover FLAC bytes before pulling more Ogg data ---
+// If we previously stashed extra bytes (native_consumed < body_len on SUCCESS/HEADER_READY),
+// they were already "consumed" from the Ogg input window. Now we must decode them without
+// consuming new Ogg bytes.
+if (!this->ogg_stash_.empty()) {
+
+    const uint8_t* s = this->ogg_stash_.data();
+    const size_t   s_len = this->ogg_stash_.size();
+
+    size_t native_consumed = 0;
+    size_t native_samples  = 0;
+
+    auto r = this->decode_native(s, s_len, output, native_consumed, native_samples, output_32bit);
+    samples_decoded = native_samples;
+
+    // Diagnostics
+    this->last_ogg_body_len_ = s_len;
+    this->last_ogg_native_consumed_ = native_consumed;
+
+    if (native_consumed > 0) {
+        this->ogg_stash_.erase(this->ogg_stash_.begin(),
+                               this->ogg_stash_.begin() + (ptrdiff_t)native_consumed);
+    }
+
+    if (r == FLAC_DECODER_NEED_MORE_DATA) {
+        // Need more bytes: fall through and pull more from ogg demuxer.
+    } else {
+        return r; // SUCCESS / HEADER_READY / END_OF_STREAM / error
+    }
+}
+```
+
+---
+
+## 3) P0 FIX: обновлять `last_ogg_is_end_of_packet_` из demuxer state
+
+Сейчас поле есть, геттер есть, но **ни разу не обновляется** (в `flac_decoder.cpp` нет `is_end_of_packet`). 
+
+### 3.1 Найти место
+В `decode_ogg`, после того как демультиплексор вернул `OGG_OK` и код дошёл до:
+
+```cpp
+if (state.packet.is_eos && state.packet.is_last_on_page) {
+    this->ogg_eos_seen_ = true;
+}
+```
+
+### 3.2 Вставить 1 строку (вставить 1:1)
+Сразу **перед** этим `if (state.packet.is_eos ... )` вставить:
+
+```cpp
+this->last_ogg_is_end_of_packet_ = state.packet.is_end_of_packet ? 1 : 0;
+```
+
+---
+
+## 4) P0 FIX: ограничить рост stash (чтобы не улететь в память)
+
+Сейчас stash пополняется, но не ограничивается суммарно (только `rem <= 65535`). Надо ограничить общий размер, иначе при плохом потоке можно накопить много. 
+
+### 4.1 Найти существующий блок stash-insert
+В `decode_ogg` в Step 3 у вас уже есть:
+
+```cpp
+if ((result == FLAC_DECODER_SUCCESS || result == FLAC_DECODER_HEADER_READY) && native_consumed < body_len) {
+    const size_t rem = body_len - native_consumed;
+    // safety cap to avoid runaway memory usage
+    if (rem > 0 && rem <= 65535) {
+        this->ogg_stash_.insert(...);
+        native_consumed = body_len;
+    } else {
+        return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+    }
+}
+```
+
+### 4.2 Добавить проверку суммарного размера (вставить 1:1)
+Внутрь ветки `if (rem > 0 && rem <= 65535) {` **перед** `insert(...)` вставить:
+
+```cpp
+// Total stash safety cap (prevents unlimited growth on malformed streams)
+if (this->ogg_stash_.size() + rem > 131072) { // 128 KB cap
+    this->ogg_stash_.clear();
+    return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+}
+```
+
+---
+
+## 5) Анти-косяки: добавить sanity-check скрипт (обязательный)
+
+Создать новый файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Вставить содержимое **1:1**:
+
+```python
+import sys
+from pathlib import Path
+
+cpp = Path("yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp")
+h   = Path("yoRadio/src/audioI2S/micro_flac/flac_decoder.h")
+
+txt = cpp.read_text(encoding="utf-8", errors="replace")
+ht  = h.read_text(encoding="utf-8", errors="replace")
+
+# Must have stash drain
+need = [
+    "ogg_stash_.empty()",
+    "decode_native(s, s_len",
+    "ogg_stash_.erase",
+]
+for n in need:
+    if n not in txt:
+        print(f"FAIL: missing '{n}' in flac_decoder.cpp")
+        sys.exit(2)
+
+# Must update end_of_packet tracking (from ogg demux state)
+if "is_end_of_packet" not in txt:
+    print("FAIL: missing 'is_end_of_packet' usage in flac_decoder.cpp")
+    sys.exit(2)
+
+# Public getter must exist (already added earlier, but enforce)
+if "get_ogg_stash_len" not in ht:
+    print("FAIL: missing get_ogg_stash_len() in flac_decoder.h")
+    sys.exit(2)
+
+print("OK: microflac ogg stash/endpkt sanity checks passed")
+sys.exit(0)
+```
+
+---
+
+## 6) Подключить sanity-check в GitHub Action (чтобы не забывали снова)
+
+Файл: `.github/workflows/sanity-audio-cpp.yml`
+
+Найти шаг:
+
+```yaml
+- name: Python sanity check for Audio.cpp
+  run: |
+    python3 tools/omnia_sanity_audio_cpp.py
+```
+
+Сразу **после него** добавить ещё один шаг (вставить 1:1):
+
+```yaml
+- name: Python sanity check for microflac ogg stash
+  run: |
+    python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+---
+
+## 7) ОБЯЗАТЕЛЬНЫЕ проверки агентом перед коммитом (не обсуждается)
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+и
+
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 3 файла:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+- `.github/workflows/sanity-audio-cpp.yml`
+
+---
+
+## 8) Коммит / push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        tools/omnia_sanity_microflac_ogg.py \
+        .github/workflows/sanity-audio-cpp.yml
+git commit -m "fix(flac): drain ogg_stash_ and track end_of_packet; add sanity guard"
+git push origin main
