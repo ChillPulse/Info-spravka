@@ -1,0 +1,224 @@
+# Instruction 19 — ЖЕЛЕЗНОЕ ТЗ агенту: включить demuxer debug + вывести демультиплексорное состояние в лог на `NEED_MORE(progress)` + поднять лимит assemble buffer (PSRAM)
+
+Цель: за 1 прошивку получить лог, который **однозначно** отвечает:
+- демультиплексор “собирает пакет” (assembling) или “пропускает пакет” (skipping) или “нормально отдаёт куски” (zero-copy/data),
+- какой текущий размер собираемого пакета/буфера,
+- почему `SUCCESS` не появляется.
+
+При этом: **не ломаем SD, не трогаем MP3/AAC/OPUS/VORBIS**.
+
+---
+
+## 0) РЕГЛАМЕНТ
+Только `main`, без веток:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h`
+2) `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+3) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+4) `yoRadio/src/audioI2S/Audio.cpp`
+5) `tools/omnia_sanity_microflac_ogg.py` (обновить проверки)
+
+### Запрещено:
+- SD режим и legacy decoders
+- любые другие web-кодеки
+- рефакторинг/форматирование “всего файла”
+
+---
+
+## 2) P0: гарантированно включить `MICRO_OGG_DEMUXER_DEBUG` (чтобы debug-геттеры были доступны всегда)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h`
+
+В самое начало файла (после `#pragma once`, либо перед любыми `#include`) вставить **ровно**:
+
+```cpp
+#ifndef MICRO_OGG_DEMUXER_DEBUG
+#define MICRO_OGG_DEMUXER_DEBUG 1
+#endif
+```
+
+Смысл: debug-методы `get_debug_state()/get_buffer_stats()` в классе `OggDemuxer` должны компилироваться во всех translation unit, иначе мы не сможем снять диагностику.   
+
+---
+
+## 3) P0: добавить “последнее состояние demuxer” в `FLACDecoder` (храним и отдаём наружу)
+
+### 3.1 flac_decoder.h — поля + геттеры
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+
+В public секции `FLACDecoder` добавить геттеры:
+
+```cpp
+// Ogg demux debug snapshot (MICRO_OGG_DEMUXER_DEBUG)
+int  get_last_ogg_dbg_state() const { return last_ogg_dbg_state_; }
+bool get_last_ogg_dbg_assembling() const { return last_ogg_dbg_assembling_; }
+bool get_last_ogg_dbg_skipping() const { return last_ogg_dbg_skipping_; }
+size_t get_last_ogg_dbg_packet_size() const { return last_ogg_dbg_packet_size_; }
+size_t get_last_ogg_dbg_body_consumed() const { return last_ogg_dbg_body_consumed_; }
+uint8_t get_last_ogg_dbg_seg_index() const { return last_ogg_dbg_seg_index_; }
+uint8_t get_last_ogg_dbg_seg_count() const { return last_ogg_dbg_seg_count_; }
+size_t get_last_ogg_dbg_buf_cap() const { return last_ogg_dbg_buf_cap_; }
+size_t get_last_ogg_dbg_buf_peak() const { return last_ogg_dbg_buf_peak_; }
+```
+
+В private секции добавить поля (лучше рядом с last_ogg_* диагностикой):
+
+```cpp
+// Ogg demux debug snapshot (MICRO_OGG_DEMUXER_DEBUG)
+int    last_ogg_dbg_state_ = 0;
+bool   last_ogg_dbg_assembling_ = false;
+bool   last_ogg_dbg_skipping_ = false;
+size_t last_ogg_dbg_packet_size_ = 0;
+size_t last_ogg_dbg_body_consumed_ = 0;
+uint8_t last_ogg_dbg_seg_index_ = 0;
+uint8_t last_ogg_dbg_seg_count_ = 0;
+size_t last_ogg_dbg_buf_cap_ = 0;
+size_t last_ogg_dbg_buf_peak_ = 0;
+```
+
+---
+
+## 4) P0: flac_decoder.cpp — снимать snapshot debug-состояния после каждого `get_next_data()`
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+Найти место сразу после:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+this->last_ogg_result_ = (int8_t)state.result;
+...
+bytes_consumed += state.bytes_consumed;
+```
+
+Сразу после `bytes_consumed += state.bytes_consumed;` вставить **ровно**:
+
+```cpp
+#ifdef MICRO_OGG_DEMUXER_DEBUG
+int dbg_state = 0;
+bool dbg_assembling = false;
+bool dbg_skipping = false;
+size_t dbg_packet_size = 0;
+size_t dbg_body_consumed = 0;
+uint8_t dbg_seg_index = 0;
+uint8_t dbg_seg_count = 0;
+this->ogg_demuxer_->get_debug_state(dbg_state, dbg_assembling, dbg_skipping,
+                                   dbg_packet_size, dbg_body_consumed,
+                                   dbg_seg_index, dbg_seg_count);
+this->last_ogg_dbg_state_ = dbg_state;
+this->last_ogg_dbg_assembling_ = dbg_assembling;
+this->last_ogg_dbg_skipping_ = dbg_skipping;
+this->last_ogg_dbg_packet_size_ = dbg_packet_size;
+this->last_ogg_dbg_body_consumed_ = dbg_body_consumed;
+this->last_ogg_dbg_seg_index_ = dbg_seg_index;
+this->last_ogg_dbg_seg_count_ = dbg_seg_count;
+
+size_t cap = 0, peak = 0;
+this->ogg_demuxer_->get_buffer_stats(cap, peak);
+this->last_ogg_dbg_buf_cap_ = cap;
+this->last_ogg_dbg_buf_peak_ = peak;
+#endif
+```
+
+---
+
+## 5) P0: поднять `cfg.max_buffer_size` для OggDemuxer с 1MB до 4MB (PSRAM 8MB позволяет)
+
+Сейчас у вас при детекте OggS стоит:
+
+```cpp
+cfg.max_buffer_size = 1024 * 1024; // 1MB PSRAM
+```
+
+Заменить на:
+
+```cpp
+cfg.max_buffer_size = 4 * 1024 * 1024; // 4MB PSRAM (ESP32-S3-N16R8 has 8MB PSRAM)
+```
+
+Это нужно на случай, если stream упакован так, что демультиплексору приходится “assemble packet” больше 1MB (иначе он будет уходить в skipping/packet_skipped).   
+
+---
+
+## 6) P0: Audio.cpp — печатать OGG debug snapshot в вашем существующем rate-limited `NEED_MORE(progress)` логе
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Место: где сейчас печатается:
+
+- `microflac NEED_MORE(progress) ...`
+- `microflac NATIVE_DIAG ...`
+
+Сразу после `NATIVE_DIAG` добавить ещё один лог:
+
+```cpp
+AUDIO_INFO("microflac OGG_DBG state=%d assembling=%u skipping=%u pkt=%u bodyCons=%u seg=%u/%u bufCap=%u bufPeak=%u",
+    (int)g_mf.get_last_ogg_dbg_state(),
+    (unsigned)g_mf.get_last_ogg_dbg_assembling(),
+    (unsigned)g_mf.get_last_ogg_dbg_skipping(),
+    (unsigned)g_mf.get_last_ogg_dbg_packet_size(),
+    (unsigned)g_mf.get_last_ogg_dbg_body_consumed(),
+    (unsigned)g_mf.get_last_ogg_dbg_seg_index(),
+    (unsigned)g_mf.get_last_ogg_dbg_seg_count(),
+    (unsigned)g_mf.get_last_ogg_dbg_buf_cap(),
+    (unsigned)g_mf.get_last_ogg_dbg_buf_peak()
+);
+```
+
+Это будет печататься раз в ~700мс (у вас уже есть rate-limit), т.е. не заспамит порт.
+
+---
+
+## 7) Санити-проверка (чтобы агент не “забыл половину”)
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`  
+Добавить проверки, что новые геттеры присутствуют:
+
+- `get_last_ogg_dbg_state`
+- `get_last_ogg_dbg_assembling`
+- `get_last_ogg_dbg_skipping`
+- `get_last_ogg_dbg_packet_size`
+- `get_last_ogg_dbg_buf_cap`
+
+(по аналогии с уже существующими проверками).
+
+---
+
+## 8) Обязательные проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+и:
+
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 5 файлов (как в Scope).
+
+---
+
+## 9) Коммит / push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "diag(flac): expose micro_ogg demux debug state on NEED_MORE; raise demux max buffer to 4MB (Log73)"
+git push origin main
