@@ -1,0 +1,204 @@
+# Instruction 18 — FIX+DIAG: правильный `bytes_consumed` на NEED_MORE в micro-flac + расширенная диагностика “почему нет SUCCESS” (Log72)
+
+Репо: `ChillPulse/Youradio_Omnia_ESP32S3`  
+Основание: Log72 (тишина, бесконечный NEED_MORE после HEADER_READY).   
+
+## 0) РЕГЛАМЕНТ
+Только `main`.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+## 1) SCOPE / ЗАПРЕТЫ (строго)
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+2) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+3) `yoRadio/src/audioI2S/Audio.cpp`
+4) `tools/omnia_sanity_microflac_ogg.py` (расширить проверки)
+
+### Запрещено:
+- SD-режим/legacy flac_decoder
+- web MP3/AAC/OPUS/VORBIS
+- любые рефакторы “по пути”
+
+---
+
+## 2) P0: micro-flac — сохранять реальное количество прочитанных байт на NEED_MORE (не выкидывать хвост)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_native(...)`
+
+Найти участок (он сейчас такой): 
+
+```cpp
+bytes_consumed = this->get_bytes_index();
+if (result == FLAC_DECODER_NEED_MORE_DATA) {
+    bytes_consumed = input_len;  // decode_frame consumed all input
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+### Заменить его на (вставить 1:1):
+
+```cpp
+bytes_consumed = this->get_bytes_index();
+
+// DIAG: expose real consumption vs offered input (Log72)
+this->last_native_result_ = (int8_t)result;
+this->last_native_input_len_ = input_len;
+this->last_native_bytes_index_ = bytes_consumed;
+
+if (result == FLAC_DECODER_NEED_MORE_DATA) {
+    // IMPORTANT: do NOT force-consume input_len here.
+    // If get_bytes_index() < input_len, forcing input_len discards bytes that may contain the rest of the frame.
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+---
+
+## 3) P0: micro-flac — добавить public getters для диагностики (чтобы Audio.cpp мог печатать причины)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+
+### 3.1 Добавить getters (в public рядом с ogg getters)
+Найти блок где уже есть:
+
+```cpp
+int8_t   get_last_ogg_result() const { return last_ogg_result_; }
+...
+size_t  get_ogg_stash_len() const { return ogg_stash_.size(); }
+```
+
+Сразу после `get_ogg_stash_len()` вставить:
+
+```cpp
+// Log72: expose native decode consumption diagnostics
+int8_t  get_last_native_result() const { return last_native_result_; }
+size_t  get_last_native_input_len() const { return last_native_input_len_; }
+size_t  get_last_native_bytes_index() const { return last_native_bytes_index_; }
+```
+
+### 3.2 Добавить поля (private, вне ifdef OGG)
+В private секции (лучше рядом с другими diag полями, но ВАЖНО: НЕ в #ifndef MICRO_FLAC_DISABLE_OGG) добавить:
+
+```cpp
+// Log72: native decode diagnostics
+int8_t last_native_result_ = 0;
+size_t last_native_input_len_ = 0;
+size_t last_native_bytes_index_ = 0;
+```
+
+---
+
+## 4) P0: Audio.cpp — не “обрывать” decode-loop на NEED_MORE, если ещё есть вход и был прогресс
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `Audio::sendBytes(...)` в ветке microflac, блок:
+
+```cpp
+if(mf_res == micro_flac::FLAC_DECODER_NEED_MORE_DATA){
+    ...
+    break;
+}
+```
+
+Заменить самый конец этого блока:
+
+```cpp
+// no more progress possible in this call
+break;
+```
+
+на:
+
+```cpp
+// If we consumed bytes and still have input left in this same window,
+// try another decode() iteration (bounded by MF_WEB_MAX_LOOPS).
+if (bytes_consumed > 0 && left > 0) {
+    continue;
+}
+// otherwise no more progress possible in this call
+break;
+```
+
+---
+
+## 5) P0: Audio.cpp — добавить 1 диагностический лог на NEED_MORE(progress), чтобы сразу увидеть “жрём ли мы лишнее” и что думает decode_native
+
+Файл: `Audio.cpp`, там же внутри `NEED_MORE(progress)` лога (он уже есть): 
+
+```cpp
+AUDIO_INFO("microflac NEED_MORE(progress) cons=%u total_cons=%u left=%u filled=%u header=%u",
+...
+);
+```
+
+Сразу после него добавить (rate-limit не нужен, он уже в 700ms):
+
+```cpp
+AUDIO_INFO("microflac NATIVE_DIAG last_native_res=%d in=%u idx=%u",
+           (int)g_mf.get_last_native_result(),
+           (unsigned)g_mf.get_last_native_input_len(),
+           (unsigned)g_mf.get_last_native_bytes_index());
+```
+
+**Смысл:** если в логе будет `idx << in`, значит раньше мы реально выкидывали данные на NEED_MORE.
+
+---
+
+## 6) Анти-косяки: расширить sanity-check, чтобы агент не “забыл” добавить поля/геттеры
+
+Файл: `tools/omnia_sanity_microflac_ogg.py` — добавить проверки:
+
+После проверки `get_ogg_stash_len` вставить:
+
+```python
+# Native decode diag must exist
+for n in ["get_last_native_result", "get_last_native_input_len", "get_last_native_bytes_index"]:
+    if n not in ht:
+        print(f"FAIL: missing {n}() in flac_decoder.h")
+        sys.exit(2)
+
+for n in ["last_native_result_", "last_native_input_len_", "last_native_bytes_index_"]:
+    if n not in ht:
+        print(f"FAIL: missing {n} field in flac_decoder.h")
+        sys.exit(2)
+```
+
+---
+
+## 7) ОБЯЗАТЕЛЬНЫЕ проверки агентом перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+И:
+
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 4 файла:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 8) Коммит / push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix+diag(flac): keep real bytes_consumed on NEED_MORE and log native consumption (Log72 no-SUCCESS)"
+git push origin main
