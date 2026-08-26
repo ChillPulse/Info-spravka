@@ -1,0 +1,103 @@
+# Instruction 28 — ЖЕЛЕЗНОЕ ТЗ: привести GitHub `main` к нужному SHA (включая hard-budget) и исключить путаницу remote/branch навсегда
+
+## 0) Scope
+**Функциональный код не трогаем**, цель — только корректно донести изменения до GitHub `main` и доказать, что HEAD именно тот.
+
+## 1) Жёсткая проверка remote (чтобы агент не пушил в форк/зеркало)
+Агент выполняет и присылает *сырой вывод*:
+
+```bash
+git remote -v
+git config --get remote.origin.url
+```
+
+**PASS:** URL должен быть строго репозитория ChillPulse, например:
+- `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3.git`
+или
+- `git@github.com:ChillPulse/Youradio_Omnia_ESP32S3.git`
+
+Если другой URL — **сразу исправить**:
+```bash
+git remote set-url origin https://github.com/ChillPulse/Youradio_Omnia_ESP32S3.git
+```
+
+## 2) Жёсткая проверка “что GitHub считает HEAD main” (без веб-браузера, через API)
+Агент выполняет:
+
+```bash
+python3 - <<'PY'
+import json, urllib.request
+u="https://api.github.com/repos/ChillPulse/Youradio_Omnia_ESP32S3/commits/main"
+j=json.loads(urllib.request.urlopen(u).read().decode())
+print("github_main_sha =", j["sha"])
+PY
+```
+
+И отдельно:
+```bash
+git ls-remote origin refs/heads/main
+```
+
+**PASS:** `github_main_sha` == SHA из `git ls-remote …`.
+
+Если не совпадает — у агента всё ещё не тот origin или сетевой/прокси глюк. До совпадения **ничего не коммитить**.
+
+## 3) Доставка нужных изменений в GitHub main (без force-push)
+Сначала приводим локальную `main` к GitHub `main`:
+
+```bash
+git fetch origin
+git checkout main
+git reset --hard origin/main
+```
+
+Теперь нужно “дотащить” изменения из коммита `0c7bca2…` (hard time budget) в текущий HEAD `main`.
+
+### Вариант A (предпочтительно): cherry-pick
+```bash
+git cherry-pick 0c7bca2be6919583f98bdd23a1a2b4db1862c5ed
+```
+
+Если конфликтов нет — ок. Если конфликты есть:
+- **разрешить вручную**
+- затем:
+```bash
+git add -A
+git cherry-pick --continue
+```
+
+### Вариант B (если cherry-pick невозможно): применить патч из коммита
+```bash
+git show 0c7bca2be6919583f98bdd23a1a2b4db1862c5ed > /tmp/budget.patch
+git apply --3way /tmp/budget.patch
+git add -A
+git commit -m "fix(flac): hard time budget in decode_ogg + slicing guard to prevent hangs; log slow decode calls (Log78)"
+```
+
+## 4) Обязательные sanity перед push
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+Оба должны вывести `OK`.
+
+## 5) Push + доказательство
+```bash
+git push origin main
+```
+
+После push агент присылает:
+
+```bash
+git rev-parse HEAD
+git ls-remote origin refs/heads/main
+python3 - <<'PY'
+import json, urllib.request
+u="https://api.github.com/repos/ChillPulse/Youradio_Omnia_ESP32S3/commits/main"
+j=json.loads(urllib.request.urlopen(u).read().decode())
+print("github_main_sha =", j["sha"])
+PY
+```
+
+**PASS:** все 3 SHA одинаковые.
