@@ -1,0 +1,576 @@
+17:25:58.570 -> ESP-ROM:esp32s3-20210327
+17:25:58.570 -> Build:Mar 27 2021
+17:25:58.570 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+17:25:58.570 -> SPIWP:0xee
+17:25:58.570 -> mode:DIO, clock div:1
+17:25:58.570 -> load:0x3fce2820,len:0x116c
+17:25:58.570 -> load:0x403c8700,len:0xc2c
+17:25:58.570 -> load:0x403cb700,len:0x3108
+17:25:58.570 -> entry 0x403c88b8
+17:25:58.943 -> ##[BOOT]#	************************************************
+17:25:58.943 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+17:25:58.943 -> ##[BOOT]#	************************************************
+17:25:58.943 -> ##[BOOT]#	------------------------------------------------
+17:25:58.989 -> ##[BOOT]#	arduino:	10819
+17:25:58.989 -> ##[BOOT]#	compiler:	14.2.0
+17:25:58.989 -> ##[BOOT]#	esp32core:	3.3.6
+17:25:58.989 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+17:25:58.989 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+17:25:58.989 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+17:25:58.989 -> ##[BOOT]#	audioinfo:	false
+17:25:58.989 -> ##[BOOT]#	smartstart:	0
+17:25:58.989 -> ##[BOOT]#	vumeter:	false
+17:25:58.989 -> ##[BOOT]#	softapdelay:	0
+17:25:58.989 -> ##[BOOT]#	flipscreen:	false
+17:25:58.989 -> ##[BOOT]#	invertdisplay:	false
+17:25:58.989 -> ##[BOOT]#	showweather:	false
+17:25:59.035 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+17:25:59.035 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+17:25:59.035 -> ##[BOOT]#	ir:		NONE
+17:25:59.035 -> ##[BOOT]#	SD:		CS-39
+17:25:59.035 -> ##[BOOT]#	battery:	battery ON
+17:25:59.035 -> ##[BOOT]#	------------------------------------------------
+17:25:59.035 -> ##[BOOT]#	CONFIG_VERSION	4
+17:25:59.082 -> ##[BOOT]#	SPIFFS mounted
+17:25:59.360 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+17:25:59.360 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+17:25:59.360 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+17:25:59.360 -> ##[BOOT]#	player.init	done
+17:25:59.406 -> ##[BOOT]#	network.begin
+17:25:59.499 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+17:25:59.499 -> ##[BOOT]#	.....
+17:26:01.495 -> ##[BOOT]#	done
+17:26:01.495 -> ##[BOOT]#	SD search	done
+17:26:01.542 -> ##[BOOT]#	netserver.begin	done
+17:26:01.542 -> ##[BOOT]#	telnet.begin	done
+17:26:01.542 -> ##[BOOT]#
+17:26:01.542 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+17:26:01.542 -> ##[BOOT]#	------------------------------------------------
+17:26:01.542 -> ##[BOOT]#
+17:26:01.542 -> ##CLI.META#: [готов]
+17:26:01.636 -> ##CLI.META#: [соединение]
+17:26:01.682 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+17:26:01.682 -> ##AUDIO.INFO#: buffers freed, free Heap: 174692 bytes
+17:26:01.682 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+17:26:01.729 -> ##AUDIO.INFO#: Connection has been established in 28 ms
+17:26:01.960 -> ##AUDIO.INFO#: format is ogg
+17:26:01.960 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+17:26:01.960 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+17:26:01.960 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+17:26:01.960 -> ##CLI.META#: SECTOR  |  Zed channel
+17:26:01.960 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:26:02.100 -> ##CLI.INFO#
+17:26:02.100 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+17:26:02.100 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+17:26:02.100 -> ##CLI.META#: SECTOR  |  Zed channel
+17:26:02.100 -> ##CLI.VOL#: 44
+17:26:02.100 -> ##CLI.PLAYING#
+17:26:02.100 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:26:02.100 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:26:02.100 -> ##CLI.META#: SECTOR  |  Zed channel
+17:26:02.378 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:26:02.378 -> ##AUDIO.INFO#: Channels: 2
+17:26:02.378 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:26:02.378 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:26:02.378 -> ##AUDIO.INFO#: BitRate: 1411000
+17:26:02.378 -> ##AUDIO.BITRATE#: 1411000
+17:26:02.378 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:26:02.425 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=65384
+17:26:13.616 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+17:26:17.050 -> [WEBSOCKET] client #1 disconnected
+17:26:17.236 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+17:26:19.421 -> [WEBSOCKET] client #2 disconnected
+17:26:19.560 -> [WEBSOCKET] client #3 connected from 192.168.1.96
+17:26:52.644 -> ESP-ROM:esp32s3-20210327
+17:26:52.644 -> Build:Mar 27 2021
+17:26:52.644 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+17:26:52.644 -> SPIWP:0xee
+17:26:52.644 -> mode:DIO, clock div:1
+17:26:52.644 -> load:0x3fce2820,len:0x116c
+17:26:52.690 -> load:0x403c8700,len:0xc2c
+17:26:52.690 -> load:0x403cb700,len:0x3108
+17:26:52.690 -> entry 0x403c88b8
+17:26:53.062 -> ##[BOOT]#	************************************************
+17:26:53.062 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+17:26:53.062 -> ##[BOOT]#	************************************************
+17:26:53.062 -> ##[BOOT]#	------------------------------------------------
+17:26:53.062 -> ##[BOOT]#	arduino:	10819
+17:26:53.062 -> ##[BOOT]#	compiler:	14.2.0
+17:26:53.062 -> ##[BOOT]#	esp32core:	3.3.6
+17:26:53.062 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+17:26:53.062 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+17:26:53.109 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+17:26:53.109 -> ##[BOOT]#	audioinfo:	false
+17:26:53.109 -> ##[BOOT]#	smartstart:	0
+17:26:53.109 -> ##[BOOT]#	vumeter:	false
+17:26:53.109 -> ##[BOOT]#	softapdelay:	0
+17:26:53.109 -> ##[BOOT]#	flipscreen:	false
+17:26:53.109 -> ##[BOOT]#	invertdisplay:	false
+17:26:53.109 -> ##[BOOT]#	showweather:	false
+17:26:53.109 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+17:26:53.109 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+17:26:53.109 -> ##[BOOT]#	ir:		NONE
+17:26:53.109 -> ##[BOOT]#	SD:		CS-39
+17:26:53.109 -> ##[BOOT]#	battery:	battery ON
+17:26:53.156 -> ##[BOOT]#	------------------------------------------------
+17:26:53.156 -> ##[BOOT]#	CONFIG_VERSION	4
+17:26:53.202 -> ##[BOOT]#	SPIFFS mounted
+17:26:53.434 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+17:26:53.434 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+17:26:53.434 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+17:26:53.434 -> ##[BOOT]#	player.init	done
+17:26:53.528 -> ##[BOOT]#	network.begin
+17:26:53.575 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+17:26:53.575 -> ##[BOOT]#	....
+17:26:55.105 -> ##[BOOT]#	done
+17:26:55.105 -> ##[BOOT]#	SD search	done
+17:26:55.151 -> ##[BOOT]#	netserver.begin	done
+17:26:55.151 -> ##[BOOT]#	telnet.begin	done
+17:26:55.151 -> ##[BOOT]#
+17:26:55.151 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+17:26:55.151 -> ##[BOOT]#	------------------------------------------------
+17:26:55.151 -> ##[BOOT]#
+17:26:55.151 -> ##CLI.META#: [готов]
+17:26:55.245 -> ##CLI.META#: [соединение]
+17:26:55.291 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+17:26:55.291 -> ##AUDIO.INFO#: buffers freed, free Heap: 174844 bytes
+17:26:55.291 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-mp3"
+17:26:55.337 -> ##AUDIO.INFO#: Connection has been established in 46 ms
+17:26:55.477 -> ##AUDIO.INFO#: format is mp3
+17:26:55.477 -> ##AUDIO.INFO#: icy-bitrate : 192000 (b/s)
+17:26:55.477 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+17:26:55.523 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+17:26:55.523 -> ##CLI.META#: SECTOR  |  Zed channel
+17:26:55.523 -> ##AUDIO.INFO#: icy-metaint: 16000 (metadata ON)
+17:26:55.523 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+17:26:55.523 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:26:55.664 -> ##CLI.INFO#
+17:26:55.664 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+17:26:55.664 -> ##CLI.NAMESET#: 297 SECTOR Zed (mp3)
+17:26:55.664 -> ##CLI.META#: SECTOR  |  Zed channel
+17:26:55.664 -> ##CLI.VOL#: 44
+17:26:55.664 -> ##CLI.PLAYING#
+17:26:55.664 -> ##CLI.META#: SECTOR  |  Zed channel
+17:26:55.851 -> ##AUDIO.INFO#: stream ready
+17:26:55.851 -> ##AUDIO.INFO#: syncword found at pos 432
+17:26:55.851 -> ##AUDIO.INFO#: syncword found at pos 0
+17:26:55.851 -> ##AUDIO.INFO#: MPEG-1 Layer III
+17:26:55.851 -> ##AUDIO.INFO#: Channels: 2
+17:26:55.851 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:26:55.851 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:26:55.851 -> ##AUDIO.INFO#: BitRate: 192000
+17:26:55.851 -> ##AUDIO.BITRATE#: 192000
+17:26:55.990 -> ##CLI.META#: K-Maro - Music, 2010 (, Lebanon)
+17:27:07.401 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+17:27:07.401 -> ##CLI.META#: K-Maro - Music, 2010 (, Lebanon)
+17:27:07.401 -> ##CLI.VOL#: 44
+17:27:07.401 -> ##CLI.INFO#
+17:27:07.401 -> ##SYS.DATE#: 2026-08-26T17:27:07+03:00
+17:27:07.401 -> ##CLI.NAMESET#: 297 SECTOR Zed (mp3)
+17:27:07.401 -> ##CLI.META#: K-Maro - Music, 2010 (, Lebanon)
+17:27:07.401 -> ##CLI.VOL#: 44
+17:27:07.401 -> ##CLI.PLAYING#
+17:27:09.816 -> [WEBSOCKET] client #1 disconnected
+17:27:10.001 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+17:27:10.001 -> ##CLI.META#: K-Maro - Music, 2010 (, Lebanon)
+17:27:10.001 -> ##CLI.VOL#: 44
+17:27:10.001 -> ##CLI.INFO#
+17:27:10.001 -> ##SYS.DATE#: 2026-08-26T17:27:09+03:00
+17:27:10.001 -> ##CLI.NAMESET#: 297 SECTOR Zed (mp3)
+17:27:10.047 -> ##CLI.META#: K-Maro - Music, 2010 (, Lebanon)
+17:27:10.047 -> ##CLI.VOL#: 44
+17:27:10.047 -> ##CLI.PLAYING#
+17:27:14.180 -> [WEBSOCKET] client #3 connected from 192.168.1.96
+17:27:17.661 -> ##CLI.META#: [соединение]
+17:27:17.754 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-mp3" (ssl=0)
+17:27:17.754 -> ##AUDIO.INFO#: buffers freed, free Heap: 173328 bytes
+17:27:17.754 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+17:27:18.453 -> ##AUDIO.INFO#: SSL has been established in 678 ms
+17:27:18.640 -> ##AUDIO.INFO#: format is ogg
+17:27:18.640 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+17:27:18.640 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:18.640 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+17:27:18.640 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:27:18.685 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:18.685 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:27:18.685 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:27:18.685 -> ##CLI.INFO#
+17:27:18.685 -> ##SYS.DATE#: 2026-08-26T17:27:18+03:00
+17:27:18.685 -> ##CLI.NAMESET#: 317 (flc) Paradise Mellow
+17:27:18.685 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:18.685 -> ##CLI.VOL#: 44
+17:27:18.685 -> ##CLI.PLAYING#
+17:27:18.732 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:18.778 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:27:18.778 -> ##AUDIO.INFO#: Channels: 2
+17:27:18.778 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:27:18.778 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:27:18.778 -> ##AUDIO.INFO#: BitRate: 1441000
+17:27:18.778 -> ##AUDIO.BITRATE#: 1441000
+17:27:18.824 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:27:18.824 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=64709
+17:27:22.025 -> [WEBSOCKET] client #3 disconnected
+17:27:47.820 -> ESP-ROM:esp32s3-20210327
+17:27:47.820 -> Build:Mar 27 2021
+17:27:47.820 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+17:27:47.820 -> SPIWP:0xee
+17:27:47.820 -> mode:DIO, clock div:1
+17:27:47.820 -> load:0x3fce2820,len:0x116c
+17:27:47.820 -> load:0x403c8700,len:0xc2c
+17:27:47.820 -> load:0x403cb700,len:0x3108
+17:27:47.820 -> entry 0x403c88b8
+17:27:48.191 -> ##[BOOT]#	************************************************
+17:27:48.191 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+17:27:48.191 -> ##[BOOT]#	************************************************
+17:27:48.191 -> ##[BOOT]#	------------------------------------------------
+17:27:48.238 -> ##[BOOT]#	arduino:	10819
+17:27:48.238 -> ##[BOOT]#	compiler:	14.2.0
+17:27:48.238 -> ##[BOOT]#	esp32core:	3.3.6
+17:27:48.238 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+17:27:48.238 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+17:27:48.238 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+17:27:48.238 -> ##[BOOT]#	audioinfo:	false
+17:27:48.238 -> ##[BOOT]#	smartstart:	0
+17:27:48.238 -> ##[BOOT]#	vumeter:	false
+17:27:48.238 -> ##[BOOT]#	softapdelay:	0
+17:27:48.238 -> ##[BOOT]#	flipscreen:	false
+17:27:48.238 -> ##[BOOT]#	invertdisplay:	false
+17:27:48.238 -> ##[BOOT]#	showweather:	false
+17:27:48.284 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+17:27:48.284 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+17:27:48.284 -> ##[BOOT]#	ir:		NONE
+17:27:48.284 -> ##[BOOT]#	SD:		CS-39
+17:27:48.284 -> ##[BOOT]#	battery:	battery ON
+17:27:48.284 -> ##[BOOT]#	------------------------------------------------
+17:27:48.284 -> ##[BOOT]#	CONFIG_VERSION	4
+17:27:48.331 -> ##[BOOT]#	SPIFFS mounted
+17:27:48.609 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+17:27:48.609 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+17:27:48.609 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+17:27:48.609 -> ##[BOOT]#	player.init	done
+17:27:48.655 -> ##[BOOT]#	network.begin
+17:27:48.747 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+17:27:48.747 -> ##[BOOT]#	.....
+17:27:50.738 -> ##[BOOT]#	done
+17:27:50.738 -> ##[BOOT]#	SD search	done
+17:27:50.784 -> ##[BOOT]#	netserver.begin	done
+17:27:50.784 -> ##[BOOT]#	telnet.begin	done
+17:27:50.784 -> ##[BOOT]#
+17:27:50.784 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+17:27:50.784 -> ##[BOOT]#	------------------------------------------------
+17:27:50.784 -> ##[BOOT]#
+17:27:50.784 -> ##CLI.META#: [готов]
+17:27:50.877 -> ##CLI.META#: [соединение]
+17:27:50.922 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+17:27:50.922 -> ##AUDIO.INFO#: buffers freed, free Heap: 174740 bytes
+17:27:50.922 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/mellow-flac"
+17:27:51.616 -> ##AUDIO.INFO#: SSL has been established in 670 ms
+17:27:51.802 -> ##AUDIO.INFO#: format is ogg
+17:27:51.802 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+17:27:51.802 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:51.802 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:51.802 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+17:27:51.802 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:27:51.941 -> ##CLI.INFO#
+17:27:51.941 -> ##SYS.DATE#: 2026-08-26T17:27:51+03:00
+17:27:51.941 -> ##CLI.NAMESET#: 317 (flc) Paradise Mellow
+17:27:51.941 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:51.941 -> ##CLI.VOL#: 44
+17:27:51.941 -> ##CLI.PLAYING#
+17:27:51.941 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:27:51.941 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:27:51.941 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+17:27:52.034 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:27:52.034 -> ##AUDIO.INFO#: Channels: 2
+17:27:52.034 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:27:52.034 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:27:52.034 -> ##AUDIO.INFO#: BitRate: 1441000
+17:27:52.034 -> ##AUDIO.BITRATE#: 1441000
+17:27:52.034 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:27:52.034 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=64709
+17:27:52.220 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+17:27:58.995 -> [WEBSOCKET] client #1 disconnected
+17:27:59.134 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+17:28:08.279 -> ESP-ROM:esp32s3-20210327
+17:28:08.279 -> Build:Mar 27 2021
+17:28:08.279 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+17:28:08.279 -> SPIWP:0xee
+17:28:08.279 -> mode:DIO, clock div:1
+17:28:08.279 -> load:0x3fce2820,len:0x116c
+17:28:08.326 -> load:0x403c8700,len:0xc2c
+17:28:08.326 -> load:0x403cb700,len:0x3108
+17:28:08.326 -> entry 0x403c88b8
+17:28:08.697 -> ##[BOOT]#	************************************************
+17:28:08.697 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+17:28:08.697 -> ##[BOOT]#	************************************************
+17:28:08.697 -> ##[BOOT]#	------------------------------------------------
+17:28:08.697 -> ##[BOOT]#	arduino:	10819
+17:28:08.697 -> ##[BOOT]#	compiler:	14.2.0
+17:28:08.697 -> ##[BOOT]#	esp32core:	3.3.6
+17:28:08.697 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+17:28:08.697 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+17:28:08.744 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+17:28:08.744 -> ##[BOOT]#	audioinfo:	false
+17:28:08.744 -> ##[BOOT]#	smartstart:	0
+17:28:08.744 -> ##[BOOT]#	vumeter:	false
+17:28:08.744 -> ##[BOOT]#	softapdelay:	0
+17:28:08.744 -> ##[BOOT]#	flipscreen:	false
+17:28:08.744 -> ##[BOOT]#	invertdisplay:	false
+17:28:08.744 -> ##[BOOT]#	showweather:	false
+17:28:08.744 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+17:28:08.744 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+17:28:08.790 -> ##[BOOT]#	ir:		NONE
+17:28:08.790 -> ##[BOOT]#	SD:		CS-39
+17:28:08.790 -> ##[BOOT]#	battery:	battery ON
+17:28:08.790 -> ##[BOOT]#	------------------------------------------------
+17:28:08.790 -> ##[BOOT]#	CONFIG_VERSION	4
+17:28:08.837 -> ##[BOOT]#	SPIFFS mounted
+17:28:09.068 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+17:28:09.068 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+17:28:09.068 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+17:28:09.115 -> ##[BOOT]#	player.init	done
+17:28:09.162 -> ##[BOOT]#	network.begin
+17:28:09.253 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+17:28:09.253 -> ##[BOOT]#	....
+17:28:10.784 -> ##[BOOT]#	done
+17:28:10.784 -> ##[BOOT]#	SD search	done
+17:28:10.830 -> ##[BOOT]#	netserver.begin	done
+17:28:10.830 -> ##[BOOT]#	telnet.begin	done
+17:28:10.830 -> ##[BOOT]#
+17:28:10.830 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+17:28:10.830 -> ##[BOOT]#	------------------------------------------------
+17:28:10.877 -> ##[BOOT]#
+17:28:10.877 -> ##CLI.META#: [готов]
+17:28:10.970 -> ##CLI.META#: [соединение]
+17:28:11.017 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+17:28:11.017 -> ##AUDIO.INFO#: buffers freed, free Heap: 174752 bytes
+17:28:11.017 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/global-flac"
+17:28:11.200 -> ##AUDIO.INFO#: Connection has been established in 181 ms
+17:28:11.386 -> ##AUDIO.INFO#: format is ogg
+17:28:11.386 -> ##AUDIO.INFO#: icy-genre:  World
+17:28:11.386 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:11.386 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:11.386 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+17:28:11.386 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:28:11.526 -> ##CLI.INFO#
+17:28:11.526 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+17:28:11.526 -> ##CLI.NAMESET#: 319 (flc) Paradise Global
+17:28:11.526 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:11.526 -> ##CLI.VOL#: 44
+17:28:11.526 -> ##CLI.PLAYING#
+17:28:11.526 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:28:11.526 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:28:11.526 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:11.619 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:28:11.619 -> ##AUDIO.INFO#: Channels: 2
+17:28:11.619 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:28:11.619 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:28:11.619 -> ##AUDIO.INFO#: BitRate: 1441000
+17:28:11.619 -> ##AUDIO.BITRATE#: 1441000
+17:28:11.619 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:28:11.619 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=62407
+17:28:30.133 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+17:28:39.097 -> ESP-ROM:esp32s3-20210327
+17:28:39.097 -> Build:Mar 27 2021
+17:28:39.097 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+17:28:39.097 -> SPIWP:0xee
+17:28:39.097 -> mode:DIO, clock div:1
+17:28:39.097 -> load:0x3fce2820,len:0x116c
+17:28:39.097 -> load:0x403c8700,len:0xc2c
+17:28:39.097 -> load:0x403cb700,len:0x3108
+17:28:39.097 -> entry 0x403c88b8
+17:28:39.467 -> ##[BOOT]#	************************************************
+17:28:39.467 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+17:28:39.467 -> ##[BOOT]#	************************************************
+17:28:39.467 -> ##[BOOT]#	------------------------------------------------
+17:28:39.513 -> ##[BOOT]#	arduino:	10819
+17:28:39.513 -> ##[BOOT]#	compiler:	14.2.0
+17:28:39.513 -> ##[BOOT]#	esp32core:	3.3.6
+17:28:39.513 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+17:28:39.513 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+17:28:39.513 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+17:28:39.513 -> ##[BOOT]#	audioinfo:	false
+17:28:39.513 -> ##[BOOT]#	smartstart:	0
+17:28:39.513 -> ##[BOOT]#	vumeter:	false
+17:28:39.513 -> ##[BOOT]#	softapdelay:	0
+17:28:39.513 -> ##[BOOT]#	flipscreen:	false
+17:28:39.513 -> ##[BOOT]#	invertdisplay:	false
+17:28:39.513 -> ##[BOOT]#	showweather:	false
+17:28:39.559 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+17:28:39.559 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+17:28:39.559 -> ##[BOOT]#	ir:		NONE
+17:28:39.559 -> ##[BOOT]#	SD:		CS-39
+17:28:39.559 -> ##[BOOT]#	battery:	battery ON
+17:28:39.559 -> ##[BOOT]#	------------------------------------------------
+17:28:39.559 -> ##[BOOT]#	CONFIG_VERSION	4
+17:28:39.606 -> ##[BOOT]#	SPIFFS mounted
+17:28:39.884 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+17:28:39.884 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+17:28:39.884 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+17:28:39.884 -> ##[BOOT]#	player.init	done
+17:28:39.930 -> ##[BOOT]#	network.begin
+17:28:40.024 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+17:28:40.024 -> ##[BOOT]#	.....
+17:28:42.016 -> ##[BOOT]#	done
+17:28:42.016 -> ##[BOOT]#	SD search	done
+17:28:42.062 -> ##[BOOT]#	netserver.begin	done
+17:28:42.062 -> ##[BOOT]#	telnet.begin	done
+17:28:42.062 -> ##[BOOT]#
+17:28:42.109 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+17:28:42.109 -> ##[BOOT]#	------------------------------------------------
+17:28:42.109 -> ##[BOOT]#
+17:28:42.109 -> ##CLI.META#: [готов]
+17:28:42.202 -> ##CLI.META#: [соединение]
+17:28:42.249 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+17:28:42.249 -> ##AUDIO.INFO#: buffers freed, free Heap: 174756 bytes
+17:28:42.249 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/global-flac"
+17:28:42.480 -> ##AUDIO.INFO#: Connection has been established in 233 ms
+17:28:42.712 -> ##AUDIO.INFO#: format is ogg
+17:28:42.712 -> ##AUDIO.INFO#: icy-genre:  World
+17:28:42.712 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:42.712 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:42.712 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+17:28:42.712 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:28:42.851 -> ##CLI.INFO#
+17:28:42.851 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+17:28:42.851 -> ##CLI.NAMESET#: 319 (flc) Paradise Global
+17:28:42.851 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:42.851 -> ##CLI.VOL#: 44
+17:28:42.851 -> ##CLI.PLAYING#
+17:28:42.851 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:28:42.897 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:28:42.897 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:42.897 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+17:28:42.897 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:42.943 -> ##CLI.VOL#: 44
+17:28:42.943 -> ##CLI.INFO#
+17:28:42.943 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+17:28:42.943 -> ##CLI.NAMESET#: 319 (flc) Paradise Global
+17:28:42.943 -> ##CLI.META#: Radio Paradise: Global Mix (flac) - playlist: radioparadise.com
+17:28:42.943 -> ##CLI.VOL#: 44
+17:28:42.943 -> ##CLI.PLAYING#
+17:28:43.038 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:28:43.038 -> ##AUDIO.INFO#: Channels: 2
+17:28:43.038 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:28:43.038 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:28:43.038 -> ##AUDIO.INFO#: BitRate: 1441000
+17:28:43.038 -> ##AUDIO.BITRATE#: 1441000
+17:28:43.038 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+17:28:43.083 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=60296
+17:29:07.336 -> ESP-ROM:esp32s3-20210327
+17:29:07.336 -> Build:Mar 27 2021
+17:29:07.336 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+17:29:07.336 -> SPIWP:0xee
+17:29:07.336 -> mode:DIO, clock div:1
+17:29:07.336 -> load:0x3fce2820,len:0x116c
+17:29:07.336 -> load:0x403c8700,len:0xc2c
+17:29:07.336 -> load:0x403cb700,len:0x3108
+17:29:07.336 -> entry 0x403c88b8
+17:29:07.754 -> ##[BOOT]#	************************************************
+17:29:07.754 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+17:29:07.754 -> ##[BOOT]#	************************************************
+17:29:07.754 -> ##[BOOT]#	------------------------------------------------
+17:29:07.754 -> ##[BOOT]#	arduino:	10819
+17:29:07.754 -> ##[BOOT]#	compiler:	14.2.0
+17:29:07.754 -> ##[BOOT]#	esp32core:	3.3.6
+17:29:07.754 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+17:29:07.754 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+17:29:07.754 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+17:29:07.754 -> ##[BOOT]#	audioinfo:	false
+17:29:07.800 -> ##[BOOT]#	smartstart:	0
+17:29:07.800 -> ##[BOOT]#	vumeter:	false
+17:29:07.800 -> ##[BOOT]#	softapdelay:	0
+17:29:07.800 -> ##[BOOT]#	flipscreen:	false
+17:29:07.800 -> ##[BOOT]#	invertdisplay:	false
+17:29:07.800 -> ##[BOOT]#	showweather:	false
+17:29:07.800 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+17:29:07.800 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+17:29:07.800 -> ##[BOOT]#	ir:		NONE
+17:29:07.800 -> ##[BOOT]#	SD:		CS-39
+17:29:07.800 -> ##[BOOT]#	battery:	battery ON
+17:29:07.800 -> ##[BOOT]#	------------------------------------------------
+17:29:07.800 -> ##[BOOT]#	CONFIG_VERSION	4
+17:29:07.893 -> ##[BOOT]#	SPIFFS mounted
+17:29:08.126 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+17:29:08.126 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+17:29:08.126 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+17:29:08.126 -> ##[BOOT]#	player.init	done
+17:29:08.173 -> ##[BOOT]#	network.begin
+17:29:08.266 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+17:29:08.266 -> ##[BOOT]#	.....
+17:29:10.296 -> ##[BOOT]#	done
+17:29:10.296 -> ##[BOOT]#	SD search	done
+17:29:10.342 -> ##[BOOT]#	netserver.begin	done
+17:29:10.342 -> ##[BOOT]#	telnet.begin	done
+17:29:10.342 -> ##[BOOT]#
+17:29:10.342 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+17:29:10.342 -> ##[BOOT]#	------------------------------------------------
+17:29:10.342 -> ##[BOOT]#
+17:29:10.342 -> ##CLI.META#: [готов]
+17:29:10.481 -> ##CLI.META#: [соединение]
+17:29:10.527 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+17:29:10.527 -> ##AUDIO.INFO#: buffers freed, free Heap: 174740 bytes
+17:29:10.527 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 443 path "/radio2050-flacm"
+17:29:11.175 -> ##AUDIO.INFO#: SSL has been established in 622 ms
+17:29:11.315 -> ##AUDIO.INFO#: format is ogg
+17:29:11.315 -> ##AUDIO.INFO#: icy-bitrate : 1442000 (b/s)
+17:29:11.315 -> ##AUDIO.INFO#: icy-genre:  Talk/Music
+17:29:11.315 -> ##AUDIO.INFO#: icy-name: Radio2050 (flac)
+17:29:11.315 -> ##CLI.META#: Radio2050 (flac)
+17:29:11.315 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:29:11.454 -> ##CLI.INFO#
+17:29:11.454 -> ##SYS.DATE#: 1970-01-01T03:00:03+03:00
+17:29:11.454 -> ##CLI.NAMESET#: 322 (flcm) Paradise Radio2050
+17:29:11.454 -> ##CLI.META#: Radio2050 (flac)
+17:29:11.454 -> ##CLI.VOL#: 44
+17:29:11.454 -> ##CLI.PLAYING#
+17:29:11.454 -> ##AUDIO.INFO#: Closing web file "https://stream.radioparadise.com/radio2050-flacm" (ssl=1)
+17:29:11.454 -> ##AUDIO.INFO#: buffers freed, free Heap: 169832 bytes
+17:29:11.500 -> ##CLI.META#: [остановлено]
+17:29:11.500 -> ##CLI.META#: [остановлено]
+17:29:11.546 -> ##CLI.INFO#
+17:29:11.546 -> ##SYS.DATE#: 1970-01-01T03:00:03+03:00
+17:29:11.546 -> ##CLI.NAMESET#: 322 (flcm) Paradise Radio2050
+17:29:11.546 -> ##CLI.VOL#: 44
+17:29:11.546 -> ##CLI.STOPPED#
+17:29:27.288 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+17:29:31.377 -> [WEBSOCKET] client #1 disconnected
+17:29:31.609 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+17:29:31.655 -> ##CLI.META#: [остановлено]
+17:29:31.701 -> ##CLI.VOL#: 44
+17:29:31.747 -> ##CLI.INFO#
+17:29:31.747 -> ##SYS.DATE#: 2026-08-26T17:29:31+03:00
+17:29:31.747 -> ##CLI.NAMESET#: 322 (flcm) Paradise Radio2050
+17:29:31.747 -> ##CLI.VOL#: 44
+17:29:31.747 -> ##CLI.STOPPED#
+17:29:37.780 -> ##CLI.META#: [соединение]
+17:29:37.872 -> ##AUDIO.INFO#: buffers freed, free Heap: 173760 bytes
+17:29:37.872 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+17:29:39.078 -> ##AUDIO.INFO#: SSL has been established in 1208 ms
+17:29:39.170 -> ##AUDIO.INFO#: format is ogg
+17:29:39.170 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+17:29:39.170 -> ##AUDIO.INFO#: icy-genre:  3
+17:29:39.170 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+17:29:39.170 -> ##CLI.META#: radio.audiomastering.lt
+17:29:39.170 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+17:29:39.170 -> ##CLI.INFO#
+17:29:39.170 -> ##SYS.DATE#: 2026-08-26T17:29:38+03:00
+17:29:39.217 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+17:29:39.217 -> ##CLI.META#: radio.audiomastering.lt
+17:29:39.217 -> ##CLI.VOL#: 44
+17:29:39.217 -> ##CLI.PLAYING#
+17:29:39.217 -> ##CLI.META#: radio.audiomastering.lt
+17:29:39.217 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+17:29:39.217 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+17:29:39.401 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+17:29:39.401 -> ##AUDIO.INFO#: Channels: 2
+17:29:39.401 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+17:29:39.401 -> ##AUDIO.INFO#: BitsPerSample: 16
+17:29:39.401 -> ##AUDIO.INFO#: BitRate: 128000
+17:29:39.401 -> ##AUDIO.BITRATE#: 128000
+17:29:39.401 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+17:29:39.401 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=314 left=65221
+17:29:46.315 -> [WEBSOCKET] client #2 disconnected
+17:29:46.546 -> [WEBSOCKET] client #3 connected from 192.168.1.96
+17:52:37.725 -> [WEBSOCKET] client #3 disconnected
+17:52:37.909 -> [WEBSOCKET] client #4 connected from 192.168.1.96
