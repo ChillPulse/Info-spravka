@@ -1,0 +1,178 @@
+# Instruction 22 — FIX: реально заполнять `CHUNK` и `OGG_STATE` снапшоты (без импровизаций)
+
+Репо: `ChillPulse/Youradio_Omnia_ESP32S3`  
+Цель: чтобы логи `microflac CHUNK …` и `microflac OGG_STATE …` в Serial перестали быть “пустыми” и начали отражать реальность (сейчас поля существуют в `.h`, но не заполняются в `.cpp`). 
+
+## 0) РЕГЛАМЕНТ
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- не трогать `flac_decoder.h` (там уже всё есть)
+- не трогать `Audio.cpp`
+- не трогать SD режим и остальные кодеки
+- не рефакторить/не форматировать файл целиком
+
+---
+
+## 2) P0 FIX: заполнить `last_chunk_*` в STASH-DRAIN (до `decode_native(s, s_len, ...)`)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+Найти блок (он уже есть), начиная с:
+
+```cpp
+if (!this->ogg_stash_.empty()) {
+
+    const uint8_t* s = this->ogg_stash_.data();
+    const size_t s_len = this->ogg_stash_.size();
+
+    size_t native_consumed = 0;
+    size_t native_samples = 0;
+
+    auto r = this->decode_native(s, s_len, output, native_consumed, native_samples, output_32bit);
+```
+
+**Вставить строго между `native_samples = 0;` и строкой `auto r = this->decode_native(...);` следующий код (1:1):**
+
+```cpp
+// Log75/76: snapshot chunk fed into decode_native() (stash path)
+this->last_chunk_len_ = s_len;
+this->last_chunk_off_ = 0;
+this->last_chunk_prefix_valid_ = false;
+if (s && s_len > 0) {
+    const size_t n = (s_len >= 8) ? 8 : s_len;
+    for (size_t i = 0; i < n; i++) this->last_chunk_prefix_[i] = s[i];
+    for (size_t i = n; i < 8; i++) this->last_chunk_prefix_[i] = 0;
+    this->last_chunk_prefix_valid_ = true;
+}
+```
+
+---
+
+## 3) P0 FIX: заполнить `last_ogg_res_dbg_ / last_ogg_packet_*` сразу после `get_next_data()`
+
+В той же функции `decode_ogg(...)` найти строку:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+```
+
+Сразу **после неё** (прямо следующими строками) вставить **этот блок 1:1**:
+
+```cpp
+// Log75/76: snapshot last demux result ALWAYS (even when not OGG_OK)
+this->last_ogg_res_dbg_ = (int8_t)state.result;
+this->last_ogg_bytes_consumed_dbg_ = (uint16_t)state.bytes_consumed;
+
+if (state.result == micro_ogg::OGG_OK) {
+    this->last_ogg_packet_len_dbg_ = (uint16_t)state.packet.length;
+    this->last_ogg_packet_endpkt_dbg_ = state.packet.is_end_of_packet ? 1 : 0;
+    this->last_ogg_packet_bos_dbg_ = state.packet.is_bos ? 1 : 0;
+    this->last_ogg_packet_eos_dbg_ = state.packet.is_eos ? 1 : 0;
+} else {
+    this->last_ogg_packet_len_dbg_ = 0;
+    this->last_ogg_packet_endpkt_dbg_ = 0;
+    this->last_ogg_packet_bos_dbg_ = 0;
+    this->last_ogg_packet_eos_dbg_ = 0;
+}
+```
+
+Важно:
+- **Ничего не удалять** из существующего кода ниже (`last_ogg_result_`, `serial/seq`, `bytes_consumed += ...`, `OGG_DBG`, и т.д.) — просто добавить снапшот.
+
+---
+
+## 4) P0 FIX: заполнить `last_chunk_*` в packet slicing loop (перед `decode_native(chunk, chunk_len, ...)`)
+
+В `decode_ogg()` найти Step 3 (он уже есть), где сейчас:
+
+```cpp
+const uint8_t* chunk = body + off;
+size_t chunk_len = body_len - off;
+
+auto result = this->decode_native(chunk, chunk_len, output,
+                                  native_consumed, native_samples, output_32bit);
+```
+
+**Вставить строго между `chunk_len = ...;` и `auto result = ...;` этот код 1:1:**
+
+```cpp
+// Log75/76: snapshot chunk fed into decode_native() (packet slicing path)
+this->last_chunk_len_ = chunk_len;
+this->last_chunk_off_ = off;
+this->last_chunk_prefix_valid_ = false;
+if (chunk && chunk_len > 0) {
+    const size_t n = (chunk_len >= 8) ? 8 : chunk_len;
+    for (size_t i = 0; i < n; i++) this->last_chunk_prefix_[i] = chunk[i];
+    for (size_t i = n; i < 8; i++) this->last_chunk_prefix_[i] = 0;
+    this->last_chunk_prefix_valid_ = true;
+}
+```
+
+---
+
+## 5) Анти-косяки: усилить sanity-check так, чтобы “заголовок добавил, а реализацию забыл” больше не проходило
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+### 5.1 Добавить проверки по `.cpp` (обязательные)
+После текущего блока “Must have stash drain” и проверки `is_end_of_packet` добавить:
+
+```python
+# Must actually WRITE chunk/demux snapshots in flac_decoder.cpp (not only declare in .h)
+for n in [
+    "this->last_chunk_len_ =",
+    "this->last_chunk_off_ =",
+    "this->last_chunk_prefix_valid_ =",
+    "this->last_ogg_res_dbg_ =",
+    "this->last_ogg_packet_len_dbg_ =",
+]:
+    if n not in txt:
+        print(f"FAIL: missing '{n}' assignment in flac_decoder.cpp")
+        sys.exit(2)
+```
+
+(Ничего больше в этом скрипте не менять.)
+
+---
+
+## 6) ОБЯЗАТЕЛЬНЫЕ проверки агентом перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+И:
+
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 2 файла:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 7) Коммит / push
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(diag): actually populate microflac OGG_STATE/CHUNK snapshots + enforce via sanity check"
+git push origin main
