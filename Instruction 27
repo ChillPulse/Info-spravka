@@ -1,0 +1,53 @@
+# Instruction 27 — ЖЕЛЕЗНОЕ ТЗ: «Remote HEAD discipline» (чтобы больше не было путаницы SHA и “я прошил не то”)
+
+Цель: гарантировать, что **всё, что агент говорит “готово”, реально находится в `origin/main`**, видно на GitHub, и вы прошиваете именно это.
+
+## 0) Scope
+Меняем **только процесс**, без функциональных правок аудио.
+
+Разрешено менять (опционально) только CI/скрипты, но можно обойтись вообще без изменений в репо.
+
+## 1) Обязательный чек-лист агента ПЕРЕД тем как сказать “готово”
+Агент обязан приложить в ответ **сырой вывод** следующих команд (копипастой):
+
+```bash
+git status
+git branch --show-current
+git rev-parse HEAD
+git log -1 --oneline
+git ls-remote origin refs/heads/main
+```
+
+### Правило PASS
+- `git branch --show-current` == `main`
+- `git ls-remote origin refs/heads/main` **заканчивается тем же SHA**, что `git rev-parse HEAD`
+
+Если не совпадает — агент **не имеет права** писать “готово”, он обязан сделать:
+
+```bash
+git push origin main
+```
+
+и повторить проверки.
+
+## 2) Обязательный GitHub-чек (без вариантов)
+После push агент обязан дать ссылку на страницу коммита HEAD **и** подтвердить, что он виден в списке:
+
+- страница коммита:  
+  `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3/commit/<SHA>`
+- страница истории main:  
+  `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3/commits/main`
+
+**PASS:** `<SHA>` должен быть **первым** в `/commits/main`.
+
+## 3) Обязательный чек у вас перед сборкой (чтобы не прошивать не то)
+Перед компиляцией/прошивкой вы делаете:
+
+```bash
+git fetch origin
+git checkout main
+git reset --hard origin/main
+git rev-parse HEAD
+```
+
+И этот SHA вы сохраняете в названии лога (например `Log78_SHA_<sha7>`).
