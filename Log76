@@ -1,0 +1,18 @@
+Проверяю текущий код относительно Instruction 23 и допишу всё, чего не хватает.
+
+Снапшоты уже есть. Привожу комментарий slicing и sanity к тексту Instruction 23 и пушу коммит ТЗ.
+
+Готово.
+
+**SHA** local = origin/main = `9322a82f55e9128125560b8951bfe468a336bc9b`
+
+```
+OK: Audio.cpp sanity checks passed
+OK: microflac ogg stash/endpkt sanity checks passed
+```
+
+Только 2 файла:
+- `flac_decoder.cpp` — снапшоты `OGG_STATE` после `get_next_data`, `CHUNK` перед stash-`decode_native` и перед slicing-`decode_native`
+- `omnia_sanity_microflac_ogg.py` — падает, если этих присваиваний нет в `.cpp`
+
+`.h` / `Audio.cpp` не трогал. Прошей этот SHA: в Serial должны быть живые `OGG_STATE` и `CHUNK`.
