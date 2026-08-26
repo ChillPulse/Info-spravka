@@ -1,0 +1,152 @@
+# Instruction 23 — ЖЕЛЕЗНОЕ ТЗ (чтобы агент просто вставил и всё): реально заполняем `OGG_STATE/CHUNK` снапшоты + делаем sanity, который не даст опять “заголовок без реализации”
+
+## 0) Регламент
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+## 1) Scope / запреты
+**Менять только:**
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `tools/omnia_sanity_microflac_ogg.py`
+
+**Запрещено:** трогать `.h`, `Audio.cpp`, SD-режим, другие кодеки, рефакторинг.
+
+---
+
+## 2) FLACDecoder::decode_ogg — snapshot результата demuxer (`OGG_STATE`)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+Найти строку (она есть):
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+```
+
+**Сразу после неё вставить 1:1:**
+```cpp
+// Log75/76: snapshot last demux result ALWAYS (even when not OGG_OK)
+this->last_ogg_res_dbg_ = (int8_t)state.result;
+this->last_ogg_bytes_consumed_dbg_ = (uint16_t)state.bytes_consumed;
+
+if (state.result == micro_ogg::OGG_OK) {
+    this->last_ogg_packet_len_dbg_ = (uint16_t)state.packet.length;
+    this->last_ogg_packet_endpkt_dbg_ = state.packet.is_end_of_packet ? 1 : 0;
+    this->last_ogg_packet_bos_dbg_ = state.packet.is_bos ? 1 : 0;
+    this->last_ogg_packet_eos_dbg_ = state.packet.is_eos ? 1 : 0;
+} else {
+    this->last_ogg_packet_len_dbg_ = 0;
+    this->last_ogg_packet_endpkt_dbg_ = 0;
+    this->last_ogg_packet_bos_dbg_ = 0;
+    this->last_ogg_packet_eos_dbg_ = 0;
+}
+```
+
+Ниже существующий код (`this->last_ogg_result_ = …`, `bytes_consumed += …`, `OGG_DBG …`) **не трогать**.
+
+---
+
+## 3) STASH drain — snapshot CHUNK перед `decode_native(s, s_len, …)`
+
+Найти блок stash-drain (он есть):
+
+```cpp
+if (!this->ogg_stash_.empty()) {
+    const uint8_t* s = this->ogg_stash_.data();
+    const size_t s_len = this->ogg_stash_.size();
+    size_t native_consumed = 0;
+    size_t native_samples = 0;
+    auto r = this->decode_native(s, s_len, output, native_consumed, native_samples, output_32bit);
+```
+
+**Сразу перед `auto r = ...` вставить 1:1:**
+```cpp
+// Log75/76: snapshot chunk fed into decode_native() (stash path)
+this->last_chunk_len_ = s_len;
+this->last_chunk_off_ = 0;
+this->last_chunk_prefix_valid_ = false;
+if (s && s_len > 0) {
+    const size_t n = (s_len >= 8) ? 8 : s_len;
+    for (size_t i = 0; i < n; i++) this->last_chunk_prefix_[i] = s[i];
+    for (size_t i = n; i < 8; i++) this->last_chunk_prefix_[i] = 0;
+    this->last_chunk_prefix_valid_ = true;
+}
+```
+
+---
+
+## 4) Packet slicing loop — snapshot CHUNK перед `decode_native(chunk, chunk_len, …)`
+
+Найти в Step 3 участок:
+
+```cpp
+const uint8_t* chunk = body + off;
+size_t chunk_len = body_len - off;
+auto result = this->decode_native(chunk, chunk_len, output,
+                                  native_consumed, native_samples, output_32bit);
+```
+
+**Сразу перед `auto result = ...` вставить 1:1:**
+```cpp
+// Log75/76: snapshot chunk fed into decode_native() (packet slicing path)
+this->last_chunk_len_ = chunk_len;
+this->last_chunk_off_ = off;
+this->last_chunk_prefix_valid_ = false;
+if (chunk && chunk_len > 0) {
+    const size_t n = (chunk_len >= 8) ? 8 : chunk_len;
+    for (size_t i = 0; i < n; i++) this->last_chunk_prefix_[i] = chunk[i];
+    for (size_t i = n; i < 8; i++) this->last_chunk_prefix_[i] = 0;
+    this->last_chunk_prefix_valid_ = true;
+}
+```
+
+---
+
+## 5) Усилить sanity-check: теперь он обязан падать, если присваивания не внедрены в `.cpp`
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+После существующих проверок (где проверяются `ogg_stash_.empty()`, `decode_native(s, s_len`, `ogg_stash_.erase`) **добавить**:
+
+```python
+# Must actually WRITE chunk/demux snapshots in flac_decoder.cpp (not only declare in .h)
+for n in [
+    "this->last_ogg_res_dbg_ =",
+    "this->last_ogg_packet_len_dbg_ =",
+    "this->last_chunk_len_ =",
+    "this->last_chunk_off_ =",
+    "this->last_chunk_prefix_valid_ =",
+]:
+    if n not in txt:
+        print(f"FAIL: missing '{n}' assignment in flac_decoder.cpp")
+        sys.exit(2)
+```
+
+---
+
+## 6) Обязательные проверки агентом перед коммитом (без вариантов)
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+`git diff --name-only` должен показать **ровно 2 файла**:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 7) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(diag): populate microflac OGG_STATE/CHUNK snapshots and enforce via sanity check"
+git push origin main
