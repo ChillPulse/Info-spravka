@@ -1,0 +1,217 @@
+# Instruction 25 — FIX: не портить Ogg синхронизацию внутри micro-flac (убрать “skip 1 byte на OggS@0”) + добавить OGG_STATE/CHUNK логи в Audio.cpp
+
+Цель: после прошивки **перестать видеть вечный `OGG_INVALID_CAPTURE`/тишину**, получить `microflac SUCCESS` и звук.
+
+## 0) РЕГЛАМЕНТ
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `yoRadio/src/audioI2S/Audio.cpp`
+3) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD-режим / legacy FLAC
+- MP3/AAC/OPUS/VORBIS ветки
+- любые `.h` (в этой инструкции не трогаем заголовки)
+- рефакторинг “по пути”
+
+---
+
+## 2) P0 FIX: micro-flac — корректное поведение на `OGG_NEED_MORE_DATA` (без “саморазрушительного” skip)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+Найти блок:
+
+```cpp
+if (state.result == micro_ogg::OGG_NEED_MORE_DATA) {
+    if (this->ogg_eos_seen_) {
+        return FLAC_DECODER_END_OF_STREAM;
+    }
+    // OMNIA-PATCH Log59 (3.4): anti zero-consume...
+    if (state.bytes_consumed == 0 && remaining > 0) {
+        ...
+        if (bytes_consumed == 0) {
+            bytes_consumed = 1;  // anti-stuck: guarantee window advance
+        }
+        return FLAC_DECODER_NEED_MORE_DATA;
+    }
+    if (bytes_consumed < input_len) {
+        continue;
+    }
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+### ЗАМЕНИТЬ ЭТОТ `if (OGG_NEED_MORE_DATA)` ЦЕЛИКОМ на (вставить 1:1):
+
+```cpp
+if (state.result == micro_ogg::OGG_NEED_MORE_DATA) {
+    if (this->ogg_eos_seen_) {
+        return FLAC_DECODER_END_OF_STREAM;
+    }
+    // IMPORTANT: do NOT force-consume bytes when the demuxer consumed nothing.
+    // Returning NEED_MORE with bytes_consumed unchanged preserves sync at page boundaries.
+    if (state.bytes_consumed == 0) {
+        return FLAC_DECODER_NEED_MORE_DATA;
+    }
+    if (bytes_consumed < input_len) {
+        continue;
+    }
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+---
+
+## 3) P0 FIX: micro-flac — корректный resync при `state.result != OGG_OK` в AUDIO (НЕ сдвигать на 1, если `OggS` уже на позиции 0)
+
+Файл: тот же, `flac_decoder.cpp`, та же функция `decode_ogg(...)`.
+
+Найти блок:
+
+```cpp
+if (state.result != micro_ogg::OGG_OK) {
+    ...
+    if (this->decode_phase_ == DecodePhase::AUDIO) {
+        this->ogg_demuxer_->reset();
+        if (bytes_consumed < input_len) {
+            const uint8_t* p = input + bytes_consumed;
+            size_t r = input_len - bytes_consumed;
+            size_t k = 0;
+            for (; k + 3 < r; k++) {
+                if (p[k] == 'O' && p[k + 1] == 'g' && p[k + 2] == 'g' && p[k + 3] == 'S') break;
+            }
+            if (k + 3 < r) {
+                bytes_consumed += (k == 0 ? 1 : k);  // always move forward
+                continue;
+            }
+        }
+        if (bytes_consumed == 0 && input_len > 0) {
+            bytes_consumed = 1;  // anti-stuck
+        }
+        return FLAC_DECODER_NEED_MORE_DATA;
+    }
+    return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+}
+```
+
+### ЗАМЕНИТЬ ТОЛЬКО ВНУТРЕННОСТЬ `if (this->decode_phase_ == DecodePhase::AUDIO) { ... }` на (вставить 1:1):
+
+```cpp
+if (this->decode_phase_ == DecodePhase::AUDIO) {
+    // Soft recovery: reset demuxer and resync to the next "OggS".
+    // CRITICAL: if "OggS" is at k==0, do NOT skip 1 byte (that destroys the capture pattern).
+    this->ogg_demuxer_->reset();
+
+    const uint8_t* p = input + bytes_consumed;
+    size_t r = input_len - bytes_consumed;
+
+    size_t k = 0;
+    for (; k + 3 < r; k++) {
+        if (p[k] == 'O' && p[k + 1] == 'g' && p[k + 2] == 'g' && p[k + 3] == 'S') break;
+    }
+    if (k + 3 < r) {
+        bytes_consumed += k;   // NOTE: may be 0 (valid!)
+        continue;
+    }
+
+    // No full "OggS" found in this window: keep last 3 bytes for boundary match.
+    if (input_len > 3 && bytes_consumed < input_len - 3) {
+        bytes_consumed = input_len - 3;
+    }
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+---
+
+## 4) DIAG: добавить OGG_STATE + CHUNK в Audio.cpp (чтобы следующий лог был 100% читаем)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+Найти место в microflac NEED_MORE(progress) rate-limited блоке (там где уже печатаются `NEED_MORE(progress)`, `NATIVE_DIAG`, `OGG_DBG`, `OGG_BODY`). Это участок вокруг строк ~5753 в raw.
+
+Сразу **после** блока `OGG_BODY ...` (после закрывающей `}` этого `if (get_last_ogg_body_prefix_valid())`) вставить:
+
+```cpp
+AUDIO_INFO("microflac OGG_STATE res=%d(%s) demuxCons=%u pktLen=%u endpkt=%u bos=%u eos=%u",
+    (int)g_mf.get_last_ogg_res(), oggDemuxName((int)g_mf.get_last_ogg_res()),
+    (unsigned)g_mf.get_last_ogg_bytes_consumed(),
+    (unsigned)g_mf.get_last_ogg_packet_len(),
+    (unsigned)g_mf.get_last_ogg_packet_endpkt(),
+    (unsigned)g_mf.get_last_ogg_packet_bos(),
+    (unsigned)g_mf.get_last_ogg_packet_eos()
+);
+
+if (g_mf.get_last_chunk_prefix_valid()) {
+    AUDIO_INFO("microflac CHUNK off=%u len=%u prefix=%02X%02X%02X%02X %02X%02X%02X%02X",
+        (unsigned)g_mf.get_last_chunk_off(),
+        (unsigned)g_mf.get_last_chunk_len(),
+        (unsigned)g_mf.get_last_chunk_prefix(0),
+        (unsigned)g_mf.get_last_chunk_prefix(1),
+        (unsigned)g_mf.get_last_chunk_prefix(2),
+        (unsigned)g_mf.get_last_chunk_prefix(3),
+        (unsigned)g_mf.get_last_chunk_prefix(4),
+        (unsigned)g_mf.get_last_chunk_prefix(5),
+        (unsigned)g_mf.get_last_chunk_prefix(6),
+        (unsigned)g_mf.get_last_chunk_prefix(7)
+    );
+}
+```
+
+---
+
+## 5) Sanity: запретить возвращение “(k==0?1:k)” и форс bytes_consumed=1 в NEED_MORE
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+В конец (перед `print("OK...")`) добавить:
+
+```python
+if "(k == 0 ? 1 : k)" in txt:
+    print("FAIL: flac_decoder.cpp still contains '(k == 0 ? 1 : k)' (destroys OggS capture)")
+    sys.exit(2)
+
+if "bytes_consumed = 1;  // anti-stuck: guarantee window advance" in txt:
+    print("FAIL: flac_decoder.cpp still forces bytes_consumed=1 on OGG_NEED_MORE_DATA (sync break risk)")
+    sys.exit(2)
+```
+
+---
+
+## 6) ОБЯЗАТЕЛЬНЫЕ проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 7) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(flac): stop destroying OggS sync in micro_ogg recovery; add OGG_STATE/CHUNK logs (Log77)"
+git push origin main
