@@ -1,0 +1,211 @@
+# Instruction 20 — ЖЕЛЕЗНОЕ ТЗ: исправить micro_ogg debug (peak=garbage) + логировать префикс Ogg packet body (что реально кормим во FLAC) + минимальный “anti-drop” на NEED_MORE
+
+Цель: за одну прошивку получить лог, который отвечает:
+1) Какие байты идут в `decode_native()` после `HEADER_READY` (должны часто начинаться с `FF F8 …` для FLAC frame sync).  
+2) Demuxer реально отдаёт body-данные или мы “крутимся” по страницам/нулевым пакетам.  
+3) Убрать мусорное `bufPeak`.
+
+> Важно: SD не трогать, другие web-кодеки не трогать.
+
+---
+
+## 0) Регламент
+Только `main`.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) Scope / запреты (строго)
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h`
+2) `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp`
+3) `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+4) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+5) `yoRadio/src/audioI2S/Audio.cpp`
+6) `tools/omnia_sanity_microflac_ogg.py` (добавить проверки)
+
+### Запрещено:
+- SD режим / legacy flac_decoder
+- MP3/AAC/OPUS/VORBIS web ветки
+- рефакторинг/форматирование “всего файла”
+
+---
+
+## 2) P0 FIX: micro_ogg — инициализировать и сбрасывать `peak_buffer_capacity_` (убрать garbage в OGG_DBG)
+
+### 2.1 ogg_demuxer.h — инициализация полей статистики
+Файл: `.../micro_ogg/ogg_demuxer.h`
+
+Найти (в конце класса, под `#ifdef MICRO_OGG_DEMUXER_DEBUG`) сейчас так: 
+
+```cpp
+size_t zero_copy_packets_;     
+size_t buffered_packets_;      
+size_t peak_buffer_capacity_;  
+```
+
+Заменить на (вставить 1:1):
+
+```cpp
+size_t zero_copy_packets_{0};
+size_t buffered_packets_{0};
+size_t peak_buffer_capacity_{0};
+```
+
+### 2.2 ogg_demuxer.cpp — reset() должен сбрасывать peak
+Файл: `.../micro_ogg/ogg_demuxer.cpp`
+
+Внутри `void OggDemuxer::reset()` под `#ifdef MICRO_OGG_DEMUXER_DEBUG` сейчас сбрасываются только два счётчика.   
+Добавить третью строку:
+
+```cpp
+#ifdef MICRO_OGG_DEMUXER_DEBUG
+    zero_copy_packets_ = 0;
+    buffered_packets_ = 0;
+    peak_buffer_capacity_ = internal_buffer_capacity_; // 0 if not allocated
+#endif
+```
+
+---
+
+## 3) P0 DIAG: сохранять “последний префикс body” и размеры packet/data в FLACDecoder (чтобы увидеть, что реально идёт в decoder)
+
+### 3.1 flac_decoder.h — добавить поля и геттеры (8 байт префикса + длины)
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+
+**В public секции** `FLACDecoder` (рядом с существующими `get_last_ogg_*` и `get_last_native_*`) добавить:
+
+```cpp
+// Log74: what bytes are we feeding into decode_native after Ogg demux?
+bool    get_last_ogg_body_prefix_valid() const { return last_ogg_body_prefix_valid_; }
+uint8_t get_last_ogg_body_prefix(uint8_t i) const { return (i < 8) ? last_ogg_body_prefix_[i] : 0; }
+size_t  get_last_ogg_body_len() const { return last_ogg_body_len_dbg_; }
+size_t  get_last_ogg_bytes_consumed() const { return last_ogg_bytes_consumed_dbg_; }
+uint8_t get_last_ogg_endpkt() const { return last_ogg_endpkt_dbg_; }
+```
+
+**В private секции** добавить поля:
+
+```cpp
+// Log74: last offered ogg body prefix (first 8 bytes) + lengths
+uint8_t last_ogg_body_prefix_[8]{};
+bool    last_ogg_body_prefix_valid_{false};
+size_t  last_ogg_body_len_dbg_{0};
+size_t  last_ogg_bytes_consumed_dbg_{0};
+uint8_t last_ogg_endpkt_dbg_{0};
+```
+
+---
+
+### 3.2 flac_decoder.cpp — заполнять эти поля на каждом `OGG_OK` перед decode_native
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+Найти место сразу после:
+
+```cpp
+const uint8_t* body = state.packet.data;
+size_t body_len = state.packet.length;
+```
+
+Сразу после этого **вставить**:
+
+```cpp
+// Log74 DIAG: snapshot what demuxer is offering (before any BOS stripping)
+this->last_ogg_body_len_dbg_ = body_len;
+this->last_ogg_bytes_consumed_dbg_ = state.bytes_consumed;
+this->last_ogg_endpkt_dbg_ = state.packet.is_end_of_packet ? 1 : 0;
+
+this->last_ogg_body_prefix_valid_ = false;
+if (body && body_len > 0) {
+    const size_t n = (body_len >= 8) ? 8 : body_len;
+    for (size_t i = 0; i < n; i++) this->last_ogg_body_prefix_[i] = body[i];
+    for (size_t i = n; i < 8; i++) this->last_ogg_body_prefix_[i] = 0;
+    this->last_ogg_body_prefix_valid_ = true;
+}
+```
+
+> Это даст вам в Serial реальные первые байты body. Для **аудио FLAC** вы почти всегда должны начать видеть `FF F8 ...` (frame sync) довольно скоро. Если там постоянно не `FF`, значит проблема в demux/потоке/подмешивании байт.
+
+---
+
+## 4) P0 DIAG: печатать body-prefix в Audio.cpp в вашем existing rate-limited лог-блоке
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+В месте где сейчас печатаются:
+
+- `microflac NEED_MORE(progress) ...`
+- `microflac NATIVE_DIAG ...`
+- `microflac OGG_DBG ...`
+
+Добавить ещё одну строку **после OGG_DBG**:
+
+```cpp
+if (g_mf.get_last_ogg_body_prefix_valid()) {
+    AUDIO_INFO("microflac OGG_BODY len=%u cons=%u endpkt=%u prefix=%02X%02X%02X%02X %02X%02X%02X%02X",
+        (unsigned)g_mf.get_last_ogg_body_len(),
+        (unsigned)g_mf.get_last_ogg_bytes_consumed(),
+        (unsigned)g_mf.get_last_ogg_endpkt(),
+        (unsigned)g_mf.get_last_ogg_body_prefix(0),
+        (unsigned)g_mf.get_last_ogg_body_prefix(1),
+        (unsigned)g_mf.get_last_ogg_body_prefix(2),
+        (unsigned)g_mf.get_last_ogg_body_prefix(3),
+        (unsigned)g_mf.get_last_ogg_body_prefix(4),
+        (unsigned)g_mf.get_last_ogg_body_prefix(5),
+        (unsigned)g_mf.get_last_ogg_body_prefix(6),
+        (unsigned)g_mf.get_last_ogg_body_prefix(7)
+    );
+}
+```
+
+---
+
+## 5) Sanity-check: чтобы агент не забыл геттеры/поля
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить проверки наличия:
+- `get_last_ogg_body_prefix_valid`
+- `get_last_ogg_body_len`
+- `last_ogg_body_prefix_`
+- `peak_buffer_capacity_{0}` (в ogg_demuxer.h)
+
+(по аналогии с текущими проверками).
+
+---
+
+## 6) Обязательные проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+и:
+
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 6 файлов (как в Scope).
+
+---
+
+## 7) Коммит / push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h \
+        yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "diag(flac): fix micro_ogg peak stats init + log ogg body prefix/len to debug no-SUCCESS (Log74)"
+git push origin main
