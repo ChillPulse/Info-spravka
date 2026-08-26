@@ -1,0 +1,200 @@
+# Instruction 21 — ЖЕЛЕЗНОЕ ТЗ: логируем «что именно попадает в decode_frame()» + логируем каждое состояние demuxer (OGG_OK/NEED_MORE) в micro-flac
+
+Цель: получить Log76, где будет видно:
+- какой `micro_ogg::OggDemuxResult` доминирует после HEADER_READY (OK/NEED_MORE/ошибка),
+- какие первые байты **реально** подаются в `decode_native()`/`decode_frame()` (должны начинаться с `FF F8..` на аудио),
+- идёт ли вообще переход к аудио‑пакетам или мы застряли в сборке/склейке.
+
+## 0) РЕГЛАМЕНТ
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+2) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+3) `yoRadio/src/audioI2S/Audio.cpp`
+4) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD режим / legacy flac_decoder
+- любые изменения MP3/AAC/OPUS/VORBIS
+- рефакторинг «по пути»
+
+---
+
+## 2) P0 DIAG: сохранить «последний chunk, который реально пошёл в decode_native()» (а не только packet body)
+
+### 2.1 `flac_decoder.h`: добавить поля+геттеры
+
+В `class FLACDecoder` public добавить:
+
+```cpp
+// What chunk is actually fed into decode_native() in Ogg path (after BOS strip, with off)
+bool    get_last_chunk_prefix_valid() const { return last_chunk_prefix_valid_; }
+uint8_t get_last_chunk_prefix(uint8_t i) const { return (i < 8) ? last_chunk_prefix_[i] : 0; }
+size_t  get_last_chunk_len() const { return last_chunk_len_; }
+size_t  get_last_chunk_off() const { return last_chunk_off_; }
+
+// Ogg state snapshot for the last get_next_data() call
+int8_t   get_last_ogg_res() const { return last_ogg_res_dbg_; }
+uint16_t get_last_ogg_bytes_consumed() const { return last_ogg_bytes_consumed_dbg_; }
+uint16_t get_last_ogg_packet_len() const { return last_ogg_packet_len_dbg_; }
+uint8_t  get_last_ogg_packet_endpkt() const { return last_ogg_packet_endpkt_dbg_; }
+uint8_t  get_last_ogg_packet_bos() const { return last_ogg_packet_bos_dbg_; }
+uint8_t  get_last_ogg_packet_eos() const { return last_ogg_packet_eos_dbg_; }
+```
+
+В private добавить:
+
+```cpp
+// last chunk fed into decode_native() from Ogg path
+uint8_t last_chunk_prefix_[8]{};
+bool    last_chunk_prefix_valid_{false};
+size_t  last_chunk_len_{0};
+size_t  last_chunk_off_{0};
+
+// last demux snapshot
+int8_t   last_ogg_res_dbg_{0};
+uint16_t last_ogg_bytes_consumed_dbg_{0};
+uint16_t last_ogg_packet_len_dbg_{0};
+uint8_t  last_ogg_packet_endpkt_dbg_{0};
+uint8_t  last_ogg_packet_bos_dbg_{0};
+uint8_t  last_ogg_packet_eos_dbg_{0};
+```
+
+---
+
+## 3) P0 DIAG: в `decode_ogg()` обновлять snapshot результата demuxer и snapshot chunk’а
+
+### 3.1 `flac_decoder.cpp`: snapshot результата demuxer
+
+В `decode_ogg()` сразу после:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(...);
+...
+bytes_consumed += state.bytes_consumed;
+```
+
+добавить:
+
+```cpp
+// Snapshot last demux result (for Log76)
+this->last_ogg_res_dbg_ = (int8_t)state.result;
+this->last_ogg_bytes_consumed_dbg_ = (uint16_t)state.bytes_consumed;
+this->last_ogg_packet_len_dbg_ = (uint16_t)state.packet.length;
+this->last_ogg_packet_endpkt_dbg_ = state.packet.is_end_of_packet ? 1 : 0;
+this->last_ogg_packet_bos_dbg_ = state.packet.is_bos ? 1 : 0;
+this->last_ogg_packet_eos_dbg_ = state.packet.is_eos ? 1 : 0;
+```
+
+(да, часть флагов уже хранится косвенно — но нам нужен *именно этот* снапшот, который обновляется даже когда дальше ничего не декодируется)
+
+### 3.2 `flac_decoder.cpp`: snapshot chunk’а перед вызовом `decode_native()`
+
+В Step3 (ваш packet slicing), **перед** строкой:
+
+```cpp
+auto result = this->decode_native(chunk, chunk_len, output, ...);
+```
+
+вставить:
+
+```cpp
+// Snapshot real chunk passed into decode_native (after BOS stripping + off)
+this->last_chunk_len_ = chunk_len;
+this->last_chunk_off_ = off;
+this->last_chunk_prefix_valid_ = false;
+if (chunk && chunk_len > 0) {
+    size_t n = (chunk_len >= 8) ? 8 : chunk_len;
+    for (size_t i = 0; i < n; i++) this->last_chunk_prefix_[i] = chunk[i];
+    for (size_t i = n; i < 8; i++) this->last_chunk_prefix_[i] = 0;
+    this->last_chunk_prefix_valid_ = true;
+}
+```
+
+---
+
+## 4) P0 DIAG: выводим эти данные в `Audio.cpp` (в ваш existing rate-limited лог)
+
+В `Audio.cpp` в блоке, где уже печатается:
+
+- `microflac NEED_MORE(progress)…`
+- `microflac NATIVE_DIAG…`
+- `microflac OGG_DBG…`
+- `microflac OGG_BODY…`
+
+после `OGG_BODY` добавить:
+
+```cpp
+AUDIO_INFO("microflac OGG_STATE res=%d(%s) demuxCons=%u pktLen=%u endpkt=%u bos=%u eos=%u",
+    (int)g_mf.get_last_ogg_res(), oggDemuxName((int)g_mf.get_last_ogg_res()),
+    (unsigned)g_mf.get_last_ogg_bytes_consumed(),
+    (unsigned)g_mf.get_last_ogg_packet_len(),
+    (unsigned)g_mf.get_last_ogg_packet_endpkt(),
+    (unsigned)g_mf.get_last_ogg_packet_bos(),
+    (unsigned)g_mf.get_last_ogg_packet_eos()
+);
+
+if (g_mf.get_last_chunk_prefix_valid()) {
+    AUDIO_INFO("microflac CHUNK off=%u len=%u prefix=%02X%02X%02X%02X %02X%02X%02X%02X",
+        (unsigned)g_mf.get_last_chunk_off(),
+        (unsigned)g_mf.get_last_chunk_len(),
+        (unsigned)g_mf.get_last_chunk_prefix(0),
+        (unsigned)g_mf.get_last_chunk_prefix(1),
+        (unsigned)g_mf.get_last_chunk_prefix(2),
+        (unsigned)g_mf.get_last_chunk_prefix(3),
+        (unsigned)g_mf.get_last_chunk_prefix(4),
+        (unsigned)g_mf.get_last_chunk_prefix(5),
+        (unsigned)g_mf.get_last_chunk_prefix(6),
+        (unsigned)g_mf.get_last_chunk_prefix(7)
+    );
+}
+```
+
+---
+
+## 5) Sanity-check (чтобы агент не забыл половину)
+
+В `tools/omnia_sanity_microflac_ogg.py` добавить проверки наличия в `flac_decoder.h`:
+- `get_last_chunk_prefix_valid`
+- `last_chunk_prefix_`
+- `get_last_ogg_res`
+- `last_ogg_res_dbg_`
+
+(по аналогии с уже существующими проверками).
+
+---
+
+## 6) ОБЯЗАТЕЛЬНЫЕ проверки агентом перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые изменённые файлы:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 7) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "diag(flac): log real ogg chunk fed into decode_native + demux snapshot (Log75 no audio)"
+git push origin main
