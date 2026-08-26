@@ -1,0 +1,143 @@
+# Instruction 24 — CLEANUP (без функциональных изменений): убрать дубль `OGG_STATE` снапшота в `decode_ogg()` + почистить sanity-скрипт от дублей и добавить защиту от повторного появления
+
+Цель: **только чистка** (меньше шума, меньше риска чтения `state.packet.*` при `state.result != OGG_OK`, и чтобы санити не было с дублями). Никаких изменений поведения декодирования/буферов/SD/других кодеков.
+
+---
+
+## 0) РЕГЛАМЕНТ
+Работа строго в `main`, push в `origin/main`.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- `Audio.cpp`, любые `.h`, SD режим, другие кодеки
+- любой рефакторинг “по пути”
+
+---
+
+## 2) P0 CLEANUP: удалить дублирующий блок `OGG_STATE` снапшота (в `flac_decoder.cpp`)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+### 2.1 Найти место
+Внутри `while(true)` после строки:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+```
+
+у вас сейчас **уже есть правильный блок**:
+
+```cpp
+// Log75/76: snapshot last demux result ALWAYS (even when not OGG_OK)
+this->last_ogg_res_dbg_ = ...
+...
+if (state.result == micro_ogg::OGG_OK) { ... } else { ... }
+```
+
+Ниже по коду после строки:
+
+```cpp
+bytes_consumed += state.bytes_consumed;
+```
+
+**есть второй (лишний) блок-дубль**, который начинается так:
+
+```cpp
+// Snapshot last demux result (for Log76)
+this->last_ogg_res_dbg_ = ...
+...
+this->last_ogg_packet_eos_dbg_ = ...
+```
+
+### 2.2 Что удалить (строго)
+Удалить **полностью** этот дублирующий фрагмент:
+
+```cpp
+// Snapshot last demux result (for Log76)
+this->last_ogg_res_dbg_ = (int8_t)state.result;
+this->last_ogg_bytes_consumed_dbg_ = (uint16_t)state.bytes_consumed;
+this->last_ogg_packet_len_dbg_ = (uint16_t)state.packet.length;
+this->last_ogg_packet_endpkt_dbg_ = state.packet.is_end_of_packet ? 1 : 0;
+this->last_ogg_packet_bos_dbg_ = state.packet.is_bos ? 1 : 0;
+this->last_ogg_packet_eos_dbg_ = state.packet.is_eos ? 1 : 0;
+```
+
+**Важно:** ничего рядом не трогать. `#ifdef MICRO_OGG_DEMUXER_DEBUG` блок (get_debug_state/get_buffer_stats) оставить как есть.
+
+Причина: этот дубль не только “мусорит”, но и потенциально читает `state.packet.*` при `state.result != OGG_OK`.
+
+---
+
+## 3) P0 CLEANUP: почистить `tools/omnia_sanity_microflac_ogg.py` от дублей и добавить “анти-дубль” проверку
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+### 3.1 Удалить повторяющийся блок проверок
+Сейчас в скрипте **дважды** идёт одинаковый блок:
+
+```python
+# Must actually WRITE chunk/demux snapshots...
+for n in [
+  "this->last_chunk_len_ =",
+  ...
+]:
+  ...
+```
+
+Оставить **только один** такой блок (любой один), второй удалить целиком.
+
+### 3.2 Добавить проверку “нет второго снапшота”
+Сразу после оставшегося блока проверок присваиваний добавить:
+
+```python
+# No duplicate demux snapshot block (prevents unsafe packet field reads when result != OGG_OK)
+if txt.count("Log75/76: snapshot last demux result ALWAYS") != 1:
+    print("FAIL: expected exactly 1 'snapshot last demux result ALWAYS' block in flac_decoder.cpp")
+    sys.exit(2)
+
+if "Snapshot last demux result (for Log76)" in txt:
+    print("FAIL: duplicate demux snapshot block marker still present in flac_decoder.cpp")
+    sys.exit(2)
+```
+
+---
+
+## 4) ОБЯЗАТЕЛЬНЫЕ проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+
+И:
+
+```bash
+git diff --name-only
+```
+
+Должно быть ровно 2 файла:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 5) Commit / push (1 коммит)
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp tools/omnia_sanity_microflac_ogg.py
+git commit -m "cleanup(flac): remove duplicate ogg demux snapshot block and dedupe sanity checks"
+git push origin main
