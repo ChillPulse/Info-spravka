@@ -1,0 +1,1024 @@
+23:08:12.454 -> r~~ESP-ROM:esp32s3-20210327
+23:08:12.454 -> Build:Mar 27 2021
+23:08:12.454 -> rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+23:08:12.454 -> SPIWP:0xee
+23:08:12.454 -> mode:DIO, clock div:1
+23:08:12.454 -> load:0x3fce2820,len:0x116c
+23:08:12.454 -> load:0x403c8700,len:0xc2c
+23:08:12.454 -> load:0x403cb700,len:0x3108
+23:08:12.454 -> entry 0x403c88b8
+23:08:12.835 -> ##[BOOT]#	************************************************
+23:08:12.835 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+23:08:12.835 -> ##[BOOT]#	************************************************
+23:08:12.835 -> ##[BOOT]#	------------------------------------------------
+23:08:12.883 -> ##[BOOT]#	arduino:	10819
+23:08:12.883 -> ##[BOOT]#	compiler:	14.2.0
+23:08:12.883 -> ##[BOOT]#	esp32core:	3.3.6
+23:08:12.883 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+23:08:12.883 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+23:08:12.883 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+23:08:12.883 -> ##[BOOT]#	audioinfo:	false
+23:08:12.883 -> ##[BOOT]#	smartstart:	0
+23:08:12.883 -> ##[BOOT]#	vumeter:	false
+23:08:12.883 -> ##[BOOT]#	softapdelay:	0
+23:08:12.883 -> ##[BOOT]#	flipscreen:	false
+23:08:12.883 -> ##[BOOT]#	invertdisplay:	false
+23:08:12.883 -> ##[BOOT]#	showweather:	false
+23:08:12.930 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+23:08:12.930 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+23:08:12.930 -> ##[BOOT]#	ir:		NONE
+23:08:12.930 -> ##[BOOT]#	SD:		CS-39
+23:08:12.930 -> ##[BOOT]#	battery:	battery ON
+23:08:12.930 -> ##[BOOT]#	------------------------------------------------
+23:08:12.930 -> ##[BOOT]#	CONFIG_VERSION	4
+23:08:12.977 -> ##[BOOT]#	SPIFFS mounted
+23:08:13.214 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+23:08:13.214 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+23:08:13.261 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+23:08:13.261 -> ##[BOOT]#	player.init	done
+23:08:13.309 -> ##[BOOT]#	network.begin
+23:08:13.404 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+23:08:13.404 -> ##[BOOT]#	....
+23:08:14.879 -> ##[BOOT]#	done
+23:08:14.879 -> ##[BOOT]#	SD search	done
+23:08:14.974 -> ##[BOOT]#	netserver.begin	done
+23:08:14.974 -> ##[BOOT]#	telnet.begin	done
+23:08:14.974 -> ##[BOOT]#
+23:08:14.974 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+23:08:14.974 -> ##[BOOT]#	------------------------------------------------
+23:08:14.974 -> ##[BOOT]#
+23:08:14.974 -> ##CLI.META#: [готов]
+23:08:15.070 -> ##CLI.META#: [соединение]
+23:08:15.165 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+23:08:15.165 -> ##AUDIO.INFO#: buffers freed, free Heap: 174704 bytes
+23:08:15.165 -> ##AUDIO.INFO#: connect to: "online.jamminvibezradio.com" on port 443 path "/listen/reggae/live.flac"
+23:08:17.444 -> ##AUDIO.INFO#: SSL has been established in 2253 ms
+23:08:17.729 -> ##ERROR#:	HTTP/1.1 404 File Not Found
+23:08:17.729 -> ##ERROR#:	HTTP/1.1 404 File Not Found
+23:08:17.872 -> ##CLI.META#: HTTP/1.1 404 File Not Found
+23:08:17.872 -> ##CLI.INFO#
+23:08:17.872 -> ##SYS.DATE#: 2026-08-26T23:08:16+03:00
+23:08:17.872 -> ##CLI.NAMESET#: 384 Jammin Vibez Network – Reggae Classics Mix (FLAC)
+23:08:17.872 -> ##CLI.VOL#: 44
+23:08:17.872 -> ##CLI.STOPPED#
+23:08:17.872 -> ##CLI.META#: HTTP/1.1 404 File Not Found
+23:08:29.813 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+23:08:29.813 -> ##CLI.META#: HTTP/1.1 404 File Not Found
+23:08:29.860 -> ##CLI.VOL#: 44
+23:08:29.908 -> ##CLI.INFO#
+23:08:29.908 -> ##SYS.DATE#: 2026-08-26T23:08:29+03:00
+23:08:29.908 -> ##CLI.NAMESET#: 384 Jammin Vibez Network – Reggae Classics Mix (FLAC)
+23:08:29.908 -> ##CLI.VOL#: 44
+23:08:29.908 -> ##CLI.STOPPED#
+23:08:34.154 -> ##CLI.META#: [соединение]
+23:08:34.201 -> ##AUDIO.INFO#: buffers freed, free Heap: 173596 bytes
+23:08:34.201 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+23:08:34.758 -> ##AUDIO.INFO#: Connection has been established in 529 ms
+23:08:34.805 -> ##AUDIO.INFO#: format is ogg
+23:08:34.851 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+23:08:34.851 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+23:08:34.851 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:34.851 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:08:34.851 -> ##CLI.INFO#
+23:08:34.851 -> ##SYS.DATE#: 2026-08-26T23:08:33+03:00
+23:08:34.851 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+23:08:34.851 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:34.851 -> ##CLI.VOL#: 44
+23:08:34.851 -> ##CLI.PLAYING#
+23:08:34.851 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:08:34.851 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:08:34.851 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:35.035 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:08:35.035 -> ##AUDIO.INFO#: Channels: 2
+23:08:35.035 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:08:35.035 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:08:35.035 -> ##AUDIO.INFO#: BitRate: N/A
+23:08:35.035 -> ##AUDIO.BITRATE#: N/A
+23:08:35.035 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:08:35.035 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=185 left=60849
+23:08:35.081 -> ##ERROR#:	microflac SLOW decode dt=20476us left=60849 out=1 hdr=1
+23:08:35.081 -> ##ERROR#:	microflac SLOW decode dt=20476us left=60849 out=1 hdr=1
+23:08:35.081 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=73107 header=1 left=60849 out=1 lastRes=3
+23:08:35.081 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=72922 header=1 left=65535 out=1 lastRes=3
+23:08:35.128 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=72922 header=1 left=65535 out=1 lastRes=3
+23:08:35.175 -> ##CLI.META#: microflac SLOW decode dt=20476us left=60849 out=1 hdr=1
+23:08:35.776 -> ##CLI.META#: microflac SLOW decode dt=20728us left=65535 out=1 hdr=1
+23:08:35.776 -> ##ERROR#:	microflac SLOW decode dt=20728us left=65535 out=1 hdr=1
+23:08:35.776 -> ##ERROR#:	microflac SLOW decode dt=20728us left=65535 out=1 hdr=1
+23:08:36.101 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=230263 header=1 left=65535 out=1 lastRes=3
+23:08:36.519 -> ##CLI.META#: microflac SLOW decode dt=20693us left=65535 out=1 hdr=1
+23:08:36.519 -> ##ERROR#:	microflac SLOW decode dt=20693us left=65535 out=1 hdr=1
+23:08:36.519 -> ##ERROR#:	microflac SLOW decode dt=20693us left=65535 out=1 hdr=1
+23:08:37.124 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=379607 header=1 left=65535 out=1 lastRes=3
+23:08:37.216 -> ##CLI.META#: microflac SLOW decode dt=20690us left=65535 out=1 hdr=1
+23:08:37.216 -> ##ERROR#:	microflac SLOW decode dt=20690us left=65535 out=1 hdr=1
+23:08:37.216 -> ##ERROR#:	microflac SLOW decode dt=20690us left=65535 out=1 hdr=1
+23:08:37.960 -> ##CLI.META#: microflac SLOW decode dt=20687us left=65535 out=1 hdr=1
+23:08:37.960 -> ##ERROR#:	microflac SLOW decode dt=20687us left=65535 out=1 hdr=1
+23:08:37.960 -> ##ERROR#:	microflac SLOW decode dt=20687us left=65535 out=1 hdr=1
+23:08:38.194 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=503103 header=1 left=65535 out=1 lastRes=3
+23:08:38.660 -> ##CLI.META#: microflac SLOW decode dt=20681us left=65535 out=1 hdr=1
+23:08:38.660 -> ##ERROR#:	microflac SLOW decode dt=20681us left=65535 out=1 hdr=1
+23:08:38.706 -> ##ERROR#:	microflac SLOW decode dt=20681us left=65535 out=1 hdr=1
+23:08:39.263 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=646703 header=1 left=65535 out=1 lastRes=3
+23:08:39.403 -> ##CLI.META#: microflac SLOW decode dt=20121us left=65535 out=1 hdr=1
+23:08:39.403 -> ##ERROR#:	microflac SLOW decode dt=20121us left=65535 out=1 hdr=1
+23:08:39.403 -> ##ERROR#:	microflac SLOW decode dt=20121us left=65535 out=1 hdr=1
+23:08:40.100 -> ##CLI.META#: microflac SLOW decode dt=20711us left=65535 out=1 hdr=1
+23:08:40.146 -> ##ERROR#:	microflac SLOW decode dt=20711us left=65535 out=1 hdr=1
+23:08:40.146 -> ##ERROR#:	microflac SLOW decode dt=20711us left=65535 out=1 hdr=1
+23:08:40.331 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:40.845 -> ##CLI.META#: microflac SLOW decode dt=20726us left=65535 out=1 hdr=1
+23:08:40.845 -> ##ERROR#:	microflac SLOW decode dt=20726us left=65535 out=1 hdr=1
+23:08:40.845 -> ##ERROR#:	microflac SLOW decode dt=20726us left=65535 out=1 hdr=1
+23:08:41.403 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:41.589 -> ##CLI.META#: microflac SLOW decode dt=20731us left=65535 out=1 hdr=1
+23:08:41.589 -> ##ERROR#:	microflac SLOW decode dt=20731us left=65535 out=1 hdr=1
+23:08:41.589 -> ##ERROR#:	microflac SLOW decode dt=20731us left=65535 out=1 hdr=1
+23:08:42.288 -> ##CLI.META#: microflac SLOW decode dt=20734us left=65535 out=1 hdr=1
+23:08:42.288 -> ##ERROR#:	microflac SLOW decode dt=20734us left=65535 out=1 hdr=1
+23:08:42.288 -> ##ERROR#:	microflac SLOW decode dt=20734us left=65535 out=1 hdr=1
+23:08:42.472 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:43.027 -> ##CLI.META#: microflac SLOW decode dt=20717us left=65535 out=1 hdr=1
+23:08:43.027 -> ##ERROR#:	microflac SLOW decode dt=20717us left=65535 out=1 hdr=1
+23:08:43.027 -> ##ERROR#:	microflac SLOW decode dt=20717us left=65535 out=1 hdr=1
+23:08:43.074 -> ##CLI.META#: microflac hard stall -> reconnect
+23:08:43.074 -> ##ERROR#:	microflac hard stall -> reconnect
+23:08:43.074 -> ##ERROR#:	microflac hard stall -> reconnect
+23:08:43.074 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+23:08:43.074 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:08:43.074 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:08:43.397 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+23:08:43.397 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+23:08:43.443 -> 
+23:08:43.443 -> Core  1 register dump:
+23:08:43.443 -> PC      : 0x4206c51e  PS      : 0x00060a30  A0      : 0x82029384  A1      : 0x3fcebf70  
+23:08:43.443 -> A2      : 0x0000857d  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+23:08:43.490 -> A6      : 0x00000000  A7      : 0x3fca1f64  A8      : 0x00000000  A9      : 0x3fcebf40  
+23:08:43.490 -> A10     : 0x00008000  A11     : 0x3fcebf6f  A12     : 0x00000001  A13     : 0x00000009  
+23:08:43.490 -> A14     : 0x00000001  A15     : 0x3fcebf4c  SAR     : 0x00000007  EXCCAUSE: 0x0000001c  
+23:08:43.490 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f5c  LEND    : 0x40056f72  LCOUNT  : 0xffffffff  
+23:08:43.490 -> 
+23:08:43.490 -> 
+23:08:43.490 -> Backtrace: 0x4206c51b:0x3fcebf70 0x42029381:0x3fcebf90 0x4202990d:0x3fcebfd0 0x42066c9a:0x3fcec020 0x4206996b:0x3fcec050 0x42077520:0x3fcec070 0x40380cc5:0x3fcec090
+23:08:43.537 -> 
+23:08:43.537 -> 
+23:08:43.537 -> 
+23:08:43.537 -> 
+23:08:43.537 -> ELF file SHA256: b7936a6c9
+23:08:43.537 -> 
+23:08:43.724 -> Rebooting...
+23:08:43.770 -> ESP-ROM:esp32s3-20210327
+23:08:43.770 -> Build:Mar 27 2021
+23:08:43.770 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+23:08:43.770 -> Saved PC:0x4037bc4e
+23:08:43.770 -> SPIWP:0xee
+23:08:43.770 -> mode:DIO, clock div:1
+23:08:43.770 -> load:0x3fce2820,len:0x116c
+23:08:43.770 -> load:0x403c8700,len:0xc2c
+23:08:43.770 -> load:0x403cb700,len:0x3108
+23:08:43.770 -> entry 0x403c88b8
+23:08:44.141 -> ##[BOOT]#	************************************************
+23:08:44.141 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+23:08:44.141 -> ##[BOOT]#	************************************************
+23:08:44.141 -> ##[BOOT]#	------------------------------------------------
+23:08:44.187 -> ##[BOOT]#	arduino:	10819
+23:08:44.187 -> ##[BOOT]#	compiler:	14.2.0
+23:08:44.187 -> ##[BOOT]#	esp32core:	3.3.6
+23:08:44.187 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+23:08:44.187 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+23:08:44.187 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+23:08:44.187 -> ##[BOOT]#	audioinfo:	false
+23:08:44.187 -> ##[BOOT]#	smartstart:	0
+23:08:44.187 -> ##[BOOT]#	vumeter:	false
+23:08:44.187 -> ##[BOOT]#	softapdelay:	0
+23:08:44.187 -> ##[BOOT]#	flipscreen:	false
+23:08:44.234 -> ##[BOOT]#	invertdisplay:	false
+23:08:44.234 -> ##[BOOT]#	showweather:	false
+23:08:44.234 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+23:08:44.234 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+23:08:44.234 -> ##[BOOT]#	ir:		NONE
+23:08:44.234 -> ##[BOOT]#	SD:		CS-39
+23:08:44.234 -> ##[BOOT]#	battery:	battery ON
+23:08:44.234 -> ##[BOOT]#	------------------------------------------------
+23:08:44.234 -> ##[BOOT]#	CONFIG_VERSION	4
+23:08:44.328 -> ##[BOOT]#	SPIFFS mounted
+23:08:44.563 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+23:08:44.563 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+23:08:44.563 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+23:08:44.563 -> ##[BOOT]#	player.init	done
+23:08:44.609 -> ##[BOOT]#	network.begin
+23:08:44.701 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+23:08:44.701 -> ##[BOOT]#	....
+23:08:46.201 -> ##[BOOT]#	done
+23:08:46.201 -> ##[BOOT]#	SD search	done
+23:08:46.248 -> ##[BOOT]#	netserver.begin	done
+23:08:46.248 -> ##[BOOT]#	telnet.begin	done
+23:08:46.248 -> ##[BOOT]#
+23:08:46.248 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+23:08:46.295 -> ##[BOOT]#	------------------------------------------------
+23:08:46.295 -> ##[BOOT]#
+23:08:46.295 -> ##CLI.META#: [готов]
+23:08:46.390 -> ##CLI.META#: [соединение]
+23:08:46.437 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+23:08:46.437 -> ##AUDIO.INFO#: buffers freed, free Heap: 174848 bytes
+23:08:46.437 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+23:08:46.906 -> ##AUDIO.INFO#: Connection has been established in 474 ms
+23:08:47.092 -> ##AUDIO.INFO#: format is ogg
+23:08:47.092 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+23:08:47.092 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+23:08:47.092 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:47.092 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:08:47.232 -> ##CLI.INFO#
+23:08:47.232 -> ##SYS.DATE#: 2026-08-26T23:08:46+03:00
+23:08:47.232 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+23:08:47.232 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:47.232 -> ##CLI.VOL#: 44
+23:08:47.232 -> ##CLI.PLAYING#
+23:08:47.232 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:08:47.232 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:08:47.232 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:47.557 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:08:47.557 -> ##AUDIO.INFO#: Channels: 2
+23:08:47.557 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:08:47.557 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:08:47.557 -> ##AUDIO.INFO#: BitRate: N/A
+23:08:47.557 -> ##AUDIO.BITRATE#: N/A
+23:08:47.557 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:08:47.557 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=185 left=60634
+23:08:47.604 -> ##ERROR#:	microflac SLOW decode dt=20808us left=60634 out=1 hdr=1
+23:08:47.604 -> ##ERROR#:	microflac SLOW decode dt=20808us left=60634 out=1 hdr=1
+23:08:47.604 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=60819 header=1 left=60634 out=1 lastRes=3
+23:08:47.604 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=60634 header=1 left=60634 out=1 lastRes=3
+23:08:47.604 -> ##CLI.META#: microflac SLOW decode dt=20808us left=60634 out=1 hdr=1
+23:08:47.650 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=88101 header=1 left=65535 out=1 lastRes=3
+23:08:48.299 -> ##CLI.META#: microflac SLOW decode dt=20992us left=65535 out=1 hdr=1
+23:08:48.299 -> ##ERROR#:	microflac SLOW decode dt=20992us left=65535 out=1 hdr=1
+23:08:48.299 -> ##ERROR#:	microflac SLOW decode dt=20992us left=65535 out=1 hdr=1
+23:08:48.578 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=385343 header=1 left=65535 out=1 lastRes=3
+23:08:48.996 -> ##CLI.META#: microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:08:49.042 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:08:49.042 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:08:49.649 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:49.741 -> ##CLI.META#: microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:08:49.741 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:08:49.741 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:08:50.441 -> ##CLI.META#: microflac SLOW decode dt=20838us left=65535 out=1 hdr=1
+23:08:50.488 -> ##ERROR#:	microflac SLOW decode dt=20838us left=65535 out=1 hdr=1
+23:08:50.488 -> ##ERROR#:	microflac SLOW decode dt=20838us left=65535 out=1 hdr=1
+23:08:50.720 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:51.979 -> ##CLI.META#: microflac SLOW decode dt=20850us left=65535 out=1 hdr=1
+23:08:51.979 -> ##ERROR#:	microflac SLOW decode dt=20850us left=65535 out=1 hdr=1
+23:08:51.979 -> ##ERROR#:	microflac SLOW decode dt=20850us left=65535 out=1 hdr=1
+23:08:51.979 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:51.979 -> ##CLI.META#: microflac SLOW decode dt=20857us left=65535 out=1 hdr=1
+23:08:51.979 -> ##ERROR#:	microflac SLOW decode dt=20857us left=65535 out=1 hdr=1
+23:08:51.979 -> ##ERROR#:	microflac SLOW decode dt=20857us left=65535 out=1 hdr=1
+23:08:52.633 -> ##CLI.META#: microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+23:08:52.633 -> ##ERROR#:	microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+23:08:52.633 -> ##ERROR#:	microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+23:08:52.867 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:53.378 -> ##CLI.META#: microflac SLOW decode dt=20857us left=65535 out=1 hdr=1
+23:08:53.378 -> ##ERROR#:	microflac SLOW decode dt=20857us left=65535 out=1 hdr=1
+23:08:53.378 -> ##ERROR#:	microflac SLOW decode dt=20857us left=65535 out=1 hdr=1
+23:08:53.940 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:54.081 -> ##CLI.META#: microflac SLOW decode dt=20859us left=65535 out=1 hdr=1
+23:08:54.081 -> ##ERROR#:	microflac SLOW decode dt=20859us left=65535 out=1 hdr=1
+23:08:54.081 -> ##ERROR#:	microflac SLOW decode dt=20859us left=65535 out=1 hdr=1
+23:08:54.830 -> ##CLI.META#: microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+23:08:54.830 -> ##ERROR#:	microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+23:08:54.830 -> ##ERROR#:	microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+23:08:54.969 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:08:55.531 -> ##CLI.META#: microflac SLOW decode dt=20836us left=65535 out=1 hdr=1
+23:08:55.531 -> ##ERROR#:	microflac SLOW decode dt=20836us left=65535 out=1 hdr=1
+23:08:55.531 -> ##ERROR#:	microflac SLOW decode dt=20836us left=65535 out=1 hdr=1
+23:08:55.578 -> ##CLI.META#: microflac hard stall -> reconnect
+23:08:55.578 -> ##ERROR#:	microflac hard stall -> reconnect
+23:08:55.578 -> ##ERROR#:	microflac hard stall -> reconnect
+23:08:55.624 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+23:08:55.624 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:08:55.624 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:08:55.904 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+23:08:55.904 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+23:08:55.951 -> 
+23:08:55.951 -> Core  1 register dump:
+23:08:55.951 -> PC      : 0x4206c51e  PS      : 0x00060a30  A0      : 0x82029384  A1      : 0x3fcebf70  
+23:08:55.997 -> A2      : 0x00000575  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+23:08:55.997 -> A6      : 0x00000000  A7      : 0x3fca1f64  A8      : 0x00000000  A9      : 0x3fcebf40  
+23:08:55.997 -> A10     : 0x00000000  A11     : 0x3fcebf6f  A12     : 0x00000001  A13     : 0x00000009  
+23:08:55.997 -> A14     : 0x00000001  A15     : 0x3fcebf4c  SAR     : 0x0000000a  EXCCAUSE: 0x0000001c  
+23:08:55.997 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f08  LEND    : 0x40056f12  LCOUNT  : 0x00000000  
+23:08:55.997 -> 
+23:08:55.997 -> 
+23:08:55.997 -> Backtrace: 0x4206c51b:0x3fcebf70 0x42029381:0x3fcebf90 0x4202990d:0x3fcebfd0 0x42066c9a:0x3fcec020 0x4206996b:0x3fcec050 0x42077520:0x3fcec070 0x40380cc5:0x3fcec090
+23:08:56.043 -> 
+23:08:56.043 -> 
+23:08:56.043 -> 
+23:08:56.043 -> 
+23:08:56.043 -> ELF file SHA256: b7936a6c9
+23:08:56.043 -> 
+23:08:56.273 -> Rebooting...
+23:08:56.273 -> ESP-ROM:esp32s3-20210327
+23:08:56.273 -> Build:Mar 27 2021
+23:08:56.273 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+23:08:56.273 -> Saved PC:0x400559d2
+23:08:56.273 -> SPIWP:0xee
+23:08:56.273 -> mode:DIO, clock div:1
+23:08:56.273 -> load:0x3fce2820,len:0x116c
+23:08:56.273 -> load:0x403c8700,len:0xc2c
+23:08:56.273 -> load:0x403cb700,len:0x3108
+23:08:56.273 -> entry 0x403c88b8
+23:08:56.646 -> ##[BOOT]#	************************************************
+23:08:56.646 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+23:08:56.693 -> ##[BOOT]#	************************************************
+23:08:56.693 -> ##[BOOT]#	------------------------------------------------
+23:08:56.693 -> ##[BOOT]#	arduino:	10819
+23:08:56.693 -> ##[BOOT]#	compiler:	14.2.0
+23:08:56.693 -> ##[BOOT]#	esp32core:	3.3.6
+23:08:56.693 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+23:08:56.693 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+23:08:56.693 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+23:08:56.693 -> ##[BOOT]#	audioinfo:	false
+23:08:56.693 -> ##[BOOT]#	smartstart:	0
+23:08:56.693 -> ##[BOOT]#	vumeter:	false
+23:08:56.739 -> ##[BOOT]#	softapdelay:	0
+23:08:56.739 -> ##[BOOT]#	flipscreen:	false
+23:08:56.739 -> ##[BOOT]#	invertdisplay:	false
+23:08:56.739 -> ##[BOOT]#	showweather:	false
+23:08:56.739 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+23:08:56.739 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+23:08:56.739 -> ##[BOOT]#	ir:		NONE
+23:08:56.739 -> ##[BOOT]#	SD:		CS-39
+23:08:56.739 -> ##[BOOT]#	battery:	battery ON
+23:08:56.739 -> ##[BOOT]#	------------------------------------------------
+23:08:56.739 -> ##[BOOT]#	CONFIG_VERSION	4
+23:08:56.833 -> ##[BOOT]#	SPIFFS mounted
+23:08:57.068 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+23:08:57.068 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+23:08:57.068 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+23:08:57.068 -> ##[BOOT]#	player.init	done
+23:08:57.115 -> ##[BOOT]#	network.begin
+23:08:57.209 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+23:08:57.209 -> ##[BOOT]#	....
+23:08:58.722 -> ##[BOOT]#	done
+23:08:58.722 -> ##[BOOT]#	SD search	done
+23:08:58.768 -> ##[BOOT]#	netserver.begin	done
+23:08:58.768 -> ##[BOOT]#	telnet.begin	done
+23:08:58.768 -> ##[BOOT]#
+23:08:58.768 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+23:08:58.768 -> ##[BOOT]#	------------------------------------------------
+23:08:58.768 -> ##[BOOT]#
+23:08:58.768 -> ##CLI.META#: [готов]
+23:08:58.862 -> ##CLI.META#: [соединение]
+23:08:58.956 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+23:08:58.956 -> ##AUDIO.INFO#: buffers freed, free Heap: 174884 bytes
+23:08:58.956 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+23:08:59.284 -> ##AUDIO.INFO#: Connection has been established in 322 ms
+23:08:59.564 -> ##AUDIO.INFO#: format is ogg
+23:08:59.612 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+23:08:59.612 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+23:08:59.612 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:59.612 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:08:59.750 -> ##CLI.INFO#
+23:08:59.750 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+23:08:59.750 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+23:08:59.750 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:59.750 -> ##CLI.VOL#: 44
+23:08:59.750 -> ##CLI.PLAYING#
+23:08:59.750 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:08:59.750 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:08:59.750 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:59.797 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+23:08:59.797 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:59.797 -> ##CLI.VOL#: 44
+23:08:59.797 -> ##CLI.INFO#
+23:08:59.797 -> ##SYS.DATE#: 2026-08-26T23:08:59+03:00
+23:08:59.797 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+23:08:59.797 -> ##CLI.META#: Youventus Rádió Hi-Fi
+23:08:59.797 -> ##CLI.VOL#: 44
+23:08:59.797 -> ##CLI.PLAYING#
+23:08:59.843 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:08:59.843 -> ##AUDIO.INFO#: Channels: 2
+23:08:59.843 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:08:59.843 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:08:59.889 -> ##AUDIO.INFO#: BitRate: N/A
+23:08:59.889 -> ##AUDIO.BITRATE#: N/A
+23:08:59.889 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:08:59.889 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=185 left=60849
+23:08:59.889 -> ##ERROR#:	microflac SLOW decode dt=20978us left=60849 out=1 hdr=1
+23:08:59.889 -> ##ERROR#:	microflac SLOW decode dt=20978us left=60849 out=1 hdr=1
+23:08:59.935 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=61034 header=1 left=60849 out=1 lastRes=3
+23:08:59.935 -> ##CLI.META#: microflac SLOW decode dt=20978us left=60849 out=1 hdr=1
+23:08:59.935 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=64730 header=1 left=64730 out=1 lastRes=3
+23:08:59.981 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=92407 header=1 left=65535 out=1 lastRes=3
+23:09:00.630 -> ##CLI.META#: microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:00.630 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:00.630 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:00.911 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=388223 header=1 left=65535 out=1 lastRes=3
+23:09:01.329 -> ##CLI.META#: microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:09:01.329 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:09:01.375 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:09:01.981 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:02.074 -> ##CLI.META#: microflac SLOW decode dt=20868us left=65535 out=1 hdr=1
+23:09:02.074 -> ##ERROR#:	microflac SLOW decode dt=20868us left=65535 out=1 hdr=1
+23:09:02.074 -> ##ERROR#:	microflac SLOW decode dt=20868us left=65535 out=1 hdr=1
+23:09:02.771 -> ##CLI.META#: microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:02.817 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:02.817 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:03.049 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:03.513 -> ##CLI.META#: microflac SLOW decode dt=20862us left=65535 out=1 hdr=1
+23:09:03.513 -> ##ERROR#:	microflac SLOW decode dt=20862us left=65535 out=1 hdr=1
+23:09:03.513 -> ##ERROR#:	microflac SLOW decode dt=20862us left=65535 out=1 hdr=1
+23:09:04.116 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:04.257 -> ##CLI.META#: microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:04.257 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:04.257 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:04.957 -> ##CLI.META#: microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:04.957 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:05.003 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:05.187 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:05.701 -> ##CLI.META#: microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:05.701 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:05.701 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:06.266 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:06.407 -> ##CLI.META#: microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:06.407 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:06.453 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:07.156 -> ##CLI.META#: microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:07.156 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:07.156 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+23:09:07.343 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:07.515 -> ##CLI.META#: [соединение]
+23:09:07.705 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+23:09:07.705 -> ##AUDIO.INFO#: buffers freed, free Heap: 172868 bytes
+23:09:07.705 -> ##AUDIO.INFO#: connect to: "eptop128.streamr.ru" on port 80 path "/"
+23:09:07.751 -> ##AUDIO.INFO#: Connection has been established in 74 ms
+23:09:07.796 -> ##AUDIO.INFO#: redirect to new host "http://eptop128server.streamr.ru:8033/eptop128"
+23:09:07.796 -> ##AUDIO.INFO#: next URL: "http://eptop128server.streamr.ru:8033/eptop128"
+23:09:07.889 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:09:07.983 -> ##AUDIO.INFO#: format is mp3
+23:09:07.983 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+23:09:07.983 -> ##AUDIO.INFO#: icy-genre: Pop
+23:09:07.983 -> ##AUDIO.INFO#: icy-name: Europa Plus Top40
+23:09:08.029 -> ##CLI.META#: Europa Plus Top40
+23:09:08.029 -> ##AUDIO.INFO#: icy-metaint: 16000 (metadata ON)
+23:09:08.029 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+23:09:08.029 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:09:08.029 -> ##CLI.INFO#
+23:09:08.029 -> ##SYS.DATE#: 2026-08-26T23:09:07+03:00
+23:09:08.029 -> ##CLI.NAMESET#: 372 EuropaPplus Top 40
+23:09:08.029 -> ##CLI.META#: Europa Plus Top40
+23:09:08.029 -> ##CLI.VOL#: 44
+23:09:08.029 -> ##CLI.PLAYING#
+23:09:08.029 -> ##AUDIO.INFO#: stream ready
+23:09:08.029 -> ##CLI.META#: Europa Plus Top40
+23:09:08.077 -> ##AUDIO.INFO#: syncword found at pos 0
+23:09:08.077 -> ##AUDIO.INFO#: MPEG-1 Layer III
+23:09:08.077 -> ##AUDIO.INFO#: Channels: 2
+23:09:08.077 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:09:08.077 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:09:08.077 -> ##AUDIO.INFO#: BitRate: 128000
+23:09:08.077 -> ##AUDIO.BITRATE#: 128000
+23:09:18.516 -> ##CLI.META#: [соединение]
+23:09:18.610 -> ##AUDIO.INFO#: Closing web file "http://eptop128.streamr.ru/" (ssl=0)
+23:09:18.656 -> ##AUDIO.INFO#: buffers freed, free Heap: 174060 bytes
+23:09:18.656 -> ##AUDIO.INFO#: connect to: "retro.dancewave.online" on port 443 path "/retrodance.flac.ogg.m3u"
+23:09:19.825 -> ##AUDIO.INFO#: SSL has been established in 1187 ms
+23:09:19.918 -> ##AUDIO.INFO#: redirect to new host "https://dancewave.online/retrodance.flac.ogg.m3u"
+23:09:19.918 -> ##AUDIO.INFO#: next URL: "https://dancewave.online/retrodance.flac.ogg.m3u"
+23:09:21.222 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:09:21.360 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_PLAYLISTINIT, streamType: WEBFILE
+23:09:21.360 -> ##CLI.META#: 
+23:09:21.360 -> ##CLI.INFO#
+23:09:21.360 -> ##SYS.DATE#: 2026-08-26T23:09:20+03:00
+23:09:21.360 -> ##CLI.NAMESET#: 327 (flc) Dance Wave Retro!
+23:09:21.406 -> ##CLI.META#: 
+23:09:21.406 -> ##CLI.VOL#: 44
+23:09:21.406 -> ##CLI.PLAYING#
+23:09:21.406 -> ##AUDIO.ID3#: http://dancewave.online/retrodance.flac.ogg
+23:09:21.406 -> ##AUDIO.INFO#: next URL: "http://dancewave.online/retrodance.flac.ogg"
+23:09:21.406 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:09:21.499 -> ##AUDIO.INFO#: redirect to new host "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+23:09:21.499 -> ##AUDIO.INFO#: next URL: "http://stream1.dancewave.online:8080/retrodance.flac.ogg"
+23:09:21.872 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode HTTP_RESPONSE_HEADER, streamType: WEBSTREAM
+23:09:22.245 -> ##AUDIO.INFO#: format is ogg
+23:09:22.245 -> ##AUDIO.INFO#: icy-logo: https://dancewave.online/dwr_logo.png
+23:09:22.293 -> ##AUDIO.INFO#: icy-genre: 90s Dance
+23:09:22.293 -> ##AUDIO.INFO#: icy-name: Dance Wave Retro!
+23:09:22.293 -> ##CLI.META#: Dance Wave Retro!
+23:09:22.293 -> ##AUDIO.INFO#: playlistFormat M3U, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:09:22.524 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:09:22.524 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:09:22.807 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:09:22.807 -> ##AUDIO.INFO#: Channels: 2
+23:09:22.807 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:09:22.807 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:09:22.807 -> ##AUDIO.INFO#: BitRate: N/A
+23:09:22.807 -> ##AUDIO.BITRATE#: N/A
+23:09:22.807 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:09:22.807 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=8453 left=57082
+23:09:22.853 -> ##ERROR#:	microflac SLOW decode dt=20804us left=57082 out=1 hdr=1
+23:09:22.853 -> ##ERROR#:	microflac SLOW decode dt=20804us left=57082 out=1 hdr=1
+23:09:22.853 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=71997 header=1 left=57082 out=1 lastRes=3
+23:09:22.853 -> ##CLI.META#: microflac SLOW decode dt=20804us left=57082 out=1 hdr=1
+23:09:22.853 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=69288 header=1 left=65535 out=1 lastRes=3
+23:09:22.900 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=79340 header=1 left=65535 out=1 lastRes=3
+23:09:23.554 -> ##CLI.META#: microflac SLOW decode dt=20973us left=65535 out=1 hdr=1
+23:09:23.554 -> ##ERROR#:	microflac SLOW decode dt=20973us left=65535 out=1 hdr=1
+23:09:23.554 -> ##ERROR#:	microflac SLOW decode dt=20973us left=65535 out=1 hdr=1
+23:09:23.834 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=265627 header=1 left=65535 out=1 lastRes=3
+23:09:24.256 -> ##CLI.META#: microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+23:09:24.256 -> ##ERROR#:	microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+23:09:24.303 -> ##ERROR#:	microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+23:09:24.914 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=429987 header=1 left=65535 out=1 lastRes=3
+23:09:25.008 -> ##CLI.META#: microflac SLOW decode dt=20992us left=65535 out=1 hdr=1
+23:09:25.008 -> ##ERROR#:	microflac SLOW decode dt=20992us left=65535 out=1 hdr=1
+23:09:25.008 -> ##ERROR#:	microflac SLOW decode dt=20992us left=65535 out=1 hdr=1
+23:09:25.711 -> ##CLI.META#: microflac SLOW decode dt=20833us left=65535 out=1 hdr=1
+23:09:25.711 -> ##ERROR#:	microflac SLOW decode dt=20833us left=65535 out=1 hdr=1
+23:09:25.711 -> ##ERROR#:	microflac SLOW decode dt=20833us left=65535 out=1 hdr=1
+23:09:25.988 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:26.451 -> ##CLI.META#: microflac SLOW decode dt=20861us left=65535 out=1 hdr=1
+23:09:26.451 -> ##ERROR#:	microflac SLOW decode dt=20861us left=65535 out=1 hdr=1
+23:09:26.451 -> ##ERROR#:	microflac SLOW decode dt=20861us left=65535 out=1 hdr=1
+23:09:26.776 -> ##CLI.META#: [соединение]
+23:09:26.915 -> ##AUDIO.INFO#: Closing web file "https://retro.dancewave.online/retrodance.flac.ogg.m3u" (ssl=0)
+23:09:26.915 -> ##AUDIO.INFO#: buffers freed, free Heap: 173588 bytes
+23:09:26.915 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+23:09:27.472 -> ##AUDIO.INFO#: Connection has been established in 549 ms
+23:09:27.702 -> ##AUDIO.INFO#: format is ogg
+23:09:27.702 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+23:09:27.702 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:27.702 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:27.702 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+23:09:27.702 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:09:27.702 -> ##CLI.INFO#
+23:09:27.702 -> ##SYS.DATE#: 2026-08-26T23:09:27+03:00
+23:09:27.702 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+23:09:27.702 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:27.702 -> ##CLI.VOL#: 44
+23:09:27.702 -> ##CLI.PLAYING#
+23:09:27.748 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:09:27.748 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:09:27.748 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:27.840 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:09:27.840 -> ##AUDIO.INFO#: Channels: 2
+23:09:27.840 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:09:27.840 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:09:27.840 -> ##AUDIO.INFO#: BitRate: 1441000
+23:09:27.840 -> ##AUDIO.BITRATE#: 1441000
+23:09:27.886 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:09:27.886 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=60921
+23:09:27.886 -> ##ERROR#:	microflac SLOW decode dt=20717us left=60921 out=1 hdr=1
+23:09:27.886 -> ##ERROR#:	microflac SLOW decode dt=20717us left=60921 out=1 hdr=1
+23:09:27.886 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=61072 header=1 left=60921 out=1 lastRes=3
+23:09:27.932 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=60921 header=1 left=60921 out=1 lastRes=3
+23:09:27.932 -> ##CLI.META#: microflac SLOW decode dt=20717us left=60921 out=1 hdr=1
+23:09:27.978 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=93429 header=1 left=65535 out=1 lastRes=3
+23:09:28.630 -> ##CLI.META#: microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:28.630 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:28.630 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:28.909 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=442897 header=1 left=65535 out=1 lastRes=3
+23:09:29.374 -> ##CLI.META#: microflac SLOW decode dt=20766us left=65535 out=1 hdr=1
+23:09:29.374 -> ##ERROR#:	microflac SLOW decode dt=20766us left=65535 out=1 hdr=1
+23:09:29.374 -> ##ERROR#:	microflac SLOW decode dt=20766us left=65535 out=1 hdr=1
+23:09:29.976 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:30.070 -> ##CLI.META#: microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:30.070 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:30.117 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:30.812 -> ##CLI.META#: microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+23:09:30.812 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+23:09:30.812 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+23:09:31.045 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:31.554 -> ##CLI.META#: microflac SLOW decode dt=20856us left=65535 out=1 hdr=1
+23:09:31.554 -> ##ERROR#:	microflac SLOW decode dt=20856us left=65535 out=1 hdr=1
+23:09:31.554 -> ##ERROR#:	microflac SLOW decode dt=20856us left=65535 out=1 hdr=1
+23:09:32.112 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:32.251 -> ##CLI.META#: microflac SLOW decode dt=20782us left=65535 out=1 hdr=1
+23:09:32.251 -> ##ERROR#:	microflac SLOW decode dt=20782us left=65535 out=1 hdr=1
+23:09:32.251 -> ##ERROR#:	microflac SLOW decode dt=20782us left=65535 out=1 hdr=1
+23:09:32.993 -> ##CLI.META#: microflac SLOW decode dt=20860us left=65535 out=1 hdr=1
+23:09:32.993 -> ##ERROR#:	microflac SLOW decode dt=20860us left=65535 out=1 hdr=1
+23:09:32.993 -> ##ERROR#:	microflac SLOW decode dt=20860us left=65535 out=1 hdr=1
+23:09:33.179 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:33.690 -> ##ERROR#:	microflac SLOW decode dt=20862us left=65535 out=1 hdr=1
+23:09:33.736 -> ##ERROR#:	microflac SLOW decode dt=20862us left=65535 out=1 hdr=1
+23:09:33.736 -> ##CLI.META#: microflac SLOW decode dt=20862us left=65535 out=1 hdr=1
+23:09:34.244 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:34.431 -> ##CLI.META#: microflac SLOW decode dt=20863us left=65535 out=1 hdr=1
+23:09:34.431 -> ##ERROR#:	microflac SLOW decode dt=20863us left=65535 out=1 hdr=1
+23:09:34.431 -> ##ERROR#:	microflac SLOW decode dt=20863us left=65535 out=1 hdr=1
+23:09:35.174 -> ##CLI.META#: microflac SLOW decode dt=20868us left=65535 out=1 hdr=1
+23:09:35.174 -> ##ERROR#:	microflac SLOW decode dt=20868us left=65535 out=1 hdr=1
+23:09:35.174 -> ##ERROR#:	microflac SLOW decode dt=20868us left=65535 out=1 hdr=1
+23:09:35.314 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:35.871 -> ##CLI.META#: microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:09:35.871 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:09:35.871 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:09:35.917 -> ##CLI.META#: microflac hard stall -> reconnect
+23:09:35.917 -> ##ERROR#:	microflac hard stall -> reconnect
+23:09:35.917 -> ##ERROR#:	microflac hard stall -> reconnect
+23:09:35.917 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+23:09:35.917 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:09:35.917 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:09:36.241 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+23:09:36.241 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+23:09:36.288 -> 
+23:09:36.288 -> Core  1 register dump:
+23:09:36.288 -> PC      : 0x4206c51e  PS      : 0x00060a30  A0      : 0x82029384  A1      : 0x3fcebee0  
+23:09:36.288 -> A2      : 0x000004e3  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+23:09:36.288 -> A6      : 0x00000000  A7      : 0x3fca1f64  A8      : 0x00000000  A9      : 0x3fcebeb0  
+23:09:36.288 -> A10     : 0x00000000  A11     : 0x3fcebedf  A12     : 0x00000001  A13     : 0x00000009  
+23:09:36.334 -> A14     : 0x00000001  A15     : 0x3fcebebc  SAR     : 0x0000000a  EXCCAUSE: 0x0000001c  
+23:09:36.334 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f08  LEND    : 0x40056f12  LCOUNT  : 0x00000000  
+23:09:36.334 -> 
+23:09:36.334 -> 
+23:09:36.334 -> Backtrace: 0x4206c51b:0x3fcebee0 0x42029381:0x3fcebf00 0x4202990d:0x3fcebf40 0x42066c9a:0x3fcebf90 0x4206996b:0x3fcebfc0 0x42077520:0x3fcebfe0 0x40380cc5:0x3fcec000
+23:09:36.334 -> 
+23:09:36.334 -> 
+23:09:36.334 -> 
+23:09:36.334 -> 
+23:09:36.334 -> ELF file SHA256: b7936a6c9
+23:09:36.334 -> 
+23:09:36.567 -> Rebooting...
+23:09:36.567 -> ⸮⸮⸮ESP-ROM:esp32s3-20210327
+23:09:36.567 -> Build:Mar 27 2021
+23:09:36.567 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+23:09:36.567 -> Saved PC:0x4037bc4e
+23:09:36.567 -> SPIWP:0xee
+23:09:36.613 -> mode:DIO, clock div:1
+23:09:36.613 -> load:0x3fce2820,len:0x116c
+23:09:36.613 -> load:0x403c8700,len:0xc2c
+23:09:36.613 -> load:0x403cb700,len:0x3108
+23:09:36.613 -> entry 0x403c88b8
+23:09:36.984 -> ##[BOOT]#	************************************************
+23:09:36.984 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+23:09:36.984 -> ##[BOOT]#	************************************************
+23:09:36.984 -> ##[BOOT]#	------------------------------------------------
+23:09:36.984 -> ##[BOOT]#	arduino:	10819
+23:09:36.984 -> ##[BOOT]#	compiler:	14.2.0
+23:09:36.984 -> ##[BOOT]#	esp32core:	3.3.6
+23:09:36.984 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+23:09:37.031 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+23:09:37.031 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+23:09:37.031 -> ##[BOOT]#	audioinfo:	false
+23:09:37.031 -> ##[BOOT]#	smartstart:	0
+23:09:37.031 -> ##[BOOT]#	vumeter:	false
+23:09:37.031 -> ##[BOOT]#	softapdelay:	0
+23:09:37.031 -> ##[BOOT]#	flipscreen:	false
+23:09:37.031 -> ##[BOOT]#	invertdisplay:	false
+23:09:37.031 -> ##[BOOT]#	showweather:	false
+23:09:37.031 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+23:09:37.031 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+23:09:37.077 -> ##[BOOT]#	ir:		NONE
+23:09:37.077 -> ##[BOOT]#	SD:		CS-39
+23:09:37.077 -> ##[BOOT]#	battery:	battery ON
+23:09:37.077 -> ##[BOOT]#	------------------------------------------------
+23:09:37.077 -> ##[BOOT]#	CONFIG_VERSION	4
+23:09:37.123 -> ##[BOOT]#	SPIFFS mounted
+23:09:37.354 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+23:09:37.354 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+23:09:37.401 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+23:09:37.401 -> ##[BOOT]#	player.init	done
+23:09:37.447 -> ##[BOOT]#	network.begin
+23:09:37.540 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+23:09:37.540 -> ##[BOOT]#	....
+23:09:39.022 -> ##[BOOT]#	done
+23:09:39.022 -> ##[BOOT]#	SD search	done
+23:09:39.069 -> ##[BOOT]#	netserver.begin	done
+23:09:39.069 -> ##[BOOT]#	telnet.begin	done
+23:09:39.069 -> ##[BOOT]#
+23:09:39.069 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+23:09:39.069 -> ##[BOOT]#	------------------------------------------------
+23:09:39.069 -> ##[BOOT]#
+23:09:39.069 -> ##CLI.META#: [готов]
+23:09:39.162 -> ##CLI.META#: [соединение]
+23:09:39.208 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+23:09:39.208 -> ##AUDIO.INFO#: buffers freed, free Heap: 174748 bytes
+23:09:39.208 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+23:09:39.440 -> ##AUDIO.INFO#: Connection has been established in 234 ms
+23:09:39.533 -> ##AUDIO.INFO#: format is ogg
+23:09:39.579 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+23:09:39.579 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:39.579 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:39.579 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+23:09:39.579 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:09:39.718 -> ##CLI.INFO#
+23:09:39.718 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+23:09:39.718 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+23:09:39.718 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:39.718 -> ##CLI.VOL#: 44
+23:09:39.718 -> ##CLI.PLAYING#
+23:09:39.718 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:09:39.718 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:09:39.718 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+23:09:39.811 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:09:39.811 -> ##AUDIO.INFO#: Channels: 2
+23:09:39.811 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:09:39.811 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:09:39.811 -> ##AUDIO.INFO#: BitRate: 1441000
+23:09:39.811 -> ##AUDIO.BITRATE#: 1441000
+23:09:39.811 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:09:39.811 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=60921
+23:09:39.811 -> ##ERROR#:	microflac SLOW decode dt=20951us left=60921 out=1 hdr=1
+23:09:39.856 -> ##ERROR#:	microflac SLOW decode dt=20951us left=60921 out=1 hdr=1
+23:09:39.856 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=61072 header=1 left=60921 out=1 lastRes=3
+23:09:39.856 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=60921 header=1 left=60921 out=1 lastRes=3
+23:09:39.903 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=66665 header=1 left=65535 out=1 lastRes=3
+23:09:39.995 -> ##CLI.META#: microflac SLOW decode dt=20951us left=60921 out=1 hdr=1
+23:09:40.551 -> ##CLI.META#: microflac SLOW decode dt=20761us left=65535 out=1 hdr=1
+23:09:40.551 -> ##ERROR#:	microflac SLOW decode dt=20761us left=65535 out=1 hdr=1
+23:09:40.551 -> ##ERROR#:	microflac SLOW decode dt=20761us left=65535 out=1 hdr=1
+23:09:40.829 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=332325 header=1 left=65535 out=1 lastRes=3
+23:09:41.245 -> ##CLI.META#: microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+23:09:41.245 -> ##ERROR#:	microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+23:09:41.291 -> ##ERROR#:	microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+23:09:41.895 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=653989 header=1 left=65535 out=1 lastRes=3
+23:09:41.987 -> ##CLI.META#: microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+23:09:41.987 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+23:09:41.987 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+23:09:42.729 -> ##CLI.META#: microflac SLOW decode dt=20852us left=65535 out=1 hdr=1
+23:09:42.729 -> ##ERROR#:	microflac SLOW decode dt=20852us left=65535 out=1 hdr=1
+23:09:42.729 -> ##ERROR#:	microflac SLOW decode dt=20852us left=65535 out=1 hdr=1
+23:09:43.053 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:43.470 -> ##CLI.META#: microflac SLOW decode dt=20867us left=65535 out=1 hdr=1
+23:09:43.470 -> ##ERROR#:	microflac SLOW decode dt=20867us left=65535 out=1 hdr=1
+23:09:43.470 -> ##ERROR#:	microflac SLOW decode dt=20867us left=65535 out=1 hdr=1
+23:09:44.026 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+23:09:44.119 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:44.165 -> ##CLI.META#: microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:44.165 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:44.165 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:44.907 -> ##CLI.META#: microflac SLOW decode dt=20804us left=65535 out=1 hdr=1
+23:09:44.907 -> ##ERROR#:	microflac SLOW decode dt=20804us left=65535 out=1 hdr=1
+23:09:44.907 -> ##ERROR#:	microflac SLOW decode dt=20804us left=65535 out=1 hdr=1
+23:09:45.183 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:45.277 -> ##CLI.META#: [соединение]
+23:09:45.369 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+23:09:45.369 -> ##AUDIO.INFO#: buffers freed, free Heap: 174172 bytes
+23:09:45.369 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-flac"
+23:09:45.416 -> ##AUDIO.INFO#: Connection has been established in 41 ms
+23:09:45.508 -> ##AUDIO.INFO#: format is ogg
+23:09:45.508 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+23:09:45.508 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+23:09:45.508 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+23:09:45.508 -> ##CLI.META#: SECTOR | Next channel
+23:09:45.508 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:09:45.508 -> ##CLI.INFO#
+23:09:45.508 -> ##SYS.DATE#: 2026-08-26T23:09:44+03:00
+23:09:45.508 -> ##CLI.NAMESET#: 288 SECTOR Next (flac)
+23:09:45.508 -> ##CLI.META#: SECTOR | Next channel
+23:09:45.508 -> ##CLI.VOL#: 44
+23:09:45.508 -> ##CLI.PLAYING#
+23:09:45.508 -> ##CLI.META#: SECTOR | Next channel
+23:09:45.739 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:09:45.739 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:09:46.064 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:09:46.064 -> ##AUDIO.INFO#: Channels: 2
+23:09:46.064 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:09:46.064 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:09:46.064 -> ##AUDIO.INFO#: BitRate: 1411000
+23:09:46.064 -> ##AUDIO.BITRATE#: 1411000
+23:09:46.064 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:09:46.064 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=61094
+23:09:46.109 -> ##ERROR#:	microflac SLOW decode dt=20626us left=61094 out=1 hdr=1
+23:09:46.109 -> ##ERROR#:	microflac SLOW decode dt=20626us left=61094 out=1 hdr=1
+23:09:46.109 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=61245 header=1 left=61094 out=1 lastRes=3
+23:09:46.109 -> ##AUDIO.INFO#: microflac wait full ogg page 61094/65056
+23:09:46.109 -> ##CLI.META#: microflac SLOW decode dt=20626us left=61094 out=1 hdr=1
+23:09:46.156 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=93862 header=1 left=65535 out=1 lastRes=3
+23:09:46.202 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=102314 header=1 left=65535 out=1 lastRes=3
+23:09:46.807 -> ##CLI.META#: microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:46.853 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:46.853 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+23:09:47.129 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=223266 header=1 left=65535 out=1 lastRes=3
+23:09:47.547 -> ##CLI.META#: microflac SLOW decode dt=20858us left=65535 out=1 hdr=1
+23:09:47.547 -> ##ERROR#:	microflac SLOW decode dt=20858us left=65535 out=1 hdr=1
+23:09:47.547 -> ##ERROR#:	microflac SLOW decode dt=20858us left=65535 out=1 hdr=1
+23:09:48.196 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=384375 header=1 left=65535 out=1 lastRes=3
+23:09:48.290 -> ##CLI.META#: microflac SLOW decode dt=20777us left=65535 out=1 hdr=1
+23:09:48.290 -> ##ERROR#:	microflac SLOW decode dt=20777us left=65535 out=1 hdr=1
+23:09:48.290 -> ##ERROR#:	microflac SLOW decode dt=20777us left=65535 out=1 hdr=1
+23:09:48.984 -> ##CLI.META#: microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+23:09:49.030 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+23:09:49.030 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+23:09:49.261 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=570178 header=1 left=65535 out=1 lastRes=3
+23:09:49.724 -> ##CLI.META#: microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+23:09:49.724 -> ##ERROR#:	microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+23:09:49.724 -> ##ERROR#:	microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+23:09:50.327 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:50.466 -> ##CLI.META#: microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+23:09:50.466 -> ##ERROR#:	microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+23:09:50.466 -> ##ERROR#:	microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+23:09:51.157 -> ##CLI.META#: microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+23:09:51.203 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+23:09:51.203 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+23:09:51.389 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:51.901 -> ##CLI.META#: microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:51.901 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:51.901 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+23:09:52.458 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:52.645 -> ##CLI.META#: microflac SLOW decode dt=20843us left=65535 out=1 hdr=1
+23:09:52.645 -> ##ERROR#:	microflac SLOW decode dt=20843us left=65535 out=1 hdr=1
+23:09:52.645 -> ##ERROR#:	microflac SLOW decode dt=20843us left=65535 out=1 hdr=1
+23:09:53.340 -> ##CLI.META#: microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+23:09:53.340 -> ##ERROR#:	microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+23:09:53.386 -> ##ERROR#:	microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+23:09:53.525 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:09:54.085 -> ##CLI.META#: microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+23:09:54.085 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+23:09:54.085 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+23:09:54.085 -> ##CLI.META#: microflac hard stall -> reconnect
+23:09:54.085 -> ##ERROR#:	microflac hard stall -> reconnect
+23:09:54.085 -> ##ERROR#:	microflac hard stall -> reconnect
+23:09:54.085 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+23:09:54.131 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:09:54.131 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+23:09:54.413 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-flac" (ssl=0)
+23:09:54.413 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+23:09:54.459 -> 
+23:09:54.459 -> Core  1 register dump:
+23:09:54.459 -> PC      : 0x4206c51e  PS      : 0x00060a30  A0      : 0x82029384  A1      : 0x3fcebf70  
+23:09:54.506 -> A2      : 0x0000808c  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+23:09:54.506 -> A6      : 0x00000000  A7      : 0x3fca1f64  A8      : 0x00000000  A9      : 0x3fcebf40  
+23:09:54.506 -> A10     : 0x00007f5c  A11     : 0x3fcebf6f  A12     : 0x00000001  A13     : 0x00000009  
+23:09:54.506 -> A14     : 0x00000001  A15     : 0x3fcebf4c  SAR     : 0x0000000a  EXCCAUSE: 0x0000001c  
+23:09:54.506 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f08  LEND    : 0x40056f12  LCOUNT  : 0x00000000  
+23:09:54.506 -> 
+23:09:54.506 -> 
+23:09:54.506 -> Backtrace: 0x4206c51b:0x3fcebf70 0x42029381:0x3fcebf90 0x4202990d:0x3fcebfd0 0x42066c9a:0x3fcec020 0x4206996b:0x3fcec050 0x42077520:0x3fcec070 0x40380cc5:0x3fcec090
+23:09:54.552 -> 
+23:09:54.552 -> 
+23:09:54.552 -> 
+23:09:54.552 -> 
+23:09:54.552 -> ELF file SHA256: b7936a6c9
+23:09:54.552 -> 
+23:09:54.785 -> Rebooting...
+23:09:54.785 -> ESP-ROM:esp32s3-20210327
+23:09:54.785 -> Build:Mar 27 2021
+23:09:54.785 -> rst:0xc (RTC_SW_CPU_RST),boot:0x9 (SPI_FAST_FLASH_BOOT)
+23:09:54.785 -> Saved PC:0x4037bc4e
+23:09:54.785 -> SPIWP:0xee
+23:09:54.785 -> mode:DIO, clock div:1
+23:09:54.785 -> load:0x3fce2820,len:0x116c
+23:09:54.785 -> load:0x403c8700,len:0xc2c
+23:09:54.785 -> load:0x403cb700,len:0x3108
+23:09:54.785 -> entry 0x403c88b8
+23:09:55.158 -> ##[BOOT]#	************************************************
+23:09:55.158 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+23:09:55.158 -> ##[BOOT]#	************************************************
+23:09:55.205 -> ##[BOOT]#	------------------------------------------------
+23:09:55.205 -> ##[BOOT]#	arduino:	10819
+23:09:55.205 -> ##[BOOT]#	compiler:	14.2.0
+23:09:55.205 -> ##[BOOT]#	esp32core:	3.3.6
+23:09:55.205 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+23:09:55.205 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+23:09:55.205 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+23:09:55.205 -> ##[BOOT]#	audioinfo:	false
+23:09:55.205 -> ##[BOOT]#	smartstart:	0
+23:09:55.205 -> ##[BOOT]#	vumeter:	false
+23:09:55.205 -> ##[BOOT]#	softapdelay:	0
+23:09:55.205 -> ##[BOOT]#	flipscreen:	false
+23:09:55.251 -> ##[BOOT]#	invertdisplay:	false
+23:09:55.251 -> ##[BOOT]#	showweather:	false
+23:09:55.251 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+23:09:55.251 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+23:09:55.251 -> ##[BOOT]#	ir:		NONE
+23:09:55.251 -> ##[BOOT]#	SD:		CS-39
+23:09:55.251 -> ##[BOOT]#	battery:	battery ON
+23:09:55.251 -> ##[BOOT]#	------------------------------------------------
+23:09:55.251 -> ##[BOOT]#	CONFIG_VERSION	4
+23:09:55.345 -> ##[BOOT]#	SPIFFS mounted
+23:09:55.577 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+23:09:55.577 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+23:09:55.577 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+23:09:55.577 -> ##[BOOT]#	player.init	done
+23:09:55.623 -> ##[BOOT]#	network.begin
+23:09:55.719 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+23:09:55.719 -> ##[BOOT]#	.....
+23:09:57.730 -> ##[BOOT]#	done
+23:09:57.730 -> ##[BOOT]#	SD search	done
+23:09:57.776 -> ##[BOOT]#	netserver.begin	done
+23:09:57.776 -> ##[BOOT]#	telnet.begin	done
+23:09:57.776 -> ##[BOOT]#
+23:09:57.776 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+23:09:57.776 -> ##[BOOT]#	------------------------------------------------
+23:09:57.776 -> ##[BOOT]#
+23:09:57.776 -> ##CLI.META#: [готов]
+23:09:57.870 -> ##CLI.META#: [соединение]
+23:09:57.917 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+23:09:57.917 -> ##AUDIO.INFO#: buffers freed, free Heap: 174868 bytes
+23:09:57.917 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-flac"
+23:09:57.964 -> ##AUDIO.INFO#: Connection has been established in 44 ms
+23:09:58.151 -> ##AUDIO.INFO#: format is ogg
+23:09:58.151 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+23:09:58.151 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+23:09:58.198 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+23:09:58.198 -> ##CLI.META#: SECTOR | Next channel
+23:09:58.198 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:09:58.338 -> ##CLI.INFO#
+23:09:58.338 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+23:09:58.338 -> ##CLI.NAMESET#: 288 SECTOR Next (flac)
+23:09:58.338 -> ##CLI.META#: SECTOR | Next channel
+23:09:58.338 -> ##CLI.VOL#: 44
+23:09:58.338 -> ##CLI.PLAYING#
+23:09:58.338 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+23:09:58.338 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+23:09:58.338 -> ##CLI.META#: SECTOR | Next channel
+23:09:58.479 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:09:58.479 -> ##AUDIO.INFO#: Channels: 2
+23:09:58.479 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+23:09:58.479 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:09:58.479 -> ##AUDIO.INFO#: BitRate: 1411000
+23:09:58.479 -> ##AUDIO.BITRATE#: 1411000
+23:09:58.479 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+23:09:58.479 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=64806
+23:09:58.524 -> ##ERROR#:	microflac SLOW decode dt=20983us left=64806 out=1 hdr=1
+23:09:58.524 -> ##ERROR#:	microflac SLOW decode dt=20983us left=64806 out=1 hdr=1
+23:09:58.524 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=64957 header=1 left=64806 out=1 lastRes=3
+23:09:58.524 -> ##CLI.META#: microflac SLOW decode dt=20983us left=64806 out=1 hdr=1
+23:09:58.524 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=64806 header=1 left=64806 out=1 lastRes=3
+23:09:58.616 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=64806 header=1 left=64806 out=1 lastRes=3
+23:09:59.224 -> ##CLI.META#: microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:59.224 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:59.224 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+23:09:59.549 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=245482 header=1 left=65535 out=1 lastRes=3
+23:09:59.968 -> ##CLI.META#: microflac SLOW decode dt=20781us left=65535 out=1 hdr=1
+23:09:59.968 -> ##ERROR#:	microflac SLOW decode dt=20781us left=65535 out=1 hdr=1
+23:09:59.968 -> ##ERROR#:	microflac SLOW decode dt=20781us left=65535 out=1 hdr=1
+23:10:00.575 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=414834 header=1 left=65535 out=1 lastRes=3
+23:10:00.667 -> ##CLI.META#: microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:10:00.667 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:10:00.667 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+23:10:01.415 -> ##CLI.META#: microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+23:10:01.415 -> ##ERROR#:	microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+23:10:01.415 -> ##ERROR#:	microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+23:10:01.650 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=575570 header=1 left=65535 out=1 lastRes=3
+23:10:02.121 -> ##CLI.META#: microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:10:02.121 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:10:02.121 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+23:10:02.729 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:10:02.869 -> ##CLI.META#: microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+23:10:02.869 -> ##ERROR#:	microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+23:10:02.869 -> ##ERROR#:	microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+23:10:03.529 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+23:10:03.575 -> ##ERROR#:	microflac SLOW decode dt=20103us left=65535 out=1 hdr=1
+23:10:03.575 -> ##ERROR#:	microflac SLOW decode dt=20103us left=65535 out=1 hdr=1
+23:10:03.575 -> ##CLI.META#: microflac SLOW decode dt=20103us left=65535 out=1 hdr=1
+23:10:03.575 -> ##CLI.META#: microflac SLOW decode dt=20103us left=65535 out=1 hdr=1
+23:10:03.575 -> ##CLI.VOL#: 44
+23:10:03.575 -> ##CLI.INFO#
+23:10:03.575 -> ##SYS.DATE#: 2026-08-26T23:10:02+03:00
+23:10:03.575 -> ##CLI.NAMESET#: 288 SECTOR Next (flac)
+23:10:03.575 -> ##CLI.VOL#: 44
+23:10:03.575 -> ##CLI.STOPPED#
+23:10:03.808 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:10:04.276 -> ##CLI.META#: microflac SLOW decode dt=21067us left=65535 out=1 hdr=1
+23:10:04.276 -> ##ERROR#:	microflac SLOW decode dt=21067us left=65535 out=1 hdr=1
+23:10:04.276 -> ##ERROR#:	microflac SLOW decode dt=21067us left=65535 out=1 hdr=1
+23:10:04.837 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:10:05.024 -> ##CLI.META#: microflac SLOW decode dt=20834us left=65535 out=1 hdr=1
+23:10:05.024 -> ##ERROR#:	microflac SLOW decode dt=20834us left=65535 out=1 hdr=1
+23:10:05.024 -> ##ERROR#:	microflac SLOW decode dt=20834us left=65535 out=1 hdr=1
+23:10:05.728 -> ##CLI.META#: microflac SLOW decode dt=20842us left=65535 out=1 hdr=1
+23:10:05.728 -> ##ERROR#:	microflac SLOW decode dt=20842us left=65535 out=1 hdr=1
+23:10:05.728 -> ##ERROR#:	microflac SLOW decode dt=20842us left=65535 out=1 hdr=1
+23:10:05.916 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+23:10:06.388 -> ##CLI.META#: [соединение]
+23:10:06.483 -> ##CLI.META#: microflac SLOW decode dt=20306us left=65535 out=1 hdr=1
+23:10:06.483 -> ##ERROR#:	microflac SLOW decode dt=20306us left=65535 out=1 hdr=1
+23:10:06.483 -> ##ERROR#:	microflac SLOW decode dt=20306us left=65535 out=1 hdr=1
+23:10:06.483 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-flac" (ssl=0)
+23:10:06.483 -> ##AUDIO.INFO#: buffers freed, free Heap: 173508 bytes
+23:10:06.483 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-56"
+23:10:06.530 -> ##AUDIO.INFO#: Connection has been established in 28 ms
+23:10:06.997 -> ##AUDIO.INFO#: format is ogg
+23:10:06.997 -> ##AUDIO.INFO#: icy-bitrate : 56000 (b/s)
+23:10:06.997 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+23:10:06.997 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+23:10:07.045 -> ##CLI.META#: SECTOR | Next channel
+23:10:07.045 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+23:10:07.045 -> ##CLI.INFO#
+23:10:07.045 -> ##SYS.DATE#: 2026-08-26T23:10:06+03:00
+23:10:07.045 -> ##CLI.NAMESET#: 286 SECTOR Next 56 (ogg-opus)
+23:10:07.045 -> ##CLI.META#: SECTOR | Next channel
+23:10:07.045 -> ##CLI.VOL#: 44
+23:10:07.045 -> ##CLI.PLAYING#
+23:10:07.045 -> ##CLI.META#: SECTOR | Next channel
+23:10:07.556 -> ##AUDIO.INFO#: OPUSDecoder has been initialized
+23:10:07.556 -> ##AUDIO.INFO#: format is opus
+23:10:08.025 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+23:10:08.025 -> ##AUDIO.INFO#: syncword found at pos 0
+23:10:08.025 -> ##AUDIO.INFO#: Opus Mode: CELT_ONLY
+23:10:08.025 -> ##AUDIO.INFO#: Channels: 2
+23:10:08.025 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+23:10:08.025 -> ##AUDIO.INFO#: BitsPerSample: 16
+23:10:08.072 -> ##AUDIO.INFO#: BitRate: 56000
+23:10:08.072 -> ##AUDIO.BITRATE#: 56000
+23:10:09.476 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-56" (ssl=0)
+23:10:09.476 -> ##AUDIO.INFO#: buffers freed, free Heap: 174004 bytes
+23:10:09.523 -> ##CLI.INFO#
+23:10:09.523 -> ##SYS.DATE#: 2026-08-26T23:10:08+03:00
+23:10:09.523 -> ##CLI.NAMESET#: 286 SECTOR Next 56 (ogg-opus)
+23:10:09.523 -> ##CLI.VOL#: 44
+23:10:09.523 -> ##CLI.STOPPED#
