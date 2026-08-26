@@ -1,0 +1,186 @@
+# Instruction 26 — FIX (анти-зависание): hard time-budget в `decode_ogg()` + time-budget внутри packet slicing + лёгкая телеметрия времени `g_mf.decode()` (Log78 hang)
+
+## 0) РЕГЛАМЕНТ
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `yoRadio/src/audioI2S/Audio.cpp`
+3) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD режим / legacy FLAC
+- другие web-кодеки
+- любые `.h`
+- рефакторинг “по пути”
+
+---
+
+## 2) P0 FIX: `decode_ogg()` — тайм‑бюджет должен срабатывать **даже при bytes_consumed==0**
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+Найти текущий бюджет (сейчас он такой):
+
+```cpp
+if (bytes_consumed > 0 && (mf_millis() - t0) > 40) {
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+Заменить на (вставить 1:1):
+
+```cpp
+// HARD budget: decode_ogg must return to caller regularly to avoid starving WiFi/Web/UI tasks (Log78).
+// Returning NEED_MORE with bytes_consumed==0 is acceptable; caller will retry on the next tick.
+if ((mf_millis() - t0) > 20) {
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+---
+
+## 3) P0 FIX: packet slicing — добавить time-budget внутри `while(off < body_len)` и безопасный выход
+
+Файл: тот же, `flac_decoder.cpp`  
+Внутри `decode_ogg()` найти цикл:
+
+```cpp
+while (off < body_len) {
+    ...
+}
+```
+
+Вставить **самой первой строкой внутри цикла** (сразу после `{`) вот это (1:1):
+
+```cpp
+// Prevent long byte-by-byte scanning of large packets from blocking the system (Log78).
+if ((mf_millis() - t0) > 20) {
+    // stash remainder so we don't lose bytes (cap enforced elsewhere)
+    if (off < body_len) {
+        const size_t rem = body_len - off;
+        if (this->ogg_stash_.size() + rem <= 131072) {
+            this->ogg_stash_.insert(this->ogg_stash_.end(), body + off, body + body_len);
+        } else {
+            this->ogg_stash_.clear();
+        }
+    }
+    return FLAC_DECODER_NEED_MORE_DATA;
+}
+```
+
+---
+
+## 4) P0 FIX: resync scan “OggS search” — ограничить объём сканирования за один вызов (чтобы не гонять 64К линейно)
+
+Файл: `flac_decoder.cpp`  
+В ветке:
+
+```cpp
+if (state.result != micro_ogg::OGG_OK) {
+    if (this->decode_phase_ == DecodePhase::AUDIO) {
+        ...
+        for (; k + 3 < r; k++) { ... }
+```
+
+Перед циклом `for` добавить лимит (1:1):
+
+```cpp
+// Limit linear scan per call (prevents 64K search storms)
+size_t scan_limit = r;
+if (scan_limit > 4096) scan_limit = 4096;
+```
+
+И заменить условие цикла `for` на:
+
+```cpp
+for (; k + 3 < scan_limit; k++) {
+```
+
+Если `OggS` не найден в этих 4096 байтах — оставляем существующее поведение “оставить последние 3 байта” и `return NEED_MORE_DATA`.
+
+---
+
+## 5) DIAG: в `Audio.cpp` измерять время вызова `g_mf.decode()` (раз в 700мс, только если долго)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `Audio::sendBytes()` внутри microflac loop, перед строкой:
+
+```cpp
+auto mf_res = g_mf.decode(p, left, out, out_cap, bytes_consumed, samples_decoded);
+```
+
+Вставить:
+
+```cpp
+uint32_t t_us0 = micros();
+```
+
+Сразу после decode вставить:
+
+```cpp
+uint32_t dt_us = micros() - t_us0;
+// Rate-limited: print only if decode call is "slow"
+static uint32_t s_mfSlowMs = 0;
+if (dt_us > 20000 && (millis() - s_mfSlowMs) > 700) {
+    s_mfSlowMs = millis();
+    AUDIO_ERROR("microflac SLOW decode dt=%luus left=%u out=%u hdr=%u",
+                (unsigned long)dt_us, (unsigned)left,
+                (unsigned)(out != nullptr), (unsigned)m_mf_header_ready);
+}
+```
+
+---
+
+## 6) Sanity: запретить возврат к “budget only when bytes_consumed>0” и требовать packet-slicing budget
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить проверки (в конец перед OK):
+
+```python
+if "bytes_consumed > 0 && (mf_millis() - t0) > 40" in txt:
+    print("FAIL: decode_ogg still uses progress-only time budget (can hang Log78)")
+    sys.exit(2)
+
+if "Prevent long byte-by-byte scanning of large packets" not in txt:
+    print("FAIL: missing packet slicing time-budget guard")
+    sys.exit(2)
+```
+
+---
+
+## 7) Обязательные проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 8) Коммит / push
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(flac): hard time budget in decode_ogg + slicing guard to prevent hangs; log slow decode calls (Log78)"
+git push origin main
