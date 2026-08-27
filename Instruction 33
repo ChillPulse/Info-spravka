@@ -1,0 +1,53 @@
+Нет — **по GitHub сейчас `main` всё ещё на `04e4a39`, а коммита `f4a4f84` в истории ветки `main` нет**. Я проверил страницу истории коммитов `main` и там верхний коммит — `04e4a39`, далее `0c7bca2`, и т.д.; `f4a4f84` не встречается.   
+При этом сам коммит `f4a4f84` **существует** и явно имеет родителя `04e4a39` (т.е. это ровно “следующий” коммит, который должен быть fast‑forward для `main`). 
+Ниже — “железное” ТЗ, чтобы агент **гарантированно** сдвинул GitHub `main` на `f4a4f84` (fast‑forward), с доказательством через `/commits/main` (не только через API).
+## Instruction 33 — Сдвинуть GitHub `main` на `f4a4f84` (fast-forward) и доказать, что он стал HEAD
+
+### 0) Регламент
+Работа строго в `main`, **без** force-push.
+
+### 1) Подтвердить, что локальный репозиторий видит `f4a4f84` и что он потомок `origin/main`
+Агент выполняет и присылает сырой вывод:
+
+```bash
+git fetch origin --prune
+git show -s --oneline f4a4f84f5c160149f3006c30bfd019a7617767f4
+git merge-base --is-ancestor origin/main f4a4f84f5c160149f3006c30bfd019a7617767f4; echo $?
+```
+
+PASS: последняя команда печатает `0` (значит fast-forward возможен).
+
+### 2) Обновить локальный main и сделать fast-forward merge
+```bash
+git checkout main
+git reset --hard origin/main
+git merge --ff-only f4a4f84f5c160149f3006c30bfd019a7617767f4
+```
+
+### 3) Push
+```bash
+git push origin main
+```
+
+### 4) Доказательство №1 (git)
+```bash
+git rev-parse HEAD
+git ls-remote origin refs/heads/main
+```
+
+PASS: оба SHA = `f4a4f84f5c160149f3006c30bfd019a7617767f4`.
+
+### 5) Доказательство №2 (GitHub web, обязательно)
+Агент обязан прислать ссылку на историю:
+
+- `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3/commits/main`
+
+И написать одну строку:  
+> “Проверил: первый коммит в списке = f4a4f84”.
+
+Потому что сейчас в истории `main` его нет (а должен появиться первым). 
+
+### 6) Sanity (как обычно)
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
