@@ -1,0 +1,202 @@
+# Instruction 31 (железное ТЗ агенту): сделать micro_ogg устойчивым к mid-stream (без BOS) + на validate-fail обязательно отдавать bytes_consumed>0
+
+Цель: убрать вечный `OGG_STREAM_BOS_ERROR` с `demuxCons=0`, чтобы web Ogg-FLAC смог дойти до аудио‑пакетов и `microflac SUCCESS`.
+
+## 0) Регламент
+Только `main`:
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+## 1) Scope / запреты
+**Разрешено менять только:**
+1) `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h`
+2) `yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp`
+3) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+4) `tools/omnia_sanity_microflac_ogg.py`
+
+**Запрещено:** трогать `Audio.cpp`, SD режим, другие кодеки, рефакторинг.
+
+---
+
+## 2) P0 FIX: добавить relaxed‑режим в `OggDemuxerConfig`
+Файл: `.../micro_ogg/ogg_demuxer.h`
+
+В `struct OggDemuxerConfig` (после `bool enable_crc = false;`) вставить **1:1**:
+```cpp
+// Relaxed stream checks for live radio:
+// allow starting mid-stream (no BOS on first seen page) and treat stream errors as soft restarts.
+bool relaxed_stream_checks = false;
+```
+
+---
+
+## 3) P0 FIX: `validate_stream_consistency()` — поддержать relaxed режим
+Файл: `.../micro_ogg/ogg_demuxer.cpp`
+
+Найти функцию:
+```cpp
+bool OggDemuxer::validate_stream_consistency(OggDemuxState& state)
+```
+
+И заменить её тело целиком на **этот код 1:1**:
+
+```cpp
+bool OggDemuxer::validate_stream_consistency(OggDemuxState& state) {
+    bool is_first_page = !stream_initialized_;
+
+    // ---- Initialize or restart stream ----
+    if (!stream_initialized_) {
+        // Strict: require BOS on the first page
+        if (!(current_page_.header_type & OGG_BEGINNING_OF_STREAM)) {
+            if (!config_.relaxed_stream_checks) {
+                state.result = OGG_STREAM_BOS_ERROR;
+                return false;
+            }
+            // Relaxed: accept mid-stream start (no BOS)
+        }
+        stream_serial_ = current_page_.stream_serial;
+        expected_page_sequence_ = current_page_.page_sequence;
+        stream_initialized_ = true;
+        // Treat as first page for continuation checks
+        is_first_page = true;
+    } else {
+        // BOS flag after initialization is normally illegal; in relaxed mode treat as restart.
+        if (current_page_.header_type & OGG_BEGINNING_OF_STREAM) {
+            if (!config_.relaxed_stream_checks) {
+                state.result = OGG_STREAM_BOS_ERROR;
+                return false;
+            }
+            // Restart stream on BOS violation
+            stream_serial_ = current_page_.stream_serial;
+            expected_page_sequence_ = current_page_.page_sequence;
+            previous_page_ended_with_continued_packet_ = false;
+            bos_flag_used_ = false;
+            is_first_page = true;
+        } else if (current_page_.stream_serial != stream_serial_) {
+            if (!config_.relaxed_stream_checks) {
+                state.result = OGG_STREAM_SERIAL_MISMATCH;
+                return false;
+            }
+            // Restart on concatenated stream
+            stream_serial_ = current_page_.stream_serial;
+            expected_page_sequence_ = current_page_.page_sequence;
+            previous_page_ended_with_continued_packet_ = false;
+            bos_flag_used_ = false;
+            is_first_page = true;
+        } else if (current_page_.page_sequence != expected_page_sequence_) {
+            if (!config_.relaxed_stream_checks) {
+                state.result = OGG_STREAM_SEQUENCE_ERROR;
+                return false;
+            }
+            // Restart on sequence mismatch
+            expected_page_sequence_ = current_page_.page_sequence;
+            previous_page_ended_with_continued_packet_ = false;
+            bos_flag_used_ = false;
+            is_first_page = true;
+        }
+    }
+
+    expected_page_sequence_++;
+
+    // ---- Continued flag consistency ----
+    bool has_continued_flag = (current_page_.header_type & OGG_CONTINUED_PACKET) != 0;
+    if (!is_first_page && has_continued_flag != previous_page_ended_with_continued_packet_) {
+        state.result = OGG_STREAM_CONTINUATION_ERROR;
+        return false;
+    }
+
+    // ---- EOS flag consistency ----
+    if ((current_page_.header_type & OGG_END_OF_STREAM) && current_page_ends_with_continued_packet()) {
+        state.result = OGG_STREAM_EOS_ERROR;
+        return false;
+    }
+
+    return true;
+}
+```
+
+---
+
+## 4) P0 FIX: при validate-fail в `handle_page_header()` обязательно выставлять `state.bytes_consumed`
+Файл: `.../micro_ogg/ogg_demuxer.cpp`
+
+В `handle_page_header(...)` найти блок:
+
+```cpp
+// Validate stream consistency (BOS, serial, sequence, EOS)
+if (!validate_stream_consistency(state)) {
+    return InternalResult::PACKET_READY;
+}
+```
+
+Заменить на **1:1**:
+
+```cpp
+// Validate stream consistency (BOS, serial, sequence, EOS)
+if (!validate_stream_consistency(state)) {
+    // IMPORTANT: on stream-consistency errors we already parsed the header,
+    // so we must report header bytes consumed; otherwise caller can get stuck at bytes_consumed==0.
+    state.bytes_consumed = (bytes_added_to_staging > 0) ? bytes_added_to_staging : header_size;
+    page_header_staging_size_ = 0;
+    state_ = STATE_EXPECT_PAGE_HEADER;
+    return InternalResult::PACKET_READY;
+}
+```
+
+---
+
+## 5) P0 FIX: включить relaxed режим из micro-flac (только для radio Ogg-FLAC)
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+
+Найти место, где создаётся `micro_ogg::OggDemuxerConfig cfg;` (в DETECT_CONTAINER → `OggS` ветке).
+
+После:
+```cpp
+cfg.enable_crc = false;
+```
+вставить:
+```cpp
+cfg.relaxed_stream_checks = true;
+```
+
+---
+
+## 6) Sanity: чтобы агент не “забыл включить relaxed”
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить проверки (в конец перед OK):
+
+- что в `ogg_demuxer.h` есть `relaxed_stream_checks`
+- что в `flac_decoder.cpp` есть `cfg.relaxed_stream_checks = true;`
+- что в `ogg_demuxer.cpp` есть строка `config_.relaxed_stream_checks`
+
+(точные проверки — по аналогии с уже существующими `if "..." not in txt: FAIL`)
+
+---
+
+## 7) Обязательные проверки перед коммитом
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `ogg_demuxer.h`
+- `ogg_demuxer.cpp`
+- `flac_decoder.cpp`
+- `omnia_sanity_microflac_ogg.py`
+
+---
+
+## 8) Commit / push
+```bash
+git add yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.h \
+        yoRadio/src/audioI2S/micro_flac/micro_ogg/ogg_demuxer.cpp \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(flac): relaxed ogg stream checks + consume header bytes on BOS/stream errors (Log80 BOS zero-cons)"
+git push origin main
