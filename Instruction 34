@@ -1,0 +1,272 @@
+Ниже — следующее **железное флагманское ТЗ**: переходим на **`get_next_packet()`** (полные Ogg‑пакеты) *и* делаем так, чтобы “подробняк” в Serial был **только при `DEBUG`**.
+
+Почему это правильно архитектурно:
+
+- В Ogg‑FLAC mapping **каждый audio packet = один FLAC frame**.   
+- Ваш `micro_ogg` явно разделяет режимы:  
+  - `get_next_packet()` — “next complete packet” с буферизацией/склейкой;  
+  - `get_next_data()` — streaming “raw body bytes” без внутренней буферизации и с флагом `is_end_of_packet`.   
+- Сейчас `decode_ogg()` у вас построен на `get_next_data()` и “нарезке/сканировании” внутри packet body, что и даёт **дропы/перелоки** на тяжёлых станциях. 
+
+---
+
+# Instruction 34 — FLAGSHIP: Ogg‑FLAC packet mode (`get_next_packet`) + подробные логи только при `DEBUG`
+
+Репо: `ChillPulse/Youradio_Omnia_ESP32S3`  
+Цель: **резко снизить дропы на тяжёлых FLAC станциях** (в т.ч. “Сектор”) и уменьшить вероятность ребутов.  
+Критично: **не ломаем** остальные web‑форматы, **не трогаем SD‑режим**.
+
+---
+
+## 0) РЕГЛАМЕНТ
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `yoRadio/src/audioI2S/Audio.cpp`
+3) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- любые изменения SD режима / legacy `audioI2S/flac_decoder/*`
+- любые изменения MP3/AAC/OPUS/VORBIS
+- любые изменения `.h` файлов в этом задании
+- рефакторинг/форматирование “по пути”
+
+---
+
+## 2) P0: micro-flac — перевести `decode_ogg()` на `get_next_packet()` (полные пакеты) и убрать “packet slicing”
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`  
+Функция: `FLACDecoder::decode_ogg(...)`
+
+### 2.1 Заменить Step 1 (feed detect_buffer) на `get_next_packet`
+Найти:
+
+```cpp
+auto state =
+    this->ogg_demuxer_->get_next_data(this->detect_buffer_, this->detect_buffer_len_);
+```
+
+Заменить **строго** на:
+
+```cpp
+auto state =
+    this->ogg_demuxer_->get_next_packet(this->detect_buffer_, this->detect_buffer_len_);
+```
+
+(оставить остальную логику блока как есть: `detect_buffer_len_=0;` и проверку `NEED_MORE/OK`)
+
+---
+
+### 2.2 Заменить основной вызов демультиплексора в loop на `get_next_packet`
+Найти в `while(true)`:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_data(input + bytes_consumed, remaining);
+```
+
+Заменить **строго** на:
+
+```cpp
+auto state = this->ogg_demuxer_->get_next_packet(input + bytes_consumed, remaining);
+```
+
+---
+
+### 2.3 Полностью удалить “packet slicing path” и заменить на “single-shot decode_native(packet)”
+Найти блок, который начинается так:
+
+```cpp
+// Step 3: Feed Ogg packet body to decode_native in slices.
+...
+size_t off = 0;
+while (off < body_len) {
+    ...
+}
+...
+continue;
+```
+
+Это большой кусок (у вас он начинается примерно около комментария `// Step 3: Feed Ogg packet body...` и заканчивается перед `continue;` в конце loop). 
+
+**Удалить этот блок целиком** и вместо него вставить **ровно** следующий код (1:1), сразу после BOS‑strip (т.е. после блока `if (!this->ogg_bos_processed_) { ... }`):
+
+```cpp
+// Step 3 (FLAGSHIP): In Ogg-FLAC, each audio packet should correspond to a single FLAC frame.
+// Decode the packet as a whole (packet mode), no slicing/scanning.
+size_t native_consumed = 0;
+size_t native_samples  = 0;
+
+// Snapshot chunk fed into decode_native() (packet mode)
+this->last_chunk_len_ = body_len;
+this->last_chunk_off_ = 0;
+this->last_chunk_prefix_valid_ = false;
+if (body && body_len > 0) {
+    const size_t n = (body_len >= 8) ? 8 : body_len;
+    for (size_t i = 0; i < n; i++) this->last_chunk_prefix_[i] = body[i];
+    for (size_t i = n; i < 8; i++) this->last_chunk_prefix_[i] = 0;
+    this->last_chunk_prefix_valid_ = true;
+}
+
+auto r = this->decode_native(body, body_len, output, native_consumed, native_samples, output_32bit);
+samples_decoded = native_samples;
+
+// diagnostics
+this->last_ogg_body_len_ = body_len;
+this->last_ogg_native_consumed_ = native_consumed;
+
+// If decode_native did not consume all offered bytes, stash remainder so we don't lose stream bytes.
+if (native_consumed < body_len) {
+    const size_t rem = body_len - native_consumed;
+    if (rem > 0) {
+        if (this->ogg_stash_.size() + rem > 131072) { // 128KB cap
+            this->ogg_stash_.clear();
+            // In AUDIO phase, treat as soft desync; in HEADER phase this is fatal.
+            if (this->decode_phase_ != DecodePhase::AUDIO) {
+                return this->set_fatal_error(FLAC_DECODER_ERROR_OGG_DEMUX);
+            }
+        } else {
+            this->ogg_stash_.insert(this->ogg_stash_.end(), body + native_consumed, body + body_len);
+        }
+    }
+}
+
+if (r == FLAC_DECODER_NEED_MORE_DATA) {
+    // Need more packets; continue loop until budget hits
+    continue;
+}
+
+if (r < 0) {
+    // In AUDIO phase, skip bad packet softly to avoid reconnect storms (drops will be shorter).
+    if (this->decode_phase_ == DecodePhase::AUDIO) {
+        continue;
+    }
+    return this->set_fatal_error(r);
+}
+
+return r; // SUCCESS / HEADER_READY / END_OF_STREAM
+```
+
+**Важно:**  
+- Никакого `off++`/сканирования по 1 байту больше нет.  
+- Это и есть “флагманский” переход: **демультиплексор склеивает пакет, а декодер декодит пакет целиком**.
+
+---
+
+### 2.4 Убедиться, что в `decode_ogg()` больше нет `get_next_data(` вообще
+После правок в файле `flac_decoder.cpp` поиск по `get_next_data(` должен дать **0** вхождений внутри `decode_ogg`.
+
+---
+
+## 3) P0: Audio.cpp — подробные “OGG_STATE/CHUNK/OGG_BODY/DBG/NATIVE_DIAG/NEED_MORE” логи только при `DEBUG`
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+### 3.1 Добавить флаг в одном месте
+Найти вверху файла (после include’ов, рядом с другими `constexpr`/defines) и вставить:
+
+```cpp
+#ifndef OMNIA_DEBUG_MICROFLAC
+  #if defined(DEBUG)
+    #define OMNIA_DEBUG_MICROFLAC 1
+  #else
+    #define OMNIA_DEBUG_MICROFLAC 0
+  #endif
+#endif
+```
+
+### 3.2 Обернуть “подробняк” в `#if OMNIA_DEBUG_MICROFLAC`
+В блоке microflac decode-loop (где сейчас печатаются `NEED_MORE zero_cons`, `OGG_STATE(zero)`, `CHUNK(zero)`, `OGG_DBG(zero)`, `OGG_BODY(zero)`, а также обычные `OGG_STATE/CHUNK/OGG_BODY`) — сделать так:
+
+- `AUDIO_INFO("microflac HEADER_READY ...")` **оставить всегда** (это 1 раз на старт).
+- `AUDIO_INFO("microflac SUCCESS ...")` оставить всегда, но он уже rate-limited (первые 5 и каждый 50-й) — это ок.
+- Всё остальное “диагностическое” завернуть:
+
+Примерно так (принцип, без изменения текста логов):
+```cpp
+#if OMNIA_DEBUG_MICROFLAC
+    AUDIO_INFO("microflac NEED_MORE ...");
+    AUDIO_INFO("microflac OGG_STATE(zero) ...");
+    ...
+    AUDIO_INFO("microflac CHUNK ...");
+#endif
+```
+
+**Строго:** не менять логику работы, только отключить печать, когда DEBUG не включён.
+
+### 3.3 `microflac SLOW decode dt=...` тоже сделать DEBUG-only
+Этот лог сейчас может появляться часто на тяжёлых потоках. Обернуть его в:
+
+```cpp
+#if OMNIA_DEBUG_MICROFLAC
+    AUDIO_ERROR("microflac SLOW decode ...");
+#endif
+```
+
+---
+
+## 4) Sanity: заставить CI падать, если кто-то вернёт `get_next_data` в `decode_ogg` или забудет debug-gating
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить проверки:
+
+1) В `flac_decoder.cpp` должно быть `get_next_packet(` и **не должно быть** `get_next_data(`:
+
+```python
+if "get_next_packet(" not in txt:
+    print("FAIL: flac_decoder.cpp must use get_next_packet() in decode_ogg (flagship packet mode)")
+    sys.exit(2)
+if "get_next_data(" in txt:
+    print("FAIL: flac_decoder.cpp still contains get_next_data() (packet mode required)")
+    sys.exit(2)
+```
+
+2) В `Audio.cpp` должны быть `OMNIA_DEBUG_MICROFLAC` и хотя бы один `#if OMNIA_DEBUG_MICROFLAC`:
+
+```python
+from pathlib import Path
+a = Path("yoRadio/src/audioI2S/Audio.cpp").read_text(encoding="utf-8", errors="replace")
+if "OMNIA_DEBUG_MICROFLAC" not in a:
+    print("FAIL: missing OMNIA_DEBUG_MICROFLAC in Audio.cpp")
+    sys.exit(2)
+if "#if OMNIA_DEBUG_MICROFLAC" not in a:
+    print("FAIL: missing debug gating blocks (#if OMNIA_DEBUG_MICROFLAC) in Audio.cpp")
+    sys.exit(2)
+```
+
+---
+
+## 5) ОБЯЗАТЕЛЬНЫЕ проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 6) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "feat(flac): ogg-flac packet mode via get_next_packet + debug-only detailed logs (flagship stability)"
+git push origin main
