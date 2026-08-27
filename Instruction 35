@@ -1,0 +1,268 @@
+Ниже — следующее **железное флагманское ТЗ** (давай назовём его **Instruction 35**), где мы одновременно:
+
+1) **Дожимаем debug‑гейтинг логов** (чтобы релиз не грузил CPU/Serial и не провоцировал дропы).  
+2) **Стабилизируем microflac‑путь**: убираем самый токсичный механизм дропов — `g_mf.reset()` на “latched” ошибках **после HEADER_READY** (это гарантированно создаёт relock/reconnect storms и аудио-провалы).  
+3) Убираем явный источник heap/psram churn: `ogg_stash_.shrink_to_fit()` (это плохая идея для “флагмана” в долгом онлайне).  
+4) Улучшаем сетевую устойчивость для FLAC: **увеличиваем prebuffer** именно для FLAC, чтобы переживать джиттер (как на ПК, где буфер больше).
+
+---
+
+# Instruction 35 — FLAGSHIP Stability Pack #1 (drops ↓, reboot risk ↓, release logs quiet)
+
+Репо: `ChillPulse/Youradio_Omnia_ESP32S3`  
+Режим: **только main**, 1 коммит.  
+Цель: меньше дропов на “тяжёлых” FLAC (Сектор и т.п.) + меньше ребутов/гонок + релиз без спама логами.
+
+---
+
+## 0) РЕГЛАМЕНТ
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+3) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD режим и legacy декодеры
+- любые другие web‑кодеки (MP3/AAC/OPUS/VORBIS)
+- любые `.h` файлы (в этом пакете не трогаем заголовки)
+- рефакторинг “по пути”
+
+---
+
+## 2) P0: Audio.cpp — **глобальный флаг** `OMNIA_DEBUG_MICROFLAC` (автоматически от `DEBUG`)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+### 2.1 Вставить блок **вверху файла** (после include’ов, рядом с константами microflac)
+Вставить **ровно**:
+
+```cpp
+// =============================================================
+// Flagship logging control (release must be quiet; debug can be verbose)
+// =============================================================
+#ifndef OMNIA_DEBUG_MICROFLAC
+  #if defined(DEBUG)
+    #define OMNIA_DEBUG_MICROFLAC 1
+  #else
+    #define OMNIA_DEBUG_MICROFLAC 0
+  #endif
+#endif
+```
+
+---
+
+## 3) P0: Audio.cpp — добить debug‑гейтинг логов (чтобы релиз не “ел” CPU)
+
+### 3.1 Что оставляем ВСЕГДА (не трогаем)
+- `microflac HEADER_READY ...`
+- `microflac SUCCESS ...` (уже rate-limited)
+
+### 3.2 Что делаем DEBUG‑only (обязательно)
+Файл: `Audio.cpp`, microflac loop в `sendBytes()`:
+
+Найти лог “progress NEED_MORE” (у вас он сейчас печатается раз в ~700мс) и **весь блок** с:
+- `microflac NEED_MORE(progress)...`
+- `microflac NATIVE_DIAG...`
+- `microflac OGG_DBG...`
+- `microflac OGG_BODY...`
+- `microflac OGG_STATE...`
+- `microflac CHUNK...`
+
+обернуть в:
+
+```cpp
+#if OMNIA_DEBUG_MICROFLAC
+   ...все эти AUDIO_INFO(...)...
+#endif
+```
+
+То же самое сделать для:
+- `microflac adopt demux_cons=...` (это диагностический лог — в релизе не нужен)
+- `microflac SLOW decode dt=...` (у вас он уже под `#if OMNIA_DEBUG_MICROFLAC`, оставить как есть)
+
+Важно: **не менять логику**, только скрыть печать.
+
+---
+
+## 4) P0: Audio.cpp — запрет `g_mf.reset()` на “latched err” после HEADER_READY (ключевое для дропов)
+
+Сейчас у вас есть опасная ветка:
+
+```cpp
+if(bytes_consumed == 0 && (int8_t)mf_res == m_mf_prevErr){
+    AUDIO_ERROR("microflac latched err %d -> soft re-lock (g_mf.reset)", (int)mf_res);
+    g_mf.reset();
+    ...
+}
+```
+
+Это “флагмански” **нельзя** делать на SYNC_NOT_FOUND/прочих мягких ошибках в AUDIO — потому что `reset()` убивает ogg demuxer, и вы теряете контекст → relock/reconnect → слышимый drop.
+
+### 4.1 Изменить условие “latched err -> reset” (строго)
+Файл: `Audio.cpp`, в error‑path после `HEADER_READY`, заменить:
+
+```cpp
+if(bytes_consumed == 0 && (int8_t)mf_res == m_mf_prevErr){
+```
+
+на:
+
+```cpp
+if(bytes_consumed == 0 && (int8_t)mf_res == m_mf_prevErr &&
+   ((int)mf_res == micro_flac::FLAC_DECODER_ERROR_OGG_DEMUX ||
+    (int)mf_res == micro_flac::FLAC_DECODER_ERROR_OGG_BAD_HEADER ||
+    (int)mf_res == micro_flac::FLAC_DECODER_ERROR_INPUT_INVALID)){
+```
+
+Смысл: `g_mf.reset()` допускаем **только** когда реально сломан контейнер/вход (`-14/-15/-16`), а не когда декодер не нашёл sync в текущем месте (`-2`), что может быть “просто мусорный пакет/стык”.
+
+Остальная логика ошибки (skip к следующему `OggS`/sync) остаётся как есть.
+
+---
+
+## 5) P0: Audio.cpp — увеличить prebuffer только для FLAC (снижение дропов от джиттера)
+
+Файл: `Audio.cpp`, `processWebStream()`.
+
+Сейчас:
+
+```cpp
+const uint32_t PREBUFFER = OMNIA_OGG_PREBUFFER; // например 60000
+...
+if(!m_f_stream && InBuff.bufferFilled() > PREBUFFER) { ... stream ready ... }
+```
+
+### 5.1 Сделать PREBUFFER динамическим для FLAC
+Заменить участок:
+
+```cpp
+#ifndef OMNIA_OGG_PREBUFFER
+    const uint32_t PREBUFFER = 24000;
+#else
+    const uint32_t PREBUFFER = OMNIA_OGG_PREBUFFER;
+#endif
+```
+
+на **ровно**:
+
+```cpp
+#ifndef OMNIA_OGG_PREBUFFER
+    uint32_t PREBUFFER = 24000; // fallback
+#else
+    uint32_t PREBUFFER = OMNIA_OGG_PREBUFFER;
+#endif
+
+// Flagship: FLAC needs a larger jitter buffer (PC players buffer more than ~0.3s).
+// Use ~1 second worth of bytes when bitrate is known, with sane clamps.
+if (m_codec == CODEC_FLAC) {
+    uint32_t one_sec = 200000; // default floor ~200KB
+    if (m_nominal_bitrate > 0) {
+        one_sec = (uint32_t)(m_nominal_bitrate / 8); // bits/s -> bytes/s
+        if (one_sec < 200000) one_sec = 200000;
+        if (one_sec > 500000) one_sec = 500000;
+    }
+    if (PREBUFFER < one_sec) PREBUFFER = one_sec;
+}
+```
+
+Так мы не трогаем OPUS/VORBIS, а FLAC получит нормальный буфер (особенно для 1.4–3 Мбит/с).
+
+---
+
+## 6) P0: micro_flac/flac_decoder.cpp — убрать `shrink_to_fit()` (anti-fragmentation / меньше reboot risk)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+
+В `FLACDecoder::reset()` сейчас есть:
+
+```cpp
+this->ogg_stash_.clear();
+this->ogg_stash_.shrink_to_fit();
+```
+
+### 6.1 Заменить строго на:
+```cpp
+this->ogg_stash_.clear(); // do not shrink_to_fit on embedded; reduces PSRAM/heap churn
+```
+
+---
+
+## 7) Sanity: защитить изменения (чтобы агент не “забыл”)
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить проверки:
+
+1) В `flac_decoder.cpp` не должно быть `shrink_to_fit`:
+
+```python
+if "shrink_to_fit" in txt:
+    print("FAIL: flac_decoder.cpp still contains shrink_to_fit() (heap/psram churn risk)")
+    sys.exit(2)
+```
+
+2) В `Audio.cpp` должен быть `OMNIA_DEBUG_MICROFLAC` и gating блоки:
+
+```python
+from pathlib import Path
+a = Path("yoRadio/src/audioI2S/Audio.cpp").read_text(encoding="utf-8", errors="replace")
+if "OMNIA_DEBUG_MICROFLAC" not in a:
+    print("FAIL: missing OMNIA_DEBUG_MICROFLAC definition in Audio.cpp")
+    sys.exit(2)
+if "#if OMNIA_DEBUG_MICROFLAC" not in a:
+    print("FAIL: missing OMNIA_DEBUG_MICROFLAC gating blocks in Audio.cpp")
+    sys.exit(2)
+```
+
+3) В `Audio.cpp` reset‑ветка должна быть ограничена на `-14/-15/-16` (минимальная проверка маркером):
+
+```python
+if "FLAC_DECODER_ERROR_OGG_DEMUX" not in a or "FLAC_DECODER_ERROR_OGG_BAD_HEADER" not in a:
+    print("FAIL: missing restricted reset condition markers (-14/-15) in Audio.cpp")
+    sys.exit(2)
+```
+
+---
+
+## 8) ОБЯЗАТЕЛЬНЫЕ проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 9) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(flac): flagship stability pack (debug-only logs, restrict mf reset, bigger flac prebuffer, no shrink_to_fit)"
+git push origin main
+```
+
+---
+
+## Acceptance на железе (что должно улучшиться)
+1) В релизной сборке (без `DEBUG`) Serial станет заметно тише, CPU освободится → **дропы уменьшатся**.  
+2) На тяжёлых FLAC (Сектор) должно стать заметно меньше “провалов” именно сериями (relock/reconnect storms), потому что мы перестали делать `g_mf.reset()` на мягких latched ошибках после HEADER_READY.  
+3) Старт FLAC будет чуть медленнее (больше prebuffer), но **воспроизведение ровнее**.
