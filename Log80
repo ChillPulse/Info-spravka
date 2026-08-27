@@ -1,0 +1,1292 @@
+14:47:01.855 -> ESP-ROM:esp32s3-20210327
+14:47:01.855 -> Build:Mar 27 2021
+14:47:01.855 -> rst:0x1 (POWERON),boot:0x2b (SPI_FAST_FLASH_BOOT)
+14:47:01.855 -> SPIWP:0xee
+14:47:01.855 -> mode:DIO, clock div:1
+14:47:01.855 -> load:0x3fce2820,len:0x116c
+14:47:01.855 -> load:0x403c8700,len:0xc2c
+14:47:01.855 -> load:0x403cb700,len:0x3108
+14:47:01.855 -> entry 0x403c88b8
+14:47:02.226 -> ##[BOOT]#	************************************************
+14:47:02.226 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+14:47:02.226 -> ##[BOOT]#	************************************************
+14:47:02.226 -> ##[BOOT]#	------------------------------------------------
+14:47:02.273 -> ##[BOOT]#	arduino:	10819
+14:47:02.273 -> ##[BOOT]#	compiler:	14.2.0
+14:47:02.273 -> ##[BOOT]#	esp32core:	3.3.6
+14:47:02.273 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+14:47:02.273 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+14:47:02.273 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+14:47:02.273 -> ##[BOOT]#	audioinfo:	false
+14:47:02.273 -> ##[BOOT]#	smartstart:	0
+14:47:02.273 -> ##[BOOT]#	vumeter:	false
+14:47:02.273 -> ##[BOOT]#	softapdelay:	0
+14:47:02.273 -> ##[BOOT]#	flipscreen:	false
+14:47:02.273 -> ##[BOOT]#	invertdisplay:	false
+14:47:02.273 -> ##[BOOT]#	showweather:	false
+14:47:02.319 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+14:47:02.319 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+14:47:02.319 -> ##[BOOT]#	ir:		NONE
+14:47:02.319 -> ##[BOOT]#	SD:		CS-39
+14:47:02.319 -> ##[BOOT]#	battery:	battery ON
+14:47:02.319 -> ##[BOOT]#	------------------------------------------------
+14:47:02.319 -> ##[BOOT]#	CONFIG_VERSION	4
+14:47:02.366 -> ##[BOOT]#	SPIFFS mounted
+14:47:02.644 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+14:47:02.644 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+14:47:02.644 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+14:47:02.644 -> ##[BOOT]#	player.init	done
+14:47:02.690 -> ##[BOOT]#	network.begin
+14:47:02.782 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+14:47:02.782 -> ##[BOOT]#	....
+14:47:04.270 -> ##[BOOT]#	done
+14:47:04.270 -> ##[BOOT]#	SD search	done
+14:47:04.316 -> ##[BOOT]#	netserver.begin	done
+14:47:04.316 -> ##[BOOT]#	telnet.begin	done
+14:47:04.316 -> ##[BOOT]#
+14:47:04.316 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+14:47:04.316 -> ##[BOOT]#	------------------------------------------------
+14:47:04.316 -> ##[BOOT]#
+14:47:04.316 -> ##CLI.META#: [готов]
+14:47:12.666 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+14:47:12.666 -> ##CLI.META#: [готов]
+14:47:12.712 -> ##CLI.VOL#: 44
+14:47:12.758 -> ##CLI.INFO#
+14:47:12.758 -> ##SYS.DATE#: 2026-08-27T14:47:11+03:00
+14:47:12.758 -> ##CLI.NAMESET#: 286 SECTOR Next 56 (ogg-opus)
+14:47:12.758 -> ##CLI.VOL#: 44
+14:47:12.758 -> ##CLI.STOPPED#
+14:47:20.224 -> ##CLI.META#: [соединение]
+14:47:20.270 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+14:47:20.270 -> ##AUDIO.INFO#: buffers freed, free Heap: 173840 bytes
+14:47:20.270 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/next-56"
+14:47:20.316 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+14:47:20.871 -> ##AUDIO.INFO#: format is ogg
+14:47:20.871 -> ##AUDIO.INFO#: icy-bitrate : 56000 (b/s)
+14:47:20.871 -> ##AUDIO.INFO#: icy-genre: 90s, Pop, Ballade, Eurodance, Rock, Trance, Disco, R&B, Rap, Hip-hop
+14:47:20.871 -> ##AUDIO.INFO#: icy-name: SECTOR | Next channel
+14:47:20.871 -> ##CLI.META#: SECTOR | Next channel
+14:47:20.871 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:20.871 -> ##CLI.INFO#
+14:47:20.871 -> ##SYS.DATE#: 2026-08-27T14:47:19+03:00
+14:47:20.871 -> ##CLI.NAMESET#: 286 SECTOR Next 56 (ogg-opus)
+14:47:20.871 -> ##CLI.META#: SECTOR | Next channel
+14:47:20.917 -> ##CLI.VOL#: 44
+14:47:20.917 -> ##CLI.PLAYING#
+14:47:20.917 -> ##CLI.META#: SECTOR | Next channel
+14:47:21.336 -> ##AUDIO.INFO#: OPUSDecoder has been initialized
+14:47:21.336 -> ##AUDIO.INFO#: format is opus
+14:47:21.707 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:21.707 -> ##AUDIO.INFO#: syncword found at pos 0
+14:47:21.707 -> ##AUDIO.INFO#: Opus Mode: CELT_ONLY
+14:47:21.707 -> ##AUDIO.INFO#: Channels: 2
+14:47:21.707 -> ##AUDIO.INFO#: SampleRate: 48000 (Hz)
+14:47:21.707 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:21.707 -> ##AUDIO.INFO#: BitRate: 56000
+14:47:21.707 -> ##AUDIO.BITRATE#: 56000
+14:47:25.846 -> ##CLI.META#: [соединение]
+14:47:25.940 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/next-56" (ssl=0)
+14:47:25.940 -> ##AUDIO.INFO#: buffers freed, free Heap: 173784 bytes
+14:47:25.940 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:26.079 -> ##AUDIO.INFO#: Connection has been established in 153 ms
+14:47:26.403 -> ##AUDIO.INFO#: format is ogg
+14:47:26.403 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:26.403 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:26.403 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:26.403 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:26.403 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:26.449 -> ##CLI.INFO#
+14:47:26.449 -> ##SYS.DATE#: 2026-08-27T14:47:25+03:00
+14:47:26.449 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+14:47:26.449 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:26.449 -> ##CLI.VOL#: 44
+14:47:26.449 -> ##CLI.PLAYING#
+14:47:26.449 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:26.495 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:47:26.495 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:47:27.743 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:27.743 -> ##AUDIO.INFO#: Channels: 2
+14:47:27.743 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:47:27.743 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:27.743 -> ##AUDIO.INFO#: BitRate: 1411000
+14:47:27.743 -> ##AUDIO.BITRATE#: 1411000
+14:47:27.743 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:47:27.743 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=61226
+14:47:27.789 -> ##ERROR#:	microflac SLOW decode dt=20742us left=61226 out=1 hdr=1
+14:47:27.789 -> ##ERROR#:	microflac SLOW decode dt=20742us left=61226 out=1 hdr=1
+14:47:27.789 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=71429 header=1 left=61226 out=1 lastRes=3
+14:47:27.789 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:27.789 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:27.789 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:27.835 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=71278 header=1 left=65535 out=1 lastRes=3
+14:47:27.835 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:27.835 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:27.882 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:27.882 -> ##CLI.META#: microflac SLOW decode dt=20742us left=61226 out=1 hdr=1
+14:47:27.928 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=103882 header=1 left=65535 out=1 lastRes=3
+14:47:27.928 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:27.928 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:27.928 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:28.529 -> ##CLI.META#: microflac SLOW decode dt=20778us left=65535 out=1 hdr=1
+14:47:28.529 -> ##ERROR#:	microflac SLOW decode dt=20778us left=65535 out=1 hdr=1
+14:47:28.529 -> ##ERROR#:	microflac SLOW decode dt=20778us left=65535 out=1 hdr=1
+14:47:28.854 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=251954 header=1 left=65535 out=1 lastRes=3
+14:47:28.854 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:28.901 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:28.901 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:29.227 -> ##CLI.META#: microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:47:29.227 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:47:29.227 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:47:29.924 -> ##CLI.META#: microflac SLOW decode dt=20850us left=65535 out=1 hdr=1
+14:47:29.970 -> ##ERROR#:	microflac SLOW decode dt=20850us left=65535 out=1 hdr=1
+14:47:29.970 -> ##ERROR#:	microflac SLOW decode dt=20850us left=65535 out=1 hdr=1
+14:47:29.970 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=334394 header=1 left=65535 out=1 lastRes=3
+14:47:29.970 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:29.970 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:29.970 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:30.666 -> ##CLI.META#: microflac SLOW decode dt=20854us left=65535 out=1 hdr=1
+14:47:30.666 -> ##ERROR#:	microflac SLOW decode dt=20854us left=65535 out=1 hdr=1
+14:47:30.666 -> ##ERROR#:	microflac SLOW decode dt=20854us left=65535 out=1 hdr=1
+14:47:31.036 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=375614 header=1 left=65535 out=1 lastRes=3
+14:47:31.036 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:31.082 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:31.082 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:31.359 -> ##CLI.META#: microflac SLOW decode dt=20829us left=65535 out=1 hdr=1
+14:47:31.359 -> ##ERROR#:	microflac SLOW decode dt=20829us left=65535 out=1 hdr=1
+14:47:31.405 -> ##ERROR#:	microflac SLOW decode dt=20829us left=65535 out=1 hdr=1
+14:47:32.102 -> ##CLI.META#: microflac SLOW decode dt=20863us left=65535 out=1 hdr=1
+14:47:32.102 -> ##ERROR#:	microflac SLOW decode dt=20863us left=65535 out=1 hdr=1
+14:47:32.102 -> ##ERROR#:	microflac SLOW decode dt=20863us left=65535 out=1 hdr=1
+14:47:32.148 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=375614 header=1 left=65535 out=1 lastRes=3
+14:47:32.148 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:32.148 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:32.195 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:32.797 -> ##CLI.META#: microflac SLOW decode dt=20848us left=65535 out=1 hdr=1
+14:47:32.797 -> ##ERROR#:	microflac SLOW decode dt=20848us left=65535 out=1 hdr=1
+14:47:32.845 -> ##ERROR#:	microflac SLOW decode dt=20848us left=65535 out=1 hdr=1
+14:47:33.259 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=375614 header=1 left=65535 out=1 lastRes=3
+14:47:33.259 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:33.259 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:33.259 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:33.538 -> ##CLI.META#: microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:47:33.538 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:47:33.538 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:47:34.233 -> ##CLI.META#: microflac SLOW decode dt=20839us left=65535 out=1 hdr=1
+14:47:34.279 -> ##ERROR#:	microflac SLOW decode dt=20839us left=65535 out=1 hdr=1
+14:47:34.279 -> ##ERROR#:	microflac SLOW decode dt=20839us left=65535 out=1 hdr=1
+14:47:34.325 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=375614 header=1 left=65535 out=1 lastRes=3
+14:47:34.372 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:34.372 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:34.372 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:34.974 -> ##CLI.META#: microflac SLOW decode dt=20861us left=65535 out=1 hdr=1
+14:47:34.974 -> ##ERROR#:	microflac SLOW decode dt=20861us left=65535 out=1 hdr=1
+14:47:34.974 -> ##ERROR#:	microflac SLOW decode dt=20861us left=65535 out=1 hdr=1
+14:47:35.437 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=375614 header=1 left=65535 out=1 lastRes=3
+14:47:35.437 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:35.437 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:35.483 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:35.668 -> ##CLI.META#: microflac SLOW decode dt=20846us left=65535 out=1 hdr=1
+14:47:35.668 -> ##ERROR#:	microflac SLOW decode dt=20846us left=65535 out=1 hdr=1
+14:47:35.714 -> ##ERROR#:	microflac SLOW decode dt=20846us left=65535 out=1 hdr=1
+14:47:35.761 -> ##CLI.META#: microflac hard stall -> reconnect
+14:47:35.761 -> ##ERROR#:	microflac hard stall -> reconnect
+14:47:35.761 -> ##ERROR#:	microflac hard stall -> reconnect
+14:47:35.807 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+14:47:35.807 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:47:35.807 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:47:36.086 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:47:36.414 -> ##AUDIO.INFO#: buffers freed, free Heap: 172196 bytes
+14:47:36.414 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:36.414 -> ##AUDIO.INFO#: Connection has been established in 33 ms
+14:47:36.738 -> ##AUDIO.INFO#: format is ogg
+14:47:36.738 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:36.738 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:36.738 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:36.738 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:36.738 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:47:36.784 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:47:37.294 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:37.294 -> ##AUDIO.INFO#: Channels: 2
+14:47:37.294 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:47:37.294 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:37.294 -> ##AUDIO.INFO#: BitRate: 1411000
+14:47:37.294 -> ##AUDIO.BITRATE#: 1411000
+14:47:37.340 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:47:37.340 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=65384
+14:47:37.340 -> ##ERROR#:	microflac SLOW decode dt=20947us left=65384 out=1 hdr=1
+14:47:37.340 -> ##ERROR#:	microflac SLOW decode dt=20947us left=65384 out=1 hdr=1
+14:47:37.340 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=68337 header=1 left=65384 out=1 lastRes=3
+14:47:37.386 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:37.386 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:37.386 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:37.433 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=68186 header=1 left=65535 out=1 lastRes=3
+14:47:37.433 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:37.433 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:37.433 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:37.433 -> ##CLI.META#: microflac SLOW decode dt=20947us left=65384 out=1 hdr=1
+14:47:37.481 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=78935 header=1 left=65535 out=1 lastRes=3
+14:47:37.481 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:37.481 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:37.481 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:38.084 -> ##CLI.META#: microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:47:38.084 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:47:38.084 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:47:38.409 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=201323 header=1 left=65535 out=1 lastRes=3
+14:47:38.456 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:38.456 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:38.456 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:38.781 -> ##CLI.META#: microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+14:47:38.827 -> ##ERROR#:	microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+14:47:38.827 -> ##ERROR#:	microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+14:47:39.522 -> ##CLI.META#: microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:47:39.522 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:47:39.522 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:47:39.522 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=393487 header=1 left=65535 out=1 lastRes=3
+14:47:39.522 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:39.568 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:39.568 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:40.219 -> ##CLI.META#: microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+14:47:40.266 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+14:47:40.266 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+14:47:40.635 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=540547 header=1 left=65535 out=1 lastRes=3
+14:47:40.635 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:40.635 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:40.635 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:40.961 -> ##CLI.META#: microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+14:47:40.961 -> ##ERROR#:	microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+14:47:40.961 -> ##ERROR#:	microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+14:47:41.658 -> ##CLI.META#: microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:47:41.705 -> ##ERROR#:	microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:47:41.705 -> ##ERROR#:	microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:47:41.751 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=596291 header=1 left=65535 out=1 lastRes=3
+14:47:41.751 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:41.751 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:41.751 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:42.400 -> ##CLI.META#: microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+14:47:42.400 -> ##ERROR#:	microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+14:47:42.400 -> ##ERROR#:	microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+14:47:42.817 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=611923 header=1 left=65535 out=1 lastRes=3
+14:47:42.817 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:42.817 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:42.817 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:43.097 -> ##CLI.META#: microflac SLOW decode dt=20830us left=65535 out=1 hdr=1
+14:47:43.097 -> ##ERROR#:	microflac SLOW decode dt=20830us left=65535 out=1 hdr=1
+14:47:43.097 -> ##ERROR#:	microflac SLOW decode dt=20830us left=65535 out=1 hdr=1
+14:47:43.841 -> ##CLI.META#: microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+14:47:43.841 -> ##ERROR#:	microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+14:47:43.841 -> ##ERROR#:	microflac SLOW decode dt=20825us left=65535 out=1 hdr=1
+14:47:43.934 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=611923 header=1 left=65535 out=1 lastRes=3
+14:47:43.934 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:43.934 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:43.934 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:44.539 -> ##CLI.META#: microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+14:47:44.539 -> ##ERROR#:	microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+14:47:44.539 -> ##ERROR#:	microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+14:47:45.002 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=611923 header=1 left=65535 out=1 lastRes=3
+14:47:45.002 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:45.049 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:45.049 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:45.233 -> ##CLI.META#: microflac SLOW decode dt=20791us left=65535 out=1 hdr=1
+14:47:45.280 -> ##ERROR#:	microflac SLOW decode dt=20791us left=65535 out=1 hdr=1
+14:47:45.280 -> ##ERROR#:	microflac SLOW decode dt=20791us left=65535 out=1 hdr=1
+14:47:45.326 -> ##CLI.META#: microflac hard stall -> reconnect
+14:47:45.326 -> ##ERROR#:	microflac hard stall -> reconnect
+14:47:45.373 -> ##ERROR#:	microflac hard stall -> reconnect
+14:47:45.373 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+14:47:45.373 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:47:45.373 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:47:45.651 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:47:45.977 -> ##AUDIO.INFO#: buffers freed, free Heap: 172036 bytes
+14:47:45.977 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:47.274 -> ##AUDIO.INFO#: Connection has been established in 1316 ms
+14:47:47.596 -> ##AUDIO.INFO#: format is ogg
+14:47:47.596 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:47.596 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:47.596 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:47.642 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:47.642 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:47:47.642 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:47:48.058 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:48.058 -> ##AUDIO.INFO#: Channels: 2
+14:47:48.058 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:47:48.058 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:48.105 -> ##AUDIO.INFO#: BitRate: 1411000
+14:47:48.105 -> ##AUDIO.BITRATE#: 1411000
+14:47:48.105 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:47:48.105 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=61757
+14:47:48.105 -> ##ERROR#:	microflac SLOW decode dt=20767us left=61757 out=1 hdr=1
+14:47:48.105 -> ##ERROR#:	microflac SLOW decode dt=20767us left=61757 out=1 hdr=1
+14:47:48.105 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=61908 header=1 left=61757 out=1 lastRes=3
+14:47:48.151 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:48.151 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:48.151 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:48.151 -> ##CLI.META#: microflac SLOW decode dt=20767us left=61757 out=1 hdr=1
+14:47:48.198 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=65034 header=1 left=65034 out=1 lastRes=3
+14:47:48.198 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:48.198 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:48.198 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:48.244 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=65034 header=1 left=65034 out=1 lastRes=3
+14:47:48.244 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:48.244 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:48.244 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:48.846 -> ##CLI.META#: microflac SLOW decode dt=20838us left=65535 out=1 hdr=1
+14:47:48.846 -> ##ERROR#:	microflac SLOW decode dt=20838us left=65535 out=1 hdr=1
+14:47:48.846 -> ##ERROR#:	microflac SLOW decode dt=20838us left=65535 out=1 hdr=1
+14:47:49.216 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=263091 header=1 left=65535 out=1 lastRes=3
+14:47:49.216 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:49.216 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:49.216 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:49.541 -> ##CLI.META#: microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:47:49.588 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:47:49.588 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:47:50.285 -> ##CLI.META#: microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:47:50.285 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:47:50.285 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:47:50.285 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=385349 header=1 left=65535 out=1 lastRes=3
+14:47:50.285 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:50.331 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:50.331 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:50.981 -> ##CLI.META#: microflac SLOW decode dt=20101us left=65535 out=1 hdr=1
+14:47:50.981 -> ##ERROR#:	microflac SLOW decode dt=20101us left=65535 out=1 hdr=1
+14:47:51.027 -> ##ERROR#:	microflac SLOW decode dt=20101us left=65535 out=1 hdr=1
+14:47:51.398 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=550229 header=1 left=65535 out=1 lastRes=3
+14:47:51.398 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:51.398 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:51.398 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:51.721 -> ##CLI.META#: microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+14:47:51.721 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+14:47:51.721 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+14:47:52.414 -> ##CLI.META#: [соединение]
+14:47:52.414 -> ##CLI.META#: microflac SLOW decode dt=20270us left=65535 out=1 hdr=1
+14:47:52.460 -> ##ERROR#:	microflac SLOW decode dt=20270us left=65535 out=1 hdr=1
+14:47:52.460 -> ##ERROR#:	microflac SLOW decode dt=20270us left=65535 out=1 hdr=1
+14:47:52.460 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:47:52.460 -> ##AUDIO.INFO#: buffers freed, free Heap: 172584 bytes
+14:47:52.460 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:52.506 -> ##AUDIO.INFO#: Connection has been established in 28 ms
+14:47:52.553 -> ##AUDIO.INFO#: format is ogg
+14:47:52.553 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:52.553 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:52.599 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:52.599 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:52.599 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:52.599 -> ##CLI.INFO#
+14:47:52.599 -> ##SYS.DATE#: 2026-08-27T14:47:51+03:00
+14:47:52.599 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+14:47:52.599 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:52.599 -> ##CLI.VOL#: 44
+14:47:52.599 -> ##CLI.PLAYING#
+14:47:52.599 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:47:52.599 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:47:52.599 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:52.877 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:52.877 -> ##AUDIO.INFO#: Channels: 2
+14:47:52.877 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:47:52.877 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:52.877 -> ##AUDIO.INFO#: BitRate: 1411000
+14:47:52.877 -> ##AUDIO.BITRATE#: 1411000
+14:47:52.922 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:47:52.922 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=65384
+14:47:52.922 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=68764 header=1 left=65384 out=1 lastRes=3
+14:47:52.922 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:52.968 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:52.968 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:52.968 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=68613 header=1 left=65535 out=1 lastRes=3
+14:47:52.968 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:52.968 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:53.015 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:53.015 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=75741 header=1 left=65535 out=1 lastRes=3
+14:47:53.061 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:53.061 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:53.061 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:53.154 -> ##CLI.META#: microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:47:53.154 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:47:53.154 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:47:53.664 -> ##CLI.META#: [соединение]
+14:47:53.756 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:47:53.756 -> ##AUDIO.INFO#: buffers freed, free Heap: 173900 bytes
+14:47:53.756 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:53.803 -> ##AUDIO.INFO#: Connection has been established in 27 ms
+14:47:54.080 -> ##AUDIO.INFO#: format is ogg
+14:47:54.080 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:54.080 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:54.080 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:54.080 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:54.080 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:54.080 -> ##CLI.INFO#
+14:47:54.080 -> ##SYS.DATE#: 2026-08-27T14:47:52+03:00
+14:47:54.080 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+14:47:54.080 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:54.080 -> ##CLI.VOL#: 44
+14:47:54.080 -> ##CLI.PLAYING#
+14:47:54.080 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:47:54.127 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:47:54.127 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:54.311 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:54.311 -> ##AUDIO.INFO#: Channels: 2
+14:47:54.311 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:47:54.311 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:54.311 -> ##AUDIO.INFO#: BitRate: 1411000
+14:47:54.311 -> ##AUDIO.BITRATE#: 1411000
+14:47:54.358 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:47:54.358 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=61177
+14:47:54.358 -> ##ERROR#:	microflac SLOW decode dt=20370us left=61177 out=1 hdr=1
+14:47:54.358 -> ##ERROR#:	microflac SLOW decode dt=20370us left=61177 out=1 hdr=1
+14:47:54.358 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=64200 header=1 left=61177 out=1 lastRes=3
+14:47:54.358 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:54.404 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:54.404 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:54.404 -> ##CLI.META#: microflac SLOW decode dt=20370us left=61177 out=1 hdr=1
+14:47:54.451 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=65029 header=1 left=65029 out=1 lastRes=3
+14:47:54.451 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:54.451 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:54.451 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:54.497 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=65029 header=1 left=65029 out=1 lastRes=3
+14:47:54.497 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:54.497 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:54.497 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:55.099 -> ##CLI.META#: microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+14:47:55.099 -> ##ERROR#:	microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+14:47:55.099 -> ##ERROR#:	microflac SLOW decode dt=20831us left=65535 out=1 hdr=1
+14:47:55.099 -> ##CLI.META#: [соединение]
+14:47:55.283 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:47:55.283 -> ##AUDIO.INFO#: buffers freed, free Heap: 173628 bytes
+14:47:55.283 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:55.330 -> ##AUDIO.INFO#: Connection has been established in 30 ms
+14:47:55.377 -> ##AUDIO.INFO#: format is ogg
+14:47:55.377 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:55.377 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:55.377 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:55.377 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:55.377 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:55.377 -> ##CLI.INFO#
+14:47:55.377 -> ##SYS.DATE#: 2026-08-27T14:47:54+03:00
+14:47:55.377 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+14:47:55.377 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:55.377 -> ##CLI.VOL#: 44
+14:47:55.422 -> ##CLI.PLAYING#
+14:47:55.422 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:55.516 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:47:55.516 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:47:55.748 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:55.748 -> ##AUDIO.INFO#: Channels: 2
+14:47:55.748 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:47:55.748 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:55.748 -> ##AUDIO.INFO#: BitRate: 1411000
+14:47:55.748 -> ##AUDIO.BITRATE#: 1411000
+14:47:55.748 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:47:55.748 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=61882
+14:47:55.794 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=64801 header=1 left=61882 out=1 lastRes=3
+14:47:55.794 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:55.794 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:55.794 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:55.841 -> ##CLI.META#: microflac SLOW decode dt=20815us left=64650 out=1 hdr=1
+14:47:55.841 -> ##ERROR#:	microflac SLOW decode dt=20815us left=64650 out=1 hdr=1
+14:47:55.841 -> ##ERROR#:	microflac SLOW decode dt=20815us left=64650 out=1 hdr=1
+14:47:55.841 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=64650 header=1 left=64650 out=1 lastRes=3
+14:47:55.841 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:55.841 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:55.841 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:55.888 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=64650 header=1 left=64650 out=1 lastRes=3
+14:47:55.934 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:55.934 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:55.934 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:56.304 -> ##CLI.META#: [соединение]
+14:47:56.396 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:47:56.396 -> ##AUDIO.INFO#: buffers freed, free Heap: 173852 bytes
+14:47:56.442 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:56.442 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+14:47:56.534 -> ##AUDIO.INFO#: format is ogg
+14:47:56.534 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:56.534 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:56.534 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:56.534 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:56.534 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:56.534 -> ##CLI.INFO#
+14:47:56.534 -> ##SYS.DATE#: 2026-08-27T14:47:55+03:00
+14:47:56.534 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+14:47:56.534 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:56.534 -> ##CLI.VOL#: 44
+14:47:56.534 -> ##CLI.PLAYING#
+14:47:56.534 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:56.952 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:47:56.952 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:47:57.465 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:47:57.465 -> ##AUDIO.INFO#: Channels: 2
+14:47:57.512 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:47:57.512 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:47:57.512 -> ##AUDIO.INFO#: BitRate: 1411000
+14:47:57.512 -> ##AUDIO.BITRATE#: 1411000
+14:47:57.512 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:47:57.512 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=62021
+14:47:57.512 -> ##ERROR#:	microflac SLOW decode dt=20964us left=62021 out=1 hdr=1
+14:47:57.558 -> ##ERROR#:	microflac SLOW decode dt=20964us left=62021 out=1 hdr=1
+14:47:57.558 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=62172 header=1 left=62021 out=1 lastRes=3
+14:47:57.558 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:57.558 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:57.558 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:57.558 -> ##AUDIO.INFO#: microflac wait full ogg page 62021/65145
+14:47:57.605 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=70741 header=1 left=65535 out=1 lastRes=3
+14:47:57.605 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:57.605 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:57.605 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:57.605 -> ##CLI.META#: microflac SLOW decode dt=20964us left=62021 out=1 hdr=1
+14:47:57.652 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=79357 header=1 left=65535 out=1 lastRes=3
+14:47:57.652 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:57.699 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:57.699 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:58.262 -> ##CLI.META#: microflac SLOW decode dt=20803us left=65535 out=1 hdr=1
+14:47:58.262 -> ##ERROR#:	microflac SLOW decode dt=20803us left=65535 out=1 hdr=1
+14:47:58.262 -> ##ERROR#:	microflac SLOW decode dt=20803us left=65535 out=1 hdr=1
+14:47:58.638 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=145413 header=1 left=65535 out=1 lastRes=3
+14:47:58.638 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:47:58.638 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:47:58.638 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:47:58.969 -> ##CLI.META#: microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+14:47:58.969 -> ##ERROR#:	microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+14:47:58.969 -> ##ERROR#:	microflac SLOW decode dt=20823us left=65535 out=1 hdr=1
+14:47:59.485 -> ##CLI.META#: [соединение]
+14:47:59.579 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:47:59.579 -> ##AUDIO.INFO#: buffers freed, free Heap: 173632 bytes
+14:47:59.579 -> ##AUDIO.INFO#: connect to: "89.223.45.5" on port 8000 path "/zed-flac"
+14:47:59.626 -> ##AUDIO.INFO#: Connection has been established in 29 ms
+14:47:59.814 -> ##AUDIO.INFO#: format is ogg
+14:47:59.814 -> ##AUDIO.INFO#: icy-bitrate : 1411000 (b/s)
+14:47:59.814 -> ##AUDIO.INFO#: icy-genre: 10s, Pop, Ballade, Dance, Rock, Trance, Disco, R&B, Hip-hop
+14:47:59.814 -> ##AUDIO.INFO#: icy-name: SECTOR  |  Zed channel
+14:47:59.814 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:59.814 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:47:59.860 -> ##CLI.INFO#
+14:47:59.860 -> ##SYS.DATE#: 2026-08-27T14:47:58+03:00
+14:47:59.860 -> ##CLI.NAMESET#: 296 SECTOR Zed (flac)
+14:47:59.860 -> ##CLI.META#: SECTOR  |  Zed channel
+14:47:59.860 -> ##CLI.VOL#: 44
+14:47:59.860 -> ##CLI.PLAYING#
+14:47:59.860 -> ##CLI.META#: SECTOR  |  Zed channel
+14:48:00.000 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:48:00.000 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:48:00.516 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:48:00.516 -> ##AUDIO.INFO#: Channels: 2
+14:48:00.516 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:00.516 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:00.516 -> ##AUDIO.INFO#: BitRate: 1411000
+14:48:00.516 -> ##AUDIO.BITRATE#: 1411000
+14:48:00.516 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:48:00.516 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=24 max_blk=4096 out_cap=8192 consumed=151 left=65384
+14:48:00.563 -> ##ERROR#:	microflac SLOW decode dt=20858us left=65384 out=1 hdr=1
+14:48:00.563 -> ##ERROR#:	microflac SLOW decode dt=20858us left=65384 out=1 hdr=1
+14:48:00.563 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=71911 header=1 left=65384 out=1 lastRes=3
+14:48:00.563 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:00.563 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:00.563 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:00.610 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=71760 header=1 left=65535 out=1 lastRes=3
+14:48:00.610 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:00.610 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:00.610 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:00.656 -> ##CLI.META#: microflac SLOW decode dt=20858us left=65384 out=1 hdr=1
+14:48:00.656 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=91120 header=1 left=65535 out=1 lastRes=3
+14:48:00.656 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:00.702 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:00.702 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:01.265 -> ##ERROR#:	microflac SLOW decode dt=20851us left=65535 out=1 hdr=1
+14:48:01.265 -> ##ERROR#:	microflac SLOW decode dt=20851us left=65535 out=1 hdr=1
+14:48:01.312 -> ##CLI.META#: microflac SLOW decode dt=20851us left=65535 out=1 hdr=1
+14:48:01.637 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=190100 header=1 left=65535 out=1 lastRes=3
+14:48:01.637 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:01.637 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:01.637 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:02.010 -> ##CLI.META#: microflac SLOW decode dt=20806us left=65535 out=1 hdr=1
+14:48:02.010 -> ##ERROR#:	microflac SLOW decode dt=20806us left=65535 out=1 hdr=1
+14:48:02.010 -> ##ERROR#:	microflac SLOW decode dt=20806us left=65535 out=1 hdr=1
+14:48:02.704 -> ##CLI.META#: microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+14:48:02.704 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+14:48:02.704 -> ##ERROR#:	microflac SLOW decode dt=20827us left=65535 out=1 hdr=1
+14:48:02.704 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=353708 header=1 left=65535 out=1 lastRes=3
+14:48:02.750 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:02.750 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:02.750 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:03.444 -> ##CLI.META#: microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:03.444 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:03.444 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:03.816 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=544720 header=1 left=65535 out=1 lastRes=3
+14:48:03.816 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:03.816 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:03.816 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:04.141 -> ##CLI.META#: microflac SLOW decode dt=20848us left=65535 out=1 hdr=1
+14:48:04.141 -> ##ERROR#:	microflac SLOW decode dt=20848us left=65535 out=1 hdr=1
+14:48:04.141 -> ##ERROR#:	microflac SLOW decode dt=20848us left=65535 out=1 hdr=1
+14:48:04.883 -> ##CLI.META#: microflac SLOW decode dt=20803us left=65535 out=1 hdr=1
+14:48:04.883 -> ##ERROR#:	microflac SLOW decode dt=20803us left=65535 out=1 hdr=1
+14:48:04.883 -> ##ERROR#:	microflac SLOW decode dt=20803us left=65535 out=1 hdr=1
+14:48:04.929 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:04.929 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:04.929 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:04.929 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:05.582 -> ##CLI.META#: microflac SLOW decode dt=20856us left=65535 out=1 hdr=1
+14:48:05.582 -> ##ERROR#:	microflac SLOW decode dt=20856us left=65535 out=1 hdr=1
+14:48:05.582 -> ##ERROR#:	microflac SLOW decode dt=20856us left=65535 out=1 hdr=1
+14:48:06.000 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:06.000 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:06.047 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:06.047 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:06.279 -> ##CLI.META#: microflac SLOW decode dt=20860us left=65535 out=1 hdr=1
+14:48:06.279 -> ##ERROR#:	microflac SLOW decode dt=20860us left=65535 out=1 hdr=1
+14:48:06.325 -> ##ERROR#:	microflac SLOW decode dt=20860us left=65535 out=1 hdr=1
+14:48:06.834 -> ##CLI.META#: [соединение]
+14:48:06.973 -> ##AUDIO.INFO#: Closing web file "http://89.223.45.5:8000/zed-flac" (ssl=0)
+14:48:07.020 -> ##AUDIO.INFO#: buffers freed, free Heap: 173624 bytes
+14:48:07.020 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+14:48:07.435 -> ##AUDIO.INFO#: Connection has been established in 450 ms
+14:48:07.573 -> ##AUDIO.INFO#: format is ogg
+14:48:07.573 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+14:48:07.573 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+14:48:07.573 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:48:07.573 -> ##CLI.META#: Youventus Rádió Hi-Fi
+14:48:07.573 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:48:07.573 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:48:07.573 -> ##CLI.INFO#
+14:48:07.573 -> ##SYS.DATE#: 2026-08-27T14:48:06+03:00
+14:48:07.573 -> ##CLI.NAMESET#: 382 Radio Juventus (FLAC)
+14:48:07.573 -> ##CLI.META#: Youventus Rádió Hi-Fi
+14:48:07.620 -> ##CLI.VOL#: 44
+14:48:07.620 -> ##CLI.PLAYING#
+14:48:07.620 -> ##CLI.META#: Youventus Rádió Hi-Fi
+14:48:07.714 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:48:07.714 -> ##AUDIO.INFO#: Channels: 2
+14:48:07.760 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:07.760 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:07.760 -> ##AUDIO.INFO#: BitRate: N/A
+14:48:07.760 -> ##AUDIO.BITRATE#: N/A
+14:48:07.760 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:48:07.760 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=198 left=62272
+14:48:07.760 -> ##ERROR#:	microflac SLOW decode dt=20437us left=62272 out=1 hdr=1
+14:48:07.760 -> ##ERROR#:	microflac SLOW decode dt=20437us left=62272 out=1 hdr=1
+14:48:07.807 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=62470 header=1 left=62272 out=1 lastRes=3
+14:48:07.807 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:07.807 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:07.807 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:07.807 -> ##CLI.META#: microflac SLOW decode dt=20437us left=62272 out=1 hdr=1
+14:48:07.853 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=64717 header=1 left=64717 out=1 lastRes=3
+14:48:07.853 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:07.853 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:07.853 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:07.900 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=93830 header=1 left=65535 out=1 lastRes=3
+14:48:07.900 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:07.900 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:07.946 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:08.503 -> ##CLI.META#: microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:08.503 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:08.550 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:08.875 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=409750 header=1 left=65535 out=1 lastRes=3
+14:48:08.875 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:08.875 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:08.875 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:09.199 -> ##CLI.META#: microflac SLOW decode dt=20806us left=65535 out=1 hdr=1
+14:48:09.246 -> ##ERROR#:	microflac SLOW decode dt=20806us left=65535 out=1 hdr=1
+14:48:09.246 -> ##ERROR#:	microflac SLOW decode dt=20806us left=65535 out=1 hdr=1
+14:48:09.942 -> ##CLI.META#: microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:09.942 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:09.942 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:09.942 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:09.988 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:09.988 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:09.988 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:10.683 -> ##CLI.META#: microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:10.683 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:10.683 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:11.054 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:11.054 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:11.054 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:11.054 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:11.379 -> ##CLI.META#: microflac SLOW decode dt=20809us left=65535 out=1 hdr=1
+14:48:11.379 -> ##ERROR#:	microflac SLOW decode dt=20809us left=65535 out=1 hdr=1
+14:48:11.379 -> ##ERROR#:	microflac SLOW decode dt=20809us left=65535 out=1 hdr=1
+14:48:12.117 -> ##CLI.META#: microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:48:12.117 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:48:12.117 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:48:12.164 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:12.164 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:12.164 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:12.164 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:12.813 -> ##CLI.META#: microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+14:48:12.813 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+14:48:12.813 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+14:48:13.229 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:13.229 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:13.275 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:13.275 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:13.507 -> ##CLI.META#: microflac SLOW decode dt=20834us left=65535 out=1 hdr=1
+14:48:13.553 -> ##ERROR#:	microflac SLOW decode dt=20834us left=65535 out=1 hdr=1
+14:48:13.553 -> ##ERROR#:	microflac SLOW decode dt=20834us left=65535 out=1 hdr=1
+14:48:14.254 -> ##CLI.META#: microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:48:14.254 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:48:14.254 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:48:14.346 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:14.346 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:14.346 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:14.392 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:14.947 -> ##CLI.META#: microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:14.994 -> ##ERROR#:	microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:14.994 -> ##ERROR#:	microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:15.457 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:15.457 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:15.457 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:15.457 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:15.690 -> ##CLI.META#: microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:48:15.690 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:48:15.690 -> ##ERROR#:	microflac SLOW decode dt=20816us left=65535 out=1 hdr=1
+14:48:15.783 -> ##CLI.META#: microflac hard stall -> reconnect
+14:48:15.783 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:15.783 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:15.783 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:15.783 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:15.783 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:16.107 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+14:48:16.385 -> ##AUDIO.INFO#: buffers freed, free Heap: 173220 bytes
+14:48:16.385 -> ##AUDIO.INFO#: connect to: "s2.audiostream.hu" on port 8090 path "/juventus_FLAC"
+14:48:16.478 -> ##AUDIO.INFO#: Connection has been established in 82 ms
+14:48:16.710 -> ##AUDIO.INFO#: format is ogg
+14:48:16.710 -> ##AUDIO.INFO#: icy-genre:  Chillout pop
+14:48:16.710 -> ##AUDIO.INFO#: icy-name: Youventus Rádió Hi-Fi
+14:48:16.710 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:48:16.710 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:48:16.710 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:48:16.848 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:48:16.848 -> ##AUDIO.INFO#: Channels: 2
+14:48:16.894 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:16.894 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:16.894 -> ##AUDIO.INFO#: BitRate: N/A
+14:48:16.894 -> ##AUDIO.BITRATE#: N/A
+14:48:16.894 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:48:16.894 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=198 left=64717
+14:48:16.894 -> ##ERROR#:	microflac SLOW decode dt=20542us left=64717 out=1 hdr=1
+14:48:16.894 -> ##ERROR#:	microflac SLOW decode dt=20542us left=64717 out=1 hdr=1
+14:48:16.942 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=68214 header=1 left=64717 out=1 lastRes=3
+14:48:16.942 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:16.942 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:16.942 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:16.942 -> ##CLI.META#: microflac SLOW decode dt=20542us left=64717 out=1 hdr=1
+14:48:16.986 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=72909 header=1 left=65535 out=1 lastRes=3
+14:48:16.986 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:16.986 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:16.986 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:17.032 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=101010 header=1 left=65535 out=1 lastRes=3
+14:48:17.032 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:17.032 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:17.080 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:17.637 -> ##CLI.META#: microflac SLOW decode dt=20808us left=65535 out=1 hdr=1
+14:48:17.637 -> ##ERROR#:	microflac SLOW decode dt=20808us left=65535 out=1 hdr=1
+14:48:17.637 -> ##ERROR#:	microflac SLOW decode dt=20808us left=65535 out=1 hdr=1
+14:48:18.005 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=325026 header=1 left=65535 out=1 lastRes=3
+14:48:18.005 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:18.005 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=91 prefix=84000057 20000000
+14:48:18.005 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=91 cons=0 endpkt=1 prefix=84000057 20000000
+14:48:18.374 -> ##CLI.META#: microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+14:48:18.374 -> ##ERROR#:	microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+14:48:18.374 -> ##ERROR#:	microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+14:48:18.792 -> ##CLI.META#: [соединение]
+14:48:18.929 -> ##AUDIO.INFO#: Closing web file "http://s2.audiostream.hu:8090/juventus_FLAC" (ssl=0)
+14:48:18.929 -> ##AUDIO.INFO#: buffers freed, free Heap: 172744 bytes
+14:48:18.929 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+14:48:19.852 -> ##AUDIO.INFO#: SSL has been established in 937 ms
+14:48:19.945 -> ##AUDIO.INFO#: format is ogg
+14:48:19.945 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+14:48:19.945 -> ##AUDIO.INFO#: icy-genre:  3
+14:48:19.945 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+14:48:19.945 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:48:19.991 -> ##CLI.META#: radio.audiomastering.lt
+14:48:19.991 -> ##CLI.INFO#
+14:48:19.991 -> ##SYS.DATE#: 2026-08-27T14:48:18+03:00
+14:48:19.991 -> ##CLI.NAMESET#: 383 Radio Audiomastering (FLAC)
+14:48:19.991 -> ##CLI.META#: radio.audiomastering.lt
+14:48:19.991 -> ##CLI.VOL#: 44
+14:48:19.991 -> ##CLI.PLAYING#
+14:48:19.991 -> ##CLI.META#: radio.audiomastering.lt
+14:48:19.991 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:48:19.991 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:48:20.177 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:48:20.177 -> ##AUDIO.INFO#: Channels: 2
+14:48:20.177 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:20.177 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:20.177 -> ##AUDIO.INFO#: BitRate: 128000
+14:48:20.177 -> ##AUDIO.BITRATE#: 128000
+14:48:20.177 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+14:48:20.177 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=359 left=65176
+14:48:20.177 -> ##ERROR#:	microflac SLOW decode dt=20386us left=65176 out=1 hdr=1
+14:48:20.223 -> ##ERROR#:	microflac SLOW decode dt=20386us left=65176 out=1 hdr=1
+14:48:20.223 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=65895 header=1 left=65176 out=1 lastRes=3
+14:48:20.223 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:20.223 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:20.223 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:20.268 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=65536 header=1 left=65535 out=1 lastRes=3
+14:48:20.268 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:20.268 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:20.268 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:20.315 -> ##CLI.META#: microflac SLOW decode dt=20386us left=65176 out=1 hdr=1
+14:48:20.315 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=81920 header=1 left=65535 out=1 lastRes=3
+14:48:20.315 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:20.360 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:20.360 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:20.916 -> ##CLI.META#: microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:20.916 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:20.963 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:21.286 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=239603 header=1 left=65535 out=1 lastRes=3
+14:48:21.286 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:21.286 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:21.286 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:21.657 -> ##CLI.META#: microflac SLOW decode dt=20847us left=65535 out=1 hdr=1
+14:48:21.657 -> ##ERROR#:	microflac SLOW decode dt=20847us left=65535 out=1 hdr=1
+14:48:21.657 -> ##ERROR#:	microflac SLOW decode dt=20847us left=65535 out=1 hdr=1
+14:48:22.349 -> ##CLI.META#: microflac SLOW decode dt=20844us left=65535 out=1 hdr=1
+14:48:22.395 -> ##ERROR#:	microflac SLOW decode dt=20844us left=65535 out=1 hdr=1
+14:48:22.395 -> ##ERROR#:	microflac SLOW decode dt=20844us left=65535 out=1 hdr=1
+14:48:22.395 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=381232 header=1 left=65535 out=1 lastRes=3
+14:48:22.395 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:22.395 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:22.395 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:23.089 -> ##CLI.META#: microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:23.089 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:23.089 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:23.459 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=471589 header=1 left=65535 out=1 lastRes=3
+14:48:23.459 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:23.505 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:23.505 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:23.785 -> ##CLI.META#: microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+14:48:23.785 -> ##ERROR#:	microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+14:48:23.785 -> ##ERROR#:	microflac SLOW decode dt=20812us left=65535 out=1 hdr=1
+14:48:24.523 -> ##CLI.META#: microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+14:48:24.523 -> ##ERROR#:	microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+14:48:24.523 -> ##ERROR#:	microflac SLOW decode dt=20813us left=65535 out=1 hdr=1
+14:48:24.569 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=591168 header=1 left=65535 out=1 lastRes=3
+14:48:24.569 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:24.569 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:24.569 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:25.215 -> ##CLI.META#: microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+14:48:25.215 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+14:48:25.215 -> ##ERROR#:	microflac SLOW decode dt=20832us left=65535 out=1 hdr=1
+14:48:25.630 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:25.676 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:25.676 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:25.676 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:25.953 -> ##CLI.META#: microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:25.953 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:25.953 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:26.649 -> ##CLI.META#: microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:26.649 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:26.649 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:26.741 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:26.741 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:26.787 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:26.787 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:27.386 -> ##CLI.META#: microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+14:48:27.386 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+14:48:27.386 -> ##ERROR#:	microflac SLOW decode dt=20820us left=65535 out=1 hdr=1
+14:48:27.848 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:27.848 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:27.848 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:27.848 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:28.080 -> ##CLI.META#: microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:28.080 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:28.080 -> ##ERROR#:	microflac SLOW decode dt=20824us left=65535 out=1 hdr=1
+14:48:28.173 -> ##CLI.META#: microflac hard stall -> reconnect
+14:48:28.173 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:28.173 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:28.173 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:28.219 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:28.219 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:28.497 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+14:48:28.819 -> ##AUDIO.INFO#: buffers freed, free Heap: 173876 bytes
+14:48:28.819 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+14:48:29.282 -> ##AUDIO.INFO#: SSL has been established in 483 ms
+14:48:29.374 -> ##AUDIO.INFO#: format is ogg
+14:48:29.374 -> ##AUDIO.INFO#: icy-bitrate : 128000 (b/s)
+14:48:29.374 -> ##AUDIO.INFO#: icy-genre:  3
+14:48:29.374 -> ##AUDIO.INFO#: icy-name: radio.audiomastering.lt
+14:48:29.374 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:48:29.374 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:48:29.421 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:48:29.561 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:48:29.561 -> ##AUDIO.INFO#: Channels: 2
+14:48:29.561 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:29.561 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:29.561 -> ##AUDIO.INFO#: BitRate: 128000
+14:48:29.561 -> ##AUDIO.BITRATE#: 128000
+14:48:29.561 -> ##AUDIO.INFO#: microflac stream: max_block=4608 min_block=4608
+14:48:29.608 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4608 out_cap=9216 consumed=359 left=65176
+14:48:29.608 -> ##ERROR#:	microflac SLOW decode dt=20600us left=65176 out=1 hdr=1
+14:48:29.608 -> ##ERROR#:	microflac SLOW decode dt=20600us left=65176 out=1 hdr=1
+14:48:29.608 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=65895 header=1 left=65176 out=1 lastRes=3
+14:48:29.608 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:29.654 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:29.654 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:29.654 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=65536 header=1 left=65535 out=1 lastRes=3
+14:48:29.701 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:29.701 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:29.701 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:29.701 -> ##CLI.META#: microflac SLOW decode dt=20600us left=65176 out=1 hdr=1
+14:48:29.747 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=98304 header=1 left=65535 out=1 lastRes=3
+14:48:29.747 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:29.747 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:29.792 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:30.299 -> ##CLI.META#: microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:30.299 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:30.345 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:30.714 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=233540 header=1 left=65535 out=1 lastRes=3
+14:48:30.714 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:30.714 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:30.714 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:31.041 -> ##CLI.META#: microflac SLOW decode dt=20809us left=65535 out=1 hdr=1
+14:48:31.041 -> ##ERROR#:	microflac SLOW decode dt=20809us left=65535 out=1 hdr=1
+14:48:31.041 -> ##ERROR#:	microflac SLOW decode dt=20809us left=65535 out=1 hdr=1
+14:48:31.777 -> ##CLI.META#: microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:48:31.777 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:48:31.777 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:48:31.824 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=341526 header=1 left=65535 out=1 lastRes=3
+14:48:31.824 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:31.824 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:31.824 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:32.472 -> ##CLI.META#: microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:48:32.472 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:48:32.472 -> ##ERROR#:	microflac SLOW decode dt=20810us left=65535 out=1 hdr=1
+14:48:32.888 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=469418 header=1 left=65535 out=1 lastRes=3
+14:48:32.888 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:32.934 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:32.934 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:33.165 -> ##CLI.META#: microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:33.212 -> ##ERROR#:	microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:33.212 -> ##ERROR#:	microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:33.909 -> ##CLI.META#: microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:33.909 -> ##ERROR#:	microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:33.909 -> ##ERROR#:	microflac SLOW decode dt=20811us left=65535 out=1 hdr=1
+14:48:34.001 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=551338 header=1 left=65535 out=1 lastRes=3
+14:48:34.001 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:34.001 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:34.047 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:34.647 -> ##CLI.META#: microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+14:48:34.647 -> ##ERROR#:	microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+14:48:34.647 -> ##ERROR#:	microflac SLOW decode dt=20817us left=65535 out=1 hdr=1
+14:48:35.112 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:35.112 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:35.112 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:35.112 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:35.342 -> ##CLI.META#: microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:35.342 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:35.342 -> ##ERROR#:	microflac SLOW decode dt=20814us left=65535 out=1 hdr=1
+14:48:36.084 -> ##CLI.META#: microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:36.084 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:36.084 -> ##ERROR#:	microflac SLOW decode dt=20818us left=65535 out=1 hdr=1
+14:48:36.224 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:36.224 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:36.224 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:36.224 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:36.779 -> ##CLI.META#: microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+14:48:36.779 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+14:48:36.779 -> ##ERROR#:	microflac SLOW decode dt=20822us left=65535 out=1 hdr=1
+14:48:37.288 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:37.288 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:37.334 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=252 prefix=840000F8 0C000000
+14:48:37.334 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=252 cons=0 endpkt=1 prefix=840000F8 0C000000
+14:48:37.473 -> ##CLI.META#: microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:37.520 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:37.520 -> ##ERROR#:	microflac SLOW decode dt=20815us left=65535 out=1 hdr=1
+14:48:37.613 -> ##CLI.META#: microflac hard stall -> reconnect
+14:48:37.613 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:37.613 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:37.613 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:37.613 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:37.613 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:37.891 -> ##AUDIO.INFO#: Closing web file "https://transliacija.audiomastering.lt/pure" (ssl=1)
+14:48:38.216 -> ##AUDIO.INFO#: buffers freed, free Heap: 173884 bytes
+14:48:38.216 -> ##AUDIO.INFO#: connect to: "transliacija.audiomastering.lt" on port 443 path "/pure"
+14:48:38.773 -> ##CLI.META#: [соединение]
+14:48:38.819 -> ##AUDIO.INFO#: SSL has been established in 582 ms
+14:48:38.819 -> ##AUDIO.INFO#: buffers freed, free Heap: 173284 bytes
+14:48:38.819 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+14:48:39.096 -> ##AUDIO.INFO#: Connection has been established in 281 ms
+14:48:39.187 -> ##AUDIO.INFO#: format is ogg
+14:48:39.187 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+14:48:39.234 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:39.234 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:39.234 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+14:48:39.234 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:48:39.234 -> ##CLI.INFO#
+14:48:39.234 -> ##SYS.DATE#: 2026-08-27T14:48:37+03:00
+14:48:39.234 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+14:48:39.234 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:39.234 -> ##CLI.VOL#: 44
+14:48:39.234 -> ##CLI.PLAYING#
+14:48:39.234 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:48:39.280 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:48:39.280 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:39.326 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:48:39.326 -> ##AUDIO.INFO#: Channels: 2
+14:48:39.326 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:39.326 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:39.373 -> ##AUDIO.INFO#: BitRate: 1441000
+14:48:39.373 -> ##AUDIO.BITRATE#: 1441000
+14:48:39.373 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:48:39.373 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=61942
+14:48:39.373 -> ##ERROR#:	microflac SLOW decode dt=20983us left=61942 out=1 hdr=1
+14:48:39.373 -> ##ERROR#:	microflac SLOW decode dt=20983us left=61942 out=1 hdr=1
+14:48:39.373 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=62093 header=1 left=61942 out=1 lastRes=3
+14:48:39.418 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:39.418 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:39.418 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:39.465 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=61942 header=1 left=61942 out=1 lastRes=3
+14:48:39.465 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:39.465 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:39.465 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:39.465 -> ##CLI.META#: microflac SLOW decode dt=20983us left=61942 out=1 hdr=1
+14:48:39.511 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=99278 header=1 left=65535 out=1 lastRes=3
+14:48:39.511 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:39.511 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:39.558 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:40.111 -> ##CLI.META#: microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:48:40.111 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:48:40.111 -> ##ERROR#:	microflac SLOW decode dt=20821us left=65535 out=1 hdr=1
+14:48:40.482 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=422378 header=1 left=65535 out=1 lastRes=3
+14:48:40.482 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:40.482 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:40.482 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:40.851 -> ##CLI.META#: microflac SLOW decode dt=20949us left=65535 out=1 hdr=1
+14:48:40.851 -> ##ERROR#:	microflac SLOW decode dt=20949us left=65535 out=1 hdr=1
+14:48:40.851 -> ##ERROR#:	microflac SLOW decode dt=20949us left=65535 out=1 hdr=1
+14:48:41.546 -> ##CLI.META#: microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+14:48:41.546 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+14:48:41.592 -> ##ERROR#:	microflac SLOW decode dt=20826us left=65535 out=1 hdr=1
+14:48:41.592 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:41.592 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:41.592 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:41.592 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:42.288 -> ##CLI.META#: microflac SLOW decode dt=20833us left=65535 out=1 hdr=1
+14:48:42.288 -> ##ERROR#:	microflac SLOW decode dt=20833us left=65535 out=1 hdr=1
+14:48:42.288 -> ##ERROR#:	microflac SLOW decode dt=20833us left=65535 out=1 hdr=1
+14:48:42.659 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:42.659 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:42.706 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:42.706 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:42.983 -> ##CLI.META#: microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+14:48:42.983 -> ##ERROR#:	microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+14:48:42.983 -> ##ERROR#:	microflac SLOW decode dt=20855us left=65535 out=1 hdr=1
+14:48:43.724 -> ##CLI.META#: microflac SLOW decode dt=20864us left=65535 out=1 hdr=1
+14:48:43.724 -> ##ERROR#:	microflac SLOW decode dt=20864us left=65535 out=1 hdr=1
+14:48:43.724 -> ##ERROR#:	microflac SLOW decode dt=20864us left=65535 out=1 hdr=1
+14:48:43.770 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=100 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:43.770 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:43.770 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:43.770 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:44.418 -> ##CLI.META#: microflac SLOW decode dt=20854us left=65535 out=1 hdr=1
+14:48:44.418 -> ##ERROR#:	microflac SLOW decode dt=20854us left=65535 out=1 hdr=1
+14:48:44.418 -> ##ERROR#:	microflac SLOW decode dt=20854us left=65535 out=1 hdr=1
+14:48:44.834 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=125 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:44.880 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:44.880 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:44.880 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:45.159 -> ##CLI.META#: microflac SLOW decode dt=20849us left=65535 out=1 hdr=1
+14:48:45.159 -> ##ERROR#:	microflac SLOW decode dt=20849us left=65535 out=1 hdr=1
+14:48:45.159 -> ##ERROR#:	microflac SLOW decode dt=20849us left=65535 out=1 hdr=1
+14:48:45.854 -> ##CLI.META#: microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:48:45.854 -> ##ERROR#:	microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:48:45.854 -> ##ERROR#:	microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:48:45.946 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=150 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:45.946 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:45.993 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:45.993 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:46.597 -> ##CLI.META#: microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:48:46.597 -> ##ERROR#:	microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:48:46.597 -> ##ERROR#:	microflac SLOW decode dt=20828us left=65535 out=1 hdr=1
+14:48:47.061 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=175 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:47.061 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:47.061 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:47.061 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:47.293 -> ##CLI.META#: microflac SLOW decode dt=20859us left=65535 out=1 hdr=1
+14:48:47.293 -> ##ERROR#:	microflac SLOW decode dt=20859us left=65535 out=1 hdr=1
+14:48:47.293 -> ##ERROR#:	microflac SLOW decode dt=20859us left=65535 out=1 hdr=1
+14:48:47.386 -> ##CLI.META#: microflac hard stall -> reconnect
+14:48:47.386 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:47.386 -> ##ERROR#:	microflac hard stall -> reconnect
+14:48:47.386 -> ##CLI.META#: Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:47.386 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:47.432 -> ##ERROR#:	Decode stalled -> reconnect #1 (mf_hard_stall)
+14:48:47.711 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+14:48:47.711 -> Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+14:48:47.756 -> 
+14:48:47.756 -> Core  1 register dump:
+14:48:47.756 -> PC      : 0x4206cc06  PS      : 0x00060a30  A0      : 0x82029a73  A1      : 0x3fcebee0  
+14:48:47.756 -> A2      : 0x00008448  A3      : 0x00000000  A4      : 0x00060e20  A5      : 0x00000000  
+14:48:47.803 -> A6      : 0x00000000  A7      : 0x3fca1f64  A8      : 0x00000000  A9      : 0x3fcebeb0  
+14:48:47.803 -> A10     : 0x00008000  A11     : 0x3fcebedf  A12     : 0x00000001  A13     : 0x00000009  
+14:48:47.803 -> A14     : 0x00000001  A15     : 0x3fcebebc  SAR     : 0x00000013  EXCCAUSE: 0x0000001c  
+14:48:47.803 -> EXCVADDR: 0x00000014  LBEG    : 0x40056f5c  LEND    : 0x40056f72  LCOUNT  : 0xffffffff  
+14:48:47.803 -> 
+14:48:47.803 -> 
+14:48:47.803 -> Backtrace: 0x4206cc03:0x3fcebee0 0x42029a70:0x3fcebf00 0x42029ffd:0x3fcebf40 0x42067382:0x3fcebf90 0x4206a053:0x3fcebfc0 0x42077c08:0x3fcebfe0 0x40380cc5:0x3fcec000
+14:48:47.849 -> 
+14:48:47.849 -> 
+14:48:47.849 -> 
+14:48:47.849 -> 
+14:48:47.849 -> ELF file SHA256: 14b7134b3
+14:48:47.849 -> 
+14:48:48.034 -> Rebooting...
+14:48:48.081 -> ESP-ROM:esp32s3-20210327
+14:48:48.081 -> Build:Mar 27 2021
+14:48:48.081 -> rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+14:48:48.081 -> Saved PC:0x4037bc4e
+14:48:48.081 -> SPIWP:0xee
+14:48:48.081 -> mode:DIO, clock div:1
+14:48:48.081 -> load:0x3fce2820,len:0x116c
+14:48:48.081 -> load:0x403c8700,len:0xc2c
+14:48:48.081 -> load:0x403cb700,len:0x3108
+14:48:48.081 -> entry 0x403c88b8
+14:48:48.452 -> ##[BOOT]#	************************************************
+14:48:48.452 -> ##[BOOT]#	*           ёRadio v0.9.535(m)-3.4.2p          *
+14:48:48.452 -> ##[BOOT]#	************************************************
+14:48:48.452 -> ##[BOOT]#	------------------------------------------------
+14:48:48.499 -> ##[BOOT]#	arduino:	10819
+14:48:48.499 -> ##[BOOT]#	compiler:	14.2.0
+14:48:48.499 -> ##[BOOT]#	esp32core:	3.3.6
+14:48:48.499 -> ##[BOOT]#	chip:		model: ESP32-S3 | rev: 2 | id: 13639572 | cores: 2 | psram: 8388608
+14:48:48.499 -> ##[BOOT]#	display:	model: 0, (CS-5, DC-4, RST--1, SPI-FSPI, MOSI-11, SCLK-12)
+14:48:48.499 -> ##[BOOT]#	audio:		I2S (DOUT-17, BCLK-16, LRC-18)	Version 3.4.2p
+14:48:48.499 -> ##[BOOT]#	audioinfo:	false
+14:48:48.499 -> ##[BOOT]#	smartstart:	0
+14:48:48.499 -> ##[BOOT]#	vumeter:	false
+14:48:48.499 -> ##[BOOT]#	softapdelay:	0
+14:48:48.499 -> ##[BOOT]#	flipscreen:	false
+14:48:48.546 -> ##[BOOT]#	invertdisplay:	false
+14:48:48.546 -> ##[BOOT]#	showweather:	false
+14:48:48.546 -> ##[BOOT]#	buttons:	left=255, center=255, right=255, up=255, down=255, mode=255, pullup=ON
+14:48:48.546 -> ##[BOOT]#	encoders:	l1=255, b1=255, r1=255, pullup=ON, l2=255, b2=255, r2=255, pullup=ON
+14:48:48.546 -> ##[BOOT]#	ir:		NONE
+14:48:48.546 -> ##[BOOT]#	SD:		CS-39
+14:48:48.546 -> ##[BOOT]#	battery:	battery ON
+14:48:48.546 -> ##[BOOT]#	------------------------------------------------
+14:48:48.546 -> ##[BOOT]#	CONFIG_VERSION	4
+14:48:48.639 -> ##[BOOT]#	SPIFFS mounted
+14:48:48.871 -> ##USB.HOST#: init GPIO19 D- GPIO20 D+ (S3 internal OTG PHY)
+14:48:48.871 -> ##USB.STATUS#: init 5V power check polyfuse 0.75A
+14:48:48.871 -> ##USB.HOST#: copy of SD mode — same API: listSD/scan/play/seek/meta
+14:48:48.871 -> ##[BOOT]#	player.init	done
+14:48:48.918 -> ##[BOOT]#	network.begin
+14:48:49.058 -> ##[BOOT]#	Attempt to connect to KNOPKA 2,4GHz
+14:48:49.058 -> ##[BOOT]#	....
+14:48:50.585 -> ##[BOOT]#	done
+14:48:50.585 -> ##[BOOT]#	SD search	done
+14:48:50.631 -> ##[BOOT]#	netserver.begin	done
+14:48:50.631 -> ##[BOOT]#	telnet.begin	done
+14:48:50.631 -> ##[BOOT]#
+14:48:50.631 -> ##[BOOT]#	Ready! Go to http:/192.168.1.77/ to configure
+14:48:50.631 -> ##[BOOT]#	------------------------------------------------
+14:48:50.631 -> ##[BOOT]#
+14:48:50.631 -> ##CLI.META#: [готов]
+14:48:50.723 -> ##CLI.META#: [соединение]
+14:48:50.769 -> ##AUDIO.INFO#: inputBufferSize: 655349 bytes
+14:48:50.769 -> ##AUDIO.INFO#: buffers freed, free Heap: 174700 bytes
+14:48:50.769 -> ##AUDIO.INFO#: connect to: "stream.radioparadise.com" on port 80 path "/mellow-flac"
+14:48:50.909 -> ##AUDIO.INFO#: Connection has been established in 161 ms
+14:48:51.048 -> ##AUDIO.INFO#: format is ogg
+14:48:51.048 -> ##AUDIO.INFO#: icy-genre:  Eclectic
+14:48:51.048 -> ##AUDIO.INFO#: icy-name: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:51.048 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:51.048 -> ##AUDIO.INFO#: icy-bitrate : 1441000 (b/s)
+14:48:51.048 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:48:51.187 -> ##CLI.INFO#
+14:48:51.187 -> ##SYS.DATE#: 1900-01-00T00:00:00+03:00
+14:48:51.187 -> ##CLI.NAMESET#: 316 (flc) Paradise Mellow
+14:48:51.187 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:51.187 -> ##CLI.VOL#: 44
+14:48:51.187 -> ##CLI.PLAYING#
+14:48:51.187 -> ##AUDIO.INFO#: microflac WEB activated: block=65535 resBuff=65535 feedCap=65535
+14:48:51.187 -> ##AUDIO.INFO#: format is flac (micro-flac WEB)
+14:48:51.187 -> ##CLI.META#: Radio Paradise: Mellow Mix (flac) - playlist: radioparadise.com
+14:48:51.280 -> ##AUDIO.INFO#: stream ready (ogg prebuffer=60000)
+14:48:51.280 -> ##AUDIO.INFO#: Channels: 2
+14:48:51.280 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:51.280 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:51.280 -> ##AUDIO.INFO#: BitRate: 1441000
+14:48:51.280 -> ##AUDIO.BITRATE#: 1441000
+14:48:51.280 -> ##AUDIO.INFO#: microflac stream: max_block=4096 min_block=4096
+14:48:51.280 -> ##AUDIO.INFO#: microflac HEADER_READY sr=44100 ch=2 bps=16 max_blk=4096 out_cap=8192 consumed=151 left=61942
+14:48:51.327 -> ##ERROR#:	microflac SLOW decode dt=20466us left=61942 out=1 hdr=1
+14:48:51.327 -> ##ERROR#:	microflac SLOW decode dt=20466us left=61942 out=1 hdr=1
+14:48:51.327 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=1 filled=62093 header=1 left=61942 out=1 lastRes=3
+14:48:51.327 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:51.327 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:51.327 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:51.373 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=2 filled=61942 header=1 left=61942 out=1 lastRes=3
+14:48:51.373 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:51.373 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:51.373 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:51.420 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=3 filled=90557 header=1 left=65535 out=1 lastRes=3
+14:48:51.420 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:51.420 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:51.466 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:51.466 -> ##CLI.META#: microflac SLOW decode dt=20466us left=61942 out=1 hdr=1
+14:48:52.022 -> ##CLI.META#: microflac SLOW decode dt=20777us left=65535 out=1 hdr=1
+14:48:52.022 -> ##ERROR#:	microflac SLOW decode dt=20777us left=65535 out=1 hdr=1
+14:48:52.069 -> ##ERROR#:	microflac SLOW decode dt=20777us left=65535 out=1 hdr=1
+14:48:52.394 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=25 filled=387914 header=1 left=65535 out=1 lastRes=3
+14:48:52.394 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:52.394 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:52.394 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:52.717 -> [WEBSOCKET] client #1 connected from 192.168.1.96
+14:48:52.717 -> ##CLI.META#: microflac SLOW decode dt=20745us left=65535 out=1 hdr=1
+14:48:52.764 -> ##ERROR#:	microflac SLOW decode dt=20745us left=65535 out=1 hdr=1
+14:48:52.764 -> ##ERROR#:	microflac SLOW decode dt=20745us left=65535 out=1 hdr=1
+14:48:53.462 -> ##CLI.META#: microflac SLOW decode dt=20780us left=65535 out=1 hdr=1
+14:48:53.462 -> ##ERROR#:	microflac SLOW decode dt=20780us left=65535 out=1 hdr=1
+14:48:53.462 -> ##ERROR#:	microflac SLOW decode dt=20780us left=65535 out=1 hdr=1
+14:48:53.462 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=50 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:53.462 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:53.507 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:53.507 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:54.157 -> ##CLI.META#: microflac SLOW decode dt=20773us left=65535 out=1 hdr=1
+14:48:54.157 -> ##ERROR#:	microflac SLOW decode dt=20773us left=65535 out=1 hdr=1
+14:48:54.203 -> ##ERROR#:	microflac SLOW decode dt=20773us left=65535 out=1 hdr=1
+14:48:54.576 -> ##AUDIO.INFO#: microflac NEED_MORE zero_cons=75 filled=655350 header=1 left=65535 out=1 lastRes=3
+14:48:54.576 -> ##AUDIO.INFO#: microflac OGG_STATE(zero) res=-5(OGG_STREAM_BOS_ERROR) demuxCons=0 pktLen=0 endpkt=0 bos=0 eos=0
+14:48:54.576 -> ##AUDIO.INFO#: microflac CHUNK(zero) off=0 len=44 prefix=84000028 20000000
+14:48:54.576 -> ##AUDIO.INFO#: microflac OGG_BODY(zero) len=44 cons=0 endpkt=1 prefix=84000028 20000000
+14:48:54.902 -> ##CLI.META#: microflac SLOW decode dt=20783us left=65535 out=1 hdr=1
+14:48:54.902 -> ##ERROR#:	microflac SLOW decode dt=20783us left=65535 out=1 hdr=1
+14:48:54.902 -> ##ERROR#:	microflac SLOW decode dt=20783us left=65535 out=1 hdr=1
+14:48:55.462 -> ##CLI.META#: [соединение]
+14:48:55.554 -> ##AUDIO.INFO#: Closing web file "http://stream.radioparadise.com/mellow-flac" (ssl=0)
+14:48:55.554 -> ##AUDIO.INFO#: buffers freed, free Heap: 173788 bytes
+14:48:55.554 -> ##AUDIO.INFO#: connect to: "stream.bigb21.nl" on port 8002 path "/"
+14:48:55.972 -> ##AUDIO.INFO#: Connection has been established in 425 ms
+14:48:56.065 -> ##AUDIO.INFO#: icy-name: BigB21
+14:48:56.065 -> ##AUDIO.INFO#: icy-genre: Pop
+14:48:56.065 -> ##AUDIO.INFO#: format is mp3
+14:48:56.065 -> ##AUDIO.INFO#: icy-metaint: 16384 (metadata ON)
+14:48:56.065 -> ##AUDIO.INFO#: MP3Decoder has been initialized
+14:48:56.065 -> ##AUDIO.INFO#: playlistFormat NONE, dataMode AUDIO_DATA, streamType: WEBSTREAM
+14:48:56.065 -> ##CLI.META#: BigB21
+14:48:56.065 -> ##AUDIO.INFO#: stream ready
+14:48:56.065 -> ##CLI.INFO#
+14:48:56.065 -> ##AUDIO.INFO#: syncword found at pos 0
+14:48:56.111 -> ##AUDIO.INFO#: MPEG-1 Layer III
+14:48:56.111 -> ##AUDIO.INFO#: Channels: 2
+14:48:56.111 -> ##AUDIO.INFO#: SampleRate: 44100 (Hz)
+14:48:56.111 -> ##AUDIO.INFO#: BitsPerSample: 16
+14:48:56.111 -> ##AUDIO.INFO#: BitRate: 320000
+14:48:56.111 -> ##AUDIO.BITRATE#: 320000
+14:48:56.111 -> ##SYS.DATE#: 2026-08-27T14:48:53+03:00
+14:48:56.111 -> ##CLI.NAMESET#: 312 65-Big (asx)
+14:48:56.111 -> ##CLI.META#: BigB21
+14:48:56.111 -> ##CLI.VOL#: 44
+14:48:56.111 -> ##CLI.PLAYING#
+14:48:56.111 -> ##CLI.META#: BigB21
+14:48:56.111 -> ##CLI.META#: Imanbek - Belly dancer
+14:48:57.409 -> ##CLI.META#: [остановлено]
+14:48:57.409 -> ##AUDIO.INFO#: Closing web file "http://stream.bigb21.nl:8002/" (ssl=0)
+14:48:57.409 -> ##AUDIO.INFO#: buffers freed, free Heap: 173920 bytes
+14:48:57.457 -> ##CLI.INFO#
+14:48:57.457 -> ##SYS.DATE#: 2026-08-27T14:48:54+03:00
+14:48:57.457 -> ##CLI.NAMESET#: 312 65-Big (asx)
+14:48:57.457 -> ##CLI.VOL#: 44
+14:48:57.457 -> ##CLI.STOPPED#
+14:53:52.571 -> [WEBSOCKET] client #1 disconnected
+14:53:54.938 -> [WEBSOCKET] client #2 connected from 192.168.1.96
+14:55:20.606 -> [WEBSOCKET] client #2 disconnected
+14:55:22.690 -> [WEBSOCKET] client #3 connected from 192.168.1.96
