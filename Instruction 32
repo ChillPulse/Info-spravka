@@ -1,0 +1,91 @@
+Нужно **не чинить код**, а **влить коммит `f4a4f84…` в GitHub-ветку `main`**: сейчас HEAD `main` на GitHub — `04e4a39` , а коммит `f4a4f84…` существует как отдельный коммит, но **в историю `main` не попал** .
+
+Ниже — “железное” ТЗ агенту (копипастой, без импровизаций).
+
+---
+
+# Instruction 32 — ДОВЕСТИ `f4a4f84…` ДО GitHub `main` (fast-forward), с доказательством через GitHub API
+
+## 0) РЕГЛАМЕНТ
+Работать строго в `main`, без force-push.
+
+## 1) Проверка remote (обязательная, вывести сырой вывод)
+```bash
+git remote -v
+git config --get remote.origin.url
+```
+PASS: origin = `https://github.com/ChillPulse/Youradio_Omnia_ESP32S3.git`
+
+## 2) Сверить HEAD `main` на GitHub (обязательная проверка через API)
+```bash
+python3 - <<'PY'
+import json, urllib.request
+u="https://api.github.com/repos/ChillPulse/Youradio_Omnia_ESP32S3/commits/main"
+j=json.loads(urllib.request.urlopen(u).read().decode())
+print("github_main_sha =", j["sha"])
+PY
+```
+
+И:
+```bash
+git ls-remote origin refs/heads/main
+```
+
+PASS: оба SHA совпадают.
+
+## 3) Привести локальный `main` к `origin/main`
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+git rev-parse HEAD
+```
+
+## 4) Fast-forward локального `main` на `f4a4f84…` (предпочтительно, без cherry-pick)
+Команда:
+```bash
+git merge --ff-only f4a4f84f5c160149f3006c30bfd019a7617767f4
+```
+
+Ожидаемо: `Fast-forward` и HEAD станет `f4a4f84…`.
+
+### Если `--ff-only` НЕ прошёл (только в этом случае)
+Сделать:
+```bash
+git cherry-pick f4a4f84f5c160149f3006c30bfd019a7617767f4
+```
+
+## 5) Sanity-check (обязательный)
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+```
+Оба должны вывести `OK`.
+
+## 6) Push в GitHub `main`
+```bash
+git push origin main
+```
+
+## 7) Доказательство, что GitHub `main` теперь на `f4a4f84…` (обязательное)
+Агент присылает сырой вывод:
+
+```bash
+git rev-parse HEAD
+git ls-remote origin refs/heads/main
+python3 - <<'PY'
+import json, urllib.request
+u="https://api.github.com/repos/ChillPulse/Youradio_Omnia_ESP32S3/commits/main"
+j=json.loads(urllib.request.urlopen(u).read().decode())
+print("github_main_sha =", j["sha"])
+PY
+```
+
+PASS: все три SHA равны `f4a4f84f5c160149f3006c30bfd019a7617767f4`.
+
+## 8) Что делаете вы перед прошивкой (чтобы прошить именно GitHub `main`)
+```bash
+git fetch origin
+git checkout main
+git reset --hard origin/main
+git rev-parse HEAD
