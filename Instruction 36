@@ -1,0 +1,215 @@
+# Instruction 36 — Runtime microflac debug по UART: команда `mfdbg` (без пересборки с DEBUG)
+
+Цель: в релизной прошивке подробные логи microflac **по умолчанию выключены**, но их можно включить/выключить **в рантайме** командой по UART (и по telnet тоже, т.к. это один обработчик).
+
+## 0) РЕГЛАМЕНТ
+Только `main`, без побочных правок.
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / ЗАПРЕТЫ
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) `yoRadio/src/core/telnet.cpp`
+3) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD режим / legacy декодеры
+- другие web кодеки
+- любые `.h` (в этой инструкции не трогаем заголовки)
+- рефакторинг/форматирование “по пути”
+
+---
+
+## 2) P0: `Audio.cpp` — добавить runtime-флаг + setter/getter (экспортируемые)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+### 2.1 Куда вставить
+Найти вверху определение флага:
+
+```cpp
+#ifndef OMNIA_DEBUG_MICROFLAC
+  #if defined(DEBUG)
+    #define OMNIA_DEBUG_MICROFLAC 1
+  #else
+    #define OMNIA_DEBUG_MICROFLAC 0
+  #endif
+#endif
+```
+
+(это около строк 44–53 в raw). 
+
+### 2.2 СРАЗУ ПОСЛЕ этого блока вставить (1:1)
+
+```cpp
+// Runtime microflac debug switch (UART/telnet command-controlled).
+// Default follows build-time OMNIA_DEBUG_MICROFLAC (DEBUG builds start verbose).
+volatile bool g_omnia_microflac_debug = (OMNIA_DEBUG_MICROFLAC != 0);
+
+void omnia_microflac_set_debug(bool en) { g_omnia_microflac_debug = en; }
+bool omnia_microflac_get_debug() { return g_omnia_microflac_debug; }
+```
+
+---
+
+## 3) P0: `Audio.cpp` — заменить `#if OMNIA_DEBUG_MICROFLAC` на runtime-guard `if (g_omnia_microflac_debug)`
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+### 3.1 Правило замены (строго)
+Каждый блок вида:
+
+```cpp
+#if OMNIA_DEBUG_MICROFLAC
+  ...один или много AUDIO_INFO/AUDIO_ERROR...
+#endif
+```
+
+заменить на:
+
+```cpp
+if (g_omnia_microflac_debug) {
+  ...тот же код без изменений...
+}
+```
+
+### 3.2 Какие места точно надо конвертировать (обязательные)
+В `sendBytes()` в microflac loop (около строк 5650–5900) есть минимум 4 таких участка: 
+
+1) `microflac SLOW decode dt=...`
+2) `microflac adopt demux_cons=...`
+3) `microflac NEED_MORE zero_cons...` (внутри него ещё идут `OGG_STATE(zero) / CHUNK(zero) / OGG_BODY(zero) / OGG_DBG(zero)`)
+4) `microflac NEED_MORE(progress)...` (внутри него `NATIVE_DIAG`, `OGG_DBG`, `OGG_BODY`, `OGG_STATE`, `CHUNK` и т.п.)
+
+После выполнения:
+- в `Audio.cpp` **не должно остаться** строк `#if OMNIA_DEBUG_MICROFLAC` (кроме блока определения макроса вверху, где `#if defined(DEBUG)` — это нормально).
+
+---
+
+## 4) P0: `telnet.cpp` — добавить UART команду `mfdbg`
+
+Файл: `yoRadio/src/core/telnet.cpp`
+
+### 4.1 Добавить extern-декларации
+Сразу после includes (после строки `#include "omniaplus/cli_extensions.h"`) вставить:
+
+```cpp
+// Runtime microflac debug switch (implemented in Audio.cpp)
+extern void omnia_microflac_set_debug(bool en);
+extern bool omnia_microflac_get_debug();
+```
+
+### 4.2 Добавить обработчик команды в `Telnet::on_input()`
+В функции:
+
+```cpp
+void Telnet::on_input(const char* str, uint8_t clientId) {
+```
+
+Сразу после:
+
+```cpp
+if (strlen(str) == 0) return;
+```
+
+вставить **строго** этот блок (1:1):
+
+```cpp
+// ---- OMNIA: runtime microflac debug via UART/telnet ----
+// Usage:
+//   mfdbg            -> status
+//   mfdbg on|1       -> enable
+//   mfdbg off|0      -> disable
+//   mfdbg toggle     -> toggle
+if (strncmp(str, "mfdbg", 5) == 0) {
+  char arg[16] = {0};
+  bool cur = omnia_microflac_get_debug();
+
+  if (sscanf(str, "mfdbg %15s", arg) == 1) {
+    if (!strcmp(arg, "on") || !strcmp(arg, "1")) cur = true;
+    else if (!strcmp(arg, "off") || !strcmp(arg, "0")) cur = false;
+    else if (!strcmp(arg, "toggle")) cur = !cur;
+  }
+
+  omnia_microflac_set_debug(cur);
+  printf(clientId, "##MFDBG#: %d\n> ", cur ? 1 : 0);
+  return;
+}
+```
+
+---
+
+## 5) Sanity: обновить `tools/omnia_sanity_microflac_ogg.py`, чтобы больше не пролез “компиляторный debug-only”
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+### 5.1 Заменить блок проверок, который требует `#if OMNIA_DEBUG_MICROFLAC`
+Сейчас в нём есть:
+
+```python
+if "#if OMNIA_DEBUG_MICROFLAC" not in a_dbg:
+    print("FAIL: missing debug gating blocks (#if OMNIA_DEBUG_MICROFLAC) in Audio.cpp")
+    sys.exit(2)
+```
+
+Его нужно УДАЛИТЬ и заменить на проверки runtime-режима:
+
+Вставить (примерно на место старых проверок debug gating) вот это (1:1):
+
+```python
+a_dbg = Path("yoRadio/src/audioI2S/Audio.cpp").read_text(encoding="utf-8", errors="replace")
+
+# Runtime debug must exist
+if "g_omnia_microflac_debug" not in a_dbg:
+    print("FAIL: missing g_omnia_microflac_debug in Audio.cpp")
+    sys.exit(2)
+if "omnia_microflac_set_debug" not in a_dbg or "omnia_microflac_get_debug" not in a_dbg:
+    print("FAIL: missing omnia_microflac_set_debug/get_debug in Audio.cpp")
+    sys.exit(2)
+
+# No compile-time gating blocks should remain (we need runtime toggle)
+if "#if OMNIA_DEBUG_MICROFLAC" in a_dbg:
+    print("FAIL: Audio.cpp still contains '#if OMNIA_DEBUG_MICROFLAC' blocks; must be runtime-gated")
+    sys.exit(2)
+
+# UART command must exist
+tln = Path("yoRadio/src/core/telnet.cpp").read_text(encoding="utf-8", errors="replace")
+if "mfdbg" not in tln:
+    print("FAIL: missing 'mfdbg' command in telnet.cpp")
+    sys.exit(2)
+```
+
+(остальные sanity-проверки в файле оставляем как есть)
+
+---
+
+## 6) Обязательные проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `yoRadio/src/core/telnet.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 7) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp yoRadio/src/core/telnet.cpp tools/omnia_sanity_microflac_ogg.py
+git commit -m "feat(debug): runtime microflac debug toggle via UART/telnet command mfdbg (no rebuild needed)"
+git push origin main
+```
