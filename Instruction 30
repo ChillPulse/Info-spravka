@@ -1,0 +1,192 @@
+# Instruction 30 — DIAG+FIX: zero_cons должен печатать OGG_STATE/CHUNK + “adopt demux consume” если demux реально потребил байты (Log79)
+
+Цель: устранить “тишина + zero_cons бесконечно”, и получить либо `SUCCESS`, либо лог, который однозначно показывает причину (OGG_STATE/CHUNK даже при bytes_consumed==0).
+
+## 0) Регламент
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / запреты
+
+### Разрешено менять ТОЛЬКО:
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD режим / legacy FLAC
+- любые другие web кодеки
+- любые `micro_flac/**` файлы (в этой инструкции не трогаем кодек — только glue-слой и sanity)
+
+---
+
+## 2) P0 FIX: “adopt demux consume” — если microflac вернул NEED_MORE и bytes_consumed==0, но demux сообщает, что он что-то съел
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`  
+Функция: `Audio::sendBytes(...)`  
+Место: внутри microflac decode-loop сразу **после** строки:
+
+```cpp
+m_mf_lastRes = (int8_t)mf_res;
+```
+
+И **до** блока:
+
+```cpp
+// progress bookkeeping
+if(bytes_consumed > 0){
+    ...
+}
+```
+
+### Вставить этот блок 1:1:
+
+```cpp
+// Log79: if FLAC decoder reports NEED_MORE with zero consumed, but Ogg demuxer snapshot
+// indicates it actually consumed bytes, adopt that consumption to advance the input window.
+// This prevents re-feeding the same bytes forever (zero_cons storm).
+if (mf_res == micro_flac::FLAC_DECODER_NEED_MORE_DATA && bytes_consumed == 0) {
+    const size_t demux_cons = (size_t)g_mf.get_last_ogg_bytes_consumed();
+    if (demux_cons > 0 && demux_cons <= left) {
+        bytes_consumed = demux_cons;
+        // rate-limited info
+        static uint32_t s_adoptMs = 0;
+        if (millis() - s_adoptMs > 700) {
+            s_adoptMs = millis();
+            AUDIO_INFO("microflac adopt demux_cons=%u (left=%u) ogg_res=%d(%s) pktLen=%u endpkt=%u",
+                       (unsigned)demux_cons, (unsigned)left,
+                       (int)g_mf.get_last_ogg_res(), oggDemuxName((int)g_mf.get_last_ogg_res()),
+                       (unsigned)g_mf.get_last_ogg_packet_len(),
+                       (unsigned)g_mf.get_last_ogg_packet_endpkt());
+        }
+    }
+}
+```
+
+---
+
+## 3) P0 DIAG: печатать OGG_STATE/CHUNK/OGG_BODY/OGG_DBG также в zero_cons ветке (иначе Log80 опять будет “пустой”)
+
+Сейчас у вас “богатый” блок печатается только в ветке:
+
+```cpp
+if(bytes_consumed > 0 && samples_decoded == 0) { ... }
+```
+
+Нужно добавить урезанный, но информативный лог прямо в `bytes_consumed == 0` ветку, внутри условия (где уже есть `if(m_mf_zeroConsumeCnt <= 3 || %25==0)`).
+
+Файл: `Audio.cpp`, в том же месте, где сейчас печатается:
+
+```cpp
+AUDIO_INFO("microflac NEED_MORE zero_cons=... lastRes=...");
+```
+
+### Сразу после этой строки вставить 1:1:
+
+```cpp
+// Log79: show demux/chunk state even when bytes_consumed==0 (otherwise we are blind).
+AUDIO_INFO("microflac OGG_STATE(zero) res=%d(%s) demuxCons=%u pktLen=%u endpkt=%u bos=%u eos=%u",
+    (int)g_mf.get_last_ogg_res(), oggDemuxName((int)g_mf.get_last_ogg_res()),
+    (unsigned)g_mf.get_last_ogg_bytes_consumed(),
+    (unsigned)g_mf.get_last_ogg_packet_len(),
+    (unsigned)g_mf.get_last_ogg_packet_endpkt(),
+    (unsigned)g_mf.get_last_ogg_packet_bos(),
+    (unsigned)g_mf.get_last_ogg_packet_eos()
+);
+
+if (g_mf.get_last_chunk_prefix_valid()) {
+    AUDIO_INFO("microflac CHUNK(zero) off=%u len=%u prefix=%02X%02X%02X%02X %02X%02X%02X%02X",
+        (unsigned)g_mf.get_last_chunk_off(),
+        (unsigned)g_mf.get_last_chunk_len(),
+        (unsigned)g_mf.get_last_chunk_prefix(0),
+        (unsigned)g_mf.get_last_chunk_prefix(1),
+        (unsigned)g_mf.get_last_chunk_prefix(2),
+        (unsigned)g_mf.get_last_chunk_prefix(3),
+        (unsigned)g_mf.get_last_chunk_prefix(4),
+        (unsigned)g_mf.get_last_chunk_prefix(5),
+        (unsigned)g_mf.get_last_chunk_prefix(6),
+        (unsigned)g_mf.get_last_chunk_prefix(7)
+    );
+}
+
+#ifdef MICRO_OGG_DEMUXER_DEBUG
+AUDIO_INFO("microflac OGG_DBG(zero) state=%d assembling=%u skipping=%u pkt=%u bodyCons=%u seg=%u/%u bufCap=%u bufPeak=%u",
+    (int)g_mf.get_last_ogg_dbg_state(),
+    (unsigned)g_mf.get_last_ogg_dbg_assembling(),
+    (unsigned)g_mf.get_last_ogg_dbg_skipping(),
+    (unsigned)g_mf.get_last_ogg_dbg_packet_size(),
+    (unsigned)g_mf.get_last_ogg_dbg_body_consumed(),
+    (unsigned)g_mf.get_last_ogg_dbg_seg_index(),
+    (unsigned)g_mf.get_last_ogg_dbg_seg_count(),
+    (unsigned)g_mf.get_last_ogg_dbg_buf_cap(),
+    (unsigned)g_mf.get_last_ogg_dbg_buf_peak()
+);
+#endif
+
+if (g_mf.get_last_ogg_body_prefix_valid()) {
+    AUDIO_INFO("microflac OGG_BODY(zero) len=%u cons=%u endpkt=%u prefix=%02X%02X%02X%02X %02X%02X%02X%02X",
+        (unsigned)g_mf.get_last_ogg_body_len(),
+        (unsigned)g_mf.get_last_ogg_bytes_consumed(),
+        (unsigned)g_mf.get_last_ogg_endpkt(),
+        (unsigned)g_mf.get_last_ogg_body_prefix(0),
+        (unsigned)g_mf.get_last_ogg_body_prefix(1),
+        (unsigned)g_mf.get_last_ogg_body_prefix(2),
+        (unsigned)g_mf.get_last_ogg_body_prefix(3),
+        (unsigned)g_mf.get_last_ogg_body_prefix(4),
+        (unsigned)g_mf.get_last_ogg_body_prefix(5),
+        (unsigned)g_mf.get_last_ogg_body_prefix(6),
+        (unsigned)g_mf.get_last_ogg_body_prefix(7)
+    );
+}
+```
+
+---
+
+## 4) Sanity: запретить “adopt” без логов (чтобы агент не сделал половину)
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить в конец (перед OK):
+
+```python
+# Ensure zero_cons diagnostics + adopt demux consume exist in Audio.cpp
+a = Path("yoRadio/src/audioI2S/Audio.cpp").read_text(encoding="utf-8", errors="replace")
+if "microflac adopt demux_cons=" not in a:
+    print("FAIL: missing 'microflac adopt demux_cons=' in Audio.cpp")
+    sys.exit(2)
+if "microflac OGG_STATE(zero)" not in a:
+    print("FAIL: missing 'microflac OGG_STATE(zero)' in Audio.cpp")
+    sys.exit(2)
+if "microflac CHUNK(zero)" not in a:
+    print("FAIL: missing 'microflac CHUNK(zero)' in Audio.cpp")
+    sys.exit(2)
+```
+
+---
+
+## 5) Обязательные проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Должно быть ровно 2 файла:
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 6) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp tools/omnia_sanity_microflac_ogg.py
+git commit -m "diag+fix(flac): log ogg/chunk state on zero_cons and adopt demux consumption to avoid stalls (Log79)"
+git push origin main
