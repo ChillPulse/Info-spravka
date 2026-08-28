@@ -1,0 +1,105 @@
+# Instruction 38 — FIX BUILD: убрать дублирующий хвост `flac_decoder.cpp` + sanity-guard (чтобы не повторилось)
+
+## 0) Регламент
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+## 1) Scope / запреты
+Разрешено менять **только**:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+2) `tools/omnia_sanity_microflac_ogg.py`
+
+Запрещено: любые другие файлы.
+
+---
+
+## 2) P0: починить `flac_decoder.cpp` (удалить всё после первого `}  // namespace micro_flac`)
+
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+
+### 2.1 Найти первый корректный конец файла
+В конце файла есть нормальные определения:
+
+- `void FLACDecoder::set_buffer(...) { ... }`
+- `void FLACDecoder::free_buffers() { ... }`
+- затем строка:
+```cpp
+}  // namespace micro_flac
+```
+
+### 2.2 Удалить мусор
+**Удалить полностью всё, что идёт после первой строки**:
+```cpp
+}  // namespace micro_flac
+```
+
+Сейчас там начинается обрубок:
+```cpp
+const uint8_t* buf, size_t len, bool reset_bits) {
+```
+и дальше повтор `free_buffers()` и ещё одно `}  // namespace micro_flac`.
+
+После правки файл должен **заканчиваться ровно** на единственной строке:
+```cpp
+}  // namespace micro_flac
+```
+и EOF.
+
+---
+
+## 3) P0: усилить sanity-скрипт, чтобы такой хвост больше не пролез
+
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить в конец (перед `print("OK...")`) проверки:
+
+```python
+# flac_decoder.cpp must end exactly once with namespace close; no trailing duplicate tail
+if txt.count("}  // namespace micro_flac") != 1:
+    print("FAIL: expected exactly one '}  // namespace micro_flac' in flac_decoder.cpp")
+    sys.exit(2)
+
+lines = [l.strip() for l in txt.splitlines() if l.strip() != ""]
+if not lines or lines[-1] != "}  // namespace micro_flac":
+    print("FAIL: flac_decoder.cpp must end with '}  // namespace micro_flac'")
+    sys.exit(2)
+
+# Ensure set_buffer/free_buffers definitions exist exactly once
+if txt.count("void FLACDecoder::set_buffer") != 1:
+    print("FAIL: expected exactly one FLACDecoder::set_buffer definition")
+    sys.exit(2)
+if txt.count("void FLACDecoder::free_buffers") != 1:
+    print("FAIL: expected exactly one FLACDecoder::free_buffers definition")
+    sys.exit(2)
+```
+
+---
+
+## 4) Обязательные проверки перед коммитом
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Должно быть ровно 2 файла:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 5) Commit / push
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp tools/omnia_sanity_microflac_ogg.py
+git commit -m "build(flac): remove duplicate tail after namespace close in flac_decoder.cpp (fix Log83)"
+git push origin main
+```
+
+---
+
+После этого компиляция должна пройти, потому что мы устраняем точный синтаксический мусор, который и вызывает цепочку ошибок в Log83.
