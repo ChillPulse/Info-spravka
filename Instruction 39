@@ -1,0 +1,246 @@
+# Instruction 39 — Flagship: BitRate не 0 (microflac), расчёт avg bitrate, меньше reconnect storm, меньше ребутов
+
+## 0) Регламент
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) Scope / запреты
+
+### Разрешено менять только:
+1) `yoRadio/src/audioI2S/Audio.cpp`
+2) `yoRadio/src/audioI2S/AudioEx.h`
+3) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD режим / legacy декодеры
+- другие web кодеки
+- любые `micro_flac/**` файлы (в этой инструкции не трогаем кодек)
+
+---
+
+## 2) P0: Fix BitRate = N/A для microflac (ставим PCM bitrate на HEADER_READY + эмитим в UI)
+
+### 2.1 Добавить helper для отправки битрейта в UI/CLI
+Файл: `Audio.cpp`. Найти `void Audio::showCodecParams()` и **перед ним** (прямо выше) вставить:
+
+```cpp
+static void omnia_emit_bitrate(uint32_t br){
+    if(!audio_bitrate) return;
+    char b[16];
+    snprintf(b, sizeof(b), "%lu", (unsigned long)br);
+    audio_bitrate(b);
+}
+```
+
+### 2.2 В microflac HEADER_READY — выставить m_nominal_bitrate если он 0
+Файл: `Audio.cpp`, внутри `sendBytes()` → microflac loop → блок:
+
+```cpp
+if(mf_res == micro_flac::FLAC_DECODER_HEADER_READY){
+   ...
+   setChannels(...)
+   setSampleRate(...)
+   setBitsPerSample(...)
+   ...
+   showCodecParams();
+   ...
+}
+```
+
+Сразу **после** `setBitsPerSample(m_mf_bits);` вставить:
+
+```cpp
+// Ensure BitRate is never N/A for micro-flac: use decoded PCM bitrate as a floor.
+// (UI expects a number; stream bitrate may arrive later via icy-br.)
+if (m_nominal_bitrate == 0 && getChannels() && getSampleRate() && getBitsPerSample()) {
+    uint64_t pcm_br = (uint64_t)getChannels() * (uint64_t)getSampleRate() * (uint64_t)getBitsPerSample();
+    if (pcm_br > 0 && pcm_br < 100000000ULL) { // sanity clamp
+        m_nominal_bitrate = (uint32_t)pcm_br;
+        omnia_emit_bitrate(m_nominal_bitrate);
+    }
+}
+```
+
+Этим вы убираете ситуацию из Log84, где печатается `BitRate: N/A` при уже известных параметрах. 
+
+---
+
+## 3) P0: microflac должен обновлять `m_avr_bitrate` (сейчас он не обновляется, потому что `calculateAudioTime()` не вызывается)
+
+Сейчас для microflac `m_validSamples=0` и путь `calculateAudioTime()` не вызывается, поэтому `m_avr_bitrate` остаётся 0 (а значит `getBitRate()` тоже может быть 0). 
+
+### 3.1 В microflac SUCCESS — вызвать `calculateAudioTime(bytes_in, bytes_out)`
+Файл: `Audio.cpp`, в блоке:
+
+```cpp
+if(mf_res == micro_flac::FLAC_DECODER_SUCCESS){
+    if(samples_decoded && m_mf_out32){
+        ...
+    }
+    break;
+}
+```
+
+Внутри `if(samples_decoded && m_mf_out32){ ... }`, **после** установки `m_mf_pending_total/m_mf_pending_off` вставить:
+
+```cpp
+// Update bitrate/time estimator for micro-flac too (otherwise getBitRate() stays 0 on some stations).
+// bytes_consumed = compressed bytes in; samples_decoded = interleaved samples out (16-bit output path).
+uint32_t bytesIn  = (bytes_consumed > 65535) ? 65535 : (uint32_t)bytes_consumed;
+uint32_t bytesOut = (samples_decoded > 32767) ? 65534 : (uint32_t)(samples_decoded * 2); // int16
+calculateAudioTime((uint16_t)bytesIn, (uint16_t)bytesOut);
+```
+
+---
+
+## 4) P0: `icy-br` может прилетать ПОСЛЕ showCodecParams — обновлять UI когда пришёл
+
+В Log84 видно, что `icy-bitrate` иногда приходит после того, как уже выведены параметры CODEC.   
+Сейчас парсер делает `m_nominal_bitrate=...` и логирует, но **не шлёт `audio_bitrate()`**. 
+
+### 4.1 В parseHttpResponseHeader() на `icy-br:` добавить `omnia_emit_bitrate()`
+Файл: `Audio.cpp`, в `parseHttpResponseHeader()`, в блоке:
+
+```cpp
+else if(rhl.starts_with_icase("icy-br:")) {
+   ...
+   m_nominal_bitrate = ...
+   AUDIO_INFO("icy-bitrate : %lu (b/s)", m_nominal_bitrate);
+}
+```
+
+Сразу после `AUDIO_INFO("icy-bitrate ...")` вставить:
+
+```cpp
+omnia_emit_bitrate(m_nominal_bitrate);
+```
+
+---
+
+## 5) P0: меньше reconnect storm на soft errors (главный источник дропов и ребутов)
+
+В Log84 reconnect запускается из‑за soft errors и дальше иногда приводит к Guru Meditation на close.   
+В `Audio.cpp` сейчас soft errors считаются грубо: “любой <0” увеличивает счётчик и может довести до reconnect. 
+
+### 5.1 Увеличить лимит soft ошибок (флагмански)
+Файл: `Audio.cpp`, в константах рядом с `MF_WEB_ERR_SOFT_LIMIT`:
+
+```cpp
+constexpr uint8_t   MF_WEB_ERR_SOFT_LIMIT = 24;
+```
+
+Заменить на:
+
+```cpp
+constexpr uint16_t  MF_WEB_ERR_SOFT_LIMIT = 200;  // flagship: avoid reconnect storms on transient packet issues
+```
+
+(тип можно сделать `uint16_t`, чтобы совпадало с “200/10s” из Log84) 
+
+### 5.2 Считать soft error только если нет прогресса (bytes_consumed==0) ИЛИ ошибка контейнера (-14/-15/-16)
+Файл: `Audio.cpp`, в microflac error path (там где сейчас `m_mf_errSoftCnt++`), заменить:
+
+```cpp
+m_mf_errSoftCnt++;
+```
+
+на:
+
+```cpp
+bool severe = ((int)mf_res == micro_flac::FLAC_DECODER_ERROR_OGG_DEMUX ||
+               (int)mf_res == micro_flac::FLAC_DECODER_ERROR_OGG_BAD_HEADER ||
+               (int)mf_res == micro_flac::FLAC_DECODER_ERROR_INPUT_INVALID);
+
+if (severe || bytes_consumed == 0) {
+    m_mf_errSoftCnt++;
+}
+```
+
+Смысл: `SYNC_NOT_FOUND` с прогрессом (или “плохой пакет, но мы двигаемся”) не должен быстро запускать reconnect.
+
+---
+
+## 6) P0: снизить шанс ребута при reconnect — не делаем stopSong() без mutex_playAudioData
+
+В `stallReconnect()` сейчас: если mutex не взят за 0.3s, всё равно продолжаем и зовём `stopSong()`.   
+Это типичный сценарий race/use-after-free.
+
+### 6.1 В stallReconnect() если mutex не взяли — отложить reconnect
+Файл: `Audio.cpp`, в `stallReconnect()` найти:
+
+```cpp
+bool haveMutex = (xSemaphoreTakeRecursive(mutex_playAudioData, 0.3 * configTICK_RATE_HZ) == pdTRUE);
+stopSong();
+...
+if(haveMutex) xSemaphoreGiveRecursive(mutex_playAudioData);
+```
+
+Заменить на:
+
+```cpp
+bool haveMutex = (xSemaphoreTakeRecursive(mutex_playAudioData, 0.8 * configTICK_RATE_HZ) == pdTRUE);
+if(!haveMutex){
+    // Don't force stop/free while decode path may still be running -> avoids Guru Meditation.
+    m_mf_reconnecting = false;
+    return false;
+}
+stopSong();
+...
+xSemaphoreGiveRecursive(mutex_playAudioData);
+```
+
+---
+
+## 7) P0: увеличить input ring-buffer для “тяжёлых” FLAC (как на ПК — больше джиттер-буфер)
+
+Файл: `AudioEx.h`, в `AudioBuffer`:
+
+```cpp
+size_t m_buffSize = UINT16_MAX * 10;
+```
+
+Заменить на:
+
+```cpp
+size_t m_buffSize = UINT16_MAX * 32; // ~2MB for flagship FLAC stability on ESP32-S3 N16R8
+```
+
+---
+
+## 8) Sanity (обязательно)
+Файл: `tools/omnia_sanity_microflac_ogg.py` — добавить проверки:
+
+- что в `Audio.cpp` есть `omnia_emit_bitrate(`  
+- что в `Audio.cpp` `MF_WEB_ERR_SOFT_LIMIT = 200`  
+- что в `AudioEx.h` `UINT16_MAX * 32`
+
+(по шаблону существующих `if "... " not in text: FAIL`)
+
+---
+
+## 9) Обязательные проверки перед коммитом
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `yoRadio/src/audioI2S/AudioEx.h`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 10) Commit / push
+```bash
+git add yoRadio/src/audioI2S/Audio.cpp yoRadio/src/audioI2S/AudioEx.h tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(flac): bitrate never N/A for microflac + update avg bitrate + soften reconnect storms + bigger buffer"
+git push origin main
