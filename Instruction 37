@@ -1,0 +1,320 @@
+# Instruction 37 — FLAGSHIP: Ogg‑FLAC header packets по спекам + меньше reconnect storms + mfdbg реально “тихий” режим
+
+Цель:  
+1) Убрать `SYNC_NOT_FOUND`-бурсты после `HEADER_READY` на “проблемных” FLAC-станциях.  
+2) Сильно снизить дропы (за счёт прекращения reconnect storm).  
+3) Сделать `mfdbg 0/1` заметным: при `0` почти нет microflac-логов.
+
+## 0) Регламент
+Только `main`:
+
+```bash
+git fetch origin --prune
+git checkout main
+git reset --hard origin/main
+```
+
+---
+
+## 1) SCOPE / запреты
+
+### Разрешено менять только:
+1) `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+2) `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+3) `yoRadio/src/audioI2S/Audio.cpp`
+4) `yoRadio/src/audioI2S/AudioEx.h`
+5) `tools/omnia_sanity_microflac_ogg.py`
+
+### Запрещено:
+- SD-режим и legacy декодеры
+- MP3/AAC/OPUS/VORBIS ветки
+- рефакторинг “по пути”
+
+---
+
+## 2) P0 FIX: micro-flac — учёт `num_header_packets` из Ogg-FLAC BOS пакета (по Xiph/RFC)
+
+### 2.1 Добавить поля в `FLACDecoder` (flac_decoder.h)
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+
+В private секции внутри `#ifndef MICRO_FLAC_DISABLE_OGG` (рядом с `ogg_bos_prefix_consumed_`, `ogg_bos_processed_`, `ogg_eos_seen_`) добавить:
+
+```cpp
+// Ogg-FLAC mapping header packets count (Xiph/RFC9639):
+// number of header (non-audio) packets following the first BOS packet.
+uint8_t  ogg_mapping_minor_{0};
+uint16_t ogg_header_packets_total_{0};
+uint16_t ogg_header_packets_remaining_{0};
+bool     ogg_header_packets_known_{false};
+```
+
+### 2.2 Сбросить эти поля в `reset()` (flac_decoder.cpp)
+Файл: `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`, функция `FLACDecoder::reset()`.
+
+Внутри `#ifndef MICRO_FLAC_DISABLE_OGG` блока reset (где сейчас сбрасывается `ogg_bos_processed_`, `ogg_bos_prefix_consumed_`, `ogg_eos_seen_`, и т.д.) добавить:
+
+```cpp
+this->ogg_mapping_minor_ = 0;
+this->ogg_header_packets_total_ = 0;
+this->ogg_header_packets_remaining_ = 0;
+this->ogg_header_packets_known_ = false;
+```
+
+### 2.3 В `decode_ogg()` при strip BOS prefix прочитать minor + num_header_packets (flac_decoder.cpp)
+Файл: `flac_decoder.cpp`, функция `FLACDecoder::decode_ogg()`.
+
+Найти цикл strip BOS prefix:
+
+```cpp
+while (this->ogg_bos_prefix_consumed_ < BOS_PREFIX_LEN && body_len > 0) {
+    uint8_t idx = this->ogg_bos_prefix_consumed_;
+    if (idx < 6 && body[0] != BOS_PREFIX[idx]) { ... }
+    this->ogg_bos_prefix_consumed_++;
+    body++;
+    body_len--;
+}
+```
+
+Вставить **строго внутри этого цикла** (после проверки `idx < 6...`, но до инкремента `ogg_bos_prefix_consumed_++`) блок:
+
+```cpp
+// idx layout per Ogg-FLAC mapping:
+// 0..5: 0x7F 'F''L''A''C' 0x01(major)
+// 6: minor
+// 7..8: num_header_packets (big-endian)
+if (idx == 6) {
+    this->ogg_mapping_minor_ = body[0];
+}
+if (idx == 7) {
+    this->ogg_header_packets_total_ = ((uint16_t)body[0]) << 8;
+}
+if (idx == 8) {
+    this->ogg_header_packets_total_ |= (uint16_t)body[0];
+    this->ogg_header_packets_remaining_ = this->ogg_header_packets_total_;
+    this->ogg_header_packets_known_ = (this->ogg_header_packets_total_ != 0);
+}
+```
+
+---
+
+## 3) P0 FIX: `read_header()` — “last metadata block” корректировать по `num_header_packets`
+
+Смысл: если `ogg_header_packets_known_ == true`, то **header packets count — authoritative**:
+- STREAMINFO не может быть “последним”, если `remaining>0`
+- каждый header packet содержит **ровно один metadata block**
+- на последнем ожидаемом header packet можно форсировать `last_block=true` даже если бит не выставлен (защита от кривых потоков)
+
+### 3.1 Патч определения `last_block` при разборе metadata header (flac_decoder.cpp)
+Файл: `flac_decoder.cpp`, функция `read_header()`.
+
+Найти место:
+
+```cpp
+const uint8_t* bh = this->header_parse_.block_header_buf;
+this->header_parse_.last_block = (bh[0] & 0x80) != 0;
+this->header_parse_.type = bh[0] & 0x7F;
+...
+```
+
+Заменить **строго эти 2 строки** на:
+
+```cpp
+const uint8_t* bh = this->header_parse_.block_header_buf;
+const bool last_flag = (bh[0] & 0x80) != 0;
+this->header_parse_.type = bh[0] & 0x7F;  // NOLINT(readability-magic-numbers)
+
+// Ogg-FLAC: if mapping header declares header packets count, use it to control end-of-metadata.
+// This protects against streams with incorrect "last metadata block" flag in STREAMINFO.
+if (this->container_type_ == ContainerType::OGG_FLAC && this->ogg_header_packets_known_) {
+    if (this->header_parse_.type == FLAC_METADATA_TYPE_STREAMINFO) {
+        this->header_parse_.last_block = (this->ogg_header_packets_remaining_ == 0) ? last_flag : false;
+    } else if (this->ogg_header_packets_remaining_ > 0) {
+        // Treat the last expected header packet as end-of-metadata, regardless of last_flag.
+        this->header_parse_.last_block = (this->ogg_header_packets_remaining_ == 1);
+    } else {
+        this->header_parse_.last_block = last_flag;
+    }
+} else {
+    this->header_parse_.last_block = last_flag;
+}
+```
+
+### 3.2 Декремент `ogg_header_packets_remaining_` при завершении metadata блока (skip и store)
+В `read_header()` есть 2 места, где metadata block “закончился”:
+
+1) В ветке `should_skip` после:
+```cpp
+if (this->header_parse_.bytes_read == this->header_parse_.length) {
+    this->header_parse_.length = 0;
+    this->header_parse_.bytes_read = 0;
+}
+```
+
+Сразу после этого вставить:
+
+```cpp
+if (this->container_type_ == ContainerType::OGG_FLAC && this->ogg_header_packets_known_ &&
+    this->header_parse_.type != FLAC_METADATA_TYPE_STREAMINFO && this->ogg_header_packets_remaining_ > 0) {
+    this->ogg_header_packets_remaining_--;
+}
+```
+
+2) В ветке сохранения блока (после `emplace_back()` и когда вы сбрасываете `length/bytes_read`):
+Сразу после строк:
+```cpp
+this->header_parse_.length = 0;
+this->header_parse_.bytes_read = 0;
+```
+вставить тот же декремент-блок.
+
+---
+
+## 4) P0 FIX: resync на Ogg demux error — НЕ выкидывать почти весь буфер (анти-дроп)
+
+Сейчас в `decode_ogg()` при `state.result != OGG_OK` и “OggS не найден” вы делаете `bytes_consumed = input_len - 3`, что даёт большие провалы.
+
+Файл: `flac_decoder.cpp`, `decode_ogg()`. Найти комментарий:
+
+```cpp
+// No full "OggS" found in this window: keep last 3 bytes for boundary match.
+if (input_len > 3 && bytes_consumed < input_len - 3) {
+    bytes_consumed = input_len - 3;
+}
+return FLAC_DECODER_NEED_MORE_DATA;
+```
+
+Заменить на:
+
+```cpp
+// No full "OggS" found in this window: advance gradually (keep 3-byte overlap), not drop entire buffer.
+if (scan_limit > 3) {
+    bytes_consumed += (scan_limit - 3);
+    continue;
+}
+return FLAC_DECODER_NEED_MORE_DATA;
+```
+
+---
+
+## 5) P0: Увеличить входной ring-buffer (чтобы “как на ПК” переживать джиттер на 24/96 и выше)
+
+Файл: `yoRadio/src/audioI2S/AudioEx.h`
+
+Найти:
+
+```cpp
+size_t m_buffSize = UINT16_MAX * 10;
+```
+
+Заменить на (пример для N16R8 / 8MB PSRAM):
+
+```cpp
+size_t m_buffSize = UINT16_MAX * 32; // ~2.0 MB buffer for flagship FLAC stability
+```
+
+---
+
+## 6) P0: microflac soft-error reconnect — ослабить (чтобы не рвать поток при кратких рассинках)
+
+Файл: `yoRadio/src/audioI2S/Audio.cpp`
+
+Найти константу:
+
+```cpp
+constexpr uint8_t MF_WEB_ERR_SOFT_LIMIT = 24;
+```
+
+Заменить на:
+
+```cpp
+constexpr uint8_t MF_WEB_ERR_SOFT_LIMIT = 200;
+```
+
+(Это временная “флагманская” страховка: после фикса пункта 2–3 ошибок станет меньше, но reconnect storm — самый слышимый источник дропов.)
+
+---
+
+## 7) P0: mfdbg должен реально “выключать шум” (AUDIO.cpp)
+
+### 7.1 Гейтить `microflac SUCCESS` лог
+Файл: `Audio.cpp`, в блоке `if(mf_res == FLAC_DECODER_SUCCESS)` сейчас:
+
+```cpp
+if(s_mfSuccessCnt < 5 || (s_mfSuccessCnt % 50) == 0){
+    AUDIO_INFO("microflac SUCCESS ...");
+}
+```
+
+Заменить условие на:
+
+```cpp
+if ((g_omnia_microflac_debug && (s_mfSuccessCnt < 5 || (s_mfSuccessCnt % 50) == 0)) ||
+    (!g_omnia_microflac_debug && s_mfSuccessCnt == 0)) {
+    AUDIO_INFO("microflac SUCCESS ...");
+}
+```
+
+(То есть при `mfdbg 0` будет только **одна** строка SUCCESS на старт, и дальше тишина.)
+
+### 7.2 Гейтить `wait full ogg page` / `grow block` в playAudioData
+Файл: `Audio.cpp`, в `playAudioData()` там где:
+
+- `AUDIO_INFO("microflac ogg page total=... grow block ...")`
+- `AUDIO_INFO("microflac wait full ogg page ...")`
+
+Обернуть эти `AUDIO_INFO` в:
+
+```cpp
+if (g_omnia_microflac_debug) { ... }
+```
+
+---
+
+## 8) Sanity (обязательно) — обновить проверки под новые правки
+Файл: `tools/omnia_sanity_microflac_ogg.py`
+
+Добавить проверки:
+
+1) В `flac_decoder.h` должны появиться:
+- `ogg_header_packets_remaining_`
+- `ogg_header_packets_known_`
+
+2) В `flac_decoder.cpp` должны быть маркеры:
+- `ogg_header_packets_remaining_--`
+- `ogg_header_packets_known_`
+- `idx == 8` (парсинг count)
+- `scan_limit - 3` (инкрементальный resync)
+
+3) В `AudioEx.h` должна быть строка `UINT16_MAX * 32`.
+
+4) В `Audio.cpp` должен встретиться `g_omnia_microflac_debug` рядом с SUCCESS-логом (можно искать подстроку `s_mfSuccessCnt == 0`).
+
+---
+
+## 9) Обязательные проверки перед коммитом
+
+```bash
+python3 tools/omnia_sanity_audio_cpp.py
+python3 tools/omnia_sanity_microflac_ogg.py
+git diff --name-only
+```
+
+Ожидаемые файлы:
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.h`
+- `yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp`
+- `yoRadio/src/audioI2S/Audio.cpp`
+- `yoRadio/src/audioI2S/AudioEx.h`
+- `tools/omnia_sanity_microflac_ogg.py`
+
+---
+
+## 10) Commit / push
+
+```bash
+git add yoRadio/src/audioI2S/micro_flac/flac_decoder.h \
+        yoRadio/src/audioI2S/micro_flac/flac_decoder.cpp \
+        yoRadio/src/audioI2S/Audio.cpp \
+        yoRadio/src/audioI2S/AudioEx.h \
+        tools/omnia_sanity_microflac_ogg.py
+git commit -m "fix(flac): ogg-flac header packets by mapping count + incremental resync + bigger buffer + mfdbg quieter"
+git push origin main
